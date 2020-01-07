@@ -6,7 +6,7 @@
     "name": "D 的个人博客",
     "start_url": ".",
     "description": "开源程序员，自由职业者",
-    "short_name": "${shortName}",
+    "short_name": "D 的个人博客",
     "icons": [
         {
             "sizes": "48x48",
