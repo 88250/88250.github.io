@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Drop 简介 - D 的个人博客</title><meta name="description" content="ol { padding-left: 3em; font-weight: bold; } ol.writely-toc-subheading { padding-left: 1em; font-weight: normal; } IE6 only * html writely-toc ol { list-style-position: inside; } .writely-toc-none { list-style-type: none; } .writely-toc-decimal { list-style-type: decimal; } .write...."/><meta property="og:description" content="ol { padding-left: 3em; font-weight: bold; } ol.writely-toc-subheading { padding-left: 1em; font-weight: normal; } IE6 only * html writely-toc ol { list-style-position: inside; } .writely-toc-none { list-style-type: none; } .writely-toc-decimal { list-style-type: decimal; } .write...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Drop 简介 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/11/30/1259620560000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Drop 简介 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/11/30/1259620560000.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="Java 依赖注入标准（JSR-330）简介" href="https://88250.github.io/articles/2009/11/19/1258674480000.html">
+            <link rel="next" title="以父之名" href="https://88250.github.io/articles/2009/12/02/1259777520000.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2009/11/30/1259620560000.html">
+                Drop 简介
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Published on
+            <time>
+                Dec 1, 2009
+            </time>
+            with <span data-uvstaturl="https://88250.github.io/articles/2009/11/30/1259620560000.html">0</span> views
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/JSR-299">
+                    <b># JSR-299</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/J2SE%2FJavaSE">
+                    <b># J2SE/JavaSE</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/J2EE%2FJavaEE">
+                    <b># J2EE/JavaEE</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p><!--   
+  
+/* default css */
+table {
+  font-size: 1em;
+  line-height: inherit;
+  border-collapse: collapse;
+}
+tr {
+  
+  text-align: left;
+  
+}
+div, address, ol, ul, li, option, select {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+p {
+  margin: 0px;
+}
+pre {
+  font-family: Courier New;
+  white-space: pre-wrap;
+  margin:0;
+}
+body {
+  margin: 6px;
+  padding: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 10pt;
+  background-color: #ffffff;
+}
+img {
+  -moz-force-broken-image-icon: 1;
+}
+@media screen {
+  html.pageview {
+    background-color: #f3f3f3 !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  
+  body {
+    min-height: 1100px;
+    
+    counter-reset: __goog_page__;
+  }
+  * html body {
+    height: 1100px;
+  }
+  .pageview body {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    width: 648px !important;
+    margin: 15px auto 25px;
+    padding: 40px 50px;
+  }
+  /* IE6 */
+  * html {
+    overflow-y: scroll;
+  }
+  * html.pageview body {
+    overflow-x: auto;
+  }
+  /* Prevent repaint errors when scrolling in Safari. This "Star-7" css hack
+     targets Safari 3.1, but not WebKit nightlies and presumably Safari 4.
+     That's OK because this bug is fixed in WebKit nightlies/Safari 4 :-). */
+  html*#wys_frame::before {
+    content: '\A0';
+    position: fixed;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+  }
+  
+  
+  
+    
+    .writely-callout-data {
+      display: none;
+    }
+    
+    .writely-footnote-marker {
+      background-image: url('MISSING');
+      background-color: transparent;
+      background-repeat: no-repeat;
+      width: 7px;
+      overflow: hidden;
+      height: 16px;
+      vertical-align: top;
+      
+      -moz-user-select: none;
+    }
+    .editor .writely-footnote-marker {
+      cursor: move;
+    }
+    .writely-footnote-marker-highlight {
+      background-position: -15px 0;
+      -moz-user-select: text;
+    }
+    .writely-footnote-hide-selection ::-moz-selection, .writely-footnote-hide-selection::-moz-selection {
+      background: transparent;
+    }
+    .writely-footnote-hide-selection ::selection, .writely-footnote-hide-selection::selection {
+      background: transparent;
+    }
+    .writely-footnote-hide-selection {
+      cursor: move;
+    }
+    /* Comments */
+    .writely-comment-yellow {
+      background-color: #ffffd7;
+    }
+    .writely-comment-orange {
+      background-color: #ffe3c0;
+    }
+    .writely-comment-pink {
+      background-color: #ffd7ff;
+    }
+    .writely-comment-green {
+      background-color: #d7ffd7;
+    }
+    .writely-comment-blue {
+      background-color: #d7ffff;
+    }
+    .writely-comment-purple {
+      background-color: #eed7ff;
+    }
+  
+  
+  .br_fix span+br:not(:-moz-last-node) {
+    
+    position:relative;
+    
+    left: -1ex
+    
+  }
+  
+  #cb-p-tgt {
+    font-size: 8pt;
+    padding: .4em;
+    background-color: #ddd;
+    color: #333;
+  }
+  #cb-p-tgt-can {
+    text-decoration: underline;
+    color: #36c;
+    font-weight: bold;
+    margin-left: 2em;
+  }
+  #cb-p-tgt .spin {
+    width: 16px;
+    height: 16px;
+    background: url(//ssl.gstatic.com/docs/clipboard/spin_16o.gif) no-repeat;
+  }
+}
+h6 { font-size: 8pt }
+h5 { font-size: 8pt }
+h4 { font-size: 10pt }
+h3 { font-size: 12pt }
+h2 { font-size: 14pt }
+h1 { font-size: 18pt }
+blockquote {padding: 10px; border: 1px #DDD dashed }
+.webkit-indent-blockquote { border: none; }
+a img {border: 0}
+.pb {
+  border-width: 0;
+  page-break-after: always;
+  /* We don't want this to be resizeable, so enforce a width and height
+     using !important */
+  height: 1px !important;
+  width: 100% !important;
+}
+.editor .pb {
+  border-top: 1px dashed #C0C0C0;
+  border-bottom: 1px dashed #C0C0C0;
+}
+div.google_header, div.google_footer {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* Table of contents */
+.editor div.writely-toc {
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+}
+.writely-toc > ol {
+  padding-left: 3em;
+  font-weight: bold;
+}
+ol.writely-toc-subheading {
+  padding-left: 1em;
+  font-weight: normal;
+}
+/* IE6 only */
+* html writely-toc ol {
+  list-style-position: inside;
+}
+.writely-toc-none {
+  list-style-type: none;
+}
+.writely-toc-decimal {
+  list-style-type: decimal;
+}
+.writely-toc-upper-alpha {
+  list-style-type: upper-alpha;
+}
+.writely-toc-lower-alpha {
+  list-style-type: lower-alpha;
+}
+.writely-toc-upper-roman {
+  list-style-type: upper-roman;
+}
+.writely-toc-lower-roman {
+  list-style-type: lower-roman;
+}
+.writely-toc-disc {
+  list-style-type: disc;
+}
+/* Ordered lists converted to numbered lists can preserve ordered types, and
+   vice versa. This is confusing, so disallow it */
+ul[type="i"], ul[type="I"], ul[type="1"], ul[type="a"], ul[type="A"] {
+  list-style-type: disc;
+}
+ol[type="disc"], ol[type="circle"], ol[type="square"] {
+  list-style-type: decimal;
+}
+/* end default css */
+  /* default print css */
+  
+  @media print {
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    div.google_header, div.google_footer {
+      display: block;
+      min-height: 0;
+      border: none;
+    }
+    div.google_header {
+      flow: static(header);
+    }
+    /* used to insert page numbers */
+    div.google_header::before, div.google_footer::before {
+      position: absolute;
+      top: 0;
+    }
+    div.google_footer {
+      flow: static(footer);
+    }
+    /* always consider this element at the start of the doc */
+    div#google_footer {
+      flow: static(footer, start);
+    }
+    span.google_pagenumber {
+      content: counter(page);
+    }
+    span.google_pagecount {
+      content: counter(pages);
+    }
+    .endnotes {
+      page: endnote;
+    }
+    /* MLA specifies that endnotes title should be 1" margin from the top of the page. */
+    @page endnote {
+      margin-top: 1in;
+    }
+    callout.google_footnote {
+      
+      display: prince-footnote;
+      footnote-style-position: inside;
+      /* These styles keep the footnote from taking on the style of the text
+         surrounding the footnote marker. They can be overridden in the
+         document CSS. */
+      color: #000;
+      font-family: Verdana;
+      font-size: 10.0pt;
+      font-weight: normal;
+    }
+    /* Table of contents */
+    #WritelyTableOfContents a::after {
+      content: leader('.') target-counter(attr(href), page);
+    }
+    #WritelyTableOfContents a {
+      text-decoration: none;
+      color: black;
+    }
+    /* Comments */
+    .writely-comment-yellow {
+      background-color: #ffffd7;
+    }
+    .writely-comment-orange {
+      background-color: #ffe3c0;
+    }
+    .writely-comment-pink {
+      background-color: #ffd7ff;
+    }
+    .writely-comment-green {
+      background-color: #d7ffd7;
+    }
+    .writely-comment-blue {
+      background-color: #d7ffff;
+    }
+    .writely-comment-purple {
+      background-color: #eed7ff;
+    }
+  }
+  @page {
+    @top {
+      content: flow(header);
+    }
+    @bottom {
+      content: flow(footer);
+    }
+    @footnotes {
+      border-top: solid black thin;
+      padding-top: 8pt;
+    }
+  }
+  /* end default print css */
+/* custom css */
+/* end custom css */
+/* ui edited css */
+body {
+  font-family: Verdana;
+  
+  font-size: 10.0pt;
+  line-height: normal;
+  background-color: #ffffff;
+}
+/* end ui edited css */
+/* editor CSS */
+.editor a:visited {color: #551A8B}
+.editor table.zeroBorder {border: 1px dotted gray}
+.editor table.zeroBorder td {border: 1px dotted gray}
+.editor table.zeroBorder th {border: 1px dotted gray}
+.editor div.google_header, .editor div.google_footer {
+  border: 2px #DDDDDD dashed;
+  position: static;
+  width: 100%;
+  min-height: 2em;
+}
+.editor .misspell {background-color: yellow}
+.editor .writely-comment {
+  font-size: 9pt;
+  line-height: 1.4;
+  padding: 1px;
+  border: 1px dashed #C0C0C0
+}
+/* end editor CSS */
+-->
+</p><p>
+</p><p>Drop 简介</p>
+<p></p>
+<div>
+<h1 id="b3_solo_h1_0">
+    <a name="Drop_942502327817074_713398930_09901273057704785" target="_blank"></a>
+Drop 简介
+  </h1>
+<p style="FONT-FAMILY:Verdana">&nbsp;</p>
+<p style="FONT-FAMILY:Verdana">
+    转载请保留作者信息：</p>
+<p style="FONT-FAMILY:Verdana">
+    作者：<a title="88250's Blog" href="http://blog.csdn.net/DL88250" target="_blank">88250</a>
+<a title="Vanessa's Blog" href="http://blog.csdn.net/Vanessa219" target="_blank"></a>
+  </p>
+时间：2009 年 11 月 30 日<br>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <a title="Drop" href="http://kenai.com/projects/drop/" target="_blank">Drop</a><br>
+是一个开源的 JSR-330（Dependency Injection for Java）参考实现，已通过 JSR-330 TCK 测试。该项目旨在构建一个符合 JSR-330 的最小化实现，使得新手能够更快了解 Java 依赖注入实现原理以及了解 Java 依赖注入标准规范。Drop 使用的是 Java 反射来进行依赖注入，没有使用代码生成来实现依赖注入。<br></p>
+  <br>
+<div id="WritelyTableOfContents" class="writely-toc">
+    <ol class="writely-toc-none">
+<li>
+        <a href="#Drop_942502327817074_713398930_09901273057704785" target="_self">Drop 简介</a>
+<pre><code>    &lt;ol class="writely-toc-subheading writely-toc-none" style="MARGIN-LEFT:0pt"&gt;
+</code></pre>
+</li><li>
+            <a href="#Drop_9397241618695393_11525103" target="_self">Drop 注入器配置</a>
+<pre><code>      &lt;/li&gt;
+</code></pre>
+</li><li>
+            <a href="#_9203682444930039_655734266535_6032174459136728" target="_self">注入点检查</a>
+<pre><code>        &lt;ol class="writely-toc-subheading writely-toc-none" style="MARGIN-LEFT:0pt"&gt;
+</code></pre>
+</li><li>
+                <a href="#_7977546283337832_661046109934_38955473699688115" target="_self">注入点合法性检查</a>
+<pre><code>          &lt;/li&gt;
+</code></pre>
+</li><li>
+                <a href="#_8535729111701901_846936776194_9339070864725528" target="_self">注入点依赖满足检查</a>
+<pre><code>          &lt;/li&gt;
+</code></pre>
+</li></ol>
+<pre><code>      &lt;/li&gt;
+</code></pre>
+<li>
+            <a href="#_7994669998784012_413526977625_8317452791349638" target="_self">依赖注入</a>
+<pre><code>        &lt;ol class="writely-toc-subheading writely-toc-none" style="MARGIN-LEFT:0pt"&gt;
+</code></pre>
+</li><li>
+                <a href="#_650872312028599" target="_self">注入顺序</a>
+<pre><code>          &lt;/li&gt;
+</code></pre>
+</li><li>
+                <a href="#__8873284463906821" target="_self">注入实现</a>
+<pre><code>          &lt;/li&gt;
+</code></pre>
+
+<pre><code>      &lt;/li&gt;
+</code></pre>
+</li><li>
+            <a href="#_4248820779380611_199367912138" target="_self">中英术语对照表</a>
+<pre><code>      &lt;/li&gt;
+</code></pre>
+
+<pre><code>  &lt;/li&gt;
+</code></pre>
+
+  </li></div>
+<br>
+<h2 id="b3_solo_h2_1">
+    <a name="Drop_9397241618695393_11525103" target="_blank"></a>
+Drop 注入器配置
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; Drop 提供两种方式配置组件（Bean）：<br>
+  <ol>
+<li>
+      Java 注解<br>
+<pre><code>  例如：&lt;br /&gt;
+
+  &lt;br /&gt;
+
+  &lt;span style="FONT-FAMILY:Courier New"&gt;@Named(&amp;quot;helloSpeaker&amp;quot;) &lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;@Hello // 限定器&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;@SessionScoped // 作用域&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;public class HelloSpeaker {&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; public String say() {&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return &amp;quot;Hello!&amp;quot;;&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;}&lt;/span&gt;
+
+  
+&lt;/li&gt;
+</code></pre>
+</li><li>
+      Builder-style APIs<br>
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;Configurer.createBean(concreteClass&amp;lt;T&amp;gt;) : Bean&amp;lt;T&amp;gt;&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;Bean.&amp;lt;T&amp;gt;named(stringName) : Bean&amp;lt;T&amp;gt;&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;Bean.&amp;lt;T&amp;gt;scoped(scopeAnnotation) : Bean&amp;lt;T&amp;gt;&lt;/span&gt;
+</code></pre>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>  &lt;span style="FONT-FAMILY:Courier New"&gt;Bean.&amp;lt;T&amp;gt;qualified(qualifierAnnotation, qualifierAnnotation...) : Bean&amp;lt;T&amp;gt;&lt;/span&gt;
+
+&lt;/li&gt;
+</code></pre>
+</li></ol>
+</div>
+<div>
+<div style="FONT-FAMILY:Courier New; MARGIN-LEFT:40px">
+    <br>
+<pre><code>例如：&lt;br /&gt;
+
+&lt;br /&gt;
+
+final Configurer configurer = injector.getConfigurer();&lt;br /&gt;
+</code></pre>
+  </div>
+</div>
+<div>
+<div style="MARGIN-LEFT:40px">
+    <span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp; configurer.createBean(HelloSpeaker.class).</span>
+<br style="FONT-FAMILY:Courier New">
+  </div>
+<span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; named("helloSpeaker").</span>
+<br style="FONT-FAMILY:Courier New">
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scoped(new DefaultScopedLiteral()).</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; qualified(new HelloLiteral());</span><br>
+<br></p>
+<p>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br></p>
+<p>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;在 JSR-330 中，Named 也是一种 Qualifier，所以上述例子也可以这样写：<br></p>
+  <br>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    configurer.createBean(HelloSpeaker.class).<br>
+<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;span style="text-decoration: line-through;"&gt;named(&amp;quot;helloSpeaker&amp;quot;).&lt;/span&gt;
+</code></pre>
+
+<br style="FONT-FAMILY:Courier New">
+  </div>
+<span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scoped(new DefaultScopedLiteral()).</span>
+<br style="FONT-FAMILY:Courier New">
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><br>
+<span style="FONT-FAMILY:Courier New">qualified</span><br>
+<span style="FONT-FAMILY:Courier New">(<strong>new NamedLiteral("helloSpeaker"), </strong><br>
+new HelloLiteral());</span><br>
+<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
+<h2 id="b3_solo_h2_2">
+    <a name="_9203682444930039_655734266535_6032174459136728" target="_blank"></a>
+注入点检查<br>
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; Drop 使用类型安全的依赖解析算法，类型安全指的就是：<br>
+</div>
+<div>
+  <ol>
+<li>&nbsp;<ol>
+<li>
+        不使用文本内容进行组件依赖配置
+      </li>
+<li>
+        依赖类型 + 限定器 = 类型安全
+      </li>
+</ol>
+</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 在所有组件配置完成后，Drop 将对其进行注入点检查。<br></p>
+  <br>
+  <ol>
+<li>
+<div>
+        <strong>注入点</strong>
+<br>
+<pre><code>    注入点描述了需要进行依赖注入（标注了 @Inject）的元素信息。依赖注入有三个方法：字段注入，构造器注入，方法注入。据此，注入点可以分为两类，字段注入点，参数注入点。
+  &lt;/div&gt;
+</code></pre>
+</div></li>
+<li>
+<div>
+        <strong>需要的类型</strong>
+<br>
+<pre><code>    需要的类型指的是被注入实例的的类型。该信息包含在注入点描述中。
+  &lt;/div&gt;
+</code></pre>
+</div></li>
+<li>
+<div>
+        <strong>需要的限定器</strong>
+<br>
+<pre><code>    需要的限定器指的是注入点中描述的限定器。当注入点同时存在需要的限定器与需要的类型时，依赖注入容器可以进行类型安全的依赖查找与注入。
+  &lt;/div&gt;
+</code></pre>
+</div></li>
+<li>
+<div>
+        <strong>依赖不满足</strong>
+<br>
+<pre><code>    该情况指的是依赖注入容器在进行注入点依赖查找时未从容器中找到满足注入点条件的情况。
+  &lt;/div&gt;
+</code></pre>
+</div></li>
+<li>
+<div>
+        <strong>依赖混淆</strong>
+<br>
+<pre><code>    该情况指的是依赖注入容器在进行注入点依赖查找时从容器中查找到多于一个满足注入点条件的情况。
+  &lt;/div&gt;
+</code></pre>
+</div></li>
+<li>
+      <strong>依赖检查</strong>
+<br>
+<pre><code>  依赖检查指的就是检查依赖注入器中的所有注入点是否合法以及是被否满足，发生在容器配置后。如果满足，则注入器可以进行依赖注入，如果不满足，则抛出检查异常。
+&lt;/li&gt;
+</code></pre>
+</li></ol>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp; 例如，形如 @Inject Speaker nightSpeaker 的注入点，其需要的类型为：Speaker；需要的限定器为空集。形如 @Inject @Night Speaker nightSpeaker 的注入点，其需要的类型为：Speaker；需要的限定器为 @Night。该注入点为合法注入点，但是否能满足依赖还需要根据注入器的配置进行检查。<br>
+<pre><code>&lt;br /&gt;
+</code></pre>
+<h3 id="b3_solo_h3_3">
+      <a name="_7977546283337832_661046109934_38955473699688115" target="_blank"></a>
+注入点合法性检查
+    </h3>
+&nbsp;&nbsp;&nbsp;&nbsp; 一个合法可注入的构造器：<br>
+<pre><code>&lt;ol&gt;
+</code></pre>
+<li>
+        被 @Inject 标注。
+      </li>
+<li>
+        接受 0 个或多个参数，所有参数都作为参数注入点。
+      </li>
+<li>
+        在同一个类上只能存在一个可注入的构造器（只能有一个构造器被 @Inject 标注），如果一个类有且仅有一个默认构造器（public 修饰，无参数），不管是否标注 @Inject，注入器都将调用该默认构造器。
+      </li>
+<li>
+        不能是带类型参数的构造器。例如：&lt;T&gt;&nbsp; TypeName(T t) 不能进行注入。
+      </li>
+
+<pre><code>&lt;br /&gt;
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 一个合法可注入的字段：&lt;br /&gt;
+
+&lt;ol&gt;
+</code></pre>
+<li>
+        被 @Inject 标注。
+      </li>
+<li>
+        不能是 final 的。
+      </li>
+<li>
+        不能是类型变量。例如 T field 不能进行注入。
+      </li>
+
+<pre><code>&lt;br /&gt;
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 一个合法可注入的方法：&lt;br /&gt;
+
+&lt;ol&gt;
+</code></pre>
+<li>
+        被 @Inject 标注。
+      </li>
+<li>
+        不能是 abstract 的。
+      </li>
+<li>
+        接受 0 个或多个参数，所有参数都作为参数注入点。
+      </li>
+<li>
+        不能是带类型参数的方法。例如：&lt;T&gt; void method(T t) 不能进行注入。
+      </li>
+
+<pre><code>&lt;br /&gt;
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Drop 目前还没有全部实现所有上述条件的检查。&lt;br /&gt;
+</code></pre>
+<h3 id="b3_solo_h3_4">
+      <a name="_8535729111701901_846936776194_9339070864725528" target="_blank"></a>
+注入点依赖满足检查
+    </h3>
+&nbsp;&nbsp;&nbsp;&nbsp; JSR-330 规范将 @Named 定义为了一个限定器，并且有一个 String 类型的属性。这样，除了使用类型安全的依赖解析算法，也可以使用命名解析算法。下面，我们通过一个具体的例子来看看如何对注入点进行依赖满足检查。<br>
+  </div>
+<div>
+    &nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    @Retention(RetentionPolicy.RUNTIME)
+<div>
+      @Target({ElementType.TYPE, ElementType.FIELD})
+    </div>
+<div>
+      @Qualifier
+    </div>
+<div>
+      public @interface Night {}
+    </div>
+<div>
+      &nbsp;
+    </div>
+</div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+<div>
+      public interface Speaker {
+    </div>
+</div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;String say();
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    }
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    public interface DarkernessSpeaker extends Speaker {}
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    @Named("nightSpeaker")
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    @Night
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    public class NightSpeaker implements DarknessSpeaker {
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;@Override
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;public String say() {
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Night!";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;}
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    }<br>
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    public class SpeakerService {
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;@Inject
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;private Speaker nightSpeaker1;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;@Inject
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;private DarknessSpeaker nightSpeaker2;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;@Inject
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;private NightSpeaker nightSpeaker3;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;@Inject
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;@Night
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;private Speaker nightSpeaker4;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+<div>
+      &nbsp;
+    </div>
+<div>
+      &nbsp;&nbsp;&nbsp;&nbsp;@Inject
+    </div>
+<div>
+      &nbsp;&nbsp;&nbsp;&nbsp;@Named("nightSpeaker")
+    </div>
+<div>
+      &nbsp;&nbsp;&nbsp;&nbsp;private Speaker nightSpeaker5;
+    </div>
+&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+<div>
+      &nbsp;&nbsp;&nbsp;&nbsp;@Inject
+    </div>
+<div>
+      &nbsp;&nbsp;&nbsp;&nbsp;@Named("nightSpeaker")
+    </div>
+<div>
+      &nbsp;&nbsp;&nbsp;&nbsp;@Night
+    </div>
+<div>
+      &nbsp;&nbsp;&nbsp;&nbsp;private Speaker nightSpeaker6;
+    </div>
+</div>
+<div>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+      }<br>
+<pre><code>&lt;/div&gt;
+</code></pre>
+<br>
+  </div>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp; 我们逐个分析 SpeakerService 类的字段注入点依赖检查。注意，在整个依赖注入容器中，目前有且仅有一个 Speaker 接口的实现，即 NightSpeaker。因此，对于：
+  </div>
+<ol>
+<li>
+      @Inject private Speaker nightSpeaker1;<br>
+<pre><code>  该字段是可依赖解析的，不存在依赖不满足或依赖混淆情况。注入器可以根据接口 Speaker 查找到其唯一的实现 NightSpeaker。
+&lt;/li&gt;
+</code></pre>
+</li><li>
+      @Inject private DarknessSpeaker nightSpeaker2;<br>
+<pre><code>  该字段是可以依赖解析的，不存在依赖不满足或依赖混淆情况。注入器可以根据抽象类 DarknessSpeaker 查找到其唯一的实现 NightSpeaker。
+&lt;/li&gt;
+</code></pre>
+</li><li>
+      @Inject private NightSpeaker nightSpeaker3;<br>
+<pre><code>  该字段是可以依赖解析的，不存在依赖不满足或依赖混淆情况。注入器可以根据具体类 DarknessSpeaker 查找到其唯一的实现 NightSpeaker。
+&lt;/li&gt;
+</code></pre>
+</li><li>
+      @Inject @Night private Speaker nightSpeaker4;<br>
+<pre><code>  该字段是可以依赖解析的，不存在依赖不满足或依赖混淆情况。注入器可以根据接口 Speaker 与限定器 @Night 查找到其唯一的实现 NightSpeaker。
+&lt;/li&gt;
+</code></pre>
+</li><li>
+      @Inject @Named("nightSpeaker") private Speaker nightSpeaker4;<br>
+<pre><code>  该字段是可以依赖解析的，不存在依赖不满足或依赖混淆情况。注入器可以根据接口 Speaker 与限定器 @Named(&amp;quot;nightSpeaker&amp;quot;) 查找到其唯一的实现 NightSpeaker。
+&lt;/li&gt;
+</code></pre>
+</li><li>
+      @Inject @Named("nightSpeaker") @Night private Speaker nightSpeaker4;<br>
+<pre><code>  该字段是可以依赖解析的，不存在依赖不满足或依赖混淆情况。注入器可以根据接口 Speaker 与限定器集 {@Named(&amp;quot;nightSpeaker&amp;quot;), @Night} 查找到其唯一的实现 NightSpeaker。
+&lt;/li&gt;
+</code></pre>
+</li></ol>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 现在，我们添加一个 Speaker 实现类：<br></p>
+  <br>
+<div style="MARGIN-LEFT:40px; FONT-FAMILY:Courier New">
+    public class HelloSpeaker implements Speaker {<br>
+  </div>
+<span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; @Override </span>
+<div style="FONT-FAMILY:Courier New">
+    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public String say() {
+  </div>
+<div style="FONT-FAMILY:Courier New">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Night!";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+<div style="MARGIN-LEFT:40px">
+    <span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp; }</span>
+<br style="FONT-FAMILY:Courier New">
+<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;}&lt;/span&gt;
+</code></pre>
+<br>
+<pre><code>&lt;br /&gt;
+</code></pre>
+  </div>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp; 此时，对于 SpeakerService 类的字段注入点 @Inject private Speaker nightSpeaker1; 来说，该注入点是不可依赖解析的，存在依赖混淆情况。注入器在根据接口 Speaker 查找时，将找到两个实现：NightSpeaker 与 HelloSpeaker。注入器无法判别该用哪一个类的实例进行依赖注入。
+  </div>
+<br>
+<h2 id="b3_solo_h2_5">
+    <a name="_7994669998784012_413526977625_8317452791349638" target="_blank"></a>
+依赖注入
+  </h2>
+<h3 id="b3_solo_h3_6">
+    <a name="_650872312028599" target="_blank"></a>
+注入顺序
+  </h3>
+&nbsp;&nbsp;&nbsp;&nbsp; JSR-330 规定了依赖注入的顺序，如下（忽略了静态成员注入）：<br>
+  <ol>
+<li>构造器注入</li>
+<li>父类字段注入</li>
+<li>父类方法注入
+</li>
+<li>子类字段注入</li>
+<li>子类方法注入</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<br></p>
+<h3 id="b3_solo_h3_7">
+    <a name="__8873284463906821" target="_blank"></a>
+注入实现
+  </h3>
+&nbsp;&nbsp;&nbsp; 算法实现了遵循 JSR-330 的依赖注入顺序：<br>
+<p>&nbsp;&nbsp;&nbsp;<span style="FONT-FAMILY:Courier New"> SimpleBean.java:<br></span></p>
+  <br style="FONT-FAMILY:Courier New">
+  
+<span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp; @Override<br>
+<p>&nbsp;&nbsp;&nbsp; protected void resolveDependencies(final Object reference)<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws Exception {<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final Class&lt;?&gt; superclass = reference.getClass().getSuperclass();<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resolveSuperclassFieldDependencies(reference, superclass);<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resolveSuperclassMethodDependencies(reference, superclass);<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resolveCurrentclassFieldDependencies(reference);<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resolveCurrentclassMethodDependencies(reference);<br></p>
+<p>&nbsp;&nbsp;&nbsp; }<br></p>
+  <br>
+  </span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 具体实现为 Java 类层次递归实现，请参考<a title="源码" href="http://kenai.com/projects/drop/sources/svn/content/drop/drop-impl/src/main/java/org/b3log/drop/SimpleBean.java" target="_blank">源码</a>
+。<br>
+<div>
+    <br>
+<h2 id="b3_solo_h2_8">
+      <a name="_4248820779380611_199367912138" target="_blank"></a>
+中英术语对照表
+    </h2>
+<div>
+<table id="upcb" style="width: 648px; height: 138px;" border="1" cellspacing="0" cellpadding="3" bordercolor="#000000">
+<tbody>
+<tr>
+<td style="BACKGROUND-COLOR:#cccccc; TEXT-ALIGN:center" width="50%">
+            <strong>英文<br>
+<pre><code>        &lt;/strong&gt;
+
+      &lt;/td&gt;
+</code></pre>
+</strong></td><td style="BACKGROUND-COLOR:#cccccc; TEXT-ALIGN:center" width="50%">
+            <strong>中文<br>
+<pre><code>        &lt;/strong&gt;
+
+      &lt;/td&gt;
+</code></pre>
+</strong></td></tr>
+<tr>
+<td style="TEXT-ALIGN:center" width="50%">
+            Annotation
+          </td>
+<td style="TEXT-ALIGN:center" width="50%">
+            注解
+          </td>
+</tr>
+<tr>
+<td style="TEXT-ALIGN:center" valign="top">
+            Qulifier
+          </td>
+<td style="TEXT-ALIGN:center" valign="top">
+            限定器
+          </td>
+</tr>
+<tr>
+<td style="TEXT-ALIGN:center" valign="top">
+            Scope<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td><td style="TEXT-ALIGN:center" valign="top">
+            作用域<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td></tr>
+<tr>
+<td style="TEXT-ALIGN:center" valign="top">
+            Bean<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td><td style="TEXT-ALIGN:center" valign="top">
+            组件<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td></tr>
+<tr>
+<td style="TEXT-ALIGN:center" valign="top">
+            Injection Point<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td><td style="TEXT-ALIGN:center" valign="top">
+            注入点<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td></tr>
+<tr>
+<td style="TEXT-ALIGN:center" valign="top">
+            Required Type<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td><td style="TEXT-ALIGN:center" valign="top">
+            需要的类型<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td></tr>
+<tr>
+<td style="TEXT-ALIGN:center" valign="top">
+            Required Qualifiers<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td><td style="TEXT-ALIGN:center" valign="top">
+            需要的限定器<br>
+<pre><code>      &lt;/td&gt;
+</code></pre>
+</td></tr>
+</tbody>
+</table>
+</div>
+<br>
+<pre><code>&lt;br /&gt;
+
+&lt;a href="http://docs.google.com/View?id=ddrm6c35_1143hf63xgkq"&gt;well-formed&lt;/a&gt;
+</code></pre>
+<br>
+<pre><code>&lt;/div&gt;
+</code></pre>
+</div>
+<p>&nbsp;</p>
+<p></p></div></div>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_0">Drop 简介</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_1">Drop 注入器配置</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_2">注入点检查</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">注入点合法性检查</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_4">注入点依赖满足检查</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_5">依赖注入</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_6">注入顺序</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_7">注入实现</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_8">中英术语对照表</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+</ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="Drop 简介"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2009/11/30/1259620560000.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2009/11/19/1258674480000.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Java 依赖注入标准（JSR-330）简介"
+                       aria-label="旧一篇: Java 依赖注入标准（JSR-330）简介">←</a>
+
+                    <a href="https://88250.github.io/articles/2009/12/02/1259777520000.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="以父之名"
+                       aria-label="新一篇: 以父之名">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1259620560000",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("JSR-299,J2SE/JavaSE,J2EE/JavaEE",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1259620560000', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 87ms, 2020/01/08 08:55:32 -->

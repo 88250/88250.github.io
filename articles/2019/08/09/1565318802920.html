@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>创业的第二个夏天 - D 的个人博客</title><meta name="description" content="如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做一些自己一直想做的事情了。 星火 做一个真正意义上的社区，这是我最近几年来最想做的一件事，通过星火已经建立了雏形。想法、认知以及如何做尽皆分享于《写在星火初版发布之际》2。 目前星火暂时只作为一个 side project，以后时间多起来的话我会把更多精力放在上面。不必纠结于理想和现实之间的选择，相信只要足够努力就一定都能实现。 Lute 千呼万唤始出来，犹抱琵琶半遮面。转轴拨弦三两声，未成曲调先有情。 7 月份整整一个月基本都在闭关修炼 Markdown 程序员之道，这条道就是做一款实现《CommonMark 规范》3 的 Markdown 引擎。在第一次学用 Markdown 时就有此想法了，今年年初的时候终于付诸于实践，建立了项目仓库开始探索，但进展一直断断续续。 年初雄心壮志，年中饱受摧残，期间重写了一遍又一遍，最终还是靠抄官方的参考实现4 做了一版，算是渡劫失败吧。其中的曲折后面会单独写一篇分享给那些正在准备渡劫飞升的道友，祝好运 ? （2019-11-17 更新：CommonM...."/><meta property="og:description" content="如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做一些自己一直想做的事情了。 星火 做一个真正意义上的社区，这是我最近几年来最想做的一件事，通过星火已经建立了雏形。想法、认知以及如何做尽皆分享于《写在星火初版发布之际》2。 目前星火暂时只作为一个 side project，以后时间多起来的话我会把更多精力放在上面。不必纠结于理想和现实之间的选择，相信只要足够努力就一定都能实现。 Lute 千呼万唤始出来，犹抱琵琶半遮面。转轴拨弦三两声，未成曲调先有情。 7 月份整整一个月基本都在闭关修炼 Markdown 程序员之道，这条道就是做一款实现《CommonMark 规范》3 的 Markdown 引擎。在第一次学用 Markdown 时就有此想法了，今年年初的时候终于付诸于实践，建立了项目仓库开始探索，但进展一直断断续续。 年初雄心壮志，年中饱受摧残，期间重写了一遍又一遍，最终还是靠抄官方的参考实现4 做了一版，算是渡劫失败吧。其中的曲折后面会单独写一篇分享给那些正在准备渡劫飞升的道友，祝好运 ? （2019-11-17 更新：CommonM...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="创业的第二个夏天 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/09/1565318802920.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="创业的第二个夏天 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/09/1565318802920.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="写在星火初版发布之际" href="https://88250.github.io/articles/2019/06/04/1559578726531.html">
+            <link rel="next" title="我为什么要用中文写项目文档" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2019/08/09/1565318802920.html">
+                创业的第二个夏天
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Nov 17, 2019
+            </time>
+            with <span data-uvstaturl="https://88250.github.io/articles/2019/08/09/1565318802920.html">0</span> views
+                and <a href="#comments">52 comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/%E5%88%9B%E4%B8%9A">
+                    <b># 创业</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/B3log">
+                    <b># B3log</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p><img src="https://img.hacpai.com/bing/20190711.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="banner"></p>
+<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》<sup><a href="https://hacpai.com/article/1524191993505" title="创业的第一个春天" target="_blank">1</a></sup> 看起。</p>
+<hr>
+<p>这个夏天我开始做一些自己一直想做的事情了。</p>
+<h3 id="b3_solo_h3_0">星火</h3>
+<p>做一个真正意义上的社区，这是我最近几年来最想做的一件事，通过星火已经建立了雏形。想法、认知以及如何做尽皆分享于《写在星火初版发布之际》<sup><a href="https://hacpai.com/article/1559578726531" title="写在星火初版发布之际" target="_blank">2</a></sup>。</p>
+<p>目前星火暂时只作为一个 side project，以后时间多起来的话我会把更多精力放在上面。不必纠结于理想和现实之间的选择，相信只要足够努力就一定都能实现。</p>
+<h3 id="b3_solo_h3_1">Lute</h3>
+<blockquote>
+<p>千呼万唤始出来，犹抱琵琶半遮面。转轴拨弦三两声，未成曲调先有情。</p>
+</blockquote>
+<p>7 月份整整一个月基本都在闭关修炼 Markdown 程序员之道，这条道就是做一款实现《CommonMark 规范》<sup><a href="https://spec.commonmark.org" title="CommonMark 规范" target="_blank">3</a></sup> 的 Markdown 引擎。在第一次学用 Markdown 时就有此想法了，今年年初的时候终于付诸于实践，建立了项目仓库开始探索，但进展一直断断续续。</p>
+<p>年初雄心壮志，年中饱受摧残，期间重写了一遍又一遍，最终还是靠抄官方的参考实现<sup><a href="https://github.com/commonmark/commonmark.js" title="CommonMark 官方参考实现项目（JavaScript）" target="_blank">4</a></sup> 做了一版，算是渡劫失败吧。其中的曲折后面会单独写一篇分享给那些正在准备渡劫飞升的道友，祝好运 ? （2019-11-17 更新：<a href="https://hacpai.com/article/1566893557720" target="_blank">CommonMark 规范要点解读</a>、<a href="https://hacpai.com/article/1567062979327" target="_blank">Lute 实现后记</a>）</p>
+<p>Beyond 有一首歌叫《勇闯新世界》<sup><a href="https://music.163.com/#/song?id=347710" title="Beyond - 勇闯新世界" target="_blank">5</a></sup>，挺应景的。</p>
+<h3 id="b3_solo_h3_2">BND</h3>
+<p>其实今年 2 月份的时候 BND 就已经开源了，但我们并没有提供编译好的二进制，当时的想法是仅在程序员圈子小众使用，谁要用的话就自己编译。直到 7 月初，有人把编译好的 BND 分享到了网上，得知后我们决定直接出个“官方版<sup><a href="https://hacpai.com/article/1563154719934" title="百度网盘不限速下载器 BND 下载地址" target="_blank">6</a></sup>” 吧。人为了利益什么事情都有可能干，唯一能阻止悲剧发生的手段就是掐掉其作恶的念头，让其能够信手拈来的利益完全消失掉。</p>
+<p>这是一种什么样的精神？我称之为“人类共产主义目标的程序员开源实现” <img alt="doge" class="emoji" src="https://cdn.jsdelivr.net/npm/vditor/dist/images/emoji/doge.png" title="doge"></p>
+<h3 id="b3_solo_h3_3">赞助捐赠</h3>
+<p>根据每年的记账记录统计了一下，自 2009 年做第一个开源项目到 2019 年 5 月底，在这 10 年的时间里一共收到了近 ￥10000 的赞助捐赠。之前的赞助捐赠是走的个人收款，不太方便生成赞助者列表，难以记录那些帮助过我们的人。5 月底通过公司实体接入了支付宝，正式上线了 B3log 开源社区赞助系统<sup><a href="https://hacpai.com/sponsor" title="B3log 开源社区赞助系统" target="_blank">7</a></sup>，3 个月过去后现在一共收到了 ￥1K 的赞助捐赠。</p>
+<p>希望以后仅靠赞助捐赠就能让社区服务器自己续命，感谢所有赞助者 ❤️</p>
+<h3 id="b3_solo_h3_4">Sym</h3>
+<p>这个季度 Sym 商业版加入了一个特性：回帖折叠<sup><a href="https://hacpai.com/article/1558427377784" title="关于回帖折叠功能" target="_blank">8</a></sup>，设计这个功能的动机来自黑客派。黑客派上各式各样的回帖已经越来越多了，歪楼的情况时有发生。要想做一个对用户有价值的社区，就一定要处理好内容“降噪”，除了极端情况需要管理员介入封禁甚至删帖，其他小的噪音可通过更柔和的方式解决。这个方式就是让有权限的用户可以折叠其他人的回帖，解决问题的同时也让用户参与到社区的运营操作中，通过共产共建形成社区，这也是“社区”这一词的核心要义。</p>
+<p>另一个大的改进是搜索系统。对于搜索功能，之前只提供整体执行框架（比如内容新增、更新、删除时会调用搜索管理服务），具体的搜索实现上提供了较弱的 Elasticsearch 支持以及较强的 Algolia 接入支持。而对于客户而言：</p>
+<ol>
+<li>接入第三方搜索（并且是付费的）虽然不用二次开发，但 Algolia 是收费的商业服务，需要付出成本</li>
+<li>一些客户的环境不允许接入第三方服务</li>
+<li>对于 Sym 产品本身来说 ES 支持不好的话也不够完备</li>
+</ol>
+<p>所以我们进行了搜索系统的改进，将搜索功能整体移到了本地 ES 上，并提供了高级搜索功能，让用户可以从多种条件（内容类型、用户、标签、时间范围等）组合进行搜索。</p>
+<p>Sym 社区版方面主要是升级编辑器，修复缺陷和细节改进，可参考 v3.5.1 变更记录<sup><a href="https://github.com/b3log/symphony/milestone/34?closed=1" title="Sym v3.5.1 变更记录" target="_blank">9</a></sup>。</p>
+<h3 id="b3_solo_h3_5">Vditor</h3>
+<p>Vditor 基本完成了核心的重构，将编辑区从 <code>&lt;textarea&gt;</code> 改为带 <code>&lt;div contenteditable="true"&gt;</code><sup><a href="https://hacpai.com/article/1565073452052" title="Vditor v1.6.12 发布公告" target="_blank">10</a></sup>，做这个架构变更主要是为后续实现 WYSIWYG（What You See Is What You Get，所见即所得）奠定基础。</p>
+<p>下一代 Markdown 编辑器应该是所见即所得的，目前已经有人在这个方向上做出了一定成果，比如 Mark Text<sup><a href="https://github.com/marktext/marktext" title="Mark Text - 简单而优雅的开源 Markdown 编辑器" target="_blank">11</a></sup>。所见即所得编辑器的用户体验不言而喻，另外目前在富文本编辑器领域上一个大趋势是块编辑器（Block Editor）的逐步流行（比如 WordPress 的古腾堡<sup><a href="https://github.com/WordPress/gutenberg" title="古腾堡 - WordPress 的块编辑器" target="_blank">12</a></sup>），反观现在大部分的 Markdown 编辑器在这方面的设计理念和用户体验落后太多了。Mark Text 为实现 Markdown 的所见即所得编辑方式提供了很好的思路，但它可能受限于底层引擎 Marked<sup><a href="https://github.com/markedjs/marked" title="Marked - A markdown parser and compiler. Built for speed." target="_blank">13</a></sup>，导致在处理一些场景时稍显不足。</p>
+<p>当初设计 Vditor 时我们就定下了它的目标——“下一代的 Markdown 编辑器，为未来而构建”。要实现这个目标仅在应用层包装的话很难，必须自己实现底层引擎，这点也是 Lute 的动机之一。预计明年年初就可以在黑客派上体验到下一代的 Markdown 编辑器了，敬请期待！</p>
+<h3 id="b3_solo_h3_6">收入情况</h3>
+<ul>
+<li>出售 Sym 商业版，主要收入来源</li>
+<li>我和 V 的失业金已经到期停止发放了，并且需要开始自己缴医保<sup><a href="https://hacpai.com/article/1494732495592/comment/1559748941849" title="自由职业者、灵活就业人员社保缴费分享" target="_blank">14</a></sup></li>
+<li>Google AdSense 平均每月 $80，增加被动收入还是很难的</li>
+</ul>
+<h3 id="b3_solo_h3_7">相关链接</h3>
+<ol>
+<li><a href="https://hacpai.com/article/1524191993505" title="创业的第一个春天" target="_blank">创业的第一个春天</a></li>
+<li><a href="https://hacpai.com/article/1559578726531" title="写在星火初版发布之际" target="_blank">写在星火初版发布之际</a></li>
+<li><a href="https://spec.commonmark.org" title="CommonMark 规范" target="_blank">CommonMark 规范</a></li>
+<li><a href="https://github.com/commonmark/commonmark.js" title="CommonMark 官方参考实现项目（JavaScript）" target="_blank">CommonMark 官方参考实现项目（JavaScript）</a></li>
+<li><a href="https://music.163.com/#/song?id=347710" title="Beyond - 勇闯新世界" target="_blank">Beyond - 勇闯新世界</a></li>
+<li><a href="https://hacpai.com/article/1563154719934" title="百度网盘不限速下载器 BND 下载地址" target="_blank">百度网盘不限速下载器 BND 下载地址</a></li>
+<li><a href="https://hacpai.com/sponsor" title="B3log 开源社区赞助系统" target="_blank">B3log 开源社区赞助系统</a></li>
+<li><a href="https://hacpai.com/article/1558427377784" title="关于回帖折叠功能" target="_blank">关于回帖折叠功能</a></li>
+<li><a href="https://github.com/b3log/symphony/milestone/34?closed=1" title="Sym v3.5.1 变更记录" target="_blank">Sym v3.5.1 变更记录</a></li>
+<li><a href="https://hacpai.com/article/1565073452052" title="Vditor v1.6.12 发布公告" target="_blank">Vditor v1.6.12 发布公告</a></li>
+<li><a href="https://github.com/marktext/marktext" title="Mark Text - 简单而优雅的开源 Markdown 编辑器" target="_blank">Mark Text - 简单而优雅的 Markdown 编辑器</a></li>
+<li><a href="https://github.com/WordPress/gutenberg" title="古腾堡 - WordPress 的块编辑器" target="_blank">古腾堡 - WordPress 的块编辑器</a></li>
+<li><a href="https://github.com/markedjs/marked" title="Marked - A markdown parser and compiler. Built for speed." target="_blank">Marked - 为速度而生的 Markdown 解析器和编译器</a></li>
+<li><a href="https://hacpai.com/article/1494732495592/comment/1559748941849" title="自由职业者、灵活就业人员社保缴费分享" target="_blank">自由职业者、灵活就业人员社保缴费分享</a></li>
+</ol>
+<hr>
+<p><a href="https://hacpai.com/article/1573402018349" target="_blank">创业的第二个秋天</a></p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">星火</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">Lute</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_2">BND</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">赞助捐赠</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_4">Sym</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_5">Vditor</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_6">收入情况</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_7">相关链接</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+<li id="1568598623800" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1549809663234_1549813125877.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wangyao3718" target="_blank">wangyao3718</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>长期看好D大V姐潜力股，坚持，思考，坚持！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 16, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568598623800', 'wangyao3718')">Reply</a>
+    </div>
+</li><li id="1565938190929" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565925545593?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/imsprojo2Fan" target="_blank">imsprojo2Fan</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>呃，应该是上一级列表页好像没有发布时间...可能跟个人阅读习惯有关，一般看些资讯什么的会比较在意发布时间，尤其找些技术相关的</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 16, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565938190929', 'imsprojo2Fan')">Reply</a>
+    </div>
+</li><li id="1565937734076" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565925545593?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/imsprojo2Fan" target="_blank">imsprojo2Fan</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>弱弱的提个和这条帖子好像没什么关联的问题，就是每条发布的帖子下面能给个发布时间吗...也不清楚是故意隐去了还是怎样</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 16, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565937734076', 'imsprojo2Fan')">Reply</a>
+    </div>
+</li><li id="1565859122290" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ol> 
+ <li>社区的内容是以标签、领域组织的，对应有标签-帖子列表、领域-帖子列表。内容信息架构组织方式还在不断调整，长期计划是做成类似 Stack Exchange 那样的站群，不同技术或者项目进行用户体验上的完全独立，尽量不要互相干扰，这样可以让用户感受到整洁，不过这还需要一些时间进行发展</li> 
+ <li>围绕项目的导航也曾考虑过，但是现在整个社区还没有成型，项目不多，所以暂时搁置了</li> 
+ <li>是的，黑客派目前是整个体系的中心节点，这套架构是一个分布式架构，不是纯粹意义上的去中心化架构</li> 
+</ol> 
+<p>综上，未来还有很多改进和探索可以去做，在目前所处的发展阶段暂时猥琐发育一下 ? 感谢你花时间考虑这些。</p> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 15, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565859122290', '88250')">Reply</a>
+    </div>
+</li><li id="1565858469106" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565780516017_1565850859855.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/sq8852161" target="_blank">sq8852161</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<pre><code>谢谢您的回复。
+可能我说的太过于抽象，其实我的想法是：
+1，具体在社区的UI上，可以设立不同板块的不同帖子列表。
+2，对于所有的开源项目，希望可以有一个列表，并不是帖子这种形式。而是在社区的首页能有一个比较醒目，且易于理解的展现。
+3，看了您这么多开源项目之后，您或许喜欢去中心化。但现在不可否认，黑客派是这个开源体系的中心点，因此，我觉得这个社区论坛应该有网站门户的属性。
+谢谢。 
+</code></pre> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 15, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565858469106', 'sq8852161')">Reply</a>
+    </div>
+</li><li id="1565857326676" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ol> 
+ <li>关于社区介绍请看 <a href="https://hacpai.com/article/1440573175609">黑客派是个什么样的社区</a></li> 
+ <li>我们（B3log 开源社区）的开源项目现在主要托管在 GitHub 上 <a href="https://github.com/b3log">https://github.com/b3log</a></li> 
+ <li>如果要找资源的话可以试试社区的<a href="https://hacpai.com/search">搜索系统</a></li> 
+</ol> 
+<p>感谢支持 ?</p> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 15, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565857326676', '88250')">Reply</a>
+    </div>
+</li><li id="1565856712822" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565780516017_1565850859855.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/sq8852161" target="_blank">sq8852161</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>有一个问题，在黑客派泡了两天之后。。我发现，我很难找到一个，类似概览的视图，或者，列表，可以让我对整个论坛能有一个快速，清晰的认识。<br> 或者是能对社区内的主要议题，各个方向的讨论。有一个清洗的认识。<br> 我想能看到整个社区关心的是什么。<br> 同时，我也希望可以能直观的看到社区的概貌。<br> 包括开源项目也是，我现在已经搞不清楚，大神您到底有多少开源项目了。。。。<br> 总体来说，就是感觉有些混乱，无法快速找到自己想要的信息。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 15, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565856712822', 'sq8852161')">Reply</a>
+    </div>
+</li><li id="1565802534693" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565802461085?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Jocs" target="_blank">Jocs</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>赞作者，我是 Mark Text 作者，欢迎一起讨论下一代 markdown 编辑器的实现</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 15, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565802534693', 'Jocs')">Reply</a>
+    </div>
+</li><li id="1565800929450" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1552197682564_1561129524666.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/yoss" target="_blank">yoss</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>靠卖广告位来获利是最简单粗暴的手段，大部分站也就止步于此了，最后整个站都是铺天盖地的广告，恶心至极。我个人不希望这里最后也变得那么不堪，那就失去做网站的意义了。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 15, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565800929450', 'yoss')">Reply</a>
+    </div>
+</li><li id="1565780049272" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>现在流量不高所以 AdSense 收入也不高。</p> 
+<p>对于收入这一块我是这样计划的：因为社区的内容都是大家贡献的，所以如果以后流量起来的话是应该和用户分润的。从技术上看这是可行的，Google AdSense 有个 <a href="https://developers.google.com/adsense/host/become-a-host#eligibility">Host 业务模式</a>，站长是可以通过这个技术手动将广告收入分配给参与社区贡献的用户的。</p> 
+<p>但是目前黑客派还实现不了，因为该业务模式要求站点的日 PV 至少要到达 100W，现在黑客派日 PV 大概也就 1W+，还差着十万八千里……</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565780049272', '88250')">Reply</a>
+    </div>
+</li><li id="1565778084503" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1459938759076_1560938855412.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gaoyoubo" target="_blank">gaoyoubo</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>Google Ad 的收入这么低吗？ 黑客派的内容我看做的挺好的啊。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565778084503', 'gaoyoubo')">Reply</a>
+    </div>
+</li><li id="1565684456692" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1557595057510_1562037930759.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/2501224066" target="_blank">2501224066</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>function 牛逼人（）{<br> return 牛逼人<br> }</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 13, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565684456692', '2501224066')">Reply</a>
+    </div>
+</li><li id="1565671066855" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1461517177163_1483421704728.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/hefeng" target="_blank">hefeng</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>前几天我和同事排查个问题，google 搜索后在黑客派社区上找到了其他人的经验分享。社区已经越来越有存在感了，相信以后会有更多的人知道这里的。</p> 
+<p>D 大的思路和执行力非常人能比，永远支持你 D 大！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 13, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565671066855', 'hefeng')">Reply</a>
+    </div>
+</li><li id="1565538557524" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1528807958353_1535224922633.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/vinasis" target="_blank">vinasis</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 11, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565538557524', 'vinasis')">Reply</a>
+    </div>
+</li><li id="1565534917451" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1522033896824?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/cbam" target="_blank">cbam</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>作为社区版忠实用户，力挺D哥，刚了解黑客派的时候就觉得大D让人倾佩。之前还想过如何贡献功能，但是技术栈看了下还是稍微有些学习成本的。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 11, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565534917451', 'cbam')">Reply</a>
+    </div>
+</li><li id="1565500818334" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ol> 
+ <li> <p>星火是分布式的，这个“分布式”就是 IPFS 里分布式的概念。只要一个节点能够稳定，那它就可以成为这个网络的引导节点，引导节点目前只有我们提供的一个，但理论上是可以扩充的，实现去中心化。另外，网络中的任何对等节点都是网络中继节点，这就是 IPFS 分布式的概念。具体的细节可以到 IPFS 官网上进行了解。</p> </li> 
+ <li> <p>Sym 的主要卖点其实在项目动机里面已经写过，Sym 存在的意义就是因为这些动机，同时也成为了 Sym 的卖点。顺便打个广告，Sym 诚招代理销售 20% 佣金 ?</p> <p>Sym 是个产品，黑客派是基于这个产品搭建的，作为 B3log 开源社区的线上讨论区，出发点是用来交流 B3log 开源社区旗下的各个产品的。不过随着访客的变多、讨论话题逐步泛化，黑客派的定位也相应发生了一些变化，所以不只是讨论 B3 系产品，也可以分享和讨论程序员、设计师相关话题。</p> <p>“黑客派”的名字来自于《黑客与画家》这本书，我希望程序员能成为黑客，设计师能成为画家。讲道理“黑客”一词我觉得没有什么不好，请看<a href="https://github.com/zer4tul/hacker-howto" title="如何成为一名黑客">这里</a>，小众社区的预期也正符合这个设定。</p> </li> 
+ <li> <p>建议意见甚至是批评我都可以接受的，融合更多不同的思想才能让社区发展更好。这就好比开源项目别人提意见或者贡献代码时，项目 Owner 应该尽量秉承开放的心态来接受，而不是一味拒绝。所以很荣幸你对我们在做的事情感兴趣并且提出这么多建议，和你交流很愉快 ?</p> </li> 
+</ol> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 11, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565500818334', '88250')">Reply</a>
+    </div>
+</li><li id="1565498158101" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1541932138600_1541932583384.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mfabian" target="_blank">mfabian</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>不要误会啊，我留言没有恶意的，既然是网络上留言，自然是希望能留下点有意义的讯息。我只是对未知的新事物还抱有好奇心，想了解下涨涨知识。</p> 
+<p>1.星火是需要有24小时在线的中心管理服务器支撑，还是不需要服务器，只需要一个主中心管理节点偶尔在线就能独立运行？因为找不到答案所以想简单的问问。</p> 
+<p>2.确实不了解Sym，才想知道它的独特卖点是什么，如果作为出售方都不能做到在任意场合不遗余力地准确推销自家产品的独家卖点，会让人觉得有点匪夷所思。我是做售前工作的，对于营销一款产品的理解是不需要知道它有365个细微的精巧设计，只需要一点它甩同类竞品十八条街的优点就够了，这样才能第一印象震撼到别人让别人产生兴趣想详细了解。Sym应该是一款To B端的产品，繁多的精巧设计只适合写在手册上给实际操作者看，也只有对受众用户才能体验到它的美，而这些细枝末节的零碎点只会成为扰乱听众的干扰点，并不能成为它的【主要】卖点。本意并不是说这个产品不值多少多少钱，而是想说任何一款产品懂得营销技巧会更好。再复杂的产品也要以满足企业客户的需求为第一要务，Sym并不是一个工具性的标品，定个价上架就能卖，总会需要根据不同客户的需求增改不同的细节点，而只有当一个产品或者服务真正让客户感到满意之后才能进行到谈价格这一步，我个人对可低成本无限多的复制的软件产品的理解是不能让最终的价格成为阻碍企业使用它的绊脚石，只要是真正有兴趣使用它的企业，成交价格不能是固定一成不变的，举个例子鲁迅先生看到读者对他的书非常喜爱，但是读者又没有足够的钱买下来，鲁迅先生的做法是自己补齐给书店的缺口而让读者可以获得自己喜爱的书籍。</p> 
+<p>提到B2这个WP付费主题来对比是不知道Sym有哪些竞品，竞品的营销做得怎么样，也觉得它的创作者在营销上有几点做得不错，不见得适合推广Sym但是这个基本的营销意识是要有的，一是他自己就搭建了一打的不同领域的测试主题网站给消费者观赏，首先在气势上就震撼住浏览者，让人潜意识里觉得这个产品经得起市场的检验，消费者自然而然对号入座自己的行业领域站点；二是创作者有心地制作了一系列视频教程教使用者入门使用，视频可比冷冰冰地文字图片说明生动得多啊，也易于打动观众，哪怕只当是给自己涨粉的途径也好，更难得的是这个创作者竟然自掏腰包买了优酷的免广告特权来让他制作的视频没有广告让观看者更舒服；三是觉得他搞了个一次购买可以3个站点授权的模式，这个推广高招很不错，主动让购买者成为二次传播者。广告营销并不是一件坏事，受众摆脱不了上交智商税的那一天，在PC端浏览器中因为有Adblock插件没看到黑客派的广告位，手机端浏览的时候发现会有一个占半屏的腾讯云广告，与其放别家的广告，还不如直接上自家产品的广告，你不去推广难道还指望别人因为酒香主动找上门来，会有但不现实。哪怕是微小可能的交换友链，社区版产品让使用者自主选择是否开启对Sym的宣传广告位都可以增加产品的曝光让受众混个脸熟知道有这么个存在。</p> 
+<p>个人感觉千万不要让人产生Sym就是黑客派的第一印象，哪怕自己再建一些36行不同领域的实例站点介绍给企业也好，第一黑客这个词对于普通受众来说带有贬义，这一点不要指望能够洗白，哪怕央视节目出来解释也是枉然；第二黑客派网站的标语打着小众的社区，小众这个词对于网民来说很酷很吸引人，但是对于企业来说小众意味着小器，给人以是否经得起市场检验的错觉。</p> 
+<p>3.提到薅羊毛那类人是自己不小心顺出来的，回头想想是自己说错话了，不应该将贡献者与寄生虫相提并论的，也不应该将不同维度的创业者混为一谈，各自有各自的精彩啊，惹人不快，对不起。提到云盘精灵是觉得他有一点做得不错，让用户自主分享资源做UP主，用户【参与】进来了会留下来，自己对于开源的理解只是三个臭皮匠赛个诸葛亮，越来越感到靠个人的力量成不了多大的事，真正厉害的人是那些善于管理治人的人，真正的做到集合众力去攻坚，例如统领伙伴打造出Chrome浏览器的皮猜。只有做到能合力并进才能让B3更辉煌，而只能做到让同伴对贡献者喝彩是难延续下去的，希望能看到群力共建社区的那一天。当同样的问题听到第三遍的时候，必须要开始反省是什么样的原因导致的，因为根据数据来分析问题才更符合理性。</p> 
+<p>最后一点，虽然小米用户论坛里存在着千千万未得到官方答复的帖子，但是我相信小米一定不会错过这些帖子中提到的微末问题，进而分析出下一款爆品。感谢开发出回帖折叠功能，这比简单粗暴地删除回帖要友好得多，不喜欢就折叠隔离起来吧。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 11, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565498158101', 'mfabian')">Reply</a>
+    </div>
+</li><li id="1565447512720" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>@mfabian 解惑谈不上，归根结底就是“萝卜青菜各有所爱”，希望我们的努力能给其他人带来一些便利。我们几乎所有的产品都是开源的，与其说产品本身存在价值，不如说是开源赋予了产品更大的价值，开源商业化的商业模式让我们在这竞争激烈的市场中得以生存和发展下去。</p> 
+<p>@participants 《创》系列主要是记录我和 V 创业的经历和思考，对短期计划和长期目标的执行做一些记录，为阶段性复盘和推演提供依据。到目前为止，创业确实比较辛苦，但我们坚信所有的付出都是值得的。感谢所有关注我们的人，谢谢你们的鼓励和祝福 ❤️</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565447512720', '88250')">Reply</a>
+    </div>
+</li><li id="1565444640685" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1562941454569.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>那你肯定不是企业决策者，也没有深入了解 Sym 的功能。我觉得 Sym 对于一个企业来说，价值远不止 2W。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565444640685', 'Vanessa')">Reply</a>
+    </div>
+</li><li id="1565442875657" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1534023984015_1565024940375.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/miang" target="_blank">miang</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>你丫的去试试哪个下载器不限速，你个浪子，有钱可以给百度送钱。<br> 你不懂技术别bb</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565442875657', 'miang')">Reply</a>
+    </div>
+</li><li id="1565432407773" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1541932138600_1541932583384.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mfabian" target="_blank">mfabian</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>看着看着就忍不住想留下言，首先我不懂技术也不追求技术上的提升，Markdown语法对我来说都属多余，纯外行见解。</p> 
+<p>【星火】原以为是利用技术将网络社区寄生于星火文件系统网络中的，没想到还是需要自己的服务器来提供组网服务（不知道是不是这样需要自己的服务器才能组建私网），有点失望。如果IPFS网络与星火网络只能二选一的话，我会选择保留IPFS网络，貌似两者是不共存的，当然我两者都不用。</p> 
+<p>【BND】当初是因为baidupcs-go出现问题才从谷歌上找到这社区来的，用了两下感觉不对就再没使用过了，一是打着【不限速】的旗号感觉有点招摇撞骗（没有贬义）的意思，毕竟baidupcs-go也没这么宣称啊；二是感觉有点怪，习惯了使用cli的方式，十分在意BND会不会不经意地收集登录账号的cookies，不懂技术所以不会检测，只是偶然发现被获取cookies信息很可怕，有次使用baidupcs-go明明在网页端更改了百度账号的密码，却发现bcaidupcs-go没有使用新密码登录依然可以操作网盘中的文件，下载完了文件之后才想起来已经改过密码的，吓了一跳，当然第二天就不能操作了需要重新登录cli才能用。</p> 
+<p>【Sym】不会用没用过，只会用wordpress建站，不知道Sym的卖点是什么，是Java开发的东西更安全响应速度更快还是什么？使用过一个WP主题叫【柒比贰】据说要升级版本从7B2改名为B2，联想到B3觉得有点意思，而且感觉那主题也不错功能也不少对比下Sym没感觉出来有什么云泥之别，是WP站点撑不起大量的用户同时访问还是WP站点有什么我不知道的其他缺陷，但是我看【异次元网站】是WP做的而且也稳定运营这么多年了啊，再看下使用Sym商业版制作的几个网站（可能GitHub上的那几个没怎么用心打理还是有保密协议之类的没有放更精致的网站做推广）和这个WP主题的推荐网站之后怎么发现WP的站点更美观一些，特别是那个汇桔网看着就像是一个WP站。</p> 
+<p>看到最后【收入情况】主要靠出售Sym商业版，我感到很糊涂，Sym就这么有商业价值吗？我这个外行可是没有看出来，相信企业的决策者也差不多跟我一个类型的看法吧，拿什么去说服别人它值2W+呢？</p> 
+<p>最后，感觉这一系列的创业文章像是在文字直播创业的惨烈真相，让更多的人止步往坑里跳，是好事。不明白的是为什么一直感觉有很多薅羊毛或者说间接从事互联网灰色产业的人活得很滋润呢？当然不是指那些从事明显触犯法律的行业，打个比方在用的一个网络资源搜索服务【云盘精灵】，它从收费到现在也就一年时间，相信这一年当中它是活得很滋润的，收获了海量的付费用户群，注册用户率很高有千分之一二十，付费用户率更高至少有五成以上，当然这是一个灰色地带它能存活多久是个未知数。只是一相对比，感慨万千。</p> 
+<p>期待解惑，真心祝你们好运。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565432407773', 'mfabian')">Reply</a>
+    </div>
+</li><li id="1565425324481" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1477963837869_1536848351737.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/krbtgt" target="_blank">krbtgt</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>祝D大好运?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565425324481', 'krbtgt')">Reply</a>
+    </div>
+</li><li id="1565398716066" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1512556981298_1562055596737.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/slbty" target="_blank">slbty</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>流批，听起来感觉高大上的样子?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565398716066', 'slbty')">Reply</a>
+    </div>
+</li><li id="1565398630894" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>《无量之网》老外讲玄学 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565398630894', '88250')">Reply</a>
+    </div>
+</li><li id="1565390550219" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1512556981298_1562055596737.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/slbty" target="_blank">slbty</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D大有什么精神层面的书推荐吗?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565390550219', 'slbty')">Reply</a>
+    </div>
+</li><li id="1565390361722" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1512556981298_1562055596737.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/slbty" target="_blank">slbty</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>好久没来逛了，创业太忙了。。。也不能这样说，就是工作上投入的精力太多了，然后感觉一有空就有点啥也不想干了。。。听听歌睡觉完事。。?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 10, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565390361722', 'slbty')">Reply</a>
+    </div>
+</li><li id="1565348102991" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1542073095000?imageView2/1/w/48/h/48/format/jpg/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://88250.b3log.org" target="_blank">Volong</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D 大加油</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565348102991', 'Volong')">Reply</a>
+    </div>
+</li><li id="1565346320931" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1561905684623_1565078427178.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/lvtaos" target="_blank">lvtaos</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>加油，为了梦想。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565346320931', 'lvtaos')">Reply</a>
+    </div>
+</li><li id="1565346027474" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1460462591100?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/lusizeng" target="_blank">lusizeng</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>创业不易啊</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565346027474', 'lusizeng')">Reply</a>
+    </div>
+</li><li id="1565338365369" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1519134315251?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/dexter" target="_blank">dexter</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>加油。。。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565338365369', 'dexter')">Reply</a>
+    </div>
+</li><li id="1565337629710" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1560335521987_1560566174917.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ellenbboe" target="_blank">ellenbboe</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>向D哥看齐 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565337629710', 'ellenbboe')">Reply</a>
+    </div>
+</li><li id="1565336498143" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1354772746034_1535693309672.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mainlove" target="_blank">mainlove</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>想吃山上的炸洋芋了</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565336498143', 'mainlove')">Reply</a>
+    </div>
+</li><li id="1565333929853" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1557586345620?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/JssDream" target="_blank">JssDream</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>为什么我的评论，表情打不出来，尴尬，难道姿势不对？</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565333929853', 'JssDream')">Reply</a>
+    </div>
+</li><li id="1565333843058" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1557586345620?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/JssDream" target="_blank">JssDream</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我可能是一条咸鱼,因为看这篇文章，我把以前的文章都扫了一遍，还有创业历程！！真的是不容易啊，D大！！加油</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565333843058', 'JssDream')">Reply</a>
+    </div>
+</li><li id="1565331711278" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1547428844287_1547795399823.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/hjljy" target="_blank">hjljy</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>有梦想，真好。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565331711278', 'hjljy')">Reply</a>
+    </div>
+</li><li id="1565330885977" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559274898016_1564752447038.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/jinjianh" target="_blank">jinjianh</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>现在不是有很多那种无人超市吗，模仿一下那种</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565330885977', 'jinjianh')">Reply</a>
+    </div>
+</li><li id="1565330398165" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1535095204354_1564043922607.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ferried" target="_blank">ferried</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>所以上货卖货应该是V姐的事儿了....</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565330398165', 'ferried')">Reply</a>
+    </div>
+</li><li id="1565329826755" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1535095204354_1564043922607.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ferried" target="_blank">ferried</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>你可真是个小可爱</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565329826755', 'ferried')">Reply</a>
+    </div>
+</li><li id="1565328090251" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1518163953709_1530191264434.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/PeterChu" target="_blank">PeterChu</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我一直觉得，所有智慧生物世界中，最强大的宇宙级力量是：爱和信。<br> 记得矮大紧在一期他的节目中说过一句，我d-ang之所以取胜于国d-ang的因素，是因为我d/ang是有主义的。我理解一些“主义”，可以统称于：希望、信念、信任、理念、想法。<br> 我觉得 D 已经有了信念，有了计划，那剩下的就只有 JUST DO IT 了，哈哈，其他的磨砺和困顿，统统都变成纸老虎啦。<br> 加油 (ง •_•)ง</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565328090251', 'PeterChu')">Reply</a>
+    </div>
+</li><li id="1565325932110" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1534023984015_1565024940375.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/miang" target="_blank">miang</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565325932110', 'miang')">Reply</a>
+    </div>
+</li><li id="1565325760929" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1552197682564_1561129524666.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/yoss" target="_blank">yoss</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>不知道为什么看了你的创业经历分享让我想起了卢冠廷的《一生所爱》，祝你们创业成功！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565325760929', 'yoss')">Reply</a>
+    </div>
+</li><li id="1565323746473" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>感觉到惨是正常的，因为正在创业啊。但同时能做自己喜欢的事情我觉得是件很幸福的事情。做好当下，无问西东。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565323746473', '88250')">Reply</a>
+    </div>
+</li><li id="1565323559837" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>要自己想个实现 CommonMark 规范的算法太难了，我之前试过递归下降构造节点的思路，实现到一半放弃了。其他的话其实也没有难点，就是繁琐。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565323559837', '88250')">Reply</a>
+    </div>
+</li><li id="1565323415616" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>还真考虑过，我想开个炸洋芋外卖 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565323415616', '88250')">Reply</a>
+    </div>
+</li><li id="1565322137053" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1408671565266_1483319761533.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/flhuoshan" target="_blank">flhuoshan</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>Lute的技术难点有哪些？</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565322137053', 'flhuoshan')">Reply</a>
+    </div>
+</li><li id="1565320666704" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1546674196309_1546674843513.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Lee981265" target="_blank">Lee981265</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>苦尽甘来，夜尽天明 。期待黑客派超越csdn的那一天 ，为理想而奋斗的都是真正的勇士，致敬D和V</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565320666704', 'Lee981265')">Reply</a>
+    </div>
+</li><li id="1565319998042" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1562941454569.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>写一下打断一下，写一下打断一下，还要管理进销存。那样感觉会出很多 bug 呀</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565319998042', 'Vanessa')">Reply</a>
+    </div>
+</li><li id="1565319723325" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1543456325268_1543456590488.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/imshf" target="_blank">imshf</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我觉得可行</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565319723325', 'imshf')">Reply</a>
+    </div>
+</li><li id="1565319487774" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559274898016_1564752447038.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/jinjianh" target="_blank">jinjianh</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我觉得可行</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565319487774', 'jinjianh')">Reply</a>
+    </div>
+</li><li id="1565319122372" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1535095204354_1564043922607.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ferried" target="_blank">ferried</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>可以开个小卖部的同时。。。盯店打码。。。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565319122372', 'ferried')">Reply</a>
+    </div>
+</li><li id="1565319058651" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1533304221784_1535462923211.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/csfwff" target="_blank">csfwff</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p><img alt="huaji" src="https://cdn.jsdelivr.net/npm/vditor/dist/images/emoji/huaji.gif" title="huaji"> 不容易鸭，加油(ง •_•)ง</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565319058651', 'csfwff')">Reply</a>
+    </div>
+</li><li id="1565318919755" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559274898016_1564752447038.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/jinjianh" target="_blank">jinjianh</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>感觉很惨啊</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 9, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1565318919755', 'jinjianh')">Reply</a>
+    </div>
+</li></ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="创业的第二个夏天"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2019/08/09/1565318802920.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2019/06/04/1559578726531.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="写在星火初版发布之际"
+                       aria-label="旧一篇: 写在星火初版发布之际">←</a>
+
+                    <a href="https://88250.github.io/articles/2019/08/19/1566191673842.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="我为什么要用中文写项目文档"
+                       aria-label="新一篇: 我为什么要用中文写项目文档">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1565318802920",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("创业,B3log",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1565318802920', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 181ms, 2020/01/08 08:55:06 -->

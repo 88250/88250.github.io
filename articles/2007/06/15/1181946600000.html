@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>基于MEL算法的音频ID比对技术的研究与实现[00原创] - D 的个人博客</title><meta name="description" content="呵呵，申请学院创新基金终于通过了！￥2500。。。。放假要加油做了，呵呵。 基于MEL算法的音频ID比对技术的研究与实现 一、本项目的技术依据和意义（包括实际意义和应用前景，外部环境概况、水平和发展趋势，特色或创新之处，主要参考文献目录和出处） 一．实际意义和应用前景 首先，LivaID（LivaID是我们自己为这个技术取的名字）技术的实现将提出一种新颖的歌曲检索方式。在用户不知道歌曲一切相关信息的情况下自动提取并分析这首歌曲的波型特征，计算产生一个针对本首歌曲的特征值。利用这个值就...."/><meta property="og:description" content="呵呵，申请学院创新基金终于通过了！￥2500。。。。放假要加油做了，呵呵。 基于MEL算法的音频ID比对技术的研究与实现 一、本项目的技术依据和意义（包括实际意义和应用前景，外部环境概况、水平和发展趋势，特色或创新之处，主要参考文献目录和出处） 一．实际意义和应用前景 首先，LivaID（LivaID是我们自己为这个技术取的名字）技术的实现将提出一种新颖的歌曲检索方式。在用户不知道歌曲一切相关信息的情况下自动提取并分析这首歌曲的波型特征，计算产生一个针对本首歌曲的特征值。利用这个值就...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="基于MEL算法的音频ID比对技术的研究与实现[00原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/06/15/1181946600000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="基于MEL算法的音频ID比对技术的研究与实现[00原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/06/15/1181946600000.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="谁说Linux桌面效果不如Vista和Mac????[00原创]" href="https://88250.github.io/articles/2007/06/12/1181690280000.html">
+            <link rel="next" title="这个学期的体育课[00原创]" href="https://88250.github.io/articles/2007/06/20/1182381180000.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2007/06/15/1181946600000.html">
+                基于MEL算法的音频ID比对技术的研究与实现[00原创]
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Published on
+            <time>
+                Jun 16, 2007
+            </time>
+                in <a href="https://88250.github.io/category/past-summary">往事与总结</a>
+            with <span data-uvstaturl="https://88250.github.io/articles/2007/06/15/1181946600000.html">0</span> views
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/Life%20in%20Programming">
+                    <b># Life in Programming</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/MultiMediia">
+                    <b># MultiMediia</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/Data-Structrue%2FAlgorithms">
+                    <b># Data-Structrue/Algorithms</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p>呵呵，申请学院创新基金终于通过了！<br>￥2500。。。。放假要加油做了，呵呵。</p>
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style>
+<div style="text-align: center;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style>  </div>
+<p style="margin-bottom: 0cm;"> </p>
+<p style="margin-bottom: 0cm; text-align: center;"><font size="4"><span style="font-weight: bold;">基于MEL算法的音频ID比对技术的研究与实现</span></font><br></p>
+<p style="margin-bottom: 0cm;">一、本项目的技术依据和意义（包括实际意义和应用前景，外部环境概况、水平和发展趋势，特色或创新之处，主要参考文献目录和出处）</p>
+<p>&nbsp;</p>
+<p style="margin-bottom: 0cm;"><font size="3"><strong>一．实际意义和应用前景</strong></font></p>
+<p style="margin-bottom: 0cm; line-height: 125%;">首先，<font face="文鼎PL细上海宋Uni, serif">LivaID</font>（<font face="文鼎PL细上海宋Uni, serif">LivaID</font>是我们自己为这个技术取的名字）技术的实现将提出一种新颖的歌曲检索方式。在用户不知道歌曲一切相关信息的情况下自动提取并分析这首歌曲的波型特征，计算产生一个针对本首歌曲的特征值。利用这个值就可以在一定规范下的歌曲特征值库进行歌曲检索；其次，本技术的实现将提出一种新的歌曲检索规范，利用音频特征值的方式使得音频文件在检索上实现统一；最后，在这种检索方式下实现的歌词下载，歌词解析以及歌词同步具有很强的实效性，准确性，便捷性。也体现了第一时间满足用户需求的服务理念。</p>
+<p style="margin-bottom: 0cm; line-height: 125%;"><font size="3"><strong>二．外部环境概况、水平和发展趋势</strong></font></p>
+<p style="text-indent: 0.77cm; margin-bottom: 0cm;">现今流行于<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">IT</font></font>界的信息检索技术纷繁多样，常规的信息检索<font face="文鼎PL细上海宋Uni, serif">(IR)</font>研究主要是基于文本，例如我们已经非常熟悉的诸如<font face="文鼎PL细上海宋Uni, serif">Yahoo!</font>和<font face="文鼎PL细上海宋Uni, serif">AltaVista</font>这样的搜索引擎。经典的<font face="文鼎PL细上海宋Uni, serif">IR</font>问题是利用一组关键字组成的查询来定位需要的文本文档，即定位文档中的查询关键字来发现匹配的文档。如果一个文档中包含较多的查询项，那么，它就被认为比其他包含较少查询项的文档更“相关”。</p>
+<p style="text-indent: 0.77cm; margin-bottom: 0cm;">显而易见，这种基于关键字和面向文本的搜索技术在应用层面的推广上有一定的局限性，若我们检索的对象是音频和声乐等流媒体的信息，这种基于文本的<font face="文鼎PL细上海宋Uni, serif">IR</font>技术虽然在某些方面上可以满足我们的需求，但是，这种满足是不稳定的，不可靠的，不完整的，如果我们把数字音频当成一种不透明的位流来管理，虽然可以赋予名字、文件格式、采样率等属性，但存在两个问题，首先，这样的附属文本信息量很大，难于管理，也没有得到规范化，并且在网络中这样的信息很混乱，甚至有很多歌曲就没有这样的文本信息。其次，其中的文本信息可能是重复的，缺失的，甚至是错误的，使我们得不到可靠的比较实体。因此，我们就很有可能不能准确定位到检索的对象。 </p>
+<p style="text-indent: 0.77cm; margin-bottom: 0cm;">正因为如此，面对音频对象，我们需要一种从本质上更可靠，更准确，更完整的检索策略和方案，这就是根据音乐的特征值与特征点进行检索的技术，并且我们相信，这也将是以后在流媒体服务中能得到广泛拓展和应用的一项技术，而且是在流媒体检索领域中占主导地位的技术。</p>
+<p style="margin-left: 0.01cm; margin-right: 0.01cm; margin-bottom: 0cm; line-height: 125%;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-left: 0.01cm; margin-right: 0.01cm; margin-bottom: 0cm; line-height: 125%;"> <font size="3"><strong>三．特色或创新之处</strong></font></p>
+<p>&nbsp;</p>
+<p style="margin-left: 0.01cm; margin-right: 0.01cm; margin-bottom: 0cm; line-height: 125%;"> 针对以上提出的问题，我们在此提供一种基于音乐与歌曲内容的检索技术的实现，试想一下，当我们在网上下载到一首自己很喜爱的歌曲时，获取的信息却只是一连串日期序列数，而传统的基于文本的<font face="文鼎PL细上海宋Uni, serif">IR</font>技术在这种没有任何关键字和子词信息的情况下又无能为力。而我们采取的这种新的检索技术通过对歌曲的内容采样，计算出特征值，得到一首歌曲的唯一标识，再在我们建立的特征值库中进行音频编码比对，而后在音频数据库中提取这首歌曲的所有相关信息，并且整个过程是在我们欣赏音乐的前几毫秒中自动完成，然后自动更新。与传统的方法相比，这种技术更具高效性，合理性，以及更人性化。</p>
+<p lang="" style="margin-bottom: 0cm; line-height: 0.28cm;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm;"><font size="3"><strong>四．</strong></font><font size="3"><strong>主要参考文献目录和出处</strong></font></p>
+<p style="margin-bottom: 0cm;">参考著作<font face="文鼎PL细上海宋Uni, serif">:</font></p>
+<p style="margin-bottom: 0cm;">《<font face="文鼎PL细上海宋Uni, serif">A Highly Robust Audio Fingerprinting System</font>》，<font face="文鼎PL细上海宋Uni, serif">Jaap Haitsma, Ton Kalker</font></p>
+<p style="margin-bottom: 0cm;">《<font face="文鼎PL细上海宋Uni, serif">Robust Audio Hashing for content Identification</font>》，<font face="文鼎PL细上海宋Uni, serif">Jaap Haitsma, Ton Kalker, Job Oostveen</font></p>
+<p style="margin-bottom: 0cm;">《<font face="文鼎PL细上海宋Uni, serif">Audio Fingerprinting For Recognition</font>》，<font face="文鼎PL细上海宋Uni, serif">Michael Mandel</font></p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="margin-bottom: 0cm;">参考网站<font face="文鼎PL细上海宋Uni, serif">:</font></p>
+<p style="margin-bottom: 0cm;"> <font face="文鼎PL细上海宋Uni, serif">&lt;http://www.shazamentertainment.com&gt;</font></p>
+<p style="margin-bottom: 0cm;"> <font face="文鼎PL细上海宋Uni, serif">&lt;http://www.research.philips.com/InformationCenter/Global&gt;</font></p>
+<br>
+<p style="margin-bottom: 0cm;"><br></p>
+<p style="margin-bottom: 0cm;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm;">二、开发内容和预期成果（说明研究项目的具体内容并明确重点解决的关键实际问题，预期成果和提供的形式。如系理论成果，应写明在理论上解决哪些问题及其科学意义；如系应用性成果或基础性资料，应写明其应用前景及达到的技术指标）。</p>
+<p style="margin-bottom: 0cm;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-left: 0.01cm; margin-right: 0.01cm; text-indent: 0.74cm; margin-bottom: 0cm; line-height: 125%;"> <font size="3">本项目的主要任务：</font></p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;"><font face="文鼎PL细上海宋Uni, serif"><font size="3"><strong>1. </strong></font></font><font size="3"><strong>研究内容：</strong></font></p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;"><br> </p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">   （<font face="文鼎PL细上海宋Uni, serif">1</font>） 研究主流音频的编码方式</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">        <font face="文鼎PL细上海宋Uni, serif">·</font>不同编码方式下还原波形的方法</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">   （<font face="文鼎PL细上海宋Uni, serif">2</font>） 研究去除波谱中毛刺的方法</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">        <font face="文鼎PL细上海宋Uni, serif">·</font>使用<font face="文鼎PL细上海宋Uni, serif">Haar</font>小波函数变换波形幅度</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">   （<font face="文鼎PL细上海宋Uni, serif">3</font>） 音频特征值的提取方法</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">        <font face="文鼎PL细上海宋Uni, serif">·<font face="宋体, SimSun">Mel </font></font>对数倒谱系数<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">MFCC</font></font></p>
+<p align="left" style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 125%;"> <font face="文鼎PL细上海宋Uni, serif">·</font>峰值过滤</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">   （<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">4</font></font>） 对不同提取方法所得的特征值进行处理</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">         <font face="文鼎PL细上海宋Uni, serif">·</font>计算特征值的标准偏差、数学期望值和方差</p>
+<p align="left" style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 125%;"> （<font face="文鼎PL细上海宋Uni, serif">5</font>） 与数据库样本特征值的模式匹配</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">         <font face="文鼎PL细上海宋Uni, serif">·</font>求与样本特征值的相似度</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">     </p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;"><font face="文鼎PL细上海宋Uni, serif"><font size="3"><strong>2</strong></font></font><font size="3"><strong>．解决的关键问题</strong></font></p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">     <font face="文鼎PL细上海宋Uni, serif">·</font>引入<font face="文鼎PL细上海宋Uni, serif">Haar</font>小波函数调节系数，调节波形幅度</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">     <font face="文鼎PL细上海宋Uni, serif">·</font>采用试验统计学原理，进行波形幅度最优化</p>
+<p align="left" style="text-indent: 1.17cm; margin-bottom: 0cm; line-height: 125%;"> <font face="文鼎PL细上海宋Uni, serif">·</font>对<font face="文鼎PL细上海宋Uni, serif">Mel (MFCC) </font>算法进行改进</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">     <font face="文鼎PL细上海宋Uni, serif">·</font>对输入样本特征值与数据库样本特征值的相似度描述</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;"><br> </p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;"><font face="文鼎PL细上海宋Uni, serif"><font size="3"><strong>3.</strong></font></font><font size="3"><strong>预期成果</strong></font></p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">   <font face="文鼎PL细上海宋Uni, serif">1</font>）提交一份基于音频特征值检索技术实现的完美解决方案<font face="文鼎PL细上海宋Uni, serif">(</font>文档形式<font face="文鼎PL细上海宋Uni, serif">)</font>。</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">   <font face="文鼎PL细上海宋Uni, serif">2</font>）编码实现根据采样值计算特征值以及由数字数据转换为模拟波形数据的算法，建立遵循一定规范的特征值码库，使已完成的算法和数据库能够支持特定的模式匹配完成信息检索，并能在测试平台上实现无缝集成（软件应用形式）。</p>
+<p align="left" style="margin-bottom: 0cm; line-height: 125%;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm;">三、拟采取的研究方法和技术（包括理论分析、计算、实验方法和步骤及可行性论证，可能遇到的问题和可能的解决办法，使用到的主要技术）</p>
+<p style="margin-bottom: 0cm;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm;"><font size="3">根<span style="border: medium none ; padding: 0cm; background: rgb(255, 255, 255) none repeat scroll 0% 50%; float: left; width: 1.27cm; height: 0.55cm; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" dir="ltr" id="Frame13"></span><span style="border: medium none ; padding: 0cm; background: rgb(255, 255, 255) none repeat scroll 0% 50%; float: left; width: 1.27cm; height: 0.55cm; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" dir="ltr" id="Frame12"></span>据拟定的研究内容逐一阐述本项目的研究方法和技术路线。</font><br><span style="font-weight: bold;"></span></p>
+<p style="margin-bottom: 0cm;"><span style="font-weight: bold;"></span></p>
+<p style="margin-bottom: 0cm;"><strong>（</strong><font face="Times"><font size="3"><span lang="en-US"><strong>1</strong></span></font></font><strong>）研究主流音频的编码方式</strong></p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;"><span lang="">我们将重点研究</span><font face="Times"><font size="3"><span lang="en-US"><span lang="">MP3 </span></span></font></font><span lang="">音频编码，</span><span lang="">在采样后对其进行波形还原。</span></p>
+<p lang="" style="text-indent: 1.11cm; margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">MP3</span></font></font>格式简介：</p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">所需频宽：<font face="Times"><font size="3"><span lang="en-US">128</span></font></font>～<font face="Times"><font size="3"><span lang="en-US">112kbps</span></font></font>（压缩<font face="Times"><font size="3"><span lang="en-US">10</span></font></font>～<font face="Times"><font size="3"><span lang="en-US">12</span></font></font>倍）</p>
+<p style="margin-left: 1.11cm; margin-bottom: 0cm;">特性：编码复杂，用于互联网上的高质量声音的传输，如<font face="Times"><font size="3"><span lang="en-US">MP3</span></font></font>音乐压缩<font face="Times"><font size="3"><span lang="en-US">10</span></font></font>倍，<font face="Times"><font size="3"><span lang="en-US">2</span></font></font>声道。优点：压缩比高，适合用于互联网上的传播</p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">缺点：<font face="Times"><font size="3"><span lang="en-US">MP3</span></font></font>在<font face="Times"><font size="3"><span lang="en-US">128KBitrate</span></font></font>及以下时，会出现明显的高频丢失</p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">应用领域：<font face="Times"><font size="3"><span lang="en-US">voip</span></font></font></p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="margin-bottom: 0cm;"><span lang=""><strong>（</strong></span><font face="Times"><font size="3"><span lang="en-US"><span lang=""><strong>2</strong></span></span></font></font><span lang=""><strong>）</strong></span><strong>研究去除波谱中毛刺的方法</strong></p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">基本<font face="Times"><font size="3"><span lang="en-US">Haar</span></font></font>函数的定义为<font face="Times"><font size="3"><span lang="en-US">: </span></font></font></p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">设有一段分辨率为<font face="Times"><font size="3"><span lang="en-US">N </span></font></font>个数据的立体声音频数据<font face="Times"><font size="3"><span lang="en-US">X = { x1 , x2 , <font face="MS Mincho, ＭＳ 明朝, monospace">⋯</font>, x N } ( N mod 2 = 0)</span></font></font></p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">用小波函数转换为：</p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">            <font face="Times"><font size="3"><span lang="en-US">i=1.2…N/4 j = 4 * (i-1) + 1       (1)</span></font></font></p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">            <font face="Times"><font size="3"><span lang="en-US">i=1.2…N/4 j = 4 * (i-1) + 1    (2)</span></font></font></p>
+<p style="margin-left: 4.26cm; text-indent: -3.15cm; margin-bottom: 0cm;"> 分别利用<font face="Times"><font size="3"><span lang="en-US">(1) </span></font></font>、<font face="Times"><font size="3"><span lang="en-US">(2) </span></font></font>两公式即可得到一阶小波变换后的音频数据新序列：                <font face="Times"><font size="3"><span lang="en-US">X′= { x′1 , x′2 ,<font face="MS Mincho, ＭＳ 明朝, monospace">⋯</font>, x′N′} </span></font></font> </p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">以及重构系数序列 <font face="Times"><font size="3"><span lang="en-US">Y′= { y′1 , y′2 , <font face="MS Mincho, ＭＳ 明朝, monospace">⋯</font>, y′N′} ,</span></font></font>式中<font face="Times"><font size="3"><span lang="en-US">N′= N/ 2.</span></font></font></p>
+<p style="margin-bottom: 0cm;">      下图是波谱优化之前的和频谱优化之后的两个帧级波谱图的例子<font face="Times"><font size="3"><span lang="en-US">:</span></font></font></p>
+<p style="margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US"><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/dl88250/273209/o_%e6%b3%a2%e8%b0%b1%e5%9b%be.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""><br></span></font></font></p>
+<p align="center" style="margin-bottom: 0cm;">&nbsp;</p>
+<p align="center" style="margin-bottom: 0cm;">波谱优化之前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                          波谱优化之后</p>
+<p style="margin-bottom: 0cm; text-align: left;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm;"><font size="2"><span lang=""><strong>（</strong></span></font><font face="Times"><font size="3"><span lang="en-US"><font size="2"><span lang=""><strong>3</strong></span></font></span></font></font><font size="2"><span lang=""><strong>）</strong></span></font><strong>音频特征值的提取方法</strong></p>
+<p style="margin-bottom: 0cm;">     <font face="Times"><font size="3"><span lang="en-US"><strong>1) </strong></span></font></font><strong>峰值过滤</strong></p>
+<p style="text-indent: 1.3cm; margin-bottom: 0cm;">对于每个帧级的峰值点（<font face="Times"><font size="3"><span lang="en-US">x, y</span></font></font>）都进行如下的操作<font face="Times"><font size="3"><span lang="en-US">:</span></font></font></p>
+<p style="text-indent: 2.96cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">If Exy== max(Eij ) </span></font></font> </p>
+<p style="text-indent: 3.7cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">E<sub>xy  </sub></span></font></font>为特征点</p>
+<p style="text-indent: 2.96cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">Else </span></font></font> </p>
+<p style="text-indent: 3.7cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">E<sub>xy</sub> </span></font></font>不为特征点</p>
+<p style="text-indent: 1.85cm; margin-bottom: 0cm;">其中<font face="Times"><font size="3"><span lang="en-US">x </span></font></font>是该峰值点的频率值，<font face="Times"><font size="3"><span lang="en-US">y </span></font></font>是该峰值点的时间值。</p>
+<p style="margin-left: 1.3cm; text-indent: 0.56cm; margin-bottom: 0cm;"> 有<font face="Times"><font size="3"><span lang="en-US">x − df ≤ i ≤ x + df </span></font></font>，<font face="Times"><font size="3"><span lang="en-US">y−dt ≤ j ≤ y+dt </span></font></font>。<font face="Times"><font size="3"><span lang="en-US">df </span></font></font>为允许频率误差。</p>
+<p style="text-indent: 0.93cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US"><font size="2"><span lang=""><strong>2) </strong></span></font><font face="宋体, SimSun"><strong>Mel </strong></font></span></font></font><strong>对数倒谱系数</strong><font face="Times"><font size="3"><span lang="en-US"><font face="宋体, SimSun"><strong>MFCC</strong></font></span></font></font></p>
+<p style="text-indent: 1.06cm; margin-bottom: 0cm;">（<font face="Times"><font size="3"><span lang="en-US">1</span></font></font>）计算频域信息<font face="Times"><font size="3"><span lang="en-US">: </span></font></font> </p>
+<p style="text-indent: 1.85cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">1) </span></font></font>对音频帧进行快速傅里叶变换<font face="Times"><font size="3"><span lang="en-US">( Fast Fourier Transformation , FFT) </span></font></font>。</p>
+<p style="text-indent: 1.85cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">2) </span></font></font>将时域信息<font face="Times"><font size="3"><span lang="en-US">xi ( n) ( n ∈ [1. .Num ]) </span></font></font>转换为频域信息<font face="Times"><font size="3"><span lang="en-US">yi ( n) ( n∈[0. .Num - 1 ]) :</span></font></font></p>
+<p style="text-indent: 2.54cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US"><font size="3">yi ( n) =  </font>k = 0 ,1 , <font face="MS Mincho, ＭＳ 明朝, monospace">⋯</font>, Num - 1 </span></font></font>　<font face="Times"><font size="3"><span lang="en-US">j </span></font></font>为虚数单位 <font face="Times"><font size="3"><span lang="en-US">(6)</span></font></font></p>
+<p style="margin-bottom: 0cm;">      （<font face="Times"><font size="3"><span lang="en-US">2</span></font></font>）计算<font face="Times"><font size="3"><span lang="en-US">Mel </span></font></font>频率<font face="Times"><font size="3"><span lang="en-US">:</span></font></font></p>
+<p style="margin-left: 2.96cm; text-indent: -0.74cm; margin-bottom: 0cm;"> <font face="Times"><font size="3"><span lang="en-US">f i ( i ∈[1. . 24 ]) :</span></font></font></p>
+<p style="text-indent: 4.41cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">f 1 = 20 Hz</span></font></font></p>
+<p style="text-indent: 4.45cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">f 12 = 1 000 Hz</span></font></font></p>
+<p style="text-indent: 4.45cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">f <sub>i </sub>= f <sub>i</sub>- 1 + Hz  i ∈[2. . 11 ]        (7)</span></font></font></p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm;">                    <font face="Times"><font size="3"><span lang="en-US">==...=</span></font></font></p>
+<p style="text-indent: 4.26cm; margin-bottom: 0cm;"><font face="Times"><font size="3"><span lang="en-US">f 24 = 22 000 Hz</span></font></font></p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 2.96cm; margin-bottom: 0cm;">根据<font face="Times"><font size="3"><span lang="en-US">(7) </span></font></font>式的计算结果<font face="Times"><font size="3"><span lang="en-US">,</span></font></font>代入<font face="Times"><font size="3"><span lang="en-US">(8) </span></font></font>式<font face="Times"><font size="3"><span lang="en-US">,</span></font></font>即可计算出对应的<font face="Times"><font size="3"><span lang="en-US">Mel </span></font></font>频率<font face="Times"><font size="3"><span lang="en-US">.</span></font></font></p>
+<p style="margin-bottom: 0cm;">                    <font face="Times"><font size="3"><span lang="en-US">Fi=61n   +               (8)</span></font></font></p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<ol start="3">
+    <li>
+    <p style="margin-bottom: 0cm;">计算<font face="Times"><font size="3"><span lang="en-US">Mel 	</span></font></font>倒谱系数<font face="Times"><font size="3"><span lang="en-US">:</span></font></font></p>
+    </li>
+</ol>
+<p style="margin-left: 2.62cm; text-indent: -0.56cm; margin-bottom: 0cm;"> <font face="Times"><font size="3"><span lang="en-US">1) </span></font></font>利用<font face="Times"><font size="3"><span lang="en-US">24 </span></font></font>个三角带通滤波器分别与⑹式计算出的频域信息<font face="Times"><font size="3"><span lang="en-US">yi ( n) ( n∈[0..Num - 1 ]) </span></font></font>求卷积<font face="Times"><font size="3"><span lang="en-US">,</span></font></font>得到每个频率点的对数能量<font face="Times"><font size="3"><span lang="en-US">pi ( n) ( n ∈[1. . 24 ]) . </span></font></font> </p>
+<p style="margin-left: 1.69cm; text-indent: 0.37cm; margin-bottom: 0cm;"> <font face="Times"><font size="3"><span lang="en-US">2) </span></font></font>根据该频点能量进行余弦变换<font face="Times"><font size="3"><span lang="en-US">(DCT) </span></font></font>即可得到<font face="Times"><font size="3"><span lang="en-US">Nel </span></font></font>倒谱系数<font face="Times"><font size="3"><span lang="en-US">. </span></font></font> </p>
+<p style="margin-left: 1.69cm; text-indent: 1.77cm; margin-bottom: 0cm;"> <font face="Times"><font size="3"><span lang="en-US">M<span style="border: medium none ; padding: 0cm; background: rgb(255, 255, 255) none repeat scroll 0% 50%; float: left; width: 1.27cm; height: 0.55cm; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" dir="ltr" id="Frame15">
+</span></span></font></font></p><p style="margin-bottom: 0cm;"><font face="Times"><font size="3">—<font face="Times"><font size="3"><span lang="en-US">7—</span></font></font></font></font></p><font face="Times"><font size="3">
+FCC<sub>i</sub> ( d) = <font face="宋体, SimSun">d∈[1,2…12]    (9)</font></font></font><p></p>
+<p style="margin-bottom: 0cm;"><strong>（</strong><font face="Times"><font size="3"><span lang="en-US"><font face="宋体, SimSun"><strong>4</strong></font></span></font></font><strong>） 对不同提取方法所得的特征值进行处理</strong></p>
+<p style="margin-bottom: 0cm;">     标准偏差： <font face="Times"><font size="3"><span lang="en-US"><font face="宋体, SimSun">S =  (Xn</font></span></font></font>为特征值 <font face="Times"><font size="3"><span lang="en-US"><font face="宋体, SimSun">y </font></span></font></font>为特征值的算数平均数<font face="Times"><font size="3"><span lang="en-US"><font face="宋体, SimSun">)</font></span></font></font></p>
+<p style="text-indent: 2.86cm; margin-bottom: 0cm;"><font size="2" style="font-size: 9pt;">标准偏差越小，这些值偏离平均值就越少。</font></p>
+<p style="margin-bottom: 0cm;">      数学期望值（均值）： <font face="Times"><font size="3"><span lang="en-US">E(X) = </span></font></font></p>
+<p style="margin-bottom: 0cm;">     方差：    <font face="Times"><font size="3"><span lang="en-US">D(x) = </span></font></font></p>
+<p style="margin-bottom: 0cm;">               <font face="Times"><font size="3"><span lang="en-US">E(x<sup>2</sup>) =  </span></font></font> </p>
+<p style="margin-bottom: 0cm;">               <font face="Times"><font size="3"><span lang="en-US">E(x) = </span></font></font></p>
+<p style="margin-bottom: 0cm;">     根据标准偏差，数学期望，方差对不同算法所得到的特征值进行均值计算。</p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="margin-bottom: 0cm;"> <strong>（</strong><font face="Times"><font size="3"><span lang="en-US"><font face="宋体, SimSun"><strong>5</strong></font></span></font></font><strong>）</strong><strong>与数据库样本特征值的模式匹配</strong></p>
+<p style="text-indent: 0.64cm; margin-bottom: 0cm; line-height: 150%;"> 对音频数据提取特征后，假设共<font face="Times"><font size="3"><span lang="en-US"><em>N</em></span></font></font>个特征，则形成了一个<font face="Times"><font size="3"><span lang="en-US"><em>N</em></span></font></font>维特征矢量的序列。<font color="#000000">对</font><font face="Times"><font size="3"><span lang="en-US"><font color="#000000"><em>N</em></font></span></font></font><font color="#000000">维特征矢量进行聚类，一般采用模糊聚类法，模糊聚类首先要对</font><font face="Times"><font size="3"><span lang="en-US"><font color="#000000"><em>N</em></font></span></font></font><font color="#000000">维特征矢量进行归一化，一般采用高斯归一化。</font><font color="#000000">音频聚类质心生成图如下。</font></p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm; line-height: 150%;"> <font size="2" style="font-size: 9pt;">音频波形</font></p>
+<p style="margin-bottom: 0cm; line-height: 150%;">          </p>
+<p style="text-indent: 1.91cm; margin-bottom: 0cm; line-height: 150%;">   <font size="2" style="font-size: 9pt;">加窗处理</font></p>
+<p style="margin-bottom: 0cm; line-height: 150%;"><br> </p>
+<p style="margin-bottom: 0cm; line-height: 150%;">                                    </p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm; line-height: 150%;"> <font size="2" style="font-size: 9pt;">特征序列 </font> </p>
+<p style="margin-bottom: 0cm; line-height: 150%;"><br> </p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm; line-height: 150%;"> <font size="2" style="font-size: 9pt;">模糊聚类</font></p>
+<p style="margin-bottom: 0cm; line-height: 150%;"><br> </p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm; line-height: 150%;"> <font size="2" style="font-size: 9pt;">音频模板　          </font> </p>
+<p style="margin-bottom: 0cm; line-height: 150%;"><font color="#000000"> <span style="border: medium none ; padding: 0cm; background: rgb(255, 255, 255) none repeat scroll 0% 50%; float: left; width: 1.27cm; height: 0.55cm; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" dir="ltr" id="Frame16">
+</span></font></p><p style="margin-bottom: 0cm;"><font color="#000000">—<font face="Times"><font size="3"><span lang="en-US">8—</span></font></font></font></p><font color="#000000">
+    </font><font color="#000000">                               </font> <p></p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm; line-height: 150%;"> 计算<font face="Times"><font size="3"><span lang="en-US">request</span></font></font>和<font face="Times"><font size="3"><span lang="en-US">clip</span></font></font>的相似度：</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm; line-height: 150%;"> <font face="Times"><font size="3"><span lang="en-US">1</span></font></font>）对于<font face="Times"><font size="3"><span lang="en-US"><em>V</em></span></font></font>中的每个，在<font face="Times"><font size="3"><span lang="en-US"><em>W</em></span></font></font>中找到与其最相似的，记为，其中<font face="Times"><font size="3"><span lang="en-US"><em>d</em></span></font></font>表示余弦相似度。同理，对于<font face="Times"><font size="3"><span lang="en-US"><em>W</em></span></font></font>中的每个<font face="Times"><font size="3"><span lang="en-US"><em>V</em></span></font></font>中的每个，在<font face="Times"><font size="3"><span lang="en-US">V</span></font></font>中找到与其最相似的，记为。</p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 150%;"> <font face="Times"><font size="3"><span lang="en-US">2)  request</span></font></font>和<font face="Times"><font size="3"><span lang="en-US">clip</span></font></font>之间的相似度</p>
+<p style="text-indent: 2.96cm; margin-bottom: 0cm; line-height: 150%;">      </p>
+<p lang="" style="text-indent: 2.82cm; margin-bottom: 0cm; line-height: 150%;"> <br> </p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm; line-height: 150%;"> <font size="2" style="font-size: 9pt;">音频库</font>   　 <font face="Times"><font size="3"><span lang="en-US">		         ……</span></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 150%;">                                  <font face="Times"><font size="3"><span lang="en-US"><font size="2" style="font-size: 9pt;"><em>A</em></font><font size="2" style="font-size: 9pt;"> </font>         <font size="2" style="font-size: 9pt;"><em>B</em></font>            <font size="2" style="font-size: 9pt;"><em>N</em></font></span></font></font></p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm; line-height: 150%;"> <font size="2" style="font-size: 9pt;">样本音频</font></p>
+<p style="margin-bottom: 0cm; line-height: 150%;"><br> </p>
+<p style="text-indent: 6.4cm; margin-bottom: 0cm; line-height: 150%;"><font face="Times"><font size="2" style="font-size: 9pt;"><span lang="en-US"><em>X</em></span></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 150%;">                                                <font face="Times"><font size="3"><span lang="en-US"><font size="2" style="font-size: 9pt;"><em>D</em></font><font size="2" style="font-size: 9pt;">(</font><font size="2" style="font-size: 9pt;"><em>X</em></font><font size="2" style="font-size: 9pt;">,</font><font size="2" style="font-size: 9pt;"><em>A</em></font><font size="2" style="font-size: 9pt;">), </font><font size="2" style="font-size: 9pt;"><em>D</em></font><font size="2" style="font-size: 9pt;">(</font><font size="2" style="font-size: 9pt;"><em>X</em></font><font size="2" style="font-size: 9pt;">,</font><font size="2" style="font-size: 9pt;"><em>B</em></font><font size="2" style="font-size: 9pt;">), …,</font><font size="2" style="font-size: 9pt;"><em>D</em></font><font size="2" style="font-size: 9pt;">(</font><font size="2" style="font-size: 9pt;"><em>X</em></font><font size="2" style="font-size: 9pt;">,</font><font size="2" style="font-size: 9pt;"><em>N</em></font><font size="2" style="font-size: 9pt;">)</font></span></font></font></p>
+<p style="text-indent: 1.32cm; margin-bottom: 0cm; line-height: 150%;"> <br> </p>
+<p style="text-indent: 1.32cm; margin-bottom: 0cm; line-height: 150%;"> <br> </p>
+<p style="margin-bottom: 0cm; line-height: 150%;"><br> </p>
+<p style="margin-bottom: 0cm; line-height: 150%;">   </p>
+<p style="margin-bottom: 0cm; line-height: 150%;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm;">四、研究工作年度计划安排（在研究工作期限内，按月阐明研究工作具体内容）</p>
+<p>&nbsp;</p>
+<p style="margin-bottom: 0cm; line-height: 150%;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm;"><font size="3" style="font-size: 11pt;">（</font><font face="文鼎PL细上海宋Uni, serif">1</font>）研究工作和总体安排</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm; line-height: 0.71cm;"> 研究工作分三个阶段进行<font face="文鼎PL细上海宋Uni, serif">:</font></p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm; line-height: 0.71cm;"> 第一阶段<font face="文鼎PL细上海宋Uni, serif">: </font>收集并整理资料、阅读相关文献<font face="文鼎PL细上海宋Uni, serif">,</font>对研究内容中涉及到的各问题作综述性研究。</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;"><br> </p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm; line-height: 0.71cm;"> 第二阶段<font face="文鼎PL细上海宋Uni, serif">: </font>理论分析和研究。</p>
+<p style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">· </font>研究主流音频的编码方式</p>
+<p style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">· </font>不同编码方式下还原波形的方法</p>
+<p style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">· </font>研究去除波谱中毛刺的方法</p>
+<p style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">· </font>音频特征值的提取方法</p>
+<p style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">· </font>对不同提取方法所得的特征值进行处理</p>
+<p style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">· </font>与数据库样本特征值的模式匹配</p>
+<p style="text-indent: 1.48cm; margin-bottom: 0cm; line-height: 0.71cm;"> <br> </p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 第三阶段<font face="文鼎PL细上海宋Uni, serif">: </font>编程实现<font face="文鼎PL细上海宋Uni, serif">,</font>进行实验研究和性能分析。</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;">
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="lmb" name="AUTHOR">
+<meta content="20070421;17290000" name="CREATED">
+<meta content="番茄花园" name="CHANGEDBY">
+<meta content="20070422;23320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style> </p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;">（<font face="文鼎PL细上海宋Uni, serif">2</font>）分月计划安排</p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">4 </font>月<font face="文鼎PL细上海宋Uni, serif">--2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">7 </font>月  查阅资料、整理相关工作<font face="文鼎PL细上海宋Uni, serif">,</font>作综述性研究和报告。</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;"><br> </p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">7 </font>月<font face="文鼎PL细上海宋Uni, serif">--2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">9 </font>月  设计系统框架<font face="文鼎PL细上海宋Uni, serif">,</font>以及各部分功能的实施策略。</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;"><br> </p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">9 </font>月<font face="文鼎PL细上海宋Uni, serif">--2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">10 </font>月 不同编码方式下还原波形及去除波谱中毛刺的方法</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;"><br> </p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">10 </font>月<font face="文鼎PL细上海宋Uni, serif">--2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">11 </font>月 音频特征值的提取方法</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;"><br> </p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">11 </font>月<font face="文鼎PL细上海宋Uni, serif">--2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">12 </font>月 对不同提取方法所得的特征值进行处理</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;"><br> </p>
+<p style="text-indent: 0.56cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">2007 </font>年 <font face="文鼎PL细上海宋Uni, serif">12 </font>月<font face="文鼎PL细上海宋Uni, serif">--2008 </font>年 <font face="文鼎PL细上海宋Uni, serif">2 </font>月  与数据库样本特征值的模式匹配</p>
+<p style="margin-bottom: 0cm; line-height: 0.71cm;"><br> </p>
+<p style="margin-left: 0.56cm; margin-bottom: 0cm; line-height: 0.71cm;"> <font face="文鼎PL细上海宋Uni, serif">2008 </font>年 <font face="文鼎PL细上海宋Uni, serif">2 </font>月<font face="文鼎PL细上海宋Uni, serif">--2008 </font>年 <font face="文鼎PL细上海宋Uni, serif">4 </font>月 编程实现<font face="文鼎PL细上海宋Uni, serif">,</font>使用实际的数据对所提出的方法及策略进行实验研究和性能分析。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<br>
+<p style="margin-bottom: 0cm;">&nbsp;</p>
+<p style="margin-bottom: 0cm;">（格式有问题，大家如果有兴趣的话可以下载这个Word文档看看）<br> </p>
+<p>&nbsp;http://download1.csdn.net/down3/20070615/15224910580.doc</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+</ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="基于MEL算法的音频ID比对技术的研究与实现[00原创]"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2007/06/15/1181946600000.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2007/06/12/1181690280000.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="谁说Linux桌面效果不如Vista和Mac????[00原创]"
+                       aria-label="旧一篇: 谁说Linux桌面效果不如Vista和Mac????[00原创]">←</a>
+
+                    <a href="https://88250.github.io/articles/2007/06/20/1182381180000.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="这个学期的体育课[00原创]"
+                       aria-label="新一篇: 这个学期的体育课[00原创]">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1181946600000",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("Life in Programming,MultiMediia,Data-Structrue/Algorithms",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1181946600000', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 79ms, 2020/01/08 08:55:45 -->

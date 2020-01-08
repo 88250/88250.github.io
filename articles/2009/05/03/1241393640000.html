@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>基于 Petri 网的软件过程支撑环境设计 - D 的个人博客</title><meta name="description" content="基于 Petri 网的软件过程支撑环境设计 基于 Petri 网的软件过程支撑环境设计 摘要 第 1 章 绪论 1.1 软件过程与过程建模 1.3 软件过程支撑环境现状 1.3 本课题的研究内容及意义 1.3.1 研究内容 1.3.2 意义 1.4 Petri 网简介 第 2 章 软件过程定义语言 2.1 SPDL 概述 2.2 SPDL 元模型 2.2.1 XML Schema 2.3 模型变换 2.3.1 SPDL 域到 Java 域的变换 2.3.2 SPDL 实例的 Petri 网图生成 2.3.2.1 基元块 2.3.2.2 Petri 网图生成 2.4 基于 S...."/><meta property="og:description" content="基于 Petri 网的软件过程支撑环境设计 基于 Petri 网的软件过程支撑环境设计 摘要 第 1 章 绪论 1.1 软件过程与过程建模 1.3 软件过程支撑环境现状 1.3 本课题的研究内容及意义 1.3.1 研究内容 1.3.2 意义 1.4 Petri 网简介 第 2 章 软件过程定义语言 2.1 SPDL 概述 2.2 SPDL 元模型 2.2.1 XML Schema 2.3 模型变换 2.3.1 SPDL 域到 Java 域的变换 2.3.2 SPDL 实例的 Petri 网图生成 2.3.2.1 基元块 2.3.2.2 Petri 网图生成 2.4 基于 S...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="基于 Petri 网的软件过程支撑环境设计 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/05/03/1241393640000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="基于 Petri 网的软件过程支撑环境设计 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/05/03/1241393640000.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="软件生存周期过程相关产品与规范的调研" href="https://88250.github.io/articles/2009/05/01/1241175660000.html">
+            <link rel="next" title="Java 上下文与依赖注入（JSR 299）[1] " href="https://88250.github.io/articles/2009/05/20/1242830400000.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2009/05/03/1241393640000.html">
+                基于 Petri 网的软件过程支撑环境设计
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Published on
+            <time>
+                May 4, 2009
+            </time>
+            with <span data-uvstaturl="https://88250.github.io/articles/2009/05/03/1241393640000.html">0</span> views
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/BeyondTrack">
+                    <b># BeyondTrack</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/J2EE%2FJavaEE">
+                    <b># J2EE/JavaEE</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/Software%20Engineering">
+                    <b># Software Engineering</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://88250.github.io/tags/JBoss%20Seam">
+                    <b># JBoss Seam</b>
+                </a>
+                <a rel="tag" class="tag tag--4" href="https://88250.github.io/tags/Mathematics">
+                    <b># Mathematics</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p></p><div>
+<div>
+<div>
+<h1 id="b3_solo_h1_0">基于 Petri 网的软件过程支撑环境设计<br></h1>
+<br>
+<div id="WritelyTableOfContents" class="writely-toc"><ol class="writely-toc-none">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_High_Level_Petri_Nets_1570396" target="_blank">基于 Petri 网的软件过程支撑环境设计</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_8003452663834293_446333391194_2229142286479019" target="_blank">摘要</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_1_1388352720116368_2716843567" target="_blank">第 1 章 绪论</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#1_1_5159390391271211_275953689" target="_blank">1.1 软件过程与过程建模</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#1_3__780068034589648" target="_blank">1.3 软件过程支撑环境现状</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#1_3_00018081280370307873_94404" target="_blank">1.3 本课题的研究内容及意义</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#1_3_1_028681047868219456_00648" target="_blank">1.3.1 研究内容</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#1_3_2_11199214029270765_852720" target="_blank">1.3.2 意义</a></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#1_4_Petri_Nets_925016248581512" target="_blank">1.4 Petri 网简介</a></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_2_8308693370062991_3526675778" target="_blank">第 2 章 软件过程定义语言</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_1_SPDL_040858003565423906_09_4259748263509201" target="_blank">2.1 SPDL 概述</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_2_SPDL_025611659795485298_34_004932047498921066" target="_blank">2.2 SPDL 元模型</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_2_2_XML_Schema_5824128249899" target="_blank">2.2.1 XML Schema</a></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_2_37726097486484167_37019983_6280798376486112" target="_blank">2.3 模型变换</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_2_1_SPDL_Java_10170411018148_8048523622885639" target="_blank">2.3.1 SPDL 域到 Java 域的变换</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_1_06316301911600453_93956129_7826743534428375" target="_blank">2.3.2 SPDL 实例的 Petri 网图生成</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_3_2_1_6909392616490296_65774_874312677230697" target="_blank">2.3.2.1 基元块</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_3_2_2_026949359406927442_152_03583747535352089" target="_blank">2.3.2.2 Petri 网图生成</a></li>
+</ol></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#2_4_SPDL_7633491211394602_2876_46701420512155445" target="_blank">2.4 基于 SPDL 的软件过程建模方法</a></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_3_18324534912390866_428228514" target="_blank">第 3 章 软件过程执行控制</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#3_1_6162554744702771_786880372_6190911951750134" target="_blank">3.1 过程生存周期</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#3_3_2_6247080558796566_9465532_6578297759450403" target="_blank">3.2 过程执行控制</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#3_2_1_23129765298025928_670078_3917669516068203" target="_blank">3.2.1 标记网初始化</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#3_2_2_8100095147149176_5749420" target="_blank">3.2.2 点火控制</a></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#3_3_42911771617760786_45381730_9634287789530159" target="_blank">3.3 历史追踪</a></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_4_3833686623076361_6622715409" target="_blank">第 4 章 软件过程支撑环境设计</a><ol class="writely-toc-subheading writely-toc-none" style="margin-left: 0pt;">
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#4_1_BeyondTrack_29861802095786" target="_blank">4.1 BeyondTrack 项目简介</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#4_2_5742416844827937_521630099_12236272447205265" target="_blank">4.2 体系结构设计</a></li>
+</ol></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_06133262252268856_14436166173_6351142753341671" target="_blank">结论</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_08763730267221181_61051997246_24555782346959898" target="_blank">致谢</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_5477265844133755_569682300497_2104099456909394" target="_blank">参考文献</a></li>
+<li><a href="http://www.blogger.com/post-edit.g?blogID=3975962728033178069&amp;postID=110363233203892653#_6802148896332174_481782926157" target="_blank">附录</a></li>
+</ol></li>
+</ol></div>
+<h2 id="b3_solo_h2_1"><a name="_8003452663834293_446333391194_2229142286479019" target="_blank"></a>摘要 </h2>
+<p>
+在软件的生存周期中，软件过程是整个软件开发实施的核心。成功实施的软件项目必须基于一个良好的软件过程元模型与相应的软件过程支撑环境。本论文为提出了
+一个基于 XML Schema 定义的以活动为中心的软件过程定义语言 SPDL，设计并初步实现了其基于 Petri
+网理论进行软件过程执行控制的支撑环境。</p>
+<br><strong>关键词：</strong>Petri 网，软件过程，过程模型，SPDL<br><br>
+<h2 id="b3_solo_h2_2">Abstract </h2>
+Software
+process is the core of development in software life cycle. Successful
+software project must base on a good software process meta model and a
+corresponding support environment. The thesis presents a XML
+Schema-based and activity-centric software process definition language
+SPDL, then designs and implements a execution controlling support
+environment based on the Petri net theory.<br><br><strong>Keywords: </strong>Petri net, software process, process model, SPDL<br><br>
+<h2 id="b3_solo_h2_3"><a name="_1_1388352720116368_2716843567" target="_blank"></a>第 1 章 绪论 </h2>
+<h3 id="b3_solo_h3_4"><a name="1_1_5159390391271211_275953689" target="_blank"></a>1.1 软件过程与过程建模<br></h3>
+软件过程是软件生存周期中所涉及的一系列相关过程。过程是活动的集合，活动是任务的集合，任务是把输入转换为输出的操作[3]。软件过程模型是软件过程的静态描述，是软件过程执行的依据。软件过程是软件过程模型的执行实例，它是软件过程模型的动态表现。<br>在进行具体软模块时，都需要对其进行建模，根据 L. Osterweil 提出的“软件过程也是软件”[3]的观点出发，软件过程需要建模是自然的。目前，对软件模块进行建模时最为常用的建模工具是 UML[1]，它提供了对面向对象软件模块进行建模的统一标准。<br>
+<h3 id="b3_solo_h3_5"><a name="1_3__780068034589648" target="_blank"></a>1.3 软件过程支撑环境现状<br></h3>
+对于软件过程建模来说，目前尚未形成类似 UML 影响力的建模工具。OMG 提出了 SPEM（Software Process<br>Engineering Meta-Model ）[16] 用于描述软件过程模型，文献[17]提出了基于 SPEM 的 CMM<br>软件过程元模型，但都却缺乏一个软件过程执行、过程演化的执行支撑环境。<br>在文献[3]中提出了一个的软件并行开发模型及其控制模型，并基于 Petri 网理论对这些模型进行了精确定义，表明了 Petri 网理论是解决软件过程建模与执行控制的有效途径。<br><br><a name="1_2_9936811177077666_457187516_28972784249254624" target="_blank"></a>
+<h3 id="b3_solo_h3_6"><a name="1_3_00018081280370307873_94404" target="_blank"></a>1.3 本课题的研究内容及意义 </h3>
+<h4 id="b3_solo_h4_7"><a name="1_3_1_028681047868219456_00648" target="_blank"></a>1.3.1 研究内容<br></h4>
+<ol>
+<li> 软件过程与软件过程模型<br>软件过程是指软件生存周期中所涉及的一系列相关过程，软件过程模型是软件过程的静态描述。如何准确地描述软件过程模型是重中之重。</li>
+<li> 软件过程控制<br>为了精确地进行软件过程执行控制，基于 Petri 网的软件过程模型描述与软件过程控制是解决这一问题的有效途径之一。<br></li>
+<li>软件过程支撑环境<br>软件过程建模、软件过程模型修改（模型演化）、软件过程执行管理最终的目的是为了提高软件生产率，所以提供一个高质量的支撑环境是必然的。</li>
+</ol>
+<h4 id="b3_solo_h4_8"><a name="1_3_2_11199214029270765_852720" target="_blank"></a>1.3.2 意义<br></h4>
+近年来，随着社会对软件需求的与日俱增，如何控制软件生产过程以及如何持续地改进、演化软件过程就成为了软件工程研究的核心问题之一。我认为提出一个精确
+的软件过程定义语言，并实现针对此语言可用的软件过程支撑环境是非常有必要的。在该支撑环境下，软件开发者：<br><ol>
+<li> 能够准确地定义软件生存周期涉及的各类软件过程模型 </li>
+<li> 能够根据定义的软件过程模型精确地完成相应的软件过程 </li>
+<li> 在发现已定义的软件过程模型有缺陷时能够将其及时修正</li>
+</ol>      综上，通过软件过程的精确控制及其模型的不断演化，达到软件开发者认为最优的软件过程，从而提高其软件生产率。<br><br>
+<h3 id="b3_solo_h3_9"><a name="1_4_Petri_Nets_925016248581512" target="_blank"></a>1.4 Petri 网简介 </h3>
+Petri 网是一种用于描述离散的、分布式系统的数学建模工具。1962 年，Carl Adam Petri 以其著名的论文“<em>Kommunikation mit Automaten</em>”获得博士学位。在该论文中，他正式提出了 Petri 网论，这一年被视作 Petri 网的诞生之年。1970 年以后，Petri 又将他的网论发展为通用网论。现在，世界各地有许多科研人员专注于 Petri 网的研究，每年都举行 Petri 网国际会议。<br><br>Petri 网含有五个基本元素：<br>
+<ul>
+<li>place（库所）<br>一般用圆圈表示，可以形容为容纳标码的场所。它可以有容量限制也可以假设为容量无穷大。 </li>
+<li>transition（变迁）<br>一般用矩形或者一条短线表示，描述了从一个状态到另一状态的变化。变迁的发生是发生一般是原子性的，即不可中断。</li>
+<li>arc（有向弧）<br>一般用一段有向弧表示，从库所指向变迁或者由变迁指向库所，表征了两者之前一种偏序关系。弧上可以设定权值大小，即一次性消耗的资源数目。</li>
+<li>token（标码）<br>即网系统中的资源，标码的数目即资源数。在活的网系统中，资源可以在库所变迁中不断流动。</li>
+<li>marking（标记）<br>记录了 Petri 网中 token 的分布情况，描述了 Petri 网的状态。</li>
+</ul>
+</div>
+<div><br><br></div>
+</div>
+<p><a name="Variations_on_the_definition" target="_blank"></a></p>
+<br>
+<h2 id="b3_solo_h2_10"><a name="_2_8308693370062991_3526675778" target="_blank"></a>第 2 章 软件过程定义语言<br></h2>
+<a name="2_1_SPDL_03411545267983507_643_5415882479713331" target="_blank"></a>
+<h3 id="b3_solo_h3_11"><a name="2_1_SPDL_040858003565423906_09_4259748263509201" target="_blank"></a>2.1 SPDL 概述 </h3>
+软件过程定义语言 —— SPDL 是一种面向软件过程建模者、以活动为中心的模型定义语言。它具有如下特征：<br>
+<ul>
+<li>涵盖了软件过程所涉及的基本元素，对这些元素的关联、功能、信息进行了描述</li>
+<li>能够对软件过程中的活动进行并行描述</li>
+<li>能够对软件过程中涉及的角色进行统一的职责描述，定义各角色的权限</li>
+<li>使用 XML 作为过程模型描述载体，具有良好的可读性与互操作性</li>
+</ul>
+<h3 id="b3_solo_h3_12"><a name="2_2_SPDL_025611659795485298_34_004932047498921066" target="_blank"></a>2.2 SPDL 元模型<br></h3>
+元模型（meta-model）是用来定义语义模型的构造（construct）和规则（rule）的，通常称为定义表达模型的语言的模型[1]。软件过
+程定义语言 —— SPDL 的元模型是用于描述软件过程模型中的各个元素、元素之间的关系以及元素属性的。<br>对象管理组织（OMG）使用元对象设施（Meta-Object Facility, MOF）对 UML 进行元模型建模[4]。MOF 是一个 4 层体系结构的模型驱动工程[5]， <span><span>如下图：</span></span><br>
+<div id="wzlt" style="text-align: center;">
+<div id="g7ot" style="text-align: center;"><img style="width: 620px; height: 320px;" src="http://docs.google.com/File?id=ddrm6c35_506d7qqpthg_b" alt=""><br>图 2.1 MOF 模型<br></div>
+<br>
+<div style="text-align: left;">
+在 M3 层中，MOF 定义了最基本的元元模型；在 M2 层中，使用了 MOF 定义的元元模型定义了 UML 元模型；在 M1 层中，使用了
+UML 元模型进行软件模型建模；在 M0 层中，将建模好的软件模型进行实例化，该实例描述了真实世界中的对象。<br></div>
+</div>
+<br>效仿 UML 的元模型建模方法，得出 SPDL 元模型建模体系结构<span><span>如下图：</span></span><br>
+<div id="ppct" style="text-align: center;"><img style="width: 613px; height: 322px;" src="http://docs.google.com/File?id=ddrm6c35_507hjv9wkz6_b" alt=""><br>图 2.2 SPDL 模型<br><br></div>
+在 M3 层中，XML Schema[15] 定义了最基本的元元模型；在 M2 层中，使用了 XML Schema 定义的元元模型定义了 SPDL 元模型；在 M1 层中，使用了 SPDL 元模型进行软件过程<span><span>模型建模；在 M0 层中，将建模好的软件过程模型进行实例化，该实例描述了真实世界中的软件过程实例。<br>下图是 SPDL 的类设计（为简洁起见，所有类图都隐去了属性以及操作）</span></span>
+<div id="y11n" style="text-align: center;"><br>
+<div id="i8e7" style="text-align: center;"><img style="width: 633px; height: 382px;" src="http://docs.google.com/File?id=ddrm6c35_500frtgwhfq_b" alt=""><br>图 2.3 SPDL 类图<br></div>
+</div>
+<h4 id="b3_solo_h4_13"><a name="2_2_2_XML_Schema_5824128249899" target="_blank"></a>2.2.1 XML Schema </h4>
+附录1<br>
+<h3 id="b3_solo_h3_14"><a name="2_2_37726097486484167_37019983_6280798376486112" target="_blank"></a>2.3 模型变换<br></h3>
+2001 年，对象管理组织（OMG）提出了 MDA[2] 开发的概念，其中提到下面两种类型的模型：<br>
+<ul>
+<li>PIM（平台独立的模型，Platform Independent Model）<br>此类模型不与任何具体特定的平台技术相关。例如，当我们在讨论 SPDL 概念时，我们只关心什么是过程定义、什么是活动定义、什么是任务定义，而不会去关心 SPDL 的支撑环境是如何实现这些概念。</li>
+</ul>
+<ul>
+<li>PSM（平台特定的模型，Platform Specific Model）<br>此类模型非常重视给定平台的特殊性与平台的能力，让模型变换以及代码生成成为可能。例如，一个银行应用的 PIM 可以使用 UML 来建模，然后变换这个 PIM UML 模型到 PSM Java EJB 模型以及生成绝大部分的 Java 代码。</li>
+</ul>
+</div>
+<div>
+<div>      下图给出了从一种模型变换成另一种模型的原理概要：<br><br>
+<div id="vw8j" style="text-align: center;"><img style="width: 350px; height: 296px;" src="http://docs.google.com/File?id=ddrm6c35_191czwk66cd_b" alt=""><br>图 2.4 模型变换原理概要<br>
+<div style="text-align: left;">
+<h4 id="b3_solo_h4_15"><a name="2_2_1_SPDL_Java_10170411018148_8048523622885639" target="_blank"></a>2.3.1 SPDL 域到 Java 域的变换 </h4>
+一个 SPDL 的实例是一个 XML 文档，它描述了一个软件过程模型。当 SPDL 实例部署到支撑环境中时，必须解析并生成相应的一些 Java 对象，以方便操作，例如进行 Petri 网图的生成，过程模型与过程的关联等。<br>在实现从 XML 领域到 Java 领域的模型变换时，JAXB 2.0（JSR 222）[7] 提供了规范的方法，下图给出这个变换处理的原理概要：
+<div id="atpg" style="text-align: center;">
+<div id="aocq" style="text-align: center;"><img style="width: 366px; height: 204px;" src="http://docs.google.com/File?id=ddrm6c35_492hdnx6qch_b" alt=""></div>
+图 2.5 JAXB 2.0 原理概要<br></div>
+</div>
+</div>
+<h4 id="b3_solo_h4_16"><a name="2_1_06316301911600453_93956129_7826743534428375" target="_blank"></a>2.3.2 SPDL 实例的 Petri 网图生成<br></h4>
+Petri 网可以从两个层次去描述，一是静态层次，即 Petri 网图；二是动态层次，即标记网。本节主要阐述 Petri 网图及其生成。<br>下面给出 Petri 网图的形式定义及其基本术语。<br><strong>      定义 1.1</strong>[3] 如果三元组  (S, T, W) 称为一个 Petri 网图，那么<br>
+<ul>
+<li><span class="texhtml">S 是库所的有限集合</span></li>
+<li><span class="texhtml">T 是变迁的有限集合<br></span></li>
+<li><span class="texhtml">S</span> ∪ T ≠ Φ，且 S ∩ T = Φ</li>
+<li>W: (S × T) ∪ (T × S) → N 为弧的多重集</li>
+</ul>
+<p>      流关系是弧的集合：F = {(x, y) | W(x, y) &amp;gt; 0}。在一些介绍 Petri 网相关文献中，弧的重度只定义为 1，并在定义 Petri 网图时使用 F 代替了 W。</p>
+<p><strong>      定义 1.2</strong>[3] 设 N = (S, T, F) 为一个 Petri 网图，x ∈ S ∪ T，则</p>
+<ul>
+<li><sup><strong><span style="font-size: small;">.</span></strong></sup>x = {y ∈ S ∪ T | (y, x) ∈ F}</li>
+<li>x<sup><strong><span style="font-size: small;">.</span></strong></sup> = {y ∈ S ∪ T | (x, y) ∈ F}</li>
+<li><strong><sup><span style="font-size: small;">.</span></sup></strong>x<strong><sup><span style="font-size: small;">.</span></sup></strong><span style="font-size: large;"><strong><sup> </sup></strong></span>＝ <sup><span style="font-size: small;"><strong>.</strong></span></sup>x ∪ x<sup><span style="font-size: small;"><strong>.</strong></span></sup></li>
+</ul>
+其中，<sup><strong><span style="font-size: small;">.</span></strong></sup>x 称为 x 的前提，x<sup><span style="font-size: small;"><strong>. </strong></span></sup> 称为 x 的后提，<span style="font-size: medium;"><strong><sup>.</sup></strong></span>x<span style="font-size: medium;"><sup><strong>. </strong></sup></span>称为 x 的前后提。<br><br>根据定义 1.1， Petri 网图的 UML 建模如下：<br><br><br><br>
+<div style="text-align: center;">
+<div id="u96s" style="text-align: center;"><img style="width: 277px; height: 233px;" src="http://docs.google.com/File?id=ddrm6c35_5173qnpjv9d_b" alt=""><br><span><span>图 2.6 Petri 网</span></span>图类图<br></div>
+</div>
+<br>根据 SPDL 的元素结构，可以将其定义的软件过程模型分为如下三种基本结构：<br><ol>
+<li>顺序结构</li>
+<li>选择结构</li>
+<li>并行结构</li>
+</ol><br>在实际的软件过程建模中，一般需要组合这三种基本结构从而定义出实用的软件过程模型。<br>
+<h5 id="b3_solo_h5_17"><a name="2_3_2_1_6909392616490296_65774_874312677230697" target="_blank"></a>2.3.2.1 基元块<br></h5>
+基元块使用 Petri 网刻画了 SPDL 过程模型中的基本结构。基元块有以下几类：<br><ol>
+<li>顺序块<br>刻画了活动 e<sub>i</sub> 与 e<sub>j</sub> 是依次串行进<span><span>行的，如图所示。</span></span>
+<div id="dblt" style="text-align: center;"><img style="width: 283px; height: 136px;" src="http://docs.google.com/File?id=ddrm6c35_536tmnnjjdg_b" alt=""><br>图 2.7 顺序块<br><br></div>
+</li>
+<li>选择块<br>刻画了活动 e<sub>i</sub> 与 e<sub>j</sub> 是有选择地进<span><span>行，如图所示。</span></span>
+<div id="hi2r" style="text-align: center;"><img style="width: 233px; height: 184px;" src="http://docs.google.com/File?id=ddrm6c35_537ck2qp6cr_b" alt=""><br>图 2.8 选择块<br><br></div>
+</li>
+<li>并行块<br>刻画了活动 e<sub>i</sub> 与 e<sub>j</sub> 是并行进<span><span>行的，如图所示。</span></span>
+<div id="k6vg" style="text-align: center;"><img style="width: 207px; height: 243px;" src="http://docs.google.com/File?id=ddrm6c35_538gf8wzvr5_b" alt=""><br>图 2.9 并行块<br></div>
+</li>
+</ol><br>
+<h5 id="b3_solo_h5_18"><a name="2_3_2_2_026949359406927442_152_03583747535352089" target="_blank"></a>2.3.2.2 Petri 网图生成 </h5>
+</div>
+<div><span><span><span><span><span><span><span><span><span><span><span><span>根据 SPDL 实例生成的 Petri 网图中，库所用于存放标码，一个标码描述了一个过程实例；变迁描述了 SPDL 活动，活动的完成将导致变迁的点火，从而引起标码的移动。</span></span></span></span></span></span></span></span></span></span></span></span><br>下面各图分别展示了顺序、选择与并行结构的 Petri 网图生成实例。<br>
+<ul>
+<li>顺序结构<br>
+<div id="b6nk" style="text-align: center;">
+<div id="crja" style="text-align: center;"><img style="width: 357px; height: 376px;" src="http://docs.google.com/File?id=ddrm6c35_502dj6b3ghq_b" alt=""></div>
+</div>
+<div style="text-align: center;"><span><span>图 2.10 顺</span></span>序结构的 Petri 网图生成<br><br></div>
+</li>
+<li>选择结构<br>
+<div style="text-align: center;">
+<div id="urmz" style="text-align: center;">
+<div id="mxzj" style="text-align: center;">
+<div id="kq4l" style="text-align: center;"><img style="width: 441px; height: 371px;" src="http://docs.google.com/File?id=ddrm6c35_2f4wrbvhp_b" alt=""></div>
+</div>
+</div>
+</div>
+<div style="text-align: center;"><span><span>图 2.11 选择</span></span>结构的 Petri 网图生成<br><br></div>
+</li>
+<li>并行结构<br>在进行并行结构的 Petri 网图生成时，将生成 Join 库所队列结构。这个结构是一个顺序块，其中库所的个数与变迁的个数都等于并行活动个数 － 1。</li>
+</ul>
+<div id="p:bj" style="text-align: center;">
+<div style="text-align: center;">
+<div id="flnd" style="text-align: center;">
+<div id="as9x" style="text-align: center;">
+<div id="iwy4" style="text-align: center;"><img style="width: 579px; height: 456px;" src="http://docs.google.com/File?id=ddrm6c35_8gdbsb7ck_b" alt=""></div>
+</div>
+</div>
+</div>
+<span><span>图 2.12 并</span></span>行结构的 Petri 网图生成<br></div>
+<br><br><a name="2_4_SPDL_9326087167019562_7883_4111730517573573" target="_blank"></a><br>
+<h3 id="b3_solo_h3_19"><a name="2_4_SPDL_7633491211394602_2876_46701420512155445" target="_blank"></a>2.4 基于 SPDL 的软件过程建模方法<br></h3>
+基于 SPDL 进行软件过程建模时有两种基本策略：<br><ol>
+<li>自顶向下<br>从过程开始建模，发现过程模型中所需要的活动不存在时进行活动建模、任务建模等。</li>
+<li>自底向上<br>从参与者、属性等开始建模，最后将这些实体组合成过程。</li>
+</ol><br>这两种策略在建模时是交替使用的，自顶向下的策略可以看作是对过程建模的逐步精化；自底向上的策略可以看作是对过程元素的复用。<br>下面是基于 SPDL 的软件过程建模方法的 UML 用例图。<br>
+<div id="w30_" style="text-align: center;"><img style="width: 528px; height: 286px;" src="http://docs.google.com/File?id=ddrm6c35_504xbzqfqc9_b" alt=""><br><span><span>图 2.13 建</span></span>模方法 UML 用例图<br><br></div>
+下图是基于 SPDL 的软件过程建模方法的 UML 活动图。
+<div id="pfvz" style="text-align: center;"><img style="width: 590px; height: 364px;" src="http://docs.google.com/File?id=ddrm6c35_5036b3khxc2_b" alt=""><br><span><span>图 2.14 建模方</span></span>法 UML 活动图<br><br></div>
+<h2 id="b3_solo_h2_20"><a name="_3_18324534912390866_428228514" target="_blank"></a>第 3 章 软件过程执行控制<br></h2>
+<h3 id="b3_solo_h3_21"><a name="3_1_6162554744702771_786880372_6190911951750134" target="_blank"></a>3.1 过程生存周期<br></h3>
+过程是从无到有的，首先经过过程建模，得到一个原始的过程模型。该过程模型部署后执行时将得到过程实例，在过程实例的执行期对其进行监控，并针对过程执行中的数据、问题进行分析，可以得到一个改进的过程模型，最终将原始的过程模型进行重建模，并反复这个过程。<br>综上，软件过程是动态的，根据过程执行的反馈，按需修改过程模型，达到进一步提高软件生产率的目标。软件过程的生存<span><span>周期如下图所示。</span></span>
+<div id="snng" style="text-align: center;">
+<div id="arct" style="text-align: center;">
+<div id="p:5." style="text-align: center;"><img style="width: 418px; height: 355px;" src="http://docs.google.com/File?id=ddrm6c35_511gv4p36c9_b" alt=""><br><span><span>图 3.1 软件过程生存周期</span></span><br></div>
+</div>
+</div>
+<div>
+<h3 id="b3_solo_h3_22"><a name="3_3_2_6247080558796566_9465532_6578297759450403" target="_blank"></a>3.2 过程执行控制<br></h3>
+SPDL 为建模者提供了一种软件过程模型的定义语言。在软件过程模型实例化出一个软件过程后必须精确地控制其执行，而基于 Petri 网的过程控制正是解决这一问题的有效途径之一。<br>在执行的过程中，活动的完成将导致过程的完成或者导致下一<span><span>个活动的创建，该执行控制是基于 Petri 网进行控制的。在一次点火后，将改变过程状态，生成新的活动，如下图所示。</span></span><br>
+<div id="iwlz" style="text-align: center;">
+<div id="j0c7" style="text-align: center;">
+<div id="ofz1" style="text-align: center;"><img style="width: 349px; height: 458px;" src="http://docs.google.com/File?id=ddrm6c35_5ppbvmwdw_b" alt=""></div>
+<span><span>图 3.2 过</span></span>程执行控制概览<br></div>
+</div>
+<h4 id="b3_solo_h4_23"><a name="3_2_1_23129765298025928_670078_3917669516068203" target="_blank"></a>3.2.1 标记网初始化<br></h4>
+标记网用于描述 Petri 网图的状态的，在软件过程支撑环境中用于描述过程的状态。<br>下面给出标记网的形式定义及其基本术语。<br>
+<p><strong>      定义 1.3</strong>[3] 设 N = (S, T, F) 为一个 Petri 网图，∑ ＝ (S, T, F, M) 称为一个标记网，其中</p>
+<ul>
+<li>M ⊆ S，称为 N 的一个标记或一个瞬态</li>
+<li>若 S ∈ T，且 <sup><strong><span style="font-size: small;">.</span></strong></sup>x ⊆ M，x<sup><strong><span style="font-size: small;">.</span></strong></sup> ∩ M ＝ Φ，称事件 x 为可触发的</li>
+<li>若事件 x 被触发（称为点火），则标记网 ∑ 转化为 ∑' = (S, T, F, M')，其中 M' = (M - <sup><strong><span style="font-size: small;">.</span></strong></sup>x) ∪ x<sup><strong><span style="font-size: small;">.</span></strong></sup>，M' 也是 N 的一个标记，∑' 也是一个标记网</li>
+</ul>
+<br>使用一个给定的过程模型实例化一个过程时就是在与给定的过程模型对应的 Petri 网图中初始化一个标记网的过程。<br>过程实例化的 UML 时序图如下：
+<div id="tups" style="text-align: center;">
+<div id="v3m5" style="text-align: left;">
+<div id="ti8x" style="text-align: left;">
+<div id="rs9y" style="text-align: center;"><img style="width: 538px; height: 301px;" src="http://docs.google.com/File?id=ddrm6c35_516swdfc4fv_b" alt=""><br><span><span>图 3.3 过</span></span>程实例化 UML 时序图<br></div>
+</div>
+</div>
+</div>
+<br>
+<h4 id="b3_solo_h4_24"><a name="3_2_2_8100095147149176_5749420" target="_blank"></a>3.2.2 点火控制 </h4>
+当一个过程执行时，其中某一个活动满足了其完成条件时将触发一次对应此活动的变迁的点火。如果点火顺利完成，则相关标码也会被成功移动，并生成对应的活动或结束整个过程。<br>根据基元块类别，可以将点火控制分为如下三类：<br><ol>
+<li>顺序块点火</li>
+<li>选择块点火</li>
+<li>并行块点火</li>
+</ol><br><span style="background-color: #ffffff;">      </span><span><span>在控制这三种基本结构中的变迁点火时都基于如下步骤概要： </span></span></div>
+<div><ol>
+<li>检查变迁的点火条件是否满足，如果满足进行步骤 2；如果不满足则退出点火</li>
+<li>在输入库所中根据需要完成活动所在的过程选出对应标码将标码</li>
+<li>从输入库所移到输出库所，即进行点火</li>
+</ol><a name="3_3_2_1_7037535011820709_52286" target="_blank"></a>      下面各图分别展示了顺序块、选择块与并行块的点火控制实例。
+<ul>
+<li>顺序块点火
+<div id="w:ea" style="text-align: center;"><img style="width: 312px; height: 271px;" src="http://docs.google.com/File?id=ddrm6c35_518gkb64rgt_b" alt=""><br>图 3.4 顺序块点火<br><br></div>
+</li>
+<li>选择块点火
+<div id="hv39" style="text-align: center;">
+<div id="xan7" style="text-align: center;">
+<div id="r2we" style="text-align: center;"><img style="width: 560px; height: 400px;" src="http://docs.google.com/File?id=ddrm6c35_3s7ptw6dh_b" alt=""></div>
+</div>
+图 3.5 选择块点火（1）<br>
+<div style="text-align: left;">点火 Activity 1[Choice]，说明在过程执行时选择了 Activity 1。<br></div>
+<div id="omdb" style="text-align: center;">
+<div id="kv1_" style="text-align: center;"><img style="width: 562px; height: 396px;" src="http://docs.google.com/File?id=ddrm6c35_4dtww9ncj_b" alt=""></div>
+图 3.6 选择块点火（2）<br>
+<div style="text-align: left;"><br></div>
+</div>
+</div>
+</li>
+<li>并行块点火<br>在完成 Start Activity 活动时将引起其相关联的 Petri 网的执行：与这个完成活动的过程相关联的标码将与 Start Activity[Start] 库所移动到 Fork 库所。<br><br>
+<div id="qj35" style="text-align: center;">
+<div id="yb7i" style="text-align: center;"><img style="width: 495px; height: 366px;" src="http://docs.google.com/File?id=ddrm6c35_529fcmfmzgk_b" alt=""></div>
+图 3.7 并行块点火（1）<br><br>
+<div id="qj35" style="text-align: center;">
+<div style="text-align: left;">当标码移动到 Fork 库所时，自动进行一次 Fork 变迁点火。<br></div>
+<div id="eojo" style="text-align: center;">
+<div id="oa11" style="text-align: center;"><img style="width: 510px; height: 367px;" src="http://docs.google.com/File?id=ddrm6c35_530c63hvcfv_b" alt=""></div>
+</div>
+图 3.8 并行块点火（2）<br><br>
+<div style="text-align: left;">当
+各并行的活动之一完成时，其对应的变迁的输入库所中的标码将被移动到 Join 输出库所。此时，变迁 Activity 2
+是不能被点火的，如果活动 Activity 2 在这个时刻完成，其对应的变迁 Activity 2 的点火将在变迁 Join 自动点火后进行。<br></div>
+<div id="z.:d" style="text-align: center;">
+<div id="jw0e" style="text-align: center;">
+<div id="g.dj" style="text-align: center;"><img style="width: 496px; height: 363px;" src="http://docs.google.com/File?id=ddrm6c35_532dz36zxdk_b" alt=""></div>
+</div>
+图 3.9 并行块点火（3）<br><br>
+<div style="text-align: left;">当标码移动到 Join 库所时，自动进行一次 Join 变迁点火，使得这一标码进入 Join 库所队列中。如果并行活动个数为 n，则在这个库所队列中进行（n - 2）次点火，使得标码移动到队列的尾部库所（Join Queue n-1）。<br></div>
+<div id="i7-5" style="text-align: center;">
+<div id="md9j" style="text-align: center;"><img style="width: 491px; height: 363px;" src="http://docs.google.com/File?id=ddrm6c35_533cj9gnqdc_b" alt=""></div>
+图 3.10 并行块点火（4）<br><br>
+<div style="text-align: left;">当各并行的活动之一完成时，其对应的变迁的输入库所中的标码将被移动到 Join 输出库所。此时，若不能进行变迁 Join 点火，说明所有的并行活动已经完成，因为 Join 库所队列已经放置满了标码。<br></div>
+<div style="text-align: left;">
+<div id="i91z" style="text-align: center;"><img style="width: 491px; height: 365px;" src="http://docs.google.com/File?id=ddrm6c35_534g4zgv9gg_b" alt=""><br>图 3.11 并行块点火（5）<br><br>
+<div style="text-align: left;">并行活动已完成后，点火 Join 库所队列队尾变迁，结束整个并行块。<br></div>
+<div id="a6t1" style="text-align: center;"><img style="width: 490px; height: 361px;" src="http://docs.google.com/File?id=ddrm6c35_535cf8pbwwx_b" alt=""><br>图 3.12 并行块点火（6）<br></div>
+<br></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h3 id="b3_solo_h3_25"><a name="3_3_42911771617760786_45381730_9634287789530159" target="_blank"></a>3.3 历史追踪<br></h3>
+</div>
+<div>      过程是动态的，其状态随着过程执行而变化，所以必须记录每次过程状态的变化。通过对历史的追踪，可以得到很多重要的数据，对这些数据进行挖掘整理，有助于对过程模型的演化提供信息，并可以提供项目管理所需的必要数据。<br>根据软件过程的结构[6]，将历史记录分为如下三个部分：<br><ol>
+<li>过程历史<br>记录了过程在某一操作发生时的关键数据。例如过程创建 / 完成，过程的活动执行路径，优先级变更等。</li>
+<li>活动历史<br>记录了过程中的活动在某一操作发生时的关键数据。例如活动创建 / 完成，活动所有者变更等。</li>
+<li>任务历史<br>记录了活动中的任务在某一操作发生时的关键数据。例如任务创建 / 完成，参与者、优先级变更等。</li>
+</ol><br>
+<h2 id="b3_solo_h2_26"><a name="_4_3833686623076361_6622715409" target="_blank"></a>第 4 章 软件过程支撑环境设计<br></h2>
+<h3 id="b3_solo_h3_27"><a name="4_1_BeyondTrack_29861802095786" target="_blank"></a>4.1 BeyondTrack 项目简介 </h3>
+ByondTrack <span style="font-family: DejaVu Sans;">是一个基于<br></span>JavaEE <span style="font-family: DejaVu Sans;">平台的 </span>B/S<br><span style="font-family: DejaVu Sans;">结构的软件过程支撑环境。在该环境下，使用者可以进行：<br></span><br>
+<ul>
+<li>可视化的软件过程建模</li>
+<li>自定制过程变量</li>
+<li>过程变量粒度的权限管理</li>
+<li>过程任务、参与者管理</li>
+<li>基于 Wiki 的文档管理</li>
+<li>追踪过程事件历史</li>
+</ul>
+<h3 id="b3_solo_h3_28"><a name="4_2_5742416844827937_521630099_12236272447205265" target="_blank"></a>4.2 体系结构设计<br></h3>
+<a name="4_1_1_47797776373387213_349116_4349006680574222" target="_blank"></a>BeyondTrack 项目涉及到的主要技术以及相应的使用情况如下：<br>
+<ul>
+<li>在 SPDL 处理上使用 JAXB 2.0（JSR 222）</li>
+<li>在应用框架上使用 JBoss Seam 框架[8]（2.1.1.GA），该框架为 Java Context and Dependency Injection（JSR 299）[9]的超集实现</li>
+<li>数据库持久化方面使用 JPA 1.0 （a part of JSR 220）[10]的 Hibernate[14] 实现，使用 Seam 托管的实体管理与事务管理</li>
+<li>表现层选择了 JSF 1.2（JSR 252）[11]的 RichFaces[12] 实现，以 Facelets[13] 作为 JSF 视图定义框架</li>
+</ul>
+<br>这里简述一下选择 JBoss Seam 框架的原因：<br>
+<ul>
+<li>优秀的组件作用域与组件生存周期管理</li>
+<li>Annotation-based 组件配置，框架配置非常简洁</li>
+<li>整合了很多应用功能，例如规则引擎、工作流引擎、PDF 生成等</li>
+<li>是一个 full-stack 的应用框架，提供了表现层、业务逻辑层与数据持久化层的整体解决方案</li>
+<li>是 Java 企业级应用框架的"准规范"</li>
+</ul>
+<br>高层组件设计如下：
+<div id="k1g5" style="text-align: left;">
+<div id="z99x" style="text-align: center;"><img style="width: 458px; height: 440px;" src="http://docs.google.com/File?id=ddrm6c35_317ghcbz8c5_b" alt=""><br>图 4.1 BeyondTrack 组件设计<br><br>
+<div style="text-align: left;">高层包设计如下：
+<div id="h70q" style="text-align: center;">
+<div id="c0ry" style="text-align: center;">
+<div id="l-x3" style="text-align: left;">
+<div style="text-align: center;"><img style="width: 470px; height: 478px;" src="http://docs.google.com/File?id=ddrm6c35_320c83qq8dx_b" alt=""><br></div>
+<div style="text-align: center;">图 4.2 BeyondTrack 包设计<br><br></div>
+</div>
+<div style="text-align: left;"><a name="4_2_3_9631857090007863_2704264" target="_blank"></a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a name="4_3_40073059625642193_92062475_333090995308295" target="_blank"></a><a name="_6_6772560880962736_4984706167" target="_blank"></a>
+<h2 id="b3_solo_h2_29"><a name="_06133262252268856_14436166173_6351142753341671" target="_blank"></a>结论 </h2>
+<span style="background-color: #ffffff;">      </span><span><span>软
+件过程模型是软件项目进行可控实施的基本保证，一个优良的、项目规模适用的软件过程元模型是软件过程模型建模的必要条件。使用 SPDL
+能够描述简单的（顺序 / 选择 / 并行）软件过程模型，并在 BeyondTrack
+系统中得到过程建模、部署、执行、优化全生存周期的全支撑，在一定程度上提高了软件开发效率。 在进一步的工作中，将继续完善 SPDL
+元模型，使之能够描述更复杂的软件过程（例如子过程），并加入对活动变迁条件的定义，使之在基于 Petri
+网的过程执行控制时能够自动或半自动地进行。</span></span><br><br>
+<h2 id="b3_solo_h2_30"><a name="_08763730267221181_61051997246_24555782346959898" target="_blank"></a>致谢 </h2>
+在此衷心感谢我的导师李彤博士，正是有了他辛勤的工作，细心的指导和严格的要求，才有了本篇论文的顺利完成。<br>感谢金峰软件公司，在那里我学习到了很多学校里学不到的软件工程实践与经验。<br>感谢 BeyondTrack 项目组的成员，大家一起齐心协力，成功地完成了这个项目。这里特别感谢赵禹同学，他给出了很多细心的建议，在项目实现上也尽心尽责。<br>最后感谢我的家人，是你们深情的教诲和无微不至的关怀，才有了我今天的成绩，对你们的感激之情无论用多少语言都无法表达！<br>
+<h2 id="b3_solo_h2_31"><a name="_5477265844133755_569682300497_2104099456909394" target="_blank"></a>参考文献 </h2>
+[1] Rumbaugh J, Jacobson I, Booch G. The Unified Modeling Language Reference Manual. Addison<br>Wesley Longman, Inc., 1999<br>[2] OMG. MDA Guide Version 1.0.1, document no: omg/2003-06-01, 2003<br>[3] 李彤, 孔兵, 王黎霞等. 软件并行开发过程. 北京:科学出版社, 2003<br>[4] http://en.wikipedia.org/wiki/Metamodeling<br>[5] http://en.wikipedia.org/wiki/Model-driven_engineering<br>[6] ISO/IEC 12207, SOFTWARE LIFE CYCLE PROCESSES<br>[7] JSR 222, Java<span style="vertical-align: super;"><span style="font-size: xx-small;">TM</span></span> Architecture for XML Binding (JAXB) 2.0<br>[8] http://www.seamframework.org<br>[9] JSR 299, Web Beans<br>[10] JSR 220, Enterprise JavaBeans<span style="vertical-align: super;"><span style="font-size: xx-small;">TM</span></span> 3.0<br>[11] JSR 252, JavaServer Faces 1.2<br>[12] http://www.jboss.org/jbossrichfaces<br>[13] http://facelets.dev.java.net<br>[14] http://www.hibernate.org<br>[15] http://www.w3.org/XML/Schema<br>[16] http://www.omg.org/technology/documents/formal/spem.htm<br>[17] 基于SPEM的CMM软件过程元模型, 2005 Journal of Software, Vol.16, No.8
+<h2 id="b3_solo_h2_32"><a name="_6802148896332174_481782926157" target="_blank"></a>附录<br></h2>
+1 SPDL XML Schema<br><br>
+<div id="google_footer" class="google_footer">
+<p> 状态：<span>草稿</span>    日期：2009 年 4 月 22 日    作者：丁亮</p>
+</div>
+</div>
+<br></div>
+<br></div>
+<p></p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_0">基于 Petri 网的软件过程支撑环境设计</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_1">摘要</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_2">Abstract</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_3">第 1 章 绪论</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_4">1.1 软件过程与过程建模</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_5">1.3 软件过程支撑环境现状</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_6">1.3 本课题的研究内容及意义</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_7">1.3.1 研究内容</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_8">1.3.2 意义</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_9">1.4 Petri 网简介</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_10">第 2 章 软件过程定义语言</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_11">2.1 SPDL 概述</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_12">2.2 SPDL 元模型</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_13">2.2.1 XML Schema</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_14">2.3 模型变换</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_15">2.3.1 SPDL 域到 Java 域的变换</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_16">2.3.2 SPDL 实例的 Petri 网图生成</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_17">2.3.2.1 基元块</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_18">2.3.2.2 Petri 网图生成</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_19">2.4 基于 SPDL 的软件过程建模方法</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_20">第 3 章 软件过程执行控制</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_21">3.1 过程生存周期</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_22">3.2 过程执行控制</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_23">3.2.1 标记网初始化</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_24">3.2.2 点火控制</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_25">3.3 历史追踪</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_26">第 4 章 软件过程支撑环境设计</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_27">4.1 BeyondTrack 项目简介</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_28">4.2 体系结构设计</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_29">结论</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_30">致谢</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_31">参考文献</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_32">附录</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+</ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="基于 Petri 网的软件过程支撑环境设计"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2009/05/03/1241393640000.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2009/05/01/1241175660000.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="软件生存周期过程相关产品与规范的调研"
+                       aria-label="旧一篇: 软件生存周期过程相关产品与规范的调研">←</a>
+
+                    <a href="https://88250.github.io/articles/2009/05/20/1242830400000.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Java 上下文与依赖注入（JSR 299）[1] "
+                       aria-label="新一篇: Java 上下文与依赖注入（JSR 299）[1] ">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1241393640000",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("BeyondTrack,J2EE/JavaEE,Software Engineering,JBoss Seam,Mathematics",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1241393640000', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 82ms, 2020/01/08 08:55:33 -->

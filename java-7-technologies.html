@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java 7 的新特性一览表 - D 的个人博客</title><meta name="description" content="官方说是 7月28日 正式发布 Java 7 ，正常的话我们应该在 7月29日 看到这个版本。很快了，就两天时间。 发布之前让我们先来看看 Java 7 都有什么新特性吧。"/><meta property="og:description" content="官方说是 7月28日 正式发布 Java 7 ，正常的话我们应该在 7月29日 看到这个版本。很快了，就两天时间。 发布之前让我们先来看看 Java 7 都有什么新特性吧。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java 7 的新特性一览表 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/java-7-technologies.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Java 7 的新特性一览表 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/java-7-technologies.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="再识 Java 的 final 关键字" href="https://88250.github.io/java-final-keyword.html">
+            <link rel="next" title="GAE 数据保存方式" href="https://88250.github.io/storage-options-on-google-appengine.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/java-7-technologies.html">
+                Java 7 的新特性一览表
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Published on
+            <time>
+                Jul 28, 2011
+            </time>
+                in <a href="https://88250.github.io/category/dev-language">编程语言</a>
+            with <span data-uvstaturl="https://88250.github.io/java-7-technologies.html">0</span> views
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/J2SE%2FJavaSE">
+                    <b># J2SE/JavaSE</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/JDK%207">
+                    <b># JDK 7</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/Java">
+                    <b># Java</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p>官方说是 7月28日 正式发布 Java 7 ，正常的话我们应该在 7月29日 看到这个版本。很快了，就两天时间。</p>
+<p>发布之前让我们先来看看 Java 7 都有什么新特性吧。</p>
+<p>Java 7 的技术：</p>
+<table class="table" border="1" cellspacing="0" cellpadding="0" width="80%">
+<tbody>
+<tr>
+<td class="tdhead" colspan="4"><br></td>
+<td class="tdhead">
+<table class="table" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tbody>
+<tr>
+<td><br></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="tdleftside" title="Java SE Development Kit" rowspan="8"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/index.html#jre-jdk" target="_blank">JDK</a></td>
+<td style="border-width: 0px 0px 0px 0px;" rowspan="9" width="3">&nbsp;</td>
+<td class="tdhead" title="Java programming language" colspan="2"><a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/guides/language/index.html" target="_blank"><strong>Java Language</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" cellspacing="1" cellpadding="2" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" bgcolor="#BDBEC0"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/language/index.html" target="_blank">Java Language</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="tdhead" title="Tools and Tool APIs" colspan="2">` <a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html" target="_blank"><strong>Tools &amp;<br> Tool APIs</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" cellspacing="1" cellpadding="2" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" title="Java runtime launcher" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/windows/java.html" target="_blank">java</a></td>
+<td class="tdbody" title="Java compiler" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/javac/index.html" target="_blank">javac</a></td>
+<td class="tdbody" title="Java documentation generator" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/javadoc/index.html" target="_blank">javadoc</a></td>
+<td class="tdbody" title="Java archive tool" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jar/index.html" target="_blank">jar</a></td>
+<td class="tdbody" title="Java class file disassembler" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/windows/javap.html" target="_blank">javap</a></td>
+<td class="tdbody" title="Java Platform Debugger Architecture" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jpda/index.html" target="_blank">JPDA</a></td>
+<td class="tdbody" title="jconsole" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#jconsole" target="_blank">JConsole</a></td>
+<td class="tdbody" title="Java VisualVM" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/visualvm/index.html" target="_blank">Java VisualVM</a></td>
+<td class="tdbody" title="Java DB" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javadb/index_jdk7.html" target="_blank">Java DB</a></td>
+</tr>
+<tr>
+<td class="tdbody" title="Security tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#security" target="_blank">Security</a></td>
+<td class="tdbody" title="Internationalization tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#intl" target="_blank">Int'l</a></td>
+<td class="tdbody" title="Remote Method Invocation tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#rmi" target="_blank">RMI</a></td>
+<td class="tdbody" title="Interface Definition Language and RMI-IIOP tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#idl" target="_blank">IDL</a></td>
+<td class="tdbody" title="Deployment, Plug-in and Web Start tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#deployment" target="_blank">Deploy</a></td>
+<td class="tdbody" title="Monitoring and Management tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#monitor" target="_blank">Monitoring</a></td>
+<td class="tdbody" title="Troubleshooting tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#troubleshoot" target="_blank">Troubleshoot</a></td>
+<td class="tdbody" title="Scripting tools" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/tools/index.html#scripting" target="_blank">Scripting</a></td>
+<td class="tdbody" title="Java Virtual Machine Tool Interface" colspan="2" bgcolor="#A3B8CB"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jvmti/index.html" target="_blank">JVM TI</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="tdleftside" title="Java Runtime Environment" rowspan="6"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/index.html#jre-jdk" target="_blank">JRE</a></td>
+<td class="tdhead" title="Deployment Technologies"><a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/guides/jweb/index.html" target="_blank"><strong>RIAs</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" cellspacing="1" cellpadding="2" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" style="padding: 6px 0px;" title="Deployment of Java platform, control panel, applications and applets" bgcolor="#ED9B4F"><br></td>
+<td class="tdbody" title="Java Web Start" bgcolor="#ED9B4F"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/javaws/index.html" target="_blank">Java Web Start</a></td>
+<td class="tdbody" title="Java Plug-In for browsers" bgcolor="#ED9B4F"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jweb/applet/applet_dev_guide.html" target="_blank">Applet / Java Plug-in</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="tdhead" title="User Interface programming"><a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/guides/index.html#userinterface" target="_blank"><strong>User Interface<br> Toolkits</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" cellspacing="1" cellpadding="2" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" title="Abstract Window Toolkit" colspan="3" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/awt/index.html" target="_blank">AWT</a></td>
+<td class="tdbody" title="Graphical user interface components" colspan="4" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/swing/index.html" target="_blank"> Swing</a></td>
+<td class="tdbody" title="2D graphics, text and images" colspan="3" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/2d/index.html" target="_blank">Java 2D</a></td>
+</tr>
+<tr>
+<td class="tdbody" title="Assistive technologies for user interfaces" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/access/index.html" target="_blank">Accessibility</a></td>
+<td class="tdbody" title="Drag and drop data transfer" colspan="2" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/dragndrop/index.html" target="_blank"> Drag n Drop</a></td>
+<td class="tdbody" title="Input Method Framework" colspan="2" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/imf/index.html" target="_blank"> Input Methods</a></td>
+<td class="tdbody" title="Image input/output API" colspan="2" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/imageio/index.html" target="_blank">Image I/O</a></td>
+<td class="tdbody" title="Print service API" colspan="2" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jps/index.html" target="_blank">Print Service</a></td>
+<td class="tdbody" title="MIDI API" bgcolor="#E76F00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/sound/index.html" target="_blank"> Sound</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style="border-width: 0px 0px 0px 0px;" rowspan="9" width="3">&nbsp;</td>
+<td class="tdrightside" style="border-width: 2px 2px 2px 0px;" title="Java SE API. See API Documentation section for more links." rowspan="4"><a class="atext" href="http://download.oracle.com/javase/7/docs/api/index.html" target="_blank">Java SE<br> API</a></td>
+</tr>
+<tr>
+<td class="tdhead" title="Integration libraries"><a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/guides/index.html#integration" target="_blank"><strong>Integration<br> Libraries</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" cellspacing="1px" cellpadding="2px" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" style="padding: 6px 0px;" title="CORBA Interface Definition Language API" colspan="2" bgcolor="#B2BC00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/idl/index.html" target="_blank">IDL</a></td>
+<td class="tdbody" title="Java Database Connectivity API" colspan="2" bgcolor="#B2BC00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jdbc/index.html" target="_blank">JDBC</a></td>
+<td class="tdbody" title="Java Naming and Directory Interface API" colspan="2" bgcolor="#B2BC00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jndi/index.html" target="_blank">JNDI</a></td>
+<td class="tdbody" title="Remote Method Invocation API" colspan="2" bgcolor="#B2BC00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/rmi/index.html" target="_blank">RMI</a></td>
+<td class="tdbody" title="RMI interfaces over IIOP" colspan="2" bgcolor="#B2BC00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/rmi-iiop/index.html" target="_blank">RMI-IIOP</a></td>
+<td class="tdbody" title="Scripting for the Java Platform" colspan="2" bgcolor="#B2BC00"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/scripting/index.html" target="_blank">Scripting</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="tdhead" title="Base libraries other than java.lang and java.util"><a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/guides/index.html#otherbase" target="_blank"><strong>Other Base<br> Libraries</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" cellspacing="1px" cellpadding="2px" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" title="Java Beans component API" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/beans/index.html" target="_blank">Beans</a></td>
+<td class="tdbody" title="Internationalization of applications" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/intl/index.html" target="_blank">Int'l Support</a></td>
+<td class="tdbody" title="Input/Output API" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/io/index.html" target="_blank"> Input/Output</a></td>
+<td class="tdbody" title="Java Management Extensions" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jmx/index.html" target="_blank">JMX</a></td>
+<td class="tdbody" title="Java Native Interface" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jni/index.html" target="_blank">JNI</a></td>
+<td class="tdbody" title="Math classes" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/math/index.html" target="_blank">Math</a></td>
+</tr>
+<tr>
+<td class="tdbody" title="Networking API" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/net/index.html" target="_blank">Networking</a></td>
+<td class="tdbody" title="Endorsed Standards Override Mechanism" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/standards/index.html" target="_blank">Override Mechanism</a></td>
+<td class="tdbody" title="Security API" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/security/index.html" target="_blank">Security</a></td>
+<td class="tdbody" title="Object Serialization" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/serialization/index.html" target="_blank">Serialization</a></td>
+<td class="tdbody" title="Package extension mechanism" colspan="2" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/extensions/index.html" target="_blank">Extension Mechanism</a></td>
+<td class="tdbody" title="Java API for XML Processing" bgcolor="#C69200"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/xml/index.html" target="_blank">XML JAXP</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="tdhead" title="java.lang and java.util libraries"><a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/guides/index.html#langutil" target="_blank"><strong>lang and util<br> Base Libraries</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" cellspacing="1px" cellpadding="2px" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" title="java.lang and java.util packages" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/lang/index.html" target="_blank">lang and util</a></td>
+<td class="tdbody" title="Collections framework" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/collections/index.html" target="_blank">Collections</a></td>
+<td class="tdbody" title="Concurrency utilities" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/concurrency/index.html" target="_blank">Concurrency Utilities</a></td>
+<td class="tdbody" title="Java archive file format" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/jar/index.html" target="_blank"> JAR</a></td>
+<td class="tdbody" title="Logging API" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/logging/index.html" target="_blank">Logging</a></td>
+<td class="tdbody" title="JVM Monitoring and Management" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/management/index.html" target="_blank">Management</a></td>
+</tr>
+<tr>
+<td class="tdbody" title="Preferences API" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/preferences/index.html" target="_blank">Preferences API</a></td>
+<td class="tdbody" title="Reference Objects API" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/api/java/lang/ref/package-summary.html" target="_blank">Ref Objects</a></td>
+<td class="tdbody" title="Reflection API" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/reflection/index.html" target="_blank">Reflection</a></td>
+<td class="tdbody" title="Regular expressions" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/api/java/util/regex/package-summary.html" target="_blank">Regular Expressions</a></td>
+<td class="tdbody" title="Package version identification" colspan="2" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/versioning/index.html" target="_blank">Versioning</a></td>
+<td class="tdbody" title="Zip and gzip file formats" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/api/java/util/zip/package-summary.html" target="_blank">Zip</a></td>
+<td class="tdbody" title="Instrumentation" bgcolor="#FFC726"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/instrumentation/index.html" target="_blank">Instrumentation</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="tdhead" title="Java Virtual Machine" width="117"><a class="ahead" href="http://download.oracle.com/javase/7/docs/technotes/guides/vm/index.html" target="_blank"><strong>Java Virtual<br> Machine</strong></a></td>
+<td style="border-width: 0px 0px 0px 0px;">
+<table class="table" border="0" cellspacing="1px" cellpadding="2px" width="100%" bgcolor="#EEEEEE">
+<tbody>
+<tr>
+<td class="tdbody" style="padding: 6px 0px;" title="Client and Server virtual machine" colspan="10" bgcolor="#C5D5A9"><a class="atext" href="http://download.oracle.com/javase/7/docs/technotes/guides/vm/index.html" target="_blank">Java HotSpot Client and Server VM</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://download.oracle.com/javase/7/docs/technotes/guides/desc_jdk_structure.html" target="_blank">Description of Java Conceptual Diagram</a></p>
+<p>新特性一览表：</p>
+<p style="text-indent: 0em;"><strong>Swing</strong></p>
+<ul>
+<li>新增 <a href="http://download.oracle.com/javase/7/docs/api/javax/swing/JLayer.html" target="_blank"><code>JLayer</code></a> 类，是一个灵活而且功能强大的Swing组件修饰器，使用方法：<a href="http://download.oracle.com/javase/tutorial/uiswing/misc/jlayer.html" target="_blank">How to Decorate Components with JLayer</a>.</li>
+<li><a href="http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/nimbus.html" target="_blank">Nimbus Look and Feel</a> 外观从 <code>com.sun.java.swing</code> 包移到 <code>javax.swing</code> 包中，详情：<a href="http://download.oracle.com/javase/7/docs/api/javax/swing/plaf/nimbus/package-summary.html" target="_blank"><code>javax.swing.plaf.nimbus</code></a></li>
+<li><a href="http://java.sun.com/developer/technicalArticles/GUI/mixing_components/index.html" target="_blank">更轻松的重量级和轻量级组件的混合</a></li>
+<li>支持透明窗体以及非矩形窗体的图形界面，请看 <a href="http://download.oracle.com/javase/tutorial/uiswing/misc/trans_shaped_windows.html" target="_blank">How to Create Translucent and Shaped Windows</a></li>
+<li><a href="http://download.oracle.com/javase/7/docs/api/javax/swing/JColorChooser.html" target="_blank"><code>JColorChooser</code></a> 类新增 HSV tab.</li>
+</ul>
+<p style="text-indent: 0em;"><strong>网络</strong></p>
+<ul>
+<li><code>新增 </code><a href="http://download.oracle.com/javase/7/docs/api/java/net/URLClassLoader.html#close%28%29" target="_blank"><code>URLClassLoader.close</code></a> 方法，请看 <a href="http://download.oracle.com/javase/7/docs/technotes/guides/net/ClassLoader.html" target="_blank">Closing a URLClassLoader</a>.</li>
+<li>支持 Sockets Direct Protocol (SDP) 提供高性能网络连接，详情请看 <a href="http://download.oracle.com/javase/tutorial/sdp/sockets/index.html" target="_blank">Understanding the Sockets Direct Protocol</a>.</li>
+</ul>
+<p style="text-indent: 0em;"><strong>集合</strong></p>
+<ul>
+<li><code>新增 </code><a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/TransferQueue.html" target="_blank"><code>TransferQueue</code></a> 接口，是 <a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/BlockingQueue.html" target="_blank"><code>BlockingQueue</code></a> 的改进版，实现类为 <a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/LinkedTransferQueue.html" target="_blank"><code>LinkedTransferQueue</code></a></li>
+</ul>
+<p style="text-indent: 0em;"><strong>RIA/发布</strong></p>
+<ul>
+<li>拖拽的小程序使用一个默认或者定制的标题进行修饰，详情：<a href="http://download.oracle.com/javase/tutorial/deployment/applet/draggableApplet.html#decoration" target="_blank">Requesting and Customizing Applet Decoration in Draggable Applets</a>.</li>
+<li>JNLP 文件做了如下方面的增强，详情请看 <a href="http://download.oracle.com/javase/7/docs/technotes/guides/javaws/developersguide/syntax.html" target="_blank">JNLP File Syntax</a>:           
+<ul>
+<li>The <code>os</code> attribute in the <code>information</code> and <code>resources</code> elements can now contain specific versions of Windows, such as Windows Vista or Windows 7.</li>
+<li>Applications can use the <code>install</code> attribute in the <code>shortcut</code> element to specify their their desire to be installed. Installed   applications are not removed when the Java Web Start cache is cleared,   but can be explicitly removed using the Java Control Panel.</li>
+<li>Java Web Start applications can be deployed without specifying the <code>codebase</code> attribute; see <a href="http://download.oracle.com/javase/tutorial/deployment/deploymentInDepth/deployingWithoutCodebase.html" target="_blank">Deploying Without Codebase</a></li>
+</ul>
+</li>
+<li>可直接在 HTML 中嵌入 JNLP 文件：<a href="http://download.oracle.com/javase/tutorial/deployment/deploymentInDepth/embeddingJNLPFileInWebPage.html" target="_blank">Embedding JNLP File in Applet Tag</a>.</li>
+<li>可在 JavaScript 代码中检查 Applet 是否已经加载完成：<a href="http://download.oracle.com/javase/tutorial/deployment/applet/appletStatus.html" target="_blank">Handling Initialization Status With Event Handlers</a>.</li>
+<li>可在 Applet 从快捷方式启动或者拖出浏览器时对窗口样式和标题进行控制：<a href="http://download.oracle.com/javase/tutorial/deployment/applet/draggableApplet.html#decoration" target="_blank">Requesting and Customizing Applet Decoration</a> in <a href="http://download.oracle.com/javase/tutorial/deployment/applet/draggableApplet.html" target="_blank">Developing Draggable Applets</a>.</li>
+</ul>
+<p style="text-indent: 0em;"><strong>XML</strong></p>
+<ul>
+<li>包含 <a href="http://jaxp.java.net/" target="_blank">Java API for XML Processing</a> (JAXP) 1.4.5, 支持 <a href="http://jaxb.java.net/" target="_blank">Java Architecture for XML Binding</a> (JAXB) 2.2.3, 和 <a href="http://jax-ws.java.net/" target="_blank">Java API for XML Web Services</a> (JAX-WS) 2.2.4.</li>
+</ul>
+<p style="text-indent: 0em;"><strong>java.lang 包</strong></p>
+<ul>
+<li>消除了在多线程环境下的非层次话类加载时导致的潜在死锁，详情：<a href="http://download.oracle.com/javase/7/docs/technotes/guides/lang/cl-mt.html" target="_blank">Multithreaded Custom Class Loaders in Java SE 7</a>.</li>
+</ul>
+<p style="text-indent: 0em;"><strong>Java 虚拟机</strong></p>
+<ul>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/vm/multiple-language-support.html" target="_blank">支持非 Java 语言</a>:  Java SE 7 引入一个新的 JVM 指令用于简化实现动态类型编程语言</li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/vm/G1.html" target="_blank">Garbage-First Collector</a> 是一个服务器端的垃圾收集器用于替换 Concurrent Mark-Sweep Collector (CMS).</li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/vm/performance-enhancements-7.html" target="_blank">提升了 Java HotSpot 虚拟机的性能</a></li>
+</ul>
+<p style="text-indent: 0em;"><strong>Java I/O</strong></p>
+<p><a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/package-summary.html" target="_blank"><code>java.nio.file</code></a> 包以及相关的包 <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/package-summary.html" target="_blank"><code>java.nio.file.attribute</code></a> 提供对文件 I/O 以及访问文件系统的全面支持，请看 <a href="http://download.oracle.com/javase/tutorial/essential/io/fileio.html" target="_blank"> File I/O (featuring NIO.2)</a>.</p>
+<ul>
+<li>目录 <code><em>&lt;Java home&gt;</em>/sample/nio/chatserver/</code> 包含使用 java.nio.file 包的演示程序</li>
+<li>目录 <code><em>&lt;Java home&gt;</em>/demo/nio/zipfs/</code> 包含 NIO.2 NFS 文件系统的演示程序</li>
+</ul>
+<p style="text-indent: 0em;"><strong>安全性</strong></p>
+<ul>
+<li>新的内置对多个基于 ECC 算法(ECDSA/ECDH)的支持，详情请看：<a href="http://download.oracle.com/javase/7/docs/technotes/guides/security/p11guide.html#ALG" target="_blank">Sun PKCS#11 Provider's Supported Algorithms</a> in <a href="http://download.oracle.com/javase/7/docs/technotes/guides/security/p11guide.html" target="_blank">Java PKCS#11 Reference Guide</a>.</li>
+<li>禁用了一些弱加密算法，详情请看 <a href="http://download.oracle.com/javase/7/docs/technotes/guides/security/certpath/CertPathProgGuide.html#AppD" target="_blank">Appendix D: Disabling Cryptographic Algorithms</a> in <a href="http://download.oracle.com/javase/7/docs/technotes/guides/security/certpath/CertPathProgGuide.html" target="_blank">Java PKI Programmer's Guide</a> and <a href="http://download.oracle.com/javase/7/docs/technotes/guides/security/jsse/JSSERefGuide.html#DisabledAlgorithms" target="_blank">Disabled Cryptographic Algorithms</a> in <a href="http://download.oracle.com/javase/7/docs/technotes/guides/security/jsse/JSSERefGuide.html" target="_blank">Java Secure Socket Extension (JSSE) Reference Guide</a>.</li>
+<li>Java 安全套接字扩展中对 SSL/TLS 的增强</li>
+</ul>
+<p style="text-indent: 0em;"><strong>并发</strong></p>
+<ul>
+<li>fork/join 框架，基于 <a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinPool.html" target="_blank"><code>ForkJoinPool</code></a> 类，是 <a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/Executor.html" target="_blank"><code>Executor</code></a> 接口的实现，设计它用来进行高效的运行大量任务；使用 work-stealing 技术用来保证大量的 worker 线程工作，特别适合多处理器环境，详情请看 <a href="http://download.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html" target="_blank">Fork/Join</a> <br> 
+<ul>
+<li>目录<code><em>&lt;Java home&gt;</em>/sample/forkjoin/</code> 包含了 fork/join 框架的演示程序</li>
+</ul>
+</li>
+<li><a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadLocalRandom.html" target="_blank"><code>ThreadLocalRandom</code></a> 类class 消除了使用伪随机码线程的竞争，请看 <a href="http://download.oracle.com/javase/tutorial/essential/concurrency/threadlocalrandom.html" target="_blank">Concurrent Random Numbers</a>.</li>
+<li><a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/Phaser.html" target="_blank"><code>Phaser</code></a> 类是一个新的同步的屏障，与 <a href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html" target="_blank"><code>CyclicBarrier</code></a> 类似.</li>
+</ul>
+<p style="text-indent: 0em;"><strong>Java 2D</strong></p>
+<ul>
+<li>一个新的基于 XRender 的 Java 2D 渲染管道支持现在的 X11 桌面，改善了图形性能，请看&nbsp;<a href="http://download.oracle.com/javase/7/docs/technotes/guides/2d/flags.html#xrender" target="_blank">System Properties for Java 2D Technology</a> 中的 <code>xrender</code> .</li>
+<li>JDK 可枚举并显示出已安装的 OpenType/CFF 字体，通过 <a href="http://download.oracle.com/javase/7/docs/api/java/awt/GraphicsEnvironment.html#getAvailableFontFamilyNames%28%29" target="_blank"> <code>GraphicsEnvironment.getAvailableFontFamilyNames</code></a> 方法 See <a href="http://download.oracle.com/javase/tutorial/2d/text/fonts.html" target="_blank">Selecting a Font</a>.</li>
+<li><a href="http://download.oracle.com/javase/7/docs/api/java/awt/font/TextLayout.html" target="_blank"><code>TextLayout</code></a> 类支持西藏语脚本</li>
+<li><code>libfontconfig</code>, 是一个字体配置 api ，see <a href="http://www.fontconfig.org/" target="_blank">Fontconfig</a>.</li>
+</ul>
+<p style="text-indent: 0em;"><strong>国际化</strong></p>
+<ul>
+<li>支持 <a href="http://www.unicode.org/versions/Unicode6.0.0" target="_blank">Unicode 6.0.0</a>&nbsp;      
+<ul>
+<li>目录 <code><em>&lt;Java home&gt;</em>/demo/jfc/Font2DTest/</code> 包含 Unicode 6.0 的演示程序</li>
+<li>Java SE 7 可容纳在 ISO 4217 中新的货币，详情请看 <a href="http://download.oracle.com/javase/7/docs/api/java/util/Currency.html" target="_blank"><code>Currency</code></a> 类.</li>
+</ul>
+</li>
+</ul>
+<p style="text-indent: 0em;"><strong>Java 编程语言特性</strong></p>
+<ul>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/binary-literals.html" target="_blank">二进制数字表达方式</a></li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/underscores-literals.html" target="_blank">使用下划线对数字进行分隔表达，例如 1_322_222</a></li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/strings-switch.html" target="_blank">switch 语句支持字符串变量</a></li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/type-inference-generic-instance-creation.html" target="_blank">泛型实例创建的类型推断</a></li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/non-reifiable-varargs.html" target="_blank">使用可变参数时，提升编译器的警告和错误信息</a></li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/try-with-resources.html" target="_blank">try-with-resources 语句<br></a></li>
+<li><a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/catch-multiple.html" target="_blank">同时捕获多个异常处理</a></li>
+</ul>
+<p style="text-indent: 0em;"><strong>JDBC 4.1</strong></p>
+<ul>
+<li>支持使用 <a href="http://download.oracle.com/javase/7/docs/technotes/guides/language/try-with-resources.html" target="_blank"><code>try</code>-with-resources</a> 语句进行自动的资源释放，包括连接、语句和结果集</li>
+<li>支持 RowSet 1.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>明细：http://download.oracle.com/javase/7/docs/</p>
+<p>转自：http://www.oschina.net/news/20119/new-features-of-java-7</p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+</ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="Java 7 的新特性一览表"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/java-7-technologies.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/java-final-keyword.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="再识 Java 的 final 关键字"
+                       aria-label="旧一篇: 再识 Java 的 final 关键字">←</a>
+
+                    <a href="https://88250.github.io/storage-options-on-google-appengine.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="GAE 数据保存方式"
+                       aria-label="新一篇: GAE 数据保存方式">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1311817235608",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("J2SE/JavaSE,JDK 7,Java",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1311817235608', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 94ms, 2020/01/08 08:55:27 -->

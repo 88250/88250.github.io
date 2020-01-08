@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>我为什么要用中文写项目文档 - D 的个人博客</title><meta name="description" content="English Please 最近 B3log 开源社区下的项目 BND1 以及 30s2 被外国友人 hobolance3 贴了两条建议： English Please - BND4 English Please - 30s5 这两个项目都是中文写的 README。他建议把中文换成英文，这样对外国友人更友好，也能为项目获得更多关注。 What is the problem with Chinese README&#39;s What we want How this will help you 结尾引用了 Richard Stallman 的名言： Sharing knowledge is the most fundamental act of friendship. Because it is a way you can give something without loosing something. hobolance 也给其他一些中文项目提过该建议，大部分处理是被直接关闭。因为这些项目和 BND、30s 一样都是面向国内用户的，比如 UnblockNeteaseMusic...."/><meta property="og:description" content="English Please 最近 B3log 开源社区下的项目 BND1 以及 30s2 被外国友人 hobolance3 贴了两条建议： English Please - BND4 English Please - 30s5 这两个项目都是中文写的 README。他建议把中文换成英文，这样对外国友人更友好，也能为项目获得更多关注。 What is the problem with Chinese README&#39;s What we want How this will help you 结尾引用了 Richard Stallman 的名言： Sharing knowledge is the most fundamental act of friendship. Because it is a way you can give something without loosing something. hobolance 也给其他一些中文项目提过该建议，大部分处理是被直接关闭。因为这些项目和 BND、30s 一样都是面向国内用户的，比如 UnblockNeteaseMusic...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="我为什么要用中文写项目文档 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/19/1566191673842.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="我为什么要用中文写项目文档 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="创业的第二个夏天" href="https://88250.github.io/articles/2019/08/09/1565318802920.html">
+            <link rel="next" title="CommonMark 规范要点解读" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">
+                我为什么要用中文写项目文档
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Published on
+            <time>
+                Aug 19, 2019
+            </time>
+            with <span data-uvstaturl="https://88250.github.io/articles/2019/08/19/1566191673842.html">0</span> views
+                and <a href="#comments">56 comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/%E5%BC%80%E6%BA%90">
+                    <b># 开源</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p></p><h3 id="b3_solo_h3_0">English Please</h3>
+<p>最近 B3log 开源社区下的项目 BND<sup><a href="https://github.com/b3log/baidu-netdisk-downloaderx" title="BND - 一款图形界面的百度网盘不限速下载器，支持 Windows、Linux 和 Mac" target="_blank">1</a></sup> 以及 30s<sup><a href="https://github.com/b3log/30-seconds-zh_CN" title="30s - 前端知识精选集，包含 HTML、CSS、JavaScript、React、Node、安全等方面，每天仅需 30 秒" target="_blank">2</a></sup> 被外国友人 hobolance<sup><a href="https://github.com/hobolance" title="hobolance - 一个外国友人的 GitHub 账号" target="_blank">3</a></sup> 贴了两条建议：</p>
+<ol>
+<li>English Please - BND<sup><a href="https://github.com/b3log/baidu-netdisk-downloaderx/issues/71" title="English Please - BND" target="_blank">4</a></sup></li>
+<li>English Please - 30s<sup><a href="https://github.com/b3log/30-seconds-zh_CN/issues/1" title="English Please - 30s" target="_blank">5</a></sup></li>
+</ol>
+<p>这两个项目都是中文写的 README。他建议把中文换成英文，这样对外国友人更友好，也能为项目获得更多关注。</p>
+<blockquote>
+<p><strong>What is the problem with Chinese README's</strong><br>
+<strong>What we want</strong><br>
+<strong>How this will help you</strong></p>
+</blockquote>
+<p>结尾引用了 Richard Stallman 的名言：</p>
+<blockquote>
+<p>Sharing knowledge is the most fundamental act of friendship. Because it is a way you can give something without loosing something.</p>
+</blockquote>
+<p>hobolance 也给其他一些中文项目提过该建议，大部分处理是被直接关闭。因为这些项目和 BND、30s 一样都是面向国内用户的，比如 UnblockNeteaseMusic<sup><a href="https://github.com/nondanee/UnblockNeteaseMusic" title="解锁网易云音乐客户端变灰歌曲" target="_blank">6</a></sup>、CS-Notes<sup><a href="https://github.com/CyC2018/CS-Notes" title="CS-Notes - 技术面试必备基础知识、Leetcode 题解、Java、C++、Python、后端面试、操作系统、计算机网络、系统设计" target="_blank">7</a></sup>。</p>
+<h3 id="b3_solo_h3_1">为什么要用中文</h3>
+<p>在 2014 年 B3log 开源社区的项目 Wide<sup><a href="https://github.com/b3log/wide" title="一款基于 Web 的 Go 语言 IDE，随时随地玩 golang" target="_blank">8</a></sup> 在 Hacker News 上就被外国友人吐槽过代码中使用中文注释<sup><a href="https://news.ycombinator.com/item?id=8513895" title="A Web IDE for Teams using Golang | Hacker News" target="_blank">9</a></sup>，后来我把这些注释改成英文的了。当时 Wide 的 README 及其主要的文档都是英文的，也算是一个国际化项目了。</p>
+<p>今年年初我特意把 Wide 的 README 改成中文的了，因为这几年下来我逐步觉得用中文给项目写文档（包括代码注释）很有意义（这也是为什么要做协慌网<sup><a href="https://hacpai.com/article/1538577113305" title="协慌网，一个汉化 Stack Overflow 的网站" target="_blank">10</a></sup>的动机之一）：</p>
+<ul>
+<li>我的母语是中文，用中文写文档最熟悉，表达也能更言简意赅</li>
+<li>项目的国际化是个独立的软件过程，开源项目的国际化可以求助贡献者</li>
+<li>国人可以啃英文，为什么外国友人不能啃啃中文</li>
+<li>先切实帮助到国人，次要再考虑项目自身的传播</li>
+<li>社区用户以国人为主，我们都是用中文交流的</li>
+</ul>
+<p>可能我个人能力有限，无法面面俱到。如果我有时间精力，那肯定是中英双语覆盖文档和代码注释。不过换个角度看，说明项目需要国际化方面的贡献者，这部分工作量交由贡献者来完成也更好一些。开源不只帮助用户，也帮助项目本身，这是相互促进的。</p>
+<h3 id="b3_solo_h3_2">国人开源的现状</h3>
+<p>这个话题延伸下去会挺悲哀的，本质上是开源精神和现实的冲突。很多开发者或者用户对开源的理解只是停留在免费、安全、情怀这样的层面上，其实远不止这些。这可能也是有些主创直接选择国际化的原因，国内目前还不具备这样的环境。不过我觉得这一切正在改变，因为像我一样的主创也越来越多了。</p>
+<p>从主创的角度，我们缺乏的是一片真正的开源土壤，这片土壤绝对不能以商业化盈利为首要目的，否则就会变成一个鸡蛋问题：平台还没做大就想着如何赚开发者的钱（在一些功能细节上设限，在一些产生资金流的地方设限）；开源主创们本来就非常艰难了，在这样的平台上做开源简直是难上加难。所以只要以盈利为目的的开源平台都做不好，要做好只有一条路，由大公司注资兜底，不设置盈利目标。</p>
+<p>大公司为什么要做这样的投入？因为他们想更好地实现业务整合，以备在更高维度上建立生态系统，最终提升整体竞争力。我们所处的是商业社会，开源这件“存在即合理”的事情也可以看成是商业活动。我感觉中国开源的春天不远了，以开源商业化为商业模式的公司将越来越多，国内的开源浪潮即将成型。</p>
+<h3 id="b3_solo_h3_3">相关链接</h3>
+<ol>
+<li><a href="https://github.com/b3log/baidu-netdisk-downloaderx" title="BND - 一款图形界面的百度网盘不限速下载器，支持 Windows、Linux 和 Mac" target="_blank">BND - 一款图形界面的百度网盘不限速下载器，支持 Windows、Linux 和 Mac</a></li>
+<li><a href="https://github.com/b3log/30-seconds-zh_CN" title="30s - 前端知识精选集，包含 HTML、CSS、JavaScript、React、Node、安全等方面，每天仅需 30 秒" target="_blank">30s - 前端知识精选集，包含 HTML、CSS、JavaScript、React、Node、安全等方面，每天仅需 30 秒</a></li>
+<li><a href="https://github.com/hobolance" title="hobolance - 一个外国友人的 GitHub 账号" target="_blank">hobolance - 一个外国友人的 GitHub 账号</a></li>
+<li><a href="https://github.com/b3log/baidu-netdisk-downloaderx/issues/71" title="English Please - BND" target="_blank">English Please - BND</a></li>
+<li><a href="https://github.com/b3log/30-seconds-zh_CN/issues/1" title="English Please - 30s" target="_blank">English Please - 30s</a></li>
+<li><a href="https://github.com/nondanee/UnblockNeteaseMusic" title="解锁网易云音乐客户端变灰歌曲" target="_blank">UnblockNeteaseMusic - 解锁网易云音乐客户端变灰歌曲</a></li>
+<li><a href="https://github.com/CyC2018/CS-Notes" title="CS-Notes - 技术面试必备基础知识、Leetcode 题解、Java、C++、Python、后端面试、操作系统、计算机网络、系统设计" target="_blank">CS-Notes - 技术面试必备基础知识、Leetcode 题解、Java、C++、Python、后端面试、操作系统、计算机网络、系统设计</a></li>
+<li><a href="https://github.com/b3log/wide" title="一款基于 Web 的 Go 语言 IDE，随时随地玩 golang" target="_blank">一款基于 Web 的 Go 语言 IDE，随时随地玩 golang</a></li>
+<li><a href="https://github.com/b3log/wide" title="一款基于 Web 的 Go 语言 IDE，随时随地玩 golang" target="_blank">A Web IDE for Teams using Golang | Hacker News</a></li>
+<li><a href="https://news.ycombinator.com/item?id=8513895" title="A Web IDE for Teams using Golang | Hacker News" target="_blank">协慌网，一个汉化 Stack Overflow 的网站</a></li>
+</ol>
+<p></p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">English Please</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">为什么要用中文</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_2">国人开源的现状</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">相关链接</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+<li id="1568459199189" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1457951549444_1483094193469.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wizardforcel" target="_blank">wizardforcel</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>有空提这个不如提“批判的武器不能代替武器的批判” 😂</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568459199189', 'wizardforcel')">Reply</a>
+    </div>
+</li><li id="1568458699193" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1457951549444_1483094193469.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wizardforcel" target="_blank">wizardforcel</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>外国人不用百度云，就算用了也得看中文，没什么必要。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568458699193', 'wizardforcel')">Reply</a>
+    </div>
+</li><li id="1568432069890" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我从 2006 年开始写博客，Solo 博客系统本身是从 2009 年开始写的。说来也惭愧，10 多年也就只做到现在这样的程度 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568432069890', '88250')">Reply</a>
+    </div>
+</li><li id="1568422671219" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1562934312797_1566804018004.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/HollowMouse" target="_blank">HollowMouse</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我最喜欢Github一点就是不强制注册，<br> 再看看gitee?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568422671219', 'HollowMouse')">Reply</a>
+    </div>
+</li><li id="1568421675056" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1562934312797_1566804018004.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/HollowMouse" target="_blank">HollowMouse</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>信息技术到了初三才学有点用的单片机，以前是Scratch,Office,vb6，IE,然而初三没副课?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568421675056', 'HollowMouse')">Reply</a>
+    </div>
+</li><li id="1568421197650" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1562934312797_1566804018004.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/HollowMouse" target="_blank">HollowMouse</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>看看计算机考级内容，就明显不可能的，wps和ie使用方法还考试，英语换编程不可能的，唉。?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568421197650', 'HollowMouse')">Reply</a>
+    </div>
+</li><li id="1568391791893" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://avatars2.githubusercontent.com/u/39741214?v=4)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://88250.b3log.org" target="_blank">ChenHui66</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>你的博客真的很酷，崇拜大佬！做个这样的博客难度大吗？</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 14, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1568391791893', 'ChenHui66')">Reply</a>
+    </div>
+</li><li id="1567848609005" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>不转不是中国人，最炫民族风！ ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 7, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1567848609005', '88250')">Reply</a>
+    </div>
+</li><li id="1567848176801" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1567847320338?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wuwb" target="_blank">wuwb</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>没人提提文化自信，名族自信吗</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 7, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1567848176801', 'wuwb')">Reply</a>
+    </div>
+</li><li id="1566864329484" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://avatars1.githubusercontent.com/u/15374001?v=4)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://88250.b3log.org" target="_blank">flashdoggy</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>挺好的。<br> 至少在我个人认为是这样的。<br> 不过也确实，一般来说我觉得这属于需要权衡的东西<br> 比如像其他评论里的客观化原因（贡献不足够大啊之类的）<br> 当上升到一定流量，或者说OK，这是一个由多国人共同维护的项目的时候<br> 也许就需要国际化了。</p> 
+<p>不过，有一点我个人是这么想的，并非歧义，客观上来说<br> 哪怕是做国际化<br> 也一定是多国语言版本都会有。</p> 
+<p>我去看了一下repo。<br> 按道理来说<br> 增加英文文档完全没问题<br> 但这时候考虑到开发人员及主创的效率来说。<br> 就像中文开发者经常会看到同胞贡献的中文翻译文档一样<br> 个人建议<br> 在时间不足以翻译并更新一份文档的时候<br> 这种任务我个人觉得<br> 是完全可以交给，懂中文的同胞帮忙一起翻译的（as a PR）<br> 实际上这也并不是什么问题<br> 我个人觉得。</p> 
+<p>有什么想法都欢迎讨论</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 27, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566864329484', 'flashdoggy')">Reply</a>
+    </div>
+</li><li id="1566832496420" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我也决绝过其他人的 PR（不是语言原因），仅从主创的角度上客观分析一波，主要原因是贡献不足够大，对于项目来说这个改进可有可无，甚至还可能会有潜在的副作用（比如代码贡献可能需要更完善的测试覆盖）。</p> 
+<p>总之这个世界有的时候是有点冷漠的，“热脸贴冷屁股”的情况时有发生。但不要因此感到失落啊，完全没有这个必要。该贡献开源还是继续贡献，提交有价值的 PR 主创终将被你感化 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 26, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566832496420', '88250')">Reply</a>
+    </div>
+</li><li id="1566831618450" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1531468705746_1565236122771.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/chengzime" target="_blank">chengzime</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我也并没有反对用英语<br> 我用中文解释了异常详情, 又特意用有道翻译了一遍英文的, 翻译完根本不是原话意思, 然后再修改, 弄了一遍翻译, 用括号备注在了中文下面, 提了个 <code>PR</code>.<br> 结果项目发起者只关注你的内容中有 <code>中文</code>, <code>Please use all English.</code>, 不关心提的 <code>bug</code><br> 然后我删除了所有的中文, 只留下了英文<br> 然后我用英文问他 : <code>I used the software to translate sentence by sentence. Why do I have to delete Chinese? I think this is not friendly to Chinese people, Besides, you're Chinese, very disappointed</code><br> 然后他回复: <code>I'm the project owner. I decide the rules. The commit message is still not following the rule. I will close this PR for now.</code><br> 然后关闭了 <code>PR</code>, 并且删除了最后面的两句话<br> 今天真是白白浪费时间了</p> 
+<p>两个中国人用蹩脚的英语互相交流确实很尴尬, 即没有效率, 也可能表达不清?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 26, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566831618450', 'chengzime')">Reply</a>
+    </div>
+</li><li id="1566829843583" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>主创有洁癖可以理解。有意思的是我遇到和你相反的情况，有国人用英文给我提 issue 还有 PR，本来我想说一句“大家用中文吧，沟通起来更方便”，但又碍于面子没说，结果我和对方用憋足的英语讲了半天，你说尴尬不尴尬 ?</p> 
+<p>后来再碰到类似情况，只要我觉得对方是国人（比如根据 GitHub 个人主页位置信息以及参与或者收藏的仓库判断），他即使用英文我也还是用中文。他对项目可能是出于国际化考虑，而我出于简单高效考虑，尽快解决问题优先。当然，对方如果是外国人，肯定就用英文和他交流了，不然就真的太不友好了。</p> 
+<p>总的来说，我不是在反对用英文，只是目前来说我觉得中文更高效。相信以后随着项目的逐步发展，语言的问题也会慢慢磨合解决的，语言毕竟只是个工具，不是项目的内核。我希望的是一个包容开放的项目生态，而不是自以为正确的独裁专断。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 26, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566829843583', '88250')">Reply</a>
+    </div>
+</li><li id="1566828518425" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1531468705746_1565236122771.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/chengzime" target="_blank">chengzime</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>今天第一次提 <code>PR</code> 就感觉很失望, 吐槽一下 ...<br> 一个中国人的开源项目, 发现一个 <code>bug</code>, 修改了一下提了一个 <code>PR</code>, 使用中文提的, 并且在每句中文下面添加了英文翻译, 结果被要求必须删除中文, 全部用英文写, 一度感觉很愤怒 ...<br> 感觉汉语被侮辱了, 也感觉自己没有被尊重 ...<br> 只能默默留下了没有技术的眼泪 ...</p> 
+<p>只能默默为 <code>D</code> 佬点个大大的赞</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 26, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566828518425', 'chengzime')">Reply</a>
+    </div>
+</li><li id="1566616793134" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1510825649580_1566615472431.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/josephyoung" target="_blank">josephyoung</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>其实国际化开源也有其一定的好处，有个开源前端UI框架叫 IView ，作者提到过“瑞典法律规定企业如果使用开源项目在生产环境中，要先帮助开源项目修 bug”，所以他的开源作品其实包含各界人士的共同努力，哈哈。<br> 话说这位朋友还蛮陈恳的。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 24, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566616793134', 'josephyoung')">Reply</a>
+    </div>
+</li><li id="1566614130926" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://avatars2.githubusercontent.com/u/31369825?v=4)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://88250.b3log.org" target="_blank">potter-lidu</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>这个想法可以的</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 24, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566614130926', 'potter-lidu')">Reply</a>
+    </div>
+</li><li id="1566547167332" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1422698343671_1565057653027.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/lxp135" target="_blank">lxp135</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>老外看不懂，难道不能学中文吗？</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 23, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566547167332', 'lxp135')">Reply</a>
+    </div>
+</li><li id="1566532080576" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1535095204354_1564043922607.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ferried" target="_blank">ferried</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我！拿钱</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 23, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566532080576', 'ferried')">Reply</a>
+    </div>
+</li><li id="1566463393457" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565971569984_1566110887763.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/dengwentong" target="_blank">dengwentong</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ul> 
+ <li>我的母语是中文，用中文写文档最熟悉，表达也能更言简意赅</li> 
+ <li>项目的国际化是个独立的软件过程，开源项目的国际化可以求助贡献者</li> 
+ <li>国人可以啃英文，为什么外国友人不能啃啃中文</li> 
+ <li>先切实帮助到国人，次要再考虑项目自身的传播</li> 
+ <li>社区用户以国人为主，我们都是用中文交流的</li> 
+</ul> 
+<p>支持 Ding 总！?</p> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 22, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566463393457', 'dengwentong')">Reply</a>
+    </div>
+</li><li id="1566456967448" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1473664912939_1553173205270.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/tiangao" target="_blank">tiangao</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>就烦那种天天伸手要自己又不干啥的</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 22, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566456967448', 'tiangao')">Reply</a>
+    </div>
+</li><li id="1566398983445" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1564022649893_1564533875290.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/zhaoyangkun" target="_blank">zhaoyangkun</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持D大。现在翻译软件的功能都不错，应该能做把中文翻译成明了的英文。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566398983445', 'zhaoyangkun')">Reply</a>
+    </div>
+</li><li id="1566392115759" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1528807958353_1535224922633.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/vinasis" target="_blank">vinasis</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>中文象征团体暗号</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566392115759', 'vinasis')">Reply</a>
+    </div>
+</li><li id="1566382247353" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1362115066236_1483066064497.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wgh" target="_blank">wgh</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持大D</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566382247353', 'wgh')">Reply</a>
+    </div>
+</li><li id="1566376935451" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://avatars0.githubusercontent.com/u/23110784?v=4)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://88250.b3log.org" target="_blank">zengzhengrong</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>如果代码放在国内托管（例如 码云）只中文完全是没有问题的，但是放在github这种国际平台，英文文档我觉得是必要的（可以慢慢搞）。个人见解</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566376935451', 'zengzhengrong')">Reply</a>
+    </div>
+</li><li id="1566373152473" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1505456507935_1562228743747.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gitors" target="_blank">gitors</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>如果从小学、初中、高中起的英语课都改为编程，国内现在得有多少 大佬啊</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566373152473', 'gitors')">Reply</a>
+    </div>
+</li><li id="1566372839147" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1560836925350?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/namelysweet" target="_blank">namelysweet</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>顶你！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566372839147', 'namelysweet')">Reply</a>
+    </div>
+</li><li id="1566371693801" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1443788662211_1565367015995.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/medusar" target="_blank">medusar</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ul> 
+ <li>用什么语言取决于你想把项目做到什么程度。</li> 
+ <li>国内开源环境的确很差，很多人对开源的理解仅限于免费。</li> 
+</ul> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566371693801', 'medusar')">Reply</a>
+    </div>
+</li><li id="1566348779265" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1470124211520_1560216550106.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Zephyr" target="_blank">Zephyr</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>说到我心坎上了</p> 
+<p>不过其实话又说回来，还希望国产github给力啊……</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 21, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566348779265', 'Zephyr')">Reply</a>
+    </div>
+</li><li id="1566308559549" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1471435205389_1535704694238.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/destiny0" target="_blank">destiny0</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ul> 
+ <li> <p>其实这个问题是多数人对于困难更多的是寄希望于别人的帮助，是一个索取的过程，而不是自己去实践、去解决、去贡献。</p> </li> 
+ <li> <p>语言不通，但是现在有很多的翻译软件不是，虽然翻译软件翻译的不会100%准确，但至少是能帮助理解。</p> </li> 
+ <li> <p>不管是什么语言，那都不重要。</p> </li> 
+ <li> <p>开源不只是帮助用户，也帮助项目本身。同时用户的贡献也是在帮助自己。?</p> </li> 
+</ul> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566308559549', 'destiny0')">Reply</a>
+    </div>
+</li><li id="1566298835717" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1530071976905?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gmt" target="_blank">gmt</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>其实最关键的还是要项目得有用。某些 markdown 网红工程师的文档可以说是秀得上天了，实际上项目全是一些玩具 demo 毫无价值。我认为只要你的项目对大家有用，文档啥的都无所谓了，又不是商业服务还包培训。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566298835717', 'gmt')">Reply</a>
+    </div>
+</li><li id="1566294316215" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://avatars0.githubusercontent.com/u/31696027?v=4)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://88250.b3log.org" target="_blank">baomoe</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ol> 
+ <li>他要求提得很理直气壮，其实很没礼貌。<br> 2.嘿嘿，中文起码也是世界范围内流通的第二大语言吧。还是应该加强学习。<br> 3.当初都是我们把英语国家的优秀作品翻译成中文，现在轮到他们了。感谢开源的中国程序员们。<br> 4.* 国人可以啃英文，为什么外国友人不能啃啃中文--为答主点赞，程序没有国界，程序员是有国界的。</li> 
+</ol> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566294316215', 'baomoe')">Reply</a>
+    </div>
+</li><li id="1566286302357" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>人数不是范围的全部，一个开源项目要能跨越不同的自然语言、跨越不同的文明才算成功。目标是这样，但是现阶段只能顾“少数人”了，小目标实现后再追求大目标。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566286302357', '88250')">Reply</a>
+    </div>
+</li><li id="1566284855976" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1505456507935_1562228743747.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gitors" target="_blank">gitors</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>全球使用中文的人已经达到17亿了快，你还嫌范围不够大吗<img alt="trollface" src="https://cdn.jsdelivr.net/npm/vditor/dist/images/emoji/trollface.png" title="trollface"></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566284855976', 'gitors')">Reply</a>
+    </div>
+</li><li id="1566284706264" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>@suesunss</p> 
+<p>专业不专业我觉得和用什么语言来写代码注释关系不大，代码注释也是软件文档的一部分，用中文写代码注释的目的和项目相关文档用中文写是一样的，都是为了让周围的人更好理解。这能保证项目在整体上的一致性，不然文档、社区用户都是中文的，代码注释又用英文就有点尴尬了（现在我这边项目就是这样的情况，所以我想做一些改变）。</p> 
+<p>当然，这样做目前来看是“难登大雅之堂”的，也不利于项目在更大范围的传播，也许以后某个阶段到达后会再进行调整和总结吧（也许以后中文更流行了也就不用调整了）。文中最后提到，这个话题延伸下去的话会很悲哀，目前只能叹息我们软件整体产业落后，开源方面也会导致一些冲突。怎么说呢，我觉得一步到位和国际接轨太难了，慢慢发展吧。</p> 
+<p>感谢分享交流 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566284706264', '88250')">Reply</a>
+    </div>
+</li><li id="1566283744693" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1566282915286?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/suesunss" target="_blank">suesunss</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>说的是太绝对了，但是也提到了，我们的开源环境有一定的问题。我也跟欧洲的开发者接触过，他们也有很多优秀的项目，但是他们很多并不是上来就用自己的母语去写代码注释，这样肯定是不利于项目走出去的。并不是说我们的项目中不能用英语，而是说使用英语有几点好处：</p> 
+<ol> 
+ <li>计算机科学毕竟欧美发展的历史要领先我们，很多词汇、表达用英语表达更能够方便开源社区去理解。</li> 
+ <li>编程语言本身是英文的，如果函数名、变量名、注释都是各国母语，这样的项目到时候如果要推广出去好改吗？</li> 
+ <li>开源社区需要有自己的交流语言、习惯与惯例，然后用这种『共同性』去交流，比如代码，比如注释，话说回来，如果真的是好东西，我们请社区中的活跃者去翻译成自己地语言，这样的路径不是更好吗？</li> 
+</ol>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566283744693', 'suesunss')">Reply</a>
+    </div>
+</li><li id="1566283265807" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1505456507935_1562228743747.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gitors" target="_blank">gitors</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ul> 
+ <li>放在国外，人家的开源项目也并不是用自己的母语写注释。</li> 
+</ul> 
+<p>这句话太绝对，表示不认同。</p> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566283265807', 'gitors')">Reply</a>
+    </div>
+</li><li id="1566283154947" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1566282915286?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/suesunss" target="_blank">suesunss</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>你可以用中文写 readme，但是用中文写代码注释就很不专业了。放在国外，人家的开源项目也并不是用自己的母语写注释。<br> 这背后的原因是：</p> 
+<ol> 
+ <li>注释，你准备让谁给你翻译？readme 倒是可以让国外社区去翻译。</li> 
+ <li>你写代码是用中文的吗？如果是，你可以用中文写注释。</li> 
+</ol>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566283154947', 'suesunss')">Reply</a>
+    </div>
+</li><li id="1566269681959" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1505456507935_1562228743747.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gitors" target="_blank">gitors</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>以后我写汉语拼音</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566269681959', 'gitors')">Reply</a>
+    </div>
+</li><li id="1566265447766" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1547428844287_1547795399823.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/hjljy" target="_blank">hjljy</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>以前高考英语150分，现在只有100分。以前很多资料都是英文写的，现在很多资料都能找到中文的。<br> 用中文写文档我觉得不仅仅面向国人，更重要的是可以丰富资料，当我想学习比较好的项目的时候，为了学这个项目，还要把英文学好。如果可以有中文文档的项目，无论是学习还是交流什么的都很方便。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566265447766', 'hjljy')">Reply</a>
+    </div>
+</li><li id="1566263817089" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1522743072387_1529850525222.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mufengcoding" target="_blank">mufengcoding</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>代码注释写甲骨文</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566263817089', 'mufengcoding')">Reply</a>
+    </div>
+</li><li id="1566263195886" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472016410060_1506678218379.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/kuailexs" target="_blank">kuailexs</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我们都啃英文，外国友人啃啃中文。没毛病</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566263195886', 'kuailexs')">Reply</a>
+    </div>
+</li><li id="1566262890272" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565615273908_1566127076561.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/jenphyjohn" target="_blank">jenphyjohn</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>表示完全赞同</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 20, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566262890272', 'jenphyjohn')">Reply</a>
+    </div>
+</li><li id="1566225281914" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1542718399229?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/xflash" target="_blank">xflash</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>既然用中文的人多，那开源项目文档用中文就能帮助到更多的人，这样岂不是更好。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566225281914', 'xflash')">Reply</a>
+    </div>
+</li><li id="1566220775766" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1541932138600_1541932583384.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mfabian" target="_blank">mfabian</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>针对后两点提问：Why not Gitee but Github ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566220775766', 'mfabian')">Reply</a>
+    </div>
+</li><li id="1566217641357" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1479624489624_1543319932887.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/iTanken" target="_blank">iTanken</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>中国人用中文写文档没毛病，支持、感谢。 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566217641357', 'iTanken')">Reply</a>
+    </div>
+</li><li id="1566210738726" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1561905684623_1565078427178.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/lvtaos" target="_blank">lvtaos</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>写文档也是一门技术活啊。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566210738726', 'lvtaos')">Reply</a>
+    </div>
+</li><li id="1566210078611" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559640765219_1563872796353.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Blackman99" target="_blank">Blackman99</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<ul> 
+ <li>开源项目的翻译由开源社区自己完善这也是开源社区的一个特性，如果是要求开源项目作者做翻译的话，有点不太合适了</li> 
+ <li>翻译的软件、插件这么多，稍微翻译一下不至于看不懂</li> 
+ <li>我们都啃英文，外国友人啃啃中文的确没啥毛病</li> 
+</ul> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566210078611', 'Blackman99')">Reply</a>
+    </div>
+</li><li id="1566209029772" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1562941454569.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>做为开源项目，在许可下，各国的开源者之间都可以相互翻译。话说感觉现在的翻译工具已经翻译的很不错了，自己再稍微看看应该不成问题。</p> 
+<p>不知道是否有国人要求把英文项目翻译成中文的 issue 的？好像有，而且貌似还被自己的同胞 diss。</p> 
+<p>不知道要求翻译成英文的 issue 会被英文同胞怎么看待？可能会为自己的母语是英语而有一丝丝自豪？感觉无论怎么，至少不会 diss 这个 issue 的发起者</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566209029772', 'Vanessa')">Reply</a>
+    </div>
+</li><li id="1566204312874" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1557586345620_1565678210261.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/JssDream" target="_blank">JssDream</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>英文？不存在</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566204312874', 'JssDream')">Reply</a>
+    </div>
+</li><li id="1566199161628" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1535095204354_1564043922607.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ferried" target="_blank">ferried</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>理由就是：我就是不想写，不服顺着网线来打我呀。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566199161628', 'ferried')">Reply</a>
+    </div>
+</li><li id="1566198863286" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1470124211520_1560216550106.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Zephyr" target="_blank">Zephyr</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>英语毫无疑问比汉语流传更广，汉语是因为我们人多啊<br> 毕竟大汉语学起来比英语要难</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566198863286', 'Zephyr')">Reply</a>
+    </div>
+</li><li id="1566197230402" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1531468705746_1565236122771.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/chengzime" target="_blank">chengzime</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>吓得我赶紧去百度百科了一下...<br> <img src="https://img.hacpai.com/file/2019/08/image-d91620d8.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png"><br> 目前的国际通用语言有好几种<img alt="trollface" src="https://cdn.jsdelivr.net/npm/vditor/dist/images/emoji/trollface.png" title="trollface"></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566197230402', 'chengzime')">Reply</a>
+    </div>
+</li><li id="1566194920041" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1434722396856_1483534658117.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/jingxuetao" target="_blank">jingxuetao</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>中英文无所谓,像我这种大神.</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566194920041', 'jingxuetao')">Reply</a>
+    </div>
+</li><li id="1566193236644" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1470124211520_1560216550106.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Zephyr" target="_blank">Zephyr</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我看有个起因是因为国产项目霸榜trending，但是外国人看不懂这都是啥项目</p> 
+<p>要我说也情有可原，国际平台上，也应该用国际通用语言</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566193236644', 'Zephyr')">Reply</a>
+    </div>
+</li><li id="1566192910030" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1533304221784_1535462923211.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/csfwff" target="_blank">csfwff</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>啃英文啃得我头疼</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566192910030', 'csfwff')">Reply</a>
+    </div>
+</li><li id="1566192409694" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559274898016_1565965280755.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/jinjianh" target="_blank">jinjianh</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p></p>
+<blockquote> 
+ <p>国人可以啃英文，为什么外国友人不能啃啃中文</p> 
+</blockquote> 
+<p>为这句话疯狂点赞</p> 
+<p></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 19, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566192409694', 'jinjianh')">Reply</a>
+    </div>
+</li></ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="我为什么要用中文写项目文档"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2019/08/19/1566191673842.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2019/08/09/1565318802920.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="创业的第二个夏天"
+                       aria-label="旧一篇: 创业的第二个夏天">←</a>
+
+                    <a href="https://88250.github.io/articles/2019/08/27/1566893557720.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="CommonMark 规范要点解读"
+                       aria-label="新一篇: CommonMark 规范要点解读">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1566191673842",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("开源",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1566191673842', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 212ms, 2020/01/08 08:55:06 -->

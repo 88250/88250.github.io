@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>云平台之多租户 - D 的个人博客</title><meta name="description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/><meta property="og:description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="云平台之多租户 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/cloud-app-platform-multitenancy?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="云平台之多租户 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/cloud-app-platform-multitenancy">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="吃什么" href="https://88250.github.io/articles/2014/05/09/1399599408605.html">
+            <link rel="next" title="AngularJS 与 EmberJS" href="https://88250.github.io/angularjs-vs-emberjs">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/cloud-app-platform-multitenancy">
+                云平台之多租户
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Jul 22, 2014
+            </time>
+            with <span data-uvstaturl="https://88250.github.io/cloud-app-platform-multitenancy">0</span> views
+                and <a href="#comments">4 comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/%E4%BA%91%E5%B9%B3%E5%8F%B0">
+                    <b># 云平台</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/%E5%A4%9A%E7%A7%9F%E6%88%B7">
+                    <b># 多租户</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/Multitenancy">
+                    <b># Multitenancy</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://88250.github.io/tags/PaaS">
+                    <b># PaaS</b>
+                </a>
+                <a rel="tag" class="tag tag--4" href="https://88250.github.io/tags/SaaS">
+                    <b># SaaS</b>
+                </a>
+                <a rel="tag" class="tag tag--5" href="https://88250.github.io/tags/%E4%BA%91%E8%AE%A1%E7%AE%97">
+                    <b># 云计算</b>
+                </a>
+                <a rel="tag" class="tag tag--6" href="https://88250.github.io/tags/Cloud">
+                    <b># Cloud</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p>在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。</p>
+<h3 id="b3_solo_h3_0">什么是租户</h3>
+<p>刚开始接触这个概念时，你肯定感觉“租户”这个词怪怪的，但如果我们换个词，我相信你马上就有感觉了，这个词就是“客户”（这里的客户指的就是商业上面的<a href="http://wiki.mbalib.com/wiki/%E5%AE%A2%E6%88%B7" target="_blank">客户</a>）。一个租户就是一个客户，比如我们开发的服务是给 XXX 企业使用的，那该企业就是我们的一个客户/租户；如果这个服务是面向互联网的，那么使用该服务的每个互联网用户都是一个客户/租户。</p>
+<h3 id="b3_solo_h3_1">为什么需要多租户支持</h3>
+<p>开发者辛辛苦苦开发出一个服务，提供给了个人/企业使用，这样就完事了么？当然不应该只是这样，我们开发出一个服务，最好是能够<strong>同时</strong>提供给<strong>多个</strong>个人/企业使用，而且这些客户最好是共享同一套服务运行时（Runtime），这样可以大大降低服务的运维成本：</p>
+<ul>
+<li>服务运行时如果分开，则运维的成本与客户数成正比（比如更新部署大量客户的场景）</li>
+<li>节省资源（将服务所需资源利用最大化：运维团队统一、硬件使用）</li>
+</ul>
+<p>另外，这样也可以降低服务的开发成本：</p>
+<ul>
+<li>我们只需要考虑如何实现单用户的服务逻辑：业务逻辑对应其所有客户都是相同的，无论什么客户来使用，程序提供的服务都是一样的。进一步说，在业务层面我们开发这个服务时理论上不需要考虑多客户支持，我们只用关注该服务的业务逻辑如何实现</li>
+<li>多客户的管理功能可以进行统一：开发者应该不用考虑客户管理功能，这部分应该是由云平台统一提供的</li>
+</ul>
+<h4 id="b3_solo_h4_2">多租户场景举例</h4>
+<p>假设我们要开发的服务是一个博客平台，这个服务是面向互联网用户的，每个互联网用户都是我们的客户（一个用户就是一个租户）。</p>
+<p>在不支持多租户的环境中，为了隔离每个用户的数据，至少我们在设计数据库表时会考虑大多数表都存在一个 user_id 字段，用于 <em>CRUD</em>&nbsp;数据时使用该字段进行<em>用户隔离</em>。</p>
+<p>比如现在的业务是“发布文章”，需要将文章数据保存在 article 表中，在实现时实际上我们关注了两件事情：</p>
+<ol>
+<li>CRUD：这是业务逻辑实现的一部分</li>
+<li>用户隔离：需要加入 user_id，做业务关联</li>
+</ol>
+<p>1 是“纯”业务逻辑部分的实现，这是必须实现的；2 则是为了多用户博客平台而需要考虑的，这并不是博客平台本身的业务逻辑。这里如果能得到平台的多租户支持，就不用考虑第 2 点了，这样可以将注意力集中于第 1 点业务逻辑实现上，这是非常典型的一个多租户场景。</p>
+<h3 id="b3_solo_h3_3">多租户支持</h3>
+<p>我们可以这样理解多租户支持：</p>
+<ul>
+<li>从服务提供的角度看，我们开发的一个服务运行时可以同时提供给多个客户使用，并且客户之间的数据/状态是保持隔离的</li>
+<li>从服务使用的角度看，我和你可以作为不同的客户同时使用同一个运行的服务，此时我们使用该服务完成的业务是相互不影响的，就好像我们在使用自己独享的服务一样</li>
+</ul>
+<p>那么这个服务就是支持多“客户”的，即该服务支持多租户。这里的“服务”可以是应用，可以是 SaaS 平台，也可以是 PaaS 平台。不过按目前我们熟悉的云平台看，应用的多租户支持应该是最常规的，这是因为应用面向的是用户，这个群体是很庞大的。</p>
+<p>多租户支持从实现的角度看，“<a href="http://zh.wikipedia.org/wiki/%E5%A4%9A%E7%A7%9F%E6%88%B7" target="_blank">是一种软件架构技术</a>”，之所以强调它是属于架构层面是因为要实现它必须在做技术架构时就要将其考虑在内。</p>
+<h4 id="b3_solo_h4_4">一种租户模型</h4>
+<p>本文一开始我们提到使用“客户”来置换“租户”来理解租户的含义，再从“商业”这个方面来看的话，我们不难发现租户其实就是其云环境中的商业模式实现的一部分。商业模式是多样的，这意味着租户的划分也是多样的，这里我们描述其中一种可能的租户栈：</p>
+<ul>
+<li>应用程序是提供给用户使用的，对于应用来说，用户就是它的租户（这一点业界比较统一）</li>
+<li>SaaS 提供的服务是给应用开发商使用的，对于 SaaS 来说，应用开发商就是它的租户</li>
+<li>PaaS 提供的服务是给应用系统使用的，对于 PaaS 来说，相关应用的组合就是它的租户</li>
+</ul>
+<p>SaaS 和 PaaS 面向的是开发商、系统等非端用户角色，这一部分一般是由云平台开发者决定的（捆绑商业模式），特别是私有/企业云平台一般不会考虑形如“在 PaaS 平台上支持运行多个 SaaS 平台”这样的场景。所以下面我们更多的是围绕“应用对多租户支持”进行讨论。</p>
+<h3 id="b3_solo_h3_5">应用多租户</h3>
+<p>应用多租户的使用场景前面已经介绍过了，现在假设我们是一个云平台开发者，为了满足支持应用支持多租户的需求，在云平台中我们需要提供下面几个支持：</p>
+<ul>
+<li>租户管理：CRUD，统计</li>
+<li>租户隔离/共享的服务：队列、缓存、数据库等</li>
+<li>租户隔离的统计：日志、配额</li>
+</ul>
+<p>这些支持可以分为两类：</p>
+<ol>
+<li>租户的管理：不会直接面向应用的端用户，面向的是应用的运维，平台应该提供具体实现</li>
+<li>租户数据/状态的隔离：从请求开始就应该可以区分这个请求是来自于哪个租户，请求处理时在调用链路上也需要带上租户上下文，数据的存取是按照租户隔离的，调用平台提供的服务时也是租户隔离的</li>
+</ol>
+<p>第 1 点比较容易实现，这是一个业务模型方面的问题，可以根据业务域来抽象租户模型，比如企业应用一般是按照“组织机构”来区分租户的；</p>
+<p>第 2 点是一个纯技术的需求，需要在平台技术实现上支持按“租户”的运行时<em>隔离</em>，我们强调的是隔离，因为在实现时我们要达到的目标就是隔离，只不过这里是按租户（租户只是一个商业概念，技术层面我们最好能够将其进行抽象，尽量减小商业模式多样化对技术架构的冲击），我们可以将租户映射到一个抽象概念上，这个抽象概念可以实现我们的隔离需求。</p>
+<h3 id="b3_solo_h3_6">命名空间</h3>
+<p>前面我们讨论多租户支持都是自上而下的：从应用多租户需求到数据隔离实现；现在我们再换种视角，自下而上：先通过命名空间隔离数据，再将命名空间提供给应用多租户的实现使用。自下而上的目的主要是在平台内部，我们可以通过“命名空间”来进行数据/状态隔离的抽象，最终的理想情况是命名空间不仅能够支持应用多租户实现，还能够可选择性地暴露命名空间 APIs，让应用可以进行某些数据的隔离（比如缓存），方便业务实现。</p>
+<h4 id="b3_solo_h4_7">隔离的实现</h4>
+<p>租户请求从开始到结束平台都需要知晓这个请求映射的命名空间，从请求处理栈我们可以这样大致划分一下：</p>
+<ul>
+<li>负载均衡器（LB）</li>
+<li>应用容器（APP）</li>
+<li>平台服务接口（RPC）</li>
+<li>平台服务实现（DB/Cache/MQ....）</li>
+</ul>
+<p>在这个栈中每一层平台都是需要知道这个请求对应的命名空间的。平台可以提供一个统一登录的服务，将租户信息映射为命名空间并保存到用户会话中，这样每次该用户的请求：</p>
+<ul>
+<li>过 LB 时就可以区分出命名空间来</li>
+<li>在 APP 容器中可以通过会话</li>
+<li>RPC 时传递命名空间</li>
+<li>根据服务的不同进行命名空间实现（例如 DB 根据命名空间使用不同的 Schema，MQ 根据命名空间使用不同的队列）</li>
+</ul>
+<p>这里我们使用的隔离实现基本思路是“Shared application”，即多租户共享一个应用，对应一套基础设施（请参考：<a href="http://www.ibm.com/developerworks/cn/cloud/library/cl-tenantconversion/" target="_blank">将单租户应用程序转换为多租户应用程序</a>）。</p>
+<h3 id="b3_solo_h3_8">&nbsp;一种平台设计</h3>
+<p>&nbsp;前面谈了这么多，现在我们可以脑补出一种支持应用多租户的云平台：</p>
+<p><a href="https://01z42g.dm2302.livefilestore.com/y2pzWmlH7Wqj5s6IOAeiXKox3ekow6tL9P5WT-uZpFwuh0DsFxac7fikAg-Pmn4TYuWbSf-wS5DXNSuJcw2-BJfhvGJ-6Y_u8AdPesI00pTgI8/%E4%BA%91%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%9A%E7%A7%9F%E6%88%B7.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://01z42g.dm2302.livefilestore.com/y2pzWmlH7Wqj5s6IOAeiXKox3ekow6tL9P5WT-uZpFwuh0DsFxac7fikAg-Pmn4TYuWbSf-wS5DXNSuJcw2-BJfhvGJ-6Y_u8AdPesI00pTgI8/%E4%BA%91%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%9A%E7%A7%9F%E6%88%B7.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="多租户云平台设计" width="960" height="720"></a></p>
+<p>（这里的设计思路也包含了有的租户要求独享资源的场景）</p>
+<h3 id="b3_solo_h3_9">总结</h3>
+<ul>
+<li>租户和客户的概念类似</li>
+<li>对多租户的支持我们一般指的是应用对多租户的支持</li>
+<li>在技术层面支持多租户需要实现数据/状态隔离</li>
+<li>使用命名空间进行隔离实现抽象</li>
+<li>租户到命名空间的映射可由平台集成</li>
+</ul>
+<h3 id="b3_solo_h3_10">参考</h3>
+<ul>
+<li><a href="http://zh.wikipedia.org/wiki/%E5%A4%9A%E7%A7%9F%E6%88%B7" target="_blank">Wikipedia：多租户技术</a></li>
+<li><a href="http://wiki.mbalib.com/wiki/%E5%AE%A2%E6%88%B7" target="_blank">客户的概念</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/cloud/library/cl-tenantconversion/" target="_blank">将单租户应用程序转换为多租户应用程序</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/java/j-lo-javacloud/" target="_blank">云计算环境下的 JVM 虚拟化特性初探</a></li>
+<li><a href="https://developers.google.com/appengine/docs/java/multitenancy/" target="_blank">GAE 多租户支持</a></li>
+</ul>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">什么是租户</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">为什么需要多租户支持</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_2">多租户场景举例</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">多租户支持</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_4">一种租户模型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_5">应用多租户</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_6">命名空间</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_7">隔离的实现</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_8">一种平台设计</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_9">总结</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_10">参考</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+<li id="1519782068505" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/e162fe12e814724ddf8a3bb971a619f0?s=128)"></div>
+        <div class="item__name">
+                <span class="ft__fade">hubert.xiong</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>写的不错，怪我来的太晚了！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 28, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1519782068505', 'hubert.xiong')">Reply</a>
+    </div>
+</li><li id="1457417386578" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ea5148e451f92d0a1e5bb5c486806b8a?s=128)"></div>
+        <div class="item__name">
+                <span class="ft__fade">mainlove</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>其实用 docker这种办法最简单</p> 
+<p>如果是共享后台资源，关于数据库设计就有三种</p> 
+<ul> 
+ <li>每个库 一个用户</li> 
+ <li>每个个用户的表加前缀</li> 
+ <li>每个用户的表通过某个字段标识</li> 
+</ul> 
+<p>对应一套设施会变成业务复杂吧？</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Mar 8, 2016
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1457417386578', 'mainlove')">Reply</a>
+    </div>
+</li><li id="1402030407397" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/5b2fef59da3a09ce54121e1ca3d05b4e?s=60)"></div>
+        <div class="item__name">
+                <span class="ft__fade">leifeng</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>撸高兴了。。。<br><br></p> 
+<p><i>该评论同步自 <a href="http://symphony.b3log.org/article/1401440193148#1402030407397">B3log 社区</a></i></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jun 6, 2014
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1402030407397', 'leifeng')">Reply</a>
+    </div>
+</li><li id="1401509961472" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/9aa82e8a341b4fc51fa844ed3f24b7b3?s=60)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="http://blog.wdx.me" target="_blank">e</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>透彻<br><br></p> 
+<p><i>该评论同步自 <a href="http://symphony.b3log.org/article/1401440193148#1401509961472">B3log 社区</a></i></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        May 31, 2014
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1401509961472', 'e')">Reply</a>
+    </div>
+</li></ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="云平台之多租户"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/cloud-app-platform-multitenancy"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2014/05/09/1399599408605.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="吃什么"
+                       aria-label="旧一篇: 吃什么">←</a>
+
+                    <a href="https://88250.github.io/angularjs-vs-emberjs" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="AngularJS 与 EmberJS"
+                       aria-label="新一篇: AngularJS 与 EmberJS">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1399968489552",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("云平台,多租户,Multitenancy,PaaS,SaaS,云计算,Cloud",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1399968489552', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 117ms, 2020/01/08 08:55:22 -->

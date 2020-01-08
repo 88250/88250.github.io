@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>消息推送技术 - D 的个人博客</title><meta name="description" content="消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等场景。 要实现消息推送机制，涉及两方面的内容： Web 层消息推送 服务层消息服务"/><meta property="og:description" content="消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等场景。 要实现消息推送机制，涉及两方面的内容： Web 层消息推送 服务层消息服务"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="消息推送技术 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/web-message-push?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="消息推送技术 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/web-message-push">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="Fancybox 插件介绍" href="https://88250.github.io/b3log-solo-041-fancybox-plugin">
+            <link rel="next" title="基于 Pushlets 的消息推送设计" href="https://88250.github.io/server-push-based-on-pushlets">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/web-message-push">
+                消息推送技术
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                May 7, 2012
+            </time>
+                in <a href="https://88250.github.io/category/dev-language">编程语言</a>
+            with <span data-uvstaturl="https://88250.github.io/web-message-push">0</span> views
+                and <a href="#comments">6 comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/Pushlets">
+                    <b># Pushlets</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/Comet">
+                    <b># Comet</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/HTTP">
+                    <b># HTTP</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://88250.github.io/tags/JMS">
+                    <b># JMS</b>
+                </a>
+                <a rel="tag" class="tag tag--4" href="https://88250.github.io/tags/Java">
+                    <b># Java</b>
+                </a>
+                <a rel="tag" class="tag tag--5" href="https://88250.github.io/tags/HTML5">
+                    <b># HTML5</b>
+                </a>
+                <a rel="tag" class="tag tag--6" href="https://88250.github.io/tags/WebSocket">
+                    <b># WebSocket</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p></p><h1 dir="ltr" id="b3_solo_h1_0"><span>消息推送技术</span></h1>
+<h2 dir="ltr" id="b3_solo_h2_1"><span>消息推送</span></h2>
+<p>消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等应用场景。<strong><strong><br><br></strong></strong>要实现消息推送机制，涉及两方面的内容：</p>
+<ul>
+<li><span>Web 层消息推送</span></li>
+<li><span>服务层消息服务</span></li>
+</ul>
+<h2 dir="ltr" id="b3_solo_h2_2"><span>Web 层消息推送</span></h2>
+<h3 dir="ltr" id="b3_solo_h3_3"><span>套接字</span></h3>
+<p dir="ltr">可以使用套接字接口进行全双工通讯。可以通过 Flash XMLSocket、Java Applet 技术实现。<br>但由于实现方案与厂商技术绑定过紧，不属于 Web 标准化范畴，并且存在一些限制（通讯端口开启安全、客户端插件），这里不进行描述。<strong><strong><br></strong></strong></p>
+<h3 dir="ltr" id="b3_solo_h3_4"><span>HTTP 请求轮询</span></h3>
+<p dir="ltr">目前的 Web 应用是基于 HTTP 协议的，其规定了请求-响应的处理模型，位于应用层的单工通讯模式使得纯粹意义上的服务端推送方式变得难以实现。<strong><strong><br><br></strong></strong>为了基于 HTTP 协议进行“推送”实现，可由客户端发起 HTTP 请求轮询，服务端在请求后返回响应。<br><br>根据轮询时间、请求处理方式，分为以下三种推。<strong><strong><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_5"><span>简单轮询</span></h4>
+<p dir="ltr">客户端一般以定时方式发起请求，服务端处理后返回响应。</p>
+<p dir="ltr"><img title="简单轮询" src="https://public.sn2.livefilestore.com/y1pKG8qSIKx4nniHeaUQwfGkn7_AOS8GwVUrn63-xV6m5W6slIEvRMWLM8c13e6gqWmfcoNq-KPHaE_cSzsWYiPSg/simple-poll.png?psid=1" alt="简单轮询" width="440" height="263"></p>
+<ul>
+<li><span>原理、客户端/服务端实现简单</span></li>
+<li><span>可根据应用场景调整轮询时间间隔</span></li>
+<li><span>服务端需要处理大量请求</span></li>
+</ul>
+<h4 dir="ltr" id="b3_solo_h4_6"><span>长轮询</span></h4>
+<p dir="ltr">客户端发起请求后服务端将该请求挂起（不返回响应），直到超时、异常或需要处理响应（推内容）才返回。客户端收到响应后再次请求（即轮询）服务端，并处理响应。</p>
+<p dir="ltr"><img title="长轮询" src="https://public.sn2.livefilestore.com/y1pg8zn2O3wRB9FvU9eVTCSJTko6y9nBiqZDzKVBAR6PA5ZEeQWUo-g9-BIDGUcnzgp-o2jfNqeKa9iMtg-8oP80w/long-poll.png?psid=1" alt="长轮询" width="502" height="365"></p>
+<ul>
+<li><span>实时性高</span></li>
+<li><span>服务端需要管理挂起请求</span></li>
+</ul>
+<h4 dir="ltr" id="b3_solo_h4_7"><span>HTTP 流</span></h4>
+<p dir="ltr">客户端发起请求后服务器端处理请求，并通过 HTTP 流一直向客户端写入数据，直到超时或异常才返回响应。连接断开后客户端再次请求服务端，属于长轮询的一种。</p>
+<p dir="ltr"><strong><strong><img title="HTTP 流" src="https://public.sn2.livefilestore.com/y1pg8zn2O3wRB_dSNHMdTAGrE3L-qzp-3wRJGRGg3vep25W61bdfXvlMSZZn7xezEgptcNNk3MPEAEZ1W-7BEOuzw/stream.png?psid=1" alt="HTTP 流" width="533" height="387"></strong></strong></p>
+<h3 dir="ltr" id="b3_solo_h3_8"><span>HTML 5 WebSocket</span></h3>
+<p dir="ltr">这是标准化的客户端全<a href="http://dev.w3.org/html5/websockets/" target="_blank">双工通讯规范</a>，但由于目前<a href="http://jcp.org/en/jsr/summary?id=356" target="_blank">服务端规范</a>尚未成型，且考虑到现有客户端对 HTML 5 的支持有限，这里不进行描述。<strong><strong><br></strong></strong></p>
+<h3 dir="ltr" id="b3_solo_h3_9"><span>多客户端支持</span></h3>
+<p dir="ltr">上述介绍是针对浏览器客户端的，在实际应用场景中，还需要考虑其他客户端支持，例如 iOS、Android 等。<br><br>在移动客户端方面，需要考虑如下几点。<strong><strong><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_10"><span>APIs 多样</span></h4>
+<p dir="ltr">不同客户端本地 APIs 接口存在差异，但都支持基本的 HTTP 协议。直接基于 HTTP 协议进行开发可将差异最小化。<strong><strong><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_11"><span>网络连接不稳定</span></h4>
+<p dir="ltr">通讯信道打开后不一定能长时间维护，客户端与服务端的状态管理复杂。<strong><strong><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_12"><span>最小化流量</span></h4>
+<p dir="ltr">需要尽量最小化网络流量，提升移动客户端可用性。</p>
+<h2 dir="ltr" id="b3_solo_h2_13">服务层消息服务</h2>
+<p dir="ltr">消息是系统或组件间通讯的一种低耦合方式，是系统级异步架构的基础。<strong><strong><br><br></strong></strong>在 Web 消息推送中，服务端管理应用状态，当状态发生变迁时需要通知客户端，完成消息推送。<strong><strong><br></strong></strong></p>
+<h3 dir="ltr" id="b3_solo_h3_14"><span>Java Message Service</span></h3>
+<p dir="ltr">需要重点关注如下技术点：<strong><strong><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_15"><span>消息域</span></h4>
+<ul>
+<li><span>点对点只有一个客户端可以接收到消息。<br><img src="https://public.sn2.livefilestore.com/y1pn-rGJlFftKx8JlI0OEosOio1o4ukP3Xlq1Fb-gzO4T6rXa4vrjXP8MUUFgk6R5_c9lltWVrQtnO3aeZi5AjD7Q/jms-pointToPoint.gif?psid=1" alt="JMS p2p" width="376" height="154"><br class="kix-line-break"><br></span></li>
+<li><span>发布/订阅<br class="kix-line-break">广播给订阅的客户端。可配置持久化订阅。<br class="kix-line-break"><img title="JMS Pub/Sub" src="https://public.sn2.livefilestore.com/y1pn-rGJlFftKxAtr19116nVAs_T-MJCBnyLPgpCZA8UyOT6A9Komub9StYUSNXykqk8WFB3IKt6DPC3KU4FtVHow/jms-publishSubscribe.gif?psid=1" alt="JMS Pub/Sub" width="373" height="168"><br></span></li>
+</ul>
+<h4 dir="ltr" id="b3_solo_h4_16"><span>消息确认</span></h4>
+<ul>
+<li><span>会话本地事务提交时会对收到的消息进行确认，回滚时将重传所有消息</span></li>
+<li><span>非本地事务确认：Session.AUTO_ACKNOWLEDGE、Session.CLIENT_ACKNOWLEDGE、Session.DUPS_OK_ACKNOWLEDGE</span></li>
+</ul>
+<h2 dir="ltr" id="b3_solo_h2_17"><span>技术设计</span></h2>
+<h3 dir="ltr" id="b3_solo_h3_18"><span>目标</span></h3>
+<ul>
+<li><span>支持浏览器客户端的推送</span></li>
+<li><span>高性能、高可靠</span></li>
+<li><span>模块化，不与应用耦合</span></li>
+<li><span>未来可支持多种移动客户端</span></li>
+</ul>
+<h3 dir="ltr" id="b3_solo_h3_19"><span>Web 层设计</span></h3>
+<p dir="ltr">Web 层考虑采用开源组件 <a href="http://www.pushlets.com/" target="_blank">Pushlets</a> 进行实现。<strong><strong><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_20"><span>Pushlets 组件</span></h4>
+<p dir="ltr">Pushlets 基于 HTTP 协议的发布/订阅模型，提供了 Poll（轮询）、Pull（拉）两种推方式实现。其中 Pull 即长轮询方式，当有消息时就返回。<strong><strong><br></strong></strong></p>
+<ul>
+<li><span>发布：GET/POST 或方法调用ethod call（Dispatcher 接口）</span></li>
+<li><span>订阅：GET 流，拉/轮询模式</span></li>
+<li><span>树形主题：可层次化订阅</span></li>
+<li><span>协议格式：JS，XML（JSON 尚未支持）</span></li>
+<li><span>对使用 HTTP 协议的客户端都可用</span></li>
+<li><span>易扩展：例如事件源实现</span></li>
+<li><span>方便整合：可独立为 Web 应用，也可为 Web 应用组件</span></li>
+<li><span>多种实现：J2EE/servlets，JavaScript (AJAX)</span></li>
+</ul>
+<h1 dir="ltr" id="b3_solo_h1_21"><img title="Pushlets" src="https://public.sn2.livefilestore.com/y1pTsZtjVvNgmTlwZ7_PaqcNsOFttmKJ49e0S4_L482d0X0nfuF5xG0pWYpaCmSIj46i7iq0EzCuKuDZTW_mBfz8w/pushlets.png?psid=1" alt="Pushlets" width="434" height="391"></h1>
+<h4 dir="ltr" id="b3_solo_h4_22"><span>JS 客户端</span></h4>
+<ul>
+<li><span>js-pushlet-client.js</span></li>
+<ul>
+<li><span>使用 “隐藏 iframe 技巧”</span></li>
+<li><span>格式：JavaScript 函数事件</span></li>
+</ul>
+<li><span>ajax-pushlet-client.js</span></li>
+<ul>
+<li><span>使用 XMLHttpRequest</span></li>
+<li><span>格式：XML</span></li>
+<li><span>不支持 HTTP 流</span></li>
+</ul>
+</ul>
+<p dir="ltr">使用 AJAX 客户端，较为灵活，便于封装。<strong><strong><br></strong></strong></p>
+<h3 dir="ltr" id="b3_solo_h3_23"><span>服务层设计</span></h3>
+<p dir="ltr">服务层消息服务采用应用服务器 JMS 中间件。通过发布/订阅模型实现状态同步。<strong><strong><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_24"><span>处理步骤</span></h4>
+<ol>
+<li><span>配置主题订阅</span></li>
+<li><span>应用状态变迁时发布 JMS 消息</span></li>
+<li><span>JMS 消息监听器将监听到的消息发布到 Pushlets</span></li>
+<li><span>将该消息写入 Web 层消息表</span></li>
+</ol>
+<h4 dir="ltr" id="b3_solo_h4_25"><span>消息表</span></h4>
+<p dir="ltr">保存推送多的消息记录，用于客户端刷新时/多客户端查找消息。<strong><strong><br></strong></strong></p>
+<div dir="ltr">
+<div dir="ltr">
+<table border="1"><colgroup><col width="54"><col width="57"><col width="57"><col width="*"><col width="*"><col width="*"><col width="*"><col width="*"><col width="*"><col width="*"><col width="*"></colgroup>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><span>userId </span></p>
+</td>
+<td>
+<p dir="ltr"><span>createdTime </span></p>
+</td>
+<td>
+<p dir="ltr"><span>lastGetTime </span></p>
+</td>
+<td>
+<p dir="ltr"><span>clients </span></p>
+</td>
+<td>
+<p dir="ltr"><span>msg </span></p>
+</td>
+<td>
+<p dir="ltr"><span>type</span></p>
+</td>
+<td>
+<p dir="ltr"><span>timeout</span></p>
+</td>
+<td>
+<p dir="ltr"><span>targetSys</span></p>
+</td>
+<td>
+<p dir="ltr"><span>srcSys</span></p>
+</td>
+<td>
+<p dir="ltr"><span>….</span></p>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p dir="ltr"><span>xxx</span></p>
+</td>
+<td>
+<p dir="ltr"><span>xxx</span></p>
+</td>
+<td>
+<p dir="ltr"><span>xxx</span></p>
+</td>
+<td>
+<p dir="ltr"><span>[“pc”, “iOS”]</span></p>
+</td>
+<td>
+<p dir="ltr"><span>{}</span></p>
+</td>
+<td>
+<p dir="ltr"><span>公告</span></p>
+</td>
+<td>
+<p dir="ltr"><span>3天</span></p>
+</td>
+<td>
+<p dir="ltr"><span>OA</span></p>
+</td>
+<td>
+<p dir="ltr"><span>OA</span></p>
+</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p dir="ltr">消息体使用 JSON 字符串存放于 msg 字段中。其余字段可根据通用性进行抽取，比如用户名等。<br><br>消息监听器接收到消息时推 Pushlets，并进行记录写入（记录 lastGetTime 为写入时间，表示这条消息已经推送过）。<br><br>设置定时任务对超时记录进行删除。<strong><strong><br></strong></strong></p>
+<h3 dir="ltr" id="b3_solo_h3_26"><span>逻辑架构</span></h3>
+<p dir="ltr">JMS 消息系统为单独的通讯总线服务独立于应用系统，Pushlets 为应用系统中的一个组件。<br><br>消息表管理组件提供消息新增，以及对推送过的消息记录的查询、删除。<strong><strong><br><img title="组件图" src="https://public.sn2.livefilestore.com/y1pJ_acuYt_CkkiHarLltUaKNjDom3zMbwe4EIjC5Uaj_Z-dS8TjrLofeSWl8BCH1e6xApcxf200RDtKTNiWNq4nQ/components.png?psid=1" alt="组件图" width="489" height="494"><br></strong></strong></p>
+<h4 dir="ltr" id="b3_solo_h4_27"><span>推时序</span></h4>
+<h4 dir="ltr" id="b3_solo_h4_28"><img title="时序图" src="https://public.sn2.livefilestore.com/y1pg8zn2O3wRB-AzkrrJdr8rJyXVHgO0CgLBYHOKqFk15LmxOJMRsmKkOnqQBG4TEOGvpF_-gPnW9v0NEL2FXa_0Q/sequences.png?psid=1" alt="时序图" width="566" height="239"></h4>
+<h3 dir="ltr" id="b3_solo_h3_29"><span>关键点</span></h3>
+<ul>
+<li><span>服务层消息监听</span></li>
+<li><span>消息表管理</span></li>
+<li><span>Pushlets 配置，License 问题：Pushlets 是以 LGPL 开源的，对于商业项目使用时必须进行封装</span></li>
+<li><span>前端容错开关</span></li>
+</ul>
+<h2 dir="ltr" id="b3_solo_h2_30"><span>参考</span></h2>
+<ul>
+<li><a href="http://www.ibm.com/developerworks/cn/web/wa-lo-comet/" target="_blank"><span>Comet：基于 HTTP 长连接的“服务器推”技术</span></a></li>
+<li><a href="http://88250.b3log.org/articles/2010/01/09/1263000240000.html" target="_blank"><span>初探 HTML 5 之 WebSocket</span></a></li>
+<li><a href="http://www.pushlets.com/" target="_blank"><span>Pushlets 官网</span></a></li>
+<li><a href="http://docs.oracle.com/javaee/6/tutorial/doc/bncdq.html" target="_blank"><span>The JavaEE 6 Tutorial - Java Message Service</span></a></li>
+<li><span><a href="https://docs.google.com/open?id=0B9vEkLPApAcqMGZWNFFrczBOckU" target="_blank">《JMS 规范教程》</a></span></li>
+</ul>
+<div>原文：<a href="https://docs.google.com/document/d/1qHVKlGz1raVemA2eHMSrPQppVKAiIrnFmfkpoyYE-U4/edit" target="_blank">《消息推送技术》via Google Docs</a></div>
+<p></p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_0">消息推送技术</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_1">消息推送</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_2">Web 层消息推送</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">套接字</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_4">HTTP 请求轮询</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_5">简单轮询</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_6">长轮询</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_7">HTTP 流</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_8">HTML 5 WebSocket</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_9">多客户端支持</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_10">APIs 多样</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_11">网络连接不稳定</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_12">最小化流量</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_13">服务层消息服务</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_14">Java Message Service</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_15">消息域</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_16">消息确认</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_17">技术设计</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_18">目标</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_19">Web 层设计</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_20">Pushlets 组件</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_21"></a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_22">JS 客户端</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_23">服务层设计</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_24">处理步骤</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_25">消息表</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_26">逻辑架构</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_27">推时序</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_28"></a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_29">关键点</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_30">参考</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+<li id="1530261487432" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ce0c249d422f96a9b4c8d19aee7c6593?s=128)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="http://adsd" target="_blank">adsasad</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>select * from</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jun 30, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1530261487432', 'adsasad')">Reply</a>
+    </div>
+</li><li id="1509525452506" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/585f510bd5df435f2125030b72ad7503?s=128)"></div>
+        <div class="item__name">
+                <span class="ft__fade">zain</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>GoEasy 这种垃圾公司，哪儿都是他们</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Nov 2, 2017
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1509525452506', 'zain')">Reply</a>
+    </div>
+</li><li id="1507618975104" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/099c9a02b0dddee2c98a029bfbf13cc1?s=128)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="http://123" target="_blank">12</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>? ? ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Oct 10, 2017
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1507618975104', '12')">Reply</a>
+    </div>
+</li><li id="1473237969076" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/dbe11db41e9b57f1b0aec0fcbaa82a98?s=128)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="http://goeasy.io" target="_blank">葡萄糖酸锌</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>GoEasy web三步轻松实现web实时推送<br>1. 引入goeasy.js<br>2. 客户端订阅，<br>Var goeasy = new GoEasy({appkey:’your appkey’});<br>goeasy.subscribe(channel:”your channel”, onMessage:function(message){alert(‘received message’+ message.content)})<br>3. 三种推送方式<br>Javascript: goeasy.publish({channel:’your channel’, message:’your publish msg’});<br>Java SDK: GoEasy goeasy = new GoEasy(“appkey”); goeasy.publish(“your channel”,”your msg”);<br>RestAPI: <a href="https://goeasy.io/goeasy/publish">https://goeasy.io/goeasy/publish</a><br>三步轻松实现web推送及接收。官网：https://goeasy.io,文档齐全</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Sep 8, 2016
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1473237969076', '葡萄糖酸锌')">Reply</a>
+    </div>
+</li><li id="1470214737909" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/86b4209d3e80f4e0d932ee99c8e8bfa7?s=128)"></div>
+        <div class="item__name">
+                <span class="ft__fade">111</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>????????????❤️??</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 4, 2016
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1470214737909', '111')">Reply</a>
+    </div>
+</li><li id="1449475913299" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/f661a0f5c80a208fbb4a84be85b2792b?s=128)"></div>
+        <div class="item__name">
+                <span class="ft__fade">小锋锋</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>加一下QQ??</p> 
+<p>623543301</p> 
+<p>想问一下分享的问题</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Dec 8, 2015
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1449475913299', '小锋锋')">Reply</a>
+    </div>
+</li></ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="消息推送技术"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/web-message-push"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/b3log-solo-041-fancybox-plugin" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Fancybox 插件介绍"
+                       aria-label="旧一篇: Fancybox 插件介绍">←</a>
+
+                    <a href="https://88250.github.io/server-push-based-on-pushlets" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="基于 Pushlets 的消息推送设计"
+                       aria-label="新一篇: 基于 Pushlets 的消息推送设计">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1336373136382",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("Pushlets,Comet,HTTP,JMS,Java,HTML5,WebSocket",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1336373136382', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 88ms, 2020/01/08 08:55:25 -->

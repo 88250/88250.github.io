@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>CommonMark 规范要点解读 - D 的个人博客</title><meta name="description" content="为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。 由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。 在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括： David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei...."/><meta property="og:description" content="为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。 由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。 在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括： David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="CommonMark 规范要点解读 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/27/1566893557720.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="CommonMark 规范要点解读 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="我为什么要用中文写项目文档" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">
+            <link rel="next" title="Lute 实现后记" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
+                CommonMark 规范要点解读
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Oct 29, 2019
+            </time>
+            with <span data-uvstaturl="https://88250.github.io/articles/2019/08/27/1566893557720.html">0</span> views
+                and <a href="#comments">6 comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/CommonMark">
+                    <b># CommonMark</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/Markdown">
+                    <b># Markdown</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p></p><h3 id="b3_solo_h3_0">为什么需要 Markdown 规范</h3>
+<p>CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。</p>
+<blockquote>
+<p>由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。</p>
+</blockquote>
+<p>在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。</p>
+<h3 id="b3_solo_h3_1">作者阵容</h3>
+<p>CommonMark 规范的主创 <a href="https://johnmacfarlane.net" target="_blank">John MacFarlane</a>（<a href="https://github.com/jgm" target="_blank">jgm</a>）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 <a href="https://github.com/jgm/pandoc" target="_blank">Pandoc</a>（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。</p>
+<p>该规范的其他参与者包括：</p>
+<ul>
+<li>David Greenspan, 来自 Meteor</li>
+<li>Vicent Marti, 来自 GitHub</li>
+<li>Neil Williams, 来自 Reddit</li>
+<li>Benjamin Dumke-von der Ehe, 来自 Stack Exchange</li>
+<li>Jeff Atwood, 前 Stack Exchange 联合创始人，Discourse 创始人</li>
+</ul>
+<p>从作者阵容我们可以看出，该规范算是众望所归了，因为这几大社区都需要一个标准化的 Markdown。</p>
+<p>除了强大的作者阵容外，最重要的是规范的严谨度我相信不会有任何问题，600+ 测试用例也尽量将各种情况都列举验证了，整体的权威性毋庸置疑。</p>
+<p>介绍完大致背景，下面我们进入技术细节，对规范中定义的要点进行解读。</p>
+<h3 id="b3_solo_h3_2">元素分类</h3>
+<p>为了方便解析，将内容元素分为块级元素和行级元素，其中块级元素又分为两类：</p>
+<ul>
+<li>容器块：可包含其他块级元素，只有 3 种容器块：块引用（<code>&gt;</code>）、列表项和列表（列表只能包含列表项）</li>
+<li>叶子块：不能包含其他块级元素，只能包含行级元素。比如分隔线、标题、代码块、某些 HTML 块、段落等</li>
+</ul>
+<p>行级元素包括：内联代码（<code>`code`</code>）、强调、加粗、链接、图片、某些 HTML 标签、文本等。</p>
+<h3 id="b3_solo_h3_3">优先级</h3>
+<ul>
+<li>块级元素解析优先级永远高于行级元素（先生成块级元素后生成行级元素）</li>
+<li>行级元素中 HTML 标签和自动链接的优先级最高，Code Span 次之</li>
+<li>Setext 标题优先级高于分隔线。比如如下示例
+<pre><code class="language-markdown">Foo
+---
+bar
+</code></pre>
+<p>将生成</p>
+<pre><code class="language-html">&lt;h2&gt;Foo&lt;/h2&gt;
+&lt;p&gt;bar&lt;/p&gt;
+</code></pre>
+</li>
+<li>分隔线优先级高于列表项</li>
+<li>缩进如果出现在列表项中，以列表项对齐优先（不解析为缩进代码块）。比如如下示例
+<pre><code class="language-markdown">  - foo（f 之前是 2 个空格、1 个 - 然后再加 1 个空格）
+    bar（b 之前是 4 个空格）
+</code></pre>
+<p>将生成</p>
+<pre><code class="language-html">&lt;ul&gt;
+&lt;li&gt;foo
+bar&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</li>
+<li>强调分隔（ <code>*</code> 或 <code>_</code>）出现嵌套情况时，优先第一个。比如 <code>*foo _bar* baz_</code> 将生成 <code>&lt;em&gt;foo _bar&lt;/em&gt; baz_</code> 而不是生成 <code>*foo &lt;em&gt;bar* baz&lt;/em&gt;</code></li>
+<li>出现多个可结束的强调分隔符时，以后打开的分隔符优先。比如 <code>**foo **bar baz**</code> 将生成 <code>**foo &lt;strong&gt;bar baz&lt;/strong&gt;</code> 而不是生成 <code>&lt;strong&gt;foo **bar baz&lt;/strong&gt;</code></li>
+<li>链接文本（<a href="https://spec.commonmark.org/0.29/#link-text" target="_blank">link-text</a>）优先级高于强调：<code>*[foo*](/uri)</code> 将生成 <code>&lt;p&gt;*&lt;a href="/uri"&gt;foo*&lt;/a&gt;&lt;/p&gt;</code></li>
+</ul>
+<p>具体场景细节可在规范中搜索关键字 <em>precedence</em>。</p>
+<h3 id="b3_solo_h3_4">段落分段规则</h3>
+<p>某些情况下不需要空行即可“打断”当前内容，形成新的段落或者其他块级元素。</p>
+<ul>
+<li>专题分隔线 <code>***</code> 打断段落</li>
+<li>ATX 标题 <code># h</code> 打断段落，Setext 标题不打断，需要用空行分隔之前的内容</li>
+<li>围栏代码块 <code>```</code> 打断段落</li>
+<li>大部分 HTML 标签可打断段落，除了带属性的，比如 <code>&lt;a</code>、<code>&lt;img</code></li>
+<li>块引用 <code>&gt;</code> 打断段落</li>
+<li>第一个非空列表项打断段落（即新列表打断段落）</li>
+</ul>
+<p>每种情况的细节可以到规范中搜索关键字 <em>interrupt</em>。</p>
+<h3 id="b3_solo_h3_5">段落延续文本</h3>
+<p>段落延续文本（<a href="https://spec.commonmark.org/0.29/#paragraph-continuation-text" target="_blank">Paragraph continuation text</a>）即段落开始后不被分段规则打断的部分，该部分也算作当前段落。</p>
+<p>最简单的例子是以 <code>\n</code> 分隔的两行文本：</p>
+<pre><code class="language-text">foo
+bar
+</code></pre>
+<p>渲染的 HTML 结果应该是：</p>
+<pre><code class="language-html">&lt;p&gt;foo
+bar&lt;/p&gt;
+</code></pre>
+<p>在其他元素中的例子：</p>
+<pre><code class="language-text">&gt; foo
+bar
+</code></pre>
+<p>渲染的 HTML 结果应该是：</p>
+<pre><code class="language-html">&lt;blockquote&gt;
+&lt;p&gt;foo
+bar&lt;/p&gt;
+&lt;/blockquote&gt;
+</code></pre>
+<h3 id="b3_solo_h3_6">强调和加粗</h3>
+<p>分隔符序列（<a href="https://spec.commonmark.org/0.29/#delimiter-run" target="_blank">delimiter run</a>）：</p>
+<ul>
+<li>由一个或多个非 <code>\</code> 转义的 <code>*</code> 构成或者</li>
+<li>由一个或多个非 <code>\</code> 转义的 <code>_</code> 构成</li>
+</ul>
+<p>左侧分隔符序列（<a href="https://spec.commonmark.org/0.29/#left-flanking-delimiter-run" target="_blank">left-flanking delimiter run</a>）：</p>
+<ol>
+<li>是一个分隔符序列</li>
+<li>后面不能跟空白</li>
+<li>后面不能跟标点；或者后面跟标点并且前面是空白或者标点</li>
+</ol>
+<p>右侧分隔符序列（<a href="https://spec.commonmark.org/0.29/#right-flanking-delimiter-run" target="_blank">right-flanking delimiter run</a>）：</p>
+<ol>
+<li>是一个分隔符序列</li>
+<li>前面不能是空白</li>
+<li>前面不能是标点；或者前面是标点并且后面是空白或者标点</li>
+</ol>
+<h3 id="b3_solo_h3_7">解析策略参考</h3>
+<p>规范附录部分介绍了一种解析策略，总的来说分为两个阶段：</p>
+<ol>
+<li>将输入文本断行，顺序解析每一行并生成块级节点。文本作为块级节点的内容，暂时不进行解析。链接引用定义在这个阶段也会被解析构造放到一个 Map 中</li>
+<li>解析每个块级节点的内容生成行级节点。如果有引用定义的话使用阶段 1 中的 Map 进行解析</li>
+</ol>
+<p>举个例子，对于给定的 Markdown 文本：</p>
+<pre><code class="language-markdown">## 简介
+
+一款 *Markdown* 引擎。
+
+## 特性
+
+* 实现 _GFM_
+* 非常快
+</code></pre>
+<p>生成 Markdown 语法树为：</p>
+<pre><code class="language-echarts">{
+    "title": {
+        "text": "Markdown 语法树示例"
+    }, 
+    "tooltip": {
+        "trigger": "item",
+        "triggerOn": "mousemove"
+    },
+    "toolbox": {
+        "show": true, 
+        "feature": {
+            "mark": {
+                "show": true
+            }, 
+            "restore": {
+                "show": true
+            }, 
+            "saveAsImage": {
+                "show": true
+            }
+        }
+    }, 
+    "calculable": false, 
+    "series": [
+        {
+            "name": "树图", 
+            "type": "tree", 
+            "symbolSize": 10, 
+            "initialTreeDepth": -1, 
+            "roam": true,
+            "left": 0,
+            "right": 0,
+            "orient": "vertical", 
+            "label": {
+                    "position": "top", 
+                    "verticalAlign": "middle", 
+                    "align": "left", 
+                    "fontSize": 12,
+                    "offset": [9, 12]
+            }, 
+            "lineStyle": {
+                        "color": "#4285f4", 
+                        "shadowBlur": 8, 
+                        "shadowOffsetX": 3, 
+                        "shadowOffsetY": 5, 
+                        "type": "curve"
+            },
+            "data": [
+                {
+                    "name": "Document", 
+                    "children": [
+                        {
+                            "name": "Heading\nh2", 
+                            "children": [
+                                {
+                                    "name": "Text\n'简介'"
+                                }
+                            ]
+                        }, 
+                        {
+                            "name": "Paragraph\np", 
+                            "children": [
+                                {
+                                    "name": "Text\n'一款'"
+                                }, 
+                                {
+                                    "name": "Emph\nem", 
+                                    "children": [
+                                        {
+                                            "name": "Text\n'Markdown'"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "name": "Text\n'引擎'"
+                                }
+                            ]
+                        }, 
+                        {
+                            "name": "Heading\nh2", 
+                            "children": [
+                                {
+                                    "name": "Text\n'特性'"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "List\nul", 
+                            "children": [
+                                {
+                                    "name": "Item\nli",
+                                    "children": [{"name": "Paragrap\np", "children": [{"name": "Text\n'实现'"},{"name": "Emph\nem", "children": [{"name": "Text\n'GFM'"}]}]}]
+                                },
+                               {
+                                    "name": "Item\nli",
+                                    "children": [{"name": "Paragrap\np", "children": [{"name": "Text\n'非常快'"}]}]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<p>下面介绍强调和链接解析处理，这部分比较有技巧。</p>
+<h3 id="b3_solo_h3_8">嵌套强调和链接的解析算法</h3>
+<p>强调、加粗、链接、图片这四种节点都是行级元素，但这四种元素的解析生成稍微有点麻烦，因为它们有可能存在嵌套。建议结合 CommonM 官方参考实现 JavaScript 版的<a href="https://github.com/commonmark/commonmark.js/blob/master/lib/inlines.js" target="_blank">文件 inlines.js</a> 来看就容易理解了（注意该实现进行了一定优化，比如去掉了 <code>current_position</code> 变量，但总体逻辑没有变）。</p>
+<p>解析行级元素时，如果遇到：</p>
+<ul>
+<li>一系列 <code>*</code> 或 <code>_</code> 字符，或者</li>
+<li>一个 <code>[</code> 或 <code>![</code></li>
+</ul>
+<p>时，则以这些符号作为文本内容生成一个文本节点，并在分隔符栈（<a href="https://spec.commonmark.org/0.29/#delimiter-stack" target="_blank">delimiter stack</a>）中压入一个指向该文本节点的元素。</p>
+<p>分隔符栈是一个双向链表，其中每个元素都指向一个文本节点，并附加如下信息：</p>
+<ul>
+<li>分隔符类型（<code>[</code>，<code>![</code>，<code>*</code>，<code>_</code>）</li>
+<li>分隔符数量，比如强调是 1 个 <code>*</code>，加粗则为 2</li>
+<li>分隔符是否处于“激活”状态（开始解析时都是激活状态）</li>
+<li>分隔符是否是一个开始分隔符、结束分隔符或者两者都可能（这取决于分隔符前后的字符序列）</li>
+</ul>
+<p>当我们解析时遇到 <code>]</code>，则进入下面介绍的<em>链接和图片处理过程</em>。</p>
+<p>当我们解析到输入结束时，则将 <code>stack_bottom</code> 置为 NULL 并进入下面介绍的<em>强调处理过程</em>。</p>
+<h4 id="b3_solo_h4_9">链接和图片处理过程</h4>
+<p>从分隔符栈顶部开始回看寻找开始的 <code>[</code> 或者 <code>![</code> 分隔符元素。</p>
+<ul>
+<li>如果没有找到，则返回一个文本节点 <code>]</code></li>
+<li>如果找到了，但这个元素处于<em>非激活</em>状态，则从栈中移除该元素，然后返回一个文本节点 <code>]</code></li>
+<li>如果找到了，并且这个元素是激活的，则我们继续解析看是否能构成一个内联链接/图片、引用链接/图片、紧凑链接/图片或者快捷链接/图片
+<ul>
+<li>如果不能，则从栈中移除这个开始分隔符，然后返回一个文本节点 <code>]</code></li>
+<li>如果能，则执行如下步骤
+<ul>
+<li>生成一个链接或图片节点，其子元素为开始分隔符指向的文本节点之后的行级元素</li>
+<li>在这些行级元素上以开始分隔符 <code>[</code> 作为 <code>stack_bottom</code>  执行<em>强调处理过程</em></li>
+<li>从栈中移除该开始分隔符</li>
+<li>如果是链接（不是图片），则设置所有位于该开始分隔符之前的 <code>[</code> 为<em>非激活</em>状态（防止链接嵌套链接）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="b3_solo_h4_10">强调处理过程</h4>
+<p>参数 <code>stack_bottom</code> 设置了分隔符栈的栈底下限。如果其值为 NULL 则我们可以一直遍历到栈底。否则我们应该在访问到 <code>stack_bottom</code> 之前停止。</p>
+<p><code>current_position</code> 指向分隔符栈中高于 <code>stack_bottom</code> 的元素（当 <code>stack_bottom</code> 为 NULL 时指向第一个元素）。</p>
+<p>使用 <code>openers_bottom</code> 来跟踪每种分隔符（按类型 <code>*</code>、<code>_</code> 和结束分隔符长度模 3）。初始化值为 <code>stack_bottom</code>。</p>
+<p>然后我们重复以下步骤，直到用完了潜在的结束分隔符：</p>
+<ul>
+<li>在分隔符栈中向前移动 <code>current_position</code> 直到找到第一个潜在的结束分隔符 <code>*</code> 或 <code>_</code>。（这是离开始最近的结束分隔符 —— 也是按解析顺序的第一个）</li>
+<li>现在我们向回查找（查找位置高于 <code>stack_bottom</code> 以及相应的 <code>openers_bottom</code> ）第一个匹配的开始分隔符（“匹配”的意思是和结束分隔符一样的分隔符）。</li>
+<li>如果找到了：
+<ul>
+<li>需要弄清楚是强调还是加粗：如果开始符和结束符的长度都 &gt;=2，则是加粗，否则是普通强调</li>
+<li>在开始分隔符指向的文本节点后面插入一个 em 或者 strong 节点</li>
+<li>从分隔符栈中移除所有位于开始符和结束符之间的分隔符</li>
+<li>从开始和结束文本节点中移除 1 个（对于普通强调）或者 2 个（对于加粗）分隔符。如果它们为空了，则移除它们，并从分隔符栈中也进行移除。如果结束符节点被移除，则设置 <code>current_position</code> 为栈中的下一个元素</li>
+</ul>
+</li>
+<li>如果没有找到：
+<ul>
+<li>设置 <code>openers_bottom</code> 指向 <code>current_position</code> 前的元素。（此时我们知道该结束符没有对应的开始符，所以需要更新下限以便用于将来的搜索）</li>
+<li>如果 <code>current_position</code> 指向的结束符不是一个潜在的开始符，则将它从分隔符栈中移除（因为它既不是开始符也不是结束符）</li>
+<li>将 <code>current_position</code> 移动到栈中的下一个元素</li>
+</ul>
+</li>
+</ul>
+<p>处理完后，我们从分隔符栈中移除了位于 <code>stack_bottom</code> 之上的所有分隔符。</p>
+<p></p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">为什么需要 Markdown 规范</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">作者阵容</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_2">元素分类</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">优先级</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_4">段落分段规则</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_5">段落延续文本</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_6">强调和加粗</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_7">解析策略参考</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_8">嵌套强调和链接的解析算法</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_9">链接和图片处理过程</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_10">强调处理过程</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+<li id="1572340746358" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>感谢指出 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Oct 29, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1572340746358', '88250')">Reply</a>
+    </div>
+</li><li id="1572340279311" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1458894780084_1527474436917.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/darren" target="_blank">darren</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>就是本文中，Markdown的语法树的图表中，最右边，ul下面的第一个li下面的右侧em 应该是在p下面的，现在文中的li下面的p和em并列了。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Oct 29, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1572340279311', 'darren')">Reply</a>
+    </div>
+</li><li id="1572336017650" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>感谢支持。AST 渲染的问题我没看明白，麻烦详细说一下。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Oct 29, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1572336017650', '88250')">Reply</a>
+    </div>
+</li><li id="1572335856903" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1458894780084_1527474436917.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/darren" target="_blank">darren</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>文档写得非常棒?</p> 
+<p>不过文档中是不是用的版本比较旧了，试了下最新版本的vidtor，渲染出来的结构树没有问题</p> 
+<table> 
+ <thead> 
+  <tr>
+   <th>文档中的</th>
+   <th>最新版本vidtor渲染出来的</th>
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr>
+   <td><img src="https://img.hacpai.com/file/2019/10/old-c840945d.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="old.jpg"></td>
+   <td><img src="https://img.hacpai.com/file/2019/10/echarts-157bf691.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="echarts.png"></td>
+  </tr> 
+ </tbody> 
+</table> 
+<p>希望能更新一下下</p> 
+<p>我不是强迫症……我真的不是强迫症……我就是看着不舒服而已……</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Oct 29, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1572335856903', 'darren')">Reply</a>
+    </div>
+</li><li id="1566912332282" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>Vditor 编辑器支持的，可参考这里 <a href="https://hacpai.com/guide/markdown">https://hacpai.com/guide/markdown</a></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 27, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566912332282', '88250')">Reply</a>
+    </div>
+</li><li id="1566912248753" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1404008969220_1479096553064.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/cmlanche" target="_blank">cmlanche</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>文章中是怎么嵌入的这个markdown文档树的？</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Aug 27, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1566912248753', 'cmlanche')">Reply</a>
+    </div>
+</li></ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="CommonMark 规范要点解读"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2019/08/27/1566893557720.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2019/08/19/1566191673842.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="我为什么要用中文写项目文档"
+                       aria-label="旧一篇: 我为什么要用中文写项目文档">←</a>
+
+                    <a href="https://88250.github.io/articles/2019/08/29/1567062979327.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Lute 实现后记"
+                       aria-label="新一篇: Lute 实现后记">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1566893557720",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("CommonMark,Markdown",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1566893557720', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 140ms, 2020/01/08 08:55:06 -->

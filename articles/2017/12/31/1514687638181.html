@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>2017 成为报废程序员的前一年 - D 的个人博客</title><meta name="description" content="工作 离开房星 2017 年春节后我便匆匆离开了房星，刚拿完年终奖金就撤了实在有愧。不过现在也只能在这里说说罢了，希望以后还有机会能够和房星的伙伴们合作。 长假 2 月份我和 V 放了个长假，爬了座雪山、重游黄山和杭州，还有和网友 R 见面。还好 V 把这些经历都记录下来了，不然现在没得吹了： 时隔十年再游轿子雪山黄山 - 杭州五日游记 加入国资商城 3 月份加入了国资商城，参与 Java RPC 框架的开发，这是一个基于 Facebook Swift 以及 Netflix Ribbon 的 RPC 框架，主要优势是通过 Thrift/Netty 获得跨平台、高性能以及少侵入。我做的这边是胶水代码，将 Spring、Swift 和 Ribbon 进行整合，干货是 C# 端，并且我老大已经将其完全开源。 6 月后开始投入到云平台的实现中，陆续接触了 EMC ScaleIO、GusterFS 以及 SeaweedFS，虽然基于它们做了一些开发，但是始终是入门后皆浅尝辄止。 技术架构师的未来 对技术方面的追求一直没有变，不过今年产生了一个“奇怪”的想法：技术架构师以后会越来越少，因为需求的...."/><meta property="og:description" content="工作 离开房星 2017 年春节后我便匆匆离开了房星，刚拿完年终奖金就撤了实在有愧。不过现在也只能在这里说说罢了，希望以后还有机会能够和房星的伙伴们合作。 长假 2 月份我和 V 放了个长假，爬了座雪山、重游黄山和杭州，还有和网友 R 见面。还好 V 把这些经历都记录下来了，不然现在没得吹了： 时隔十年再游轿子雪山黄山 - 杭州五日游记 加入国资商城 3 月份加入了国资商城，参与 Java RPC 框架的开发，这是一个基于 Facebook Swift 以及 Netflix Ribbon 的 RPC 框架，主要优势是通过 Thrift/Netty 获得跨平台、高性能以及少侵入。我做的这边是胶水代码，将 Spring、Swift 和 Ribbon 进行整合，干货是 C# 端，并且我老大已经将其完全开源。 6 月后开始投入到云平台的实现中，陆续接触了 EMC ScaleIO、GusterFS 以及 SeaweedFS，虽然基于它们做了一些开发，但是始终是入门后皆浅尝辄止。 技术架构师的未来 对技术方面的追求一直没有变，不过今年产生了一个“奇怪”的想法：技术架构师以后会越来越少，因为需求的...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="2017 成为报废程序员的前一年 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/12/31/1514687638181.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="2017 成为报废程序员的前一年 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/12/31/1514687638181.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="IPFS 入门笔记" href="https://88250.github.io/articles/2017/11/18/1511015097370.html">
+            <link rel="next" title="以太坊相关中文资料整理" href="https://88250.github.io/articles/2018/01/13/1515820007039.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2017/12/31/1514687638181.html">
+                2017 成为报废程序员的前一年
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Jan 3, 2018
+            </time>
+                in <a href="https://88250.github.io/category/past-summary">往事与总结</a>
+            with <span data-uvstaturl="https://88250.github.io/articles/2017/12/31/1514687638181.html">0</span> views
+                and <a href="#comments">57 comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/%E6%80%BB%E7%BB%93">
+                    <b># 总结</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/%E5%BC%80%E6%BA%90">
+                    <b># 开源</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81">
+                    <b># 加密货币</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://88250.github.io/tags/%E8%87%AA%E7%94%B1%E8%81%8C%E4%B8%9A">
+                    <b># 自由职业</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p><img src="https://img.hacpai.com/bing/20171230.jpg?imageView2/1/w/960/h/520/interlace/1/q/100" alt=""></p>
+<h2 id="b3_solo_h2_0">工作</h2>
+<h3 id="b3_solo_h3_1">离开房星</h3>
+<p>2017 年春节后我便匆匆离开了<a href="http://www.fangstar.com" target="_blank">房星</a>，刚拿完年终奖金就撤了实在有愧。不过现在也只能在这里说说罢了，希望以后还有机会能够和房星的伙伴们合作。</p>
+<h3 id="b3_solo_h3_2">长假</h3>
+<p>2 月份我和 <a href="http://vanessa.b3log.org" target="_blank">V</a> 放了个长假，爬了座雪山、重游黄山和杭州，还有和网友 <a href="https://imspm.com" target="_blank">R</a> 见面。还好 V 把这些经历都记录下来了，不然现在没得吹了：</p>
+<ul>
+<li><a href="https://hacpai.com/article/1488208904651" target="_blank">时隔十年再游轿子雪山</a></li>
+<li><a href="https://hacpai.com/article/1488300132138" target="_blank">黄山 - 杭州五日游记</a></li>
+</ul>
+<h3 id="b3_solo_h3_3">加入国资商城</h3>
+<p>3 月份加入了<a href="https://www.gznb.com" target="_blank">国资商城</a>，参与 Java RPC 框架的开发，这是一个基于 Facebook <a href="https://github.com/facebook/swift" target="_blank">Swift</a> 以及 Netflix <a href="https://github.com/Netflix/ribbon" target="_blank">Ribbon</a> 的 RPC 框架，主要优势是通过 Thrift/Netty 获得跨平台、高性能以及少侵入。我做的这边是胶水代码，将 Spring、Swift 和 Ribbon 进行整合，干货是 C# 端，并且我老大已经将其完全<a href="https://github.com/endink/Thrifty" target="_blank">开源</a>。</p>
+<p>6 月后开始投入到云平台的实现中，陆续接触了 <a href="https://en.wikipedia.org/wiki/EMC_ScaleIO" target="_blank">EMC ScaleIO</a>、<a href="http://www.gluster.org" target="_blank">GusterFS</a> 以及 <a href="https://github.com/chrislusf/seaweedfs" target="_blank">SeaweedFS</a>，虽然基于它们做了一些开发，但是始终是入门后皆浅尝辄止。</p>
+<h3 id="b3_solo_h3_4">技术架构师的未来</h3>
+<p>对技术方面的追求一直没有变，不过今年产生了一个“奇怪”的想法：技术架构师以后会越来越少，因为需求的减少。</p>
+<p>成熟的商业解决方案已经越来越多，围绕现有开源技术来做商业服务的公司也越来越多。比如在云计算领域 OpenStack、OpenShift 等开源项目已经有非常多的公司在其上做定制开发和服务咨询；近年流行的容器服务架构、甚至做开发框架层面的商业解决方案也很多。</p>
+<p>我觉得以做业务为主的公司在技术方面最划算的实现方式就是直接购买商业解决方案，然后付出少量人工成本即可完成系统运维。这本质上是对传统开发模式的一种变革，这个变革必然会让一些技术架构师失业。大家可以看一下阿里云的产品列表，是不是会产生紧迫感。</p>
+<h2 id="b3_solo_h2_5">B3log</h2>
+<p>这里需要再介绍一下：<strong>B3log 是个开源社区，不是产品名</strong>。<br>
+我们在 GitHub 上有个组织，欢迎大家<a href="https://hacpai.com/article/1463025124998" target="_blank">加入</a>。</p>
+<p>B3 社区影响力正在缓慢扩大，目前各 Q 群加起来差不多 4K 人，黑客派 1.2W 注册，离 10W 注册数的小目标又进了一步....</p>
+<h3 id="b3_solo_h3_6">Solo</h3>
+<p>Java 开源博客系统 <a href="https://github.com/b3log/solo" target="_blank">Solo</a> 从第一个版本至今已经 7 年了。 以后 Solo 将进入维护阶段，主程序不做大的特性升级，仅修复缺陷和改进用户体验。皮肤会继续增加，让大家用上更多漂亮的皮肤。</p>
+<h3 id="b3_solo_h3_7">Sym</h3>
+<p>如果要选 B3 社区年度明星项目的话非 <a href="http://sym.b3log.org" target="_blank">Sym</a> 莫属：</p>
+<ol>
+<li>GitHub 关注度显著提升，一年涨了差不多 2K 星</li>
+<li>做了商业闭源版，实现了开源商业化</li>
+</ol>
+<p>明年将完成几个大的特性，比如加入<a href="https://github.com/b3log/symphony/issues/486" target="_blank">求助帖</a>实现专业化的问答功能；支持第三方登录（微信、QQ）；集成微信公众号。</p>
+<h3 id="b3_solo_h3_8">Pipe</h3>
+<p><a href="https://github.com/b3log/pipe" target="_blank">Pipe</a> 是 10 月份开的新坑，又一个博客系统，前几天已经发布了第一个版本。相信 Pipe 会为搭建独立博客的人提供多一种选择，为实现 <a href="https://hacpai.com/b3log" target="_blank">B3log 构思</a>添砖加瓦。</p>
+<h3 id="b3_solo_h3_9">开源</h3>
+<p>今年<a href="https://github.com/88250" target="_blank">我的的开源</a>提交和去年相比基本保持在一个水平：</p>
+<p><img src="https://img.hacpai.com/file/2017/12/d1cc2b6116b741e0aced4204d221e398_image.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="2017GitHub"></p>
+<p>明年我将全职投入到 B3 开源社区的开发和运营中。</p>
+<h3 id="b3_solo_h3_10">商业化</h3>
+<p>关于开源项目做闭源版以实现盈利的方式有利有弊，这样的开源某些时候可能会显得不那么纯粹。不管怎样吧，这是我目前找到持续运维开源项目最直接有效的方法，毕竟我不能靠情怀支撑一辈子。</p>
+<p>其他盈利方式我也在探索，比如靠挖矿。目前 B3log 系列产品都内嵌了浏览器挖矿脚本，通过浏览者贡献算力来进行挖矿，具体细节可以参考<a href="https://hacpai.com/article/1512269880744" target="_blank">这里</a>。当然，用户可以参考各项目的文档来关闭挖矿，不过我在这里恳请大家尽量保留，因占用浏览者的 CPU 并不高，不会对浏览者造成不好的体验。</p>
+<h2 id="b3_solo_h2_11">加密货币</h2>
+<h3 id="b3_solo_h3_12">去中心化技术</h3>
+<p>加密货币（<a href="https://en.wikipedia.org/wiki/Cryptocurrency" target="_blank">Cryptocurrency</a>）的基础之一是去中心化，即以区块链为数据结构实现的去中心化记账系统。由此也衍生了去中心化的生态系统比如<a href="https://www.ethereum.org/" target="_blank">以太坊</a>，以及传统 P2P 技术（比如 BT）和加密货币结合的项目 <a href="https://hacpai.com/article/1511015097370" target="_blank">IPFS</a>/FileCoin。</p>
+<p>”去中心化“我想是大多数人（包括我）心中美好的愿望，现如今已经有一些项目落地。在这个方向上的努力我不想错过，希望你也能关注、参与到相关技术中，我们一起推进它的发展。</p>
+<h3 id="b3_solo_h3_13">门罗币</h3>
+<p>接触门罗币（XMR）后感觉他们团队挺实诚的，因为他们官网的 <a href="https://getmonero.org/get-started/faq/" target="_blank">FAQ</a> 第一条就这样写道：</p>
+<blockquote>
+<p><strong>How does Monero have value?</strong></p>
+<p>Monero has value because people are willing to buy it. If no one is willing to buy Monero, then it will not have any value. Monero's price increases if demand exceeds supply, and it decreases if supply exceeds demand.</p>
+</blockquote>
+<p>这年头能这样说实话的币不多了。</p>
+<h3 id="b3_solo_h3_14">炒币少年</h3>
+<p>2014 年买过 1 个 BTC，BCH 分叉前补到 3 个，不过分叉后就卖了。2017 年可谓是加密货币全面起飞之年，各种币层出不穷，ICO、IFO 越演越烈。12 月份我也陆续买了一些加密货币，主要是 ETH、EOS、LTC。相信明年 ETH 应用生态会更好一些，同时也期待 EOS 能有更好的突破。LTC 可能指望不大了，创始人老李自己很开心地下车了....</p>
+<p>拉了个 Q 群 <a href="//shang.qq.com/wpa/qunwpa?idkey=774db3af72d630c1ab91550763f55265e4b3e8c4b8d953dd51070561b114afef" target="_blank">B3 币圈</a>，投资有风险，加群需谨慎：</p>
+<p><img src="https://img.hacpai.com/file/2017/12/a02da7aa94b34e00b1cd2bf8ce57cd6e_LW8RU8ZRH1YRJRFF2NS.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="这不是我们的炒币少年吗"></p>
+<h2 id="b3_solo_h2_15">2018 计划</h2>
+<p>2018 年春节后我和 V 将家里蹲，争取成为合格的自由职业者。</p>
+<p><a href="https://hacpai.com/article/1483027307708" target="_blank">去年的总结</a>中说到三十而立，当时也萌生了启动创业的想法，和 V 讨论后觉得还需要再做考量。经过这一年断断续续的考虑，感觉可以一试了。</p>
+<h3 id="b3_solo_h3_16">热门领域</h3>
+<p>目前业界热门的技术领域有：</p>
+<ul>
+<li>AI/VR/大数据，感觉要做出“能用”产品的门槛较高，至少各种数学得玩得溜</li>
+<li>区块链/去中心化/安全，感觉码农能较快上手，比较适合我</li>
+</ul>
+<p>明年我打算将精力主要投入到区块链技术（以太坊）中，大致思路是把黑客派接入以太坊平台，但不想做成 Steemit 类似的社区，目前还没有形成具体想法，不过发 B3 Token 应该是肯定的了。</p>
+<h3 id="b3_solo_h3_17">粮草辎重</h3>
+<p>按照过往的平均生活开支情况，我和 V、d 还剩差不多一年的粮草。另外我和 V 还想要个 v....所以这样下来生活应该是非常吃紧的。</p>
+<p>其实这个时间点对我来说是有些纠结的。从悲观的角度看，也许平庸的人最终还是归于平庸，无论如何挣扎。算了，还是别背思想包袱吧，该上路就义无反顾的上路吧！</p>
+<hr>
+<p>以这句话为我的 2017 年画上个句号：</p>
+<blockquote>
+<p>与怪兽搏斗的时候要谨防自己也变成怪兽。当你凝视深渊的时候，深渊也在凝视你。</p>
+</blockquote>
+<p>明年将是我人生中非常重要的一年，也是我的家人、关心我的人最期待的一年吧，事在人为！</p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_0">工作</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">离开房星</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_2">长假</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">加入国资商城</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_4">技术架构师的未来</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_5">B3log</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_6">Solo</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_7">Sym</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_8">Pipe</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_9">开源</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_10">商业化</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_11">加密货币</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_12">去中心化技术</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_13">门罗币</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_14">炒币少年</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_15">2018 计划</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_16">热门领域</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_17">粮草辎重</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+<li id="1563770272412" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>用 Docker 吧，还能实现自动升级。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jul 22, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1563770272412', '88250')">Reply</a>
+    </div>
+</li><li id="1563769403920" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://avatars3.githubusercontent.com/u/48046982?v=4)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://88250.b3log.org" target="_blank">IceFire-X</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>您好，D大，请问 为毛 git上下载源码ZIP格式和你release发布的war包 下载半天都下不下来呀，挂了VPN还是如此。。。。。。。。。。。。。求解惑</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jul 22, 2019
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1563769403920', 'IceFire-X')">Reply</a>
+    </div>
+</li><li id="1539065332316" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1457951549444_1483094193469.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wizardforcel" target="_blank">wizardforcel</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>如果化身恶龙才能与恶龙搏斗，那么请赐予我鳞与爪。--江南</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Oct 9, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1539065332316', 'wizardforcel')">Reply</a>
+    </div>
+</li><li id="1539015139313" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1538490638326?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/xynling" target="_blank">xynling</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持D大</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Oct 9, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1539015139313', 'xynling')">Reply</a>
+    </div>
+</li><li id="1526446736358" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1488254944868_1516899497015.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/linker" target="_blank">linker</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>创业不容易</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        May 16, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1526446736358', 'linker')">Reply</a>
+    </div>
+</li><li id="1522616524983" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/65cb52453bb3a4d300e568f7c2c085c6?s=128)"></div>
+        <div class="item__name">
+                <span class="ft__fade">Alice</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>做为想做自由职业者好多年还在给人打工的我想说加油。做为人母每天坐火车上下班回家后没有个人时间的我想说奋斗可以有休息的时候。梦想和现实从来没有分开过，甚至梦想不止一个。挑一个自己最在意的出发，对得起自己和家人。同时找个退路，找个休息站说不定能找到一个更明确的目的。压力不总是动力。祝你，祝你们开心创业！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Apr 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1522616524983', 'Alice')">Reply</a>
+    </div>
+</li><li id="1518882022716" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1399869688510?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/bigzhu" target="_blank">bigzhu</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>惭愧惭愧, 你开始创业, 我结束创业又乖乖回去上班了, 毕竟还要养家养娃.<br> 有空多交流</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 18, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1518882022716', 'bigzhu')">Reply</a>
+    </div>
+</li><li id="1518232683098" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1487667104882_1487667189622.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ibut" target="_blank">ibut</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>加油！！！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 10, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1518232683098', 'ibut')">Reply</a>
+    </div>
+</li><li id="1518080894815" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1462027606580_1489384080622.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wilburli" target="_blank">wilburli</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>膜拜下 来看看彩蛋是啥</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 9, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1518080894815', 'wilburli')">Reply</a>
+    </div>
+</li><li id="1517970684152" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1483929030302_1494902512174.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gaozhenhong" target="_blank">gaozhenhong</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>膜拜一下丁老板</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 7, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1517970684152', 'gaozhenhong')">Reply</a>
+    </div>
+</li><li id="1517802535675" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1507792992635_1507793113898.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gebitang" target="_blank">gebitang</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>? ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 5, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1517802535675', 'gebitang')">Reply</a>
+    </div>
+</li><li id="1517650920188" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1437187265889_1482892516923.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/jama" target="_blank">jama</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>进来膜拜大佬的人生</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 4, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1517650920188', 'jama')">Reply</a>
+    </div>
+</li><li id="1517645103735" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>有个小彩蛋，可看页面源码 ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Feb 4, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1517645103735', '88250')">Reply</a>
+    </div>
+</li><li id="1516188675159" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1507792992635_1507793113898.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/gebitang" target="_blank">gebitang</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>为未来而构建的社区。</p> 
+<p>还是喜欢“报废程序员集中营”这个slogan ?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 18, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1516188675159', 'gebitang')">Reply</a>
+    </div>
+</li><li id="1515463630426" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1441547729626_1483173141953.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/itfanr" target="_blank">itfanr</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>我和 V、d 还剩差不多一年的粮草。另外我和 V 还想要个 v....</p> 
+<p>笑出腹肌。。。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 9, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1515463630426', 'itfanr')">Reply</a>
+    </div>
+</li><li id="1515463394092" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1441547729626_1483173141953.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/itfanr" target="_blank">itfanr</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>公有云继续发展，私有云难以生存，需要的后端开发者也越来越少。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 9, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1515463394092', 'itfanr')">Reply</a>
+    </div>
+</li><li id="1515462612318" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1495783459793_1495783710152.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/giveMeFive" target="_blank">giveMeFive</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>厉害厉害</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 9, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1515462612318', 'giveMeFive')">Reply</a>
+    </div>
+</li><li id="1515059461079" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1435731394327?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/V" target="_blank">V</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>为什么不想我，反而想我爸爸了。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 5, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1515059461079', 'V')">Reply</a>
+    </div>
+</li><li id="1515059458646" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1444370393967_1501838301059.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mymoshou" target="_blank">mymoshou</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>@V 你 爸爸想要你~</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 5, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1515059458646', 'mymoshou')">Reply</a>
+    </div>
+</li><li id="1515030597230" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1452569168131_1484642416611.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/R" target="_blank">R</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>被点名了 ?</p> 
+<p>加油！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 4, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1515030597230', 'R')">Reply</a>
+    </div>
+</li><li id="1515029948362" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1485047989130_1485048101472.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ldan2012" target="_blank">ldan2012</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D佬 求带走</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 4, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1515029948362', 'ldan2012')">Reply</a>
+    </div>
+</li><li id="1514977138205" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1477450891680_1480994212956.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/james" target="_blank">james</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>好棒啊，生活就是一步一步来的</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 4, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514977138205', 'james')">Reply</a>
+    </div>
+</li><li id="1514882601154" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/0b0eda03e98909295a0425aa24649a28?s=128)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="http://7iken.com" target="_blank">大香蕉</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>比特币都疯了。。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 3, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514882601154', '大香蕉')">Reply</a>
+    </div>
+</li><li id="1514880432516" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1491542344842?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ming7435" target="_blank">ming7435</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>跟D大应该年纪相仿，17年也经历工作变动，离开多年的工作圈，18年即将迎来Baby的诞生，希望自己能顺顺利利的度过去！同时也非常羡慕D大这样纯粹的人，为了自己的理想一直在前行，D大加油！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 3, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514880432516', 'ming7435')">Reply</a>
+    </div>
+</li><li id="1514879930854" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1483670918764_1483690502907.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/devotion" target="_blank">devotion</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>想入坑区块链，有相关资料吗？D大求带?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514879930854', 'devotion')">Reply</a>
+    </div>
+</li><li id="1514873543857" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1476794131649_1476849316789.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/baymin" target="_blank">baymin</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D大要创业吗？带我飞啊?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514873543857', 'baymin')">Reply</a>
+    </div>
+</li><li id="1514873477770" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1465873147243_1507628248381.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Zephyr" target="_blank">Zephyr</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>本来想写年终，但感觉17年最大的收获就是，背下了魔方公式……</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514873477770', 'Zephyr')">Reply</a>
+    </div>
+</li><li id="1514865398480" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1477908892063_1477966728880.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/8084" target="_blank">8084</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>为了某些机会，有时候确实需要放手一搏！18年也是我人生中非常重要的一年。去折腾吧，报废的程序员！！！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514865398480', '8084')">Reply</a>
+    </div>
+</li><li id="1514865208653" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/c3229a38f1d6c700cb4480b3c0e4b237?s=128)"></div>
+        <div class="item__name">
+                <span class="ft__fade">老高丶</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514865208653', '老高丶')">Reply</a>
+    </div>
+</li><li id="1514864176952" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572_1498661072056.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D大加油，话说你的17年好丰富啊</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514864176952', 'scorpion')">Reply</a>
+    </div>
+</li><li id="1514864002280" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1507883997449_1507884907088.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Altman" target="_blank">Altman</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>加油</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514864002280', 'Altman')">Reply</a>
+    </div>
+</li><li id="1514862954472" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1450083174266_1471445289930.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Angonger" target="_blank">Angonger</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>什么是业务架构师</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514862954472', 'Angonger')">Reply</a>
+    </div>
+</li><li id="1514862680515" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1489981860668_1489982052523.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/qwab16" target="_blank">qwab16</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D大还是比我等有追求，不会将自己封闭在一方空间里，感觉自己也该定个目标了</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514862680515', 'qwab16')">Reply</a>
+    </div>
+</li><li id="1514862502481" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1512614713746_1513993723423.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mobdev" target="_blank">mobdev</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>大佬是我辈楷模，支持！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514862502481', 'mobdev')">Reply</a>
+    </div>
+</li><li id="1514861917316" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1492408288164_1492409382791.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/ymx007" target="_blank">ymx007</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持D大</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514861917316', 'ymx007')">Reply</a>
+    </div>
+</li><li id="1514861020715" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1514860570873?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/lucky9151" target="_blank">lucky9151</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>厉害 厉害 D哥 V姐 加油</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514861020715', 'lucky9151')">Reply</a>
+    </div>
+</li><li id="1514860043242" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1485066185237_1485066441482.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/witcher254" target="_blank">witcher254</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持D大<br> goufugui，互相汪，会ge gong song de会锤腿?<br> 保留字什么鬼～</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514860043242', 'witcher254')">Reply</a>
+    </div>
+</li><li id="1514859424586" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1468917958725_1487320666085.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Stone" target="_blank">Stone</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持D大，?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514859424586', 'Stone')">Reply</a>
+    </div>
+</li><li id="1514858943241" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1499137655282_1503026310470.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/wenandlu" target="_blank">wenandlu</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>正在平庸的路上不断前行</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514858943241', 'wenandlu')">Reply</a>
+    </div>
+</li><li id="1514858676662" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1490594581854?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/lowb" target="_blank">lowb</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>程序员做的就是消灭重复劳动，以后还想有只做重复劳动这种简单事情的工作，图样。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514858676662', 'lowb')">Reply</a>
+    </div>
+</li><li id="1514857863909" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1501640283731?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/alshin" target="_blank">alshin</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>“从悲观的角度看，也许平庸的人最终还是归于平庸，无论如何挣扎。”好扎心，在时代高速发展的步伐里，我的眼睛无法睁开，既看不到前方，也看不清自己。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514857863909', 'alshin')">Reply</a>
+    </div>
+</li><li id="1514857294408" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1451674946761_1495870480730.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/manyue" target="_blank">manyue</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>? 祝好！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514857294408', 'manyue')">Reply</a>
+    </div>
+</li><li id="1514856729203" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1369914649233_1498353453085.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/crick77" target="_blank">crick77</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D大的观点深有同感。目前的职业方向调整为业务架构师，导致很多其他部分的同事误以为我是产品……<br> 先预投份简历，等你创业 @88250</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514856729203', 'crick77')">Reply</a>
+    </div>
+</li><li id="1514856571393" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1481105529461_1497243796491.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/AlanTuring" target="_blank">AlanTuring</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D,V,d,v happy new year.</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514856571393', 'AlanTuring')">Reply</a>
+    </div>
+</li><li id="1514856440291" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1483943075230_1483943159766.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/mitewater" target="_blank">mitewater</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>以后更多的程序员就像流水线的工人一样,重复劳作而不是去创造,因为前人已经把轮子都造好了,直到下一次技术革新 &gt; 人工智能?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514856440291', 'mitewater')">Reply</a>
+    </div>
+</li><li id="1514856109319" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1469787035931_1476493919872.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/sunshineasbefore" target="_blank">sunshineasbefore</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514856109319', 'sunshineasbefore')">Reply</a>
+    </div>
+</li><li id="1514856071928" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1501644090048.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>想想都?山大</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514856071928', 'Vanessa')">Reply</a>
+    </div>
+</li><li id="1514855782474" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1468458890992_1512482681251.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/meikaiyipian" target="_blank">meikaiyipian</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D开公司吧</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514855782474', 'meikaiyipian')">Reply</a>
+    </div>
+</li><li id="1514855039064" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1461901261817_1503276086185.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/eurry" target="_blank">eurry</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>牛逼的D大，向你学习了。<br> 关于技术架构师的未来，我架构师同事也提过，说现在用到他的地方越来越少了。<br> 但是预期担心未来，不如先走好脚下的路，多走多看多想，说不定就有出路了。<br> 山寨币也炒过一段时间，没有深入研究。</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514855039064', 'eurry')">Reply</a>
+    </div>
+</li><li id="1514854696665" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1512615142673_1512615284218.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/JamesPan" target="_blank">JamesPan</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>2017 离成为报废程序员又进了一步?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514854696665', 'JamesPan')">Reply</a>
+    </div>
+</li><li id="1514853719729" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1481727394707_1496839044966.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/109085859" target="_blank">109085859</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>支持D大创业！</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514853719729', '109085859')">Reply</a>
+    </div>
+</li><li id="1514795681527" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472306079846_1512742129295.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/sides" target="_blank">sides</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>D哥，任重道远……</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 2, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514795681527', 'sides')">Reply</a>
+    </div>
+</li><li id="1514726992376" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1408671565266_1483319761533.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/flhuoshan" target="_blank">flhuoshan</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>学习了，[Thrifty]感觉很骚啊</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 1, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514726992376', 'flhuoshan')">Reply</a>
+    </div>
+</li><li id="1514721344430" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472016410060_1506678218379.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/kuailexs" target="_blank">kuailexs</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 1, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514721344430', 'kuailexs')">Reply</a>
+    </div>
+</li><li id="1514720178337" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1478764610996_1512700169959.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/qq494966160" target="_blank">qq494966160</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>压力应该也是很大吧 多注意身体</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jan 1, 2018
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514720178337', 'qq494966160')">Reply</a>
+    </div>
+</li><li id="1514695278999" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1513688637953_1513688885952.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Tiakon" target="_blank">Tiakon</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Dec 31, 2017
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514695278999', 'Tiakon')">Reply</a>
+    </div>
+</li><li id="1514692080076" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1409838173971_1474260929164.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="https://hacpai.com/member/Genji" target="_blank">Genji</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>?</p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Dec 31, 2017
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1514692080076', 'Genji')">Reply</a>
+    </div>
+</li></ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="2017 成为报废程序员的前一年"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2017/12/31/1514687638181.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2017/11/18/1511015097370.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="IPFS 入门笔记"
+                       aria-label="旧一篇: IPFS 入门笔记">←</a>
+
+                    <a href="https://88250.github.io/articles/2018/01/13/1515820007039.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="以太坊相关中文资料整理"
+                       aria-label="新一篇: 以太坊相关中文资料整理">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1514687638181",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("总结,开源,加密货币,自由职业",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1514687638181', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 121ms, 2020/01/08 08:55:14 -->

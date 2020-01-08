@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（二） - D 的个人博客</title><meta name="description" content="上一篇： [1437497122181] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1437497122181] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（二） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/22/1437558810339.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（二） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/22/1437558810339.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（一）" href="https://88250.github.io/articles/2015/07/22/1437497122181.html">
+            <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（三）" href="https://88250.github.io/articles/2015/07/24/1437719712835.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2015/07/22/1437558810339.html">
+                Go 边看边练 -《Go 学习笔记》系列（二）
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Dec 29, 2015
+            </time>
+                in <a href="https://88250.github.io/category/dev-language">编程语言</a>
+            with <span data-uvstaturl="https://88250.github.io/articles/2015/07/22/1437558810339.html">0</span> views
+                and <a href="#comments">3 comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/Golang">
+                    <b># Golang</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://88250.github.io/tags/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">
+                    <b># Go学习笔记</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://88250.github.io/tags/%E6%95%99%E7%A8%8B">
+                    <b># 教程</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://88250.github.io/tags/%E9%9B%A8%E7%97%95">
+                    <b># 雨痕</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p>上一篇： [1437497122181]</p>
+<hr>
+<h3 id="b3_solo_h3_0">ToC</h3>
+<ul>
+<li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
+<li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
+<li><a href="http://symphony.b3log.org/article/1437719712835" target="_blank">Go 边看边练 -《Go 学习笔记》系列（三）- 指针</a></li>
+<li><a href="http://symphony.b3log.org/article/1437984612418" target="_blank">Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1</a></li>
+<li><a href="http://symphony.b3log.org/article/1438070631857" target="_blank">Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2</a></li>
+<li><a href="http://symphony.b3log.org/article/1438164538421" target="_blank">Go 边看边练 -《Go 学习笔记》系列（六）- 函数</a></li>
+<li><a href="http://symphony.b3log.org/article/1438260619759" target="_blank">Go 边看边练 -《Go 学习笔记》系列（七）- 错误处理</a></li>
+<li><a href="http://symphony.b3log.org/article/1438311936449" target="_blank">Go 边看边练 -《Go 学习笔记》系列（八）- 数组、切片</a></li>
+<li><a href="http://symphony.b3log.org/article/1438596722873" target="_blank">Go 边看边练 -《Go 学习笔记》系列（九）- Map、结构体</a></li>
+<li><a href="http://symphony.b3log.org/article/1438699210452" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十）- 方法</a></li>
+<li><a href="http://symphony.b3log.org/article/1438763483577" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十一）- 表达式</a></li>
+<li><a href="http://symphony.b3log.org/article/1438845728987" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十二）- 接口</a></li>
+<li><a href="http://symphony.b3log.org/article/1438938175118" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十三）- Goroutine</a></li>
+<li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
+</ul>
+<hr>
+<h3 id="b3_solo_h3_1">1.3 基本类型</h3>
+<p>更明确的数字类型命名，支持 Unicode，支持常用数据结构。</p>
+<table style="width: 80%;">
+  <tbody><tr>
+    <th>类型</th>
+    <th>长度</th>
+    <th>默认值</th>
+    <th>说明</th>
+  </tr>
+  <tr>
+    <td>bool</td>
+    <td>1</td>
+    <td>false</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>byte</td>
+    <td>1</td>
+    <td>0</td>
+    <td>uint8</td>
+  </tr>
+  <tr>
+    <td>rune</td>
+    <td>4</td>
+    <td>0</td>
+    <td>Unicode Code Point, int32</td>
+  </tr>
+  <tr>
+    <td>int, uint</td>
+    <td>4 或 8</td>
+    <td>0</td>
+    <td>32 或 64 位</td>
+  </tr>
+  <tr>
+    <td>int8, uint8</td>
+    <td>1</td>
+    <td>0</td>
+    <td>-128 ~ 127, 0 ~ 255</td>
+  </tr>
+  <tr>
+    <td>int16, uint16</td>
+    <td>2</td>
+    <td>0</td>
+    <td>-32768 ~ 32767, 0 ~ 65535</td>
+  </tr>
+  <tr>
+    <td>int32, uint32</td>
+    <td>4</td>
+    <td>0</td>
+    <td>-21亿 ~ 21 亿, 0 ~ 42 亿</td>
+  </tr>
+  <tr>
+    <td>int64, uint64</td>
+    <td>8</td>
+    <td>0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>float32</td>
+    <td>4</td>
+    <td>0.0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>float64</td>
+    <td>8</td>
+    <td>0.0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>complex64</td>
+    <td>8</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>complex128</td>
+    <td>16</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>uintptr</td>
+    <td>4 或 8</td>
+    <td></td>
+    <td>足以存储指针的 uint32 或 uint64 整数</td>
+  </tr>
+  <tr>
+    <td>array</td>
+    <td></td>
+    <td></td>
+    <td>值类型</td>
+  </tr>
+  <tr>
+    <td>struct</td>
+    <td></td>
+    <td></td>
+    <td>值类型</td>
+  </tr>
+  <tr>
+    <td>string</td>
+    <td></td>
+    <td>""</td>
+    <td>UTF-8 字符串</td>
+  </tr>
+  <tr>
+    <td>slice</td>
+    <td></td>
+    <td>nil</td>
+    <td>引用类型</td>
+  </tr>
+  <tr>
+    <td>map</td>
+    <td></td>
+    <td>nil</td>
+    <td>引用类型</td>
+  </tr>
+  <tr>
+    <td>channel</td>
+    <td></td>
+    <td>nil</td>
+    <td>引用类型</td>
+  </tr>
+  <tr>
+    <td>interface</td>
+    <td></td>
+    <td>nil</td>
+    <td>接口</td>
+  </tr>
+  <tr>
+    <td>function</td>
+    <td></td>
+    <td>nil</td>
+    <td>函数</td>
+  </tr>
+</tbody></table>
+<p>支持八进制、十六进制，以及科学记数法。标准库 <code>math</code> 定义了各数字类型取值范围。</p>
+<pre><code>a, b, c, d := 071, 0x1F, 1e9, math.MinInt16
+</code></pre>
+<p>空指针值 <code>nil</code>，而非 C/C++ NULL。</p>
+<h3 id="b3_solo_h3_2">1.4 引用类型</h3>
+<p>引用类型包括 <code>slice</code>、<code>map</code> 和 <code>channel</code>。它们有复杂的内部结构，除了申请内存外，还需要初始化相关属性。</p>
+<p>内置函数 <code>new</code> 计算类型大小，为其分配零值内存，返回指针。而 <code>make</code> 会被编译器翻译成具体的创建函数，由其分配内存和初始化成员结构，返回对象而非指针。</p>
+<pre><code>a := []int{0, 0, 0} // 提供初始化表达式。
+a[1] = 10
+
+b := make([]int, 3) // makeslice
+b[1] = 10
+
+c := new([]int)
+c[1] = 10 // Error: invalid operation: c[1] (index of type *[]int)
+</code></pre>
+<p>有关引用类型具体的内存布局，可参考后续章节。</p>
+<h3 id="b3_solo_h3_3">1.5 类型转换</h3>
+<p>不支持隐式类型转换，即便是从窄向宽转换也不行。</p>
+<pre><code>var b byte = 100
+// var n int = b // Error: cannot use b (type byte) as type int in assignment
+var n int = int(b) // 显式转换
+</code></pre>
+<p>使用括号避免优先级错误。</p>
+<pre><code>*Point(p) // 相当于 *(Point(p))
+(*Point)(p)
+&lt;-chan int(c) // 相当于 &lt;-(chan int(c))
+(&lt;-chan int)(c)
+</code></pre>
+<p>同样不能将其他类型当 <code>bool</code> 值使用。</p>
+<pre><code>a := 100
+if a { // Error: non-bool a (type int) used as if condition
+	println("true")
+}
+</code></pre>
+<h3 id="b3_solo_h3_4">1.6 字符串</h3>
+<p>字符串是不可变值类型，内部用指针指向 UTF-8 字节数组。</p>
+<ul>
+<li>默认值是空字符串 ""。</li>
+<li>用索引号访问某字节，如 <code>s[i]</code>。</li>
+<li>不能用序号获取字节元素指针，<code>&amp;s[i]</code> 非法。</li>
+<li>不可变类型，无法修改字节数组。</li>
+<li>字节数组尾部不包含 <code>NULL</code>。</li>
+</ul>
+<p>runtime.h</p>
+<pre><code>struct String
+{
+	byte* str;
+	intgo len;
+};
+</code></pre>
+<p>使用索引号访问字符 (byte)。</p>
+<pre><code>s := "abc"
+println(s[0] == '\x61', s[1] == 'b', s[2] == 0x63)
+</code></pre>
+<p>输出：</p>
+<pre><code>true true true
+</code></pre>
+<p>使用 "`" 定义不做转义处理的原始字符串，支持跨行。</p>
+<pre><code>s := `a
+b\r\n\x00
+c`
+
+println(s)
+</code></pre>
+<p>输出：</p>
+<pre><code>a
+b\r\n\x00
+c
+</code></pre>
+<p>连接跨行字符串时，"+" 必须在上一行末尾，否则导致编译错误。</p>
+<pre><code>s := "Hello, " +
+"World!"
+
+s2 := "Hello, "
++ "World!" // Error: invalid operation: + untyped string
+</code></pre>
+<p>支持用两个索引号返回子串。子串依然指向原字节数组，仅修改了指针和长度属性。</p>
+<pre><code>s := "Hello, World!"
+s1 := s[:5] // Hello
+s2 := s[7:] // World!
+s3 := s[1:5] // ello
+</code></pre>
+<p>单引号字符常量表示 Unicode Code Point，支持 <code>\uFFFF</code>、<code>\U7FFFFFFF</code>、<code>\xFF</code> 格式。对应 <code>rune</code> 类型，UCS-4。</p>
+<iframe style="border:1px solid" src="https://wide.b3log.org/playground/2d0bb32225a7d73e052e06450efaae80.go?embed=true" width="99%" height="320"></iframe>
+<p>要修改字符串，可先将其转换成 <code>[]rune</code> 或 <code>[]byte</code>，完成后再转换为 <code>string</code>。无论哪种转换，都会重新分配内存，并复制字节数组。</p>
+<iframe style="border:1px solid" src="https://wide.b3log.org/playground/6cb92a0c330f54a498b9a13d908775f5.go?embed=true" width="99%" height="450"></iframe>
+<p>用 <code>for</code> 循环遍历字符串时，也有 <code>byte</code> 和 <code>rune</code> 两种方式。</p>
+<iframe style="border:1px solid" src="https://wide.b3log.org/playground/26ab3e14ef786b33901acfc564e99348.go?embed=true" width="99%" height="420"></iframe>
+<p>下一篇： [1437719712835]</p>
+<hr>
+<ul>
+<li><em><strong>本系列是基于</strong></em><a href="https://github.com/qyuhen" target="_blank">雨痕</a><em><strong>的</strong></em><a href="https://github.com/qyuhen/book/blob/master/Go%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E7%AC%AC%E5%9B%9B%E7%89%88.pdf" target="_blank">《Go 学习笔记》（第四版）</a><em><strong>整理汇编而成，非常感谢雨痕的辛勤付出与分享！</strong></em></li>
+<li>转载请注明：文章转载自：<strong>黑客与画家的社区</strong> [<a href="http://symphony.b3log.org" target="_blank">http://symphony.b3log.org</a>]</li>
+<li>如果你觉得本章节做得不错，请在下面打赏一下吧~</li>
+</ul>
+<hr>
+<blockquote>
+<p>社区小贴士</p>
+<ul>
+<li>关注标签 [golang] 可以方便查看 Go 相关帖子</li>
+<li>关注标签 [Go学习笔记] 可以方便查看本系列</li>
+<li>关注作者后如有新帖将会收到通知</li>
+</ul>
+</blockquote>
+<p style="font-size: 12px;"><i>该文章同步自 <a href="http://hacpai.com/article/1437558810339" target="_blank">黑客派</a></i></p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">ToC</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">1.3 基本类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_2">1.4 引用类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">1.5 类型转换</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_4">1.6 字符串</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+<li id="1437624158227" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=60)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>这个 table 不好看嘛</p> 
+<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437558810339#1437624158227">B3log 社区</a></i></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jul 23, 2015
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1437624158227', 'Vanessa')">Reply</a>
+    </div>
+</li><li id="1437623435261" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/299b5d927250862fcfabbc7148a87798?s=60)"></div>
+        <div class="item__name">
+                <span class="ft__fade">youymi</span>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>这编辑器都内嵌 wide 了 ！！！</p> 
+<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437558810339#1437623435261">B3log 社区</a></i></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jul 23, 2015
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1437623435261', 'youymi')">Reply</a>
+    </div>
+</li><li id="1437621227314" class="item">
+    <div class="fn__clear">
+        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/bbd9b85a440359819c3fb07ff1f00d38?s=60)"></div>
+        <div class="item__name">
+            <a class="ft__link" href="http://xxk.b3log.org" target="_blank">K</a>
+
+        </div>
+    </div>
+    <div class="vditor-reset">
+    <p>学习，受教，已经打赏。</p> 
+<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437558810339#1437621227314">B3log 社区</a></i></p>
+    </div>
+    <div class="item__meta fn__clear">
+        <time>
+        Jul 23, 2015
+        </time>
+            <a class="fn__right fn__none item__reply"
+               href="javascript:page.toggleEditor('1437621227314', 'K')">Reply</a>
+    </div>
+</li></ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="Go 边看边练 -《Go 学习笔记》系列（二）"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2015/07/22/1437558810339.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2015/07/22/1437497122181.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Go 边看边练 -《Go 学习笔记》系列（一）"
+                       aria-label="旧一篇: Go 边看边练 -《Go 学习笔记》系列（一）">←</a>
+
+                    <a href="https://88250.github.io/articles/2015/07/24/1437719712835.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Go 边看边练 -《Go 学习笔记》系列（三）"
+                       aria-label="新一篇: Go 边看边练 -《Go 学习笔记》系列（三）">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1437558810339",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("Golang,Go学习笔记,教程,雨痕",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1437558810339', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 106ms, 2020/01/08 08:55:18 -->

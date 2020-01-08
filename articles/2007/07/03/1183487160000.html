@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Unix/Linux Shell脚本入门实例[00原创] - D 的个人博客</title><meta name="description" content="这是一个简单了Shell实例。下面是它的要求描述： 实验五 UNIX Shell 程序设计 实验内容：使用UNIX 	Shell程序设计语言，编写UNIX 	Shell 应用程序。
+
+
+
+
+
+实验要求：按下列要求编写Shell脚本，把所学的各种UNIX命令串联起来。
+ 1.运行Shell脚本，首先显示类似如下的菜单： What would you like to do: List Directory **********************1 ...."/><meta property="og:description" content="这是一个简单了Shell实例。下面是它的要求描述： 实验五 UNIX Shell 程序设计 实验内容：使用UNIX 	Shell程序设计语言，编写UNIX 	Shell 应用程序。
+
+
+
+
+
+实验要求：按下列要求编写Shell脚本，把所学的各种UNIX命令串联起来。
+ 1.运行Shell脚本，首先显示类似如下的菜单： What would you like to do: List Directory **********************1 ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Unix/Linux Shell脚本入门实例[00原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/07/03/1183487160000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Unix/Linux Shell脚本入门实例[00原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/07/03/1183487160000.html">        <link rel="stylesheet"
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578444895986"/>
+            <link rel="prev" title="Liva运行时截图[00原创]" href="https://88250.github.io/articles/2007/07/03/1183461660000.html">
+            <link rel="next" title="Linux下部署RMI的问题与解决方法[00原创]" href="https://88250.github.io/articles/2007/07/05/1183655280000.html">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://88250.github.io/articles/2007/07/03/1183487160000.html">
+                Unix/Linux Shell脚本入门实例[00原创]
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Published on
+            <time>
+                Jul 4, 2007
+            </time>
+            with <span data-uvstaturl="https://88250.github.io/articles/2007/07/03/1183487160000.html">0</span> views
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/Shell%20Programming">
+                    <b># Shell Programming</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p>这是一个简单了Shell实例。<br>下面是它的要求描述：<br></p>
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="LEGEND" name="AUTHOR">
+<meta content="20050510;19440000" name="CREATED">
+<meta content="SEI" name="CHANGEDBY">
+<meta content="20050106;15320000" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		A:link { color: #0000ff }
+	-->
+	</style>
+<p style="text-indent: 3.7cm; margin-bottom: 0cm;">实验五    <font face="文鼎PL细上海宋Uni, serif">UNIX <span lang="en-GB">Shell </span></font>程序设计</p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<ol>
+    <li>
+    <p style="margin-bottom: 0cm;">实验内容：使用<font face="文鼎PL细上海宋Uni, serif">UNIX 	<span lang="en-GB">S</span>hell</font>程序设计语言，编写<font face="文鼎PL细上海宋Uni, serif">UNIX 	<span lang="en-GB">S</span>hell </font>应用程序。</p>
+    </li>
+</ol>
+<p style="margin-left: 0.32cm; margin-bottom: 0cm;"><br> </p>
+<ol start="2">
+    <li>
+    <p style="margin-bottom: 0cm;">实验要求：按下列要求编写<font face="文鼎PL细上海宋Uni, serif">Shell</font>脚本，把所学的各种<font face="文鼎PL细上海宋Uni, serif">UNIX</font>命令串联起来。</p>
+    </li>
+</ol>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">1.</font>运行<font face="宋体, SimSun">Shell</font>脚本，首先显示类似如下的菜单：</p>
+<p style="margin-bottom: 0cm;">           <font face="宋体, SimSun">What would you like to do:</font></p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"> <font face="宋体, SimSun">List Directory **********************1</font></p>
+<p style="margin-bottom: 0cm;">     <font face="宋体, SimSun">Change Directory*********************2</font></p>
+<p style="margin-bottom: 0cm;">     <font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">Edit file****************************3</font></font></p>
+<p style="margin-bottom: 0cm;">     <font face="宋体, SimSun">Remove file**************************4</font></p>
+<p style="margin-bottom: 0cm;">     <font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">Add messages in a file***************5</font></font></p>
+<p style="margin-bottom: 0cm;">     <font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">Search keyword in a specified file***6</font></font></p>
+<p style="margin-bottom: 0cm;">     <font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">Exit Menu****************************7</font></font></p>
+<p style="text-indent: 2.41cm; margin-bottom: 0cm;"><font face="宋体, SimSun">Enter your choice:</font></p>
+<p style="text-indent: 2.41cm; margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">2</font>．输入<font face="宋体, SimSun">1</font>：以长格式列出当前目录内容。</p>
+<p style="margin-left: 1.11cm; text-indent: -0.37cm; margin-bottom: 0cm;"> <font face="宋体, SimSun">3</font>．输入<font face="宋体, SimSun">2</font>：改变工作目录到自己指定的目标目录中。（要求改变后可以用选项<font face="宋体, SimSun">1</font>查看该目录中的内容）</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">4</font>．输入<font face="宋体, SimSun">3</font>：提示输入一个文件名（该文件可能不存在），然后调用<font face="宋体, SimSun">vi</font>编辑器进行编辑。</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">5</font>．输入<font face="宋体, SimSun">4</font>：删除一个指定的文件。</p>
+<p style="margin-left: 1.3cm; text-indent: -0.56cm; margin-bottom: 0cm;"> <font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">6</font></font>．输入<font face="文鼎PL细上海宋Uni, serif">5: </font>提示输入一个文件名，然后将用户在键盘上命令行方式下输入的任何信息都添加并保存到这个文件中，直到用户输入一个空行后才完成该项操作。</p>
+<p style="margin-left: 1.48cm; text-indent: -0.37cm; margin-bottom: 0cm;">  注意：该操作不能是只输入一行后就停止，要能不断输入多行信息；不能调用<font face="文鼎PL细上海宋Uni, serif">vi</font>编辑器来输入。</p>
+<p style="text-indent: 1.11cm; margin-bottom: 0cm;">例如：一个名为”<font face="文鼎PL细上海宋Uni, serif">phone”</font>的文件，原有内容为（也可以是无内容的新文件）：</p>
+<p style="text-indent: 2.75cm; margin-bottom: 0cm;">“ <font face="文鼎PL细上海宋Uni, serif">This is a phone list”</font></p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm;">现在要在其后添加一些电话薄的字段信息，</p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm;">选择“<font face="文鼎PL细上海宋Uni, serif">5”</font>后，显示：<font face="文鼎PL细上海宋Uni, serif">Input the filename that you want to add messages:</font></p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm;">然后从键盘输入文件名：<font face="文鼎PL细上海宋Uni, serif">phone</font></p>
+<p style="text-indent: 2.22cm; margin-bottom: 0cm;">接着提示：输入要添加的信息，例如用户要添加如下信息：</p>
+<p style="text-indent: 3.18cm; margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 1.85cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">David  Brown    (7771)   91101111    <font color="#0000ff"><a href="mailto:m@m.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">m@m.com</span></font></a></font>      …………</font></p>
+<p style="text-indent: 1.85cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">Emma  Redd      (6970)   22292222    <font color="#0000ff"><a href="mailto:in@o.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">in@o.com</span></font></a></font>     ………..</font></p>
+<p style="text-indent: 1.85cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">Tom  Swanson    (823)    44474444    <font color="#0000ff"><a href="mailto:ai@e.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">ai@e.com</span></font></a></font>     ………..</font></p>
+<p style="text-indent: 1.85cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">Ming  Li        (0871)   3133333     <font color="#0000ff"><a href="mailto:bb@r.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">bb@r.com</span></font></a></font>     ………..</font></p>
+<p style="margin-bottom: 0cm;">……………<font face="文鼎PL细上海宋Uni, serif">.         ……     ……..       …………     ………..</font></p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="margin-left: 1.85cm; margin-bottom: 0cm;">输入完成后，当用户输入一个空行即完成该项添加信息的操作<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">,</font></font>并退出该选项。该”<font face="文鼎PL细上海宋Uni, serif">phone”</font>文件添加后变为：（可以用选项<font face="文鼎PL细上海宋Uni, serif">3</font>查看）</p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="margin-bottom: 0cm;">                         </p>
+<p style="text-indent: 5.74cm; margin-bottom: 0cm;"> <font face="文鼎PL细上海宋Uni, serif">This is a phone list   </font> </p>
+<p style="text-indent: 2.04cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">David  Brown    (7771)   91101111    <font color="#0000ff"><a href="mailto:m@m.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">m@m.com</span></font></a></font>      …………</font></p>
+<p style="text-indent: 2.04cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">Emma  Redd      (6970)   22292222    <font color="#0000ff"><a href="mailto:in@o.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">in@o.com</span></font></a></font>     ………..</font></p>
+<p style="text-indent: 2.04cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">Tom  Swanson    (823)    44474444    <font color="#0000ff"><a href="mailto:ai@e.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">ai@e.com</span></font></a></font>     ………..</font></p>
+<p style="text-indent: 2.04cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif">Ming  Li        (0871)   3133333     <font color="#0000ff"><a href="mailto:bb@r.com" target="_blank"><font color="#000000"><span style="text-decoration: none;">bb@r.com</span></font></a></font>     ………..</font></p>
+<p style="margin-bottom: 0cm;">……………<font face="文鼎PL细上海宋Uni, serif">.         ……     ……..       …………     ………..</font></p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">7. </font></font>输入<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">6</font></font>：在指定的文件中查找某个关键字<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">(</font></font>该文件，并显示找到的关键字所在的行。</p>
+<p style="margin-left: 1.11cm; margin-bottom: 0cm;">要求：查找时忽略大小写，并在每个找到的输出行前显示行号，<strong>要判断输入的名字是否为文件而非目录</strong>，若是文件则进行查找工作，若文件不存在或是目录则显示出错信息。</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">8</font></font>．输入<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">7</font></font>：退出该脚本程序，回到<font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">Shell</font></font>提示符下。</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font face="宋体, SimSun">9</font></font>．在源程序中加入适当的注释。</p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><strong>注意：该菜单要能够反复显示，即各项选完后要能再次返回菜单。</strong></p>
+<p style="margin-bottom: 0cm;"><br> </p>
+<ol start="3">
+    <li>
+    <p style="margin-bottom: 0cm;">实验报告：</p>
+    </li>
+</ol>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">1</font>、将自己编制并调试好的程序，用到的各种文件放在自己的用户主目录下。</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">2</font>、抄写自己的<font face="宋体, SimSun">Shell</font>源程序（自己加纸写）</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">3</font>、写出设计思想。</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">4</font>、写出上机体会与总结</p>
+<p style="text-indent: 0.74cm; margin-bottom: 0cm;"><font face="宋体, SimSun">5</font>、回答问题：执行脚本的方式有哪几种，有何区别？</p>
+<br><br><font size="2"><span style="color: rgb(255, 0, 0);">完成报告如下：</span></font>
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE">
+<title></title>
+<meta content="OpenOffice.org 2.2  (Linux)" name="GENERATOR">
+<meta content="daniel" name="AUTHOR">
+<meta content="20070703;17484700" name="CREATED">
+<meta content="daniel" name="CHANGEDBY">
+<meta content="20070703;18203900" name="CHANGED"> 	 	 	 	 	 	 	<style type="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</style>
+<p align="center" style="margin-bottom: 0cm;"><strong>实验五    </strong><font face="文鼎PL细上海宋Uni, serif"><strong>UNIX </strong><span lang="en-GB"><strong>Shell </strong></span></font><strong>程序设计</strong></p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><strong>1. </strong></span></span></font></font><span style="text-decoration: none;"><font size="2"><strong>源代码如下：</strong></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#!/bin/bash</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">C="0"</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"># Do list directory</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">listDirectory()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">ls -l ./</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"># Do change the directory</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">changeDirectory()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the New Directory Path : " CDI</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style=""># check out wether the directory is exist</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">if [ -d $CDI ]</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">then</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	cd $CDI</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">else</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	printf "the Directory is not Exist\n"</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">fi</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"># Do edit a file</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">editFile()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">NFILE=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the File Name to Edit : " NFILE</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">vi $NFILE</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"># Do remove a file</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">removeFile()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">RFILE=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the File Name to Remove : " RFILE</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">if [ -f $RFILE ]</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">then</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	rm $RFILE</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">else</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	printf "the File is not Exist\n"</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">fi</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"># Do input messages</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">addMessages()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">MFILE=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the File Name to Add Messages : " MFILE</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;">      </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style=""># start to add new messanges</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">MMSG=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the Messages : " MMSG</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">while [ "$MMSG" != "" ]</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">do</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">echo $MMSG &gt;&gt; $MFILE</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">MMSG=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the Messages : " MMSG</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">done</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "End of the file\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"># Do search Keyword</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">searchKeyword()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">SFILE=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the File Name : " SFILE</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style=""># if it is a directory's name</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">if [ -d $SFILE ]</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">then</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	printf "the Name input is a Directory\n"</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	return</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">fi</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style=""># if the file is not exist</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">if [ ! -f $SFILE ]</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">then</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	printf "the File is not Exist\n"</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	return</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">fi</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">KWORD=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Please Input the KeyWord : " KWORD</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">if [ "$KWORD" != "" ]</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">then</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	cat $SFILE | grep -n -i $KWORD</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">fi</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"># Do display the menu</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">#</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">displayMenu()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "      What Would You Like to Do:        \n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "List Directory ....................... 1\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "Change Directory ..................... 2\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "Edit File ............................ 3\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "Remove File .......................... 4\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "Add Messages in a File ............... 5\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "Search Keyword in a Specified File ... 6\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">printf "Exit Menu ............................ 7\n"</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">getUserInput()</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">{</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Enter Your Choice : " C</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">}</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">while [ $C != "7" ]</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">do</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">        </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">displayMenu</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	getUserInput</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	case $C in</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    1) printf "\n" ; listDirectory;;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    2) printf "\n" ; changeDirectory;;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    3) printf "\n" ; editFile;;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    4) printf "\n" ; removeFile;;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    5) printf "\n" ; addMessages;;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    6) printf "\n" ; searchKeyword;;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    7) printf "\nThank You for Using, bye-bye\n";;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	    *) printf "\bWrong Choice\n";;</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	esac</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">done</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><strong>2. </strong></span></span></font></font><span style="text-decoration: none;"><font size="2"><strong>测试输出：</strong></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">daniel@daniel-laptop:~/Desktop$ sh lab5.sh</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">total 19780</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">-rw-r--r-- 1 daniel daniel       0 2007-07-02 17:31 133888847954 </span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">关文武</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r-- 1 daniel daniel    2497 2007-07-03 11:07 lab5.sh</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r-- 1 daniel daniel 8220990 2007-07-03 13:40 nuoveXT-1.6.tar.gz</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r-- 1 daniel daniel 8605556 2007-07-03 13:32 nuoveXT.2.1.tar.bz2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x 3 daniel daniel    4096 2007-07-01 20:22 swt-M20070212-1330-gtk-linux-x86</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r-- 1 daniel daniel 3176199 2007-07-01 18:14 swt-M20070212-1330-gtk-linux-x86.zip</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x 3 daniel daniel    4096 2007-02-12 14:51 swt-M20070212-1330-win32-win32-x86</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">-rwxrwx--- 1 daniel daniel  191871 2007-05-25 00:22 </span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">设计模式迷你手册</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">.chm</span></span></font></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">-rw-r--r-- 1 daniel daniel     647 2007-06-28 11:47 </span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">音频</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">ID</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">技术流程</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the New Directory Path : /home/daniel</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">total 6324</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rwxr--r--  1 daniel daniel 5090214 2007-05-29 22:08 1.mp3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel  274432 2007-04-18 13:02 BattleLANv0.5.exe</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x  8 daniel daniel    4096 2007-06-30 01:21 Beautify</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel  196608 2007-06-11 14:53 DB2 UDB 700 .doc</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x  4 daniel daniel    4096 2007-07-03 17:53 Desktop</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x  2 daniel daniel    4096 2007-05-03 12:42 Downloads</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel    1430 2007-05-29 17:12 Instantiations.license</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel  172032 2006-11-20 22:32 IPMSG2007.exe</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel    1114 2007-07-01 23:33 ipmsg.log</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel     365 2007-06-29 22:46 jws_app_shortcut_1183128375333.desktop</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x  6 daniel daniel   12288 2007-05-03 16:07 LumaQQ</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel     409 2007-06-20 10:23 MyQQID</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x  3 mysql  daniel    4096 2007-07-01 15:51 mysql</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel  434176 2007-07-02 00:57 nautilus-debug-log.txt</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-sr-x 11 root   root      4096 2007-06-06 23:39 RealPlayer</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x  4 daniel daniel    4096 2007-06-18 00:30 Software Install Package</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel    3405 2007-07-01 21:58 velocity.log</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">-rw-r--r--  1 daniel daniel      63 2007-06-19 11:34 War3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x 11 daniel daniel    4096 2007-07-02 00:45 WarCraft</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">drwxr-xr-x 10 daniel daniel    4096 2007-06-29 01:20 Work</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">-rw-r--r--  1 daniel daniel  198144 2007-05-02 12:19 </span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">系分论文</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">.doc</span></span></font></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">-rw-r--r--  1 daniel daniel      93 2007-05-30 22:43 </span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">飞鸽传书</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the File Name to Edit : testfile</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the File Name to Add Messages : testfile</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the Messages : 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the Messages : 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the Messages : 8</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the Messages : 9</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the Messages : </span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">End of the file</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the File Name to Edit : testfile</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Input the File Name : testfile</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Please Input the KeyWord : 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">7:7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">What Would You Like to Do:        </span></span></span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">List Directory ....................... 1</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Change Directory ..................... 2</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Edit File ............................ 3</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Remove File .......................... 4</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Add Messages in a File ............... 5</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Search Keyword in a Specified File ... 6</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Exit Menu ............................ 7</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Enter Your Choice : 7   </span></font></font> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">Thank You for Using, bye-bye</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><strong>3. </strong></span></span></font></font><span style="text-decoration: none;"><font size="2"><strong>设计思路</strong></font></span></p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;"><font size="2"><span style="">需求中的</span></font></span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">1-5</span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">比较简单，这里就不赘述了。主要解释一下</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">6</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">、</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">7</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">点的需求是如何设计与实现的。</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">6)</span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">需求即对应源代码里的</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">addMessage</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">函数，主要原理是利用重定向操作把用户的输入数据追加到文件末尾，主要代码如下：</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">while [ "$MMSG" != "" ]</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">do</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">echo $MMSG &gt;&gt; $MFILE</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">MMSG=""</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">      </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">read -p "Input the Messages : " MMSG</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">done</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">7)</span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">该需求对应源代码里的</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">searchKeyword</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">函数，在判断完用户的输入文件名的合法性与文件是否存在之后，使用</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">grep(</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">带参数 </span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">-n</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">回应行号 </span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">-i</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">忽略大小写</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">)</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">进行查找。主要代码如下：</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">KWORD=""</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">read -p "Please Input the KeyWord : " KWORD</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">if [ "$KWORD" != "" ]</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">then</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB">	cat $SFILE | grep -n -i $KWORD</span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">fi</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;">    </span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">return</span></span></span></font></font></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><strong>4. </strong></span></span></font></font><span style="text-decoration: none;"><font size="2"><strong>上机体会与总结</strong></font></span></p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">1</span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">）在写</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">Shell</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">脚本的时候我们应该注意使用重定向操作符，方便完成对文件的</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">I/O</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">操作</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">2</span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">）应该学会使用</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">grep, awk</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">之类的文本操作工具，这样当我们处理大量文本操作的时候效率将大大提高  </span></font></span> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style="">3) </span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">写</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">shell</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">脚本的时候要注意</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">Shell</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">脚本的语法和</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">C</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">语言的语法的区别，不要搞混了</span></font></span></p>
+<p align="left" style="margin-bottom: 0cm; text-decoration: none;"> <br> </p>
+<p align="left" style="margin-bottom: 0cm;"><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><strong>5. </strong></span></span></font></font><span style="text-decoration: none;"><font size="2"><strong>执行</strong></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><strong>Shell</strong></span></font></font></span><span style="text-decoration: none;"><font size="2"><strong>脚本的方式</strong></font></span></p>
+<p align="left" style="margin-bottom: 0cm;"><span style="text-decoration: none;"><font size="2"><span style="">执行一个脚本一般有三种方法：</span></font></span><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="text-decoration: none;"><span style=""><br>1) </span></span></span></font></font><span style="text-decoration: none;"><font size="2"><span style="">将该脚本权限设置为可执行</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">(chmod +x filename)</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">，然后直接用脚本的名字执行，这种方法相当于一个普通的命令。</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style=""><br>2) . filename (</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">点空格</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">filename</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">，这样就默认使用</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">sh</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">执行该脚本，并且不生成子</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">shell</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">，是在当前</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">shell</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">下运行</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">,</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">不用设置可执行权限。</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style=""><br>3) sh filename (</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">生成子</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">shell,</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">在该种模式下常用于调试脚本，如</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">sh -x filename</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">，也不用设置可执行权限</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">)</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">。</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style=""><br></span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">当然还可以用</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style="">exec</span></span></font></font></span><span style="text-decoration: none;"><font size="2"><span style="">来执行，但一般不用，因为可能会有点危险。</span></font><font face="文鼎PL细上海宋Uni, serif"><font size="2"><span lang="en-GB"><span style=""><br></span></span></font></font></span><br> </p>
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+        </div>
+    </div>
+    <div class="post__toc">
+    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+<div class="comment__title">
+    Responses
+</div>
+     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
+
+<ul id="comments">
+</ul>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="Unix/Linux Shell脚本入门实例[00原创]"
+                      data-blogtitle="D 的个人博客"
+                      data-url="https://88250.github.io/articles/2007/07/03/1183487160000.html"
+                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://88250.github.io/articles/2007/07/03/1183461660000.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Liva运行时截图[00原创]"
+                       aria-label="旧一篇: Liva运行时截图[00原创]">←</a>
+
+                    <a href="https://88250.github.io/articles/2007/07/05/1183655280000.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Linux下部署RMI的问题与解决方法[00原创]"
+                       aria-label="新一篇: Linux下部署RMI的问题与解决方法[00原创]">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578444895986"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    Util.addScript('https://88250.github.io/js/page.js?1578444895986', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1183487160000",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadExternalRelevantArticles("Shell Programming",
+    '<h3>HACPAI POSTS</h3>');
+    page.loadRelevantArticles('1183487160000', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 86ms, 2020/01/08 08:55:44 -->
