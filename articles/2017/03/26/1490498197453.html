@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>GitHub Windows 安装器 - D 的个人博客</title><meta name="description" content="GitHub 已经提供了完整安装包，所以这个项目可以退休了 😄 GitHub Windows 安装器，简称 GWI。项目地址：https://github.com/b3log/github-windows-installer 项目背景 GitHub Windows 是在线安装的，需要连接亚马逊云。因为你懂的原因，使得安装 GitHub Windows 成了一个问题 😭 解决方案 本库是一个 GitHub Windows 安装器的 golang 实现，在 网络条件好的地方 运行就可以制作安装包啦！ 网络条件好的地方：国外服务器。比如阿里云按量付费的 ECS，选硅谷节点最低配置。 使用步骤 在国外服务器上部署 gwi（下载或自行构建） 运行 gwi，将在当前工作目录生成 github-windows.zip 安装包 下载安装包到本地后运行 GitHub.application 安装完成！ 原理 下载应用元数据文件 下载包描述文件 解析所需包/资源文件下载路径 并发下载 具体请看代码 😏"/><meta property="og:description" content="GitHub 已经提供了完整安装包，所以这个项目可以退休了 😄 GitHub Windows 安装器，简称 GWI。项目地址：https://github.com/b3log/github-windows-installer 项目背景 GitHub Windows 是在线安装的，需要连接亚马逊云。因为你懂的原因，使得安装 GitHub Windows 成了一个问题 😭 解决方案 本库是一个 GitHub Windows 安装器的 golang 实现，在 网络条件好的地方 运行就可以制作安装包啦！ 网络条件好的地方：国外服务器。比如阿里云按量付费的 ECS，选硅谷节点最低配置。 使用步骤 在国外服务器上部署 gwi（下载或自行构建） 运行 gwi，将在当前工作目录生成 github-windows.zip 安装包 下载安装包到本地后运行 GitHub.application 安装完成！ 原理 下载应用元数据文件 下载包描述文件 解析所需包/资源文件下载路径 并发下载 具体请看代码 😏"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="GitHub Windows 安装器 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/03/26/1490498197453.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="GitHub Windows 安装器 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/03/26/1490498197453.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578446138232"/>
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578446927119"/>
             <link rel="prev" title="使用 NGINX 流控和 fail2ban 防止 CC 攻击" href="https://88250.github.io/articles/2017/02/13/1486915389413.html">
             <link rel="next" title="ScaleIO 2.0 基础及安装纪要" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -540,12 +540,12 @@ bold;">Sym</span></a>
     </div>
 </footer>
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578446138232"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578446927119"
         charset="utf-8"></script>
 <script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578446138232"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578446927119"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
 <script>
@@ -591,7 +591,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578446138232', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578446927119', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1490498197453",
@@ -613,4 +613,4 @@ Skin.initArticle()
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 218ms, 2020/01/08 09:15:49 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 231ms, 2020/01/08 09:29:30 -->
