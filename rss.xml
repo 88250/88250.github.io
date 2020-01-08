@@ -2,132 +2,132 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>D 的个人博客</title>
-    <link>https://dl88250.gitee.io</link>
-    <atom:link href="https://dl88250.gitee.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <link>https://88250.github.io</link>
+    <atom:link href="https://88250.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <description>开源程序员，自由职业者</description>
     <generator>Solo, v3.6.8, https://solo.b3log.org</generator>
-    <lastBuildDate>Thu, 09 Jan 2020 00:30:16 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jan 2020 00:49:03 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
       <title>2019 用善意面对世界</title>
-      <link>https://dl88250.gitee.io/articles/2019/12/30/1577712379212.html</link>
+      <link>https://88250.github.io/articles/2019/12/30/1577712379212.html</link>
       <description>
         <![CDATA[<p>春夏秋 春、夏、秋。 明年就是《创》的第三年了，也将是最后一年更新该系列了，以后不定时有感随发。 Vditor 今年我和 V 主要精力花在了构建 Vditor 上，我们没有选择基于其他编辑器内核来做，而是从零开始写，包括 Markdown 解析渲染也撸了一遍，整个实现基本没有第三方依赖（除了支持图表、数学公式等）。 对于大部分开发者来说，提供给用户使用的编辑器是能用就凑合着用，因为编辑器候选品不多，自己造轮子的话工作量不小，即使碰到有需要更改的地方也有办法：  通过编辑器本身的扩展机制 在生成的 HTML 上再做处理 直接改编辑器项目源码  办法是有，修修补补也能用。但如果要追求更好的用户体验那就只能自己写一个了。 另外，我们观察到一个现象，比较成功的 UGC 社区都有自己的编辑器。因为内容源是用户创造的，编辑器是否好用会对创作过程产生很大影响，所以编辑器可以说是 UGC 社区的核心之一。 Vditor 起初的定位是 Markdown 编辑器，我们已经在 v1 中达到了业界主流水准，即分屏编辑预览。v2 中我们改变了定位：“所见即所得，支持 Markdown”，这样 Vditor 将更....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/12/30/1577712379212.html</guid>
-      <category>2019</category>
-      <category>创业</category>
-      <category>总结</category>
+      <guid>https://88250.github.io/articles/2019/12/30/1577712379212.html</guid>
       <category>开源</category>
+      <category>2019</category>
+      <category>总结</category>
+      <category>创业</category>
       <pubDate>Mon, 30 Dec 2019 21:31:08 +0800</pubDate>
     </item>
     <item>
       <title>Vditor 所见即所得</title>
-      <link>https://dl88250.gitee.io/articles/2019/12/26/1577370404903.html</link>
+      <link>https://88250.github.io/articles/2019/12/26/1577370404903.html</link>
       <description>
         <![CDATA[<p>阶段性目标 大概在去年这个时候萌生了开发 Vditor 的念头，两个月后 Vditor 第一版完成。第一版基于 textarea 开发，该版本的主要目标是替换在用的第三方编辑器，实现 B3log 各产品线上编辑器的统一。 Vditor 的定位是“下一代的 Markdown 编辑器，为未来而构建”。第一版离这个目标相差还远，但经过这大半年的迭代我们离目标已经越来越近了：  由基于 textarea 改为基于 contenteditable 实现 Markdown 引擎 Lute，并由 markdown-it 切换为 Lute 图表渲染、多媒体播放、语音阅读等功能 所见即所得模式  所见即所得 所见即所得（What you see is what you get，缩写即 WYSIWYG）在编辑器领域指的是看到啥就是啥，比如我想加粗某个字，那“加粗”只是个操作，操作结果就是得到加粗后的文本，而加粗的操作（标记符）是不会出现在文本中的。 目前看来，大部分人习惯所见即所得的编辑方式，因为这种方式非常直观。但在程序员圈子里却恰恰相反，我们更喜欢标记类排版编辑方式，其中最为流行的是 Markdown....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/12/26/1577370404903.html</guid>
+      <guid>https://88250.github.io/articles/2019/12/26/1577370404903.html</guid>
       <category>Vditor</category>
       <category>编辑器</category>
-      <category>所见即所得</category>
       <category>Markdown</category>
+      <category>所见即所得</category>
       <pubDate>Thu, 26 Dec 2019 22:27:02 +0800</pubDate>
     </item>
     <item>
       <title>关于我</title>
-      <link>https://dl88250.gitee.io/about</link>
+      <link>https://88250.github.io/about</link>
       <description>
         <![CDATA[<p>我叫丁亮（Daniel/D/88250），是一名开源程序员，自由职业者。</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/about</guid>
+      <guid>https://88250.github.io/about</guid>
       <category>总结</category>
       <pubDate>Sun, 15 Dec 2019 10:38:51 +0800</pubDate>
     </item>
     <item>
       <title>创业的第二个夏天</title>
-      <link>https://dl88250.gitee.io/articles/2019/08/09/1565318802920.html</link>
+      <link>https://88250.github.io/articles/2019/08/09/1565318802920.html</link>
       <description>
         <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。  这个夏天我开始做一些自己一直想做的事情了。 星火 做一个真正意义上的社区，这是我最近几年来最想做的一件事，通过星火已经建立了雏形。想法、认知以及如何做尽皆分享于《写在星火初版发布之际》2。 目前星火暂时只作为一个 side project，以后时间多起来的话我会把更多精力放在上面。不必纠结于理想和现实之间的选择，相信只要足够努力就一定都能实现。 Lute  千呼万唤始出来，犹抱琵琶半遮面。转轴拨弦三两声，未成曲调先有情。  7 月份整整一个月基本都在闭关修炼 Markdown 程序员之道，这条道就是做一款实现《CommonMark 规范》3 的 Markdown 引擎。在第一次学用 Markdown 时就有此想法了，今年年初的时候终于付诸于实践，建立了项目仓库开始探索，但进展一直断断续续。 年初雄心壮志，年中饱受摧残，期间重写了一遍又一遍，最终还是靠抄官方的参考实现4 做了一版，算是渡劫失败吧。其中的曲折后面会单独写一篇分享给那些正在准备渡劫飞升的道友，祝好运 ? （2019-11-17 更新：CommonM....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/08/09/1565318802920.html</guid>
-      <category>B3log</category>
+      <guid>https://88250.github.io/articles/2019/08/09/1565318802920.html</guid>
       <category>创业</category>
+      <category>B3log</category>
       <pubDate>Sun, 17 Nov 2019 00:35:36 +0800</pubDate>
     </item>
     <item>
       <title>创业的第二个春天</title>
-      <link>https://dl88250.gitee.io/articles/2019/04/23/1555989598304.html</link>
+      <link>https://88250.github.io/articles/2019/04/23/1555989598304.html</link>
       <description>
         <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇创业的第一个春天看起。  一年过去了，计划没有变化快，而变化就是没有变化。 暂停小圆桌项目 “小圆桌”是一款面向企业的 SaaS 社区服务，之前的计划是 6 月份上线。陆续开发了一些后，我们决定暂停继续开发了。暂停开发的主要原因是我们对预期市场的不确定，或者说缺乏信心。 为了验证市场，我们开始提供 Sym 商业版云服务。因为对于客户来说并不关心云服务是如何搭建运维的，客户只关心提供的服务效果。所以我们决定先提供 Sym 商业版云服务来验证市场，如果有一定数量的企业选择云服务版的社区，那就可以说明面向企业的 SaaS 社区是有市场的，那时候再重新启动小圆桌项目。 很多成功的商业是预先判断市场、超前时代的。可惜我没有那样的能力和实力，只能就眼目前的情况来做出一些短期选择。如果我和 V 还在上班而不是自己创业，小圆桌作为一个 side project 的话是绝对要去实现上线的，因为我觉得真的值得一试。 暂停对个人出售 Sym 商业版 之前 Sym 商业版是对个人出售的，并且价格仅是对企业售价的 5 折。直到上个月我发现了一件令我非常沮丧的事情，就是有....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/04/23/1555989598304.html</guid>
+      <guid>https://88250.github.io/articles/2019/04/23/1555989598304.html</guid>
       <category>B3log</category>
       <category>创业</category>
       <pubDate>Mon, 11 Nov 2019 00:09:34 +0800</pubDate>
     </item>
     <item>
       <title>创业的第二个秋天</title>
-      <link>https://dl88250.gitee.io/articles/2019/11/11/1573402018349.html</link>
+      <link>https://88250.github.io/articles/2019/11/11/1573402018349.html</link>
       <description>
         <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。  帮助别人成功，自己才有成功的机会。 Vditor &amp; Lute 这个秋天开始实现 Vditor 的“所见即所得”特性，即实现 Typora2 那样写 Markdown 时不用分屏预览，而是边写边渲染。不过 Markdown 本身的设计用意就是“所见即所得”，所以把这个特性叫做“实时渲染”更恰当一些。这个月应该能实现完，下个月正式发布。 技术方案上我们是通过让 Lute 支持渲染“Vditor DOM”来实现。这个方案最难的部分莫过于实现源码映射3，即渲染结果字符和 Markdown 原文字符的位置对应关系。只有实现了源码映射才能实现编辑（光标）位置的正确移动。完整方案和技术细节后续会单独写一篇文档来介绍，希望能给其他在做 Markdown 编辑器的开发者带来帮助。 Latke Latke 是我们 Java 产品线的开发框架，之前的 Latke 是基于 Servlet 实现的，虽然能用但是一直不太满意：  Servlet 有点重，很多特性用不上 性能不足够好 不同的 Servlet 容器有不同的部署细节，....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/11/11/1573402018349.html</guid>
-      <category>创业</category>
+      <guid>https://88250.github.io/articles/2019/11/11/1573402018349.html</guid>
       <category>B3log</category>
+      <category>创业</category>
       <pubDate>Mon, 11 Nov 2019 00:07:16 +0800</pubDate>
     </item>
     <item>
       <title>CommonMark 规范要点解读</title>
-      <link>https://dl88250.gitee.io/articles/2019/08/27/1566893557720.html</link>
+      <link>https://88250.github.io/articles/2019/08/27/1566893557720.html</link>
       <description>
         <![CDATA[<p>为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。  由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。  在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括：  David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/08/27/1566893557720.html</guid>
-      <category>CommonMark</category>
+      <guid>https://88250.github.io/articles/2019/08/27/1566893557720.html</guid>
       <category>Markdown</category>
+      <category>CommonMark</category>
       <pubDate>Tue, 29 Oct 2019 17:26:09 +0800</pubDate>
     </item>
     <item>
       <title>Lute 实现后记</title>
-      <link>https://dl88250.gitee.io/articles/2019/08/29/1567062979327.html</link>
+      <link>https://88250.github.io/articles/2019/08/29/1567062979327.html</link>
       <description>
         <![CDATA[<p>CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/08/29/1567062979327.html</guid>
+      <guid>https://88250.github.io/articles/2019/08/29/1567062979327.html</guid>
       <category>Lute</category>
       <pubDate>Thu, 29 Aug 2019 15:16:32 +0800</pubDate>
     </item>
     <item>
       <title>我为什么要用中文写项目文档</title>
-      <link>https://dl88250.gitee.io/articles/2019/08/19/1566191673842.html</link>
+      <link>https://88250.github.io/articles/2019/08/19/1566191673842.html</link>
       <description>
         <![CDATA[<p>English Please 最近 B3log 开源社区下的项目 BND1 以及 30s2 被外国友人 hobolance3 贴了两条建议：  English Please - BND4 English Please - 30s5  这两个项目都是中文写的 README。他建议把中文换成英文，这样对外国友人更友好，也能为项目获得更多关注。  What is the problem with Chinese README's What we want How this will help you  结尾引用了 Richard Stallman 的名言：  Sharing knowledge is the most fundamental act of friendship. Because it is a way you can give something without loosing something.  hobolance 也给其他一些中文项目提过该建议，大部分处理是被直接关闭。因为这些项目和 BND、30s 一样都是面向国内用户的，比如 UnblockNeteaseMusic....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/08/19/1566191673842.html</guid>
+      <guid>https://88250.github.io/articles/2019/08/19/1566191673842.html</guid>
       <category>开源</category>
       <pubDate>Mon, 19 Aug 2019 13:14:48 +0800</pubDate>
     </item>
     <item>
       <title>写在星火初版发布之际</title>
-      <link>https://dl88250.gitee.io/articles/2019/06/04/1559578726531.html</link>
+      <link>https://88250.github.io/articles/2019/06/04/1559578726531.html</link>
       <description>
         <![CDATA[<p>对黑客派的不满 一直以来我对黑客派都不是很满意，最近两年不满感日趋加重。不满并不是来自于功能或者界面，因为功能或者界面是可以不断调整、打磨和改进的。 对黑客派的不满主要来自于它对“社区”的实现方式是中心化的。随着我对“社区”一词的逐步理解、实践和思考，我越发感到中心化的社区实现方式是有问题的，因为这样的话黑客派其实并不是一个真正的社区，倒更像是一个开放了注册的个人博客，使用社区来形容它有挂羊头卖狗肉之嫌。 在意识到这是确实存在的一个问题后，我尝试性地做了一个修正方案，即通过“贡献系统”来实现社区自治，从而将中心化集权尽量进行分散，将一些管理权交给对黑客派有较多贡献的用户。虽然目前看来这个方案还算奏效，但却没有从根本上解决问题，因为根本问题还是来自于对社区的定义。这就好像“抽象泄露原则”所描述的那样，越是要在更高级抽象的层面解决问题，就越容易产生更多的新问题，最终，底层的基础问题将暴露无遗，浮沙高楼。 现在黑客派已经木已成舟，再怎么修整也是舟，成不了飞船了。不过即使如此，我也不会放弃的黑客派的，后面会继续尽最大努力进行调整，尽量弥补遗憾。 再识社区 社区究竟是什么？从数据、服务和系统的角....</p>]]>
       </description>
       <author>88250</author>
-      <guid>https://dl88250.gitee.io/articles/2019/06/04/1559578726531.html</guid>
+      <guid>https://88250.github.io/articles/2019/06/04/1559578726531.html</guid>
       <category>IPFS</category>
-      <category>黑客派</category>
       <category>星火</category>
+      <category>黑客派</category>
       <category>社区</category>
       <pubDate>Tue, 04 Jun 2019 00:18:51 +0800</pubDate>
     </item>
