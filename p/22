@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>D 的个人博客</title><meta name="description" content="D 的个人博客"/><meta property="og:description" content="D 的个人博客"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io?p=22"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">            <link rel="canonical" href="https://88250.github.io">        <link rel="stylesheet" href="https://88250.github.io/skins/Pinghsu/css/base.css?1578446138232"/>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144185520-1');
+</script></head>
+<body class="body--gray">
+<header class="header">
+    <div class="wrapper">
+        <a href="https://88250.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+        D 的个人博客
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://88250.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://88250.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://88250.github.io/links.html">
+                Links
+            </a>
+            <a href="https://88250.github.io/search" class="search">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                    <path fill="#444" d="M19.385 11.846c0-4.156-3.382-7.538-7.538-7.538s-7.538 3.382-7.538 7.538 3.382 7.538 7.538 7.538 7.538-3.382 7.538-7.538zM28 25.846c0 1.178-0.976 2.154-2.154 2.154-0.572 0-1.127-0.236-1.514-0.639l-5.772-5.755c-1.969 1.363-4.325 2.087-6.714 2.087-6.546 0-11.846-5.3-11.846-11.846s5.3-11.846 11.846-11.846 11.846 5.3 11.846 11.846c0 2.389-0.724 4.745-2.087 6.714l5.772 5.772c0.387 0.387 0.623 0.942 0.623 1.514z"></path>
+                </svg>
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                <li>
+                    <a href="https://88250.github.io/start">
+                        <i class="icon__login"></i> 开始使用
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.b3log.org/about" target="_self" rel="section">
+                        关于我
+                    </a>
+                </li>
+                <li>
+                    <a href="/my-github-repos" target="_self" rel="section">
+                        我的开源
+                    </a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com" target="_blank" rel="section">
+                        黑客派
+                    </a>
+                </li>
+                <li>
+                    <a href="https://b3log.org" target="_blank" rel="section">
+                        B3log
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://88250.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/search">
+                        Search
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header><main id="pjax" class="fn__flex-1">
+    
+    <div class="wrapper wrapper--min">
+<main class="article-list fn__clear">
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180421.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="2019 用善意面对世界" href="https://88250.github.io/articles/2019/12/30/1577712379212.html">
+                        春夏秋 春、夏、秋。 明年就是《创》的第三年了，也将是最后一年更新该系列了，以后不定时有感随发。 Vditor 今年我和 V 主要精力花在了构建 Vditor 上，我们没有选择基于其他编辑器内核来做，而是从零开始写，包括 Markdown 解析渲染也撸了一遍，整个实现基本没有第三方依赖（除了支持图表、数学公式等）。 对于大部分开发者来说，提供给用户使用的编辑器是能用就凑合着用，因为编辑器候选品不多，自己造轮子的话工作量不小，即使碰到有需要更改的地方也有办法： 通过编辑器本身的扩展机制 在生成的 HTML 上再做处理 直接改编辑器项目源码 办法是有，修修补补也能用。但如果要追求更好的用户体验那就只能自己写一个了。 另外，我们观察到一个现象，比较成功的 UGC 社区都有自己的编辑器。因为内容源是用户创造的，编辑器是否好用会对创作过程产生很大影响，所以编辑器可以说是 UGC 社区的核心之一。 Vditor 起初的定位是 Markdown 编辑器，我们已经在 v1 中达到了业界主流水准，即分屏编辑预览。v2 中我们改变了定位：“所见即所得，支持 Markdown”，这样 Vditor 将更......
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/12/30/1577712379212.html">
+                            2019 用善意面对世界
+                        </a>
+                    </h2>
+                            <div class="ico ico--0"></div>
+                                <a class="item__tag"
+                                   href="https://88250.github.io/category/past-summary">往事与总结</a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180617.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="Vditor 所见即所得" href="https://88250.github.io/articles/2019/12/26/1577370404903.html">
+                        阶段性目标 大概在去年这个时候萌生了开发 Vditor 的念头，两个月后 Vditor 第一版完成。第一版基于 textarea 开发，该版本的主要目标是替换在用的第三方编辑器，实现 B3log 各产品线上编辑器的统一。 Vditor 的定位是“下一代的 Markdown 编辑器，为未来而构建”。第一版离这个目标相差还远，但经过这大半年的迭代我们离目标已经越来越近了： 由基于 textarea 改为基于 contenteditable 实现 Markdown 引擎 Lute，并由 markdown-it 切换为 Lute 图表渲染、多媒体播放、语音阅读等功能 所见即所得模式 所见即所得 所见即所得（What you see is what you get，缩写即 WYSIWYG）在编辑器领域指的是看到啥就是啥，比如我想加粗某个字，那“加粗”只是个操作，操作结果就是得到加粗后的文本，而加粗的操作（标记符）是不会出现在文本中的。 目前看来，大部分人习惯所见即所得的编辑方式，因为这种方式非常直观。但在程序员圈子里却恰恰相反，我们更喜欢标记类排版编辑方式，其中最为流行的是 Markdown......
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/12/26/1577370404903.html">
+                            Vditor 所见即所得
+                        </a>
+                    </h2>
+                            <div class="ico ico--1"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/Vditor">
+                                    Vditor
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20191024.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="创业的第二个秋天" href="https://88250.github.io/articles/2019/11/11/1573402018349.html">
+                        如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 帮助别人成功，自己才有成功的机会。 Vditor &amp; Lute 这个秋天开始实现 Vditor 的“所见即所得”特性，即实现 Typora2 那样写 Markdown 时不用分屏预览，而是边写边渲染。不过 Markdown 本身的设计用意就是“所见即所得”，所以把这个特性叫做“实时渲染”更恰当一些。这个月应该能实现完，下个月正式发布。 技术方案上我们是通过让 Lute 支持渲染“Vditor DOM”来实现。这个方案最难的部分莫过于实现源码映射 3，即渲染结果字符和 Markdown 原文字符的位置对应关系。只有实现了源码映射才能实现编辑（光标）位置的正确移动。完整方案和技术细节后续会单独写一篇文档来介绍，希望能给其他在做 Markdown 编辑器的开发者带来帮助。 Latke Latke 是我们 Java 产品线的开发框架，之前的 Latke 是基于 Servlet 实现的，虽然能用但是一直不太满意： Servlet 有点重，很多特性用不上 性能不足够好 不同的 Servlet 容器有不同的部署细节，.....
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/11/11/1573402018349.html">
+                            创业的第二个秋天
+                        </a>
+                    </h2>
+                            <div class="ico ico--2"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/%E5%88%9B%E4%B8%9A">
+                                    创业
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20171214.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="Lute 实现后记" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">
+                        CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌....
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">
+                            Lute 实现后记
+                        </a>
+                    </h2>
+                            <div class="ico ico--3"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/Lute">
+                                    Lute
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20181218.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="CommonMark 规范要点解读" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
+                        为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。 由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。 在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括： David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei.......
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
+                            CommonMark 规范要点解读
+                        </a>
+                    </h2>
+                            <div class="ico ico--4"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/CommonMark">
+                                    CommonMark
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190218.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="我为什么要用中文写项目文档" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">
+                        English Please 最近 B3log 开源社区下的项目 BND1 以及 30s2 被外国友人 hobolance3 贴了两条建议： English Please - BND4 English Please - 30s5 这两个项目都是中文写的 README。他建议把中文换成英文，这样对外国友人更友好，也能为项目获得更多关注。 What is the problem with Chinese README's What we want How this will help you 结尾引用了 Richard Stallman 的名言： Sharing knowledge is the most fundamental act of friendship. Because it is a way you can give something without loosing something. hobolance 也给其他一些中文项目提过该建议，大部分处理是被直接关闭。因为这些项目和 BND、30s 一样都是面向国内用户的，比如 UnblockNeteaseMusic....
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">
+                            我为什么要用中文写项目文档
+                        </a>
+                    </h2>
+                            <div class="ico ico--5"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/%E5%BC%80%E6%BA%90">
+                                    开源
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190711.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="创业的第二个夏天" href="https://88250.github.io/articles/2019/08/09/1565318802920.html">
+                        如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做一些自己一直想做的事情了。 星火 做一个真正意义上的社区，这是我最近几年来最想做的一件事，通过星火已经建立了雏形。想法、认知以及如何做尽皆分享于《写在星火初版发布之际》2。 目前星火暂时只作为一个 side project，以后时间多起来的话我会把更多精力放在上面。不必纠结于理想和现实之间的选择，相信只要足够努力就一定都能实现。 Lute 千呼万唤始出来，犹抱琵琶半遮面。转轴拨弦三两声，未成曲调先有情。 7 月份整整一个月基本都在闭关修炼 Markdown 程序员之道，这条道就是做一款实现《CommonMark 规范》3 的 Markdown 引擎。在第一次学用 Markdown 时就有此想法了，今年年初的时候终于付诸于实践，建立了项目仓库开始探索，但进展一直断断续续。 年初雄心壮志，年中饱受摧残，期间重写了一遍又一遍，最终还是靠抄官方的参考实现 4 做了一版，算是渡劫失败吧。其中的曲折后面会单独写一篇分享给那些正在准备渡劫飞升的道友，祝好运 ? （2019-11-17 更新：CommonM......
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/08/09/1565318802920.html">
+                            创业的第二个夏天
+                        </a>
+                    </h2>
+                            <div class="ico ico--6"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/%E5%88%9B%E4%B8%9A">
+                                    创业
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180702.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="写在星火初版发布之际" href="https://88250.github.io/articles/2019/06/04/1559578726531.html">
+                        对黑客派的不满 一直以来我对黑客派都不是很满意，最近两年不满感日趋加重。不满并不是来自于功能或者界面，因为功能或者界面是可以不断调整、打磨和改进的。 对黑客派的不满主要来自于它对“社区”的实现方式是中心化的。随着我对“社区”一词的逐步理解、实践和思考，我越发感到中心化的社区实现方式是有问题的，因为这样的话黑客派其实并不是一个真正的社区，倒更像是一个开放了注册的个人博客，使用社区来形容它有挂羊头卖狗肉之嫌。 在意识到这是确实存在的一个问题后，我尝试性地做了一个修正方案，即通过“贡献系统”来实现社区自治，从而将中心化集权尽量进行分散，将一些管理权交给对黑客派有较多贡献的用户。虽然目前看来这个方案还算奏效，但却没有从根本上解决问题，因为根本问题还是来自于对社区的定义。这就好像“抽象泄露原则”所描述的那样，越是要在更高级抽象的层面解决问题，就越容易产生更多的新问题，最终，底层的基础问题将暴露无遗，浮沙高楼。 现在黑客派已经木已成舟，再怎么修整也是舟，成不了飞船了。不过即使如此，我也不会放弃的黑客派的，后面会继续尽最大努力进行调整，尽量弥补遗憾。 再识社区 社区究竟是什么？从数据、服务和系统的角....
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/06/04/1559578726531.html">
+                            写在星火初版发布之际
+                        </a>
+                    </h2>
+                            <div class="ico ico--7"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/%E6%98%9F%E7%81%AB">
+                                    星火
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190107.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="如何限制 docker run 容器执行时长？" href="https://88250.github.io/articles/2019/05/19/1558229770509.html">
+                        需求背景 有的时候我们需要跑一些不一定安全（不受信任）的程序时，可以通过 docker 实现资源隔离，其执行时长也需要控制，如果执行时间太长就终止运行。 Docker 本身是否支持超时控制 从 2013 年开始每隔一段时间都有人呼吁 docker 官方来实现这个特性，但官方并不打算实现。 具体讨论细节请看 https://github.com/moby/moby/issues/1905 。 错误的方案 以上讨论中以及其他地方陆续有人提出“外围”解决方案，其中有两种常见的错误方案值得我们注意。 kill docker run timeout 3 docker run ... untrusted_program docker run 本身是一个 docker client 派生的进程，使用 kill docker run 进程来终止容器进程运行（比如通过 Linux 命令 timeout 或者类似发送 kill 到 docker run 进程）的方案都可能会有问题，导致容器进程无法终止。主要原因是： docker run 这个进程不一定能及时响应信号，即使响应了信号，也不一定能传到容器......
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/05/19/1558229770509.html">
+                            如何限制 docker run 容器执行时长？
+                        </a>
+                    </h2>
+                            <div class="ico ico--8"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/Docker">
+                                    Docker
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190115.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="IPFS 数据链接与内容寻址" href="https://88250.github.io/articles/2019/05/05/1557020262516.html">
+                        本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文将介绍如何在对等节点上创建和获取可验证的数据链接。 LESSION 1 - 创建节点并返回内容标识符（CID） 在本教程中，我们将探索 IPFS DAG API，它允许我们将数据对象存储在 IPFS 中，你可以在 IPFS 中存储一些令人兴奋的东西，比如你最喜欢的小猫的 GIF。 你可以将数据对象作为参数传入 ipfs.dag.put 方法来创建新节点，该方法返回新创建的节点的内容标识符（CID）。 ipfs.dag.put({ hello: 'world' }) CID 是 IPFS 中从其内容生成的数据地址。每当有人将相同的 {hello：'world'} 数据放入 IPFS 时，他们将获得与你获得的相同的 CID。 如果他们改为输入 {hell0：'w0rld'}，则 CID 会有所不同。 如下示例代码将创建 { test: 1 } 节点并返回其 CID： const run = async () =&amp....
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/05/05/1557020262516.html">
+                            IPFS 数据链接与内容寻址
+                        </a>
+                    </h2>
+                            <div class="ico ico--9"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/IPFS">
+                                    IPFS
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/file/2019/04/dag-4aa8967c.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="IPFS 去中心化数据结构（四）" href="https://88250.github.io/articles/2019/04/30/1556585434162.html">
+                        本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（三）。 LESSION 5 - 默克尔树和有向无环图（DAG） 正如我们所讨论的，去中心化的 Web 依赖于链接的数据结构。让我们来探索一下它们的样子。 默克尔树 默克尔树即“哈希树”，是一种树形数据结构，其中每个节点都是哈希值。 +--------+ | | +---------+ root +---------+ | | | | | +----+---+ | | | | +----v-----+ +-----v----+ +-----v----+ | | | | | | | node A | | node B | | node C | | | | | | | +----------+ +-----+----+ +-----+----+ | | +-----v----+ +-----v----+ | | | | | node D | | node E +-------+ |......
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/04/30/1556585434162.html">
+                            IPFS 去中心化数据结构（四）
+                        </a>
+                    </h2>
+                            <div class="ico ico--0"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/IPFS">
+                                    IPFS
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180406.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="IPFS 去中心化数据结构（三）" href="https://88250.github.io/articles/2019/04/29/1556500741161.html">
+                        本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（二）。 LESSION 4 - 内容标识符（CID） 之前我们通过可爱的照片举例让讨论不那么无趣，但实际上内容寻址可用于所有不同类型的文件和数据，JSON 对象、学术论文还有视频。要使加密哈希工作，我们需要知道我们正在使用的是哪种数据格式并使用适当的工具。 数据结构解码 CID 是内容寻址的特定方式。它是 IPFS 的规范之一，IPFS 是一种去中心化的 Web 协议，我们将在后面的教程中讨论，它具有非常广泛的含义。 CID 是包含加密哈希的单个标识符，并包含了编码解码器（"codec"）相关所需的信息。编解码器以某些格式编码和解码数据。 +-------+------------------------------+ | Codec | Multihash | +-------+------------------------------+ 许多格式和协议都是使用内容寻址的......
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2019/04/29/1556500741161.html">
+                            IPFS 去中心化数据结构（三）
+                        </a>
+                    </h2>
+                            <div class="ico ico--1"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/IPFS">
+                                    IPFS
+                                </a>
+                </div>
+            </div>
+        </article>
+</main>
+    <nav class="pagination">
+                <span class="pagination__item pagination__item--current">1</span>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=2">2</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=3">3</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=4">4</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=5">5</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=6">6</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=7">7</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=8">8</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=9">9</a>
+                <a class="pagination__item"
+                   href="https://88250.github.io?p=10">10</a>
+            <span class="pagination__item pagination__item--text">...</span>
+            <a href="https://88250.github.io?p=34"
+               class="pagination__item">34</a>
+            <a href="https://88250.github.io?p=2" class="pagination__item">→</a>
+    </nav>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://hacpai.com/member/88250"
+       aria-label="https://hacpai.com/member/88250"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           aria-label="https://github.com/88250"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://88250.b3log.org/about" target="_self" rel="section">
+                关于我
+            </a>
+            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
+                我的开源
+            </a>
+            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
+                黑客派
+            </a>
+            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
+                B3log
+            </a>
+        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
+        <a class="ft__link" href="https://88250.github.io/start">开始使用</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">88250 - 开源程序员，自由职业者</div><br>
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://github.com/b3log/solo"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+        </div>
+
+            <div class="footer__mid fn__flex-1 mobile__none">
+                <div class="ft__fade">分类</div> <br>
+                    <a href="https://88250.github.io/category/dev-language"
+                       aria-label="36 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        编程语言</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/past-summary"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        往事与总结</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/i-love-opensource"
+                       aria-label="29 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        开源项目</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/linux"
+                       aria-label="9 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        Linux</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/arch"
+                       aria-label="3 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        架构设计</a> &nbsp; &nbsp;
+                    <a href="https://88250.github.io/category/database"
+                       aria-label="4 个标签"
+                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
+                        数据库</a> &nbsp; &nbsp;
+            </div>
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://88250.github.io/archives.html">
+            404
+            文章
+            </a> &nbsp; &nbsp;
+            2,019
+            评论 <br>
+            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
+            4 <span class="ft-gray">当前访客</span> <br>
+            &copy; 2020
+            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
+            
+            <br>
+            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Pinghsu
+            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
+            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578446138232"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578446138232"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://88250.github.io",
+        staticServePath: "https://88250.github.io",
+        luteAvailable: false,
+        hljsStyle: 'monokai',
+        langLabel: "zh_CN",
+        version: "3.6.8",
+    }
+    Util.init()
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+</body>
+</html>
+<!-- Generated by Latke (https://github.com/88250/latke) in 85ms, 2020/01/08 09:15:56 -->
