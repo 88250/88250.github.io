@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>模板引擎实现（一）词法分析 - D 的个人博客</title><meta name="description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/><meta property="og:description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="模板引擎实现（一）词法分析 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/05/31/1496233258522.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="模板引擎实现（一）词法分析 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578502124413"/>
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578534237516"/>
             <link rel="prev" title="ScaleIO 2.0 基础及安装纪要" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">
             <link rel="next" title="Solo 支持 Hexo/Jekyll 数据导入" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -761,12 +761,12 @@ bold;">Sym</span></a>
     </div>
 </footer>
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578502124413"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578534237516"
         charset="utf-8"></script>
 <script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578502124413"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578534237516"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
 <script>
@@ -812,7 +812,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578502124413', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578534237516', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1496233258522",
@@ -834,4 +834,4 @@ Skin.initArticle()
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 225ms, 2020/01/09 00:49:06 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 275ms, 2020/01/09 09:44:18 -->
