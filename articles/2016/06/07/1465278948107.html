@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>基于数据库复制的技术架构讨论 - D 的个人博客</title><meta name="description" content="背景 这里的数据库复制指的是将 主 业务数据库实例上的库通过同步机制（比如 MySQL binlog）_准_实时（比如最大延迟为 3s）复制到其他数据库实例上，这些实例库只做查询，不做数据写入。 这套架构设计的主要优势： * 各业务应用能够方便地在自己的 DB 实例上进行业务查询，比如通过 join 主业务库 * 在不明确业务边界、没有梳理好业务对应技术模块时可以最小成本进行变更或扩展 * 实现读写分离，提升性能 ### 一些问题 实际在实施过程中主要遇到两个问题： 1. 不可能实时完成数据同步，将造成业务上面的不一致，比如调用主库服务更新数据后，在业务库上不能实时查询到已更新的数据 2. 很难保证高可用（在使用阿里 DTS 时出现过多次问题，自己做主从可能会好一些） 为了满足业务发展，复制库的数量会逐步增多（比如新开一个产品可能就需要多复制一套库），以上两个问题可能会导致严重的故障， [CAP] 不能兼得。 ### 服务化 基于数据库复制架构的核心理念是将数据源暴露给应用，开发者直接针对数据源进行开发，是一种非常直接的方式。 但随着业务的逐渐清晰，一些业务逻辑是可以抽...."/><meta property="og:description" content="背景 这里的数据库复制指的是将 主 业务数据库实例上的库通过同步机制（比如 MySQL binlog）_准_实时（比如最大延迟为 3s）复制到其他数据库实例上，这些实例库只做查询，不做数据写入。 这套架构设计的主要优势： * 各业务应用能够方便地在自己的 DB 实例上进行业务查询，比如通过 join 主业务库 * 在不明确业务边界、没有梳理好业务对应技术模块时可以最小成本进行变更或扩展 * 实现读写分离，提升性能 ### 一些问题 实际在实施过程中主要遇到两个问题： 1. 不可能实时完成数据同步，将造成业务上面的不一致，比如调用主库服务更新数据后，在业务库上不能实时查询到已更新的数据 2. 很难保证高可用（在使用阿里 DTS 时出现过多次问题，自己做主从可能会好一些） 为了满足业务发展，复制库的数量会逐步增多（比如新开一个产品可能就需要多复制一套库），以上两个问题可能会导致严重的故障， [CAP] 不能兼得。 ### 服务化 基于数据库复制架构的核心理念是将数据源暴露给应用，开发者直接针对数据源进行开发，是一种非常直接的方式。 但随着业务的逐渐清晰，一些业务逻辑是可以抽...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="基于数据库复制的技术架构讨论 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2016/06/07/1465278948107.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="基于数据库复制的技术架构讨论 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2016/06/07/1465278948107.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578534237516"/>
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578556545532"/>
             <link rel="prev" title="敏感数据处理" href="https://88250.github.io/articles/2016/05/11/1462956775250.html">
             <link rel="next" title="呼叫中心架构设计" href="https://88250.github.io/articles/2016/07/24/1469349167953.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -423,13 +423,13 @@ bold;">Sym</span></a>
 
         <div class="fn__flex-1 footer__copyright">
             <a class="ft__link" href="https://88250.github.io/archives.html">
-                404
+                405
                 文章
             </a> &nbsp; &nbsp;
                 2,022
                 评论 <br>
             <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
-            6 <span class="ft-gray">当前访客</span> <br>
+            7 <span class="ft-gray">当前访客</span> <br>
             &copy; 2020
             <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
             
@@ -443,12 +443,12 @@ bold;">Sym</span></a>
     </div>
 </footer>
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578534237516"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578534237516"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
 <script>
@@ -462,8 +462,8 @@ bold;">Sym</span></a>
     }
     Util.init()
 </script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -493,8 +493,9 @@ bold;">Sym</span></a>
 </div>
 
 
+
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578534237516', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578556545532', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1465278948107",
@@ -505,10 +506,8 @@ bold;">Sym</span></a>
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
-    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
     page.loadExternalRelevantArticles("数据库,架构设计,分布式,微服务",
     '<h3>HACPAI POSTS</h3>');
-    page.loadRelevantArticles('1465278948107', '<h3>RELEVANT POSTS</h3>');
 Skin.initArticle()
     });
 </script>
@@ -516,4 +515,4 @@ Skin.initArticle()
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 225ms, 2020/01/09 09:44:18 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 126ms, 2020/01/09 15:56:49 -->

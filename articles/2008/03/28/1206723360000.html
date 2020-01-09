@@ -10,7 +10,7 @@
 3月份开始翻译Martin Fowler的Mocks Aren&#39;t Stubs ，in process now....
 3月28日加入了满江红，参与了Spring2.5.x的Reference翻译
  最大的体会就是：看到了中国一些开源社区的繁荣，看到了有这么多的同僚为其他人服务。很高兴自己也能成为其中一份子，很高兴。我想喊一句： Open Source，Open M...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="我的翻译生涯开始了 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/03/28/1206723360000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="我的翻译生涯开始了 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/03/28/1206723360000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578534237516"/>
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578556545532"/>
             <link rel="prev" title="朴素贝叶斯中文文本分类器的研究与实现（2）[88250、zy、Sindy原创]" href="https://88250.github.io/articles/2008/03/27/1206656040000.html">
             <link rel="next" title="Spring Framework 2.5 Reference中文翻译计划(phaseI)" href="https://88250.github.io/articles/2008/03/31/1206981540000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -290,13 +290,13 @@ bold;">Sym</span></a>
 
         <div class="fn__flex-1 footer__copyright">
             <a class="ft__link" href="https://88250.github.io/archives.html">
-                404
+                405
                 文章
             </a> &nbsp; &nbsp;
                 2,022
                 评论 <br>
             <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
-            6 <span class="ft-gray">当前访客</span> <br>
+            7 <span class="ft-gray">当前访客</span> <br>
             &copy; 2020
             <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
             
@@ -310,12 +310,12 @@ bold;">Sym</span></a>
     </div>
 </footer>
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578534237516"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578534237516"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
 <script>
@@ -329,8 +329,8 @@ bold;">Sym</span></a>
     }
     Util.init()
 </script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -360,8 +360,9 @@ bold;">Sym</span></a>
 </div>
 
 
+
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578534237516', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578556545532', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1206723360000",
@@ -372,10 +373,8 @@ bold;">Sym</span></a>
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
-    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
     page.loadExternalRelevantArticles("NetBeans,Agile Develeopment,Open Source,Spring Framework,Software Testing",
     '<h3>HACPAI POSTS</h3>');
-    page.loadRelevantArticles('1206723360000', '<h3>RELEVANT POSTS</h3>');
 Skin.initArticle()
     });
 </script>
@@ -383,4 +382,4 @@ Skin.initArticle()
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 146ms, 2020/01/09 09:44:26 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 149ms, 2020/01/09 15:56:56 -->

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>D 的个人博客</title><meta name="description" content="D 的个人博客"/><meta property="og:description" content="D 的个人博客"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io?p=5"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">            <link rel="canonical" href="https://88250.github.io?p=5">        <link rel="stylesheet" href="https://88250.github.io/skins/Pinghsu/css/base.css?1578534237516"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>D 的个人博客</title><meta name="description" content="D 的个人博客"/><meta property="og:description" content="D 的个人博客"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io?p=5"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">            <link rel="canonical" href="https://88250.github.io?p=5">        <link rel="stylesheet" href="https://88250.github.io/skins/Pinghsu/css/base.css?1578556545532"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
 <script>
@@ -87,6 +87,31 @@
 <main class="article-list fn__clear">
         <article class="item">
             <div class="item__container">
+                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180105.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+                <div rel="bookmark" class="item__abstract">
+                    <a pjax-title="理解 Eureka 的 P2P 通讯" href="https://88250.github.io/articles/2017/06/29/1498726165535.html">
+                        Eureka 客户端会和在同一个可用区（Zone）的服务端进行通讯，如果通讯失败或者服务端没有和客户端在一个可用区，则客户端将进行失效转移：对其他可用区的服务端发起通讯。 服务端接收到客户端信息后，会进行一些列操作将信息同步给其他服务端节点。如果某步操作失败，信息将在下一次心跳时同步给其他服务端节点。 当一个 Eureka 服务端节点启动后，它将向其他服务端节点获取所有实例的注册信息。服务端获取到实例列表后将根据信息创建续约（renew）相关数据并准备接收来自客户端的续约请求。如果在某个时刻客户端续约失败（15 分钟内低于 85%），服务端将停止实例过期防止该实例注册信息丢失。 在 Netflix 内部，上述过程称作自我保护模式，是 Eureka 客户端和服务端通讯时发生断网的一个保护机制。在这个场景下，服务端将尝试保存住已有的注册信息。此时客户端获取的实例列表中有可能有的实例已经不能正常服务了，客户端需要自己保证 Eureka 服务端返回的实例在不存在或不响应情况下是弹性的，最好的处理方式就是对该实例的调用设置较短超时并尝试其他服务器。 当服务端没法从其他节点获取注册信息时，....
+                    </a>
+                </div>
+                <div class="item__slant"></div>
+                <div class="item__slant item__slant--white"></div>
+                <div class="item__main">
+                    <span class="item__sup">
+                    </span>
+                    <h2 class="item__title">
+                        <a rel="bookmark" href="https://88250.github.io/articles/2017/06/29/1498726165535.html">
+                            理解 Eureka 的 P2P 通讯
+                        </a>
+                    </h2>
+                            <div class="ico ico--0"></div>
+                                <a rel="tag" class="item__tag" href="https://88250.github.io/tags/eureka">
+                                    eureka
+                                </a>
+                </div>
+            </div>
+        </article>
+        <article class="item">
+            <div class="item__container">
                 <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180820.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
                 <div rel="bookmark" class="item__abstract">
                     <a pjax-title="Solo 支持 Hexo/Jekyll 数据导入" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">
@@ -103,7 +128,7 @@
                             Solo 支持 Hexo/Jekyll 数据导入
                         </a>
                     </h2>
-                            <div class="ico ico--0"></div>
+                            <div class="ico ico--1"></div>
                                 <a class="item__tag"
                                    href="https://88250.github.io/category/i-love-opensource">开源项目</a>
                 </div>
@@ -127,7 +152,7 @@
                             模板引擎实现（一）词法分析
                         </a>
                     </h2>
-                            <div class="ico ico--1"></div>
+                            <div class="ico ico--2"></div>
                                 <a class="item__tag"
                                    href="https://88250.github.io/category/dev-language">编程语言</a>
                 </div>
@@ -151,7 +176,7 @@
                             ScaleIO 2.0 基础及安装纪要
                         </a>
                     </h2>
-                            <div class="ico ico--2"></div>
+                            <div class="ico ico--3"></div>
                                 <a rel="tag" class="item__tag" href="https://88250.github.io/tags/ScaleIO">
                                     ScaleIO
                                 </a>
@@ -176,7 +201,7 @@
                             GitHub Windows 安装器
                         </a>
                     </h2>
-                            <div class="ico ico--3"></div>
+                            <div class="ico ico--4"></div>
                                 <a rel="tag" class="item__tag" href="https://88250.github.io/tags/Git">
                                     Git
                                 </a>
@@ -201,7 +226,7 @@
                             使用 NGINX 流控和 fail2ban 防止 CC 攻击
                         </a>
                     </h2>
-                            <div class="ico ico--4"></div>
+                            <div class="ico ico--5"></div>
                                 <a rel="tag" class="item__tag" href="https://88250.github.io/tags/fail2ban">
                                     fail2ban
                                 </a>
@@ -226,7 +251,7 @@
                             疯狂的想法 C：书籍共享计划
                         </a>
                     </h2>
-                            <div class="ico ico--5"></div>
+                            <div class="ico ico--6"></div>
                                 <a rel="tag" class="item__tag" href="https://88250.github.io/tags/Creative">
                                     Creative
                                 </a>
@@ -251,7 +276,7 @@
                             2016 一个想做架构师的码农
                         </a>
                     </h2>
-                            <div class="ico ico--6"></div>
+                            <div class="ico ico--7"></div>
                                 <a class="item__tag"
                                    href="https://88250.github.io/category/past-summary">往事与总结</a>
                 </div>
@@ -275,7 +300,7 @@
                             星图 —— 一种户型图测绘方式
                         </a>
                     </h2>
-                            <div class="ico ico--7"></div>
+                            <div class="ico ico--8"></div>
                                 <a rel="tag" class="item__tag" href="https://88250.github.io/tags/StarChart">
                                     StarChart
                                 </a>
@@ -300,7 +325,7 @@
                             CLOSE_WAIT 问题分析
                         </a>
                     </h2>
-                            <div class="ico ico--8"></div>
+                            <div class="ico ico--9"></div>
                                 <a class="item__tag"
                                    href="https://88250.github.io/category/linux">Linux</a>
                 </div>
@@ -324,7 +349,7 @@
                             链接熔炉设计
                         </a>
                     </h2>
-                            <div class="ico ico--9"></div>
+                            <div class="ico ico--0"></div>
                                 <a class="item__tag"
                                    href="https://88250.github.io/category/i-love-opensource">开源项目</a>
                 </div>
@@ -348,33 +373,9 @@
                             呼叫中心架构设计
                         </a>
                     </h2>
-                            <div class="ico ico--0"></div>
-                                <a class="item__tag"
-                                   href="https://88250.github.io/category/arch">架构设计</a>
-                </div>
-            </div>
-        </article>
-        <article class="item">
-            <div class="item__container">
-                <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180929.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
-                <div rel="bookmark" class="item__abstract">
-                    <a pjax-title="基于数据库复制的技术架构讨论" href="https://88250.github.io/articles/2016/06/07/1465278948107.html">
-                        背景 这里的数据库复制指的是将 主 业务数据库实例上的库通过同步机制（比如 MySQL binlog）准实时（比如最大延迟为 3s）复制到其他数据库实例上，这些实例库只做查询，不做数据写入。 这套架构设计的主要优势： * 各业务应用能够方便地在自己的 DB 实例上进行业务查询，比如通过 join 主业务库 * 在不明确业务边界、没有梳理好业务对应技术模块时可以最小成本进行变更或扩展 * 实现读写分离，提升性能 ### 一些问题 实际在实施过程中主要遇到两个问题： 1. 不可能实时完成数据同步，将造成业务上面的不一致，比如调用主库服务更新数据后，在业务库上不能实时查询到已更新的数据 2. 很难保证高可用（在使用阿里 DTS 时出现过多次问题，自己做主从可能会好一些） 为了满足业务发展，复制库的数量会逐步增多（比如新开一个产品可能就需要多复制一套库），以上两个问题可能会导致严重的故障， [CAP] 不能兼得。 ### 服务化 基于数据库复制架构的核心理念是将数据源暴露给应用，开发者直接针对数据源进行开发，是一种非常直接的方式。 但随着业务的逐渐清晰，一些业务逻辑是可以抽....
-                    </a>
-                </div>
-                <div class="item__slant"></div>
-                <div class="item__slant item__slant--white"></div>
-                <div class="item__main">
-                    <span class="item__sup">
-                    </span>
-                    <h2 class="item__title">
-                        <a rel="bookmark" href="https://88250.github.io/articles/2016/06/07/1465278948107.html">
-                            基于数据库复制的技术架构讨论
-                        </a>
-                    </h2>
                             <div class="ico ico--1"></div>
                                 <a class="item__tag"
-                                   href="https://88250.github.io/category/database">数据库</a>
+                                   href="https://88250.github.io/category/arch">架构设计</a>
                 </div>
             </div>
         </article>
@@ -490,13 +491,13 @@ bold;">Sym</span></a>
 
         <div class="fn__flex-1 footer__copyright">
             <a class="ft__link" href="https://88250.github.io/archives.html">
-                404
+                405
                 文章
             </a> &nbsp; &nbsp;
                 2,022
                 评论 <br>
             <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
-            6 <span class="ft-gray">当前访客</span> <br>
+            7 <span class="ft-gray">当前访客</span> <br>
             &copy; 2020
             <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
             
@@ -510,12 +511,12 @@ bold;">Sym</span></a>
     </div>
 </footer>
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578534237516"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578534237516"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
 <script>
@@ -529,8 +530,8 @@ bold;">Sym</span></a>
     }
     Util.init()
 </script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -558,6 +559,7 @@ bold;">Sym</span></a>
         </svg>
     </div>
 </div>
+
 </body>
 </html>
-<!-- Generated by Latke (https://github.com/88250/latke) in 157ms, 2020/01/09 09:44:17 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 173ms, 2020/01/09 15:56:48 -->

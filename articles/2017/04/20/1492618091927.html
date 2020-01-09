@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>ScaleIO 2.0 基础及安装纪要 - D 的个人博客</title><meta name="description" content="ScaleIO 基础概念 ScaleIO 是一套由 EMC 提供的软件定义存储的解决方案，用于实现虚拟化 SAN。它主要的优势是 不局限于平台：可以融合异构系统，比如可以同时使用 VMware、Windows、Linux 来构建存储池并使用 优秀的横向扩展能力：存储提供可以扩展到上千节点 动态扩容能力：动态增减节点非常容易 MDM Meta Data Manager，即元数据管理器。至少由 3 个节点组成一个集群： Primary MDM：主管理器 Secondary MDM：从管理器 Tie Breaker：决策器 SDS ScaleIO Data Server，即数据服务器。将主机上的磁盘通过网络抽象为存储池。 SDC ScaleIO Data Client，即数据客户端。创建卷后在安装了 SDC 的系统上可以看见卷被暴露为标准块设备，格式化后就能直接用了。 GW Gateway，即网关。是一个 Web 服务，提供了 ScaleIO 的 RESTFul API。 GUI 管理客户端，UI 很酷炫并且简单易用。可以直观看到容量、IO 情况，创建池、卷等。 vSphere ...."/><meta property="og:description" content="ScaleIO 基础概念 ScaleIO 是一套由 EMC 提供的软件定义存储的解决方案，用于实现虚拟化 SAN。它主要的优势是 不局限于平台：可以融合异构系统，比如可以同时使用 VMware、Windows、Linux 来构建存储池并使用 优秀的横向扩展能力：存储提供可以扩展到上千节点 动态扩容能力：动态增减节点非常容易 MDM Meta Data Manager，即元数据管理器。至少由 3 个节点组成一个集群： Primary MDM：主管理器 Secondary MDM：从管理器 Tie Breaker：决策器 SDS ScaleIO Data Server，即数据服务器。将主机上的磁盘通过网络抽象为存储池。 SDC ScaleIO Data Client，即数据客户端。创建卷后在安装了 SDC 的系统上可以看见卷被暴露为标准块设备，格式化后就能直接用了。 GW Gateway，即网关。是一个 Web 服务，提供了 ScaleIO 的 RESTFul API。 GUI 管理客户端，UI 很酷炫并且简单易用。可以直观看到容量、IO 情况，创建池、卷等。 vSphere ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="ScaleIO 2.0 基础及安装纪要 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/04/20/1492618091927.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="ScaleIO 2.0 基础及安装纪要 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578534237516"/>
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578556545532"/>
             <link rel="prev" title="GitHub Windows 安装器" href="https://88250.github.io/articles/2017/03/26/1490498197453.html">
             <link rel="next" title="模板引擎实现（一）词法分析" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -421,13 +421,13 @@ bold;">Sym</span></a>
 
         <div class="fn__flex-1 footer__copyright">
             <a class="ft__link" href="https://88250.github.io/archives.html">
-                404
+                405
                 文章
             </a> &nbsp; &nbsp;
                 2,022
                 评论 <br>
             <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
-            6 <span class="ft-gray">当前访客</span> <br>
+            7 <span class="ft-gray">当前访客</span> <br>
             &copy; 2020
             <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
             
@@ -441,12 +441,12 @@ bold;">Sym</span></a>
     </div>
 </footer>
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578534237516"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578534237516"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
 <script>
@@ -460,8 +460,8 @@ bold;">Sym</span></a>
     }
     Util.init()
 </script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -491,8 +491,9 @@ bold;">Sym</span></a>
 </div>
 
 
+
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578534237516', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578556545532', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1492618091927",
@@ -503,10 +504,8 @@ bold;">Sym</span></a>
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
-    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
     page.loadExternalRelevantArticles("ScaleIO,EMC,SAN,VMWare",
     '<h3>HACPAI POSTS</h3>');
-    page.loadRelevantArticles('1492618091927', '<h3>RELEVANT POSTS</h3>');
 Skin.initArticle()
     });
 </script>
@@ -514,4 +513,4 @@ Skin.initArticle()
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 164ms, 2020/01/09 09:44:17 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 179ms, 2020/01/09 15:56:48 -->

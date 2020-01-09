@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>JBoss Seam 框架下的单元测试 - D 的个人博客</title><meta name="description" content="JBoss Seam 框架下的单元测试转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 想写这篇文章很久了，因为 Seam 下的单元测试一直存在一些配置方面的问题，而且 Seam 框架提倡最多的是整合测试。所以关于单元测试，无论是 Seam 的参考手册还是其他参考书（Seam In Action, etc.）里都没有详细介绍和例子。总所周知，单元测试是保证质量或 TDD 必不可少的部分，对项目的重要性不言而喻。本文以实例说明了 Seam 的单元测试如何进行，有不对之处请大家指...."/><meta property="og:description" content="JBoss Seam 框架下的单元测试转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 想写这篇文章很久了，因为 Seam 下的单元测试一直存在一些配置方面的问题，而且 Seam 框架提倡最多的是整合测试。所以关于单元测试，无论是 Seam 的参考手册还是其他参考书（Seam In Action, etc.）里都没有详细介绍和例子。总所周知，单元测试是保证质量或 TDD 必不可少的部分，对项目的重要性不言而喻。本文以实例说明了 Seam 的单元测试如何进行，有不对之处请大家指...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="JBoss Seam 框架下的单元测试 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/01/13/1231845300000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="JBoss Seam 框架下的单元测试 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/01/13/1231845300000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578534237516"/>
+              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578556545532"/>
             <link rel="prev" title="终于加入了 NetBeans Dream Team！" href="https://88250.github.io/articles/2008/12/16/1229429460000.html">
             <link rel="next" title="还是，Stairway To Haven" href="https://88250.github.io/articles/2009/01/23/1232679720000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -334,13 +334,13 @@ bold;">Sym</span></a>
 
         <div class="fn__flex-1 footer__copyright">
             <a class="ft__link" href="https://88250.github.io/archives.html">
-                404
+                405
                 文章
             </a> &nbsp; &nbsp;
                 2,022
                 评论 <br>
             <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
-            6 <span class="ft-gray">当前访客</span> <br>
+            7 <span class="ft-gray">当前访客</span> <br>
             &copy; 2020
             <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
             
@@ -354,12 +354,12 @@ bold;">Sym</span></a>
     </div>
 </footer>
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578534237516"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578534237516"
+        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578556545532"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
 <script>
@@ -373,8 +373,8 @@ bold;">Sym</span></a>
     }
     Util.init()
 </script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.1/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -404,8 +404,9 @@ bold;">Sym</span></a>
 </div>
 
 
+
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578534237516', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578556545532', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1231845300000",
@@ -416,10 +417,8 @@ bold;">Sym</span></a>
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
-    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
     page.loadExternalRelevantArticles("Software Testing,J2EE/JavaEE,JBoss Seam",
     '<h3>HACPAI POSTS</h3>');
-    page.loadRelevantArticles('1231845300000', '<h3>RELEVANT POSTS</h3>');
 Skin.initArticle()
     });
 </script>
@@ -427,4 +426,4 @@ Skin.initArticle()
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 149ms, 2020/01/09 09:44:25 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 147ms, 2020/01/09 15:56:55 -->
