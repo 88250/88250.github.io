@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>ごじゅうおん - D 的个人博客</title><meta name="description" content="ひらがな平　仮名あいうえお かきくけこ さしすせそたちつてと なぃぬねの はひふへほまみむめも やいゆえよ わいうえを"/><meta property="og:description" content="ひらがな平　仮名あいうえお かきくけこ さしすせそたちつてと なぃぬねの はひふへほまみむめも やいゆえよ わいうえを"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="ごじゅうおん - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/03/06/1204833180000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="ごじゅうおん - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/03/06/1204833180000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Pinghsu/css/base.css?1578556545532"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1578627388032"/>
             <link rel="prev" title="四级再次挂了" href="https://88250.github.io/articles/2008/03/03/1204540320000.html">
             <link rel="next" title="StoneAgeDict现阶段设计小结" href="https://88250.github.io/articles/2008/03/09/1205093700000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -14,100 +14,152 @@
 
   gtag('config', 'UA-144185520-1');
 </script></head>
-<body>
-<header class="header">
-    <div class="wrapper">
-        <a href="https://88250.github.io" rel="start" class="header__logo">
-            <img src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
-            D 的个人博客
-        </a>
-
-        <nav class="header__nav mobile__none">
-            <a href="https://88250.github.io/tags.html" rel="section">
-                Tags
-            </a>
-            <a href="https://88250.github.io/archives.html">
-                Archives
-            </a>
-            <a rel="archive" href="https://88250.github.io/links.html">
-                Links
-            </a>
-        </nav>
-
-        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://88250.github.io" rel="start">D 的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <div class="header__desc">
+                <div>
+小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
+Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
+bold;">Wide</span></a><br/>
+黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
+bold;">Sym</span></a>
+</div>
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
             </svg>
         </div>
-        <main class="header__menu fn__none">
-            <ul>
-                    <li>
-                        <a href="/about" target="_self" rel="section">
-                            关于我
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/my-github-repos" target="_self" rel="section">
-                            我的开源
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://hacpai.com" target="_blank" rel="section">
-                            黑客派
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://b3log.org" target="_blank" rel="section">
-                            B3log
-                        </a>
-                    </li>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    404 文章 <br>
+                        2,022 评论 <br>
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
+                    5 当前访客
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
                 <li>
-                    <a href="https://88250.github.io/tags.html" rel="section">
-                        Tags
+                    <a href="https://88250.github.io" rel="start">
+                            D 的个人博客
                     </a>
                 </li>
+                    <li>
+                        <a href="/about" target="_self"><img
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                    </li>
+                    <li>
+                        <a href="/my-github-repos" target="_self"><img
+                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                    </li>
+                    <li>
+                        <a href="https://hacpai.com" target="_blank"><img
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                    </li>
+                    <li>
+                        <a href="https://b3log.org" target="_blank"><img
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                    </li>
                 <li>
-                    <a href="https://88250.github.io/archives.html">
-                        Archives
-                    </a>
+                    <a href="https://88250.github.io/categories.html">分类</a>
                 </li>
                 <li>
-                    <a rel="archive" href="https://88250.github.io/links.html">
-                        Links
-                    </a>
+                    <a href="https://88250.github.io/tags.html">标签墙</a>
                 </li>
                 <li>
-                    <a rel="alternate" href="https://88250.github.io/rss.xml" rel="section">
-                        RSS
-                    </a>
+                    <a href="https://88250.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/links.html">友情链接</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml">RSS</a>
                 </li>
             </ul>
-        </main>
+        </div>
     </div>
-</header><main id="pjax" class="fn__flex-1">
-    
-    <div class="post wrapper wrapper--miner">
-        <h2 class="item__title">
-            <a rel="bookmark" href="https://88250.github.io/articles/2008/03/06/1204833180000.html">
+    <div class="article__top" style="background-image: url(https://img.hacpai.com/bing/20171226.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        <div style="background-image: url(https://img.hacpai.com/bing/20171226.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2008-03-07
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/%E3%81%AB%E3%81%BB%E3%82%93%E3%81%94%E3%81%AE%E3%81%B9%E3%82%93%E3%81%8D%E3%82%87%E3%81%86">にほんごのべんきょう</a> &nbsp;
+            </div>
+            <h2 class="article__title">
                 ごじゅうおん
-            </a>
-        </h2>
-        <div class="ft__fade item__meta">
-                Published on
-            <time>
-                Mar 7, 2008
-            </time>
-            with <span data-uvstaturl="https://88250.github.io/articles/2008/03/06/1204833180000.html">0</span> views
-        </div>
-        <div class="item__tags">
-                <a rel="tag" class="tag tag--0" href="https://88250.github.io/tags/%E3%81%AB%E3%81%BB%E3%82%93%E3%81%94%E3%81%AE%E3%81%B9%E3%82%93%E3%81%8D%E3%82%87%E3%81%86">
-                    <b># にほんごのべんきょう</b>
-                </a>
-        </div>
-        <div class="vditor-reset">
-            <p>ひらがな<br>平　仮名<br><br>あいうえお&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; かきくけこ&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; さしすせそ<br><br>たちつてと&nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp; なぃぬねの&nbsp;&nbsp;  &nbsp;&nbsp; &nbsp; はひふへほ<br><br>まみむめも&nbsp;&nbsp;  &nbsp;&nbsp; &nbsp; やいゆえよ&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; わいうえを<br><br><br><br><br></p>
-                <div>
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            </h2>
+<div class="article__share"
+     data-title="ごじゅうおん"
+     data-blogtitle="D 的个人博客"
+     data-url="https://88250.github.io/articles/2008/03/06/1204833180000.html"
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <p>ひらがな<br>平　仮名<br><br>あいうえお&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; かきくけこ&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; さしすせそ<br><br>たちつてと&nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp; なぃぬねの&nbsp;&nbsp;  &nbsp;&nbsp; &nbsp; はひふへほ<br><br>まみむめも&nbsp;&nbsp;  &nbsp;&nbsp; &nbsp; やいゆえよ&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; わいうえを<br><br><br><br><br></p>
+                    <div>
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -117,73 +169,41 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-                </div>
+                    </div>
+            </section>
         </div>
+
     </div>
-    <div class="post__toc">
+<div class="comment">
+    <div class="wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
     </div>
-    <div class="body--gray post__gray">
-        <div class="wrapper comment">
-<div class="comment__title">
-    Responses
 </div>
-     <textarea rows="3" placeholder="Your comment here. Be cool. " id="comment"></textarea>
-
-<ul id="comments">
-</ul>
-
-            <div class="post__list fn__flex">
-                <div class="fn__flex-1">
-                    <div id="externalRelevantArticles"></div>
-                </div>
-                <div class="post__list-mid fn__flex-1">
-                    <div id="randomArticles"></div>
-                </div>
-                <div class="fn__flex-1">
-                    <div id="relevantArticles"></div>
-                </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                    <div class="item" id="externalRelevantArticles"></div>
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
             </div>
         </div>
     </div>
-
-    <div class="post__fix">
-        <div class="wrapper">
-            <span class="post__share mobile__none">
-                Share
-                <span class="tag tag--4" data-type="weibo">WeiBo</span>
-                <span class="tag tag--5" data-type="twitter">Twitter</span>
-                <span class="tag tag--6" data-type="qqz">QZone</span>
-                <span class="post__code tag tag--7"
-                      data-type="wechat"
-                      data-title="ごじゅうおん"
-                      data-blogtitle="D 的个人博客"
-                      data-url="https://88250.github.io/articles/2008/03/06/1204833180000.html"
-                      data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">WeChat</span>
-            </span>
-            <span class="post__arrow">
-                    <a href="https://88250.github.io/articles/2008/03/03/1204540320000.html" rel="prev"
-                       class="vditor-tooltipped__n vditor-tooltipped"
-                       pjax-title="四级再次挂了"
-                       aria-label="旧一篇: 四级再次挂了">←</a>
-
-                    <a href="https://88250.github.io/articles/2008/03/09/1205093700000.html" rel="next"
-                       class="vditor-tooltipped__n vditor-tooltipped"
-                       pjax-title="StoneAgeDict现阶段设计小结"
-                       aria-label="新一篇: StoneAgeDict现阶段设计小结">→</a>
-                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
-                   aria-label="移动到顶部">↑</a>
-                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
-                   aria-label="移动到底部">↓</a>
-            </span>
-        </div>
-    </div>
     
-</main>
+</div>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1578627388032"
+        charset="utf-8"></script>
 <footer class="footer">
-    <div class="ft__center">
-    <a href="https://hacpai.com/member/88250"
-       aria-label="https://hacpai.com/member/88250"
-       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+    <div class="wrapper">
+            <a href="https://hacpai.com/member/88250"
+       title="https://hacpai.com/member/88250"
+       class="user__site"
        target="_blank" rel="noopener nofollow">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
@@ -193,103 +213,41 @@
     </a>
 
         <a href="https://github.com/88250"
-           aria-label="https://github.com/88250"
-           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           title="https://github.com/88250"
+           class="user__site"
            target="_blank" rel="noopener nofollow">
             <svg viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
             </svg>
         </a>
 
-    </div>
-    <nav class="footer__nav mobile__none">
-            <a class="ft__link" href="/about" target="_self" rel="section">
-                关于我
-            </a>
-            <a class="ft__link" href="/my-github-repos" target="_self" rel="section">
-                我的开源
-            </a>
-            <a class="ft__link" href="https://hacpai.com" target="_blank" rel="section">
-                黑客派
-            </a>
-            <a class="ft__link" href="https://b3log.org" target="_blank" rel="section">
-                B3log
-            </a>
-        <a class="ft__link" rel="alternate" href="https://88250.github.io/rss.xml" rel="section">RSS</a>
-    </nav>
-    <div class="footer__border mobile__none"></div>
-    <div class="wrapper fn__flex">
-        <div class="fn__flex-1 mobile__none">
-            <div class="ft__fade">88250 - 开源程序员，自由职业者</div>
-            <br>
-                <div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
-        </div>
-
-            <div class="footer__mid fn__flex-1 mobile__none">
-                <div class="ft__fade">分类</div>
-                <br>
-                    <a href="https://88250.github.io/category/dev-language"
-                       aria-label="36 个标签"
-                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
-                        编程语言</a> &nbsp; &nbsp;
-                    <a href="https://88250.github.io/category/past-summary"
-                       aria-label="3 个标签"
-                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
-                        往事与总结</a> &nbsp; &nbsp;
-                    <a href="https://88250.github.io/category/i-love-opensource"
-                       aria-label="29 个标签"
-                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
-                        开源项目</a> &nbsp; &nbsp;
-                    <a href="https://88250.github.io/category/linux"
-                       aria-label="9 个标签"
-                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
-                        Linux</a> &nbsp; &nbsp;
-                    <a href="https://88250.github.io/category/arch"
-                       aria-label="3 个标签"
-                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
-                        架构设计</a> &nbsp; &nbsp;
-                    <a href="https://88250.github.io/category/database"
-                       aria-label="4 个标签"
-                       class="ft__link ft__nowrap vditor-tooltipped vditor-tooltipped__n">
-                        数据库</a> &nbsp; &nbsp;
-            </div>
-
-        <div class="fn__flex-1 footer__copyright">
-            <a class="ft__link" href="https://88250.github.io/archives.html">
-                405
-                文章
-            </a> &nbsp; &nbsp;
-                2,022
-                评论 <br>
-            <span data-uvstaturl="https://88250.github.io">0</span> <span class="ft-gray">浏览</span> &nbsp; &nbsp;
-            7 <span class="ft-gray">当前访客</span> <br>
-            &copy; 2020
-            <a class="ft__link" href="https://88250.github.io">D 的个人博客</a>
-            
-            <br>
-            Powered by <a class="ft__link" href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Pinghsu
-            <sup>[<a class="ft__link" target="_blank" href="https://github.com/chakhsu/pinghsu">ref</a>]</sup>
-            by <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
-        </div>
+ <br>
+        &copy; 2020
+        <a href="https://88250.github.io">D 的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+        <br>
+        Theme Bubble
+        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
+        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+
+
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578556545532"
-        charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/skins/Pinghsu/js/headroom.js"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578627388032"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Pinghsu/js/common.js?1578556545532"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1578627388032"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.2/dist/index.min.js"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1578627388032"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.3/dist/index.min.js"></script>
 <script>
     var Label = {
         servePath: "https://88250.github.io",
@@ -332,9 +290,8 @@ bold;">Sym</span></a>
 </div>
 
 
-
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578556545532', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578627388032', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1204833180000",
@@ -345,13 +302,13 @@ bold;">Sym</span></a>
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
-    page.loadExternalRelevantArticles("にほんごのべんきょう",
-    '<h3>HACPAI POSTS</h3>');
-Skin.initArticle()
+        page.loadExternalRelevantArticles("にほんごのべんきょう",
+        '<h3>站外相关阅读</h3>');
+    Skin.initArticle()
     });
 </script>
 
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 125ms, 2020/01/09 15:56:57 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 116ms, 2020/01/10 11:36:49 -->

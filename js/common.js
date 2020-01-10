@@ -33,8 +33,8 @@ var Util = {
    * 初始化浏览数
    */
   initViewCnt: function () {
-    Util.uvstat = new Uvstat({loading:'<span>0</span>'})
-    Util.uvstat.setStat()
+    Util.uvstat = new Uvstat()
+    Util.uvstat.addStat()
     Util.uvstat.renderStat()
   },
   /**
@@ -183,7 +183,7 @@ var Util = {
 
     if (typeof Vditor === 'undefined') {
       Util.addScript(
-        'https://cdn.jsdelivr.net/npm/vditor@2.0.14/dist/method.min.js',
+        'https://cdn.jsdelivr.net/npm/vditor@2.0.15/dist/method.min.js',
         'vditorPreviewScript')
     }
 
