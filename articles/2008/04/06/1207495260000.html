@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>面试题:为什么java不允许 super.super.xxx 这样的语句? - D 的个人博客</title><meta name="description" content="查阅了一些资料，实践后，有如下结论： 假设有：A-B-java.lang.Object， 1.this与super是完全不同了两个关键字。this指的就是当前对象，而super行为比较怪异： Java code class A extends B{ void foo{ this.getClass.getName; super.getClass.getName; Bthis.getClass.getName; Athis.getClass.getName; }} 的结果都是相同的，都是A，因为它们都返回run-time...."/><meta property="og:description" content="查阅了一些资料，实践后，有如下结论： 假设有：A-B-java.lang.Object， 1.this与super是完全不同了两个关键字。this指的就是当前对象，而super行为比较怪异： Java code class A extends B{ void foo{ this.getClass.getName; super.getClass.getName; Bthis.getClass.getName; Athis.getClass.getName; }} 的结果都是相同的，都是A，因为它们都返回run-time...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="面试题:为什么java不允许 super.super.xxx 这样的语句? - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/04/06/1207495260000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="面试题:为什么java不允许 super.super.xxx 这样的语句? - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/04/06/1207495260000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1578627388032"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1578761566983"/>
             <link rel="prev" title="剃光头了！" href="https://88250.github.io/articles/2008/03/31/1206997620000.html">
             <link rel="next" title="离开几天" href="https://88250.github.io/articles/2008/04/12/1208023440000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -58,7 +58,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    405 文章 <br>
                         2,022 评论 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
                     5 当前访客
@@ -204,7 +204,7 @@ http://www.CodeHighlighter.com/
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1578627388032"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1578761566983"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -246,15 +246,15 @@ http://www.CodeHighlighter.com/
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578627388032"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1578761566983"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1578627388032"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1578761566983"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1578627388032"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1578761566983"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
     var Label = {
         servePath: "https://88250.github.io",
@@ -298,7 +298,7 @@ http://www.CodeHighlighter.com/
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578627388032', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1578761566983', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1207495260000",
@@ -318,4 +318,4 @@ http://www.CodeHighlighter.com/
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 172ms, 2020/01/10 11:36:48 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 124ms, 2020/01/12 00:58:37 -->
