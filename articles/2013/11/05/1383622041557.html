@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>服务治理过程演进 - D 的个人博客</title><meta name="description" content="在大规模服务化之前，应用可能只是通过RMI或Hessian等工具，简单的暴露和引用远程服务，通过配置服务的URL地址进行调用，通过F5等硬件进行负载均衡。 (1) 当服务越来越多时，服务URL配置管理变得非常困难，F5硬件负载均衡器的单点压力也越来越大。 此时需要一个服务注册中心，动态的注册和发现服务，使服务的位置透明。 并通过在消费方获取服务提供方地址列表，实现软负载均衡和Failover，降低对F5硬件负载均衡器的依赖，也能减少部分成本。 (2) 当进一步发展，服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动，架构师都不能完整的描述应用的架构关系。 这时，需要自动画出应用间的依赖关系图，以帮助架构师理清理关系。 * 静态依赖：通过 mvn 依赖生成 * 动态依赖：通过运行时调用分析得出 **(3) 接着，服务的调用量越来越大，服务的容量问题就暴露出来，这个服务需要多少...."/><meta property="og:description" content="在大规模服务化之前，应用可能只是通过RMI或Hessian等工具，简单的暴露和引用远程服务，通过配置服务的URL地址进行调用，通过F5等硬件进行负载均衡。 (1) 当服务越来越多时，服务URL配置管理变得非常困难，F5硬件负载均衡器的单点压力也越来越大。 此时需要一个服务注册中心，动态的注册和发现服务，使服务的位置透明。 并通过在消费方获取服务提供方地址列表，实现软负载均衡和Failover，降低对F5硬件负载均衡器的依赖，也能减少部分成本。 (2) 当进一步发展，服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动，架构师都不能完整的描述应用的架构关系。 这时，需要自动画出应用间的依赖关系图，以帮助架构师理清理关系。 * 静态依赖：通过 mvn 依赖生成 * 动态依赖：通过运行时调用分析得出 **(3) 接着，服务的调用量越来越大，服务的容量问题就暴露出来，这个服务需要多少...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="服务治理过程演进 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2013/11/05/1383622041557.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="服务治理过程演进 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2013/11/05/1383622041557.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1578761566983"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
             <link rel="prev" title="关闭 b3log.org 二级域名申请" href="https://88250.github.io/close-apply-b3log-subdomain">
             <link rel="next" title="穿梭时空的感觉" href="https://88250.github.io/back-to-the-future-no1">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -58,10 +58,10 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    405 文章 <br>
+                    404 文章 <br>
                         2,022 评论 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    5 当前访客
+                    6 当前访客
                 </div>
             </div>
 
@@ -245,6 +245,10 @@ bold;">Sym</span></a>
         </div>
 
     </div>
+    <div class="wrapper">
+        <div id="vcomment" data-name="88250" data-postId="1383622041557"></div>
+    </div>
+    <div id="soloComments" style="display: none;">
 <div class="comment">
     <div class="wrapper">
         <div class="comment__title">
@@ -310,6 +314,7 @@ bold;">Sym</span></a>
 </li>        </ul>
     </div>
 </div>
+    </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -322,7 +327,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -364,15 +369,16 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578761566983"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
 <script>
     var Label = {
         servePath: "https://88250.github.io",
@@ -380,7 +386,7 @@ bold;">Sym</span></a>
         luteAvailable: false,
         hljsStyle: 'monokai',
         langLabel: "zh_CN",
-        version: "3.6.8",
+        version: "3.7.0",
     }
     Util.init()
 </script>
@@ -416,7 +422,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578761566983', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1383622041557",
@@ -436,4 +442,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 250ms, 2020/01/12 00:58:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 264ms, 2020/01/15 10:42:10 -->

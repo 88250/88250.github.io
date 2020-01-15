@@ -73,7 +73,12 @@
                                 </div>
                             </div>
                         </div>
-                        <@comments commentList=articleComments article=article></@comments>
+                        <#if commentable>
+                        <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                        <div id="soloComments" style="display: none;">
+                            <@comments commentList=articleComments article=article></@comments>
+                        </div>
+                        </#if>
                     </div>
                     <#if 0 != relevantArticlesDisplayCount>
                     <div id="relevantArticles"></div>

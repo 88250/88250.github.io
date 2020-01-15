@@ -106,7 +106,12 @@
                             <div id="externalRelevantArticles"></div>
                         </div>
                     </div>
-                    <@comments commentList=articleComments article=article></@comments>
+                    <#if commentable>
+                    <div id="vcomment" style="padding: 10px 0;" data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                    <div id="soloComments" style="display: none;">
+                        <@comments commentList=articleComments article=article></@comments>
+                    </div>
+                    </#if>
                 </div>
                 <#include "side.ftl">
                 <div class="clear"></div>

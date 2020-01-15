@@ -5,18 +5,9 @@
     <link>https://88250.github.io</link>
     <atom:link href="https://88250.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <description>开源程序员，自由职业者</description>
-    <generator>Solo, v3.6.8, https://solo.b3log.org</generator>
-    <lastBuildDate>Sun, 12 Jan 2020 00:58:26 +0800</lastBuildDate>
+    <generator>Solo, v3.7.0, https://solo.b3log.org</generator>
+    <lastBuildDate>Wed, 15 Jan 2020 10:42:04 +0800</lastBuildDate>
     <language>zh-cn</language>
-    <item>
-      <title>测试 Solo 在本地 localhost 上进行推送</title>
-      <link>https://88250.github.io/articles/2020/01/12/1578760925288.html</link>
-      <description/>
-      <author>88250</author>
-      <guid>https://88250.github.io/articles/2020/01/12/1578760925288.html</guid>
-      <category>Solo</category>
-      <pubDate>Sun, 12 Jan 2020 00:56:24 +0800</pubDate>
-    </item>
     <item>
       <title>2019 用善意面对世界</title>
       <link>https://88250.github.io/articles/2019/12/30/1577712379212.html</link>
@@ -25,10 +16,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/12/30/1577712379212.html</guid>
-      <category>2019</category>
-      <category>创业</category>
-      <category>开源</category>
       <category>总结</category>
+      <category>创业</category>
+      <category>2019</category>
+      <category>开源</category>
       <pubDate>Mon, 30 Dec 2019 21:31:08 +0800</pubDate>
     </item>
     <item>
@@ -39,10 +30,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/12/26/1577370404903.html</guid>
-      <category>Markdown</category>
       <category>Vditor</category>
-      <category>所见即所得</category>
       <category>编辑器</category>
+      <category>所见即所得</category>
+      <category>Markdown</category>
       <pubDate>Thu, 26 Dec 2019 22:27:02 +0800</pubDate>
     </item>
     <item>
@@ -76,8 +67,8 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/04/23/1555989598304.html</guid>
-      <category>B3log</category>
       <category>创业</category>
+      <category>B3log</category>
       <pubDate>Mon, 11 Nov 2019 00:09:34 +0800</pubDate>
     </item>
     <item>
@@ -125,6 +116,20 @@
       <guid>https://88250.github.io/articles/2019/08/19/1566191673842.html</guid>
       <category>开源</category>
       <pubDate>Mon, 19 Aug 2019 13:14:48 +0800</pubDate>
+    </item>
+    <item>
+      <title>写在星火初版发布之际</title>
+      <link>https://88250.github.io/articles/2019/06/04/1559578726531.html</link>
+      <description>
+        <![CDATA[<p>对黑客派的不满 一直以来我对黑客派都不是很满意，最近两年不满感日趋加重。不满并不是来自于功能或者界面，因为功能或者界面是可以不断调整、打磨和改进的。 对黑客派的不满主要来自于它对“社区”的实现方式是中心化的。随着我对“社区”一词的逐步理解、实践和思考，我越发感到中心化的社区实现方式是有问题的，因为这样的话黑客派其实并不是一个真正的社区，倒更像是一个开放了注册的个人博客，使用社区来形容它有挂羊头卖狗肉之嫌。 在意识到这是确实存在的一个问题后，我尝试性地做了一个修正方案，即通过“贡献系统”来实现社区自治，从而将中心化集权尽量进行分散，将一些管理权交给对黑客派有较多贡献的用户。虽然目前看来这个方案还算奏效，但却没有从根本上解决问题，因为根本问题还是来自于对社区的定义。这就好像“抽象泄露原则”所描述的那样，越是要在更高级抽象的层面解决问题，就越容易产生更多的新问题，最终，底层的基础问题将暴露无遗，浮沙高楼。 现在黑客派已经木已成舟，再怎么修整也是舟，成不了飞船了。不过即使如此，我也不会放弃的黑客派的，后面会继续尽最大努力进行调整，尽量弥补遗憾。 再识社区 社区究竟是什么？从数据、服务和系统的角....</p>]]>
+      </description>
+      <author>88250</author>
+      <guid>https://88250.github.io/articles/2019/06/04/1559578726531.html</guid>
+      <category>黑客派</category>
+      <category>IPFS</category>
+      <category>星火</category>
+      <category>社区</category>
+      <pubDate>Tue, 04 Jun 2019 00:18:51 +0800</pubDate>
     </item>
   </channel>
 </rss>

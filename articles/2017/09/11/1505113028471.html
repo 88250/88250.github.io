@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Solo 的 golang 版计划 - D 的个人博客</title><meta name="description" content="Solo.go Solo 经过多年众多用户的使用、反馈和开发迭代，目前从功能上和实现上都比较稳定了，我和 @Vanessa 都觉得是时候将 Solo 推入维护阶段了，后续只做必要的缺陷修复。 另外，我们打算用 golang 实现一个 Solo.go（代号），并在 Solo v2.5.0 中提供 JSON 格式的数据导出功能，以便 Solo.go 进行导入。如果你一直是 Solo 用户，那么以后可以考虑通过跑 Solo.go 来节省服务器内存用量。 系统分析 前端管理后台使用 Vue.js，前台皮肤使用 golang 原生的模板在 Solo.go 初期版本中以下功能暂不实现 插件机制（技术待研究）邮件发送（鸡肋功能）草稿夹（鸡肋功能） Solo v2.5.0 提供 JSON 导出功能 多租户 这里的“多租户”指的是在 Solo.go 上可以创建多个独立博客，每个独立博客有自己的管理员，自己的皮肤，和其他博客在功能上完全隔离。 每个独立博客是一个团队博客，团队使用同一个后台，同一个前端皮肤。 所有用户账号都必须是黑客派社区的账号初始化时的用户是平台管理员，并且初始化一个博客，使用 /{...."/><meta property="og:description" content="Solo.go Solo 经过多年众多用户的使用、反馈和开发迭代，目前从功能上和实现上都比较稳定了，我和 @Vanessa 都觉得是时候将 Solo 推入维护阶段了，后续只做必要的缺陷修复。 另外，我们打算用 golang 实现一个 Solo.go（代号），并在 Solo v2.5.0 中提供 JSON 格式的数据导出功能，以便 Solo.go 进行导入。如果你一直是 Solo 用户，那么以后可以考虑通过跑 Solo.go 来节省服务器内存用量。 系统分析 前端管理后台使用 Vue.js，前台皮肤使用 golang 原生的模板在 Solo.go 初期版本中以下功能暂不实现 插件机制（技术待研究）邮件发送（鸡肋功能）草稿夹（鸡肋功能） Solo v2.5.0 提供 JSON 导出功能 多租户 这里的“多租户”指的是在 Solo.go 上可以创建多个独立博客，每个独立博客有自己的管理员，自己的皮肤，和其他博客在功能上完全隔离。 每个独立博客是一个团队博客，团队使用同一个后台，同一个前端皮肤。 所有用户账号都必须是黑客派社区的账号初始化时的用户是平台管理员，并且初始化一个博客，使用 /{...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Solo 的 golang 版计划 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/09/11/1505113028471.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Solo 的 golang 版计划 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/09/11/1505113028471.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1578761566983"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
             <link rel="prev" title="开源经验谈" href="https://88250.github.io/articles/2017/08/01/1501603146956.html">
             <link rel="next" title="Solo 2.3.0 升级 2.4.0 问题与解决" href="https://88250.github.io/articles/2017/10/18/1508292644879.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -58,10 +58,10 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    405 文章 <br>
+                    404 文章 <br>
                         2,022 评论 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    5 当前访客
+                    6 当前访客
                 </div>
             </div>
 
@@ -228,6 +228,10 @@ bold;">Sym</span></a>
             <a href="#b3_solo_h2_3">发布计划</a>
         </li>
 </ul>        </div>
+    <div class="wrapper">
+        <div id="vcomment" data-name="88250" data-postId="1505113028471"></div>
+    </div>
+    <div id="soloComments" style="display: none;">
 <div class="comment">
     <div class="wrapper">
         <div class="comment__title">
@@ -1249,6 +1253,7 @@ bold;">Sym</span></a>
 </li>        </ul>
     </div>
 </div>
+    </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -1261,7 +1266,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -1303,15 +1308,16 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578761566983"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
 <script>
     var Label = {
         servePath: "https://88250.github.io",
@@ -1319,7 +1325,7 @@ bold;">Sym</span></a>
         luteAvailable: false,
         hljsStyle: 'monokai',
         langLabel: "zh_CN",
-        version: "3.6.8",
+        version: "3.7.0",
     }
     Util.init()
 </script>
@@ -1358,7 +1364,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578761566983', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1505113028471",
@@ -1378,4 +1384,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 438ms, 2020/01/12 00:58:28 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 381ms, 2020/01/15 10:42:07 -->

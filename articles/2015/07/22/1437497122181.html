@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客</title><meta name="description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能***边看边练***就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/><meta property="og:description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能***边看边练***就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/22/1437497122181.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/22/1437497122181.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1578761566983"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
             <link rel="prev" title="优化 Go 中的 map 并发存取" href="https://88250.github.io/optimizing-concurrent-map-access-in-go-chinese">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（二）" href="https://88250.github.io/articles/2015/07/22/1437558810339.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -58,10 +58,10 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    405 文章 <br>
+                    404 文章 <br>
                         2,022 评论 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    5 当前访客
+                    6 当前访客
                 </div>
             </div>
 
@@ -348,6 +348,10 @@ const (
             <a href="#b3_solo_h4_3">枚举</a>
         </li>
 </ul>        </div>
+    <div class="wrapper">
+        <div id="vcomment" data-name="88250" data-postId="1437497122181"></div>
+    </div>
+    <div id="soloComments" style="display: none;">
 <div class="comment">
     <div class="wrapper">
         <div class="comment__title">
@@ -733,6 +737,7 @@ const (
 </li>        </ul>
     </div>
 </div>
+    </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -745,7 +750,7 @@ const (
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -787,15 +792,16 @@ const (
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1578761566983"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1578761566983"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
         charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
 <script>
     var Label = {
         servePath: "https://88250.github.io",
@@ -803,7 +809,7 @@ const (
         luteAvailable: false,
         hljsStyle: 'monokai',
         langLabel: "zh_CN",
-        version: "3.6.8",
+        version: "3.7.0",
     }
     Util.init()
 </script>
@@ -842,7 +848,7 @@ const (
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1578761566983', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1437497122181",
@@ -862,4 +868,4 @@ const (
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 288ms, 2020/01/12 00:58:31 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 287ms, 2020/01/15 10:42:08 -->
