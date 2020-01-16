@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>使用 Golang 操作 Linux Namespaces - D 的个人博客</title><meta name="description" content="Linux Namespaces（Linux 命名空间）机制提供了进程使用操作系统资源时的隔离方式，是基于内核实现轻量级虚拟化（容器化，例如 docker）的实现基础。 具体来说就是当我们创建一个进程时，可以给进程设置 flag 组合来构建进程的命名空间，处于不同命名空间的进程是相互隔离的。"/><meta property="og:description" content="Linux Namespaces（Linux 命名空间）机制提供了进程使用操作系统资源时的隔离方式，是基于内核实现轻量级虚拟化（容器化，例如 docker）的实现基础。 具体来说就是当我们创建一个进程时，可以给进程设置 flag 组合来构建进程的命名空间，处于不同命名空间的进程是相互隔离的。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="使用 Golang 操作 Linux Namespaces - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/golang-linux-namespaces?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="使用 Golang 操作 Linux Namespaces - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/golang-linux-namespaces">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="Docker 初探" href="https://88250.github.io/docker-first-step">
             <link rel="next" title="中央公园" href="https://88250.github.io/central-perk">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -290,39 +289,14 @@ func setNamespace(cmd *exec.Cmd) {
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1418870131032"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1419220083157" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/2f6134bb689458a88d40094b28f93a7c?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.idashu.me" target="_blank">DASHU</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>mark一下 下次看</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1419219697193#1419220083157">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 22, 2014
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1419220083157', 'DASHU')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1418870131032"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -336,7 +310,7 @@ func setNamespace(cmd *exec.Cmd) {
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -378,26 +352,27 @@ func setNamespace(cmd *exec.Cmd) {
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -434,7 +409,7 @@ func setNamespace(cmd *exec.Cmd) {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1418870131032",
@@ -454,4 +429,4 @@ func setNamespace(cmd *exec.Cmd) {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 219ms, 2020/01/15 10:42:09 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 263ms, 2020/01/16 23:08:33 -->

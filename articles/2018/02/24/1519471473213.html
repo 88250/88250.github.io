@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>重装系统后 git 烂了 - D 的个人博客</title><meta name="description" content="C:\Users\Administrator&gt;git fatal: open /dev/null or dup failed: No such file or directory Windows 上也有 /dev/null？？？？Google 一圈后发现确实有，是用一个系统服务模拟的： C:\Users\Administrator&gt;sc query null SERVICE_NAME: null TYPE : 1 KERNEL_DRIVER STATE : 1 STOPPED WIN32_EXIT_CODE : 0 (0x0) SERVICE_EXIT_CODE : 0 (0x0) CHECKPOINT : 0x0 WAIT_HINT : 0x0 手动启动该服务报错： C:\Users\Administrator&gt;sc start null [SC] StartService 失败 577: Windows 无法验证此文件的数字签名。某软件或硬件最近有所更改，可能安装了签名错误或损毁的文件，或者安装的文件可能是来路不明的恶意软件。 C:\Windows\System3...."/><meta property="og:description" content="C:\Users\Administrator&gt;git fatal: open /dev/null or dup failed: No such file or directory Windows 上也有 /dev/null？？？？Google 一圈后发现确实有，是用一个系统服务模拟的： C:\Users\Administrator&gt;sc query null SERVICE_NAME: null TYPE : 1 KERNEL_DRIVER STATE : 1 STOPPED WIN32_EXIT_CODE : 0 (0x0) SERVICE_EXIT_CODE : 0 (0x0) CHECKPOINT : 0x0 WAIT_HINT : 0x0 手动启动该服务报错： C:\Users\Administrator&gt;sc start null [SC] StartService 失败 577: Windows 无法验证此文件的数字签名。某软件或硬件最近有所更改，可能安装了签名错误或损毁的文件，或者安装的文件可能是来路不明的恶意软件。 C:\Windows\System3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="重装系统后 git 烂了 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/02/24/1519471473213.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="重装系统后 git 烂了 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/02/24/1519471473213.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="为用户生成有趣的头像" href="https://88250.github.io/articles/2018/02/13/1518497054959.html">
             <link rel="next" title="以太坊 JavaScript API web3.js 打币" href="https://88250.github.io/articles/2018/03/09/1520583695227.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -216,272 +215,14 @@ SERVICE_NAME: null
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1519471473213"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1526373325834" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1523189536641?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/KaneOne" target="_blank">KaneOne</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>直接用Vlmcsd就好了呀，本地跑一个小虚拟机，想激活多少机器都可以?<br> <a href="http://www.cnblogs.com/fatt/p/7478283.html">http://www.cnblogs.com/fatt/p/7478283.html</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1526373325834', 'KaneOne')">Reply</a>
-    </div>
-</li><li id="1520522736120" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1441990773239_1482806503219.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/zonghua" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>还是要保持微笑? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 9, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520522736120', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1520385302058" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1484128047233_1484128093031.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Devin" target="_blank">Devin</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>可以去TB买个激活码，win10的话，不用激活工具</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 7, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520385302058', 'Devin')">Reply</a>
-    </div>
-</li><li id="1520307898143" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1489473415794_1489473656729.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/macbolo" target="_blank">macbolo</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>可以修改注册表</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 6, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520307898143', 'macbolo')">Reply</a>
-    </div>
-</li><li id="1520253402614" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1441990773239_1482806503219.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/zonghua" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>中文版经常推小娜的广告，而且经常给小米。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 6, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520253402614', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1520210950493" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1465873147243_1507628248381.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Zephyr" target="_blank">Zephyr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>看来广告针对中文用户?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 5, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520210950493', 'Zephyr')">Reply</a>
-    </div>
-</li><li id="1520088122255" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1441990773239_1482806503219.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/zonghua" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>发现一个大秘密，我重装英文版系统后就不会弹 Windows 的广告啦。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 4, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520088122255', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1519984006540" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1505456507935_1508421323321.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/lwl" target="_blank">lwl</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我都是远程的，还好公司有一台机子给用</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 3, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519984006540', 'lwl')">Reply</a>
-    </div>
-</li><li id="1519968785073" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1465873147243_1507628248381.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Zephyr" target="_blank">Zephyr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>开了个win的虚拟机，用以开QQ什么的?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 2, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519968785073', 'Zephyr')">Reply</a>
-    </div>
-</li><li id="1519887221033" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1505456507935_1508421323321.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/lwl" target="_blank">lwl</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>但是有时候必须要Windows 怎么办？你是开虚拟机吗？我现在是公司一台Windows主机，有需要就远程过去。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 1, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519887221033', 'lwl')">Reply</a>
-    </div>
-</li><li id="1519880741159" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1465873147243_1507628248381.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Zephyr" target="_blank">Zephyr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>要么OSX，要么Linux<br> windows就玩游戏好啦……</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 1, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519880741159', 'Zephyr')">Reply</a>
-    </div>
-</li><li id="1519640929091" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1468917958725_1487320666085.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Stone" target="_blank">Stone</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>15年免费升级上来的，没遇到过蓝屏或者丢失系统文件的情况0.0</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 27, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519640929091', 'Stone')">Reply</a>
-    </div>
-</li><li id="1519534947405" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1450083174266_1471445289930.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Angonger" target="_blank">Angonger</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>有些东西和系统的用户有关联，重装以后无法恢复，另外，重装系统最稳定的方式还是刻盘，U盘刻盘也可以，PE什么的都没这个靠谱。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 25, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519534947405', 'Angonger')">Reply</a>
-    </div>
-</li><li id="1519534405735" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1399869688510?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/bigzhu" target="_blank">bigzhu</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>当年不是免费升级正版么？没赶上</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 25, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519534405735', 'bigzhu')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1519471473213"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -495,7 +236,7 @@ SERVICE_NAME: null
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -537,26 +278,27 @@ SERVICE_NAME: null
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -590,7 +332,7 @@ SERVICE_NAME: null
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1519471473213",
@@ -610,4 +352,4 @@ SERVICE_NAME: null
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 232ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 254ms, 2020/01/16 23:08:30 -->

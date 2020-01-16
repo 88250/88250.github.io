@@ -36,7 +36,6 @@
         </@head>
     </head>
     <body>
-        ${topBarReplacement}
         <div class="wrapper">
             <div id="header">
                 <#include "header.ftl">
@@ -61,7 +60,7 @@
                     <div class="article-info">
                         <#if commentable>
                         <a rel="nofollow" data-ico="&#xe14e;" href="${servePath}${article.articlePermalink}#comments">
-                            ${article.articleCommentCount}
+                            <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>
                         </a>
                         </#if>
                         <a rel="nofollow" data-ico="&#xe185;" href="${servePath}${article.articlePermalink}">
@@ -83,9 +82,11 @@
                     </div>
                     <#if commentable>
                     <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-                    <div id="soloComments" style="display: none;">
-                        <@comments commentList=articleComments article=article></@comments>
-                    </div>
+                        <#if !staticSite>
+                            <div id="soloComments" style="display: none;">
+                                <@comments commentList=articleComments article=article></@comments>
+                            </div>
+                        </#if>
                     </#if>
                     <#include "copyright.ftl"/>
                 </div>

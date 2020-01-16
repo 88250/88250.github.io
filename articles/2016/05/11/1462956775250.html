@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>敏感数据处理 - D 的个人博客</title><meta name="description" content="背景 大多数应用或多或少都会涉及到敏感数据处理，比如用户的手机号、身份证号，甚至银行卡账号。作为应用的开发者，如何 安全地 维护这些敏感数据呢？ 这里讨论的安全不是指服务器如何保护，而是在数据库层面做敏感数据的分离： * 业务库中不保存敏感数据，只保存混淆过的数据，比如电话字段保存的是 133****9961，在数据层面就进行脱敏 * 敏感数据统一保存在另一个库中，有应用调用一个服务来建立原值和混淆值的映射关系 * 业务库中因为保存的是脱敏过的数据，通过只读复制镜像可以很方便地提供给其他服务使用，比如 OLAP * 除了技术开发上方便，运维上也方便了很多，降低了敏感数据被暴露到外部的可能性 ### 技术设计 提供服务接口给应用存取敏感数据，本质上是一个 KV 存取服务。 一些细节： * 表 protyle 的 domain 字段用于标识该记录的作用域，在一个作用域上相同的值要保证唯一 * 表 protyle 的 ha...."/><meta property="og:description" content="背景 大多数应用或多或少都会涉及到敏感数据处理，比如用户的手机号、身份证号，甚至银行卡账号。作为应用的开发者，如何 安全地 维护这些敏感数据呢？ 这里讨论的安全不是指服务器如何保护，而是在数据库层面做敏感数据的分离： * 业务库中不保存敏感数据，只保存混淆过的数据，比如电话字段保存的是 133****9961，在数据层面就进行脱敏 * 敏感数据统一保存在另一个库中，有应用调用一个服务来建立原值和混淆值的映射关系 * 业务库中因为保存的是脱敏过的数据，通过只读复制镜像可以很方便地提供给其他服务使用，比如 OLAP * 除了技术开发上方便，运维上也方便了很多，降低了敏感数据被暴露到外部的可能性 ### 技术设计 提供服务接口给应用存取敏感数据，本质上是一个 KV 存取服务。 一些细节： * 表 protyle 的 domain 字段用于标识该记录的作用域，在一个作用域上相同的值要保证唯一 * 表 protyle 的 ha...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="敏感数据处理 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2016/05/11/1462956775250.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="敏感数据处理 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2016/05/11/1462956775250.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="UGC 社区价值生态" href="https://88250.github.io/articles/2016/04/30/1462028669762.html">
             <link rel="next" title="基于数据库复制的技术架构讨论" href="https://88250.github.io/articles/2016/06/07/1465278948107.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -209,478 +208,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1462956775250"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1463028905039" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/8cf8c4a67015b036f2da17d4ce599c4c?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">bozong</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 有手机端吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1463028905039', 'bozong')">Reply</a>
-    </div>
-</li><li id="1463011973464" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@zjhch123 那密文你存哪？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1463011973464', '88250')">Reply</a>
-    </div>
-</li><li id="1462989826909" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/1976fd2c25400d00ca7b68fa559d69c3?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">zjhch123</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我是直接DES加密存的…每个用户都有独一无二的密文，然后根据这个密文加密</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462989826909', 'zjhch123')">Reply</a>
-    </div>
-</li><li id="1462959278564" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/548cff98688f1afba7ae612c9bd0c67f?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.pianopaper.net" target="_blank">pianopaper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 这里有几点个人体会分享一下，原公司站点为windows server 2008，所用容器为tomcat，改版的时候，考虑了一下到底是不是要换成linux下的nginx还是用张宴写的集成式的简单容器做部署，考虑来考虑去，全部人对linux这块也就只会敲cd mv等等命令，就不用说find文件等稍微复杂的操作了，公司的培训体系是，文档写完，图文并茂，不管会不会linux，只要按照图文讲的进行操作，即使不知道这一步做的意思是什么，也能正常完成整个操作（所谓的常规运维，也就是点点鼠标），所以最终决定还是用张宴的集成式容器来做了部署，写个VB的UI把所有备份恢复的操作一并处理完，虽然个人觉得不是很对劲，但是这能满足在现状上大部分人的操作，一些东西如果是不得不做的话，需要有人来牵头做（谁做谁负责，做好咱follow），成本，代价，现状等等，不是一个人能考虑得了的</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462959278564', 'pianopaper')">Reply</a>
-    </div>
-</li><li id="1462958714446" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@pianopaper 嗯，当然，而且运维上面也要非常细致和小心</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462958714446', '88250')">Reply</a>
-    </div>
-</li><li id="1462958485299" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/548cff98688f1afba7ae612c9bd0c67f?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.pianopaper.net" target="_blank">pianopaper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 这些要有人来控开发成本和风险咯，就完全不是一个人的事情咯</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462958485299', 'pianopaper')">Reply</a>
-    </div>
-</li><li id="1462958390753" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@pianopaper 为了安全，值得去做，或者说不得不做....</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462958390753', '88250')">Reply</a>
-    </div>
-</li><li id="1462958375304" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/548cff98688f1afba7ae612c9bd0c67f?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.pianopaper.net" target="_blank">pianopaper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 运维的难度就在，产品中间组件增多，会有升级，那么，升级要遵循什么规则？部署呢？多机情况呢？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462958375304', 'pianopaper')">Reply</a>
-    </div>
-</li><li id="1462958321821" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/548cff98688f1afba7ae612c9bd0c67f?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.pianopaper.net" target="_blank">pianopaper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 这确实会增加运维难度，如果这是一个产品，中间层组件的写作需要遵循某种规则，举个例子，交易系统里的业务逻辑全部都是用存储过程来做的，UI就仅仅做信号传递，比如，UI点查询按钮，那么就传递一个532232到中间件，中间件会根据这个信号，来做到db的连接，同时传递p532232到db去做存储过程的处理，为什么要做532232到p532232的转换呢？因为存储过程里的命名也是有规则的，比如db有一个存储过程叫做p532232用来做查询操作的，处理得到的结果通过某种数据结构，经过中间层，再回传到UI，同时，db，中间层，UI都留下操作日志</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462958321821', 'pianopaper')">Reply</a>
-    </div>
-</li><li id="1462958156070" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/2a61f0034479fe64324f8da565a75c62?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.taobao.com" target="_blank">mymoshou</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>其实..在数据泄露的时候已经..</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462958156070', 'mymoshou')">Reply</a>
-    </div>
-</li><li id="1462957994770" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@pianopaper 嗯，该方案就是这个思路</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957994770', '88250')">Reply</a>
-    </div>
-</li><li id="1462957928274" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/548cff98688f1afba7ae612c9bd0c67f?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.pianopaper.net" target="_blank">pianopaper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 其实个人认为安全没有绝对的，只是在被获取的难度是否增加到一定级别，也就是被泄露的可能性是如何的，如若因为这些数据非常敏感，那放内网里进行处理是一个不错的办法（金士达的做法），所有的处理都要通过一个中间层（单独写进程来处理），所有数据均和其进行通讯</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957928274', 'pianopaper')">Reply</a>
-    </div>
-</li><li id="1462957829742" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/5446b1ab354e8a7c2e1b1d478d2ebd6e?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/wgh" target="_blank">wgh</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 我感觉是一样的，只要别人解不了密就算获取到数据也没用！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957829742', 'wgh')">Reply</a>
-    </div>
-</li><li id="1462957681668" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/0bff5d0f71b717924a5bf1abe2242325?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">Hassan</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>表太多了。直接加密挺好的</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957681668', 'Hassan')">Reply</a>
-    </div>
-</li><li id="1462957620429" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@wgh @pianopaper</p> 
-<ul> 
- <li>安全和方便应该是矛盾的</li> 
- <li>这个方案的出发点是这些数据真的非常敏感，是一个公司最核心的资产</li> 
-</ul>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957620429', '88250')">Reply</a>
-    </div>
-</li><li id="1462957584382" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/5446b1ab354e8a7c2e1b1d478d2ebd6e?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/wgh" target="_blank">wgh</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>个人觉得加密解密这种方式最方便也最简单</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957584382', 'wgh')">Reply</a>
-    </div>
-</li><li id="1462957531960" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/548cff98688f1afba7ae612c9bd0c67f?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.pianopaper.net" target="_blank">pianopaper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@wgh 咱觉得也是挺麻烦的</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957531960', 'pianopaper')">Reply</a>
-    </div>
-</li><li id="1462957491424" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/5446b1ab354e8a7c2e1b1d478d2ebd6e?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/wgh" target="_blank">wgh</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我感觉文章里说的那种方式更麻烦</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957491424', 'wgh')">Reply</a>
-    </div>
-</li><li id="1462957488787" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/228e9fa349503e859551a84db5ecd9c1?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://applehater.cn" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@Vanessa 哈，那么邮箱也是不能明文了吧</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957488787', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1462957408398" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/548cff98688f1afba7ae612c9bd0c67f?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.pianopaper.net" target="_blank">pianopaper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 加解密复用也仅仅是加解密function而已呀？遵循使用规则就是拿出function解密一下，放进去function加密一下呀</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957408398', 'pianopaper')">Reply</a>
-    </div>
-</li><li id="1462957284588" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@sweat89 @wgh</p> 
-<ul> 
- <li>把鸡蛋都放一个篮子里</li> 
- <li>业务来解决这个问题的话不方便复用</li> 
-</ul>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957284588', '88250')">Reply</a>
-    </div>
-</li><li id="1462957201364" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/f53df4bc36136d7b16dbc280494e1dfb?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">sweat89</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>弄个算法，加密存DB，业务层解密进行业务处理。有啥问题</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957201364', 'sweat89')">Reply</a>
-    </div>
-</li><li id="1462957151655" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/5446b1ab354e8a7c2e1b1d478d2ebd6e?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/wgh" target="_blank">wgh</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我们是直接全加密保存</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957151655', 'wgh')">Reply</a>
-    </div>
-</li><li id="1462957014622" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@yangyujiao 这个是业主电话，泄露出去，公司就垮掉了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462957014622', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1462956924748" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/cef2c483e2953a3ea1c81b4759fa0180?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://hacpai.com/member/yangyujiao" target="_blank">yangyujiao</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我们就是明目张胆的保存了电话号码···</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1462956924748', 'yangyujiao')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1462956775250"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -694,7 +229,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -736,26 +271,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -792,7 +328,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1462956775250",
@@ -812,4 +348,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 346ms, 2020/01/15 10:42:08 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 373ms, 2020/01/16 23:08:32 -->

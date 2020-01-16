@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>云平台之多租户 - D 的个人博客</title><meta name="description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/><meta property="og:description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="云平台之多租户 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/cloud-app-platform-multitenancy?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="云平台之多租户 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/cloud-app-platform-multitenancy">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="吃什么" href="https://88250.github.io/articles/2014/05/09/1399599408605.html">
             <link rel="next" title="AngularJS 与 EmberJS" href="https://88250.github.io/angularjs-vs-emberjs">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -313,101 +312,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1399968489552"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1519782068505" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/e162fe12e814724ddf8a3bb971a619f0?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">hubert.xiong</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>写的不错，怪我来的太晚了！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1519782068505', 'hubert.xiong')">Reply</a>
-    </div>
-</li><li id="1457417386578" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ea5148e451f92d0a1e5bb5c486806b8a?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">mainlove</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>其实用 docker这种办法最简单</p> 
-<p>如果是共享后台资源，关于数据库设计就有三种</p> 
-<ul> 
- <li>每个库 一个用户</li> 
- <li>每个个用户的表加前缀</li> 
- <li>每个用户的表通过某个字段标识</li> 
-</ul> 
-<p>对应一套设施会变成业务复杂吧？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 8, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1457417386578', 'mainlove')">Reply</a>
-    </div>
-</li><li id="1402030407397" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/5b2fef59da3a09ce54121e1ca3d05b4e?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">leifeng</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>撸高兴了。。。<br><br></p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org/article/1401440193148#1402030407397">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 6, 2014
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1402030407397', 'leifeng')">Reply</a>
-    </div>
-</li><li id="1401509961472" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/9aa82e8a341b4fc51fa844ed3f24b7b3?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://blog.wdx.me" target="_blank">e</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>透彻<br><br></p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org/article/1401440193148#1401509961472">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 31, 2014
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1401509961472', 'e')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1399968489552"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -421,7 +333,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -463,26 +375,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -519,7 +432,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1399968489552",
@@ -539,4 +452,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 211ms, 2020/01/15 10:42:10 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 261ms, 2020/01/16 23:08:33 -->

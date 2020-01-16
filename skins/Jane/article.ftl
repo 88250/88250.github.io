@@ -63,7 +63,7 @@
             </span>
             <div class="fn__right">
                 <#if commentable>
-                <a class="ft__red" href="${servePath}${article.articlePermalink}#comments"><#if article.articleCommentCount gt 0>${article.articleCommentCount} </#if>${commentLabel}</a>
+                <a class="ft__red" href="${servePath}${article.articlePermalink}#comments"><span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span> ${commentLabel}</a>
                 •
                 </#if>
                 <span data-uvstaturl="${servePath}${article.articlePermalink}">${article.articleViewCount}</span> ${viewLabel}
@@ -103,9 +103,11 @@
     </div>
     <#if commentable>
     <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-    <div id="soloComments" style="display: none;">
-        <@comments commentList=articleComments article=article></@comments>
-    </div>
+        <#if !staticSite>
+        <div id="soloComments" style="display: none;">
+            <@comments commentList=articleComments article=article></@comments>
+        </div>
+        </#if>
     </#if>
     <#if 0 != relevantArticlesDisplayCount>
         <div id="relevantArticles" class="article__near"></div>

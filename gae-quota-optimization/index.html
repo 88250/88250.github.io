@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>GAE 配额优化 - D 的个人博客</title><meta name="description" content="自从 GAE 毕业后，新的计费模型开始了实行。 新版的计费模型主要瓶颈在于数据库操作次数，特别是读操作（Datastore Read Operations）以及“密集”操作（Datastore Small Operations）。"/><meta property="og:description" content="自从 GAE 毕业后，新的计费模型开始了实行。 新版的计费模型主要瓶颈在于数据库操作次数，特别是读操作（Datastore Read Operations）以及“密集”操作（Datastore Small Operations）。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="GAE 配额优化 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/gae-quota-optimization?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="GAE 配额优化 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/gae-quota-optimization">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="缘分呐" href="https://88250.github.io/articles/2011/10/21/1319174245479.html">
             <link rel="next" title="GAE Push 任务队列服务" href="https://88250.github.io/gae-task-push-queue">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -290,522 +289,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1321104975611"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1333891100624" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/6ffcb1fc5781f8027aa9c650d769a3f7?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://blog.ango.me" target="_blank">ANGO</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不懂代码，不懂GAE，指是简单的写写博客怎么这么难呢？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 9, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1333891100624', 'ANGO')">Reply</a>
-    </div>
-</li><li id="1324390314878" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/2a221217afdcbfb546aa9af7af80a15e?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.sadpast.com" target="_blank">乱世浮生</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1324348190870"
-                 onmouseover="page.showComment(this, '1324348190870', 20);"
-                 onmouseout="page.hideComment('1324348190870')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不好意思，不知道怎么样是缓存失效，可否指教？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 21, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1324390314878', '乱世浮生')">Reply</a>
-    </div>
-</li><li id="1324348190870" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1324310401808"
-                 onmouseover="page.showComment(this, '1324310401808', 20);"
-                 onmouseout="page.hideComment('1324310401808')"
-            >乱世浮生</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>打下日志看看，有可能是缓存失效。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1324348190870', '88250')">Reply</a>
-    </div>
-</li><li id="1324310401808" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/2a221217afdcbfb546aa9af7af80a15e?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.sadpast.com" target="_blank">乱世浮生</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1323914074611"
-                 onmouseover="page.showComment(this, '1323914074611', 20);"
-                 onmouseout="page.hideComment('1323914074611')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>加了memcache，但测试看起来像是没生效，本地是生效了的，不知道为什么。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1324310401808', '乱世浮生')">Reply</a>
-    </div>
-</li><li id="1324209279527" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/2a221217afdcbfb546aa9af7af80a15e?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.sadpast.com" target="_blank">乱世浮生</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1323914074611"
-                 onmouseover="page.showComment(this, '1323914074611', 20);"
-                 onmouseout="page.hideComment('1323914074611')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>看来得先用memcache优化下了，不知道效果如何。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 19, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1324209279527', '乱世浮生')">Reply</a>
-    </div>
-</li><li id="1323914074611" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1323874669429"
-                 onmouseover="page.showComment(this, '1323874669429', 20);"
-                 onmouseout="page.hideComment('1323874669429')"
-            >乱世浮生</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如果应用上的逻辑设计已经不可避免读多次了，就只能靠缓存来优化了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 15, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1323914074611', '88250')">Reply</a>
-    </div>
-</li><li id="1323874669429" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/2a221217afdcbfb546aa9af7af80a15e?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.sadpast.com" target="_blank">乱世浮生</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我的都没人访问，但读的配额已经花了32%，开始担心了……</p> 
-<p>关键是我还不知道怎么去优化，代码写得烂，估计是评论嵌套惹的祸。</p> 
-<p>想请教下，想这种一次查询都是1+n次读，是不是没办法优化了？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 15, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1323874669429', '乱世浮生')">Reply</a>
-    </div>
-</li><li id="1321950653277" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/1fd9c85a9cdaf65cecde97d050fc26af?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.ansen.org" target="_blank">Ansen</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>写得很不错呀，</p> 
-<p>原来做优化这么辛苦，</p> 
-<p>D辛苦了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 23, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321950653277', 'Ansen')">Reply</a>
-    </div>
-</li><li id="1321949654735" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321931265800"
-                 onmouseover="page.showComment(this, '1321931265800', 20);"
-                 onmouseout="page.hideComment('1321931265800')"
-            >就是我</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>用事务不会有问题的，不然 GAE 上面完全没有办法保证一致性了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 23, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321949654735', '88250')">Reply</a>
-    </div>
-</li><li id="1321931265800" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/e93b9290daec1ef2fc061213947c5b0c?s=60&r=G)"></div>
-        <div class="item__name">
-                <span class="ft__fade">就是我</span>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321930889827"
-                 onmouseover="page.showComment(this, '1321930889827', 20);"
-                 onmouseout="page.hideComment('1321930889827')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>什么意思，</p> 
-<p>我的BLOG采用的是统计表形式，不过在多实例，多线程的情况下，有时会有统计错误，这个统计错误是由于并发产生的，我用synchronized关键字解决多线程下的同步，用事物来控制多实例下的同步，但还是会遇到。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 22, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321931265800', '就是我')">Reply</a>
-    </div>
-</li><li id="1321930889827" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321930694928"
-                 onmouseover="page.showComment(this, '1321930694928', 20);"
-                 onmouseout="page.hideComment('1321930694928')"
-            >就是我</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯，应用自己维护计数信息是正确的 ;-)。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 22, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321930889827', '88250')">Reply</a>
-    </div>
-</li><li id="1321930694928" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/e93b9290daec1ef2fc061213947c5b0c?s=60&r=G)"></div>
-        <div class="item__name">
-                <span class="ft__fade">就是我</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>GAE不是推荐用一个统计表吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 22, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321930694928', '就是我')">Reply</a>
-    </div>
-</li><li id="1321918946651" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-                <span class="ft__fade">zcq100</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不能通过include预加载来解决N+1的问题嘛？查询还可以再优化下呢？?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 22, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321918946651', 'zcq100')">Reply</a>
-    </div>
-</li><li id="1321360661302" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/ff4eaf09b3262ac158a797d43a98ca56?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.hebine.com" target="_blank">何必呢</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321360602230"
-                 onmouseover="page.showComment(this, '1321360602230', 20);"
-                 onmouseout="page.hideComment('1321360602230')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>OK。3KS，优化做的真好。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 16, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321360661302', '何必呢')">Reply</a>
-    </div>
-</li><li id="1321360602230" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321360350002"
-                 onmouseover="page.showComment(this, '1321360350002', 20);"
-                 onmouseout="page.hideComment('1321360350002')"
-            >何必呢</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>按照目前的配额看，5K PV 是完全没有问题的。这周末做个统计功能仔细分析一下 ;-)</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 16, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321360602230', '88250')">Reply</a>
-    </div>
-</li><li id="1321360350002" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/ff4eaf09b3262ac158a797d43a98ca56?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.hebine.com" target="_blank">何必呢</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321360264183"
-                 onmouseover="page.showComment(this, '1321360264183', 20);"
-                 onmouseout="page.hideComment('1321360264183')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? 每天大概有多少浏览啊。没别的意思，大致上想知道多大的博客放在GAE上不会超标。谢谢</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 16, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321360350002', '何必呢')">Reply</a>
-    </div>
-</li><li id="1321360264183" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321360076639"
-                 onmouseover="page.showComment(this, '1321360076639', 20);"
-                 onmouseout="page.hideComment('1321360076639')"
-            >何必呢</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯，够用 ;-)</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 16, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321360264183', '88250')">Reply</a>
-    </div>
-</li><li id="1321360076639" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/ff4eaf09b3262ac158a797d43a98ca56?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.hebine.com" target="_blank">何必呢</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你的这个Blog配额够用吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 16, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321360076639', '何必呢')">Reply</a>
-    </div>
-</li><li id="1321273717774" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/870325c3a84e3ec1589f93522c59fb68?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.romotc.com" target="_blank">romotc</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321266592463"
-                 onmouseover="page.showComment(this, '1321266592463', 20);"
-                 onmouseout="page.hideComment('1321266592463')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>gae做blog还是靠谱的，加油?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 15, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321273717774', 'romotc')">Reply</a>
-    </div>
-</li><li id="1321266592463" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321263995565"
-                 onmouseover="page.showComment(this, '1321263995565', 20);"
-                 onmouseout="page.hideComment('1321263995565')"
-            >romotc</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>040 完全可以胜任目前的免费配额 ;-)</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 15, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321266592463', '88250')">Reply</a>
-    </div>
-</li><li id="1321263995565" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/870325c3a84e3ec1589f93522c59fb68?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.romotc.com" target="_blank">romotc</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>木信心控制在免费配额了？?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 15, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321263995565', 'romotc')">Reply</a>
-    </div>
-</li><li id="1321253042149" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-                <span class="ft__fade">1321252980414</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>迟早要收费的，一个阴谋而已</p> 
-<br> 
-<div>
-  该评论来自 
- <a href="http://symphony.b3log.org/entries/1321104985768#1321253041519">B3log 社区</a> 
-</div>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 14, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321253042149', '1321252980414')">Reply</a>
-    </div>
-</li><li id="1321193861488" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/gae-quota-optimization#1321192587619"
-                 onmouseover="page.showComment(this, '1321192587619', 20);"
-                 onmouseout="page.hideComment('1321192587619')"
-            >yoyo</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>看代码吧，开源的。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 14, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321193861488', '88250')">Reply</a>
-    </div>
-</li><li id="1321192587619" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.yoyolg.com" target="_blank">yoyo</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>好文章！关于count我是用缓存来维护的，发表文章的时候清空这个缓存项。D是用什么维护的啊？？？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 14, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1321192587619', 'yoyo')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1321104975611"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -819,7 +310,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -861,26 +352,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -917,7 +409,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1321104975611",
@@ -937,4 +429,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 298ms, 2020/01/15 10:42:11 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 264ms, 2020/01/16 23:08:35 -->

@@ -62,14 +62,12 @@
             </div>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <#if commentable>
-            <#if article.articleCommentCount != 0>
                 <a href="${servePath}${article.articlePermalink}#comments"
                    class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
                    aria-label="${commentLabel}">
-                    ${article.articleCommentCount}
+                    <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>
                     <span class="icon-chat"></span>
                 </a>
-            </#if>
             </#if>
             <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
                href="${servePath}${article.articlePermalink}"
@@ -134,10 +132,13 @@
         <br>
     </article>
     <#if commentable>
-    <div id="vcomment" style="padding: 30px 60px 30px 50px;" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-    <div id="soloComments" style="display: none;">
-        <@comments commentList=articleComments article=article></@comments>
-    </div>
+        <div id="vcomment" style="padding: 30px 60px 30px 50px;" data-name="${article.authorName}"
+             data-postId="${article.oId}"></div>
+        <#if !staticSite>
+            <div id="soloComments" style="display: none;">
+                <@comments commentList=articleComments article=article></@comments>
+            </div>
+        </#if>
     </#if>
 
     <#include "footer.ftl">

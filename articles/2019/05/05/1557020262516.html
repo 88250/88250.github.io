@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 数据链接与内容寻址 - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文将介绍如何在对等节点上创建和获取可验证的数据链接。 LESSION 1 - 创建节点并返回内容标识符（CID） 在本教程中，我们将探索 IPFS DAG API，它允许我们将数据对象存储在 IPFS 中，你可以在 IPFS 中存储一些令人兴奋的东西，比如你最喜欢的小猫的 GIF。 你可以将数据对象作为参数传入 ipfs.dag.put 方法来创建新节点，该方法返回新创建的节点的内容标识符（CID）。 ipfs.dag.put({ hello: &#39;world&#39; }) CID 是 IPFS 中从其内容生成的数据地址。每当有人将相同的 {hello：&#39;world&#39;} 数据放入 IPFS 时，他们将获得与你获得的相同的 CID。 如果他们改为输入 {hell0：&#39;w0rld&#39;}，则 CID 会有所不同。 如下示例代码将创建 { test: 1 } 节点并返回其 CID： const run = async () =&amp;g...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文将介绍如何在对等节点上创建和获取可验证的数据链接。 LESSION 1 - 创建节点并返回内容标识符（CID） 在本教程中，我们将探索 IPFS DAG API，它允许我们将数据对象存储在 IPFS 中，你可以在 IPFS 中存储一些令人兴奋的东西，比如你最喜欢的小猫的 GIF。 你可以将数据对象作为参数传入 ipfs.dag.put 方法来创建新节点，该方法返回新创建的节点的内容标识符（CID）。 ipfs.dag.put({ hello: &#39;world&#39; }) CID 是 IPFS 中从其内容生成的数据地址。每当有人将相同的 {hello：&#39;world&#39;} 数据放入 IPFS 时，他们将获得与你获得的相同的 CID。 如果他们改为输入 {hell0：&#39;w0rld&#39;}，则 CID 会有所不同。 如下示例代码将创建 { test: 1 } 节点并返回其 CID： const run = async () =&amp;g...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 数据链接与内容寻址 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/05/05/1557020262516.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 数据链接与内容寻址 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/05/05/1557020262516.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="IPFS 去中心化数据结构（四）" href="https://88250.github.io/articles/2019/04/30/1556585434162.html">
             <link rel="next" title="如何限制 docker run 容器执行时长？" href="https://88250.github.io/articles/2019/05/19/1558229770509.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -262,166 +261,14 @@ return run
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1557020262516"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1557055986969" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>完整的架构图或者原理图不知道有没有，但完整源码是有的。</p> 
-<p><a href="https://github.com/ipfs">https://github.com/ipfs</a></p> 
-<p>我也在学习，有空多多交流 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557055986969', '88250')">Reply</a>
-    </div>
-</li><li id="1557055806102" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>有没有整个系统运作的原理图呢？要不然总是窥管见豹，难以理解到底要干啥！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557055806102', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1557054975457" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>通过 DHT 查找的。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557054975457', '88250')">Reply</a>
-    </div>
-</li><li id="1557054644954" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我知道通过cid去找，但是这个怎么找呢？类似病毒一样，每一个这样的服务都是一个个体，它们之间可以相互通信吗？拿着cid去广播，然后有这个cid数据的自动把这个数据提交过来吗，或者发起广播的服务自己去取吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557054644954', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1557053217328" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>get 通过 CID 获取数据。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557053217328', '88250')">Reply</a>
-    </div>
-</li><li id="1557052388741" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>put和get不需要指定一个位置吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557052388741', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1557021248526" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>网络不会，本机会，因为没人 get 的话数据仅在本地。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557021248526', '88250')">Reply</a>
-    </div>
-</li><li id="1557021009956" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1530582712751.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不停的 put <code>cid</code> 会不会炸</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557021009956', 'Vanessa')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1557020262516"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -435,7 +282,7 @@ return run
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -477,26 +324,27 @@ return run
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -533,7 +381,7 @@ return run
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1557020262516",
@@ -553,4 +401,4 @@ return run
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 520ms, 2020/01/15 10:42:05 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 337ms, 2020/01/16 23:08:28 -->

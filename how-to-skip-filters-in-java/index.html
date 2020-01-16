@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>如何跳过过滤器处理？ - D 的个人博客</title><meta name="description" content="假如应用中存在多个过滤器，如何在第一个过滤器处理时根据某些条件跳过后续过滤器处理？这里提供了两种方式来解决这个问题。"/><meta property="og:description" content="假如应用中存在多个过滤器，如何在第一个过滤器处理时根据某些条件跳过后续过滤器处理？这里提供了两种方式来解决这个问题。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="如何跳过过滤器处理？ - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/how-to-skip-filters-in-java?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="如何跳过过滤器处理？ - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/how-to-skip-filters-in-java">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="分布式事务原理" href="https://88250.github.io/distributed-transaction-principle">
             <link rel="next" title="Beyond River 填词" href="https://88250.github.io/beyond-river.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -217,76 +216,14 @@ bold;">Sym</span></a>
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1333163798509"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1346901673222" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/8b141aef035b90ddf7ec17742cab4310?s=60&d=http://b3log0.duapp.com:80/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.xiaofeilong.me" target="_blank">小龙哥</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>学习了，感觉非常好！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 6, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1346901673222', '小龙哥')">Reply</a>
-    </div>
-</li><li id="1342671642483" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-                <span class="ft__fade">Ec</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>学习了，刚好碰到这个问题，需要跳过struts的filter,来实现某些功能，用的是方法二，不过 request.getRequestDispatcher(httpServletRequest.getServletPath() + httpServletRequest.getPathInfo()).forward(request, response);</p> 
-<p>getPathInfo()不知道什么用，加了以后有问题，所以用的 是</p> 
-<p>request.getRequestDispatcher(httpServletRequest.getServletPath() ).forward(request, response);</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 19, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1342671642483', 'Ec')">Reply</a>
-    </div>
-</li><li id="1334060640705" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.kauiwan.com" target="_blank">万载网址导航</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>唉，只懂肤浅的java</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 11, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1334060640705', '万载网址导航')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1333163798509"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -300,7 +237,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -342,26 +279,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -395,7 +333,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1333163798509",
@@ -415,4 +353,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 191ms, 2020/01/15 10:42:11 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 170ms, 2020/01/16 23:08:35 -->

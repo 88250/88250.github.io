@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>GAE 随机获取实体 - D 的个人博客</title><meta name="description" content="有时我们需要随机地获取数据记录（实体），比如博客程序中的“随机文章”的实现。 目前 GAE 并没有 API 可以直接获取随机实体，要实现这样的需求我们只能自己想办法了 :-)"/><meta property="og:description" content="有时我们需要随机地获取数据记录（实体），比如博客程序中的“随机文章”的实现。 目前 GAE 并没有 API 可以直接获取随机实体，要实现这样的需求我们只能自己想办法了 :-)"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="GAE 随机获取实体 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/get-gae-random-entities.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="GAE 随机获取实体 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/get-gae-random-entities.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="过去与今天" href="https://88250.github.io/articles/2010/12/31/1293811895091.html">
             <link rel="next" title="发现 Google Buzz 与 Google Code 进行了集成" href="https://88250.github.io/code-buzz.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -197,243 +196,14 @@ bold;">Sym</span></a>
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1294665362060"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1294910740439" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/get-gae-random-entities.html#1294909008959"
-                 onmouseover="page.showComment(this, '1294909008959', 20);"
-                 onmouseout="page.hideComment('1294909008959')"
-            >云在天边</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哦，对 Python 不了解。。。。其实我之前也是用你这个方法实现的随机文章的，但是有点耗 CPU，所以才改成现在这个方法的 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 14, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294910740439', '88250')">Reply</a>
-    </div>
-</li><li id="1294909008959" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/6a80245dce56591672ac63cf4a2c3fda?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.tangblog.info" target="_blank">云在天边</a>
-
-            @ <a href="https://88250.github.io/get-gae-random-entities.html#1294831034388"
-                 onmouseover="page.showComment(this, '1294831034388', 20);"
-                 onmouseout="page.hideComment('1294831034388')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>可能是有点影响。。</p> 
-<p>在fetch()前all()其实还是一个虚对象</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 14, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294909008959', '云在天边')">Reply</a>
-    </div>
-</li><li id="1294831034388" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/get-gae-random-entities.html#1294829346179"
-                 onmouseover="page.showComment(this, '1294829346179', 20);"
-                 onmouseout="page.hideComment('1294829346179')"
-            >云在天边</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>All 的话会不会很慢呢？比较耗 CPU？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 13, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294831034388', '88250')">Reply</a>
-    </div>
-</li><li id="1294829346179" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/6a80245dce56591672ac63cf4a2c3fda?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.tangblog.info" target="_blank">云在天边</a>
-
-            @ <a href="https://88250.github.io/get-gae-random-entities.html#1294809358879"
-                 onmouseover="page.showComment(this, '1294809358879', 20);"
-                 onmouseout="page.hideComment('1294809358879')"
-            >88250</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>entries 相当于是所有符合随机显示条件的内容总体</p> 
-<p>entries = Entry.all().filter('entrytype =', 'post').filter('published =', True)</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 13, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294829346179', '云在天边')">Reply</a>
-    </div>
-</li><li id="1294809358879" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/get-gae-random-entities.html#1294809082897"
-                 onmouseover="page.showComment(this, '1294809082897', 20);"
-                 onmouseout="page.hideComment('1294809082897')"
-            >云在天边</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>其中 entries 是从哪里来的呢？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 12, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294809358879', '88250')">Reply</a>
-    </div>
-</li><li id="1294809082897" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/6a80245dce56591672ac63cf4a2c3fda?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.tangblog.info" target="_blank">云在天边</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>rand_ids = {}</p> 
-<p>for i in range(0, num): </p> 
-<pre><code>rand = random.randint(0, entrycount - 1) 
-<p>while rand_ids.has_key(rand):</p>
-<pre><code>rand = random.randint(0, entrycount - 1) 
-</code></pre>
-</code><p><code>rand_ids.update({rand:True})</code></p></pre>
-<p></p> 
-<p>result = [] </p> 
-<p>for id in rand_ids.keys(): </p> 
-<pre><code>result.append(entries.fetch(1, offset = id)[0])</code></pre> 
-<p>return result</p> 
-<p>python下这种实现方法貌似比你的方法好一些，稍微改一下java也能实现，每次更新数据库键值貌似比较影响性能</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 12, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294809082897', '云在天边')">Reply</a>
-    </div>
-</li><li id="1294756012477" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/get-gae-random-entities.html#1294755953303"
-                 onmouseover="page.showComment(this, '1294755953303', 20);"
-                 onmouseout="page.hideComment('1294755953303')"
-            >Angel</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯，呵呵。只是要稍微浪费一点存储空间了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 12, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294756012477', '88250')">Reply</a>
-    </div>
-</li><li id="1294755953303" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/c4cbf405820b5ec4b2c4f2b8ca3eff28?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.q86.net" target="_blank">Angel</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>恩，这个方法不错，?其实这个还是很容易想到的。。?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 12, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294755953303', 'Angel')">Reply</a>
-    </div>
-</li><li id="1294668916330" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/get-gae-random-entities.html#1294668657601"
-                 onmouseover="page.showComment(this, '1294668657601', 20);"
-                 onmouseout="page.hideComment('1294668657601')"
-            >oncereply</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>呵呵，暂时只能这样了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 11, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294668916330', '88250')">Reply</a>
-    </div>
-</li><li id="1294668657601" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.oncereply.me" target="_blank">oncereply</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这方法不错.</p> 
-<p>?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 11, 2011
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1294668657601', 'oncereply')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1294665362060"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -447,7 +217,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -489,26 +259,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -542,7 +313,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1294665362060",
@@ -562,4 +333,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 180ms, 2020/01/15 10:42:12 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 247ms, 2020/01/16 23:08:36 -->

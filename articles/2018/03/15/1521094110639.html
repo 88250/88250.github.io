@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客</title><meta name="description" content="MySQL 版本和驱动 MySQL 至少是 5.5.3+mysql-connector-java 至少是 5.1.13，修改连接串参数 characterEncoding=UTF-8 历史数据迁移 生成表字符迁移 SQL： SELECT CONCAT( &#39;ALTER TABLE &#39;, TABLE_NAME, &#39; CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;&#39; ) AS mySQL FROM INFORMATION_SCHEMA. TABLES WHERE TABLE_SCHEMA = &#39;your_schema&#39; 生成后执行一把，这样表和列的字符集就改完了。我这里通过修改表的字符集就自动修改列的了，最好自己确认下列是否已经改对。 修改库字符集： ALTER DATABASE your_schema CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci; 上面示例代码中的 COLLATE（排序规则）请按需修改。 关于连接串参数 characterEn...."/><meta property="og:description" content="MySQL 版本和驱动 MySQL 至少是 5.5.3+mysql-connector-java 至少是 5.1.13，修改连接串参数 characterEncoding=UTF-8 历史数据迁移 生成表字符迁移 SQL： SELECT CONCAT( &#39;ALTER TABLE &#39;, TABLE_NAME, &#39; CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;&#39; ) AS mySQL FROM INFORMATION_SCHEMA. TABLES WHERE TABLE_SCHEMA = &#39;your_schema&#39; 生成后执行一把，这样表和列的字符集就改完了。我这里通过修改表的字符集就自动修改列的了，最好自己确认下列是否已经改对。 修改库字符集： ALTER DATABASE your_schema CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci; 上面示例代码中的 COLLATE（排序规则）请按需修改。 关于连接串参数 characterEn...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/15/1521094110639.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/15/1521094110639.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="以太坊同步一直“卡着”的原因" href="https://88250.github.io/articles/2018/03/11/1520767628593.html">
             <link rel="next" title="创业的第一个春天" href="https://88250.github.io/articles/2018/04/20/1524191993505.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -231,200 +230,14 @@ collation-server = utf8mb4_general_ci
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1521094110639"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1521449397534" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1434722396856_1483534658117.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/jingxuetao" target="_blank">jingxuetao</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这样多爽呐!???????????☺️????????????????????????????????????????</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 20, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521449397534', 'jingxuetao')">Reply</a>
-    </div>
-</li><li id="1521449315657" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1434722396856_1483534658117.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/jingxuetao" target="_blank">jingxuetao</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>卧槽?终于可以输入emoji了???????????????????</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 20, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521449315657', 'jingxuetao')">Reply</a>
-    </div>
-</li><li id="1521288415613" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1488254944868_1516899497015.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/linker" target="_blank">linker</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>前天刚刚从sqlite切换到mysql<br> <a href="http://tujie8.net/blogs/linker">http://tujie8.net/blogs/linker</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 18, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521288415613', 'linker')">Reply</a>
-    </div>
-</li><li id="1521165590728" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472652349904?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/skipper" target="_blank">skipper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哈哈，</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521165590728', 'skipper')">Reply</a>
-    </div>
-</li><li id="1521165494900" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>MySQL 用着还行</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521165494900', '88250')">Reply</a>
-    </div>
-</li><li id="1521165341411" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472652349904?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/skipper" target="_blank">skipper</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>mysql的坑啊，为啥不考虑用PostgreSQL?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521165341411', 'skipper')">Reply</a>
-    </div>
-</li><li id="1521118110235" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p><a href="https://www.baidu.com/s?wd=mysql+%E5%AD%97%E7%AC%A6%E9%9B%86+%E7%B4%A2%E5%BC%95&amp;rsv_spt=1&amp;rsv_iqid=0x830523670000f3e6&amp;issp=1&amp;f=8&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=1&amp;rsv_sug3=20&amp;rsv_sug1=12&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;inputT=5950&amp;rsv_sug4=5950">百度说会</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521118110235', '88250')">Reply</a>
-    </div>
-</li><li id="1521113276766" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1487667104882_1487667189622.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/ibut" target="_blank">ibut</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>数据库编码不同关联会 导致不走索引吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521113276766', 'ibut')">Reply</a>
-    </div>
-</li><li id="1521103426079" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521103426079', '88250')">Reply</a>
-    </div>
-</li><li id="1521102748592" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1479624489624_1516776347832.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Tanken" target="_blank">Tanken</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>是不是 utf8mb4 才能保存 Emoji</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 16, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1521102748592', 'Tanken')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1521094110639"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -438,7 +251,7 @@ collation-server = utf8mb4_general_ci
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -480,26 +293,27 @@ collation-server = utf8mb4_general_ci
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -536,7 +350,7 @@ collation-server = utf8mb4_general_ci
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1521094110639",
@@ -556,4 +370,4 @@ collation-server = utf8mb4_general_ci
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 250ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 203ms, 2020/01/16 23:08:30 -->

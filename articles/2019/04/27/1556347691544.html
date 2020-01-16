@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（二） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（二） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/27/1556347691544.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（二） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/27/1556347691544.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="IPFS 去中心化数据结构（一）" href="https://88250.github.io/articles/2019/04/27/1556347438386.html">
             <link rel="next" title="IPFS 去中心化数据结构（三）" href="https://88250.github.io/articles/2019/04/29/1556500741161.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -216,146 +215,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1556347691544"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1574524297063" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1528807958353_1574265348247.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/vinasis" target="_blank">vinasis</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>有点类似搜索相似图片的原理</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1574524297063', 'vinasis')">Reply</a>
-    </div>
-</li><li id="1574509833647" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://avatars1.githubusercontent.com/u/36557839?v=4)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://88250.b3log.org" target="_blank">holai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>膜拜</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1574509833647', 'holai')">Reply</a>
-    </div>
-</li><li id="1572859085136" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://avatars0.githubusercontent.com/u/20453080?v=4)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://88250.b3log.org" target="_blank">suguotong</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>666</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 4, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1572859085136', 'suguotong')">Reply</a>
-    </div>
-</li><li id="1562826032430" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1541550204420?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/EvilCodes" target="_blank">EvilCodes</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我一直想了解哈希算法到底有哪些应用，之前看过几篇文章说哈希算法可以用于客户端分布式算法实现，还可以根据生成的值用于均匀数据内存分配。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 11, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1562826032430', 'EvilCodes')">Reply</a>
-    </div>
-</li><li id="1556548550339" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这个地方应该说的是生成的字符串很难理解，让人摸不着头脑！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 29, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556548550339', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1556548199581" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p><img src="https://img.hacpai.com/file/2019/04/图片-97e58ba0.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="图片.png"></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 29, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556548199581', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1556373409192" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1530582712751.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>gobbledygook 是什么？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 27, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556373409192', 'Vanessa')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1556347691544"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -369,7 +236,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -411,26 +278,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -467,7 +335,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1556347691544",
@@ -487,4 +355,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 223ms, 2020/01/15 10:42:05 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 200ms, 2020/01/16 23:08:29 -->

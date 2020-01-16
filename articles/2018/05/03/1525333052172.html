@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Windows 通过命令行安装根证书 - D 的个人博客</title><meta name="description" content="背景 有的时候我们需要在用户机器上将自制的 CA 证书安装到“受信任的根证书颁发机构”下，这样就能使用该 CA 颁发自签名的证书了，以便后续完成一些安全相关的操作。 工具 在命令行安装证书需要用到证书管理器 certmgr.exe，这个二进制可执行文件在 Win10 中 大概 这个路径下，C:\Program Files (x86)\Windows Kits\8.1\bin\x86\certmgr.exe，建议把这个二进制打在程序的发布包中，或者让程序从网络上拉取到本地。 不带参直接运行的话会弹出一个简单的图形界面： 另外，还有个证书管理器 certmgr.msc，看上去功能更多一些，不过这个是纯图形界面的： certmgr.exe 可以通过该工具实现证书的管理操作： D:&amp;gt;certmgr.exe /? Usage: CertMgr [options][-s [-r &lt;location&gt;][SourceStoreName] [-s [-r &lt;location&gt;][DestinationStoreName] Options: -add Add cert...."/><meta property="og:description" content="背景 有的时候我们需要在用户机器上将自制的 CA 证书安装到“受信任的根证书颁发机构”下，这样就能使用该 CA 颁发自签名的证书了，以便后续完成一些安全相关的操作。 工具 在命令行安装证书需要用到证书管理器 certmgr.exe，这个二进制可执行文件在 Win10 中 大概 这个路径下，C:\Program Files (x86)\Windows Kits\8.1\bin\x86\certmgr.exe，建议把这个二进制打在程序的发布包中，或者让程序从网络上拉取到本地。 不带参直接运行的话会弹出一个简单的图形界面： 另外，还有个证书管理器 certmgr.msc，看上去功能更多一些，不过这个是纯图形界面的： certmgr.exe 可以通过该工具实现证书的管理操作： D:&amp;gt;certmgr.exe /? Usage: CertMgr [options][-s [-r &lt;location&gt;][SourceStoreName] [-s [-r &lt;location&gt;][DestinationStoreName] Options: -add Add cert...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Windows 通过命令行安装根证书 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/05/03/1525333052172.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Windows 通过命令行安装根证书 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/05/03/1525333052172.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="创业的第一个春天" href="https://88250.github.io/articles/2018/04/20/1524191993505.html">
             <link rel="next" title="关于解散所有 B3log 开源社区官方 QQ 群的公告" href="https://88250.github.io/articles/2018/05/17/1526517679116.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -239,110 +238,14 @@ Options:
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1525333052172"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1527493092492" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1479624489624_1516776347832.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Tanken" target="_blank">Tanken</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哦哦，好的 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1527493092492', 'Tanken')">Reply</a>
-    </div>
-</li><li id="1527489772456" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>Linux 上获取了拷过来</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1527489772456', '88250')">Reply</a>
-    </div>
-</li><li id="1527485232480" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1479624489624_1516776347832.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Tanken" target="_blank">Tanken</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>D 大，我看那些命令都是 Linux 的，有办法在 Windows 下获取证书吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1527485232480', 'Tanken')">Reply</a>
-    </div>
-</li><li id="1527478546118" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p><a href="https://letsencrypt.org/">https://letsencrypt.org/</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1527478546118', '88250')">Reply</a>
-    </div>
-</li><li id="1527477876902" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1479624489624_1516776347832.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Tanken" target="_blank">Tanken</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>D 大，你这个 DST Root CA X3 的证书是怎么获取的？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1527477876902', 'Tanken')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1525333052172"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -356,7 +259,7 @@ Options:
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -398,26 +301,27 @@ Options:
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -454,7 +358,7 @@ Options:
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1525333052172",
@@ -474,4 +378,4 @@ Options:
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 213ms, 2020/01/15 10:42:06 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 207ms, 2020/01/16 23:08:30 -->

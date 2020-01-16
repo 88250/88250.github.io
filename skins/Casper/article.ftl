@@ -86,10 +86,12 @@
         </div>
     </#if>
     <#if commentable>
-    <div id="vcomment" class="wrapper" style="padding: 40px 0" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-    <div id="soloComments" style="display: none;">
-        <@comments commentList=articleComments article=article></@comments>
-    </div>
+    <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="${article.authorName}" data-postId="${article.oId}"></div>
+        <#if !staticSite>
+            <div id="soloComments" style="display: none;">
+                <@comments commentList=articleComments article=article></@comments>
+            </div>
+        </#if>
     </#if>
     <div class="article__bottom">
         <div class="wrapper">

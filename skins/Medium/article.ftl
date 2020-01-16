@@ -85,7 +85,7 @@
                         <svg>
                             <use xlink:href="#icon-comment"></use>
                         </svg>
-                    ${article.articleCommentCount}  &nbsp; &nbsp;
+                    <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>  &nbsp; &nbsp;
                     </span>
 
                         <span id="articleShare">
@@ -119,10 +119,12 @@
                     <div class="fn-flex-1" id="randomArticles"></div>
                 </div>
                 <#if commentable>
-                <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-                <div id="soloComments" style="display: none;">
-                    <@comments commentList=articleComments article=article></@comments>
-                </div>
+                <div id="vcomment" class="article__comment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                    <#if !staticSite>
+                        <div id="soloComments" style="display: none;">
+                            <@comments commentList=articleComments article=article></@comments>
+                        </div>
+                    </#if>
                 </#if>
             </div>
         </div>
@@ -139,7 +141,7 @@
                     <svg>
                         <use xlink:href="#icon-comment"></use>
                     </svg>
-                ${article.articleCommentCount}  &nbsp; &nbsp;
+                <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>  &nbsp; &nbsp;
                 </span>
                     <span id="articleBottomShare">
                     <span class="post__share-icon" data-type="wechat">
@@ -175,7 +177,7 @@
         <span class="vditor-tooltipped vditor-tooltipped__e post__share-icon ft-green"
               onclick="$('#comment').focus()"
               aria-label="${commentLabel}">
-            <span class="ft-gray">${article.articleCommentCount}</span>
+            <span class="ft-gray" data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>
             <svg>
                 <use xlink:href="#icon-comment"></use>
             </svg>

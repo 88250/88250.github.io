@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>疯狂的想法 C：书籍共享计划 - D 的个人博客</title><meta name="description" content="文档状态：基本完成开发状态：尚未开始更新时间：2017-01-01 共享机制 书籍以一个自贴二维码（共享码）作为标识，捐书的人通过微信小程序登录社区后扫描书籍 ISBN 将生成这个共享码，然后自己打印出来贴到书籍封面上就开始该书的共享了！ （必须）共享：当前的书籍持有者看完后必须将这本书寄出给需求的人 （必须）免费：当前的书籍持有者必须包邮 （必须）接收：收到书籍后必须确认，让其他人可以知道书在你这里 （可选）注解：当前的书籍持有者可在书页任何地方写上阅读注解 （可选）落款：当前的书籍持有者可在书籍封底页写上自己的 ID 和日期，表示读过/经手过该书 细节 收到书籍的确认是通过小程序扫码完成 是否存在”有需求的人“可以通过社区通知系统（站内通知+邮件）得知。如果当前没有需求的人，则请妥善保管好该书，随时等待它地下一个主人 注解请尽量整洁，请勿乱涂乱画（另外，字难看的请自重 ） 特例情况 如果有人捐了已经在共享的书（ISBN 相同），则也会单独开一个贴来进行 如果共享码被其他人误扫并做了接收确认 TBD 多个需求者问题 TBD 概要设计 发起共享 用户...."/><meta property="og:description" content="文档状态：基本完成开发状态：尚未开始更新时间：2017-01-01 共享机制 书籍以一个自贴二维码（共享码）作为标识，捐书的人通过微信小程序登录社区后扫描书籍 ISBN 将生成这个共享码，然后自己打印出来贴到书籍封面上就开始该书的共享了！ （必须）共享：当前的书籍持有者看完后必须将这本书寄出给需求的人 （必须）免费：当前的书籍持有者必须包邮 （必须）接收：收到书籍后必须确认，让其他人可以知道书在你这里 （可选）注解：当前的书籍持有者可在书页任何地方写上阅读注解 （可选）落款：当前的书籍持有者可在书籍封底页写上自己的 ID 和日期，表示读过/经手过该书 细节 收到书籍的确认是通过小程序扫码完成 是否存在”有需求的人“可以通过社区通知系统（站内通知+邮件）得知。如果当前没有需求的人，则请妥善保管好该书，随时等待它地下一个主人 注解请尽量整洁，请勿乱涂乱画（另外，字难看的请自重 ） 特例情况 如果有人捐了已经在共享的书（ISBN 相同），则也会单独开一个贴来进行 如果共享码被其他人误扫并做了接收确认 TBD 多个需求者问题 TBD 概要设计 发起共享 用户...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="疯狂的想法 C：书籍共享计划 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/01/01/1483240295087.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="疯狂的想法 C：书籍共享计划 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/01/01/1483240295087.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="2016 一个想做架构师的码农" href="https://88250.github.io/articles/2016/12/30/1483027205828.html">
             <link rel="next" title="使用 NGINX 流控和 fail2ban 防止 CC 攻击" href="https://88250.github.io/articles/2017/02/13/1486915389413.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -297,698 +296,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1483240295087"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1565758305197" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>仅从价格来说，邮费能够抵消书的价格（包含折旧费）对于买家来说就是赚的了。如果能多传递几次那么价值还会被放大。至于 B3T 在其中起到的作用怎么说呢，现在这个时间点上提到链币的基本都会被人认为是骗子 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 14, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1565758305197', '88250')">Reply</a>
-    </div>
-</li><li id="1565757354508" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1521471986685_1534323717485.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/samye" target="_blank">samye</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>包邮这个肯定要毙掉，其实说出来这书实际价值不大，需要的人买一本也是可以的，如果要贡献/共享出来，中间的流通成本也很高，意义不是很大，但是说到后背的B3币的价值，就像击鼓传花游戏一样，过手之人，必会获得一定的价值币，可以鼓励每个环节的人主动进行传递。<br> 实际意义还是币的价值，是否值得这样去玩？?</p> 
-<p>（必须）共享：当前的书籍持有者看完后必须将这本书寄出给需求的人<br> （必须）免费：当前的书籍持有者必须包邮<br> （必须）接收：收到书籍后必须确认，让其他人可以知道书在你这里<br> （可选）注解：当前的书籍持有者可在书页任何地方写上阅读注解<br> （可选）落款：当前的书籍持有者可在书籍封底页写上自己的 ID 和日期，表示读过 / 经手过该书</p> 
-<p>作者：88250<br> 链接： <a href="https://hacpai.com/article/1483240295087">疯狂的想法 C：书籍共享计划</a><br> 来源：黑客派<br> 协议：CC BY-SA 4.0 <a href="https://creativecommons.org/licenses/by-sa/4.0/">https://creativecommons.org/licenses/by-sa/4.0/</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 14, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1565757354508', 'samye')">Reply</a>
-    </div>
-</li><li id="1565745272886" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这个想法现在发展为链书了 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 14, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1565745272886', '88250')">Reply</a>
-    </div>
-</li><li id="1565745190507" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565744395591?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/igelar" target="_blank">igelar</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我之前也有过这种想法，在小区里做个共享书架?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 14, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1565745190507', 'igelar')">Reply</a>
-    </div>
-</li><li id="1524210447345" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1493609646694_1493610206355.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/liangjia" target="_blank">liangjia</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>可能会需要一个共享积分制度来规范化和激励，也可能不需要。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 20, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1524210447345', 'liangjia')">Reply</a>
-    </div>
-</li><li id="1516771093784" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1486717540900_1516699920122.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/moreandmore" target="_blank">moreandmore</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 24, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1516771093784', 'moreandmore')">Reply</a>
-    </div>
-</li><li id="1516771075155" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1446265650320_1478854253541.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/royburns" target="_blank">royburns</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>好的好的，保持关注</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 24, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1516771075155', 'royburns')">Reply</a>
-    </div>
-</li><li id="1516770990110" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>要做的话肯定是开源的，但是现在还早。目前主要是围绕 [B3T] 做应用层的服务，先把社区币流通起来再做下一步。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 24, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1516770990110', '88250')">Reply</a>
-    </div>
-</li><li id="1516770922018" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1446265650320_1478854253541.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/royburns" target="_blank">royburns</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>B3的区块链会开源否？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 24, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1516770922018', 'royburns')">Reply</a>
-    </div>
-</li><li id="1516770883338" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>可能要等 B3 区块链主网上线以后了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 24, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1516770883338', '88250')">Reply</a>
-    </div>
-</li><li id="1516770786387" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1446265650320_1478854253541.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/royburns" target="_blank">royburns</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这个帖子怎么不能回复了，D大，什么时候讲讲如何自己构建一套区块链系统啊</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 24, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1516770786387', 'royburns')">Reply</a>
-    </div>
-</li><li id="1484103520348" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不晚不晚，一切刚刚开始</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 11, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1484103520348', '88250')">Reply</a>
-    </div>
-</li><li id="1484103479567" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/710f4a32ef1a2b4b88da498384930e23?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="Http://loveysgg.com" target="_blank">love</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>原谅我知道这个项目晚了</p> 
-<p>恩 必须支持下</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 11, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1484103479567', 'love')">Reply</a>
-    </div>
-</li><li id="1483930892935" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯，获取书籍信息、共享都是 Sym 接口</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483930892935', '88250')">Reply</a>
-    </div>
-</li><li id="1483930845502" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/e722e604db7d13ee9f5382f2c2fab4e5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.royburns.cn" target="_blank">royburns</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哦，只是调用的Sym的接口是吧</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483930845502', 'royburns')">Reply</a>
-    </div>
-</li><li id="1483930797748" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/e722e604db7d13ee9f5382f2c2fab4e5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.royburns.cn" target="_blank">royburns</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我觉得小程序还是会火一阵子的，目前来看效果还不错啊，应该有很多轻应用出来，我也想尝试做一些东西</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483930797748', 'royburns')">Reply</a>
-    </div>
-</li><li id="1483930790473" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>呃，服务端就是 Sym，小程序 <a href="https://github.com/b3log/symphony-weapp">https://github.com/b3log/symphony-weapp</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483930790473', '88250')">Reply</a>
-    </div>
-</li><li id="1483930753138" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/e722e604db7d13ee9f5382f2c2fab4e5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.royburns.cn" target="_blank">royburns</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>快，快共享一下源码！希望是go写的</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483930753138', 'royburns')">Reply</a>
-    </div>
-</li><li id="1483408278628" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>说得装一点就是：甩锅不好，传递真情</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483408278628', '88250')">Reply</a>
-    </div>
-</li><li id="1483408215887" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯，最近两天参考了很多类似的活动事件、服务，要规模化以目前来看不现实，最主要还是因为这个想法存在根本性的矛盾解决不了：要提高书籍的价值（使用价值和价值）但又成本过高（快递/面对面给都高）。</p> 
-<p>我打算就在黑客派社区里面玩，作为一个长期功能提供。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483408215887', '88250')">Reply</a>
-    </div>
-</li><li id="1483408208379" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/26ebb1f78c558523884a7b3a35d63e33?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.oncereply.me" target="_blank">oncereply</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 应该由借阅者出邮费的吧？免费收一本书，肯定会有人懒得再发出去了。。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483408208379', 'oncereply')">Reply</a>
-    </div>
-</li><li id="1483407886181" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/cef2c483e2953a3ea1c81b4759fa0180?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://hacpai.com/member/yangyujiao" target="_blank">yangyujiao</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>其实像我看书，更喜欢买书来看的，因为可以随时看，反复看。（当然，我不太看书?）。<br> 但是，买的书有个什么问题呢，因为可以随时看，因此，我也可以随时不看。。。然后，那本书最后就不知道哪里去了，而我还没有看过·····</p> 
-<p>如果在我手上的是别人的书，那我肯定比自己的书宝贝，而且应该会想着很快看完。毕竟这是要还的。</p> 
-<p>之前我在群里发的那个丢书的，当时看完，我就知道搞不了几天。。。</p> 
-<p>D的这个设想，我觉得吧。可行性有，但是只会在一些特定人群发展。比如不怕麻烦又爱看书的人群中。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483407886181', 'yangyujiao')">Reply</a>
-    </div>
-</li><li id="1483406265502" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/5a7164497769d68452b5c5e682430706?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.gohelp.cc" target="_blank">lijp</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>前一段时间在郑州公交车上有人发起丢书计划，一辆公交车上刚开始大概有七八本书左右，但是一段时间后发现书丢的差不多了，并且破损比较严重。公交车上乘客的素质参差不齐，虽然通过网上可以筛选出素质相对比较高的人，可毕竟书籍属于易损易耗的。出发点很赞，理念也很赞，支持楼主测试。（办公室太嘈杂，有点语无伦次。。。）</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483406265502', 'lijp')">Reply</a>
-    </div>
-</li><li id="1483405503767" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>小众圈子里玩，不考虑这些问题了，不遵守规则下次就不让玩了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483405503767', '88250')">Reply</a>
-    </div>
-</li><li id="1483404824086" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/f7cfe2ecf5d17b07f9250fb391406b6c?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/meikaiyipian" target="_blank">meikaiyipian</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我在想一个很严肃的问题，任何体制下都有不遵守规则的人</p> 
-<p>要是有人不遵守规则怎么办？如何规避风险？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483404824086', 'meikaiyipian')">Reply</a>
-    </div>
-</li><li id="1483372539042" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>电子书的确是个大趋势。这个想法就是玩票性质的，目前还没有找到有效突破口。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483372539042', '88250')">Reply</a>
-    </div>
-</li><li id="1483372343380" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/b8d67bbd08fd6ec53c5ec26908982ef3?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/lamb" target="_blank">lamb</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我现在优先是买电子书，除非没有电子书卖，才会选纸质书</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483372343380', 'lamb')">Reply</a>
-    </div>
-</li><li id="1483353277527" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>有些人读电子书就是会读不进去</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483353277527', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1483334864596" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ea5148e451f92d0a1e5bb5c486806b8a?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/mainlove" target="_blank">mainlove</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>现在还是电子书多，像我这样泡杯水看纸质书的人，要么是单身，要么不是地球人</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483334864596', 'mainlove')">Reply</a>
-    </div>
-</li><li id="1483326089985" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>帮忙分析一下原因么？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483326089985', '88250')">Reply</a>
-    </div>
-</li><li id="1483277677360" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/eacb0a1a206309ee2873937ab39e15f2?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/mrj128" target="_blank">mrj128</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>关于 书的这个 循环利用。d大，你搜下 云书<br> 这个是杭州这边一个大学生团队搞的，可能有些能够借鉴的，虽然我觉得也没有特别好。。。理念是 免费用书，基本 收书到送书 只有一次，不会再继续传递下去了。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483277677360', 'mrj128')">Reply</a>
-    </div>
-</li><li id="1483268281223" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ea5148e451f92d0a1e5bb5c486806b8a?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/mainlove" target="_blank">mainlove</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>只给妹子包邮</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483268281223', 'mainlove')">Reply</a>
-    </div>
-</li><li id="1483264393319" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>由当前持有者包邮</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483264393319', '88250')">Reply</a>
-    </div>
-</li><li id="1483263912856" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/228e9fa349503e859551a84db5ecd9c1?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://applehater.cn" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>邮费呢</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483263912856', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1483244984859" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>主要还是考大家自觉，不然也是很难执行，等系统好了先试试?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483244984859', '88250')">Reply</a>
-    </div>
-</li><li id="1483243923269" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/3792ae0f71a64448757d32f144252c52?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/zk123" target="_blank">zk123</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>想提出两点建议</p> 
-<ul> 
- <li>借书时间；觉得不可能一本书要一直借着，当又有需求者的时候，自己不能一直占着，比如：时间在6个月左右，限定时间更能体现出"<strong>书非借不能读</strong>"的思想。</li> 
- <li>或许可以弄一个信用标签，比如：读过几本书，读过后书标注的注解很精辟之类的（可能有点鸡肋）</li> 
-</ul>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483243923269', 'zk123')">Reply</a>
-    </div>
-</li><li id="1483240831300" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/88d3a9bf69d70bc149eb98e61e8d66c5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://google.com" target="_blank">whex</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p><strong>太妙了！</strong><br> <img src="http://r.photo.store.qq.com/psb?/V10HEjGV13BhAO/jodjZhffVCP.0D87qRKo*JwvPtenPAvGLHl9yfvcBOM!/r/dBUAAAAAAAAA&amp;save=1&amp;d=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1483240831300', 'whex')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1483240295087"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -1002,7 +317,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -1044,26 +359,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -1100,7 +416,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1483240295087",
@@ -1120,4 +436,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 363ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 347ms, 2020/01/16 23:08:31 -->

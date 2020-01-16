@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java 原子操作与并发 - D 的个人博客</title><meta name="description" content="由一个简单的例子引出并发处理时容易被忽视的陷阱，用来作为面试问题应该很适合。 某日，工作了 4 年多的 Java 程序员小 K 跳槽，面试时碰到这样一个题目...."/><meta property="og:description" content="由一个简单的例子引出并发处理时容易被忽视的陷阱，用来作为面试问题应该很适合。 某日，工作了 4 年多的 Java 程序员小 K 跳槽，面试时碰到这样一个题目...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java 原子操作与并发 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/java-atomic-conncurrent?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Java 原子操作与并发 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/java-atomic-conncurrent">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="Weblogic 10.3.3 重置管理密码" href="https://88250.github.io/articles/2012/05/16/1337155417330.html">
             <link rel="next" title="BAE、SAE 与 GAE 对比" href="https://88250.github.io/bae-sae-gae">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -318,349 +317,14 @@ Error
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1342763404848"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1520261572861" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ab91072725fab9b624a31955e29f9f18?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://tk55.cnblogs.com" target="_blank">来自星星的他</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? 白学了那么多年</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 6, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520261572861', '来自星星的他')">Reply</a>
-    </div>
-</li><li id="1502350013392" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/387057b50fbb2ec152d3b5409c02c950?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">focus</span>
-
-            @ <a href="https://88250.github.io/java-atomic-conncurrent#1479462690605"
-                 onmouseover="page.showComment(this, '1479462690605', 20);"
-                 onmouseout="page.hideComment('1479462690605')"
-            >armon</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>可以的,兄弟</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 10, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1502350013392', 'focus')">Reply</a>
-    </div>
-</li><li id="1479462690605" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/f87b8d0e27daad74d92b9e4390a29c03?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">armon</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>在64位os下测了下，楼主的程序不会打印ERROR，我猜测大概原因如下：<br>1）long是64位的问题。在32位os写高32位和低32位的问题，在64位机器貌似没有问题<br>2）if的两个判断的问题。因为线程有自己的堆栈和寄存器，线程3在if读到b之后，第二次貌似就从自己的寄存器读取了</p> 
-<p>把“private long b = 0;” 改成 “private volatile long b = 0;” 之后，就能打印ERROR了，原理是volatile要求线程每次都去内存读取b</p> 
-<p>大家不信可以试试，实验是检验真理的唯一标准</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 19, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1479462690605', 'armon')">Reply</a>
-    </div>
-</li><li id="1479461285969" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/f87b8d0e27daad74d92b9e4390a29c03?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">armon</span>
-
-            @ <a href="https://88250.github.io/java-atomic-conncurrent#1474381621167"
-                 onmouseover="page.showComment(this, '1474381621167', 20);"
-                 onmouseout="page.hideComment('1474381621167')"
-            >Novemser</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>同样在java8下跑了很久都没有ERROR</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 19, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1479461285969', 'armon')">Reply</a>
-    </div>
-</li><li id="1477474663579" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/b56092184f8db1fd07b1cbf146716f87?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">杨正</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>jmm规范虽然没有“要求”long/double的操作是原子操作，但是“强烈建议”，事实上绝大部分的jvm都是按照原子操作来实现的，这确实是线程不安全的，不过愿意是if里的判断，lowB</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 27, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1477474663579', '杨正')">Reply</a>
-    </div>
-</li><li id="1474381621167" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/77cf0103f56a227366340f2ec600a08e?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">Novemser</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>在<br>Java(TM) SE Runtime Environment (build 1.8.0_45-b14)<br>Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)<br>Windows 10 64bit</p> 
-<p>运行上面的代码，跑了很久也没有发现输出-4294967296一样奇怪的值。。。有没有和我一样的小伙伴</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 21, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1474381621167', 'Novemser')">Reply</a>
-    </div>
-</li><li id="1463726984696" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/485966b0a06038360a7ae9cb00a2ab67?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">Ludash</span>
-
-            @ <a href="https://88250.github.io/java-atomic-conncurrent#1354858863117"
-                 onmouseover="page.showComment(this, '1354858863117', 20);"
-                 onmouseout="page.hideComment('1354858863117')"
-            >许仙儿</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@许仙儿： 如果是64bit的OS和64bit的JVM也还是会打印出ERROR的，因为并发的存在。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 20, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1463726984696', 'Ludash')">Reply</a>
-    </div>
-</li><li id="1457880801118" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/26b865a2e1f81f5e8130826e91e95f94?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://pamgo.github.com" target="_blank">alison</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>顿时明白了很多，非常感谢</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 14, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1457880801118', 'alison')">Reply</a>
-    </div>
-</li><li id="1354858863117" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://88250.b3log.org:80/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-                <span class="ft__fade">许仙儿</span>
-
-            @ <a href="https://88250.github.io/java-atomic-conncurrent#1354858814830"
-                 onmouseover="page.showComment(this, '1354858814830', 20);"
-                 onmouseout="page.hideComment('1354858814830')"
-            >许仙儿</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如果是64bit的OS和64bit的JVM，应该没问题吧！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 7, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1354858863117', '许仙儿')">Reply</a>
-    </div>
-</li><li id="1354858814830" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://88250.b3log.org:80/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-                <span class="ft__fade">许仙儿</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如果是64bit的OS和64bit的OS，应该没问题吧！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 7, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1354858814830', '许仙儿')">Reply</a>
-    </div>
-</li><li id="1343634568669" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-                <span class="ft__fade">沉寂</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>非原子的64位操作</p> 
-<p>当线程在没有同步的情况下读取变量时，可能会得到一个失效值，但至少这个值是由之前某个线程设置的值，而不是一个随机值。这种安全性保证也被称为最低安全性( out-of-thin-air safety)。</p> 
-<p>最低安全性适用于绝大多数变量，但是存在一个例外：非volatile 类型的64位数值变量（double和long，请参见3.1.4节）。Java内存模型要求，变量的读取操作和写入操作都必须是原子操作，但对于非volatile类型的long和double变量，JVM允许将64位的读操作或写操作分解为两个32位的操作。当读取一个非volatile类型的long变量时，如果对该变量的读操作和写操作在不同的线程中执行，那么很可能会读取到某个值的高32位和另一个值的低32位。因此，即使不考虑失效数据问题，在多线程程序中使用共享且可变的long和double等类型的变量也是不安全的，除非用关键字volatile来声明它们，或者用锁保护起来。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 30, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1343634568669', '沉寂')">Reply</a>
-    </div>
-</li><li id="1343225146039" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/278754d8d9e5ae7eb69f2337649d682f?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.javarecord.com" target="_blank">zzj</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 26, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1343225146039', 'zzj')">Reply</a>
-    </div>
-</li><li id="1342772575983" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://love.b3log.org" target="_blank">love</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>为什么在Java中变量赋值中，除了long和double类型的变量外都是原子操作？</p> 
-<p>由于long和double类型是大于32BIT的，JVM把他们作为2个原子性的32位值来对待，需要进行2次赋值。所以，不是原子操作。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 21, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1342772575983', 'love')">Reply</a>
-    </div>
-</li><li id="1342772277391" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/da3ed380c4864a58344587f3b4daff2b?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.oncereply.me" target="_blank">oncereply</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>转走~</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 21, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1342772277391', 'oncereply')">Reply</a>
-    </div>
-</li><li id="1342764994513" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/2f6134bb689458a88d40094b28f93a7c?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.idashu.me" target="_blank">大叔</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>?骚年来从电了。</p> 
-<p>决定以后跟你混好了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 20, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1342764994513', '大叔')">Reply</a>
-    </div>
-</li><li id="1342764989040" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://bobby.b3log.org" target="_blank">bobby</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>?,好贴啊，看来之前我大学里也白上了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 20, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1342764989040', 'bobby')">Reply</a>
-    </div>
-</li><li id="1342764919107" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://www.gravatar.com/avatar/1fd9c85a9cdaf65cecde97d050fc26af?s=60&r=G)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.ansen.org" target="_blank">Ansen</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我表示还是看不懂。。顺便把沙发拿走</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 20, 2012
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1342764919107', 'Ansen')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1342763404848"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -674,7 +338,7 @@ Error
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -716,26 +380,27 @@ Error
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -769,7 +434,7 @@ Error
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1342763404848",
@@ -789,4 +454,4 @@ Error
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 247ms, 2020/01/15 10:42:11 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 208ms, 2020/01/16 23:08:35 -->

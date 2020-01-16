@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>跨域 Cookie 实现单点登录 - D 的个人博客</title><meta name="description" content="客户端浏览器在统一登录页登录后通过 HTTP 通知其他域进行登录设置 cookie，从而完成单点登录。"/><meta property="og:description" content="客户端浏览器在统一登录页登录后通过 HTTP 通知其他域进行登录设置 cookie，从而完成单点登录。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="跨域 Cookie 实现单点登录 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/sso-via-cross-domain-cookie?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="跨域 Cookie 实现单点登录 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/sso-via-cross-domain-cookie">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="为博客生成标签图" href="https://88250.github.io/tag-graph-jsnetworkx">
             <link rel="next" title="Golang 与 zTree" href="https://88250.github.io/golang-ztree">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -242,309 +241,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1406692143080"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1538103234699" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1488254944868_1535807825556.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/linker" target="_blank">linker</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>要不要考虑下CoRS跨域？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1538103234699', 'linker')">Reply</a>
-    </div>
-</li><li id="1538097247985" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1535379434567.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>只要服务端能识别该 Cookie 就行了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1538097247985', '88250')">Reply</a>
-    </div>
-</li><li id="1538095045047" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1519538529069_1537316752608.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Jackson" target="_blank">Jackson</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如果我把生成的存放token的cookie导入到其他浏览器，那么其他浏览器也是登录状态吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 28, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1538095045047', 'Jackson')">Reply</a>
-    </div>
-</li><li id="1480476409673" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/7c6be8be1676c080fee1a653d4b96c1b?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://breakey.cn" target="_blank">Snake</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>写的很清晰、受教了！??</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 30, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1480476409673', 'Snake')">Reply</a>
-    </div>
-</li><li id="1469700952109" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@slamyangbiao 要校验的，每个请求都需要校验</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 29, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469700952109', '88250')">Reply</a>
-    </div>
-</li><li id="1469699504247" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/930d0b4ebe62e6a0fa3da66e7ae49738?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">slamyangbiao</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 你们的方案中token校验，子系统是不需要去用户中心校验的？只需要用公钥解密token然后对比？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 29, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469699504247', 'slamyangbiao')">Reply</a>
-    </div>
-</li><li id="1469696762921" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@slamyangbiao 这套方案是公司内部用的，目前没有开源..</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 29, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469696762921', '88250')">Reply</a>
-    </div>
-</li><li id="1469696057715" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/930d0b4ebe62e6a0fa3da66e7ae49738?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">slamyangbiao</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 这个账户中心有没有开源的实现啊。。？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 29, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469696057715', 'slamyangbiao')">Reply</a>
-    </div>
-</li><li id="1469695656735" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@slamyangbiao 比那套简单很多，单点登出也好控制</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 29, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469695656735', '88250')">Reply</a>
-    </div>
-</li><li id="1469695591455" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/930d0b4ebe62e6a0fa3da66e7ae49738?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">slamyangbiao</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 这样会比集成cas复杂吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 29, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469695591455', 'slamyangbiao')">Reply</a>
-    </div>
-</li><li id="1469688179133" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@slamyangbiao 如果一个域名的话，都设置到裸域上面就行了。这个方案是解决不同域名的跨域登录，至于后端数据架构不在本案设计范围之内 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 28, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469688179133', '88250')">Reply</a>
-    </div>
-</li><li id="1469687779102" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/930d0b4ebe62e6a0fa3da66e7ae49738?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">slamyangbiao</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 可以二级域名跨域嘛。。。。一般需要同一用户的公司系统都是使用二级域名去区分。</p> 
-<p>做sso的话。。这么一个个去调用登陆。。是不是不太优雅。。哈哈。。而且各系统的用户数据怎么统一？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 28, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469687779102', 'slamyangbiao')">Reply</a>
-    </div>
-</li><li id="1469687021552" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@slamyangbiao cookie 不支持跨域的嘛， a.com 和 b.com 不是一个 cookie</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 28, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469687021552', '88250')">Reply</a>
-    </div>
-</li><li id="1469686701859" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/930d0b4ebe62e6a0fa3da66e7ae49738?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">slamyangbiao</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 为什么要做sso啊。。直接把session放到同一的redis。。。然后cookie支持跨域。。。不更好吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 28, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469686701859', 'slamyangbiao')">Reply</a>
-    </div>
-</li><li id="1469686105900" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@slamyangbiao 这个是关键点，有疑问欢迎提出</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 28, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469686105900', '88250')">Reply</a>
-    </div>
-</li><li id="1469686038543" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/930d0b4ebe62e6a0fa3da66e7ae49738?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">slamyangbiao</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>版主。。这个有木有详细点的介绍啊。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 28, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1469686038543', 'slamyangbiao')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1406692143080"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -558,7 +262,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -600,26 +304,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -656,7 +361,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1406692143080",
@@ -676,4 +381,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 264ms, 2020/01/15 10:42:09 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 224ms, 2020/01/16 23:08:33 -->

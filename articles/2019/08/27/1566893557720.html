@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>CommonMark 规范要点解读 - D 的个人博客</title><meta name="description" content="为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。 由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。 在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括： David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei...."/><meta property="og:description" content="为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。 由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。 在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括： David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="CommonMark 规范要点解读 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/27/1566893557720.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="CommonMark 规范要点解读 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="我为什么要用中文写项目文档" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">
             <link rel="next" title="Lute 实现后记" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -504,145 +503,14 @@ bar&lt;/p&gt;
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1566893557720"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1572340746358" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>感谢指出 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 29, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1572340746358', '88250')">Reply</a>
-    </div>
-</li><li id="1572340279311" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1458894780084_1527474436917.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/darren" target="_blank">darren</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>就是本文中，Markdown的语法树的图表中，最右边，ul下面的第一个li下面的右侧em 应该是在p下面的，现在文中的li下面的p和em并列了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 29, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1572340279311', 'darren')">Reply</a>
-    </div>
-</li><li id="1572336017650" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>感谢支持。AST 渲染的问题我没看明白，麻烦详细说一下。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 29, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1572336017650', '88250')">Reply</a>
-    </div>
-</li><li id="1572335856903" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1458894780084_1527474436917.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/darren" target="_blank">darren</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>文档写得非常棒?</p> 
-<p>不过文档中是不是用的版本比较旧了，试了下最新版本的vidtor，渲染出来的结构树没有问题</p> 
-<table> 
- <thead> 
-  <tr>
-   <th>文档中的</th>
-   <th>最新版本vidtor渲染出来的</th>
-  </tr> 
- </thead> 
- <tbody> 
-  <tr>
-   <td><img src="https://img.hacpai.com/file/2019/10/old-c840945d.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="old.jpg"></td>
-   <td><img src="https://img.hacpai.com/file/2019/10/echarts-157bf691.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="echarts.png"></td>
-  </tr> 
- </tbody> 
-</table> 
-<p>希望能更新一下下</p> 
-<p>我不是强迫症……我真的不是强迫症……我就是看着不舒服而已……</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 29, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1572335856903', 'darren')">Reply</a>
-    </div>
-</li><li id="1566912332282" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>Vditor 编辑器支持的，可参考这里 <a href="https://hacpai.com/guide/markdown">https://hacpai.com/guide/markdown</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 27, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1566912332282', '88250')">Reply</a>
-    </div>
-</li><li id="1566912248753" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1404008969220_1479096553064.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/cmlanche" target="_blank">cmlanche</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>文章中是怎么嵌入的这个markdown文档树的？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 27, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1566912248753', 'cmlanche')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1566893557720"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -656,7 +524,7 @@ bar&lt;/p&gt;
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -698,26 +566,27 @@ bar&lt;/p&gt;
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -754,7 +623,7 @@ bar&lt;/p&gt;
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1566893557720",
@@ -774,4 +643,4 @@ bar&lt;/p&gt;
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 348ms, 2020/01/15 10:42:04 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 343ms, 2020/01/16 23:08:28 -->

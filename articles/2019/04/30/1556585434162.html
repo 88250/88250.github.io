@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（四） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（三）。 LESSION 5 - 默克尔树和有向无环图（DAG） 正如我们所讨论的，去中心化的 Web 依赖于链接的数据结构。让我们来探索一下它们的样子。 默克尔树 默克尔树即“哈希树”，是一种树形数据结构，其中每个节点都是哈希值。 +--------+ | | +---------+ root +---------+ | | | | | +----+---+ | | | | +----v-----+ +-----v----+ +-----v----+ | | | | | | | node A | | node B | | node C | | | | | | | +----------+ +-----+----+ +-----+----+ | | +-----v----+ +-----v----+ | | | | | node D | | node E +-------+ |...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（三）。 LESSION 5 - 默克尔树和有向无环图（DAG） 正如我们所讨论的，去中心化的 Web 依赖于链接的数据结构。让我们来探索一下它们的样子。 默克尔树 默克尔树即“哈希树”，是一种树形数据结构，其中每个节点都是哈希值。 +--------+ | | +---------+ root +---------+ | | | | | +----+---+ | | | | +----v-----+ +-----v----+ +-----v----+ | | | | | | | node A | | node B | | node C | | | | | | | +----------+ +-----+----+ +-----+----+ | | +-----v----+ +-----v----+ | | | | | node D | | node E +-------+ |...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（四） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/30/1556585434162.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（四） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/30/1556585434162.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="IPFS 去中心化数据结构（三）" href="https://88250.github.io/articles/2019/04/29/1556500741161.html">
             <link rel="next" title="IPFS 数据链接与内容寻址" href="https://88250.github.io/articles/2019/05/05/1557020262516.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -235,146 +234,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1556585434162"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1556716939613" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>国内都是以应用为主，比较先进的理念都是外国人先提出来的，要想往比较前沿的方向跑就得翻译老外的文章！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 1, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556716939613', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1556716684058" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>机翻+人工微调 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 1, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556716684058', '88250')">Reply</a>
-    </div>
-</li><li id="1556716585609" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>才发现你这个是译文呀，你的英文可以呀！我也就能看懂一部分，没有看中文爽快！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 1, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556716585609', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1556628572317" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>文件根节点也是“组织内的节点”，所以其实都在变化，解决这个问题是通过网络全局的命名系统 <a href="https://docs.ipfs.io/guides/concepts/ipns/">IPNS</a>。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 30, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556628572317', '88250')">Reply</a>
-    </div>
-</li><li id="1556625187016" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1551102419019?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/qiankunpingtai" target="_blank">qiankunpingtai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>所有节点的地址随着内容的改变处于不断改变中，只有组织内的节点才能实时寻路到其他节点，组织外的人持有节点地址随时可能失效！是这样吗？感觉一个节点树就和linux的目录结构一样，对系统内透明，对系统外完全就是屏蔽呀。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 30, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556625187016', 'qiankunpingtai')">Reply</a>
-    </div>
-</li><li id="1556605736284" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哈希算法速度很快的，并且文件是分片存取的，所以对性能影响不大。性能取决于网络中节点的个数，节点越多速度越快。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 30, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556605736284', '88250')">Reply</a>
-    </div>
-</li><li id="1556605272914" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1482861527291_1482861603807.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/pangwen" target="_blank">pangwen</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>感觉这种牵一发而动全身，会不会影响性能啥的?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 30, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1556605272914', 'pangwen')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1556585434162"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -388,7 +255,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -430,26 +297,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -486,7 +354,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1556585434162",
@@ -506,4 +374,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 347ms, 2020/01/15 10:42:04 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 340ms, 2020/01/16 23:08:28 -->

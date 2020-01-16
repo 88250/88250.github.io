@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>ScaleIO 2.0 基础及安装纪要 - D 的个人博客</title><meta name="description" content="ScaleIO 基础概念 ScaleIO 是一套由 EMC 提供的软件定义存储的解决方案，用于实现虚拟化 SAN。它主要的优势是 不局限于平台：可以融合异构系统，比如可以同时使用 VMware、Windows、Linux 来构建存储池并使用 优秀的横向扩展能力：存储提供可以扩展到上千节点 动态扩容能力：动态增减节点非常容易 MDM Meta Data Manager，即元数据管理器。至少由 3 个节点组成一个集群： Primary MDM：主管理器 Secondary MDM：从管理器 Tie Breaker：决策器 SDS ScaleIO Data Server，即数据服务器。将主机上的磁盘通过网络抽象为存储池。 SDC ScaleIO Data Client，即数据客户端。创建卷后在安装了 SDC 的系统上可以看见卷被暴露为标准块设备，格式化后就能直接用了。 GW Gateway，即网关。是一个 Web 服务，提供了 ScaleIO 的 RESTFul API。 GUI 管理客户端，UI 很酷炫并且简单易用。可以直观看到容量、IO 情况，创建池、卷等。 vSphere ...."/><meta property="og:description" content="ScaleIO 基础概念 ScaleIO 是一套由 EMC 提供的软件定义存储的解决方案，用于实现虚拟化 SAN。它主要的优势是 不局限于平台：可以融合异构系统，比如可以同时使用 VMware、Windows、Linux 来构建存储池并使用 优秀的横向扩展能力：存储提供可以扩展到上千节点 动态扩容能力：动态增减节点非常容易 MDM Meta Data Manager，即元数据管理器。至少由 3 个节点组成一个集群： Primary MDM：主管理器 Secondary MDM：从管理器 Tie Breaker：决策器 SDS ScaleIO Data Server，即数据服务器。将主机上的磁盘通过网络抽象为存储池。 SDC ScaleIO Data Client，即数据客户端。创建卷后在安装了 SDC 的系统上可以看见卷被暴露为标准块设备，格式化后就能直接用了。 GW Gateway，即网关。是一个 Web 服务，提供了 ScaleIO 的 RESTFul API。 GUI 管理客户端，UI 很酷炫并且简单易用。可以直观看到容量、IO 情况，创建池、卷等。 vSphere ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="ScaleIO 2.0 基础及安装纪要 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/04/20/1492618091927.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="ScaleIO 2.0 基础及安装纪要 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="GitHub Windows 安装器" href="https://88250.github.io/articles/2017/03/26/1490498197453.html">
             <link rel="next" title="模板引擎实现（一）词法分析" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -296,56 +295,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1492618091927"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1493949593987" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/1aedb8d9dc4751e229a335e371db8058?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://techdog.cf/" target="_blank">游戏小王子</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>求报价图哈哈。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 5, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1493949593987', '游戏小王子')">Reply</a>
-    </div>
-</li><li id="1492618205463" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>第一行的 SAN 就不知道了 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 20, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1492618205463', 'Vanessa')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1492618091927"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -359,7 +316,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -401,26 +358,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -457,7 +415,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1492618091927",
@@ -477,4 +435,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 186ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 173ms, 2020/01/16 23:08:31 -->

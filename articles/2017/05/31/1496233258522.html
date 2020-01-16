@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>模板引擎实现（一）词法分析 - D 的个人博客</title><meta name="description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/><meta property="og:description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="模板引擎实现（一）词法分析 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/05/31/1496233258522.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="模板引擎实现（一）词法分析 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="ScaleIO 2.0 基础及安装纪要" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">
             <link rel="next" title="Solo 支持 Hexo/Jekyll 数据导入" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -309,362 +308,14 @@ for state = action1; state != nil; {
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1496233258522"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1517480602456" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/3162e553b31e92141dcc80a4576047cb?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">JRoger</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? 没有然后了吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 2, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1517480602456', 'JRoger')">Reply</a>
-    </div>
-</li><li id="1501577943096" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1354772746034_1487233204486.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/mainlove" target="_blank">mainlove</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>然后恩</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1501577943096', 'mainlove')">Reply</a>
-    </div>
-</li><li id="1498557124765" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1498146343618?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/rzx" target="_blank">rzx</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? ?好吧，我去找找 ?3Q</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 28, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498557124765', 'rzx')">Reply</a>
-    </div>
-</li><li id="1498551677530" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>在分支上。。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 28, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498551677530', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498546775808" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1498146343618?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/rzx" target="_blank">rzx</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>。。宝宝拉了最新的，，没看到有更新相关阅读啊 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498546775808', 'rzx')">Reply</a>
-    </div>
-</li><li id="1498538633699" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1498146343618?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/rzx" target="_blank">rzx</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>OK，3Q，我猜应该是，写了方法，没有整展示模块， ?哈哈。我去看看</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498538633699', 'rzx')">Reply</a>
-    </div>
-</li><li id="1498492437504" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@rzx 已修复</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498492437504', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498490073061" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1482076132680.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>看了下，好像确实漏了，还漏了个随机阅读.. 这是 @Vanessa 的锅 ? 你看下 page.js 里面的 <code>loadRelevantArticles</code> 和 <code>loadRandomArticles</code></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498490073061', '88250')">Reply</a>
-    </div>
-</li><li id="1498489182372" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1498146343618?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/rzx" target="_blank">rzx</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>?solo真的很棒，最近上手改了改91php<img src="https://img.hacpai.com/file/2017/6/7e35f9cad7ad437b89f6186d39852f8c-QQ20170626225718.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="7e35f9cad7ad437b89f6186d39852f8c-QQ20170626225718.png"> ,还不是太熟悉，有点问题想请教，我看文档说有相关阅读这各部分，但是这个theme好像没有。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498489182372', 'rzx')">Reply</a>
-    </div>
-</li><li id="1497179236975" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1441990773239_1482806503219.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/zonghua" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>别啊，不要酱紫</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 12, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1497179236975', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1496848360137" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/68ef566e5751338665560b3808fbe5ff?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.6zhiqiu.com" target="_blank">足球比分</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>厉害了。?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 8, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496848360137', '足球比分')">Reply</a>
-    </div>
-</li><li id="1496394054061" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1380258725406_1487225647597.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/61260551" target="_blank">61260551</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>需要鞭笞</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 3, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496394054061', '61260551')">Reply</a>
-    </div>
-</li><li id="1496308262474" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>赶紧写。写出来才是真腻害</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 2, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496308262474', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1496281202431" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1458531315351_1483545657030.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/junze" target="_blank">junze</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>厉害了 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496281202431', 'junze')">Reply</a>
-    </div>
-</li><li id="1496279444903" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1429237272905_1483064274321.undefined?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/yangyujiao" target="_blank">yangyujiao</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>昨天看了drools 是个规则引擎。 现在看到引擎两个字，感觉好厉害噢。一副没见过世面的样子?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496279444903', 'yangyujiao')">Reply</a>
-    </div>
-</li><li id="1496236838791" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1479624489624_1491727445010.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Tanken" target="_blank">Tanken</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>Solo 以后也要改成 Go 吗？Javaer 好忧伤 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496236838791', 'Tanken')">Reply</a>
-    </div>
-</li><li id="1496235355541" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353895896349?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/DASHU" target="_blank">DASHU</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>目前深陷泥潭。。。脱不得身</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496235355541', 'DASHU')">Reply</a>
-    </div>
-</li><li id="1496235242755" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1482076132680.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯，欢迎来帮忙！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496235242755', '88250')">Reply</a>
-    </div>
-</li><li id="1496234682293" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353895896349?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/DASHU" target="_blank">DASHU</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>厉害了D，真要开搞啊</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 1, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1496234682293', 'DASHU')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1496233258522"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -678,7 +329,7 @@ for state = action1; state != nil; {
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -720,26 +371,27 @@ for state = action1; state != nil; {
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -776,7 +428,7 @@ for state = action1; state != nil; {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1496233258522",
@@ -796,4 +448,4 @@ for state = action1; state != nil; {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 368ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 358ms, 2020/01/16 23:08:31 -->

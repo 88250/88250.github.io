@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java 正则中的非捕获组 - D 的个人博客</title><meta name="description" content="正则表达式中的非捕获组（non-capturing group）用于匹配但不“保存”匹配结果，出现在正则表达式模式中的 (?:pattern) 这部分就是非捕获组。 我试了几个在线的正则表达式测试工具，返回的匹配结果都是“整个组”，不是非捕获组。 Java 中 Matcher#group() 返回的是 group(0)，也是整个匹配结果，如果要返回第一个非捕获组，需要用 group(1)。 Pattern pattern = Pattern.compile(&quot;([0-9]+)(?:st|nd|rd|th)?&quot;); Matcher matcher = pattern.matcher(&quot;1st 2nd 3 4th&quot;); while (matcher.find()) { System.out.printf(&quot;%3s %s\n&quot;, matcher.group(), matcher.group(1)); } 输出： 1st 1 2nd 2 3 3 4th 4 另外，使用非捕获组时需要注意结尾的 ?，在上面例子中 ([0-9]+)(?:st|nd|rd|th)? 说明该非捕获组是可选的，如...."/><meta property="og:description" content="正则表达式中的非捕获组（non-capturing group）用于匹配但不“保存”匹配结果，出现在正则表达式模式中的 (?:pattern) 这部分就是非捕获组。 我试了几个在线的正则表达式测试工具，返回的匹配结果都是“整个组”，不是非捕获组。 Java 中 Matcher#group() 返回的是 group(0)，也是整个匹配结果，如果要返回第一个非捕获组，需要用 group(1)。 Pattern pattern = Pattern.compile(&quot;([0-9]+)(?:st|nd|rd|th)?&quot;); Matcher matcher = pattern.matcher(&quot;1st 2nd 3 4th&quot;); while (matcher.find()) { System.out.printf(&quot;%3s %s\n&quot;, matcher.group(), matcher.group(1)); } 输出： 1st 1 2nd 2 3 3 4th 4 另外，使用非捕获组时需要注意结尾的 ?，在上面例子中 ([0-9]+)(?:st|nd|rd|th)? 说明该非捕获组是可选的，如...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java 正则中的非捕获组 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/09/30/1538320113750.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Java 正则中的非捕获组 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/09/30/1538320113750.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="《提问的智慧》精读注解版" href="https://88250.github.io/articles/2018/09/08/1536377163156.html">
             <link rel="next" title="协慌网，一个汉化 Stack Overflow 的网站" href="https://88250.github.io/articles/2018/10/03/1538577113305.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -199,38 +198,14 @@ while (matcher.find()) {
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1538320113750"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1538322624174" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472916487771_1476781787075.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/alanfans" target="_blank">alanfans</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>666</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 30, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1538322624174', 'alanfans')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1538320113750"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -244,7 +219,7 @@ while (matcher.find()) {
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -286,26 +261,27 @@ while (matcher.find()) {
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -339,7 +315,7 @@ while (matcher.find()) {
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1538320113750",
@@ -359,4 +335,4 @@ while (matcher.find()) {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 170ms, 2020/01/15 10:42:06 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 200ms, 2020/01/16 23:08:30 -->

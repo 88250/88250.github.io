@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客</title><meta name="description" content="上一篇： [1438260619759] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438260619759] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/31/1438311936449.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/31/1438311936449.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（七）" href="https://88250.github.io/articles/2015/07/30/1438260619759.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（九）" href="https://88250.github.io/articles/2015/08/03/1438596722873.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -452,87 +451,14 @@ cap: 32 -&gt; 64
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1438311936449"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1555914896016" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1555914664100?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/belite" target="_blank">belite</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>s := make([]int, 0, 5)<br> fmt.Printf("%p\n", &amp;s)<br> s2 := append(s, 1)<br> fmt.Printf("%p\n", &amp;s2)<br> fmt.Println(s, s2)</p> 
-<p>这个测试没意义，slice结构永远是不同的， 上面两个slice所指向的 数组地址是一样</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 22, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1555914896016', 'belite')">Reply</a>
-    </div>
-</li><li id="1538732839816" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1535379434567.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p></p>
-<pre><code>s := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-s1 := s[:2]
-s2 := s1[5:10]
-
-fmt.Println(s, len(s), cap(s))    // [0 1 2 3 4 5 6 7 8 9] 10 10
-fmt.Println(s1, len(s1), cap(s1)) // [0 1] 2 10
-fmt.Println(s2, len(s2), cap(s2)) // [5 6 7 8 9] 5 5
-</code></pre> 
-<p>分片操作的时候是值拷贝，虽然通过索引操作会越界，但实际上 cap 以内的内存都已经被拷贝初始化。</p> 
-<p></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 5, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1538732839816', '88250')">Reply</a>
-    </div>
-</li><li id="1538729916692" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1538707350700?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/mysusheng" target="_blank">mysusheng</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>s := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</p> 
-<p>s1 := s[2:5] // [2 3 4]<br> s2 := s1[2:6:7] // [4 5 6 7]</p> 
-<p>没明白 s2为什么是[4 5 6 7] 在s1基础上也没有567啊?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 5, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1538729916692', 'mysusheng')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1438311936449"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -546,7 +472,7 @@ fmt.Println(s2, len(s2), cap(s2)) // [5 6 7 8 9] 5 5
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -588,26 +514,27 @@ fmt.Println(s2, len(s2), cap(s2)) // [5 6 7 8 9] 5 5
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -644,7 +571,7 @@ fmt.Println(s2, len(s2), cap(s2)) // [5 6 7 8 9] 5 5
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438311936449",
@@ -664,4 +591,4 @@ fmt.Println(s2, len(s2), cap(s2)) // [5 6 7 8 9] 5 5
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 197ms, 2020/01/15 10:42:08 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 185ms, 2020/01/16 23:08:32 -->

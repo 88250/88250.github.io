@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客</title><meta name="description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能***边看边练***就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/><meta property="og:description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能***边看边练***就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/22/1437497122181.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/22/1437497122181.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="优化 Go 中的 map 并发存取" href="https://88250.github.io/optimizing-concurrent-map-access-in-go-chinese">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（二）" href="https://88250.github.io/articles/2015/07/22/1437558810339.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -349,394 +348,14 @@ const (
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1437497122181"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1455885415660" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/7633c8636fa4099608191032ac04a295?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://weibo.com/itfan" target="_blank">itfanr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p> </p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 20, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1455885415660', 'itfanr')">Reply</a>
-    </div>
-</li><li id="1455885173415" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/7633c8636fa4099608191032ac04a295?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://weibo.com/itfan" target="_blank">itfanr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@xi3 你是怎么输出这个框的？我没有找到呢</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 20, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1455885173415', 'itfanr')">Reply</a>
-    </div>
-</li><li id="1455885146479" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/7633c8636fa4099608191032ac04a295?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://weibo.com/itfan" target="_blank">itfanr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>常量被编译器自动转换为自定义类型。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 20, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1455885146479', 'itfanr')">Reply</a>
-    </div>
-</li><li id="1455508971677" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/38364e26449cd4c9999971c30e10b02b?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">myewage</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>java还学不会呢。。go还是先闪一边吧 ：（</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 15, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1455508971677', 'myewage')">Reply</a>
-    </div>
-</li><li id="1454375467192" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/3fb5323031f0178b15a4ef178a33baab?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.zempty.org/" target="_blank">zempty</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>好像大家都很喜欢学习新语言哦！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 2, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1454375467192', 'zempty')">Reply</a>
-    </div>
-</li><li id="1445997529238" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/2a61f0034479fe64324f8da565a75c62?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">mymoshou</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>今天开始看这个. 额，是从零开始的吧</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1437497122181#1445997529238">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 28, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1445997529238', 'mymoshou')">Reply</a>
-    </div>
-</li><li id="1440580260516" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/837ee1da7f0d2e996df8e2c352981c4c?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">toben</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>非常好的教程，顺着看下来能懂</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1440580260516">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 27, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1440580260516', 'toben')">Reply</a>
-    </div>
-</li><li id="1440490388955" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/ff8c5635b0dee72b0498f7ed16fb182d?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">xi3</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>找到了，原来在 help-&gt;playground 下面 https://wide.b3log.org/playground，分享按钮就有各种方法，谢谢</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1440490388955">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 26, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1440490388955', 'xi3')">Reply</a>
-    </div>
-</li><li id="1440489714299" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@xi3 可以使用 share 按钮，然后内嵌其他网站，比如个人博客</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1440489714299">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 26, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1440489714299', '88250')">Reply</a>
-    </div>
-</li><li id="1440489577608" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/ff8c5635b0dee72b0498f7ed16fb182d?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">xi3</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>wide的框是怎么出来的？能介绍一下吗</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1440489577608">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 25, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1440489577608', 'xi3')">Reply</a>
-    </div>
-</li><li id="1440146670265" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/7f2a4ecf8e8a5bb82e4b00095642a88e?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">walbee</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>学习开始了。</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1440146670265">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 22, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1440146670265', 'walbee')">Reply</a>
-    </div>
-</li><li id="1438746467288" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@jingxuetao 声明和初始化是不一样的</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1438746467288">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 5, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1438746467288', '88250')">Reply</a>
-    </div>
-</li><li id="1438746367791" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://solo.b3log.org:80/images/default-user-thumbnail.png)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://jingxuetao.com" target="_blank">jingxuetao</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>在定义变量并不给他赋值的时候既要用var 又要用 变量类型，感觉这样有点多此一举。直接用变量类型定义不行吗？这样设计有什么好处吗？</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1438746367791">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 5, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1438746367791', 'jingxuetao')">Reply</a>
-    </div>
-</li><li id="1438568994981" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/fe956a4b0985f70ac56e8b62bb1a3025?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://superzhu.com" target="_blank">虞双齐</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我也要在我的博客中使用Wide，支持！！！！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 3, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1438568994981', '虞双齐')">Reply</a>
-    </div>
-</li><li id="1437547230608" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/897c9a34736ba9fee32440762a86f199?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">jama</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这是要叫我学习 Go 的节奏么</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1437547230608">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1437547230608', 'jama')">Reply</a>
-    </div>
-</li><li id="1437533631998" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/810cf6221f2f7ba84e881c2dbd8acccb?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">sparon</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? 一直比较看好go</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1437533631998">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1437533631998', 'sparon')">Reply</a>
-    </div>
-</li><li id="1437531395671" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/ff2d55bc53ac54635001fef48917e33a?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">youngski</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>=。= 我正走在初学java的道路上</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1437531395671">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1437531395671', 'youngski')">Reply</a>
-    </div>
-</li><li id="1437528657588" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/1fd9c85a9cdaf65cecde97d050fc26af?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.anasen.org" target="_blank">An</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这是要叫我学习 Go 的节奏么</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1437528657588">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1437528657588', 'An')">Reply</a>
-    </div>
-</li><li id="1437528262268" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这是要叫我学习 Go 的节奏么</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1437528262268">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1437528262268', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1437525607374" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/7590b13969f30417e5964db210908bb9?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">noah</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>nice</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1437497122181#1437525607374">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1437525607374', 'noah')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1437497122181"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -750,7 +369,7 @@ const (
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -792,26 +411,27 @@ const (
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -848,7 +468,7 @@ const (
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1437497122181",
@@ -868,4 +488,4 @@ const (
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 287ms, 2020/01/15 10:42:08 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 282ms, 2020/01/16 23:08:32 -->

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 入门笔记 - D 的个人博客</title><meta name="description" content="IPFS 是什么 IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议。 内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间版本化：可追溯文件修改历史点对点超媒体：P2P 保存各种各样类型的数据 可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。 总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。 IPFS 使用场景 IPFS 的发明者 Juan Benet（juan@benet.ai）在 IPFS 技术白皮书中假设了一些使用场景： 在 /ipfs 和 /ipns 下挂载全球文件系统挂载的个人同步文件夹，拥有版本功能文件加密，数据共享系统可用于所有软件的带版本的包管理器（已经实现了：https://github.com/whyrusleeping/gx）可以作...."/><meta property="og:description" content="IPFS 是什么 IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议。 内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间版本化：可追溯文件修改历史点对点超媒体：P2P 保存各种各样类型的数据 可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。 总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。 IPFS 使用场景 IPFS 的发明者 Juan Benet（juan@benet.ai）在 IPFS 技术白皮书中假设了一些使用场景： 在 /ipfs 和 /ipns 下挂载全球文件系统挂载的个人同步文件夹，拥有版本功能文件加密，数据共享系统可用于所有软件的带版本的包管理器（已经实现了：https://github.com/whyrusleeping/gx）可以作...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 入门笔记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/11/18/1511015097370.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 入门笔记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/11/18/1511015097370.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="Solo 2.3.0 升级 2.4.0 问题与解决" href="https://88250.github.io/articles/2017/10/18/1508292644879.html">
             <link rel="next" title="2017 成为报废程序员的前一年" href="https://88250.github.io/articles/2017/12/31/1514687638181.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -354,442 +353,14 @@ The piper will lead us to reason.
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1511015097370"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1575686573632" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1571485850666?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/geektomya" target="_blank">geektomya</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我说为卅看文章的时候点ipfs出来的是127.0.0.1访问不了，原来这么回事呀，涨姿势了呀</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 7, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1575686573632', 'geektomya')">Reply</a>
-    </div>
-</li><li id="1566220388955" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>这是一个好问题，我能想到的解决方案是使用 IPNS 解决。如果一定要用 CID 的话可能真是个鸡蛋问题无法解决。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 19, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1566220388955', '88250')">Reply</a>
-    </div>
-</li><li id="1566220026777" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1541932138600_1541932583384.gif?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/mfabian" target="_blank">mfabian</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>试想一个悖论场景：一个文本文件的内容中想要引用这个文件本身最终的哈希值，是可以测出来引述在文本中对应位置上的吗？文件哈希值不是根据文本内容改变一个字节都会引发偏差的吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 19, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1566220026777', 'mfabian')">Reply</a>
-    </div>
-</li><li id="1557633972843" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1530582712751.?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>❤️ ♥️ test for <a href="https://github.com/b3log/solo/issues/12778">https://github.com/b3log/solo/issues/12778</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 12, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1557633972843', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1524459661961" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/9cdeb1374130affdbd6eed7dc3f52d86?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">cp</span>
-
-            @ <a href="https://88250.github.io/articles/2017/11/18/1511015097370.html#1523951863167"
-                 onmouseover="page.showComment(this, '1523951863167', 20);"
-                 onmouseout="page.hideComment('1523951863167')"
-            >jy02201949</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我也是，最近想玩一下ipfs的Demo都没法安装了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 23, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1524459661961', 'cp')">Reply</a>
-    </div>
-</li><li id="1523951863167" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1449312166615_1486432689544.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/jy02201949" target="_blank">jy02201949</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>ipns挂了梯子还是访问不了。。。好奇怪</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 17, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1523951863167', 'jy02201949')">Reply</a>
-    </div>
-</li><li id="1522134578993" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59ac9ebeabb849b9254959f275f1cdac?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">zhj</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>目前ipfs的存储使用filecoin了吗,如果以后使用是不是要付费才能往上存. 现在不用付费就可以往上面存,那这些信息是存在哪里的呢?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 27, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1522134578993', 'zhj')">Reply</a>
-    </div>
-</li><li id="1520494586660" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>ipfs.io 被墙了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 8, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520494586660', '88250')">Reply</a>
-    </div>
-</li><li id="1520490404441" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1387852130634_1482923250902.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Hassan" target="_blank">Hassan</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>有个问题：通过本地网关ipns可以访问到资源（之前本地添加的，已经执行过publish），然后通过官方提供的网关 <a href="https://ipfs.io/ipns/">https://ipfs.io/ipns/</a> 无法访问到，是因为公网ip的问题吗 ？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 8, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520490404441', 'Hassan')">Reply</a>
-    </div>
-</li><li id="1517541702438" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>嗯，IPFS 里面 HTTP 网关的作用就是这个。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 2, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1517541702438', '88250')">Reply</a>
-    </div>
-</li><li id="1517540769850" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1495043972344_1497339569388.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/bubbt" target="_blank">bubbt</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>与零网相似又不同，零网必须下载到本地才能看内容，同时又会为其他访问者服务。ipfs.io网站估计也不会储存内容信息，而是找保存内容节点的信息再呈现吧。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 2, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1517540769850', 'bubbt')">Reply</a>
-    </div>
-</li><li id="1517540486670" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>在其他节点不进行主动 pin 的情况下只会缓存一段时间。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 2, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1517540486670', '88250')">Reply</a>
-    </div>
-</li><li id="1517540344910" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1495043972344_1497339569388.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/bubbt" target="_blank">bubbt</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>假如我架了一个ipfs，然后上传文件，这个文件上传到了我的服务器，以后别人访问，是不是会同步到它机器中了？然后我删除源，再访问就访问到保存在其它机器中的文件了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 2, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1517540344910', 'bubbt')">Reply</a>
-    </div>
-</li><li id="1515565549611" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1408671565266_1483319761533.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/flhuoshan" target="_blank">flhuoshan</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>看完了，感觉还是一个web容器的作用，没有提分布式</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1515565549611', 'flhuoshan')">Reply</a>
-    </div>
-</li><li id="1515476057451" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1511274625335.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>是啊，最近得闲研究一下</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1515476057451', '88250')">Reply</a>
-    </div>
-</li><li id="1515476005078" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1387852130634_1482923250902.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Hassan" target="_blank">Hassan</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>最近转行区块链了呀 D老大</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1515476005078', 'Hassan')">Reply</a>
-    </div>
-</li><li id="1515475951758" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1511274625335.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>没参加..</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1515475951758', '88250')">Reply</a>
-    </div>
-</li><li id="1515475931521" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1387852130634_1482923250902.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Hassan" target="_blank">Hassan</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>参加众筹了么 哈哈哈</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        1月 9, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1515475931521', 'Hassan')">Reply</a>
-    </div>
-</li><li id="1514457308063" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/02bb580f5427789dd35205ab89d4fe71?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://yhmpianzi.imwork.net:8888/solo" target="_blank">殷慧明</a>
-
-            @ <a href="https://88250.github.io/articles/2017/11/18/1511015097370.html#1511015264657"
-                 onmouseover="page.showComment(this, '1511015264657', 20);"
-                 onmouseout="page.hideComment('1511015264657')"
-            >alanfans</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>很高端?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1514457308063', '殷慧明')">Reply</a>
-    </div>
-</li><li id="1512532835348" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/FlLdNnlAbBA_9L29laZ2GAtLD1HE?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/K" target="_blank">K</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>学习学习，抽时间研究下。?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 6, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1512532835348', 'K')">Reply</a>
-    </div>
-</li><li id="1511141146218" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1482549749507_1482550091685.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/lijp" target="_blank">lijp</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>牛，有意思。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 20, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1511141146218', 'lijp')">Reply</a>
-    </div>
-</li><li id="1511015917322" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472306079846_1506174772730.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/shejixiang" target="_blank">shejixiang</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>666 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 19, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1511015917322', 'shejixiang')">Reply</a>
-    </div>
-</li><li id="1511015264657" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472916487771_1476781787075.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/alanfans" target="_blank">alanfans</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哇，黑科技</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 19, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1511015264657', 'alanfans')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1511015097370"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -803,7 +374,7 @@ The piper will lead us to reason.
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -845,26 +416,27 @@ The piper will lead us to reason.
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -901,7 +473,7 @@ The piper will lead us to reason.
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1511015097370",
@@ -921,4 +493,4 @@ The piper will lead us to reason.
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 343ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 328ms, 2020/01/16 23:08:30 -->

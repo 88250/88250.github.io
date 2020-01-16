@@ -64,7 +64,7 @@ ${topBarReplacement}
                     <#if commentable> | ${commentCount1Label}
                         <a rel="nofollow" href="${servePath}${article.articlePermalink}#comments">
                             <span class="left articles-commentIcon" title="${commentLabel}"></span>
-                            ${article.articleCommentCount}
+                            <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>
                         </a>
                     </#if>
                 </p>
@@ -104,10 +104,15 @@ ${topBarReplacement}
             <div id="randomArticles"></div>
             <div id="externalRelevantArticles"></div>
             <#if commentable>
-            <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-            <div id="soloComments" style="display: none;">
-                <@comments commentList=articleComments article=article></@comments>
-            </div>
+            <div id="vcomment"
+                 class="comments"
+                 style="padding-top: 15px;"
+                 data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                <#if !staticSite>
+                <div id="soloComments" style="display: none;">
+                    <@comments commentList=articleComments article=article></@comments>
+                </div>
+                </#if>
             </#if>
         </article>
         <#include "side.ftl">

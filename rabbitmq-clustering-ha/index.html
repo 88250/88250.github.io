@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>RabbitMQ 集群与高可用配置 - D 的个人博客</title><meta name="description" content="通过 Erlang 的分布式特性（通过 magic cookie 认证节点）进行 RabbitMQ 集群，各 RabbitMQ 服务为对等节点，即每个节点都提供服务给客户端连接，进行消息发送与接收。 这些节点通过 RabbitMQ HA 队列（镜像队列）进行消息队列结构复制。本方案中搭建 3 个节点，并且都是磁盘节点（所有节点状态保持一致，节点完全对等），只要有任何一个节点能够工作，RabbitMQ 集群对外就能提供服务。"/><meta property="og:description" content="通过 Erlang 的分布式特性（通过 magic cookie 认证节点）进行 RabbitMQ 集群，各 RabbitMQ 服务为对等节点，即每个节点都提供服务给客户端连接，进行消息发送与接收。 这些节点通过 RabbitMQ HA 队列（镜像队列）进行消息队列结构复制。本方案中搭建 3 个节点，并且都是磁盘节点（所有节点状态保持一致，节点完全对等），只要有任何一个节点能够工作，RabbitMQ 集群对外就能提供服务。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="RabbitMQ 集群与高可用配置 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/rabbitmq-clustering-ha?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="RabbitMQ 集群与高可用配置 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/rabbitmq-clustering-ha">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="NetBeans 中使用 maven-jetty-plugin 运行与调试 web 项目" href="https://88250.github.io/netbeans-maven-jetty-plugin">
             <link rel="next" title="ActiveMQ 优化" href="https://88250.github.io/activemq-optmization">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -283,294 +282,14 @@ server   node2 192.168.1.3:5672 check inter 2000 rise 2 fall 3</p></pre><p></p>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1380178165053"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1480647257783" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/6330f2622c628eed68f84cab2cedba31?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">RabbitMQ</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>关注这方面技术的可以加群 13139268 讨论</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 2, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1480647257783', 'RabbitMQ')">Reply</a>
-    </div>
-</li><li id="1461492483842" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org:80" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>大家如果遇到 [RabbitMQ] 相关的你问题，请到社区讨论 https://hacpai.com</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 25, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1461492483842', '88250')">Reply</a>
-    </div>
-</li><li id="1461486578195" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/54f0fd18f33ea416346d2f1b87858c05?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://123" target="_blank">林123</a>
-
-            @ <a href="https://88250.github.io/rabbitmq-clustering-ha#1442970563549"
-                 onmouseover="page.showComment(this, '1442970563549', 20);"
-                 onmouseout="page.hideComment('1442970563549')"
-            >lion_lz</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>解决了吗</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 25, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1461486578195', '林123')">Reply</a>
-    </div>
-</li><li id="1442970563549" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/a63d6e7bf4aadf54fd2ad8fbaf8f56d1?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">lion_lz</span>
-
-            @ <a href="https://88250.github.io/rabbitmq-clustering-ha#1425365982194"
-                 onmouseover="page.showComment(this, '1425365982194', 20);"
-                 onmouseout="page.hideComment('1425365982194')"
-            >xiaoxu</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我也遇到相同的问题，不能够部署集群，请问下你的问题解决了吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 23, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1442970563549', 'lion_lz')">Reply</a>
-    </div>
-</li><li id="1442970492783" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/a63d6e7bf4aadf54fd2ad8fbaf8f56d1?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">lion_lz</span>
-
-            @ <a href="https://88250.github.io/rabbitmq-clustering-ha#1441074601494"
-                 onmouseover="page.showComment(this, '1441074601494', 20);"
-                 onmouseout="page.hideComment('1441074601494')"
-            >Kevin wen</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我也遇到相同的问题，请问下你的问题解决了吗，在线等</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 23, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1442970492783', 'lion_lz')">Reply</a>
-    </div>
-</li><li id="1441074894545" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/5846372e7e3577840f12d7aa30e6ed5d?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">Kevin wen</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>能帮忙解决下吗</p> 
-<p>下一部分是</p> 
-<p>current node details:</p> 
-<ul> 
- <li><p>node name: 'rabbitmqctl-3711@irs205'</p> </li> 
- <li><p>home dir: /var/lib/rabbitmq</p> </li> 
- <li><p>cookie hash: Wn6L71S4Qve2eALc7Je7tg==</p> </li> 
-</ul>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 1, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1441074894545', 'Kevin wen')">Reply</a>
-    </div>
-</li><li id="1441074601494" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/5846372e7e3577840f12d7aa30e6ed5d?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">Kevin wen</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>rabbitmqctl stop_app</p> 
-<p>rabbitmqctl join_cluster rabbit@irs</p> 
-<p>rabbitmqctl start_app</p> 
-<p>报错。。。。</p> 
-<p>rabbit@irs:</p> 
-<ul> 
- <li><p>connected to epmd (port 4369) on irs</p> </li> 
- <li><p>epmd reports node 'rabbit' running on port 25672</p> </li> 
- <li><p>TCP connection succeeded but Erlang distribution failed</p> </li> 
- <li><p>suggestion: hostname mismatch?</p> </li> 
- <li><p>suggestion: is the cookie set correctly?</p> </li> 
-</ul>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 1, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1441074601494', 'Kevin wen')">Reply</a>
-    </div>
-</li><li id="1433389875592" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/1fd9c85a9cdaf65cecde97d050fc26af?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.anasen.org" target="_blank">Ansen</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>D这是在干运维了么</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1380179992896#1433389875592">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 4, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1433389875592', 'Ansen')">Reply</a>
-    </div>
-</li><li id="1433231116461" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/5b2fef59da3a09ce54121e1ca3d05b4e?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">leifeng</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>没事来社区玩玩</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1380179992896#1433231116461">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 2, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1433231116461', 'leifeng')">Reply</a>
-    </div>
-</li><li id="1433230810876" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/b1e625d603d230c7015939f6add94a80?s=60)"></div>
-        <div class="item__name">
-                <span class="ft__fade">jerry2049</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>777的权限，好吧。。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 2, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1433230810876', 'jerry2049')">Reply</a>
-    </div>
-</li><li id="1425372681159" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/5b566ede0a93e3a82d5e569e4cc2d703?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.baidu.com" target="_blank">xiaoxu</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>谢谢，兄弟的回复。我看了官网，是每个节点执行</p> 
-<p>请问，你在centos7上部署过cluster+ha吗？最近，我总是部署错误。资料又太少了。谢谢你</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 4, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1425372681159', 'xiaoxu')">Reply</a>
-    </div>
-</li><li id="1425369564770" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org:80" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@xiaoxu 在各个节点上运行。另外，现在的 rabbitmq 不知道还是不是这个套路，你最好参考一下官方文档 :)</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 3, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1425369564770', '88250')">Reply</a>
-    </div>
-</li><li id="1425365982194" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://secure.gravatar.com/avatar/5b566ede0a93e3a82d5e569e4cc2d703?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.baidu.com" target="_blank">xiaoxu</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p></p>
-<ol> 
- <li>使用 -detached 参数运行各节点</li> 
-</ol> 
-<h1> rabbitmqctl stop</h1> 
-<h1> rabbitmq-server -detached</h1> 
-<p>上面命令，在哪个节点执行呢，总是添加集群出错</p> 
-<p></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 3, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1425365982194', 'xiaoxu')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1380178165053"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -584,7 +303,7 @@ server   node2 192.168.1.3:5672 check inter 2000 rise 2 fall 3</p></pre><p></p>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -626,26 +345,27 @@ server   node2 192.168.1.3:5672 check inter 2000 rise 2 fall 3</p></pre><p></p>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -682,7 +402,7 @@ server   node2 192.168.1.3:5672 check inter 2000 rise 2 fall 3</p></pre><p></p>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1380178165053",
@@ -702,4 +422,4 @@ server   node2 192.168.1.3:5672 check inter 2000 rise 2 fall 3</p></pre><p></p>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 223ms, 2020/01/15 10:42:11 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 196ms, 2020/01/16 23:08:34 -->

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客</title><meta name="description" content="###为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ###历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/><meta property="og:description" content="###为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ###历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/11/19/1447920990604.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/11/19/1447920990604.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="www 开头的域名和 Cookie-free" href="https://88250.github.io/articles/2015/10/19/1445234634721.html">
             <link rel="next" title="标签服务实现漫谈" href="https://88250.github.io/articles/2015/12/01/1448958541321.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -300,95 +299,14 @@ func getClient(url string) *http.Client {
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1447920990604"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1543771620257" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/154ff5c68f524a4e1cf1f61ccc90e44a?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">陈喻</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>其实博主这样写还是太粗糙了,其实可以这样,直接看open ssl源代码,从底层分析ssl协议的几个过程,里面的加密套件或则加密算法等等,这样更好理解.<br> 我的微信:chenyu_920310 求加</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 3, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1543771620257', '陈喻')">Reply</a>
-    </div>
-</li><li id="1448763626703" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/d4ac211b2a8be36851a3cd93c93a1780?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://469971.com" target="_blank">开奖结果</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我也想学下，但好难啊</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 29, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1448763626703', '开奖结果')">Reply</a>
-    </div>
-</li><li id="1447982216581" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@kuuyee 上面的示例代码已经比较完整了，改下证书的实参就可以的。</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1447920990604#1447982216581">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 20, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1447982216581', '88250')">Reply</a>
-    </div>
-</li><li id="1447982143309" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/7ece47ccfd708563a458d9022c593714?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://github.com/kuuyee" target="_blank">kuuyee</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>好文! ?</p> 
-<p>有完整的例子吗？go语言的</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1447920990604#1447982143309">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 20, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1447982143309', 'kuuyee')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1447920990604"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -402,7 +320,7 @@ func getClient(url string) *http.Client {
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -444,26 +362,27 @@ func getClient(url string) *http.Client {
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -497,7 +416,7 @@ func getClient(url string) *http.Client {
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1447920990604",
@@ -517,4 +436,4 @@ func getClient(url string) *http.Client {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 194ms, 2020/01/15 10:42:08 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 358ms, 2020/01/16 23:08:32 -->

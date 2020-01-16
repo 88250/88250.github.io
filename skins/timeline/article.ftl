@@ -80,11 +80,7 @@ ${topBarReplacement}
                         <#if commentable>
                         <span class="ico-comment ico" title="${commentLabel}">
                             <a rel="nofollow" href="${servePath}${article.articlePermalink}#comments">
-                                <#if article.articleCommentCount == 0>
-                                    ${noCommentLabel}
-                                <#else>
-                                    ${article.articleCommentCount}
-                                </#if>
+                                <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>
                             </a>
                         </span>
                         </#if>
@@ -122,10 +118,12 @@ ${topBarReplacement}
                     <div id="externalRelevantArticles"></div>
                     </#if>
                     <#if commentable>
-                    <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-                    <div id="soloComments" style="display: none;">
-                        <@comments commentList=articleComments article=article></@comments>
-                    </div>
+                    <div id="vcomment" class="module" data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                        <#if !staticSite>
+                        <div id="soloComments" style="display: none;" class="module">
+                            <@comments commentList=articleComments article=article></@comments>
+                        </div>
+                        </#if>
                     </#if>
                 </div>
             </div>

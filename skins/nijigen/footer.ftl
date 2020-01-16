@@ -21,7 +21,7 @@
 <footer class="footer">
     &copy; ${year}
     <a href="${servePath}">${blogTitle}</a>
-    ${footerContent}  <span class="fn__none--m">&nbsp; • &nbsp;</span>
+    ${footerContent}
     <div class="fn__none"></div>
     <br/>
 
@@ -36,6 +36,6 @@
 
 <script type="text/javascript" src="${staticServePath}/js/lib/compress/pjax.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="${staticServePath}/js/common${miniPostfix}.js?${staticResourceVersion}" charset="utf-8"></script>
-<script type="text/javascript" src="${staticServePath}/skins/${skinDirName}/js/common${miniPostfix}.js?${staticResourceVersion}" charset="utf-8"></script>
 <#include "../../common-template/label.ftl">
+<script type="text/javascript" src="${staticServePath}/skins/${skinDirName}/js/common${miniPostfix}.js?${staticResourceVersion}" charset="utf-8"></script>
 ${plugins}

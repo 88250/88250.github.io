@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（十一） - D 的个人博客</title><meta name="description" content="上一篇： [1438699210452] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438699210452] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（十一） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/05/1438763483577.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（十一） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/05/1438763483577.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（十）" href="https://88250.github.io/articles/2015/08/04/1438699210452.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（十二）" href="https://88250.github.io/articles/2015/08/06/1438845728987.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -258,97 +257,14 @@ func main() {
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1438763483577"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1451529554856" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/8bf521e1d5f14170873622050502272c?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">TomShine</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>写的很好，谢谢</p>
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1438763483577#1451529554856">黑客派</a></i></p>
-<p></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 31, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1451529554856', 'TomShine')">Reply</a>
-    </div>
-</li><li id="1438829997089" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@yangyujiao 怕孩子聽到不好</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1438763483577#1438829997089">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 6, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1438829997089', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1438776839676" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/cef2c483e2953a3ea1c81b4759fa0180?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://symphony.b3log.org/member/yangyujiao" target="_blank">yangyujiao</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@Vanessa 你应该回家直接让大D给你讲，然后边演示边说。</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1438763483577#1438776839676">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 6, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1438776839676', 'yangyujiao')">Reply</a>
-    </div>
-</li><li id="1438767592024" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(http://gravatar.duoshuo.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=60)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>更新好快，[1437497122181] 都還沒看完呢</p> 
-<p><i>该评论同步自 <a href="http://symphony.b3log.org:80/article/1438763483577#1438767592024">B3log 社区</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 6, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1438767592024', 'Vanessa')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1438763483577"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -362,7 +278,7 @@ func main() {
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -404,26 +320,27 @@ func main() {
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -460,7 +377,7 @@ func main() {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438763483577",
@@ -480,4 +397,4 @@ func main() {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 192ms, 2020/01/15 10:42:08 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 184ms, 2020/01/16 23:08:32 -->

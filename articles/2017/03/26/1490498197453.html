@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>GitHub Windows 安装器 - D 的个人博客</title><meta name="description" content="GitHub 已经提供了完整安装包，所以这个项目可以退休了 😄 GitHub Windows 安装器，简称 GWI。项目地址：https://github.com/b3log/github-windows-installer 项目背景 GitHub Windows 是在线安装的，需要连接亚马逊云。因为你懂的原因，使得安装 GitHub Windows 成了一个问题 😭 解决方案 本库是一个 GitHub Windows 安装器的 golang 实现，在 网络条件好的地方 运行就可以制作安装包啦！ 网络条件好的地方：国外服务器。比如阿里云按量付费的 ECS，选硅谷节点最低配置。 使用步骤 在国外服务器上部署 gwi（下载或自行构建） 运行 gwi，将在当前工作目录生成 github-windows.zip 安装包 下载安装包到本地后运行 GitHub.application 安装完成！ 原理 下载应用元数据文件 下载包描述文件 解析所需包/资源文件下载路径 并发下载 具体请看代码 😏"/><meta property="og:description" content="GitHub 已经提供了完整安装包，所以这个项目可以退休了 😄 GitHub Windows 安装器，简称 GWI。项目地址：https://github.com/b3log/github-windows-installer 项目背景 GitHub Windows 是在线安装的，需要连接亚马逊云。因为你懂的原因，使得安装 GitHub Windows 成了一个问题 😭 解决方案 本库是一个 GitHub Windows 安装器的 golang 实现，在 网络条件好的地方 运行就可以制作安装包啦！ 网络条件好的地方：国外服务器。比如阿里云按量付费的 ECS，选硅谷节点最低配置。 使用步骤 在国外服务器上部署 gwi（下载或自行构建） 运行 gwi，将在当前工作目录生成 github-windows.zip 安装包 下载安装包到本地后运行 GitHub.application 安装完成！ 原理 下载应用元数据文件 下载包描述文件 解析所需包/资源文件下载路径 并发下载 具体请看代码 😏"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="GitHub Windows 安装器 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/03/26/1490498197453.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="GitHub Windows 安装器 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/03/26/1490498197453.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="使用 NGINX 流控和 fail2ban 防止 CC 攻击" href="https://88250.github.io/articles/2017/02/13/1486915389413.html">
             <link rel="next" title="ScaleIO 2.0 基础及安装纪要" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -216,222 +215,14 @@ bold;">Sym</span></a>
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1490498197453"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1494988832162" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/5c4886b9533ebe8097d85ad1a9c31a7b?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/sout" target="_blank">sout</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>在线安装的解决办法，等一天！不知道为什么。前天下载了在线安装包，一直安装失败，昨天早上再下载就装好了，很神奇。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 17, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1494988832162', 'sout')">Reply</a>
-    </div>
-</li><li id="1494987241516" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/4053f77837c72eeb04b943c8fecd745d?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/milafa" target="_blank">milafa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>倒是辛苦你了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 17, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1494987241516', 'milafa')">Reply</a>
-    </div>
-</li><li id="1494987028544" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哦哦，这样最好啦！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 17, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1494987028544', '88250')">Reply</a>
-    </div>
-</li><li id="1494986952594" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/4053f77837c72eeb04b943c8fecd745d?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/milafa" target="_blank">milafa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>刚才去<a href="https://desktop.github.com/">Github Desktop</a> 看了一下版本， 看到现在提供安装包了而不是以前的下载器， 不用在线安装的， windows 提供msi和exe安装文件 ，下载下来可直接安装运行<br> 安装包url<code>https://central.github.com/deployments/desktop/desktop/latest/win32</code></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 17, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1494986952594', 'milafa')">Reply</a>
-    </div>
-</li><li id="1494986174315" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/4053f77837c72eeb04b943c8fecd745d?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/milafa" target="_blank">milafa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>Software Informer 没有检测出新版本 然后我信了。。。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 17, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1494986174315', 'milafa')">Reply</a>
-    </div>
-</li><li id="1494985783476" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你这版本太老了吧..用我打的那个包吧。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 17, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1494985783476', '88250')">Reply</a>
-    </div>
-</li><li id="1494985720631" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/4053f77837c72eeb04b943c8fecd745d?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/milafa" target="_blank">milafa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>之前用离线包安装好了，前几天突然无法启动 打不开我脑子一热就卸载了 然后重装发现再也装不上了 (┬＿┬)</p> 
-<p>这个问题是怎么回事啊 各种查不到</p> 
-<pre><code>* 激活 C:\Users\Isola\AppData\Local\Temp\Temp1_github-3.1.1.4.zip\github-3.1.1.4\GitHub.application 导致异常。 检测到下列失败消息:
-		+ 存储元数据“DeploymentProviderUri”无效。
-</code></pre>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 17, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1494985720631', 'milafa')">Reply</a>
-    </div>
-</li><li id="1493110764368" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/e18976c674e248aa9f1946c4677d90ef?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>然而，我都下载安装好了才发现这个帖子</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 26, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1493110764368', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1492011177088" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/77c32c26b740e881e19443f534822e9b?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">阿茶</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不好意思来这里麻烦你。<br>我在linux环境下搭建的solo，需要一直开着控制台监听 端口吗？<br>为什么我一关掉控制台，博客就无法访问了？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        4月 13, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1492011177088', '阿茶')">Reply</a>
-    </div>
-</li><li id="1490600071719" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/7e0c4cd9d73948b36856a4a1e2002cfc?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/virtualpier" target="_blank">virtualpier</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? 然而我根本不方。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1490600071719', 'virtualpier')">Reply</a>
-    </div>
-</li><li id="1490577610502" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/44184f8bd6872bf62784c2ad5df2c6b4?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Angonger" target="_blank">Angonger</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>然额我有离线包，还有gitbash</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1490577610502', 'Angonger')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1490498197453"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -445,7 +236,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -487,26 +278,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -543,7 +335,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1490498197453",
@@ -563,4 +355,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 235ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 229ms, 2020/01/16 23:08:31 -->

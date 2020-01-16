@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>你保存用户密码的姿势正确吗？ - D 的个人博客</title><meta name="description" content="这几年陆陆续续有很多大站被脱裤，最终导致了很多用户的密码明文泄露。本文不探讨脱裤技术，主要研究的是如何正确（尽量安全）地保存用户密码。"/><meta property="og:description" content="这几年陆陆续续有很多大站被脱裤，最终导致了很多用户的密码明文泄露。本文不探讨脱裤技术，主要研究的是如何正确（尽量安全）地保存用户密码。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="你保存用户密码的姿势正确吗？ - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/secure-salted-password-hashing?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="你保存用户密码的姿势正确吗？ - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/secure-salted-password-hashing">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="2015 年总结 - 十年" href="https://88250.github.io/articles/2016/01/30/1454085278317.html">
             <link rel="next" title="UGC 社区价值生态" href="https://88250.github.io/articles/2016/04/30/1462028669762.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -284,204 +283,14 @@ func main() {
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1456284835045"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1479391301671" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/42d56d58137c2fbf06af7d6226af5b0d?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.sojson.com" target="_blank">soso</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不错。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        11月 18, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1479391301671', 'soso')">Reply</a>
-    </div>
-</li><li id="1464273356740" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/01b47611c644a1c1ea595d2311faf2be?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.52zy.win" target="_blank">曲安</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我爱资源网 ??? 成换友链</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        5月 27, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1464273356740', '曲安')">Reply</a>
-    </div>
-</li><li id="1457504309271" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/80b7b317c76c1fbc28917a1f64ede580?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">美女图片</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>博主好 借位 美女写真图片www.787tu.com每天更新）（</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 9, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1457504309271', '美女图片')">Reply</a>
-    </div>
-</li><li id="1457357149442" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org:80" target="_blank">88250</a>
-
-            @ <a href="https://88250.github.io/secure-salted-password-hashing#1457346622219"
-                 onmouseover="page.showComment(this, '1457346622219', 20);"
-                 onmouseout="page.hideComment('1457346622219')"
-            >wiskey</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>多谢帮忙发现了，不过这个很难改。。。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 8, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1457357149442', '88250')">Reply</a>
-    </div>
-</li><li id="1457346622219" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/e4470afb954e37824b8701f7d832b5af?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">wiskey</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>https://wide.b3log.org/playground/35cbd45fd21844d2a8bfe2050ce3998d.go 但这样也不好吧？?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 8, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1457346622219', 'wiskey')">Reply</a>
-    </div>
-</li><li id="1456379313544" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/228e9fa349503e859551a84db5ecd9c1?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://applehater.cn" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哈希碰撞。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 25, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1456379313544', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1456362304858" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/2a61f0034479fe64324f8da565a75c62?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://www.taobao.com" target="_blank">mymoshou</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不过数据库都暴露的情况下，加密的意义应该也不大了..我目前只到随机加盐哈希的地步...</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 25, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1456362304858', 'mymoshou')">Reply</a>
-    </div>
-</li><li id="1456292295942" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/7633c8636fa4099608191032ac04a295?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://weibo.com/itfan" target="_blank">itfanr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 还好我明察秋毫。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 24, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1456292295942', 'itfanr')">Reply</a>
-    </div>
-</li><li id="1456291843948" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@itfanr 我故意的，故意的，故意的....</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 24, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1456291843948', '88250')">Reply</a>
-    </div>
-</li><li id="1456291785465" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/7633c8636fa4099608191032ac04a295?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://weibo.com/itfan" target="_blank">itfanr</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>因为攻击者不知道用户的颜值和哈希算法，所以不大可能破解。颜值。。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        2月 24, 2016
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1456291785465', 'itfanr')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1456284835045"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -495,7 +304,7 @@ func main() {
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -537,26 +346,27 @@ func main() {
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -593,7 +403,7 @@ func main() {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1456284835045",
@@ -613,4 +423,4 @@ func main() {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 251ms, 2020/01/15 10:42:08 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 285ms, 2020/01/16 23:08:31 -->

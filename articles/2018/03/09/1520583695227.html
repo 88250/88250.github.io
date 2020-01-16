@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>以太坊 JavaScript API web3.js 打币 - D 的个人博客</title><meta name="description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/><meta property="og:description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="以太坊 JavaScript API web3.js 打币 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/09/1520583695227.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="以太坊 JavaScript API web3.js 打币 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/09/1520583695227.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="重装系统后 git 烂了" href="https://88250.github.io/articles/2018/02/24/1519471473213.html">
             <link rel="next" title="以太坊同步一直“卡着”的原因" href="https://88250.github.io/articles/2018/03/11/1520767628593.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -309,185 +308,14 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
         </li>
 </ul>        </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1520583695227"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1529475413084" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1501640283731_1516153588328.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/alshin" target="_blank">alshin</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>同步问题我以为只有我遇到，老大还让我做过 geth,parity 的性能测试</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 20, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1529475413084', 'alshin')">Reply</a>
-    </div>
-</li><li id="1520739352411" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1519134315251?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/dexter" target="_blank">dexter</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>补一下,刚开始接触时易走的坑, sendTransaction中的value 是wei值,10000 这种 几乎在后来的交易记录中看不到<br> 太小了</p> 
-<p>value: web3.utils.toWei(要发几个以太币, 'ether')</p> 
-<p>这样就能发送用户想要的eth币数量了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 11, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520739352411', 'dexter')">Reply</a>
-    </div>
-</li><li id="1520602965321" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1441990773239_1482806503219.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/zonghua" target="_blank">zonghua</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? 内不能给我个挖的教程</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520602965321', 'zonghua')">Reply</a>
-    </div>
-</li><li id="1520589185277" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1487667104882_1487667189622.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/ibut" target="_blank">ibut</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>关键名词要先解释下：<br> Geth 又名Go Ethereum. 是以太坊协议的三种实现之一，由Go语言开发，完全开源的项目。<br> Geth是以太坊协议的具体落地实现，通过Geth，你可以实现以太坊的各种功能,如账户的新建编辑删除，开启挖矿，ether币的转移，智能合约的部署和执行等等。</p> 
-<p>打币的时候不是还可以添加备注吗？没看到</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520589185277', 'ibut')">Reply</a>
-    </div>
-</li><li id="1520588564863" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1468917958725_1487320666085.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Stone" target="_blank">Stone</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>虽然不知道你在说什么，但是看起来很牛逼的样子（实际上也一定很牛逼）！<br> 送你一朵小红花吧?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520588564863', 'Stone')">Reply</a>
-    </div>
-</li><li id="1520585408168" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1437187265889_1482892516923.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/jama" target="_blank">jama</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>完全不懂说的啥，看来我在技术这条路越走越远了啊</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520585408168', 'jama')">Reply</a>
-    </div>
-</li><li id="1520584214927" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1507862395811_1519524078673.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/kafuly" target="_blank">kafuly</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>大D的技术就是牛逼</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520584214927', 'kafuly')">Reply</a>
-    </div>
-</li><li id="1520584164235" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1502275786622_1516612497488.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/fei123" target="_blank">fei123</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>666666</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520584164235', 'fei123')">Reply</a>
-    </div>
-</li><li id="1520584154249" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1507862395811_1519524078673.jpg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/kafuly" target="_blank">kafuly</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>nice ，good job mark</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        3月 10, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1520584154249', 'kafuly')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1520583695227"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -501,7 +329,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -543,26 +371,27 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -599,7 +428,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1520583695227",
@@ -619,4 +448,4 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 233ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 211ms, 2020/01/16 23:08:30 -->

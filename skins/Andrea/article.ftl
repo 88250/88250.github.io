@@ -64,7 +64,7 @@
                                     <#if commentable>
                                     |
                                     <a rel="nofollow" href="${servePath}${article.articlePermalink}#comments">
-                                        ${article.articleCommentCount} ${commentLabel}
+                                        <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span> ${commentLabel}
                                     </a>
                                     </#if>
                                 </div>
@@ -105,10 +105,14 @@
                             <div id="externalRelevantArticles" class="article-relative"></div>
                         </div>
                         <#if commentable>
-                        <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-                        <div id="soloComments" style="display: none;">
-                            <@comments commentList=articleComments article=article></@comments>
-                        </div>
+                        <div id="vcomment"
+                             style="border-top: 2px solid #3F3D36;margin-top: 30px;padding-top: 27px; padding-bottom: 30px;"
+                             data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                            <#if !staticSite>
+                            <div id="soloComments" style="display: none;">
+                                <@comments commentList=articleComments article=article></@comments>
+                            </div>
+                            </#if>
                         </#if>
                     </div>
                     <div class="main-footer"></div>

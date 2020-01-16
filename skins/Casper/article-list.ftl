@@ -21,7 +21,7 @@
 <#list articles as article>
     <article class="item<#if article_index % 6 ==0> item--large</#if>">
         <a href="${servePath}${article.articlePermalink}" class="item__cover"
-           style="background-image: url(${article.articleImg1URL})">
+           style="background-image: url(${article.articleImg1URL})"> ${article.articleTitle}
         </a>
         <div class="item__main">
             <#list article.articleTags?split(",") as articleTag>
@@ -68,9 +68,9 @@
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
                     <img src="${article.authorThumbnailURL}" />
                 </a>
-                <#if article.articleCommentCount != 0 && commentable>
+                <#if commentable>
                 <a class="item__meta" href="${servePath}${article.articlePermalink}#comments">
-                    ${article.articleCommentCount} ${commentLabel}
+                    <span data-uvstatcmt="${article.oId}"><span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span></span> ${commentLabel}
                 </a>
                 <#else>
                     <a class="item__meta" href="${servePath}${article.articlePermalink}">

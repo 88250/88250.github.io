@@ -36,6 +36,7 @@ var Util = {
     Util.uvstat = new Uvstat()
     Util.uvstat.addStat()
     Util.uvstat.renderStat()
+    Util.uvstat.renderCmtStat()
   },
   /**
    * 是否为文章页面
@@ -109,6 +110,7 @@ var Util = {
           Util.parseLanguage()
           Util.uvstat.addStat()
           Util.uvstat.renderStat()
+          Util.uvstat.renderCmtStat()
           cb && cb()
         },
       })
@@ -184,7 +186,7 @@ var Util = {
 
     if (typeof Vditor === 'undefined') {
       Util.addScript(
-        'https://cdn.jsdelivr.net/npm/vditor@2.1.0/dist/method.min.js',
+        'https://cdn.jsdelivr.net/npm/vditor@2.1.1/dist/method.min.js',
         'vditorPreviewScript')
     }
 

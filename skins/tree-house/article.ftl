@@ -86,12 +86,9 @@
                                         </#if>
                                     </div>
                                     <div class="right">
-                                        <span class="article-create-date left">
-                                            ${article.articleUpdateDate?string("yyyy-MM-dd HH:mm:ss")}&nbsp;&nbsp;
-                                        </span>
                                         <#if commentable>
                                         <a rel="nofollow" href="${servePath}${article.articlePermalink}#comments" class="left">
-                                            &nbsp;${article.articleCommentCount} ${commentLabel}&nbsp;&nbsp;
+                                            &nbsp;<span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span> ${commentLabel}&nbsp;&nbsp;
                                         </a>
                                         </#if>
                                         <a rel="nofollow" href="${servePath}${article.articlePermalink}" class="left">
@@ -106,10 +103,14 @@
                             </div>
                             <div class="line right"></div>
                             <#if commentable>
-                            <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-                            <div id="soloComments" style="display: none;">
-                                <@comments commentList=articleComments article=article></@comments>
-                            </div>
+                            <div id="vcomment"
+                                 style="margin: 88px 100px 0 99px;background-color: #effdff;border-radius: 10px;padding: 10px;"
+                                 data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                                <#if !staticSite>
+                                    <div id="soloComments" style="display: none;">
+                                        <@comments commentList=articleComments article=article></@comments>
+                                    </div>
+                                </#if>
                             </#if>
                         </div>
                         <div class="left side">

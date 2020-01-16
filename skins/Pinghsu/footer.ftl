@@ -65,12 +65,12 @@
             <a class="ft__link" href="${servePath}/archives.html">
                 ${statistic.statisticPublishedBlogArticleCount}
                 ${articleLabel}
-            </a> &nbsp; &nbsp;
-            <#if commentable>
-                ${statistic.statisticPublishedBlogCommentCount}
-                ${commentLabel}</#if> <br>
-            <span data-uvstaturl="${servePath}">${statistic.statisticBlogViewCount}</span> <span class="ft-gray">${viewLabel}</span> &nbsp; &nbsp;
-            ${onlineVisitorCnt} <span class="ft-gray">${onlineVisitorLabel}</span> <br>
+            </a>
+           <br>
+            <span data-uvstaturl="${servePath}">${statistic.statisticBlogViewCount}</span> <span class="ft-gray">${viewLabel}</span>
+            <#if !staticSite>
+            &nbsp; &nbsp; ${onlineVisitorCnt} <span class="ft-gray">${onlineVisitorLabel}</span>
+            </#if> <br>
             &copy; ${year}
             <a class="ft__link" href="${servePath}">${blogTitle}</a>
             ${footerContent}
@@ -86,10 +86,10 @@
 <script type="text/javascript" src="${staticServePath}/js/lib/compress/pjax.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="${staticServePath}/js/common${miniPostfix}.js?${staticResourceVersion}"
         charset="utf-8"></script>
+<#include "../../common-template/label.ftl">
 <script type="text/javascript" src="${staticServePath}/skins/${skinDirName}/js/headroom${miniPostfix}.js"
         charset="utf-8"></script>
 <script type="text/javascript"
         src="${staticServePath}/skins/${skinDirName}/js/common${miniPostfix}.js?${staticResourceVersion}"
         charset="utf-8"></script>
-<#include "../../common-template/label.ftl">
 ${plugins}

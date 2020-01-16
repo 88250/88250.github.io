@@ -64,7 +64,7 @@
                         <span class="post-comments-count">
                                 &nbsp; | &nbsp;
                                 <a href="${servePath}${article.articlePermalink}#comments">
-                                    ${article.articleCommentCount} ${cmtLabel}</a>
+                                    <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span> ${cmtLabel}</a>
                         </span>
                         </#if>
                         &nbsp; | &nbsp; ${viewsLabel}
@@ -109,9 +109,11 @@
         </div>
         <#if commentable>
         <div id="vcomment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
-        <div id="soloComments" style="display: none;">
-            <@comments commentList=articleComments article=article></@comments>
-        </div>
+            <#if !staticSite>
+            <div id="soloComments" style="display: none;">
+                <@comments commentList=articleComments article=article></@comments>
+            </div>
+            </#if>
         </#if>
         <#if 0 != relevantArticlesDisplayCount>
             <div id="relevantArticles"></div>

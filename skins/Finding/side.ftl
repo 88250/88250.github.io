@@ -40,11 +40,6 @@
                         class="page-icon" src="${page.pageIcon}"></#if>${page.pageTitle}</a>
             </li>
         </#list>
-        <#if commentable>
-            <li>
-                <a href="${servePath}/dynamic.html">${dynamicLabel}</a>
-            </li>
-        </#if>
         <li>
             <a href="${servePath}/categories.html">${categoryLabel}</a>
         </li>
@@ -80,14 +75,9 @@
         ${articleCount1Label}
         ${statistic.statisticPublishedBlogArticleCount}
     </span><br/>
-    <#if commentable>
-        <span>
-        ${commentCount1Label}
-            ${statistic.statisticPublishedBlogCommentCount}
-    </span> &nbsp; &nbsp;
-    </#if>
+    <#if !staticSite>
     <span>
-        ${onlineVisitor1Label}
-        ${onlineVisitorCnt}
+        ${onlineVisitor1Label} ${onlineVisitorCnt}
     </span>
+    </#if>
 </div>

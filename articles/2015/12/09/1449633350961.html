@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>禁止浏览器自动填充表单字段 - D 的个人博客</title><meta name="description" content="###场景 我们的登录表单一般都是 input text + input password： 登录 登录后如果用户选择了保存登录密码，那后续界面中如果有形如： 这样的两个 input（text+password）接在一起，那浏览器就会自动填充登录时的输入。 要用程序清空自动填充有两个方案： ###使用 autocomplete 属性 在不需要自动填充的 input 上设置 autocomplete 属性： 这个方案对于某些版本的浏览器可能不行。 ###使用假的 input 让浏览器去填充 在页面 `` 后加入： 这个方案原理是让浏览器去填充用户实际上看不到的 input。虽然看上去代码比较 low，但是很实用。 参考：Disabling Chrome Autofill"/><meta property="og:description" content="###场景 我们的登录表单一般都是 input text + input password： 登录 登录后如果用户选择了保存登录密码，那后续界面中如果有形如： 这样的两个 input（text+password）接在一起，那浏览器就会自动填充登录时的输入。 要用程序清空自动填充有两个方案： ###使用 autocomplete 属性 在不需要自动填充的 input 上设置 autocomplete 属性： 这个方案对于某些版本的浏览器可能不行。 ###使用假的 input 让浏览器去填充 在页面 `` 后加入： 这个方案原理是让浏览器去填充用户实际上看不到的 input。虽然看上去代码比较 low，但是很实用。 参考：Disabling Chrome Autofill"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="禁止浏览器自动填充表单字段 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/12/09/1449633350961.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="禁止浏览器自动填充表单字段 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/12/09/1449633350961.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="标签服务实现漫谈" href="https://88250.github.io/articles/2015/12/01/1448958541321.html">
             <link rel="next" title="2015 年总结 - 十年" href="https://88250.github.io/articles/2016/01/30/1454085278317.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -207,179 +206,14 @@ bold;">Sym</span></a>
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1449633350961"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1449820037315" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/3678dfaa551c20ca95761a765baff528?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">flhuoshan</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>看起来low,却很实用</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449820037315">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 11, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449820037315', 'flhuoshan')">Reply</a>
-    </div>
-</li><li id="1449732078921" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/2a61f0034479fe64324f8da565a75c62?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">mymoshou</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250 哦..看来我想的是没错的</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449732078921">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 10, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449732078921', 'mymoshou')">Reply</a>
-    </div>
-</li><li id="1449731948784" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/59a5e8209c780307dbe9c9ba728073f5?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://88250.b3log.org" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@mymoshou 用户填的是看得见的 input，隐藏的这个是给浏览器自动填的，因为有的场景我们并不希望浏览器来帮忙自动填充。</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449731948784">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 10, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449731948784', '88250')">Reply</a>
-    </div>
-</li><li id="1449731623988" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/2a61f0034479fe64324f8da565a75c62?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">mymoshou</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>弄一个隐藏的input，那客户怎么填呢？是用一个显示的填了，然后用js把内容移过去再提交？</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449731623988">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 10, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449731623988', 'mymoshou')">Reply</a>
-    </div>
-</li><li id="1449710402395" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/22ae6b52ee5c2d024b68531bd250be5b?s=128)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>脑洞大开的解决方案</p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449710402395">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 10, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449710402395', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1449638398389" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/6ffb87e598c7ca4f9365d75fbd388456?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">ouzhouyou</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>插件或者什么都是根据表单的名字来的, onfocus 后才给予表单命名 嘿嘿 </p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449638398389">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 9, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449638398389', 'ouzhouyou')">Reply</a>
-    </div>
-</li><li id="1449638359142" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/6ffb87e598c7ca4f9365d75fbd388456?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">ouzhouyou</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>autocomplete依然不能解决 插件自动填充</p> 
-<p>一般我都用onfocus处理 </p> 
-<p>autocomplete="off" onfocus="this.type='password'" </p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449638359142">黑客派</a></i></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 9, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449638359142', 'ouzhouyou')">Reply</a>
-    </div>
-</li><li id="1449638353989" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ea5148e451f92d0a1e5bb5c486806b8a?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">mainlove</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p></p>
-<pre><code>这样的两个 input（text+password）接在一起，那浏览器就会自动填充登录时的输入。
-
-</code></pre> 
-<p>原来是这样，我还以为是 name="field1" 名字不要起的重复就行 </p> 
-<p><i>该评论同步自 <a href="http://hacpai.com:80/article/1449633350961#1449638353989">黑客派</a></i></p> 
-<p></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 9, 2015
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1449638353989', 'mainlove')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1449633350961"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -393,7 +227,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -435,26 +269,27 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -488,7 +323,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1449633350961",
@@ -508,4 +343,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 225ms, 2020/01/15 10:42:08 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 226ms, 2020/01/16 23:08:31 -->

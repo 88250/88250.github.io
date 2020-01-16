@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客</title><meta name="description" content="自 Solo 2.2.0 开始将支持对 Hexo/Jekyll 两款静态博客系统的文章导入，具体使用方法如下： 在 Solo 根目录下放置 markdowns 目录，里面放置待导入的一些 md 文件（可新建目录，方便标识，比如可将 Hexo 的 _posts 文件夹直接拷贝进来） 重启 Solo，启动后将逐篇进行自动导入，可通过日志查看导入情况 导入结束后原 md 文件将被重命名为 .md.{时间毫秒} 这样的格式，如不需要，可将这类后缀的文件删除 导入失败的 md 文件不会被重命名，可将日志和 md 文件反馈给我们，以帮助我们继续改进 💓 另外，目前仅支持已发布的 post，不支持 draft、page 等。 Some technical details 每个 md 文件都会按照 Hexo/Jekyll 定义的头部进行解析，已确定标题、标签等： Hexo 头 Jekyll 头 支持头信息中使用 description、summary、abstract 作为文章摘要，如果没有的话将自动截取正文部分 如果没有定义头信息，或者解析失败，则以文件名作为标题、Not...."/><meta property="og:description" content="自 Solo 2.2.0 开始将支持对 Hexo/Jekyll 两款静态博客系统的文章导入，具体使用方法如下： 在 Solo 根目录下放置 markdowns 目录，里面放置待导入的一些 md 文件（可新建目录，方便标识，比如可将 Hexo 的 _posts 文件夹直接拷贝进来） 重启 Solo，启动后将逐篇进行自动导入，可通过日志查看导入情况 导入结束后原 md 文件将被重命名为 .md.{时间毫秒} 这样的格式，如不需要，可将这类后缀的文件删除 导入失败的 md 文件不会被重命名，可将日志和 md 文件反馈给我们，以帮助我们继续改进 💓 另外，目前仅支持已发布的 post，不支持 draft、page 等。 Some technical details 每个 md 文件都会按照 Hexo/Jekyll 定义的头部进行解析，已确定标题、标签等： Hexo 头 Jekyll 头 支持头信息中使用 description、summary、abstract 作为文章摘要，如果没有的话将自动截取正文部分 如果没有定义头信息，或者解析失败，则以文件名作为标题、Not...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/06/26/1498490209748.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579056090432"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
             <link rel="prev" title="模板引擎实现（一）词法分析" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">
             <link rel="next" title="理解 Eureka 的 P2P 通讯" href="https://88250.github.io/articles/2017/06/29/1498726165535.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,9 +59,8 @@ bold;">Sym</span></a>
 
                 <div class="side__meta">
                     404 文章 <br>
-                        2,022 评论 <br>
-                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览 <br>
-                    6 当前访客
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
                 </div>
             </div>
 
@@ -197,934 +196,14 @@ bold;">Sym</span></a>
 
     </div>
     <div class="wrapper">
-        <div id="vcomment" data-name="88250" data-postId="1498490209748"></div>
-    </div>
-    <div id="soloComments" style="display: none;">
-<div class="comment">
-    <div class="wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1576840698107" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1564547399260_1576816830076.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/chenruhai" target="_blank">chenruhai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>是不是我按照你这样做，然后把数据拷到/opt/solo/markdowns下就可以了？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576840698107', 'chenruhai')">Reply</a>
-    </div>
-</li><li id="1576821823914" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>Solo 的 SQL 可以的。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576821823914', '88250')">Reply</a>
-    </div>
-</li><li id="1576821303628" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1564547399260_1576816830076.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/chenruhai" target="_blank">chenruhai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>就是说不能使用mysql进行solo博客旧数据的导入了。使用hexo的话是怎么样导入的? 是参考这个吗？ <a href="https://hacpai.com/article/1498490209748">Solo 支持 Hexo/Jekyll 数据导入</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576821303628', 'chenruhai')">Reply</a>
-    </div>
-</li><li id="1576820767336" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>其他程序的 SQL 导入不了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576820767336', '88250')">Reply</a>
-    </div>
-</li><li id="1576817874129" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1564547399260_1576816830076.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/chenruhai" target="_blank">chenruhai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如果是.sql文件呢？我使用的是mysql数据库。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576817874129', 'chenruhai')">Reply</a>
-    </div>
-</li><li id="1576816148344" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1564547399260?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/chenruhai" target="_blank">chenruhai</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>我想导入</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        12月 20, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576816148344', 'chenruhai')">Reply</a>
-    </div>
-</li><li id="1571787478242" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你打开数据库看看，看上去是被删库了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1571787478242', '88250')">Reply</a>
-    </div>
-</li><li id="1571765951305" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565979690233?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/LF-WEI" target="_blank">LF-WEI</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>尝试了更改配置文件，从其他目录初始化mysql目录复制过去，报错还是没变化。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1571765951305', 'LF-WEI')">Reply</a>
-    </div>
-</li><li id="1571765850924" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565979690233?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/LF-WEI" target="_blank">LF-WEI</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>最近一直在忙别的项目组，今天重启了一下数据库，发现起不来了，提示<br> 2019-10-18T18:18:36.462648Z 0 [ERROR] [MY-010326] [Server] Fatal error: Can't open and lock privilege tables: Table 'mysql.user' doesn't exist<br> 2019-10-18T18:18:36.462710Z 0 [ERROR] [MY-010952] [Server] The privilege system failed to initialize correctly. For complete instructions on how to upgrade MySQL to a new version please see the 'Upgrading MySQL' section from the MySQL manual.<br> 好像是之前动过初始化的mysql表，找过很多案例还是没能解决，求助大佬！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1571765850924', 'LF-WEI')">Reply</a>
-    </div>
-</li><li id="1570491802720" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你用的是MySQL还是H2？是H2的话挂在宿主机磁盘就没问题了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 8, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1570491802720', '88250')">Reply</a>
-    </div>
-</li><li id="1570280507038" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1568789803687?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/LainNetWork" target="_blank">LainNetWork</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>感谢！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 5, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1570280507038', 'LainNetWork')">Reply</a>
-    </div>
-</li><li id="1570201200949" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p><code>docker run --rm</code></p> 
-<p><a href="https://docs.docker.com/engine/reference/commandline/run/">https://docs.docker.com/engine/reference/commandline/run/</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 4, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1570201200949', '88250')">Reply</a>
-    </div>
-</li><li id="1570201072804" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1565979690233?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/LF-WEI" target="_blank">LF-WEI</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>请问每次重启solo都要删除容器，重建实例吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        10月 4, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1570201072804', 'LF-WEI')">Reply</a>
-    </div>
-</li><li id="1569642009528" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1562941454569.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>收到，可以关注 <a href="https://github.com/b3log/vditor/issues/141">https://github.com/b3log/vditor/issues/141</a></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 28, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1569642009528', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1569467101940" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1568789803687?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/LainNetWork" target="_blank">LainNetWork</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>对的，在iphone的safari上浏览时，代码会换行...但是安卓上看就会有横向滚动条，我觉得这种方式看得更舒服点。我这几天也在试着解决这个问题，但是前端还是太苦手了...?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 26, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1569467101940', 'LainNetWork')">Reply</a>
-    </div>
-</li><li id="1569316591425" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1562941454569.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你说的是 <a href="https://github.com/b3log/vditor/issues/130">https://github.com/b3log/vditor/issues/130</a> 这个问题么？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 24, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1569316591425', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1569207302150" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1568789803687?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/LainNetWork" target="_blank">LainNetWork</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不知道是不是safari的原因。。电脑上开手机模式调试时是有的，在safari上就变成自动换行了。。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1569207302150', 'LainNetWork')">Reply</a>
-    </div>
-</li><li id="1569198410119" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>稍后进行改进，谢谢反馈！</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1569198410119', '88250')">Reply</a>
-    </div>
-</li><li id="1569198053198" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1568789803687?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/LainNetWork" target="_blank">LainNetWork</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>您好，在手机端浏览文章的代码框的时候，代码框可以上下滑动，但是不能左右滑动，也没有滚动条，请问有什么好点的解决办法吗？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 23, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1569198053198', 'LainNetWork')">Reply</a>
-    </div>
-</li><li id="1567919071887" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>XX 是你宿主机要挂载的路径，参数具体格式请参考 Docker 文档。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 8, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1567919071887', '88250')">Reply</a>
-    </div>
-</li><li id="1567916238653" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1567788923992?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/hongyuanqiu" target="_blank">hongyuanqiu</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如果单纯的输入--volume /opt/solo/markdowns/ 会启动不了；应该有啥子参数比如说 --volume XX=/opt/solo/markdowns/ 才正确。<br> 能说明一下这个XX是啥子东西吗？<br> 下面是我运行的脚本，大多是按照官方教程来的，加了一个 --volume 启动有异常，帮忙看一下是那点错了，谢谢。</p> 
-<pre><code class="language-bash">docker run --detach --name solo --network=host \  
---env RUNTIME_DB="MYSQL" \  
---env JDBC_USERNAME="root" \  
---env JDBC_PASSWORD="" \  
---env JDBC_DRIVER="com.mysql.cj.jdbc.Driver" \  
---rm \  
---env JDBC_URL="jdbc:mysql://127.0.0.1:3306/solo?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC" \  
-b3log/solo --listen_port=668 --server_scheme=http --server_host=www.hiblog.site --server_port=666 \  
---volume /opt/solo/markdowns/
-</code></pre>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 8, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1567916238653', 'hongyuanqiu')">Reply</a>
-    </div>
-</li><li id="1567876359606" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>就是你宿主机上的绝对路径，比如 <code>/home/d/markdowns</code></p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 8, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1567876359606', '88250')">Reply</a>
-    </div>
-</li><li id="1567876253518" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1567788923992?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/hongyuanqiu" target="_blank">hongyuanqiu</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你好，楼主。我有些不明白。</p> 
-<blockquote> 
- <p>待导入目录 是寄主机上的绝对路径，是什么意思？是针对啥子的绝对路径？<br> 楼主，能举一个例子吗？</p> 
-</blockquote>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        9月 8, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1567876253518', 'hongyuanqiu')">Reply</a>
-    </div>
-</li><li id="1563758640503" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>挂载本地目录到 /opt/solo/markdowns 就可以了。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1563758640503', '88250')">Reply</a>
-    </div>
-</li><li id="1563758205316" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1561201056615?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/hsowan" target="_blank">hsowan</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>docker导入？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        7月 22, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1563758205316', 'hsowan')">Reply</a>
-    </div>
-</li><li id="1561363918365" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559640765219_1559641022039.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/DonSen" target="_blank">DonSen</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>感谢，已经完成导入</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 24, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1561363918365', 'DonSen')">Reply</a>
-    </div>
-</li><li id="1561360729954" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p><code>--volume 待导入目录/:/opt/solo/markdowns/</code> 这样应该就可以了，其中 <code>待导入目录</code> 是你寄主机上的绝对路径。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 24, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1561360729954', '88250')">Reply</a>
-    </div>
-</li><li id="1561360570209" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559640765219_1559641022039.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/DonSen" target="_blank">DonSen</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如果我没有/opt/solo文件夹呢，创建就可以吗</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 24, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1561360570209', 'DonSen')">Reply</a>
-    </div>
-</li><li id="1561360489858" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196354_1556262761146.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/88250" target="_blank">88250</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>请把要导入的目录挂载到 <code>/opt/solo/markdowns</code> 即可。</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 24, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1561360489858', '88250')">Reply</a>
-    </div>
-</li><li id="1561359646490" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1559640765219_1559641022039.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/DonSen" target="_blank">DonSen</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>@88250，请教， docker部署方式如何导入Markdown</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 24, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1561359646490', 'DonSen')">Reply</a>
-    </div>
-</li><li id="1528809483572" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1528807958353?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/vinasis" target="_blank">vinasis</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>好啊</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 13, 2018
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1528809483572', 'vinasis')">Reply</a>
-    </div>
-</li><li id="1503470269429" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://secure.gravatar.com/avatar/ba827c6500708a8905373a5040152f60?s=128)"></div>
-        <div class="item__name">
-                <span class="ft__fade">gool</span>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>很好</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        8月 23, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1503470269429', 'gool')">Reply</a>
-    </div>
-</li><li id="1498807574014" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1487766179761_1487770394827.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/linyu" target="_blank">linyu</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>支持一下</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 30, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498807574014', 'linyu')">Reply</a>
-    </div>
-</li><li id="1498661125741" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572_1498661072056.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>现在可以了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498661125741', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1498660970631" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>但是感觉你的头像是已经弄过的呀</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660970631', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498660856892" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>等我把头像重新弄一下就可以了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660856892', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1498660512923" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>话说你现在可以发帖了么？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660512923', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498660483980" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>PHP还熟一点，Java已经荒废了</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660483980', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1498660384651" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660384651', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498660333445" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>WordPress或者Joomla选一个</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660333445', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1498660189589" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>哈哈。来用 solo 呀。准备入坑啥？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660189589', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498660141589" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>不，我是白帽子 ? 静态博客不好分类，我都想换了，不想过多折腾插件之类的东西了。现在感觉要有所聚焦，不能啥都去乱，没时间啊</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498660141589', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1498659996536" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你的内心是向往前端的</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498659996536', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498659817243" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>是啊，我用的Jekyll</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 29, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498659817243', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1498612445725" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>你也用静态博客？</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 28, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498612445725', 'Vanessa')">Reply</a>
-    </div>
-</li><li id="1498548501039" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1479347610833_1479347875520.png?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/vgm" target="_blank">vgm</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498548501039', 'vgm')">Reply</a>
-    </div>
-</li><li id="1498548200521" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1453447082572?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/scorpion" target="_blank">scorpion</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>110110110, 我的太少，直接手工搬一下 ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498548200521', 'scorpion')">Reply</a>
-    </div>
-</li><li id="1498545318727" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1474191812630_1484902087176.gif?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/wuhongxu" target="_blank">wuhongxu</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>? ? ?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498545318727', 'wuhongxu')">Reply</a>
-    </div>
-</li><li id="1498523779521" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1472916487771_1476781787075.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/alanfans" target="_blank">alanfans</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>6</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498523779521', 'alanfans')">Reply</a>
-    </div>
-</li><li id="1498491444621" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1353745196544_1472696043886.jpeg?imageView2/1/w/80/h/80/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/Vanessa" target="_blank">Vanessa</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>?</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        6月 27, 2017
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1498491444621', 'Vanessa')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="vcomment"
+             style="    margin-bottom: 40px; margin-top: 80px; 
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 20px;"
+             data-name="88250" data-postId="1498490209748"></div>
     </div>
     <div class="article__bottom">
         <div class="wrapper">
@@ -1138,7 +217,7 @@ b3log/solo --listen_port=668 --server_scheme=http --server_host=www.hiblog.site 
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -1180,26 +259,27 @@ b3log/solo --listen_port=668 --server_scheme=http --server_host=www.hiblog.site 
 
 
 <script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579056090432"
+<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579056090432"
+        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
         charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.3/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://88250.github.io",
-        staticServePath: "https://88250.github.io",
-        luteAvailable: false,
-        hljsStyle: 'monokai',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://88250.github.io",
+    luteAvailable: false,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "3.8.0",
+    staticSite: true,
+  }
+  Util.init()
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -1233,7 +313,7 @@ b3log/solo --listen_port=668 --server_scheme=http --server_host=www.hiblog.site 
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579056090432', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1498490209748",
@@ -1253,4 +333,4 @@ b3log/solo --listen_port=668 --server_scheme=http --server_host=www.hiblog.site 
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 395ms, 2020/01/15 10:42:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 361ms, 2020/01/16 23:08:31 -->
