@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>使用 NGINX 流控和 fail2ban 防止 CC 攻击 - D 的个人博客</title><meta name="description" content="背景知识 CC 攻击 攻击者通过创建大量请求导致服务器资源耗尽，主要针对特定服务接口，属于实现 DoS 攻击的一种方式（DoS 攻击更多是针对网络端口，而不是具体服务接口）。 NGINX 流控 limit_req_zone：通过“漏桶”算法限制每个 IP 发起的请求频率。limit_conn_zone：限制每个 IP 发起的连接数。 fail2ban 通过匹配服务器日志操作 iptables 来限制客户端网络连接。 实践配置 NGINX 部分 在 http 部分中配置： limit_req_zone $binary_remote_addr zone=sym:10m rate=5r/s; limit_conn_zone $binary_remote_addr zone=conn_sym:10m;然后在需要流控的 location 部分配置： limit_req zone=sym burst=5; limit_conn conn_sym 10;重启 NGINX 后当有超流客户端请求时将在 NGINX error.log（默认在 /var/log/nginx/error.log） 中看到类...."/><meta property="og:description" content="背景知识 CC 攻击 攻击者通过创建大量请求导致服务器资源耗尽，主要针对特定服务接口，属于实现 DoS 攻击的一种方式（DoS 攻击更多是针对网络端口，而不是具体服务接口）。 NGINX 流控 limit_req_zone：通过“漏桶”算法限制每个 IP 发起的请求频率。limit_conn_zone：限制每个 IP 发起的连接数。 fail2ban 通过匹配服务器日志操作 iptables 来限制客户端网络连接。 实践配置 NGINX 部分 在 http 部分中配置： limit_req_zone $binary_remote_addr zone=sym:10m rate=5r/s; limit_conn_zone $binary_remote_addr zone=conn_sym:10m;然后在需要流控的 location 部分配置： limit_req zone=sym burst=5; limit_conn conn_sym 10;重启 NGINX 后当有超流客户端请求时将在 NGINX error.log（默认在 /var/log/nginx/error.log） 中看到类...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="使用 NGINX 流控和 fail2ban 防止 CC 攻击 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/02/13/1486915389413.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="使用 NGINX 流控和 fail2ban 防止 CC 攻击 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/02/13/1486915389413.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="疯狂的想法 C：书籍共享计划" href="https://88250.github.io/articles/2017/01/01/1483240295087.html">
             <link rel="next" title="GitHub Windows 安装器" href="https://88250.github.io/articles/2017/03/26/1490498197453.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -162,7 +162,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p></p><h2 id="b3_solo_h2_0">背景知识</h2>
+                <h2 id="b3_solo_h2_0">背景知识</h2>
 <h3 id="b3_solo_h3_1">CC 攻击</h3>
 <p>攻击者通过创建大量请求导致服务器资源耗尽，主要针对特定服务接口，属于实现 DoS 攻击的一种方式（DoS 攻击更多是针对网络端口，而不是具体服务接口）。</p>
 <h3 id="b3_solo_h3_2">NGINX 流控</h3>
@@ -234,7 +234,6 @@ action   = iptables-multiport[name=Sym, port="https,http", protocol=tcp]
 <li><a href="http://nginx.org/en/docs/http/ngx_http_limit_conn_module.html" target="_blank">Module ngx_http_limit_conn_module</a></li>
 <li><a href="https://easyengine.io/tutorials/nginx/fail2ban/" target="_blank">fail2ban</a></li>
 </ul>
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -290,16 +289,17 @@ action   = iptables-multiport[name=Sym, port="https,http", protocol=tcp]
             <a href="#b3_solo_h2_11">参考</a>
         </li>
 </ul>        </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1486915389413"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1486915389413"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -312,7 +312,7 @@ action   = iptables-multiport[name=Sym, port="https,http", protocol=tcp]
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -351,19 +351,6 @@ action   = iptables-multiport[name=Sym, port="https,http", protocol=tcp]
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -374,8 +361,13 @@ action   = iptables-multiport[name=Sym, port="https,http", protocol=tcp]
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -411,7 +403,7 @@ action   = iptables-multiport[name=Sym, port="https,http", protocol=tcp]
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1486915389413",
@@ -431,4 +423,4 @@ action   = iptables-multiport[name=Sym, port="https,http", protocol=tcp]
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 193ms, 2020/01/16 23:08:31 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 173ms, 2020/01/18 20:44:24 -->

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Lute 实现后记 - D 的个人博客</title><meta name="description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/><meta property="og:description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Lute 实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/29/1567062979327.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Lute 实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="CommonMark 规范要点解读" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
             <link rel="next" title="创业的第二个秋天" href="https://88250.github.io/articles/2019/11/11/1573402018349.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -156,7 +156,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p></p><h3 id="b3_solo_h3_0">CommonMark 规范实现难点</h3>
+                <h3 id="b3_solo_h3_0">CommonMark 规范实现难点</h3>
 <p>Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。</p>
 <p>整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。</p>
 <p>除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。</p>
@@ -284,7 +284,6 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 <p>也许我是太久没有写这样的代码了，几乎忘记了编程带来的快乐。希望大家能经常写写这样的代码，没有实际需求可以刷下类似力扣的编程题，找回初学编程时的快乐。</p>
 <h4 id="b3_solo_h4_15">潜意识和睡眠</h4>
 <p>我感觉我的潜意识应该是拒绝实现 Lute 的，因为拒绝产生的动能居然打败了睡眠障碍。之前睡眠不怎么好，自从开始写 Lute，躺下后一想解析策略和性能优化基本就睡着了，结果就是算法没想出来但治好了失眠。如果你也失眠，不妨试着写个 CommonMark 实现，亲测有效！</p>
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -352,16 +351,17 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
             <a href="#b3_solo_h4_15">潜意识和睡眠</a>
         </li>
 </ul>        </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1567062979327"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1567062979327"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -374,7 +374,7 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -413,19 +413,6 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -436,8 +423,13 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -473,7 +465,7 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1567062979327",
@@ -493,4 +485,4 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 344ms, 2020/01/16 23:08:28 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 353ms, 2020/01/18 20:44:21 -->

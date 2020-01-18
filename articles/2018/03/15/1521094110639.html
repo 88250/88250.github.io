@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客</title><meta name="description" content="MySQL 版本和驱动 MySQL 至少是 5.5.3+mysql-connector-java 至少是 5.1.13，修改连接串参数 characterEncoding=UTF-8 历史数据迁移 生成表字符迁移 SQL： SELECT CONCAT( &#39;ALTER TABLE &#39;, TABLE_NAME, &#39; CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;&#39; ) AS mySQL FROM INFORMATION_SCHEMA. TABLES WHERE TABLE_SCHEMA = &#39;your_schema&#39; 生成后执行一把，这样表和列的字符集就改完了。我这里通过修改表的字符集就自动修改列的了，最好自己确认下列是否已经改对。 修改库字符集： ALTER DATABASE your_schema CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci; 上面示例代码中的 COLLATE（排序规则）请按需修改。 关于连接串参数 characterEn...."/><meta property="og:description" content="MySQL 版本和驱动 MySQL 至少是 5.5.3+mysql-connector-java 至少是 5.1.13，修改连接串参数 characterEncoding=UTF-8 历史数据迁移 生成表字符迁移 SQL： SELECT CONCAT( &#39;ALTER TABLE &#39;, TABLE_NAME, &#39; CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;&#39; ) AS mySQL FROM INFORMATION_SCHEMA. TABLES WHERE TABLE_SCHEMA = &#39;your_schema&#39; 生成后执行一把，这样表和列的字符集就改完了。我这里通过修改表的字符集就自动修改列的了，最好自己确认下列是否已经改对。 修改库字符集： ALTER DATABASE your_schema CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci; 上面示例代码中的 COLLATE（排序规则）请按需修改。 关于连接串参数 characterEn...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/15/1521094110639.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/15/1521094110639.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="以太坊同步一直“卡着”的原因" href="https://88250.github.io/articles/2018/03/11/1520767628593.html">
             <link rel="next" title="创业的第一个春天" href="https://88250.github.io/articles/2018/04/20/1524191993505.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -162,7 +162,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p></p><h2 id="b3_solo_h2_0">MySQL 版本和驱动</h2>
+                <h2 id="b3_solo_h2_0">MySQL 版本和驱动</h2>
 <ul>
 <li>MySQL 至少是 5.5.3+</li>
 <li>mysql-connector-java 至少是 5.1.13，修改连接串参数 <code>characterEncoding=UTF-8</code></li>
@@ -200,7 +200,6 @@ character-set-server = utf8mb4
 collation-server = utf8mb4_general_ci
 </code></pre>
 <p>具体细节请参考<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-charsets.html" target="_blank">这里</a>和<a href="https://stackoverflow.com/a/35156926/1043233" target="_blank">这里</a>。</p>
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -229,16 +228,17 @@ collation-server = utf8mb4_general_ci
             <a href="#b3_solo_h2_2">关于连接串参数 characterEncoding</a>
         </li>
 </ul>        </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1521094110639"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1521094110639"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -251,7 +251,7 @@ collation-server = utf8mb4_general_ci
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -290,19 +290,6 @@ collation-server = utf8mb4_general_ci
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -313,8 +300,13 @@ collation-server = utf8mb4_general_ci
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -350,7 +342,7 @@ collation-server = utf8mb4_general_ci
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1521094110639",
@@ -370,4 +362,4 @@ collation-server = utf8mb4_general_ci
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 203ms, 2020/01/16 23:08:30 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 379ms, 2020/01/18 20:44:24 -->

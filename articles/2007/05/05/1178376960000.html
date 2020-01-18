@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>C实现缓冲区溢出 - D 的个人博客</title><meta name="description" content="**文件名：SimpleBufferOverflow.c用途：缓冲区溢出实验编程环境：WinXPSP2+CL8.0完成日期：2006.4Ver0.01作者：88250联系方式：E-mail:DL88250@gmail.comQQ:845765#includestdio.h #includestring.h #includewindows.h charlargebuff[512]; #defineJUMPESPGtw charshellcode[]=;voidfun{printftest,beinghacked!!! ;}mycopycharlargebuff[]{charsma...."/><meta property="og:description" content="**文件名：SimpleBufferOverflow.c用途：缓冲区溢出实验编程环境：WinXPSP2+CL8.0完成日期：2006.4Ver0.01作者：88250联系方式：E-mail:DL88250@gmail.comQQ:845765#includestdio.h #includestring.h #includewindows.h charlargebuff[512]; #defineJUMPESPGtw charshellcode[]=;voidfun{printftest,beinghacked!!! ;}mycopycharlargebuff[]{charsma...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="C实现缓冲区溢出 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/05/05/1178376960000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="C实现缓冲区溢出 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/05/05/1178376960000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="C语言实现SMTP协议发送邮件" href="https://88250.github.io/articles/2007/05/05/1178376600000.html">
             <link rel="next" title="C实现的键盘钩子" href="https://88250.github.io/articles/2007/05/05/1178377080000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -158,11 +158,10 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p></p><div style="border: 0.5pt solid windowtext; padding: 4px 5.4pt; background: rgb(230, 230, 230) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; width: 95%;">
+                <div style="border: 0.5pt solid windowtext; padding: 4px 5.4pt; background: rgb(230, 230, 230) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; width: 95%;">
 <div><span style="color: rgb(0, 128, 0);">/*</span><span style="color: rgb(0, 128, 0);">&nbsp;<br>*&nbsp;&nbsp;文件名：SimpleBufferOverflow.c<br>*&nbsp;&nbsp;用途：缓冲区溢出实验<br>*&nbsp;&nbsp;编程环境：WinXP&nbsp;SP2+CL&nbsp;8.0<br>*&nbsp;&nbsp;完成日期：&nbsp;2006.4&nbsp;&nbsp;&nbsp;Ver&nbsp;0.01<br>*&nbsp;&nbsp;作者：&nbsp;88250<br>*&nbsp;&nbsp;联系方式：&nbsp;E-mail:&nbsp;DL88250@gmail.com&nbsp;&nbsp;QQ:845765<br></span><span style="color: rgb(0, 128, 0);">*/</span><span style="color: rgb(0, 0, 0);"><br>#include&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">stdio.h</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);"> <br>#include&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 255);">string</span><span style="color: rgb(0, 0, 0);">.h</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);"> <br>#include&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">windows.h</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);"> <br><br></span><span style="color: rgb(0, 0, 255);">char</span><span style="color: rgb(0, 0, 0);">&nbsp;largebuff[</span><span style="color: rgb(0, 0, 0);">512</span><span style="color: rgb(0, 0, 0);">]; <br>&nbsp;<br></span><span style="color: rgb(0, 0, 255);">#define</span><span style="color: rgb(0, 0, 0);">&nbsp;JUMPESP&nbsp;"GtÒw" </span><span style="color: rgb(0, 0, 0);"><br></span><span style="color: rgb(0, 0, 255);">char</span><span style="color: rgb(0, 0, 0);">&nbsp;shellcode[]&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">;&nbsp;<br><br></span><span style="color: rgb(0, 0, 255);">void</span><span style="color: rgb(0, 0, 0);">&nbsp;fun(){&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">test,being&nbsp;hacked!!!  </span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">);&nbsp;<br><br>}&nbsp;<br><br>mycopy(</span><span style="color: rgb(0, 0, 255);">char</span><span style="color: rgb(0, 0, 0);">&nbsp;largebuff[])&nbsp;<br><br>{&nbsp;<br><br>&nbsp;</span><span style="color: rgb(0, 0, 255);">char</span><span style="color: rgb(0, 0, 0);">&nbsp;smallbuff[</span><span style="color: rgb(0, 0, 0);">16</span><span style="color: rgb(0, 0, 0);">];&nbsp;<br><br>&nbsp;strcpy(smallbuff,largebuff);&nbsp;<br><br>}&nbsp;<br><br></span><span style="color: rgb(0, 0, 255);">int</span><span style="color: rgb(0, 0, 0);">&nbsp;main&nbsp;(</span><span style="color: rgb(0, 0, 255);">void</span><span style="color: rgb(0, 0, 0);">)&nbsp;<br><br>{&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;HINSTANCE&nbsp;h&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;LoadLibrary(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">user32</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">);&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;memset(largebuff,</span><span style="color: rgb(0, 0, 0);">0x90</span><span style="color: rgb(0, 0, 0);">,</span><span style="color: rgb(0, 0, 255);">sizeof</span><span style="color: rgb(0, 0, 0);">(largebuff)</span><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0);">1</span><span style="color: rgb(0, 0, 0);">);&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;strcpy(largebuff</span><span style="color: rgb(0, 0, 0);">+</span><span style="color: rgb(0, 0, 0);">20</span><span style="color: rgb(0, 0, 0);">,JUMPESP);&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;strcpy(largebuff</span><span style="color: rgb(0, 0, 0);">+</span><span style="color: rgb(0, 0, 0);">24</span><span style="color: rgb(0, 0, 0);">,shellcode);&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;mycopy(largebuff);&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;FreeLibrary(h);&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 128, 0);">//</span><span style="color: rgb(0, 128, 0);">&nbsp;printf("buf's&nbsp;0x%8x ",largebuff);&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 128, 0);">//</span><span style="color: rgb(0, 128, 0);">&nbsp;printf("fun&nbsp;is&nbsp;at&nbsp;0x%8x ",fun);&nbsp;</span><span style="color: rgb(0, 128, 0);"><br></span><span style="color: rgb(0, 0, 0);"><br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>}&nbsp;</span></div>
 </div>
 &nbsp; <br>shellcode不能贴进来，需要的人可以联系我。。。。
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -179,16 +178,17 @@ bold;">Sym</span></a>
         </div>
 
     </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1178376960000"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1178376960000"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -201,7 +201,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -240,19 +240,6 @@ bold;">Sym</span></a>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -263,8 +250,13 @@ bold;">Sym</span></a>
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -297,7 +289,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1178376960000",
@@ -317,4 +309,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 136ms, 2020/01/16 23:08:43 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 118ms, 2020/01/18 20:44:37 -->

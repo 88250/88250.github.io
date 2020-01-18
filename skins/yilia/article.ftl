@@ -62,7 +62,7 @@
             </div>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <#if commentable>
-                <a href="${servePath}${article.articlePermalink}#comments"
+                <a href="${servePath}${article.articlePermalink}#b3logsolocomments"
                    class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
                    aria-label="${commentLabel}">
                     <span data-uvstatcmt="${article.oId}">${article.articleCommentCount}</span>
@@ -109,15 +109,7 @@
 
         <footer class="fn-clear share">
             <div class="fn-right">
-                        <span class="icon icon-wechat"
-                              data-type="wechat"
-                              data-title="${article.articleTitle}"
-                              data-blogtitle="${blogTitle}"
-                              data-url="${servePath}${article.articlePermalink}"
-                              data-avatar="${article.authorThumbnailURL}"></span>
-                <span class="icon icon-weibo" data-type="weibo"></span>
-                <span class="icon icon-twitter" data-type="twitter"></span>
-                <span class="icon icon-qqz" data-type="qqz"></span>
+                <#include "../../common-template/share.ftl">
             </div>
         </footer>
         <#if 0 != relevantArticlesDisplayCount>
@@ -132,6 +124,7 @@
         <br>
     </article>
     <#if commentable>
+        <div id="b3logsolocomments"></div>
         <div id="vcomment" style="padding: 30px 60px 30px 50px;" data-name="${article.authorName}"
              data-postId="${article.oId}"></div>
         <#if !staticSite>
@@ -154,7 +147,7 @@
         <#if 0 != relevantArticlesDisplayCount>
             page.loadRelevantArticles('${article.oId}', '<h4>${relevantArticles1Label}</h4>');
         </#if>
-        Yilia.share()
+        page.share()
     </@comment_script>
 </main>
 </body>

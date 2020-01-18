@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>你保存用户密码的姿势正确吗？ - D 的个人博客</title><meta name="description" content="这几年陆陆续续有很多大站被脱裤，最终导致了很多用户的密码明文泄露。本文不探讨脱裤技术，主要研究的是如何正确（尽量安全）地保存用户密码。"/><meta property="og:description" content="这几年陆陆续续有很多大站被脱裤，最终导致了很多用户的密码明文泄露。本文不探讨脱裤技术，主要研究的是如何正确（尽量安全）地保存用户密码。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="你保存用户密码的姿势正确吗？ - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/secure-salted-password-hashing?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="你保存用户密码的姿势正确吗？ - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/secure-salted-password-hashing">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="2015 年总结 - 十年" href="https://88250.github.io/articles/2016/01/30/1454085278317.html">
             <link rel="next" title="UGC 社区价值生态" href="https://88250.github.io/articles/2016/04/30/1462028669762.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -164,7 +164,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p></p><h3 id="b3_solo_h3_0">摘要</h3>
+                <h3 id="b3_solo_h3_0">摘要</h3>
 <p>这几年陆陆续续有很多大站被脱裤，最终导致了很多用户的密码明文泄露。本文不探讨脱裤技术，主要研究的是如何正确（尽量安全）地保存用户密码。</p>
 <h3 id="b3_solo_h3_1">哈希</h3>
 <p>“把明文加密后再保存数据库”应该是大家的共识。这个过程应该是不可逆的（不能通过加密后的串再得到原文），所以对于这个“加密”过程更贴切的叫法应该是 - <a href="http://baike.baidu.com/view/20089.htm" target="_blank">哈希</a>：</p>
@@ -244,7 +244,6 @@ func main() {
 <li><a href="http://php.net/manual/en/function.crypt.php" target="_blank">PHP: crypt - Manual</a></li>
 <li><a href="https://github.com/kless/osutil/tree/master/user/crypt" target="_blank">A golang password hashing library</a></li>
 </ul>
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -282,16 +281,17 @@ func main() {
             <a href="#b3_solo_h3_5">参考</a>
         </li>
 </ul>        </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1456284835045"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1456284835045"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -304,7 +304,7 @@ func main() {
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -343,19 +343,6 @@ func main() {
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -366,8 +353,13 @@ func main() {
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -403,7 +395,7 @@ func main() {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1456284835045",
@@ -423,4 +415,4 @@ func main() {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 285ms, 2020/01/16 23:08:31 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 237ms, 2020/01/18 20:44:25 -->

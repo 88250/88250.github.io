@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>以太坊 JavaScript API web3.js 打币 - D 的个人博客</title><meta name="description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/><meta property="og:description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="以太坊 JavaScript API web3.js 打币 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/09/1520583695227.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="以太坊 JavaScript API web3.js 打币 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/09/1520583695227.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="重装系统后 git 烂了" href="https://88250.github.io/articles/2018/02/24/1519471473213.html">
             <link rel="next" title="以太坊同步一直“卡着”的原因" href="https://88250.github.io/articles/2018/03/11/1520767628593.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -307,16 +307,17 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
             <a href="#b3_solo_h2_10">总结</a>
         </li>
 </ul>        </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1520583695227"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1520583695227"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -329,7 +330,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -368,19 +369,6 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -391,8 +379,13 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -428,7 +421,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1520583695227",
@@ -448,4 +441,4 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 211ms, 2020/01/16 23:08:30 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 238ms, 2020/01/18 20:44:24 -->

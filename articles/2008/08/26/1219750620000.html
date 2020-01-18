@@ -28,7 +28,7 @@
 整合测试	7
 总结	7
  摘要 本文以Liferay与CAS整合为例，将CAS登录验证从输入相同的用户名密码定制为以Liferay的用户身份进行验证。 环境 My...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="定制CAS登录验证 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/08/26/1219750620000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="定制CAS登录验证 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/08/26/1219750620000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="Liferay 5.1.1 安装与整合CAS" href="https://88250.github.io/articles/2008/08/20/1219250340000.html">
             <link rel="next" title="NetBeans 10th Birthday" href="https://88250.github.io/articles/2008/10/20/1224545820000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -188,21 +188,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p><title></title>
-	<meta name="GENERATOR" content="OpenOffice.org 2.4  (Linux)">
-	<style type="text/css">
-	<!--
-		@page { size: 8.5in 11in; margin: 0.79in }
-		P { margin-bottom: 0.08in }
-		H2 { margin-bottom: 0.08in }
-		H2.western { font-family: "Nimbus Sans L", sans-serif; font-size: 14pt; font-style: italic }
-		H2.cjk { font-size: 14pt; font-style: italic }
-		H2.ctl { font-size: 14pt; font-style: italic }
-		H3 { margin-bottom: 0.08in }
-		H3.western { font-family: "Nimbus Sans L", sans-serif }
-	-->
-	</style>
-</p><p style="margin-top: 0.17in; page-break-after: avoid; font-size: 20pt;" align="center"><font face="DejaVu Sans"><font size="4"><font face="DejaVu Sans"></font></font></font>
+                <p style="margin-top: 0.17in; page-break-after: avoid; font-size: 20pt;" align="center"><font face="DejaVu Sans"><font size="4"><font face="DejaVu Sans"></font></font></font>
 </p><pre><code>&lt;meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"&gt;
 &lt;title&gt;&lt;/title&gt;
 &lt;meta name="GENERATOR" content="OpenOffice.org 2.4  (Linux)"&gt;
@@ -584,7 +570,6 @@ screen name)</font><font face="DejaVu Sans">与密码后，如果登录成功，
 <p><font face="DejaVu Sans">本文以</font><font face="Courier 10 Pitch">CAS</font><font face="DejaVu Sans">与</font><font face="Courier 10 Pitch">Liferay</font><font face="DejaVu Sans">的整合为例，介绍了定制</font><font face="Courier 10 Pitch">CAS</font><font face="DejaVu Sans">登录验证的整个开发与配置过程，也强调了一些需要注意的地方。使用</font><font face="Courier 10 Pitch">CAS</font><font face="DejaVu Sans">实现</font><font face="Courier 10 Pitch">SSO(Single
 Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将以</font><font face="Courier 10 Pitch">CAS</font><font face="DejaVu Sans">整合</font><font face="Courier 10 Pitch">Liferay+Scarab</font><font face="DejaVu Sans">为例给大家介绍，请大家多多给予关注哦
 </font><font face="Courier 10 Pitch">: )</font></p>
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -637,16 +622,17 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
             <a href="#b3_solo_h2_10">总结</a>
         </li>
 </ul>        </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1219750620000"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1219750620000"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -659,7 +645,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -698,19 +684,6 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -721,8 +694,13 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -758,7 +736,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1219750620000",
@@ -778,4 +756,4 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 158ms, 2020/01/16 23:08:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 158ms, 2020/01/18 20:44:33 -->

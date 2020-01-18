@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>AngularJS 与 EmberJS - D 的个人博客</title><meta name="description" content="对比了目前几个主流的前端 mvw 框架，对 AngularJS 和 EmberJS 进行了差异分析，最后介绍了 AngularJS 和 FreeMarker 联合使用的场景。"/><meta property="og:description" content="对比了目前几个主流的前端 mvw 框架，对 AngularJS 和 EmberJS 进行了差异分析，最后介绍了 AngularJS 和 FreeMarker 联合使用的场景。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="AngularJS 与 EmberJS - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/angularjs-vs-emberjs?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="AngularJS 与 EmberJS - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/angularjs-vs-emberjs">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="云平台之多租户" href="https://88250.github.io/cloud-app-platform-multitenancy">
             <link rel="next" title="Wordman 1.0.0 发布！" href="https://88250.github.io/b3log-wordman-1.0.0-released">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p></p><h2 id="b3_solo_h2_0">前端 JavaScript 框架对比</h2>
+                <h2 id="b3_solo_h2_0">前端 JavaScript 框架对比</h2>
 <p>目前比较主流的几个浏览器客户端 JavaScript 框架对比：</p>
 <p><a href="https://nxnzra.dm2301.livefilestore.com/y2pafIzX9SMSGf4O3f8UjQHYUBnfLBgX7xKJbgDt7P2CXdvbrXbfT9cNRWQJOc5AOYZBxLgxMop-PeRQD1nc3B81s3yXwsKtUhc7B9VxkMdme4/mvw%20%E5%AF%B9%E6%AF%94.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://nxnzra.dm2301.livefilestore.com/y2pafIzX9SMSGf4O3f8UjQHYUBnfLBgX7xKJbgDt7P2CXdvbrXbfT9cNRWQJOc5AOYZBxLgxMop-PeRQD1nc3B81s3yXwsKtUhc7B9VxkMdme4/mvw%20%E5%AF%B9%E6%AF%94.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="前端 mvw 框架对比" width="591" height="478"></a></p>
 <p>从左到右是框架提供的功能特性由少到多，对应用开发的支持逐渐丰富；<br>从下到上是框架设计复杂度/上手难度由简单到复杂。</p>
@@ -213,7 +213,6 @@ bold;">Sym</span></a>
 <p>在生成 ng 模版时服务器端最好也是用模版引擎（例如 FreeMarker）来处理，基于 HTTP 请求-响应的交互过程如下：</p>
 <p><a href="https://nxnzra.dm2301.livefilestore.com/y2pAxZ3JDqsFIyrTcTCzgBw90xE7g52aqcwGVfum49TAcr5QeONkzF1xGqCEPeQ5rOv1VTSLn-rRlI88e9n2nZZVyqqd0w_JrFctRJ6MwTVq9w/AngularJSFreemarker.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://nxnzra.dm2301.livefilestore.com/y2pAxZ3JDqsFIyrTcTCzgBw90xE7g52aqcwGVfum49TAcr5QeONkzF1xGqCEPeQ5rOv1VTSLn-rRlI88e9n2nZZVyqqd0w_JrFctRJ6MwTVq9w/AngularJSFreemarker.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="AngularJS 与 FreeMarker" width="529" height="416"></a></p>
 <p>P.S. 服务器端选择 Node 可能更适合。</p>
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -245,16 +244,17 @@ bold;">Sym</span></a>
             <a href="#b3_solo_h2_3">AngularJS 与 FreeMarker</a>
         </li>
 </ul>        </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1402027317353"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1402027317353"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -267,7 +267,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -306,19 +306,6 @@ bold;">Sym</span></a>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -329,8 +316,13 @@ bold;">Sym</span></a>
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -366,7 +358,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1402027317353",
@@ -386,4 +378,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 160ms, 2020/01/16 23:08:33 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 167ms, 2020/01/18 20:44:27 -->

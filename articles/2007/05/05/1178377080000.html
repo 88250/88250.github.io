@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>C实现的键盘钩子 - D 的个人博客</title><meta name="description" content="**文件名：KeyBoardHook.c用途：键盘钩子的演示程序编程环境：WinXPSP2+CL8.0完成日期：2006.3Ver0.01作者：88250联系方式：E-mail:DL88250@gmail.comQQ:845765#define_WIN32_WINNT0x0400#includestdio.h#includestdlib.h#includewindows.h#pragmacommentlib,User32.libDWORDg_tid=0;HHOOKg_hook=0;BOOLCALLBACKcon_handlerDWORDg_tid{PostThreadMessag...."/><meta property="og:description" content="**文件名：KeyBoardHook.c用途：键盘钩子的演示程序编程环境：WinXPSP2+CL8.0完成日期：2006.3Ver0.01作者：88250联系方式：E-mail:DL88250@gmail.comQQ:845765#define_WIN32_WINNT0x0400#includestdio.h#includestdlib.h#includewindows.h#pragmacommentlib,User32.libDWORDg_tid=0;HHOOKg_hook=0;BOOLCALLBACKcon_handlerDWORDg_tid{PostThreadMessag...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="C实现的键盘钩子 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/05/05/1178377080000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="C实现的键盘钩子 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/05/05/1178377080000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579187237757"/>
+              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
             <link rel="prev" title="C实现缓冲区溢出" href="https://88250.github.io/articles/2007/05/05/1178376960000.html">
             <link rel="next" title="C实现枚举进程" href="https://88250.github.io/articles/2007/05/05/1178377200000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -158,11 +158,10 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p></p><div style="border: 0.5pt solid windowtext; padding: 4px 5.4pt; background: rgb(230, 230, 230) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; width: 95%;">
+                <div style="border: 0.5pt solid windowtext; padding: 4px 5.4pt; background: rgb(230, 230, 230) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; width: 95%;">
 <div><span style="color: rgb(0, 128, 0);">/*</span><span style="color: rgb(0, 128, 0);">&nbsp;<br>*&nbsp;&nbsp;文件名：KeyBoardHook.c<br>*&nbsp;&nbsp;用途：键盘钩子的演示程序<br>*&nbsp;&nbsp;编程环境：WinXP&nbsp;SP2+CL&nbsp;8.0<br>*&nbsp;&nbsp;完成日期：&nbsp;2006.3&nbsp;&nbsp;&nbsp;Ver&nbsp;0.01<br>*&nbsp;&nbsp;作者：&nbsp;88250<br>*&nbsp;&nbsp;联系方式：&nbsp;E-mail:&nbsp;DL88250@gmail.com&nbsp;&nbsp;QQ:845765<br></span><span style="color: rgb(0, 128, 0);">*/</span><span style="color: rgb(0, 0, 0);"><br><br></span><span style="color: rgb(0, 0, 255);">#define</span><span style="color: rgb(0, 0, 0);">&nbsp;_WIN32_WINNT&nbsp;0x0400</span><span style="color: rgb(0, 0, 0);"><br><br>#include&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">stdio.h</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);"><br><br>#include&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">stdlib.h</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);"><br><br>#include&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">windows.h</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);"><br><br><br><br></span><span style="color: rgb(0, 0, 255);">#pragma</span><span style="color: rgb(0, 0, 0);">&nbsp;comment(lib,&nbsp;"User32.lib")</span><span style="color: rgb(0, 0, 0);"><br><br><br><br>DWORD&nbsp;g_tid&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">;<br><br>HHOOK&nbsp;g_hook&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">;<br><br><br><br>BOOL&nbsp;CALLBACK&nbsp;con_handler(DWORD&nbsp;g_tid)<br><br>{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;PostThreadMessage(g_tid,&nbsp;WM_QUIT,&nbsp;</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">,&nbsp;</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">return</span><span style="color: rgb(0, 0, 0);">&nbsp;TRUE;<br><br>}<br><br><br><br>LRESULT&nbsp;CALLBACK&nbsp;kb_proc(</span><span style="color: rgb(0, 0, 255);">int</span><span style="color: rgb(0, 0, 0);">&nbsp;code,&nbsp;WPARAM&nbsp;w,&nbsp;LPARAM&nbsp;l)<br><br>{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;PKBDLLHOOKSTRUCT&nbsp;p&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;(PKBDLLHOOKSTRUCT)l;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">if</span><span style="color: rgb(0, 0, 0);">&nbsp;(((w&nbsp;</span><span style="color: rgb(0, 0, 0);">==</span><span style="color: rgb(0, 0, 0);">&nbsp;WM_KEYDOWN)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;((GetKeyState(VK_CAPITAL)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">1</span><span style="color: rgb(0, 0, 0);">)&nbsp;</span><span style="color: rgb(0, 0, 0);">||</span><span style="color: rgb(0, 0, 0);">&nbsp;(GetKeyState(VK_SHIFT)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">1</span><span style="color: rgb(0, 0, 0);">)))&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;(((p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">64</span><span style="color: rgb(0, 0, 0);">)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;(p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">91</span><span style="color: rgb(0, 0, 0);">))&nbsp;</span><span style="color: rgb(0, 0, 0);">||</span><span style="color: rgb(0, 0, 0);">&nbsp;((p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">47</span><span style="color: rgb(0, 0, 0);">)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;(p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">58</span><span style="color: rgb(0, 0, 0);">)))){<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">You&nbsp;press&nbsp;%c </span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">,&nbsp;p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}</span><span style="color: rgb(0, 0, 255);">else</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">if</span><span style="color: rgb(0, 0, 0);">&nbsp;((w&nbsp;</span><span style="color: rgb(0, 0, 0);">==</span><span style="color: rgb(0, 0, 0);">&nbsp;WM_KEYDOWN)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;((p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">64</span><span style="color: rgb(0, 0, 0);">)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;(p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">91</span><span style="color: rgb(0, 0, 0);">))){<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">You&nbsp;press&nbsp;%c </span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">,&nbsp;p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">+</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">32</span><span style="color: rgb(0, 0, 0);">);&nbsp;&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}</span><span style="color: rgb(0, 0, 255);">else</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">if</span><span style="color: rgb(0, 0, 0);">&nbsp;((w&nbsp;</span><span style="color: rgb(0, 0, 0);">==</span><span style="color: rgb(0, 0, 0);">&nbsp;WM_KEYDOWN)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;((p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&gt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">47</span><span style="color: rgb(0, 0, 0);">)&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;&amp;</span><span style="color: rgb(0, 0, 0);">&nbsp;(p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode&nbsp;</span><span style="color: rgb(0, 0, 0);">&lt;</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">58</span><span style="color: rgb(0, 0, 0);">))){<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">You&nbsp;press&nbsp;%c </span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">,&nbsp;p</span><span style="color: rgb(0, 0, 0);">-&gt;</span><span style="color: rgb(0, 0, 0);">vkCode);&nbsp;&nbsp;&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">return</span><span style="color: rgb(0, 0, 0);">&nbsp;CallNextHookEx(g_hook,&nbsp;code,&nbsp;w,&nbsp;l);<br><br>}<br><br><br><br></span><span style="color: rgb(0, 0, 255);">int</span><span style="color: rgb(0, 0, 0);">&nbsp;main&nbsp;(</span><span style="color: rgb(0, 0, 255);">void</span><span style="color: rgb(0, 0, 0);">)<br><br>{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;MSG&nbsp;msg;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;g_tid&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;GetCurrentThreadId();<br><br>&nbsp;&nbsp;&nbsp;&nbsp;SetConsoleCtrlHandler(</span><span style="color: rgb(0, 0, 0);">&amp;</span><span style="color: rgb(0, 0, 0);">con_handler,&nbsp;TRUE);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;g_hook&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;SetWindowsHookEx(WH_KEYBOARD_LL,&nbsp;</span><span style="color: rgb(0, 0, 0);">&amp;</span><span style="color: rgb(0, 0, 0);">kb_proc,&nbsp;GetModuleHandle(NULL),</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">);<br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">while</span><span style="color: rgb(0, 0, 0);">&nbsp;(GetMessage(</span><span style="color: rgb(0, 0, 0);">&amp;</span><span style="color: rgb(0, 0, 0);">msg,&nbsp;NULL,&nbsp;</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">,&nbsp;</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">)){<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TranslateMessage(</span><span style="color: rgb(0, 0, 0);">&amp;</span><span style="color: rgb(0, 0, 0);">msg);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DispatchMessage(</span><span style="color: rgb(0, 0, 0);">&amp;</span><span style="color: rgb(0, 0, 0);">msg);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;UnhookWindowsHookEx(g_hook);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">return</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">0</span><span style="color: rgb(0, 0, 0);">;<br><br>}<br><br><br><br><br></span></div>
 </div>
 &nbsp;
-<p></p>
                     <div>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -179,16 +178,17 @@ bold;">Sym</span></a>
         </div>
 
     </div>
-    <div class="wrapper">
-        <div id="vcomment"
-             style="    margin-bottom: 40px; margin-top: 80px; 
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 20px;"
-             data-name="88250" data-postId="1178377080000"></div>
-    </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1178377080000"></div>
+        </div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -201,7 +201,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.js?1579187237757"
+        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -240,19 +240,6 @@ bold;">Sym</span></a>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
     <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
 </svg>
-
-
-<script type="text/javascript" src="https://88250.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://88250.github.io/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.js?1579187237757"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.js?1579187237757"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.6/dist/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vcmt@v1.0.5/dist/index.min.js"></script>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
@@ -263,8 +250,13 @@ bold;">Sym</span></a>
     version: "3.8.0",
     staticSite: true,
   }
-  Util.init()
 </script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
 <div class="solo-kanbanniang">
@@ -297,7 +289,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.js?1579187237757', 'soloPageScript')
+    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1178377080000",
@@ -317,4 +309,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 137ms, 2020/01/16 23:08:43 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 126ms, 2020/01/18 20:44:37 -->

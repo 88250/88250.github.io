@@ -119,7 +119,8 @@
                     <div class="fn-flex-1" id="randomArticles"></div>
                 </div>
                 <#if commentable>
-                <div id="vcomment" class="article__comment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" class="article__comment" data-name="${article.authorName}" data-postId="${article.oId}"></div>
                     <#if !staticSite>
                         <div id="soloComments" style="display: none;">
                             <@comments commentList=articleComments article=article></@comments>
@@ -212,7 +213,6 @@
     <#if pjax><!---- pjax {#pjax} end ----></#if>
 </div>
 <#include "footer.ftl">
-<script type="text/javascript" src="${staticServePath}/js/lib/jquery.qrcode.min.js"></script>
 <#if pjax><!---- pjax {#pjax} start ----></#if>
 <@comment_script oId=article.oId commentable=article.commentable>
     Skin.initArticle()
