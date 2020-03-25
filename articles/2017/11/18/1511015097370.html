@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 入门笔记 - D 的个人博客</title><meta name="description" content="IPFS 是什么 IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议。 内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间版本化：可追溯文件修改历史点对点超媒体：P2P 保存各种各样类型的数据 可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。 总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。 IPFS 使用场景 IPFS 的发明者 Juan Benet（juan@benet.ai）在 IPFS 技术白皮书中假设了一些使用场景： 在 /ipfs 和 /ipns 下挂载全球文件系统挂载的个人同步文件夹，拥有版本功能文件加密，数据共享系统可用于所有软件的带版本的包管理器（已经实现了：https://github.com/whyrusleeping/gx）可以作...."/><meta property="og:description" content="IPFS 是什么 IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议。 内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间版本化：可追溯文件修改历史点对点超媒体：P2P 保存各种各样类型的数据 可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。 总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。 IPFS 使用场景 IPFS 的发明者 Juan Benet（juan@benet.ai）在 IPFS 技术白皮书中假设了一些使用场景： 在 /ipfs 和 /ipns 下挂载全球文件系统挂载的个人同步文件夹，拥有版本功能文件加密，数据共享系统可用于所有软件的带版本的包管理器（已经实现了：https://github.com/whyrusleeping/gx）可以作...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 入门笔记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/11/18/1511015097370.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 入门笔记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/11/18/1511015097370.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 入门笔记 - D 的个人博客</title><meta name="description" content="IPFS 是什么 IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议。 内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间版本化：可追溯文件修改历史点对点超媒体：P2P 保存各种各样类型的数据 可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。 总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。 IPFS 使用场景 IPFS 的发明者 Juan Benet（juan@benet.ai）在 IPFS 技术白皮书中假设了一些使用场景： 在 /ipfs 和 /ipns 下挂载全球文件系统挂载的个人同步文件夹，拥有版本功能文件加密，数据共享系统可用于所有软件的带版本的包管理器（已经实现了：https://github.com/whyrusleeping/gx）可以作...."/><meta property="og:description" content="IPFS 是什么 IPFS（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议。 内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间版本化：可追溯文件修改历史点对点超媒体：P2P 保存各种各样类型的数据 可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。 总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。 IPFS 使用场景 IPFS 的发明者 Juan Benet（juan@benet.ai）在 IPFS 技术白皮书中假设了一些使用场景： 在 /ipfs 和 /ipns 下挂载全球文件系统挂载的个人同步文件夹，拥有版本功能文件加密，数据共享系统可用于所有软件的带版本的包管理器（已经实现了：https://github.com/whyrusleeping/gx）可以作...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 入门笔记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/11/18/1511015097370.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 入门笔记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/11/18/1511015097370.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="Solo 2.3.0 升级 2.4.0 问题与解决" href="https://88250.github.io/articles/2017/10/18/1508292644879.html">
             <link rel="next" title="2017 成为报废程序员的前一年" href="https://88250.github.io/articles/2017/12/31/1514687638181.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -134,7 +136,7 @@ bold;">Sym</span></a>
      data-title="IPFS 入门笔记"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2017/11/18/1511015097370.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -163,7 +165,7 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p><img src="https://img.hacpai.com/file/2017/11/daafa01a2c784f15aabe7ce17164011e-1czZJ7mvEAqL4wNAgjt9Ow.jpeg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="daafa01a2c784f15aabe7ce17164011e-1czZJ7mvEAqL4wNAgjt9Ow.jpeg"></p>
-<h2 id="b3_solo_h2_0">IPFS 是什么</h2>
+<h2 id="toc_h2_0">IPFS 是什么</h2>
 <p><a href="https://ipfs.io" target="_blank">IPFS</a>（InterPlanetary File System，星际文件系统）是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议。</p>
 <ul>
 <li>内容可寻址：通过文件内容生成唯一哈希值来标识文件，而不是通过文件保存位置来标识。相同内容的文件在系统中只会存在一份，节约存储空间</li>
@@ -172,7 +174,7 @@ bold;">Sym</span></a>
 </ul>
 <p>可以把 IPFS 想象成所有文件数据是在同一个 BitTorrent 群并且通过同一个 Git 仓库存取。</p>
 <p>总之，它集一些成功系统（分布式哈希表、BitTorrent、Git、自认证文件系统）的优势于一身，是一套很厉害的文件存取系统。</p>
-<h2 id="b3_solo_h2_1">IPFS 使用场景</h2>
+<h2 id="toc_h2_1">IPFS 使用场景</h2>
 <p>IPFS 的发明者 Juan <a href="mailto:Benet（juan@benet.ai）在" target="_blank">Benet（juan@benet.ai）在</a> <a href="https://github.com/ipfs/papers/raw/master/ipfs-cap2pfs/ipfs-p2p-file-system.pdf" target="_blank">IPFS 技术白皮书</a>中假设了一些使用场景：</p>
 <ul>
 <li>在 /ipfs 和 /ipns 下挂载全球文件系统</li>
@@ -186,7 +188,7 @@ bold;">Sym</span></a>
 <li>永久的 Web，不存在不能访问的链接</li>
 </ul>
 <p>我觉得<em>作为数据库</em>这一点对应用开发者来说会很有用。</p>
-<h2 id="b3_solo_h2_2">安装与初始化</h2>
+<h2 id="toc_h2_2">安装与初始化</h2>
 <p>下载 <a href="https://dist.ipfs.io/#go-ipfs" target="_blank">go-ipfs</a> 解压（下面的示例我是在 Windows 10 上做的，解压目录为 D:\go-ipfs），然后到解压目录执行命令  <code>ipfs init</code>，将在用户 home（~）下建立 .ipfs 目录存放数据，默认最大存储 10G。init 命令可以带参，比如修改最大存储、目录等，具体参考 <code>ipfs init help</code>。</p>
 <p>继续执行命令 <code>ipfs daemon</code> 启动节点服务器：</p>
 <ul>
@@ -207,15 +209,15 @@ bold;">Sym</span></a>
 }
 </code></pre>
 <p>浏览器访问 <a href="http://localhost:5001/webui" target="_blank">http://localhost:5001/webui</a> 进入管理界面，查看系统状态、管理文件以及配置系统。</p>
-<h2 id="b3_solo_h2_3">配置</h2>
+<h2 id="toc_h2_3">配置</h2>
 <p>除了使用 Web 管理界面修改配置外，也可以直接用命令行 <code>ipfs config show &gt; ipfs.conf</code> 先导出当前配置（JSON 格式，配置项不多且含义明显），改完后使用 <code>ipfs config replace ipfs.conf</code> 更新配置，重启服务器就生效了。当然，修改配置也可以直接用 <code>ipfs config edit</code>。</p>
 <p>服务器最终使用的配置文件保存在 ~/.ipfs/config 中，对比刚刚导出的文件我们发现导出的文件只比这个 config 少了一项 <code>Identity.PrivKey</code>，即节点初始化时自动生成的 RSA 私钥。</p>
-<h2 id="b3_solo_h2_4">密钥对</h2>
+<h2 id="toc_h2_4">密钥对</h2>
 <p>节点初始化时会自动生成 RSA 密钥对，并且私钥没有设置密码。</p>
 <p>公钥通过<a href="https://github.com/multiformats/multihash" target="_blank">多重哈希</a>得到节点 id（即上面的 <code>QmSYF1HZxhPUWWGrz5bMn16tdD73AeMVhp7pNSHkVCMF7R</code>），节点服务器启动后会和其他节点交互公钥，后续通讯时使用对方公钥加密数据，通过多重哈希对方公钥、对比对方节点 id 来确认是否正在和正确的节点交互。</p>
 <p>私钥用来解密接收到的数据，也用于 ipns 来绑定文件名。整个过程没有引入证书，仅是使用了 PKI 机制。</p>
 <p>总之，我觉得可以暂时不用关心密钥对，可能只有在一些使用场景下面才需要吧。</p>
-<h2 id="b3_solo_h2_5">添加文件</h2>
+<h2 id="toc_h2_5">添加文件</h2>
 <p>我当前目录结构是这样的：</p>
 <pre><code class="language-shell">D:\GO-IPFS
 │  build-log
@@ -240,14 +242,14 @@ added QmPxebZuW2pgfzj5JWq22KUzxStmqQ6i7YUK9Sq9xepXT9 b3log
 <p>这样我们使用 <code>ipfs cat /ipfs/Qmco94dYP733XwrUqFUhDtDG8RsqmGQ6UDPvnmH4Pvy2rv</code> 就可以查看 README.md 了。在其他节点上也可以，只要记住这个文件的哈希值就行了。我们可以在自己的 HTTP 网关上试试（注意我的端口改成了 5002，你的默认应该是 8080）：</p>
 <p><img src="https://img.hacpai.com/file/2017/11/9070383bdece4f6792a561c7b4fa98c4-image.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="9070383bdece4f6792a561c7b4fa98c4-image.png"></p>
 <p>当然也可以用 ipfs 官方的 HTTP 网关：<a href="https://ipfs.io/ipfs/Qmco94dYP733XwrUqFUhDtDG8RsqmGQ6UDPvnmH4Pvy2rv" target="_blank">https://ipfs.io/ipfs/Qmco94dYP733XwrUqFUhDtDG8RsqmGQ6UDPvnmH4Pvy2rv</a></p>
-<h2 id="b3_solo_h2_6">获取文件</h2>
+<h2 id="toc_h2_6">获取文件</h2>
 <pre><code class="language-shell">ipfs get /ipns/QmSYF1HZxhPUWWGrz5bMn16tdD73AeMVhp7pNSHkVCMF7R
 </code></pre>
 <p>将获取刚才我们发布的 b3log 目录。</p>
-<h2 id="b3_solo_h2_7">Pin</h2>
+<h2 id="toc_h2_7">Pin</h2>
 <p>IPFS 的<a href="https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/pinning/readme.md" target="_blank">本意</a>是让用户觉得所有文件都是在本地的，没有“从远程服务器上下载文件”。Pin 是将文件长期保留在本地，不被垃圾回收。</p>
 <p>执行 <code>ipfs pin ls</code> 可以查看哪些文件在本地是持久化的，通过 add 添加的文件默认就是 pin 过的。</p>
-<h2 id="b3_solo_h2_8">绑定节点名</h2>
+<h2 id="toc_h2_8">绑定节点名</h2>
 <p>每次修改文件后 add 都会返回不同的哈希，这对于网站来说就没法固定访问地址了，所以我们需要通过 ipns 来“绑定”节点名。</p>
 <p>上面 b3log 目录的哈希值是 <code>QmPxebZuW2pgfzj5JWq22KUzxStmqQ6i7YUK9Sq9xepXT9</code>，我们将整个目录作为节点根目录发布：</p>
 <pre><code class="language-shell">D:\go-ipfs&gt;ipfs name publish QmPxebZuW2pgfzj5JWq22KUzxStmqQ6i7YUK9Sq9xepXT9
@@ -260,7 +262,7 @@ The piper will lead us to reason.
 欢迎访问黑客与画家的社区 https://hacpai.com
 </code></pre>
 <p>以后每次更新文件都再 publish 一下就行了。目前（v0.4.12）使用 ipns 访问<a href="https://github.com/ipfs/go-ipfs/issues/3860" target="_blank">会很慢</a>，据说 v0.4.14 会解决。</p>
-<h2 id="b3_solo_h2_9">DNS 解析</h2>
+<h2 id="toc_h2_9">DNS 解析</h2>
 <p>IPFS 允许用户使用现有的域名系统，这样就能用一个好记的地址来访问文件了，比如：</p>
 <pre><code class="language-shell">D:\go-ipfs&gt;ipfs cat /ipns/ipfs.b3log.org/hacpai/README.md
 The piper will lead us to reason.
@@ -276,7 +278,7 @@ The piper will lead us to reason.
 <tr><td>TXT</td><td>ipfs</td><td>dnslink=/ipns/QmSYF1HZxhPUWWGrz5bMn16tdD73AeMVhp7pNSHkVCMF7R</td></tr>
 </tbody>
 </table>
-<h2 id="b3_solo_h2_10">总结</h2>
+<h2 id="toc_h2_10">总结</h2>
 <ul>
 <li>IPFS 是永久的、去中心化保存和共享文件的方法，这是一种内容可寻址、版本化、点对点超媒体的分布式协议</li>
 <li>我们可以用它来存取文件，数据永不丢失</li>
@@ -284,9 +286,9 @@ The piper will lead us to reason.
 <li>官方参考实现使用 <a href="https://hacpai.com/tag/golang" target="_blank">golang</a> 编写，JavaScript、Python、C 等语言在陆续开发中</li>
 <li>总之，IPFS 是一套非常厉害的文件系统</li>
 </ul>
-<h2 id="b3_solo_h2_11">IPFS 笔记预告</h2>
+<h2 id="toc_h2_11">IPFS 笔记预告</h2>
 <p>欢迎大家关注 <a href="https://hacpai.com/tag/IPFS" target="_blank">https://hacpai.com/tag/IPFS</a>，后面我们将陆续介绍 IPFS 相关知识，比如版本历史，FileCoin 等。</p>
-<h2 id="b3_solo_h2_12">参考资料</h2>
+<h2 id="toc_h2_12">参考资料</h2>
 <ul>
 <li><a href="https://github.com/ipfs/papers/raw/master/ipfs-cap2pfs/ipfs-p2p-file-system.pdf" target="_blank">IPFS White Paper</a></li>
 <li><a href="https://github.com/ipfs/specs" target="_blank">IPFS Specs</a></li>
@@ -295,7 +297,8 @@ The piper will lead us to reason.
 <li><a href="http://www.infoq.com/cn/articles/ipfs" target="_blank">IPFS：替代HTTP的分布式网络协议</a></li>
 </ul>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -313,43 +316,43 @@ The piper will lead us to reason.
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">IPFS 是什么</a>
+            <a href="#toc_h2_0">IPFS 是什么</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">IPFS 使用场景</a>
+            <a href="#toc_h2_1">IPFS 使用场景</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">安装与初始化</a>
+            <a href="#toc_h2_2">安装与初始化</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">配置</a>
+            <a href="#toc_h2_3">配置</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">密钥对</a>
+            <a href="#toc_h2_4">密钥对</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_5">添加文件</a>
+            <a href="#toc_h2_5">添加文件</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_6">获取文件</a>
+            <a href="#toc_h2_6">获取文件</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">Pin</a>
+            <a href="#toc_h2_7">Pin</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">绑定节点名</a>
+            <a href="#toc_h2_8">绑定节点名</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_9">DNS 解析</a>
+            <a href="#toc_h2_9">DNS 解析</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_10">总结</a>
+            <a href="#toc_h2_10">总结</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_11">IPFS 笔记预告</a>
+            <a href="#toc_h2_11">IPFS 笔记预告</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_12">参考资料</a>
+            <a href="#toc_h2_12">参考资料</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -375,7 +378,7 @@ The piper will lead us to reason.
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -417,19 +420,20 @@ The piper will lead us to reason.
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -466,7 +470,7 @@ The piper will lead us to reason.
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1511015097370",
@@ -486,4 +490,4 @@ The piper will lead us to reason.
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 357ms, 2020/01/18 20:44:24 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 329ms, 2020/03/25 10:29:35 -->

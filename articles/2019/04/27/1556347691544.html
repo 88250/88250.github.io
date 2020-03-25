@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（二） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（二） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/27/1556347691544.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（二） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/27/1556347691544.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（二） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（二） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/27/1556347691544.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（二） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/27/1556347691544.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="IPFS 去中心化数据结构（一）" href="https://88250.github.io/articles/2019/04/27/1556347438386.html">
             <link rel="next" title="IPFS 去中心化数据结构（三）" href="https://88250.github.io/articles/2019/04/29/1556500741161.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -132,7 +134,7 @@ bold;">Sym</span></a>
      data-title="IPFS 去中心化数据结构（二）"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2019/04/27/1556347691544.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -164,26 +166,27 @@ bold;">Sym</span></a>
 <p>本文翻译自 IPFS 社区教程 <a href="https://proto.school" target="_blank">ProtoSchool</a>。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！</p>
 </blockquote>
 <p>本文接上篇 <a href="https://hacpai.com/article/1556347438386" target="_blank">IPFS 去中心化数据结构（一）</a>。</p>
-<h3 id="b3_solo_h3_0">LESSION 3 - 通过加密哈希进行内容寻址</h3>
+<h3 id="toc_h3_0">LESSION 3 - 通过加密哈希进行内容寻址</h3>
 <p>正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。</p>
-<h4 id="b3_solo_h4_1">加密哈希</h4>
+<h4 id="toc_h4_1">加密哈希</h4>
 <p><a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function" target="_blank">加密哈希</a>是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。</p>
 <p>哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的：</p>
 <p><code>zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein</code></p>
 <p>说实话，由内容衍生的名字目前对人类来说并不友好（<code>beagle.jpg</code> 更具描述性！），但哈希值更加安全。 原因如下：</p>
 <p><strong>加密哈希值是数据本身产生的</strong>，这意味着在相同数据上使用相同哈希算法将得到相同的哈希值。如果 Ada 和 Grace 都使用相同的去中心化 Web 协议（例如 IPFS）来共享完全相同的小猫照片，则两个图片文件会具有完全相同的哈希值。通过比较这些哈希值，我们可以保证这两张照片中的每个像素都是相同的。</p>
 <p><strong>加密哈希值也是独一无二的</strong>。这意味着如果  Grace 使用 Photoshop 从该小猫中删除了一些胡须，则更新后的图片会具有新的哈希值，并且很容易分辨 - 仅从哈希值，不用访问文件本身 - 它包含不同的数据。</p>
-<h4 id="b3_solo_h4_2">去中心化 Web 上的信任</h4>
+<h4 id="toc_h4_2">去中心化 Web 上的信任</h4>
 <p>在中心化的网络上，我们信任某些机构，不信任其他机构。我们利用 URL 提供的线索尽力而为，但有些有恶意的人会使用位置寻址的缺点来欺骗我们。</p>
 <p>在去中心化的网络上，我们能够传播并托管彼此的数据，我们可能不太了解托管数据的其他节点，但内容寻址为我们提供了一种信任他们所共享的数据的方法。通过内容寻址，我们不会被恶意行为者欺骗导致访问错误的数据。这就是加密哈希对去中心化网络如此重要的原因。</p>
-<h4 id="b3_solo_h4_3">向对等节点查找数据</h4>
+<h4 id="toc_h4_3">向对等节点查找数据</h4>
 <p>通过传统的位置寻址，我们知道需要访问域名 <code>puppies.com</code> 来查找 <code>beagle.jpg</code> 保存的数据内容。如果 <code>puppies.com</code> 域由于某种原因被破坏，我们将无法访问该图片。</p>
 <p>去中心化网络的工作方式则是完全不同的。当我们想要一张可爱宠物的照片时，我们会通过其内容地址（哈希值）来进行查找。我们向谁查找呢？答案是整个网络！如果 Ada 在线，我们会看到她有我们正在寻找的内容，我们可以验证数据是否为我们正在寻找的内容，只要它具有匹配的哈希值。如果她下线，我们仍然可以从 Grace 或其他节点获得相同的照片。</p>
 <p>由于我们使用哈希值来在去中心化的网络上请求数据，因此我们可以将哈希值视为链接，而不仅仅是数据名称。</p>
 <hr>
 <p>下一节：<a href="https://hacpai.com/article/1556500741161" target="_blank">IPFS 去中心化数据结构（三）</a></p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -201,16 +204,16 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">LESSION 3 - 通过加密哈希进行内容寻址</a>
+            <a href="#toc_h3_0">LESSION 3 - 通过加密哈希进行内容寻址</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">加密哈希</a>
+            <a href="#toc_h4_1">加密哈希</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">去中心化 Web 上的信任</a>
+            <a href="#toc_h4_2">去中心化 Web 上的信任</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">向对等节点查找数据</a>
+            <a href="#toc_h4_3">向对等节点查找数据</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -236,7 +239,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -278,19 +281,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -327,7 +331,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1556347691544",
@@ -347,4 +351,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 227ms, 2020/01/18 20:44:22 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 231ms, 2020/03/25 10:29:33 -->

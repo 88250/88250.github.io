@@ -5,8 +5,8 @@
   词频型
  都是使用下式计算进行分类： cNB=arg...."/><meta property="og:description" content="转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN E-mail QQ：DL88250@gmail.com 作者：zy Blog：http:blog.csdn.netzyofprogrammer 作者：Sindy E-Mail：sindybanana@gmail.com 续上篇 上次说到了效率的问题，现在已经解决了，还修复了不少的Bugs :- 不过，查阅了一些文献后，发现了一个新的理论问题。 理论问题 朴素贝叶斯文本分类模型分为两种：   文档型  
   词频型
- 都是使用下式计算进行分类： cNB=arg...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="朴素贝叶斯中文文本分类器的研究与实现（2）[88250、zy、Sindy原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/03/27/1206656040000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="朴素贝叶斯中文文本分类器的研究与实现（2）[88250、zy、Sindy原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/03/27/1206656040000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+ 都是使用下式计算进行分类： cNB=arg...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="朴素贝叶斯中文文本分类器的研究与实现（2）[88250、zy、Sindy原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/03/27/1206656040000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="朴素贝叶斯中文文本分类器的研究与实现（2）[88250、zy、Sindy原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/03/27/1206656040000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="离开程序的第三天" href="https://88250.github.io/articles/2008/03/25/1206453780000.html">
             <link rel="next" title="我的翻译生涯开始了" href="https://88250.github.io/articles/2008/03/28/1206723360000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -27,15 +27,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -59,10 +61,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -79,19 +81,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -134,7 +136,7 @@ bold;">Sym</span></a>
      data-title="朴素贝叶斯中文文本分类器的研究与实现（2）[88250、zy、Sindy原创]"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2008/03/27/1206656040000.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -171,9 +173,9 @@ bold;">Sym</span></a>
 <p>作者：Sindy<span style="text-decoration: underline;"><br></span></p>
 <p>E-Mail：sindybanana@gmail.com</p>
 <p><span style="text-decoration: underline;"></span></p>
-<h2 id="b3_solo_h2_0"><font face="Microsoft YaHei">续<a href="http://blog.csdn.net/DL88250/archive/2008/02/20/2108164.aspx" target="_blank">上篇</a></font></h2>
+<h2 id="toc_h2_0"><font face="Microsoft YaHei">续<a href="http://blog.csdn.net/DL88250/archive/2008/02/20/2108164.aspx" target="_blank">上篇</a></font></h2>
 上次说到了<font size="4">效率</font>的问题，现在已经解决了，还修复了不少的Bugs :-) 不过，查阅了一些文献后，发现了一个新的<font size="4"><span style="font-weight: bold;">理论问题</span>。<br><br></font>
-<h1 id="b3_solo_h1_1">理论问题</h1>
+<h1 id="toc_h1_1">理论问题</h1>
 朴素贝叶斯文本分类模型分为两种：<br>
 <ul>
     <li>  文档型  </li>
@@ -182,7 +184,7 @@ bold;">Sym</span></a>
 都是使用下式计算进行分类：
 <ul>  c<sub>NB</sub>=arg Max( P(c<sub>j</sub>) * ∏<sub>1</sub><sup>C</sup>   P(x<sub>i</sub>|c<sub>j</sub>) ) <br>  其中，P(c<sub>j</sub>)为类别j的先验概率，P(x<sub>i</sub>|c<sub>j</sub>)为特征量  x<sub>i</sub>在类别c<sub>j</sub>的类条件概率</ul>
     上次的分类模型属于文档型的，正确率约为50%左右，理论上朴素贝叶斯分类的正确率可以达到80%以上。文档型的正确率很低，主要原因是<font size="3">训练库</font>的以分文本质量低下。目前我们已经在着手自己收集训练数据了，提高训练库的质量。<br><br>
-    <h3 id="b3_solo_h3_2">先验概率计算</h3>
+    <h3 id="toc_h3_2">先验概率计算</h3>
     先验概率计算方式有两种：
     <ul>
         <li>文档型</li>
@@ -191,7 +193,7 @@ bold;">Sym</span></a>
         考虑单词在各分类文档中出现的频次，如下式计算：<br>  P(c<sub>j</sub>)=<sup>V</sup>∑<sub>k=1</sub>TF(X=x<sub>k</sub>,   C=c<sub>j</sub>)<strong>/</strong><sup>W</sup>∑<sub>m=1</sub><sup>V</sup>∑  <sub>k=1</sub>TF(X=x<sub>k</sub>, C=c<sub>m</sub>) <br>  其中，V表示特征词表中总单词（属性）数，TF(X=x<sub>i</sub>, C=c<sub>j</sub>)   表示属性x<sub>i</sub>在类c<sub>j</sub>中出现次数之和，W表示总类别数目。  </ul>
         <p>  <strong>注意</strong>：类条件概率的计算方式必须与先验概率的计算方式匹配，如果先验概率是用文档型  计算的，那么类条件概率也必须使用文档型计算方式，反之亦然。  </p>
         <br>
-        <h3 id="b3_solo_h3_3">类条件概率</h3>
+        <h3 id="toc_h3_3">类条件概率</h3>
         类条件概率的计算有两种方式：
         <ul>
             <li>文档型</li>
@@ -203,7 +205,7 @@ bold;">Sym</span></a>
                 <li>类条件概率的计算方式必须与先验概率的计算方式匹配，如果先验概率是用文档型  计算的，那么类条件概率也必须使用文档型计算方式，反之亦然  </li>
                 <li>  为避免类条件概率结果为0，采用了拉普拉斯概率估计  </li>
             </ul>
-            <h1 id="b3_solo_h1_4">关于训练库的预处理<br></h1>
+            <h1 id="toc_h1_4">关于训练库的预处理<br></h1>
             <p>为了提高分类的效率和准确率，必须对训练库进行预处理。主要预处理步骤如下：  </p>
             <ol>
                 <li>读取某一分类下的所有训练文本</li>
@@ -212,10 +214,11 @@ bold;">Sym</span></a>
                 <li>将剩下的词作为这一分类的特征结果并保存成文本</li>
             </ol>
             目前实现的训练库预处理器主要是针对<font size="2" style="font-weight: bold;">词频分类模型</font>的。
-            <h1 id="b3_solo_h1_5">当前技术上的问题</h1>
+            <h1 id="toc_h1_5">当前技术上的问题</h1>
             现在词频型的分类也做好了，不过有个<font size="2" style="font-weight: bold;">技术上的问题</font>还在解决，就是Java的中文分词组件。原来用的是极易中文分词组件，虽然分词效果还不错，但是没有词性标注。zy在研究中科院那个<font face="Microsoft YaHei"><a href="http://www.i3s.ac.cn/test.htm" target="_blank">ICTCLAS</a></font>分词组件，<font face="Microsoft YaHei"><a href="http://www.i3s.ac.cn/test.htm" target="_blank">ICTCLAS</a></font>3.0的试用申请发给作者3天了，没回信－ －!。1.0版本的在搞JNI调用，也很麻烦。。。。<br><br>下一篇文章将对我们的朴素贝叶斯分类器进行<font size="4">评估</font>，请大家耐心等待 :-)
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -233,22 +236,22 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">续上篇</a>
+            <a href="#toc_h2_0">续上篇</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_1">理论问题</a>
+            <a href="#toc_h1_1">理论问题</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">先验概率计算</a>
+            <a href="#toc_h3_2">先验概率计算</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">类条件概率</a>
+            <a href="#toc_h3_3">类条件概率</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_4">关于训练库的预处理</a>
+            <a href="#toc_h1_4">关于训练库的预处理</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_5">当前技术上的问题</a>
+            <a href="#toc_h1_5">当前技术上的问题</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -274,7 +277,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -316,19 +319,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -365,7 +369,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1206656040000",
@@ -385,4 +389,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 142ms, 2020/01/18 20:44:34 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 179ms, 2020/03/25 10:29:44 -->

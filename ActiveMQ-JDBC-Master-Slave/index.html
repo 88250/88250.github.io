@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>ActiveMQ JDBC 主从集群 - D 的个人博客</title><meta name="description" content="从 ActiveMQ 4.1 版本开始支持 JDBC 主从集群。 如果你正在使用纯 JDBC 以及非高性能日志，那可以认为数据库是一个存在单点故障的地方。 如果你的应用没有高性能需求，那单一数据库的方式是最容易备份与管理的。"/><meta property="og:description" content="从 ActiveMQ 4.1 版本开始支持 JDBC 主从集群。 如果你正在使用纯 JDBC 以及非高性能日志，那可以认为数据库是一个存在单点故障的地方。 如果你的应用没有高性能需求，那单一数据库的方式是最容易备份与管理的。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="ActiveMQ JDBC 主从集群 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/ActiveMQ-JDBC-Master-Slave?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="ActiveMQ JDBC 主从集群 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/ActiveMQ-JDBC-Master-Slave">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>ActiveMQ JDBC 主从集群 - D 的个人博客</title><meta name="description" content="从 ActiveMQ 4.1 版本开始支持 JDBC 主从集群。 如果你正在使用纯 JDBC 以及非高性能日志，那可以认为数据库是一个存在单点故障的地方。 如果你的应用没有高性能需求，那单一数据库的方式是最容易备份与管理的。"/><meta property="og:description" content="从 ActiveMQ 4.1 版本开始支持 JDBC 主从集群。 如果你正在使用纯 JDBC 以及非高性能日志，那可以认为数据库是一个存在单点故障的地方。 如果你的应用没有高性能需求，那单一数据库的方式是最容易备份与管理的。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="ActiveMQ JDBC 主从集群 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/ActiveMQ-JDBC-Master-Slave?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="ActiveMQ JDBC 主从集群 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/ActiveMQ-JDBC-Master-Slave">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="一起走过 2012" href="https://88250.github.io/life-2012">
             <link rel="next" title="即时消息协议预研" href="https://88250.github.io/xmpp-simple-irc-psyc">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -132,7 +134,7 @@ bold;">Sym</span></a>
      data-title="ActiveMQ JDBC 主从集群"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/ActiveMQ-JDBC-Master-Slave"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -163,22 +165,22 @@ bold;">Sym</span></a>
                 <p>从 ActiveMQ 4.1 版本开始支持 JDBC 主从集群。</p>
 <p>如果你正在使用纯 JDBC 以及非高性能日志，那可以认为数据库是一个存在单点故障的地方。</p>
 <p>如果你的应用没有高性能需求，那单一数据库的方式是最容易备份与管理的。（译注：可以理解为使用 JDBC 主从集群使用单一数据库容易配置）</p>
-<h2 id="b3_solo_h2_0">启动</h2>
+<h2 id="toc_h2_0">启动</h2>
 <p>当你使用 JDBC 作为数据源时，你可以使用主从方式进行 ActiveMQ 集群，运行多个代理如下图。</p>
 <p>启动时，一个主代理将从数据库获取排它锁——所有其他的从代理将暂停服务，等待获取锁。</p>
-<p><span><img src="https://pyqebw.dm1.livefilestore.com/y1ppjaNmr4-UPWlDqz6BgkecpHO2OIn8ytlTKciI3lsulh6WymOj5EP6-Bly1ki0KJ7IaiKlI63AsnVdmzkztl9oSQYOQ5y3LPX/Startup.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Startup" width="328" height="247"></span></p>
+<p><span><img src="https://pyqebw.dm1.livefilestore.com/y1ppjaNmr4-UPWlDqz6BgkecpHO2OIn8ytlTKciI3lsulh6WymOj5EP6-Bly1ki0KJ7IaiKlI63AsnVdmzkztl9oSQYOQ5y3LPX/Startup.png?psid=1" alt="Startup" width="328" height="247"></span></p>
 <p>客户端应该使用<a href="http://activemq.apache.org/failover-transport-reference.html" target="_blank">故障转移传输</a>来连接 ActiveMQ 服务代理。例如使用如下形式的 URL：</p>
 <pre class="brush: plain">failover:(tcp://broker1:61616,tcp://broker2:61616,tcp://broker3:61616)</pre>
 <p><span><span><span>主代理必须启动传输连接器后客户端才能连接到，详见文末配置示例。（译注：获取排它锁后，主代理才会启动传输连接器）</span></span></span></p>
-<h2 id="b3_solo_h2_1"><span><span><span>主代理故障</span></span></span></h2>
+<h2 id="toc_h2_1"><span><span><span>主代理故障</span></span></span></h2>
 <p><span><span><span>当主代理丢失数据库连接或丢失排它锁时，主代理将被关闭。当主代理关闭或故障时，其他任一从代理将获取到排它锁，拓扑逻辑如下图：</span></span></span></p>
-<p><span><span><span><span><img src="https://pyqebw.dm1.livefilestore.com/y1p_vnTTWIQEcYk-YF0FsJRZU_FpdFUKrsMZabyM0MFh4Hk5OjWRJ69dWXulblEjHuOfENQtc8Yf1Tc4iG0NB8tphs8oAq0D1N_/MasterFailed.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="MasterFailed" width="229" height="247"></span></span></span></span></p>
+<p><span><span><span><span><img src="https://pyqebw.dm1.livefilestore.com/y1p_vnTTWIQEcYk-YF0FsJRZU_FpdFUKrsMZabyM0MFh4Hk5OjWRJ69dWXulblEjHuOfENQtc8Yf1Tc4iG0NB8tphs8oAq0D1N_/MasterFailed.png?psid=1" alt="MasterFailed" width="229" height="247"></span></span></span></span></p>
 <p><span><span><span><span>一旦某一从代理获取了数据库排它锁，则它将成为主代理，并启用传输连接器。</span></span></span></span></p>
 <p>客户端丢失对已经停止服务的代理，并使用故障转移传输尝试连接其他代理——唯一可用的就是刚才新启的主代理。（译注：客户端应该是逐一尝试，因为此时客户端并不知道哪个地址的代理成为了主代理）</p>
-<h2 id="b3_solo_h2_2">主代理重启</h2>
+<h2 id="toc_h2_2">主代理重启</h2>
 <p>任何时刻你都可以重启集群中已经挂了的代理，重启后拓扑逻辑如下图：</p>
-<p><span><img src="https://pyqebw.dm1.livefilestore.com/y1ppjaNmr4-UPV02ix2WOrBAAzaTjhgLNEdJLliIf3eqhBX-lOg1LfC7M5aS8ST8-LAuC8iMane3psWUYpjXIeerTbrQOUJKc9L/MasterRestarted.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="MasterRestarted" width="328" height="247"></span></p>
-<h2 id="b3_solo_h2_3"><span>配置 JDBC 主从</span></h2>
+<p><span><img src="https://pyqebw.dm1.livefilestore.com/y1ppjaNmr4-UPV02ix2WOrBAAzaTjhgLNEdJLliIf3eqhBX-lOg1LfC7M5aS8ST8-LAuC8iMane3psWUYpjXIeerTbrQOUJKc9L/MasterRestarted.png?psid=1" alt="MasterRestarted" width="328" height="247"></span></p>
+<h2 id="toc_h2_3"><span>配置 JDBC 主从</span></h2>
 <p><span>使用&nbsp;<strong>&lt;jdbcPersistenceAdapter/&gt;&nbsp;</strong>避免高性能日志，从而使用默认的 JDBC 主从配置。你只需启动多个代理并配置客户端 URLs 来连接该主从集群。</span></p>
 <p>这些代理都会尝试获取数据库表排它锁，并且只有一个代理会获取到从而成为主代理。</p>
 <p>&nbsp;</p>
@@ -261,7 +263,8 @@ bold;">Sym</span></a>
 <p><span>&nbsp;</span></p>
 <p><span><span><span><span>译自：http://activemq.apache.org/jdbc-master-slave.html</span></span></span></span></p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -279,16 +282,16 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">启动</a>
+            <a href="#toc_h2_0">启动</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">主代理故障</a>
+            <a href="#toc_h2_1">主代理故障</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">主代理重启</a>
+            <a href="#toc_h2_2">主代理重启</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">配置 JDBC 主从</a>
+            <a href="#toc_h2_3">配置 JDBC 主从</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -314,7 +317,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -356,19 +359,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -405,7 +409,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1362647143599",
@@ -425,4 +429,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 188ms, 2020/01/18 20:44:28 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 145ms, 2020/03/25 10:29:39 -->

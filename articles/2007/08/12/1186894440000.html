@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>简单工厂(Simple Factory)模式的Java实现[00原创] - D 的个人博客</title><meta name="description" content="这几天正在学习设计模式，看完书，总得写点简单的实例吧:-所以呢，从今天开始认真写点简单的纯设计模式实现的Java代码，先比较浅显地体会一下设计模式的思想。以便以后在实际项目中正确地使用它。在这个例子中，ArtTracer的指责是根据客户的要求绘制各种各样的图形；Shape接口是提供一些常用的绘图操作，3个图形类分别实现了它；绘图异常时抛出BadShapeException。 简单工厂实例UML类图 Java实现代码 packagecn.edu.ynu.sei.simpleFactory;*客户，要求绘图器codeArtTracercode实例绘制需要的图形@autho...."/><meta property="og:description" content="这几天正在学习设计模式，看完书，总得写点简单的实例吧:-所以呢，从今天开始认真写点简单的纯设计模式实现的Java代码，先比较浅显地体会一下设计模式的思想。以便以后在实际项目中正确地使用它。在这个例子中，ArtTracer的指责是根据客户的要求绘制各种各样的图形；Shape接口是提供一些常用的绘图操作，3个图形类分别实现了它；绘图异常时抛出BadShapeException。 简单工厂实例UML类图 Java实现代码 packagecn.edu.ynu.sei.simpleFactory;*客户，要求绘图器codeArtTracercode实例绘制需要的图形@autho...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="简单工厂(Simple Factory)模式的Java实现[00原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/08/12/1186894440000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="简单工厂(Simple Factory)模式的Java实现[00原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/08/12/1186894440000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>简单工厂(Simple Factory)模式的Java实现[00原创] - D 的个人博客</title><meta name="description" content="这几天正在学习设计模式，看完书，总得写点简单的实例吧:-所以呢，从今天开始认真写点简单的纯设计模式实现的Java代码，先比较浅显地体会一下设计模式的思想。以便以后在实际项目中正确地使用它。在这个例子中，ArtTracer的指责是根据客户的要求绘制各种各样的图形；Shape接口是提供一些常用的绘图操作，3个图形类分别实现了它；绘图异常时抛出BadShapeException。 简单工厂实例UML类图 Java实现代码 packagecn.edu.ynu.sei.simpleFactory;*客户，要求绘图器codeArtTracercode实例绘制需要的图形@autho...."/><meta property="og:description" content="这几天正在学习设计模式，看完书，总得写点简单的实例吧:-所以呢，从今天开始认真写点简单的纯设计模式实现的Java代码，先比较浅显地体会一下设计模式的思想。以便以后在实际项目中正确地使用它。在这个例子中，ArtTracer的指责是根据客户的要求绘制各种各样的图形；Shape接口是提供一些常用的绘图操作，3个图形类分别实现了它；绘图异常时抛出BadShapeException。 简单工厂实例UML类图 Java实现代码 packagecn.edu.ynu.sei.simpleFactory;*客户，要求绘图器codeArtTracercode实例绘制需要的图形@autho...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="简单工厂(Simple Factory)模式的Java实现[00原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/08/12/1186894440000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="简单工厂(Simple Factory)模式的Java实现[00原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/08/12/1186894440000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="引由Eclipse调试器中的Watch(观察)[00原创]" href="https://88250.github.io/articles/2007/08/11/1186841520000.html">
             <link rel="next" title="工厂方法(Factory Method)模式的Java实现[00原创]" href="https://88250.github.io/articles/2007/08/13/1186967280000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -128,7 +130,7 @@ bold;">Sym</span></a>
      data-title="简单工厂(Simple Factory)模式的Java实现[00原创]"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2007/08/12/1186894440000.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -157,9 +159,9 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p><br>这几天正在学习设计模式，看完书，总得写点简单的实例吧:-)<br>所以呢，从今天开始认真写点简单的纯设计模式实现的Java代码，先比较浅显地体会一下设计模式的思想。以便以后在实际项目中正确地使用它。<br><br>在这个例子中，ArtTracer的指责是根据客户的要求绘制各种各样的图形；Shape接口是提供一些常用的绘图操作，3个图形类分别实现了它；绘图异常时抛出BadShapeException。<br><br></p>
-<h3 id="b3_solo_h3_0">1. 简单工厂实例UML类图</h3>
+<h3 id="toc_h3_0">1. 简单工厂实例UML类图</h3>
 &nbsp;<img alt="" src="http://p.blog.csdn.net/images/p_blog_csdn_net/dl88250/273209/o_cn.edu.ynu.sei.simpleFactory.jpg"><br><br>
-<h3 id="b3_solo_h3_1">2. Java实现代码</h3>
+<h3 id="toc_h3_1">2. Java实现代码</h3>
 <br>
 <div style="border: 0.5pt solid windowtext; padding: 4px 5.4pt; background: rgb(230, 230, 230) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; width: 95%;">
 <div><span style="color: rgb(0, 0, 255);">package</span><span style="color: rgb(0, 0, 0);">&nbsp;cn.edu.ynu.sei.simpleFactory;<br><br></span><span style="color: rgb(0, 128, 0);">/**</span><span style="color: rgb(0, 128, 0);"><br>&nbsp;*&nbsp;客户，要求绘图器(&lt;code&gt;ArtTracer&lt;/code&gt;)实例绘制需要的图形<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;</span><span style="color: rgb(128, 128, 128);">@author</span><span style="color: rgb(0, 128, 0);">&nbsp;88250<br>&nbsp;*&nbsp;</span><span style="color: rgb(128, 128, 128);">@version</span><span style="color: rgb(0, 128, 0);">&nbsp;1.0.0,&nbsp;2007-8-12<br>&nbsp;</span><span style="color: rgb(0, 128, 0);">*/</span><span style="color: rgb(0, 0, 0);"><br></span><span style="color: rgb(0, 0, 255);">public</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">class</span><span style="color: rgb(0, 0, 0);">&nbsp;Client<br>{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 128, 0);">/**</span><span style="color: rgb(0, 128, 0);"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span><span style="color: rgb(128, 128, 128);">@param</span><span style="color: rgb(0, 128, 0);">&nbsp;args<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 128, 0);">*/</span><span style="color: rgb(0, 0, 0);"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">public</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">static</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">void</span><span style="color: rgb(0, 0, 0);">&nbsp;main(String[]&nbsp;args)<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;Shape&nbsp;myShape&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">null</span><span style="color: rgb(0, 0, 0);">;<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">try</span><span style="color: rgb(0, 0, 0);"><br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myShape&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;ArtTracer.factory(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">Circle</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myShape.draw();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myShape&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;ArtTracer.factory(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">Square</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myShape.draw();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myShape&nbsp;</span><span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">&nbsp;ArtTracer.factory(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">Triangle</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myShape.draw();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myShape.erase();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 128, 0);">//</span><span style="color: rgb(0, 128, 0);">&nbsp;ArtTracer.factory("Diamond");&nbsp;</span><span style="color: rgb(0, 128, 0);">//</span><span style="color: rgb(0, 128, 0);">&nbsp;将抛出异常</span><span style="color: rgb(0, 128, 0);"><br></span><span style="color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">catch</span><span style="color: rgb(0, 0, 0);">&nbsp;(BadShapeException&nbsp;bse)<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bse.printStackTrace();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">catch</span><span style="color: rgb(0, 0, 0);">&nbsp;(Exception&nbsp;e)<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></span></div>
@@ -189,13 +191,14 @@ bold;">Sym</span></a>
 <div><span style="color: rgb(0, 0, 255);">package</span><span style="color: rgb(0, 0, 0);">&nbsp;cn.edu.ynu.sei.simpleFactory;<br><br></span><span style="color: rgb(0, 128, 0);">/**</span><span style="color: rgb(0, 128, 0);"><br>&nbsp;*&nbsp;三角形<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;</span><span style="color: rgb(128, 128, 128);">@author</span><span style="color: rgb(0, 128, 0);">&nbsp;88250<br>&nbsp;*&nbsp;</span><span style="color: rgb(128, 128, 128);">@version</span><span style="color: rgb(0, 128, 0);">&nbsp;1.0.0,&nbsp;2007-8-12<br>&nbsp;</span><span style="color: rgb(0, 128, 0);">*/</span><span style="color: rgb(0, 0, 0);"><br></span><span style="color: rgb(0, 0, 255);">public</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">class</span><span style="color: rgb(0, 0, 0);">&nbsp;Triangle&nbsp;</span><span style="color: rgb(0, 0, 255);">implements</span><span style="color: rgb(0, 0, 0);">&nbsp;Shape<br>{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">public</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">void</span><span style="color: rgb(0, 0, 0);">&nbsp;draw()<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">Triangle.draw()</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(0, 0, 255);">public</span><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 255);">void</span><span style="color: rgb(0, 0, 0);">&nbsp;erase()<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">Triangle.erase()</span><span style="color: rgb(0, 0, 0);">"</span><span style="color: rgb(0, 0, 0);">);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>}<br></span></div>
 </div>
 <br><br>
-<h3 id="b3_solo_h3_2">3. 总结</h3>
+<h3 id="toc_h3_2">3. 总结</h3>
 <div style="text-align: left;">简单工厂的核心是工厂类。它决定在什么时候去创建需要的产品，客户端可以免除直接创建产品的重任，<br>要什么只管对工厂说就可以，这也更符合我们日常的生活逻辑。举个例子，当你需要一把牙刷的时候很<br>少人会自己去做个自己的牙刷吧？大多人应该都是去牙具店里买XX牌XX型号的牙刷，付钱是当然的了，<br>但省心哦，嘿嘿。但牙具店老板就费心了，管理那么多不同品种、不同型号的牙刷，一有新品种还要急着<br>去进货&gt;_&lt;~~~所以，工厂类的责任很重的，如果加入了新的产品就必然要修改它的源代码。<br>还记得在 <a href="http://blog.csdn.net/DL88250/archive/2007/07/29/1714640.aspx" target="_blank">面向对象设计原则摘要</a> 里提到的OCP(开－闭原则)吗？这是OOD中相当重要的一个原则，好<br>的设计都应该做到这一点，那么简单工厂模式是否支持OCP呢？<br>答案：只能在有限程度上支持。因为OCP要求不能对以“发布”的行为做修改，例如字段或方法，但是可 <br>以进行扩展，可以增加字段或方法。而简单工厂模式中的工厂类不能做到这一点，当加入新的产品类的时候<br>不得不修改工厂类创建产品方法的逻辑。<br>尽管如此，简单工厂模式还是相当重要的，因为它是很多设计模式的基础之一，而且有的时候往往简单 <br>的设计可以把工作完成得更出色！&nbsp;&nbsp;&nbsp; <br></div>
 <br>
-<h3 id="b3_solo_h3_3">4. 参考文献</h3>
+<h3 id="toc_h3_3">4. 参考文献</h3>
 &nbsp; 《Design Patterns》、《Java与模式》
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -213,16 +216,16 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">1. 简单工厂实例UML类图</a>
+            <a href="#toc_h3_0">1. 简单工厂实例UML类图</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">2. Java实现代码</a>
+            <a href="#toc_h3_1">2. Java实现代码</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">3. 总结</a>
+            <a href="#toc_h3_2">3. 总结</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">4. 参考文献</a>
+            <a href="#toc_h3_3">4. 参考文献</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -248,7 +251,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -290,19 +293,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -339,7 +343,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1186894440000",
@@ -359,4 +363,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 202ms, 2020/01/18 20:44:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 176ms, 2020/03/25 10:29:46 -->

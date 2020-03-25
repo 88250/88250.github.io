@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>OpenShift 技术架构概述 - D 的个人博客</title><meta name="description" content="OpenShift 让用户可以创建、部署、管理云端应用，其云环境具体提供了磁盘空间、CPU 计算资源、内存资源、网络连接以及应用服务器。根据不同应用类型（数据库、编程语言等），OpenShift 会提供不同的文件系统布局（例如 PHP、Python、Ruby、Java）来创建不同的运行环境。此外，OpenShift 也提供了一定程度的 DNS（域别名）。"/><meta property="og:description" content="OpenShift 让用户可以创建、部署、管理云端应用，其云环境具体提供了磁盘空间、CPU 计算资源、内存资源、网络连接以及应用服务器。根据不同应用类型（数据库、编程语言等），OpenShift 会提供不同的文件系统布局（例如 PHP、Python、Ruby、Java）来创建不同的运行环境。此外，OpenShift 也提供了一定程度的 DNS（域别名）。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="OpenShift 技术架构概述 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/openshift-tech-architecture-overview?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="OpenShift 技术架构概述 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/openshift-tech-architecture-overview">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>OpenShift 技术架构概述 - D 的个人博客</title><meta name="description" content="OpenShift 让用户可以创建、部署、管理云端应用，其云环境具体提供了磁盘空间、CPU 计算资源、内存资源、网络连接以及应用服务器。根据不同应用类型（数据库、编程语言等），OpenShift 会提供不同的文件系统布局（例如 PHP、Python、Ruby、Java）来创建不同的运行环境。此外，OpenShift 也提供了一定程度的 DNS（域别名）。"/><meta property="og:description" content="OpenShift 让用户可以创建、部署、管理云端应用，其云环境具体提供了磁盘空间、CPU 计算资源、内存资源、网络连接以及应用服务器。根据不同应用类型（数据库、编程语言等），OpenShift 会提供不同的文件系统布局（例如 PHP、Python、Ruby、Java）来创建不同的运行环境。此外，OpenShift 也提供了一定程度的 DNS（域别名）。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="OpenShift 技术架构概述 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/openshift-tech-architecture-overview?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="OpenShift 技术架构概述 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/openshift-tech-architecture-overview">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="第一把电吉他" href="https://88250.github.io/my-first-guitar-washburn-n1nm">
             <link rel="next" title="ITeye 对 B3log 的访谈" href="https://88250.github.io/iteye-b3log">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -134,7 +136,7 @@ bold;">Sym</span></a>
      data-title="OpenShift 技术架构概述"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/openshift-tech-architecture-overview"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -162,8 +164,8 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h1 id="b3_solo_h1_0">OpenShift 技术架构概述</h1>
-<h2 id="b3_solo_h2_1">平台概述</h2>
+                <h1 id="toc_h1_0">OpenShift 技术架构概述</h1>
+<h2 id="toc_h2_1">平台概述</h2>
 <p>OpenShift 让用户可以创建、部署、管理云端应用，其云环境具体提供了磁盘空间、CPU 计算资源、内存资源、网络连接以及应用服务器。根据不同应用类型（数据库、编程语言等），OpenShift 会提供不同的文件系统布局（例如 PHP、Python、Ruby、Java）来创建不同的运行环境。此外，OpenShift 也提供了一定程度的 DNS（域别名）。</p>
 <p>OpenShift 也为不同应用提供了临时文件存取（/var/tmp），超过 10 天没有被访问的文件将被自动删除。</p>
 <p>OpenShift 中包含两个基本的功能单元：</p>
@@ -171,21 +173,21 @@ bold;">Sym</span></a>
 <li>Broker，提供了接口</li>
 <li>Cartridges，提供了应用框架</li>
 </ul>
-<h3 id="b3_solo_h3_2">Broker</h3>
+<h3 id="toc_h3_2">Broker</h3>
 <p>Broker 是所有应用管理活动的入口。它主要负责管理用户登录、DNS、应用状态以及应用服务编排（服务分发）。用户和 Broker 交互主要是通过 Web 管理控制台、CLI 工具、JBoss 工具或者是 REST API。</p>
-<h3 id="b3_solo_h3_3">Cartridges</h3>
+<h3 id="toc_h3_3">Cartridges</h3>
 <p>Cartridges 为应用运行提供了实际所需的功能。比如一些 cartridges 提供编程语言支持（PHP、Python、Java 等），另一些则提供数据库支持（PostgreSQL、MySQL、MongoDB）。</p>
-<p><img src="https://t8idhq.dm1.livefilestore.com/y1m4TzGjBI2ltEH3xrnZOSARt-jjAxituB2bwkq47JLmDoL5AvoR1jGdt5D_15HL_MnJPGnMKaV29yQlxswyS1OjcBEWW3VekUEfqkAOlNdkaMnvE7zXHpyyg/OpenShift-1.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" width="660" height="140"></p>
-<h2 id="b3_solo_h2_4">系统资源与应用容器</h2>
+<p><img src="https://t8idhq.dm1.livefilestore.com/y1m4TzGjBI2ltEH3xrnZOSARt-jjAxituB2bwkq47JLmDoL5AvoR1jGdt5D_15HL_MnJPGnMKaV29yQlxswyS1OjcBEWW3VekUEfqkAOlNdkaMnvE7zXHpyyg/OpenShift-1.png?psid=1" alt="" width="660" height="140"></p>
+<h2 id="toc_h2_4">系统资源与应用容器</h2>
 <p>OpenShift 内是通过 gears、nodes 以及 districts 来管理系统资源与应用容器的。</p>
 <ul>
-<li>Gears：提供了给 cartridges 运行的容器。一个或多个 cartridges 可在其中运行，gear 为每个 cartridge 提供有限的内存与磁盘空间。<br><img src="https://t8idhq.dm1.livefilestore.com/y1mJJPdJRbXdrlFJ7zDdDlx7qf9AcxNVJDHE1aYC20M1bHnMAmgSXbfWgh-ds_ljSTh0LsXxq-qqdx4FrGlylclM8JahnhX2GKIjpr9A72y4Ac4WWaQQejRnA/OpenShift-2.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" width="660" height="180"></li>
+<li>Gears：提供了给 cartridges 运行的容器。一个或多个 cartridges 可在其中运行，gear 为每个 cartridge 提供有限的内存与磁盘空间。<br><img src="https://t8idhq.dm1.livefilestore.com/y1mJJPdJRbXdrlFJ7zDdDlx7qf9AcxNVJDHE1aYC20M1bHnMAmgSXbfWgh-ds_ljSTh0LsXxq-qqdx4FrGlylclM8JahnhX2GKIjpr9A72y4Ac4WWaQQejRnA/OpenShift-2.png?psid=1" alt="" width="660" height="180"></li>
 <li>Nodes：一台物理机或虚拟机，其中包含多个 gears。因为某些 gear 并不是时时刻刻处于运行中，所以一个 node 通常会处于超配额状态，即放入了超过限额个数的 gears。</li>
-<li>Districts：定义了一些 nodes，其中的 gears 可以方便地进行 node 负载均衡。所以即使是某个 gear 负载很高时也不会发生 node 运行超载。<br><img src="https://t8idhq.dm1.livefilestore.com/y1mpMcRjmYqEAhaJpOSEAFSu1Zu7Z_bNWIGp8EbwLT-ZGwUBpitdA_uKN_jCf98W95jkk5icJU5HPoIK4oiAGUp7-5rWjii2TK8XZzvcM3YYOIemi5Q3FVcjA/OpenShift-3.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" width="660" height="180"></li>
+<li>Districts：定义了一些 nodes，其中的 gears 可以方便地进行 node 负载均衡。所以即使是某个 gear 负载很高时也不会发生 node 运行超载。<br><img src="https://t8idhq.dm1.livefilestore.com/y1mpMcRjmYqEAhaJpOSEAFSu1Zu7Z_bNWIGp8EbwLT-ZGwUBpitdA_uKN_jCf98W95jkk5icJU5HPoIK4oiAGUp7-5rWjii2TK8XZzvcM3YYOIemi5Q3FVcjA/OpenShift-3.png?psid=1" alt="" width="660" height="180"></li>
 </ul>
-<h2 id="b3_solo_h2_5">OpenShift 应用</h2>
+<h2 id="toc_h2_5">OpenShift 应用</h2>
 <p>一个用户名只能使用一个 namespace，一个 namespace可以创建多个应用。</p>
-<p><img src="https://t8idhq.dm1.livefilestore.com/y1mwk7XQZ3sA_ba1STl2FbmGpIzHeKjNvzdkrjPEGgswT_HJGwADteeFyDMS-JJvqmp2CIDqSbBPCPbdHliB2BW43tFoaQGwZq7VvhFsDagH6AAkI1T_1G4rA/OpenShift-4.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" width="660" height="230"></p>
+<p><img src="https://t8idhq.dm1.livefilestore.com/y1mwk7XQZ3sA_ba1STl2FbmGpIzHeKjNvzdkrjPEGgswT_HJGwADteeFyDMS-JJvqmp2CIDqSbBPCPbdHliB2BW43tFoaQGwZq7VvhFsDagH6AAkI1T_1G4rA/OpenShift-4.png?psid=1" alt="" width="660" height="230"></p>
 <p>应用是由一系列部分构成：</p>
 <ul>
 <li>Namespace</li>
@@ -194,25 +196,26 @@ bold;">Sym</span></a>
 <li>Git Repository</li>
 <li>App Dependencies（例如数据库 Cartridges）</li>
 </ul>
-<h3 id="b3_solo_h3_6">伸缩性</h3>
+<h3 id="toc_h3_6">伸缩性</h3>
 <p>OpenShift 上分为两个应用，可伸缩应用与不可伸缩应用。</p>
 <ul>
 <li>可伸缩应用：可伸缩应用按需获取系统资源。一个可伸缩应用至少会使用两个 gears，一个用于应用本身，一个用于高可用代理（HAProxy）实现负载均衡。</li>
 <li>不可伸缩应用：只能使用一个 gear。</li>
 </ul>
 <p>Web 请求到达负载均衡代理 HAProxy 后，它将请求转发给 gear 中的应用。当 HAProxy 探测到请求过载时，OpenShift 复制一份已经存在的 Web cartridge 到一个单独的 gear 里，与已有 gears 一起处理请求，提升了两倍请求处理能力。</p>
-<p><img src="https://t8idhq.dm1.livefilestore.com/y1mZUuPhXn0va8RM9WZBOWY5hpLMfuO6xh8FvBsQnLTOqUYupMtrInY9VEq_Qec61-UoRABnt-HnPKN8i4KKIJYaKBBsE1MxgVQTJMMnaXcj3nJPaArIU-Ztg/OpenShift-5.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" width="435" height="592"></p>
-<h2 id="b3_solo_h2_7">用户交互</h2>
-<p><img src="https://t8idhq.dm1.livefilestore.com/y1mbVNk8kt90Qlem5LDYL4uxDd8klxZs9l6EqfFK1F3otJN2jx6pnCP0HbQItw4oPFk4jVXJjuX3wqzSnkTon9t1AooIbGAQ6T29wcXJLlBpili-zvdx8YcvA/OpenShift-6.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" width="588" height="514"></p>
+<p><img src="https://t8idhq.dm1.livefilestore.com/y1mZUuPhXn0va8RM9WZBOWY5hpLMfuO6xh8FvBsQnLTOqUYupMtrInY9VEq_Qec61-UoRABnt-HnPKN8i4KKIJYaKBBsE1MxgVQTJMMnaXcj3nJPaArIU-Ztg/OpenShift-5.png?psid=1" alt="" width="435" height="592"></p>
+<h2 id="toc_h2_7">用户交互</h2>
+<p><img src="https://t8idhq.dm1.livefilestore.com/y1mbVNk8kt90Qlem5LDYL4uxDd8klxZs9l6EqfFK1F3otJN2jx6pnCP0HbQItw4oPFk4jVXJjuX3wqzSnkTon9t1AooIbGAQ6T29wcXJLlBpili-zvdx8YcvA/OpenShift-6.png?psid=1" alt="" width="588" height="514"></p>
 <p>通过 git push 命令进行部署，也可以使用 Jenkins （cartridge）进行持续集成。</p>
-<p><img src="https://t8idhq.dm1.livefilestore.com/y1m3zRDISgCtV8gMuIHSswK1tCt4oWwR2Z6YRn90AKoe49hoCIIsRZB0oueU4o7zg0JPzUpH3Dr237ExhrmZlvPvVwwmwTdp31JklIu0cyYYWo7eHrSZ1ksFQ/OpenShift-7.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" width="632" height="314"></p>
-<h2 id="b3_solo_h2_8">参考</h2>
+<p><img src="https://t8idhq.dm1.livefilestore.com/y1m3zRDISgCtV8gMuIHSswK1tCt4oWwR2Z6YRn90AKoe49hoCIIsRZB0oueU4o7zg0JPzUpH3Dr237ExhrmZlvPvVwwmwTdp31JklIu0cyYYWo7eHrSZ1ksFQ/OpenShift-7.png?psid=1" alt="" width="632" height="314"></p>
+<h2 id="toc_h2_8">参考</h2>
 <ul>
 <li><a href="https://access.redhat.com/knowledge/docs/en-US/OpenShift/2.0/html/User_Guide/index.html" target="_blank">OpenShift User Guide 2.2.17</a></li>
 <li><a href="https://openshift.redhat.com/community/wiki/architecture-overview" target="_blank">OpenShift Community Wiki</a></li>
 </ul>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -230,31 +233,31 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h1">
-            <a href="#b3_solo_h1_0">OpenShift 技术架构概述</a>
+            <a href="#toc_h1_0">OpenShift 技术架构概述</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">平台概述</a>
+            <a href="#toc_h2_1">平台概述</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">Broker</a>
+            <a href="#toc_h3_2">Broker</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">Cartridges</a>
+            <a href="#toc_h3_3">Cartridges</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">系统资源与应用容器</a>
+            <a href="#toc_h2_4">系统资源与应用容器</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_5">OpenShift 应用</a>
+            <a href="#toc_h2_5">OpenShift 应用</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">伸缩性</a>
+            <a href="#toc_h3_6">伸缩性</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">用户交互</a>
+            <a href="#toc_h2_7">用户交互</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">参考</a>
+            <a href="#toc_h2_8">参考</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -280,7 +283,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -322,19 +325,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -371,7 +375,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1351561642488",
@@ -391,4 +395,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 186ms, 2020/01/18 20:44:28 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 133ms, 2020/03/25 10:29:39 -->

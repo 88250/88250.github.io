@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>2019 用善意面对世界 - D 的个人博客</title><meta name="description" content="春夏秋 春、夏、秋。 明年就是《创》的第三年了，也将是最后一年更新该系列了，以后不定时有感随发。 Vditor 今年我和 V 主要精力花在了构建 Vditor 上，我们没有选择基于其他编辑器内核来做，而是从零开始写，包括 Markdown 解析渲染也撸了一遍，整个实现基本没有第三方依赖（除了支持图表、数学公式等）。 对于大部分开发者来说，提供给用户使用的编辑器是能用就凑合着用，因为编辑器候选品不多，自己造轮子的话工作量不小，即使碰到有需要更改的地方也有办法： 通过编辑器本身的扩展机制 在生成的 HTML 上再做处理 直接改编辑器项目源码 办法是有，修修补补也能用。但如果要追求更好的用户体验那就只能自己写一个了。 另外，我们观察到一个现象，比较成功的 UGC 社区都有自己的编辑器。因为内容源是用户创造的，编辑器是否好用会对创作过程产生很大影响，所以编辑器可以说是 UGC 社区的核心之一。 Vditor 起初的定位是 Markdown 编辑器，我们已经在 v1 中达到了业界主流水准，即分屏编辑预览。v2 中我们改变了定位：“所见即所得，支持 Markdown”，这样 Vditor 将更...."/><meta property="og:description" content="春夏秋 春、夏、秋。 明年就是《创》的第三年了，也将是最后一年更新该系列了，以后不定时有感随发。 Vditor 今年我和 V 主要精力花在了构建 Vditor 上，我们没有选择基于其他编辑器内核来做，而是从零开始写，包括 Markdown 解析渲染也撸了一遍，整个实现基本没有第三方依赖（除了支持图表、数学公式等）。 对于大部分开发者来说，提供给用户使用的编辑器是能用就凑合着用，因为编辑器候选品不多，自己造轮子的话工作量不小，即使碰到有需要更改的地方也有办法： 通过编辑器本身的扩展机制 在生成的 HTML 上再做处理 直接改编辑器项目源码 办法是有，修修补补也能用。但如果要追求更好的用户体验那就只能自己写一个了。 另外，我们观察到一个现象，比较成功的 UGC 社区都有自己的编辑器。因为内容源是用户创造的，编辑器是否好用会对创作过程产生很大影响，所以编辑器可以说是 UGC 社区的核心之一。 Vditor 起初的定位是 Markdown 编辑器，我们已经在 v1 中达到了业界主流水准，即分屏编辑预览。v2 中我们改变了定位：“所见即所得，支持 Markdown”，这样 Vditor 将更...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="2019 用善意面对世界 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/12/30/1577712379212.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="2019 用善意面对世界 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/12/30/1577712379212.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
-            <link rel="prev" title="Vditor 所见即所得" href="https://88250.github.io/articles/2019/12/26/1577370404903.html">
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>2019 用善意面对世界 - D 的个人博客</title><meta name="description" content="春夏秋 春、夏、秋。 明年就是《创》的第三年了，也将是最后一年更新该系列了，以后不定时有感随发。 Vditor 今年我和 V 主要精力花在了构建 Vditor 上，我们没有选择基于其他编辑器内核来做，而是从零开始写，包括 Markdown 解析渲染也撸了一遍，整个实现基本没有第三方依赖（除了支持图表、数学公式等）。 对于大部分开发者来说，提供给用户使用的编辑器是能用就凑合着用，因为编辑器候选品不多，自己造轮子的话工作量不小，即使碰到有需要更改的地方也有办法： 通过编辑器本身的扩展机制 在生成的 HTML 上再做处理 直接改编辑器项目源码 办法是有，修修补补也能用。但如果要追求更好的用户体验那就只能自己写一个了。 另外，我们观察到一个现象，比较成功的 UGC 社区都有自己的编辑器。因为内容源是用户创造的，编辑器是否好用会对创作过程产生很大影响，所以编辑器可以说是 UGC 社区的核心之一。 Vditor 起初的定位是 Markdown 编辑器，我们已经在 v1 中达到了业界主流水准，即分屏编辑预览。v2 中我们改变了定位：“所见即所得，支持 Markdown”，这样 Vditor 将更...."/><meta property="og:description" content="春夏秋 春、夏、秋。 明年就是《创》的第三年了，也将是最后一年更新该系列了，以后不定时有感随发。 Vditor 今年我和 V 主要精力花在了构建 Vditor 上，我们没有选择基于其他编辑器内核来做，而是从零开始写，包括 Markdown 解析渲染也撸了一遍，整个实现基本没有第三方依赖（除了支持图表、数学公式等）。 对于大部分开发者来说，提供给用户使用的编辑器是能用就凑合着用，因为编辑器候选品不多，自己造轮子的话工作量不小，即使碰到有需要更改的地方也有办法： 通过编辑器本身的扩展机制 在生成的 HTML 上再做处理 直接改编辑器项目源码 办法是有，修修补补也能用。但如果要追求更好的用户体验那就只能自己写一个了。 另外，我们观察到一个现象，比较成功的 UGC 社区都有自己的编辑器。因为内容源是用户创造的，编辑器是否好用会对创作过程产生很大影响，所以编辑器可以说是 UGC 社区的核心之一。 Vditor 起初的定位是 Markdown 编辑器，我们已经在 v1 中达到了业界主流水准，即分屏编辑预览。v2 中我们改变了定位：“所见即所得，支持 Markdown”，这样 Vditor 将更...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="2019 用善意面对世界 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/12/30/1577712379212.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="2019 用善意面对世界 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/12/30/1577712379212.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+            <link rel="prev" title="Vditor 实现 Markdown 所见即所得" href="https://88250.github.io/articles/2019/12/26/1577370404903.html">
+            <link rel="next" title="关于所见即所得 Markdown 编辑器的讨论" href="https://88250.github.io/articles/2020/01/19/1579414663700.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
 <script>
@@ -22,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -54,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -74,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -133,7 +136,7 @@ bold;">Sym</span></a>
      data-title="2019 用善意面对世界"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2019/12/30/1577712379212.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -161,10 +164,10 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="b3_solo_h3_0">春夏秋</h3>
+                <h3 id="toc_h3_0">春夏秋</h3>
 <p><a href="https://hacpai.com/article/1555989598304" target="_blank">春</a>、<a href="https://hacpai.com/article/1565318802920" target="_blank">夏</a>、<a href="https://hacpai.com/article/1573402018349" target="_blank">秋</a>。</p>
 <p>明年就是《创》的第三年了，也将是最后一年更新该系列了，以后不定时有感随发。</p>
-<h3 id="b3_solo_h3_1">Vditor</h3>
+<h3 id="toc_h3_1">Vditor</h3>
 <p>今年我和 V 主要精力花在了构建 Vditor 上，我们没有选择基于其他编辑器内核来做，而是从零开始写，包括 Markdown 解析渲染也撸了一遍，整个实现基本没有第三方依赖（除了支持图表、数学公式等）。</p>
 <p>对于大部分开发者来说，提供给用户使用的编辑器是能用就凑合着用，因为编辑器候选品不多，自己造轮子的话工作量不小，即使碰到有需要更改的地方也有办法：</p>
 <ul>
@@ -180,40 +183,41 @@ bold;">Sym</span></a>
 <li><a href="https://hacpai.com/article/1577370404903" target="_blank">Vditor 所见即所得</a></li>
 <li><a href="https://hacpai.com/article/1567062979327" target="_blank">Lute 实现后记</a></li>
 </ul>
-<h3 id="b3_solo_h3_2">Sym</h3>
+<h3 id="toc_h3_2">Sym</h3>
 <p>商业版一直在迭代开发，很多需求都来自于黑客派用户的反馈建议，终于有点“社区驱动开发”的样子了。明年将实现徽章系统以及夜间模式，如果有时间还会探索一下基于游戏引擎的新版设计。</p>
 <p>社区版基本保持 2 个月发布一个版本，主要是细节优化，暂时没有精力在社区版上添加新特性了。</p>
 <p>今年商业版盈利情况差不多是我上班时期的薪资，比起 2018 年来稍有提升，希望明年再接再厉。纯从赚钱的角度上看，上班是性价比最高的，不辛苦而且收入高，所以还在上班的请稳住，切勿轻易尝试创业。</p>
-<h3 id="b3_solo_h3_3">星火</h3>
+<h3 id="toc_h3_3">星火</h3>
 <p>B3log 的核心思想是一个分布式社区（分布式博客端 + 中心化社区端），但实现上并不完美（比如账号系统没实现去中心化、数据交互协议缺乏一致性），这也是对应用场景的一种妥协，毕竟目前 B3log 的架构更符合大部分用户的使用习惯。</p>
 <p>为了寻求一些突破，我和 V 启动了<a href="https://hacpai.com/article/1559578726531" target="_blank">星火</a>项目，它是我目前认为最为满意的社区形态，以后我们会把它逐步构建完善。</p>
-<h3 id="b3_solo_h3_4">B3log 计划表</h3>
+<h3 id="toc_h3_4">B3log 计划表</h3>
 <p>按项目级列了 <a href="https://hacpai.com/article/1568439160728" target="_blank">B3log 开源社区计划表</a>，明年待开发的东西还蛮多的。我总觉得现在 B3log 的基础还太薄弱，而我最擅长的事情就是堆代码，所以还是以开发为主继续铺垫。</p>
 <p>不过，这一切也许是为了逃避短板而假装忙碌吧，可悲的程序员思维。</p>
-<h3 id="b3_solo_h3_5">二开的机会</h3>
+<h3 id="toc_h3_5">二开的机会</h3>
 <p>年初时有一家公司派了开发和商务来昆明找我们做 Sym 二开，需求价格技术方案基本都谈妥了，可惜的是后来他们那边负责这事的人突然离职，最后也就不了了之。在合同没签订甚至没有打款前任何情况都可能发生。</p>
 <p>十一月份接到另一家公司的二开需求，他们需要我们过去北京做驻场开发实施，过完合同后我和 V 就直接过去了。本来我们是要求先打款一部分，不过对方说财务流程太慢，他们急着上线，外加他们是集团公司，并且属于央企，所以就决定还是先过去干活吧，也正好带 d 去见识首都。</p>
 <p>卖艺期间组织了一次社区聚餐，人不多刚好凑一桌。本来我怕大家都像我一样不善言辞，全程吃饭不说话。而事实是除了我比较尬聊，有的小伙简直就是在表演脱口秀，大家聊得挺开心的。</p>
 <p>后来还去爬了长城、逛了故宫，V 写了一篇帖子来记录这段时光<a href="https://hacpai.com/article/1576766001404" target="_blank">北京 19 日工作游</a>。总的来说，这样短期卖艺蛮不错的，工作赚钱的同时还能旅游，最重要的是能够和社区里的小伙伴们面基。</p>
 <p>这段时间可能就是我的人生巅峰了。</p>
-<h3 id="b3_solo_h3_6">逐步脱离 GitHub</h3>
+<h3 id="toc_h3_6">逐步脱离 GitHub</h3>
 <p>B3log 的 GitHub 组织账号被封了，但我始终认为并没有违规，只是触碰了某些人敏感的神经，同时也触碰了他们的利益罢了。从这个角度看，说明 B3log 社区是有些价值的，只是现在太弱小。</p>
 <p>总之，这些都是过去的事情了。后续打算自建一套仓库系统，尽量减少和外界的耦合，完善自身体系。开源项目如果过于依赖流量入口或者曝光，那开源的动机到底是什么呢？我想很多人已经在那些一点点上涨的数字上迷失自我了……</p>
-<h3 id="b3_solo_h3_7">酒吧、互联网和接盘侠</h3>
+<h3 id="toc_h3_7">酒吧、互联网和接盘侠</h3>
 <p>楼下又一家酒吧转让了。这家酒吧开了六、七年了，虽然去的不多，但和老板还挺聊得来的。起初几年他们家生意很好，那会儿因为我们这有个很大的烧烤夜市，小区的商铺也就形成了“酒吧一条街”，所以其实每家酒吧生意都还不错。后来烧烤夜市因为环保问题取缔了，周边酒吧也就一家接一家倒下了，只有这家酒吧从第一批挺到了现在。</p>
 <p>九月份再去的时候发现换老板了，和新老板聊了下得知是转让的，转让费还不低呢。回来后我想起了以前和老板聊天的事，他说别看隔壁酒吧这两天人多，其实不赚钱。我说怎么会，都爆满了还不赚钱？他后来说的话现在想来真是意味深长。</p>
 <p>他说要爆满还不容易，他请朋友过来喝酒就行，便宜的啤酒其实随便喝，亏不了多少，最重要的是可以造出生意火爆的效果，这样就会有人来接盘谈转让，转让可以高到意想不到。接盘的人多半是只看表象，是没真正做过生意的人。</p>
 <p>小区里有家餐馆也是这个路数，十五块钱自助餐，三十多种菜，荤素兼备。我和 V 去过一次，质量还蛮高的。这家餐馆的生意那叫一个好，薄利多销的同时也在等下家。</p>
 <p>这样的套路应该蛮多，他们做生意的同时也是在做房地产，靠传统的经营已经很难赚到钱了，即使能赚钱纯利润也很低，就靠转让费盈利。并且这个商业模式还能复制，这个地点干一票，换个地点一样再来。人口红利对于他们来说并不重要，重要的是能否能够找到接盘侠，而对于缺乏这方面经验的人来说，接这个盘还觉得是个机会呢。</p>
 <p>转观互联网，做同样商业模式的公司比比皆是。并且互联网放大了这一效果，因为几乎你到任何一家店都是秒达，作为消费者实惠也是有的，说得短视和自私一点，我们希望接盘侠多多益善。不过有一点要明白，长期以往，最终的接盘侠还是我们自己，只是接盘路径不同，结果也更为惨烈。</p>
-<h3 id="b3_solo_h3_8">理想的生活状态</h3>
+<h3 id="toc_h3_8">理想的生活状态</h3>
 <p><a href="https://hacpai.com/article/1571292817039" target="_blank">三亚旅游打码</a>感觉很不错，希望明年还能去海边。写代码对我来说已经是一种生活方式了，每天都要写点，才能感到活着的真实。就像前面说的，也许这只是瞎忙活吧，难道我一直在逃避着什么？</p>
 <p>年中时有家投资机构工作人员电话问我是否需要融资，并说他们关注我的产品有一段时间了。我说需要融资的，后来对方又问我是否准备好 PPT，我说没准备……尴尬了几秒钟对方就说以后再联系吧。</p>
 <p>虽然有简单考虑过融资，但是实际上都是臆想，没有制定详细方案。现在回过头来看算是庆幸，如果真的走上了融资的路，我觉得我和 V 这些年的努力很有可能就白费了，对资本我是非常恐惧的。</p>
 <p>不断调整心态，不断告诫自己没有大佬的命千万不能得了大佬的病，小人物就应该有小人物的觉悟。链滴科技作为一个软件小作坊能够糊口就行，做一些小而美的产品有一定用户就很好了。这样还能按自己的想法尝试一些创作，即使验证失败也关系不大。对了，偶尔还能来场说走就走的旅行打码，这样的生活已经很好了。</p>
 <p>希望明年能维持这样的生活，不敢有太高期望，该过冬就过冬吧。</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -231,31 +235,31 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">春夏秋</a>
+            <a href="#toc_h3_0">春夏秋</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">Vditor</a>
+            <a href="#toc_h3_1">Vditor</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">Sym</a>
+            <a href="#toc_h3_2">Sym</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">星火</a>
+            <a href="#toc_h3_3">星火</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">B3log 计划表</a>
+            <a href="#toc_h3_4">B3log 计划表</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">二开的机会</a>
+            <a href="#toc_h3_5">二开的机会</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">逐步脱离 GitHub</a>
+            <a href="#toc_h3_6">逐步脱离 GitHub</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">酒吧、互联网和接盘侠</a>
+            <a href="#toc_h3_7">酒吧、互联网和接盘侠</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">理想的生活状态</a>
+            <a href="#toc_h3_8">理想的生活状态</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -281,7 +285,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -323,19 +327,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -372,7 +377,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1577712379212",
@@ -392,4 +397,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 502ms, 2020/01/18 20:44:22 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 542ms, 2020/03/25 10:29:32 -->

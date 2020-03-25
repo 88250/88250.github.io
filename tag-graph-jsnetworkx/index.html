@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>为博客生成标签图 - D 的个人博客</title><meta name="description" content="本文介绍了使用 JSNetworkX 为博客生成标签图的方法。"/><meta property="og:description" content="本文介绍了使用 JSNetworkX 为博客生成标签图的方法。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="为博客生成标签图 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/tag-graph-jsnetworkx?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="为博客生成标签图 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/tag-graph-jsnetworkx">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>为博客生成标签图 - D 的个人博客</title><meta name="description" content="本文介绍了使用 JSNetworkX 为博客生成标签图的方法。"/><meta property="og:description" content="本文介绍了使用 JSNetworkX 为博客生成标签图的方法。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="为博客生成标签图 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/tag-graph-jsnetworkx?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="为博客生成标签图 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/tag-graph-jsnetworkx">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="云平台之 SaaS 随想" href="https://88250.github.io/saas-essay">
             <link rel="next" title="跨域 Cookie 实现单点登录" href="https://88250.github.io/sso-via-cross-domain-cookie">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -138,7 +140,7 @@ bold;">Sym</span></a>
      data-title="为博客生成标签图"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/tag-graph-jsnetworkx"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -166,18 +168,18 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="b3_solo_h3_0"><span style="font-size: 1.17em;">图</span></h3>
+                <h3 id="toc_h3_0"><span style="font-size: 1.17em;">图</span></h3>
 <p>图是由节点和边组成的。下图是一个&nbsp;6 节点无向完全图：</p>
 <p><a title="无向完全图" href="https://btfw2w.dm2301.livefilestore.com/y2pwobh-waxQHDcHtL5HDFRzal9XkrbZqSndUiR2wErvk41gZPuRHq1U32KA4WHBM6UxmePaYtSFU3rZB-MgKb4ANiLtFZYkpwkv7H9KN2ugYI/graph.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img style="display: block; margin-left: auto; margin-right: auto;" title="无向完全图" src="https://btfw2w.dm2301.livefilestore.com/y2pwobh-waxQHDcHtL5HDFRzal9XkrbZqSndUiR2wErvk41gZPuRHq1U32KA4WHBM6UxmePaYtSFU3rZB-MgKb4ANiLtFZYkpwkv7H9KN2ugYI/graph.png?psid=1" alt="无向完全图" width="278" height="229"></a></p>
-<h4 id="b3_solo_h4_1">边权重</h4>
+<h4 id="toc_h4_1">边权重</h4>
 <p>可以把权重是看成是边的属性，<em>可视化</em>时这个属性决定了边的“粗细”，权重大的边粗一些：</p>
 <p><a title="边带权重的无向完全图" href="https://btfw2w.dm2301.livefilestore.com/y2pyHGFMm3Gv1D7rF07iyXf3U0Maxx8mjHPznc7bz9V9pZsv-aw4uvT77lp9QMz5BJ1XTHqkkSLf5l2QgHLNHvHvUOdLfqQBK9CfX-LgfMEHFg/weighted-graph.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img style="display: block; margin-left: auto; margin-right: auto;" title="边带权重的无向完全图" src="https://btfw2w.dm2301.livefilestore.com/y2pyHGFMm3Gv1D7rF07iyXf3U0Maxx8mjHPznc7bz9V9pZsv-aw4uvT77lp9QMz5BJ1XTHqkkSLf5l2QgHLNHvHvUOdLfqQBK9CfX-LgfMEHFg/weighted-graph.png?psid=1" alt="边带权重的无向完全图" width="266" height="247"></a></p>
-<h4 id="b3_solo_h4_2">节点度</h4>
+<h4 id="toc_h4_2">节点度</h4>
 <p>度就是和节点相连的边的数目。例如上图中，每个节点的度都为 5。我们可以把节点度看成是节点的属性，<em>可视化</em>时这个属性决定了节点的“大小”，度大的节点看上去要大一些：</p>
 <p><a title="节点度" href="https://btfw2w.dm2301.livefilestore.com/y2pp-D8Az6WRNUVDG30OkANgdDIWpKMLLLrBA1WPF-m3DtVif_xZGv4pKCuWxJeC6uW9gn6GdOtcGqz3TdeVWKuvb2JrVs3YjULYXOCnYdwu9I/node_degree.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img style="display: block; margin-left: auto; margin-right: auto;" title="节点度" src="https://btfw2w.dm2301.livefilestore.com/y2pp-D8Az6WRNUVDG30OkANgdDIWpKMLLLrBA1WPF-m3DtVif_xZGv4pKCuWxJeC6uW9gn6GdOtcGqz3TdeVWKuvb2JrVs3YjULYXOCnYdwu9I/node_degree.png?psid=1" alt="节点度" width="292" height="243"></a></p>
-<h3 id="b3_solo_h3_3">标签图</h3>
+<h3 id="toc_h3_3">标签图</h3>
 <p>好了，上面我们简单介绍了图的概念，接下来我们就开始实战吧：为博客生成标签图！标签图反映了博主文章涉猎的<em>范围</em>、<em>偏好</em>、以及这些标签之间的<em>相关性</em>。</p>
-<h4 id="b3_solo_h4_4">标签数据</h4>
+<h4 id="toc_h4_4">标签数据</h4>
 <p>要生成标签图，我们需要先准备好基础数据。这些数据就是标签，准确地说是每篇文章的标签：</p>
 <pre class="prettyprint">[
     [   
@@ -200,7 +202,7 @@ bold;">Sym</span></a>
     ]
 ]</pre>
 <p>这个 JSON 数组很容易就能生成，保存为 data.json 文件。</p>
-<h4 id="b3_solo_h4_5">生成算法</h4>
+<h4 id="toc_h4_5">生成算法</h4>
 <p>我们把标签作为节点，现在要做的就是把这些节点连起来。节点之间是否存在边，是通过边权重计算得出的：如果权重大于某个常量<em>参数</em>，则认为这两个节点连通，所以现在的重点就是边权重的计算。</p>
 <blockquote>
 <p>边权重值是两个标签同时出现在同一篇文章标签中的次数</p>
@@ -247,23 +249,24 @@ return ret;
 </code></pre>
 <p>}</p></pre><p></p>
 <p>&nbsp;这个 naive algorithm 效率很低，不过因为博客标签数据量不大，实际跑下来还能接受（300+ 标签，耗时 20s+）。</p>
-<h3 id="b3_solo_h3_6">可视化</h3>
-<h4 id="b3_solo_h4_7">JSNetworkX</h4>
+<h3 id="toc_h3_6">可视化</h3>
+<h4 id="toc_h4_7">JSNetworkX</h4>
 <p><a href="http://felix-kling.de/JSNetworkX" target="_blank">JSNetworkX</a> 是 <a href="https://networkx.github.io" target="_blank">NetworkX</a> 的 JavaScript 版本，目前已经实现了很多常用算法和特性，基于 D3.js。</p>
 <p>基本用法请参考<a href="http://felix-kling.de/JSNetworkX/examples.html" target="_blank">这里</a>，前面我们已经生成了带权重的边，而节点度则是放在这里处理的（因为 JSNetworkX 可以方便的计算节点度），文末给出完整代码。</p>
-<h4 id="b3_solo_h4_8">参数</h4>
+<h4 id="toc_h4_8">参数</h4>
 <p>前面我们提到过边权重参数，这个参数是为了控制生成边的数目（权重大的边才有必要进行绘制），否则生成的图可能会是下面这个样子：</p>
 <p><a title="杂乱的标签图" href="https://btfw2w.dm2301.livefilestore.com/y2pTdeSJRKZjuYaozR0kL0graeS--8EjOM69zeu5dSwmwKMPbPy-tXXA5vtbfeVdAndEY47k1RpIX1stHYALf1lm7YuOqpuoZcFWdahqPyPvwI/mussy.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img style="display: block; margin-left: auto; margin-right: auto;" title="杂乱的标签图" src="https://btfw2w.dm2301.livefilestore.com/y2pTdeSJRKZjuYaozR0kL0graeS--8EjOM69zeu5dSwmwKMPbPy-tXXA5vtbfeVdAndEY47k1RpIX1stHYALf1lm7YuOqpuoZcFWdahqPyPvwI/mussy.png?psid=1" alt="杂乱的标签图" width="656" height="428"></a>&nbsp;</p>
 <p>目前我的参数是调整为：<code>WEIGHT = 12</code>，<code>SCALE = 10</code>（具体参数含义请参考源代码），效果如下：</p>
 <p><a title="我的博客" href="https://btfw2w.dm2301.livefilestore.com/y2pmS2kkDYhzScOytWoYou64VqS9sYEY_72c8C5lUfLBayKnDSQd_ptCw5kxyrqUi18owhyXw3TgrncdlXziAS7Ci3wND8Eb5IwbzNkvxmL6iU/my_blog.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img style="display: block; margin-left: auto; margin-right: auto;" title="我的博客" src="https://btfw2w.dm2301.livefilestore.com/y2pmS2kkDYhzScOytWoYou64VqS9sYEY_72c8C5lUfLBayKnDSQd_ptCw5kxyrqUi18owhyXw3TgrncdlXziAS7Ci3wND8Eb5IwbzNkvxmL6iU/my_blog.png?psid=1" alt="我的博客" width="578" height="576"></a></p>
 <p>（实际效果在<a href="http://88250.b3log.org/about" target="_blank">这里</a>）</p>
-<h3 id="b3_solo_h3_9">完整代码</h3>
+<h3 id="toc_h3_9">完整代码</h3>
 <ul>
 <li><a href="https://gist.github.com/88250/2e71dd8aff0540ac8139" target="_blank">Main.java</a>&nbsp;</li>
 <li><a href="https://gist.github.com/88250/a4f369912ebb476e3ff9" target="_blank">sample-12.html</a></li>
 </ul>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -281,34 +284,34 @@ return ret;
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">图</a>
+            <a href="#toc_h3_0">图</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">边权重</a>
+            <a href="#toc_h4_1">边权重</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">节点度</a>
+            <a href="#toc_h4_2">节点度</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">标签图</a>
+            <a href="#toc_h3_3">标签图</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">标签数据</a>
+            <a href="#toc_h4_4">标签数据</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">生成算法</a>
+            <a href="#toc_h4_5">生成算法</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">可视化</a>
+            <a href="#toc_h3_6">可视化</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">JSNetworkX</a>
+            <a href="#toc_h4_7">JSNetworkX</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">参数</a>
+            <a href="#toc_h4_8">参数</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">完整代码</a>
+            <a href="#toc_h3_9">完整代码</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -334,7 +337,7 @@ return ret;
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -376,19 +379,20 @@ return ret;
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -425,7 +429,7 @@ return ret;
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1406000886335",
@@ -445,4 +449,4 @@ return ret;
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 162ms, 2020/01/18 20:44:27 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 152ms, 2020/03/25 10:29:37 -->

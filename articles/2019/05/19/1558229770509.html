@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>如何限制 docker run 容器执行时长？ - D 的个人博客</title><meta name="description" content="需求背景 有的时候我们需要跑一些不一定安全（不受信任）的程序时，可以通过 docker 实现资源隔离，其执行时长也需要控制，如果执行时间太长就终止运行。 Docker 本身是否支持超时控制 从 2013 年开始每隔一段时间都有人呼吁 docker 官方来实现这个特性，但官方并不打算实现。 具体讨论细节请看 https://github.com/moby/moby/issues/1905 。 错误的方案 以上讨论中以及其他地方陆续有人提出“外围”解决方案，其中有两种常见的错误方案值得我们注意。 kill docker run timeout 3 docker run ... untrusted_program docker run 本身是一个 docker client 派生的进程，使用 kill docker run 进程来终止容器进程运行（比如通过 Linux 命令 timeout 或者类似发送 kill 到 docker run 进程）的方案都可能会有问题，导致容器进程无法终止。主要原因是： docker run 这个进程不一定能及时响应信号，即使响应了信号，也不一定能传到容器...."/><meta property="og:description" content="需求背景 有的时候我们需要跑一些不一定安全（不受信任）的程序时，可以通过 docker 实现资源隔离，其执行时长也需要控制，如果执行时间太长就终止运行。 Docker 本身是否支持超时控制 从 2013 年开始每隔一段时间都有人呼吁 docker 官方来实现这个特性，但官方并不打算实现。 具体讨论细节请看 https://github.com/moby/moby/issues/1905 。 错误的方案 以上讨论中以及其他地方陆续有人提出“外围”解决方案，其中有两种常见的错误方案值得我们注意。 kill docker run timeout 3 docker run ... untrusted_program docker run 本身是一个 docker client 派生的进程，使用 kill docker run 进程来终止容器进程运行（比如通过 Linux 命令 timeout 或者类似发送 kill 到 docker run 进程）的方案都可能会有问题，导致容器进程无法终止。主要原因是： docker run 这个进程不一定能及时响应信号，即使响应了信号，也不一定能传到容器...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="如何限制 docker run 容器执行时长？ - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/05/19/1558229770509.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="如何限制 docker run 容器执行时长？ - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/05/19/1558229770509.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>如何限制 docker run 容器执行时长？ - D 的个人博客</title><meta name="description" content="需求背景 有的时候我们需要跑一些不一定安全（不受信任）的程序时，可以通过 docker 实现资源隔离，其执行时长也需要控制，如果执行时间太长就终止运行。 Docker 本身是否支持超时控制 从 2013 年开始每隔一段时间都有人呼吁 docker 官方来实现这个特性，但官方并不打算实现。 具体讨论细节请看 https://github.com/moby/moby/issues/1905 。 错误的方案 以上讨论中以及其他地方陆续有人提出“外围”解决方案，其中有两种常见的错误方案值得我们注意。 kill docker run timeout 3 docker run ... untrusted_program docker run 本身是一个 docker client 派生的进程，使用 kill docker run 进程来终止容器进程运行（比如通过 Linux 命令 timeout 或者类似发送 kill 到 docker run 进程）的方案都可能会有问题，导致容器进程无法终止。主要原因是： docker run 这个进程不一定能及时响应信号，即使响应了信号，也不一定能传到容器...."/><meta property="og:description" content="需求背景 有的时候我们需要跑一些不一定安全（不受信任）的程序时，可以通过 docker 实现资源隔离，其执行时长也需要控制，如果执行时间太长就终止运行。 Docker 本身是否支持超时控制 从 2013 年开始每隔一段时间都有人呼吁 docker 官方来实现这个特性，但官方并不打算实现。 具体讨论细节请看 https://github.com/moby/moby/issues/1905 。 错误的方案 以上讨论中以及其他地方陆续有人提出“外围”解决方案，其中有两种常见的错误方案值得我们注意。 kill docker run timeout 3 docker run ... untrusted_program docker run 本身是一个 docker client 派生的进程，使用 kill docker run 进程来终止容器进程运行（比如通过 Linux 命令 timeout 或者类似发送 kill 到 docker run 进程）的方案都可能会有问题，导致容器进程无法终止。主要原因是： docker run 这个进程不一定能及时响应信号，即使响应了信号，也不一定能传到容器...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="如何限制 docker run 容器执行时长？ - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/05/19/1558229770509.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="如何限制 docker run 容器执行时长？ - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/05/19/1558229770509.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="IPFS 数据链接与内容寻址" href="https://88250.github.io/articles/2019/05/05/1557020262516.html">
             <link rel="next" title="写在星火初版发布之际" href="https://88250.github.io/articles/2019/06/04/1559578726531.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -130,7 +132,7 @@ bold;">Sym</span></a>
      data-title="如何限制 docker run 容器执行时长？"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2019/05/19/1558229770509.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -158,14 +160,14 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="b3_solo_h3_0">需求背景</h3>
+                <h3 id="toc_h3_0">需求背景</h3>
 <p>有的时候我们需要跑一些不一定安全（不受信任）的程序时，可以通过 docker 实现资源隔离，其执行时长也需要控制，如果执行时间太长就终止运行。</p>
-<h3 id="b3_solo_h3_1">Docker 本身是否支持超时控制</h3>
+<h3 id="toc_h3_1">Docker 本身是否支持超时控制</h3>
 <p>从 2013 年开始每隔一段时间都有人呼吁 docker 官方来实现这个特性，但官方并不打算实现。</p>
 <p>具体讨论细节请看 <a href="https://github.com/moby/moby/issues/1905" target="_blank">https://github.com/moby/moby/issues/1905</a> 。</p>
-<h3 id="b3_solo_h3_2">错误的方案</h3>
+<h3 id="toc_h3_2">错误的方案</h3>
 <p>以上讨论中以及其他地方陆续有人提出“外围”解决方案，其中有两种常见的错误方案值得我们注意。</p>
-<h4 id="b3_solo_h4_3">kill docker run</h4>
+<h4 id="toc_h4_3">kill docker run</h4>
 <pre><code class="language-shell">timeout 3 docker run ... untrusted_program
 </code></pre>
 <p>docker run 本身是一个 docker client 派生的进程，使用 kill docker run 进程来终止容器进程运行（比如通过 Linux 命令 <code>timeout</code> 或者类似发送 kill 到 docker run 进程）的方案都可能会有问题，导致容器进程无法终止。主要原因是：</p>
@@ -173,15 +175,16 @@ bold;">Sym</span></a>
 <li>docker run 这个进程不一定能及时响应信号，即使响应了信号，也不一定能传到容器进程，比如 SIGKILL 就没法传递</li>
 <li>即使通过 docker run 进程将信号传给了容器进程，但容器进程也不一定响应该信号，比如非 SIGKILL 信号会被忽略</li>
 </ul>
-<h4 id="b3_solo_h4_4">docker run kill</h4>
+<h4 id="toc_h4_4">docker run kill</h4>
 <pre><code class="language-shell">docker run ... timeout 3 untrusted_program 
 </code></pre>
 <p>在容器进程执行前进行一定包装处理，比如还是通过 <code>timeout</code> 来控制执行时间。看上去没啥问题，但实际上这个做法非常不安全，因为这个不受信程序可以派生其他进程甚至修改已有的进程空间导致包装处理失效。</p>
-<h3 id="b3_solo_h3_5">正确的解决方案</h3>
+<h3 id="toc_h3_5">正确的解决方案</h3>
 <p>限制 <code>docker run</code> 执行超时唯一可靠的方法是通过 docker 容器操作命令（<code>stop</code>/<code>kill</code>/<code>rm -f</code> 等）来发送 SIGKILL 信号，这样 SIGKILL 信号会直接发到容器进程上。</p>
 <p>当然，最终容器进程能不能被终止还要看进程所处状态，比如处于 D 状态就无法终止。</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -199,22 +202,22 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">需求背景</a>
+            <a href="#toc_h3_0">需求背景</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">Docker 本身是否支持超时控制</a>
+            <a href="#toc_h3_1">Docker 本身是否支持超时控制</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">错误的方案</a>
+            <a href="#toc_h3_2">错误的方案</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">kill docker run</a>
+            <a href="#toc_h4_3">kill docker run</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">docker run kill</a>
+            <a href="#toc_h4_4">docker run kill</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">正确的解决方案</a>
+            <a href="#toc_h3_5">正确的解决方案</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -240,7 +243,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -282,19 +285,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -331,7 +335,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1558229770509",
@@ -351,4 +355,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 464ms, 2020/01/18 20:44:22 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 191ms, 2020/03/25 10:29:33 -->

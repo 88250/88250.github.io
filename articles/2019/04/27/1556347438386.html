@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（一） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 去中心化的（Decentralized） Web 依赖于其独特的数据结构以及链接策略。让我们来一起学习一下哈希（hashing）、内容寻址（content addressing）、有向无环图（DAG） 以及默克尔树（Merkle Trees）！ LESSION 1 - 数据结构 在进入具体代码之前，让我们先花点时间看看去中心化 Web 的概念。课程 1 暂时不会涉及代码，让你可以可以更快熟悉一些关键术语和概念。 让我们开始吧！ 数据结构 无论你是否是程序员，你每天都被数据结构所包围。列表、词典和目录都有助于我们组织信息并考虑各种数据之间的关系。 数据结构 - 维基： 在计算机科学中，数据结构是一种数据组织，管理和存储格式，可以实现高效的访问和修改。 更确切地说，数据结构是数据值的集合，描述它们之间的关系，以及可以应用于数据的功能或操作。 在编程中，数据结构无处不在。将数据组织成变量以便在程序中使用它们的方式涉及数...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 去中心化的（Decentralized） Web 依赖于其独特的数据结构以及链接策略。让我们来一起学习一下哈希（hashing）、内容寻址（content addressing）、有向无环图（DAG） 以及默克尔树（Merkle Trees）！ LESSION 1 - 数据结构 在进入具体代码之前，让我们先花点时间看看去中心化 Web 的概念。课程 1 暂时不会涉及代码，让你可以可以更快熟悉一些关键术语和概念。 让我们开始吧！ 数据结构 无论你是否是程序员，你每天都被数据结构所包围。列表、词典和目录都有助于我们组织信息并考虑各种数据之间的关系。 数据结构 - 维基： 在计算机科学中，数据结构是一种数据组织，管理和存储格式，可以实现高效的访问和修改。 更确切地说，数据结构是数据值的集合，描述它们之间的关系，以及可以应用于数据的功能或操作。 在编程中，数据结构无处不在。将数据组织成变量以便在程序中使用它们的方式涉及数...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（一） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/27/1556347438386.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（一） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/27/1556347438386.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（一） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 去中心化的（Decentralized） Web 依赖于其独特的数据结构以及链接策略。让我们来一起学习一下哈希（hashing）、内容寻址（content addressing）、有向无环图（DAG） 以及默克尔树（Merkle Trees）！ LESSION 1 - 数据结构 在进入具体代码之前，让我们先花点时间看看去中心化 Web 的概念。课程 1 暂时不会涉及代码，让你可以可以更快熟悉一些关键术语和概念。 让我们开始吧！ 数据结构 无论你是否是程序员，你每天都被数据结构所包围。列表、词典和目录都有助于我们组织信息并考虑各种数据之间的关系。 数据结构 - 维基： 在计算机科学中，数据结构是一种数据组织，管理和存储格式，可以实现高效的访问和修改。 更确切地说，数据结构是数据值的集合，描述它们之间的关系，以及可以应用于数据的功能或操作。 在编程中，数据结构无处不在。将数据组织成变量以便在程序中使用它们的方式涉及数...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 去中心化的（Decentralized） Web 依赖于其独特的数据结构以及链接策略。让我们来一起学习一下哈希（hashing）、内容寻址（content addressing）、有向无环图（DAG） 以及默克尔树（Merkle Trees）！ LESSION 1 - 数据结构 在进入具体代码之前，让我们先花点时间看看去中心化 Web 的概念。课程 1 暂时不会涉及代码，让你可以可以更快熟悉一些关键术语和概念。 让我们开始吧！ 数据结构 无论你是否是程序员，你每天都被数据结构所包围。列表、词典和目录都有助于我们组织信息并考虑各种数据之间的关系。 数据结构 - 维基： 在计算机科学中，数据结构是一种数据组织，管理和存储格式，可以实现高效的访问和修改。 更确切地说，数据结构是数据值的集合，描述它们之间的关系，以及可以应用于数据的功能或操作。 在编程中，数据结构无处不在。将数据组织成变量以便在程序中使用它们的方式涉及数...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（一） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/27/1556347438386.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（一） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/27/1556347438386.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="创业的第二个春天" href="https://88250.github.io/articles/2019/04/23/1555989598304.html">
             <link rel="next" title="IPFS 去中心化数据结构（二）" href="https://88250.github.io/articles/2019/04/27/1556347691544.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -132,7 +134,7 @@ bold;">Sym</span></a>
      data-title="IPFS 去中心化数据结构（一）"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2019/04/27/1556347438386.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -164,35 +166,36 @@ bold;">Sym</span></a>
 <p>本文翻译自 IPFS 社区教程 <a href="https://proto.school" target="_blank">ProtoSchool</a>。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！</p>
 </blockquote>
 <p>去中心化的（Decentralized） Web 依赖于其独特的数据结构以及链接策略。让我们来一起学习一下哈希（hashing）、内容寻址（content addressing）、有向无环图（DAG） 以及默克尔树（Merkle Trees）！</p>
-<h3 id="b3_solo_h3_0">LESSION 1 - 数据结构</h3>
+<h3 id="toc_h3_0">LESSION 1 - 数据结构</h3>
 <p>在进入具体代码之前，让我们先花点时间看看去中心化 Web 的概念。课程 1 暂时不会涉及代码，让你可以可以更快熟悉一些关键术语和概念。</p>
 <p>让我们开始吧！</p>
-<h4 id="b3_solo_h4_1">数据结构</h4>
+<h4 id="toc_h4_1">数据结构</h4>
 <p>无论你是否是程序员，你每天都被数据结构所包围。列表、词典和目录都有助于我们组织信息并考虑各种数据之间的关系。</p>
 <p><a href="https://en.wikipedia.org/wiki/Data_structure" target="_blank">数据结构 - 维基</a>：</p>
 <blockquote>
 <p>在计算机科学中，数据结构是一种数据组织，管理和存储格式，可以实现高效的访问和修改。 更确切地说，数据结构是数据值的集合，描述它们之间的关系，以及可以应用于数据的功能或操作。</p>
 </blockquote>
 <p>在编程中，数据结构无处不在。将数据组织成变量以便在程序中使用它们的方式涉及数十到数百万个数据结构。如果你是开发人员，你可能熟悉常见的数据结构，如数组、对象，图等。</p>
-<h4 id="b3_solo_h4_2">去中心化的数据结构</h4>
+<h4 id="toc_h4_2">去中心化的数据结构</h4>
 <p>在去中心化的的 Web 上，我们是从对等节点（Peers）而不是某个中央节点访问数据，所以我们需要专门的一些数据结构，来让我们验证和链接各种各样的数据。</p>
 <p>去中心化系统中的数据结构必须是<strong>可验证的</strong>。在单一系统上，你会比较信任你机器内存或磁盘上使用的数据结构。但在去中心化的系统中，对等节点的信任度较低，甚至可能为零。</p>
 <p>此外，大型数据结构需要能够在对等节点之间传播并<strong>链接在一起</strong>以便实现去中心化。与任何网页可以链接到不同位置的另一个网页的形式类似，去中心化的数据结构实现了可互连的数据网络。</p>
-<h3 id="b3_solo_h3_3">LESSION 2 - 寻址和中心化的 Web</h3>
+<h3 id="toc_h3_3">LESSION 2 - 寻址和中心化的 Web</h3>
 <p>在我们深入研究去中心化 Web 的共享工作方式之前，让我们先花点时间来研究一下传统方式是如何访问数据的。</p>
-<h4 id="b3_solo_h4_4">通过 URL 寻址</h4>
+<h4 id="toc_h4_4">通过 URL 寻址</h4>
 <p>URLs (统一资源定位符，Uniform Resource Locators) 是我们在中心化 Web 上分享数据的主要方式（这种方式我们都习惯）。URL 使我们能够在网络上创建链接和连接数据，因此它们有助于实现有价值的目的。（没有链接的话网络会非常糟糕！）但是，<strong>URL 基于存储数据的<i>位置</i></strong> ，而不是基于存储在那里的资源内容。我们称这种方式为<strong>位置寻址</strong>（location addressing），它会带来一些问题。</p>
 <p>大多数人都有使用 URL 的体验，我们根据经验对它做了一些假设。例如当我们看到 <code>https://www.puppies.com/beagle.jpg</code> 时，我们可能会从文件名和扩展名猜测存储在该位置的数据是小猎犬的照片（JPEG 格式）， 但是我们无法仅通过 URL 验证这一点。很可能有一张藏在 <code>beagle.jpg</code> 的吉娃娃的照片，甚至更糟糕的是它居然是一只可爱的小猫！</p>
 <p>通过域名、URL 描述了表示我们所请求数据的中央机构。即使网络是去中心化的，任何人都可以连接到其他任何人，但基于位置的引用要求了数据本身必须是中心化的，以便我们可以从中央机构获取到。除了上面提到的文件名假设，我们也会对这些权威或域名做出假设。例如我们假设在 <code>puppies.com</code> 上托管的文件比在 <code>evilhacker.com</code> 上托管的文件更安全，但我们无法确定是否真的如此。</p>
 <p>所有这些不确定性也反之亦然。如果我们看到一张可爱的小狗的照片并被告知它被存储在网络上，但我们是无法猜出该图片 URL 的。我们不能确定域名，不能确定由谁伺服，不能确定文件名。</p>
-<h4 id="b3_solo_h4_5">中心化 Web 上的信任和效率</h4>
+<h4 id="toc_h4_5">中心化 Web 上的信任和效率</h4>
 <p>正如你所看到的，由于我们无法验证 URL 上的特定内容 并且依赖于中心化机构（和人们的善良）来标记事物的真实情况，因此我们很容易被欺骗。</p>
 <p>42000 人很可能存储完全相同的可爱小猎犬的照片，它们使用了不同的域名和不同的文件名。让我们面对现实吧，即使在我们自己的笔记本电脑上，大多数人都保存了与 <code>download.pdf</code> 相同的文档 <code>download(01).pdf</code>，或者使用 <code>v1</code> 或 <code>2018-12-18</code> 来命名相同的文档。Web 非常令人困惑，不同的 URL 上多次保存了非常混乱的数据，而且没有简单的方法来判断哪些数据项彼此相同。</p>
 <p>肯定有更好的办法！</p>
 <hr>
 <p>下一节：<a href="https://hacpai.com/article/1556347691544" target="_blank">IPFS 去中心化数据结构（二）</a></p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -210,22 +213,22 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">LESSION 1 - 数据结构</a>
+            <a href="#toc_h3_0">LESSION 1 - 数据结构</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">数据结构</a>
+            <a href="#toc_h4_1">数据结构</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">去中心化的数据结构</a>
+            <a href="#toc_h4_2">去中心化的数据结构</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">LESSION 2 - 寻址和中心化的 Web</a>
+            <a href="#toc_h3_3">LESSION 2 - 寻址和中心化的 Web</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">通过 URL 寻址</a>
+            <a href="#toc_h4_4">通过 URL 寻址</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">中心化 Web 上的信任和效率</a>
+            <a href="#toc_h4_5">中心化 Web 上的信任和效率</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -251,7 +254,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -293,19 +296,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -342,7 +346,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1556347438386",
@@ -362,4 +366,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 291ms, 2020/01/18 20:44:22 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 329ms, 2020/03/25 10:29:33 -->

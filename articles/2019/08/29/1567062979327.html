@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Lute 实现后记 - D 的个人博客</title><meta name="description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/><meta property="og:description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Lute 实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/29/1567062979327.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Lute 实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Lute 实现后记 - D 的个人博客</title><meta name="description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/><meta property="og:description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Lute 实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/29/1567062979327.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Lute 实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="CommonMark 规范要点解读" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
             <link rel="next" title="创业的第二个秋天" href="https://88250.github.io/articles/2019/11/11/1573402018349.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -128,7 +130,7 @@ bold;">Sym</span></a>
      data-title="Lute 实现后记"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2019/08/29/1567062979327.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -156,16 +158,16 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="b3_solo_h3_0">CommonMark 规范实现难点</h3>
+                <h3 id="toc_h3_0">CommonMark 规范实现难点</h3>
 <p>Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。</p>
 <p>整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。</p>
 <p>除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。</p>
 <p>最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌套时列表模式的传播。官方参考实现的算法是在下降解析过程中把父节点方向上都赋值一遍，这样应该是代价最小的。</p>
 <p>总之，除非你已经精通 CM 规范，否则强烈建议不要自己设计解析算法。要独立实现 CM 规范真的很难。CM 规范文末的解析算法应该已经是最优算法了，可以参考官方的参考实现项目进行实现。当然，如果你有更好的算法，请不吝赐教。</p>
-<h3 id="b3_solo_h3_1">换行处理</h3>
-<h4 id="b3_solo_h4_2">回车和换行</h4>
+<h3 id="toc_h3_1">换行处理</h3>
+<h4 id="toc_h4_2">回车和换行</h4>
 <p>块级解析算法是基于行的，每次读取一行进行处理，断行的依据是 <code>\r\n</code> 和 <code>\n</code>，因为规范中定义了行结束符就是这两者。Lute 是在词法分析阶段做了预处理，将 <code>\r\n</code> 替换为 <code>\n</code>，后续统一使用 <code>\n</code> 进行断行。</p>
-<h4 id="b3_solo_h4_3">软硬换行</h4>
+<h4 id="toc_h4_3">软硬换行</h4>
 <p>规范定义了两种换行节点：软换行 <code>\n</code> 和硬换行 <code>&lt;br /&gt;</code>，HTML 渲染时这两者会有明显的区别。规范定义的硬换行规则是行结尾用 <code>\</code> 或者结尾两个空格，这个规则我相信很少人知道。</p>
 <pre><code class="language-markdown">规范定义硬换行需要结尾用\
 或者结尾用两个空格  
@@ -175,7 +177,7 @@ bold;">Sym</span></a>
 <pre><code class="language-markdown">开启软换行自动转硬换行后结尾不需要标记
 就可以达到渲染 &lt;br /&gt; 的效果
 </code></pre>
-<h4 id="b3_solo_h4_4">渲染时的换行</h4>
+<h4 id="toc_h4_4">渲染时的换行</h4>
 <p>规范中对渲染结果 HTML 中的 <code>\n</code> 是有明确要求的，有的情况下标签结尾需要带换行，有点情况下不需要。比如下面渲染结果中的 <code>&lt;li&gt;</code> 标签：</p>
 <pre><code class="language-html">&lt;ul&gt;
 &lt;li&gt;
@@ -196,14 +198,14 @@ func (r *Renderer) newline() {
 	}
 }
 </code></pre>
-<h3 id="b3_solo_h3_5">性能优化</h3>
-<h4 id="b3_solo_h4_6">能不构造对象就不要构造对象</h4>
+<h3 id="toc_h3_5">性能优化</h3>
+<h4 id="toc_h4_6">能不构造对象就不要构造对象</h4>
 <p>比如词法分析时不要定义 token 对象，而是直接用 byte 类型。这样可以减少构造 token 对象，但需要在某些迭代 token 的地方处理字符解码（utf8.decodeRune），从而跳过 size 个字节继续迭代。</p>
 <p>另外，还有个优化点是减少嵌套结构体的构造。比如出现最多的节点是 Text ，整颗语法书上可能 95% 都是文本节点。此时如果文本节点嵌套了基础节点 BaseNode 的话（嵌套的目的是为了复用 BaseNode 的字段和接口实现），构造文本节点就需要创建两次对象，将会重复调用 <code>runtime.newobject</code> 降低性能。优化方案就是去掉嵌套的 BaseNode，将 BaseNode 的结构在 Text 中再做一次。</p>
 <p>总的来说，不构造对象可以换来巨大的性能提升，但代价就是降低代码可读性，并且看上去会显得有些僵硬。</p>
-<h4 id="b3_solo_h4_7">减少 slice 增长，使用 make 提前分配好大小</h4>
+<h4 id="toc_h4_7">减少 slice 增长，使用 make 提前分配好大小</h4>
 <p>靠自动增长会增加内存分配次数，这是 slice、map 的常规优化手段。</p>
-<h4 id="b3_solo_h4_8">快速的 []byte~string 转换优化</h4>
+<h4 id="toc_h4_8">快速的 []byte~string 转换优化</h4>
 <p>直接上代码吧（<code>items</code> 是 <code>[]byte</code> 类型）：</p>
 <pre><code class="language-go">// fromItems 快速转换 items 为 string。
 func fromItems(items items) string {
@@ -226,7 +228,7 @@ input = items(builder.String())
 // 后续会对 input 中的 byte 进行赋值
 // 并且可以放心地使用 toItems 和 fromItems 互转
 </code></pre>
-<h4 id="b3_solo_h4_9">并行解析</h4>
+<h4 id="toc_h4_9">并行解析</h4>
 <p>在 CM 规范的<a href="https://spec.commonmark.org/0.29/#precedence" target="_blank">优先级</a>一节中提到了块级元素解析要按行顺序解析，但行级元素可并行解析，因为块级节点下的行级解析不会相互影响。</p>
 <blockquote>
 <p>Note that the first step requires processing lines in sequence, but the second can be parallelized, since the inline parsing of one block element does not affect the inline parsing of any other.</p>
@@ -245,7 +247,7 @@ cwg.Wait()
 BenchmarkLute-4   	     300	   4351804 ns/op	 2995676 B/op	   21345 allocs/op
 BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 </code></pre>
-<h3 id="b3_solo_h3_10">其他选手</h3>
+<h3 id="toc_h3_10">其他选手</h3>
 <p>在 CM 规范实现这条赛道上的选手并不多，甚至可以说是非常少。我整理了下 GitHub 上相关的项目，目前实现了 CM 规范的项目有这几个：</p>
 <table>
 <thead>
@@ -266,14 +268,14 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 <tr><td><a href="https://github.com/b3log/lute" target="_blank">b3log/lute</a></td><td>Go</td><td>⭐</td></tr>
 </tbody>
 </table>
-<h3 id="b3_solo_h3_11">后记</h3>
-<h4 id="b3_solo_h4_12">前车之鉴</h4>
+<h3 id="toc_h3_11">后记</h3>
+<h4 id="toc_h4_12">前车之鉴</h4>
 <p>一开始走了一段弯路，我打算“一遍”就处理完（尽量减少回溯和遍历），并沿用 Go 模板引擎的解析策略，递归下降+词法分析和语法分析并行处理，输入文本一遍过完后就得到语法树。后来实在是编不下去了，因为规范细节的情况太繁琐，有的情况需要向前读取很多字符才能确定当前节点（或者说当前字符可能会改变已经解析的节点），所以用递归下降分析法是实现不了的，只能考虑通过多次迭代进行解析。</p>
 <p>后来我还是老老实实按照规范附录部分介绍的解析策略进行实现。总之，心太急、忽略别人的经验之谈、自作聪明容易自讨苦吃。</p>
-<h4 id="b3_solo_h4_13">参考实现</h4>
+<h4 id="toc_h4_13">参考实现</h4>
 <p>自编解析策略翻车后，我基本有时间就看规范，反复看以确认细节并加深理解，特别是附录的解析策略部分。</p>
 <p>块级元素、行级元素解析的思路还是比较好理解的，粗枝大叶的适合我这样的糙老爷们。但附录最后的<em>强调链接解析算法</em>开始看的时候基本就是完全靠猜了，因为这部分讲得太抽象了。这期间我试图去看了下参考实现 cmark（C 语言写的），帮助不大，毕竟数据结构差别有点大。后来又看了 JavaScript 的参考实现 commonmark.js，这个项目核心解析代码只有几百行，结合规范文档看会有很大帮助的。</p>
-<h4 id="b3_solo_h4_14">编程带来的快乐</h4>
+<h4 id="toc_h4_14">编程带来的快乐</h4>
 <p>Markdown 处理整个过程其实就是大量的 if else 和 for 构成的，万物皆为 CRUD。不过和业务的 CRUD 相比还是稍有区别：</p>
 <ol>
 <li>业务上一个请求一条线理下来，情况不会太多，实在不行还能 try-catch 兜底</li>
@@ -282,10 +284,11 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 </ol>
 <p>同是 CRUD，但撸一个 Markdown 引擎带来的快感远远超过撸业务代码。对我来说，业务代码要撸出同样感觉的话除非这个业务系统是给上百万人日常使用的。</p>
 <p>也许我是太久没有写这样的代码了，几乎忘记了编程带来的快乐。希望大家能经常写写这样的代码，没有实际需求可以刷下类似力扣的编程题，找回初学编程时的快乐。</p>
-<h4 id="b3_solo_h4_15">潜意识和睡眠</h4>
+<h4 id="toc_h4_15">潜意识和睡眠</h4>
 <p>我感觉我的潜意识应该是拒绝实现 Lute 的，因为拒绝产生的动能居然打败了睡眠障碍。之前睡眠不怎么好，自从开始写 Lute，躺下后一想解析策略和性能优化基本就睡着了，结果就是算法没想出来但治好了失眠。如果你也失眠，不妨试着写个 CommonMark 实现，亲测有效！</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -303,52 +306,52 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">CommonMark 规范实现难点</a>
+            <a href="#toc_h3_0">CommonMark 规范实现难点</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">换行处理</a>
+            <a href="#toc_h3_1">换行处理</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">回车和换行</a>
+            <a href="#toc_h4_2">回车和换行</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">软硬换行</a>
+            <a href="#toc_h4_3">软硬换行</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">渲染时的换行</a>
+            <a href="#toc_h4_4">渲染时的换行</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">性能优化</a>
+            <a href="#toc_h3_5">性能优化</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">能不构造对象就不要构造对象</a>
+            <a href="#toc_h4_6">能不构造对象就不要构造对象</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">减少 slice 增长，使用 make 提前分配好大小</a>
+            <a href="#toc_h4_7">减少 slice 增长，使用 make 提前分配好大小</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">快速的 []byte~string 转换优化</a>
+            <a href="#toc_h4_8">快速的 []byte~string 转换优化</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">并行解析</a>
+            <a href="#toc_h4_9">并行解析</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_10">其他选手</a>
+            <a href="#toc_h3_10">其他选手</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_11">后记</a>
+            <a href="#toc_h3_11">后记</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_12">前车之鉴</a>
+            <a href="#toc_h4_12">前车之鉴</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_13">参考实现</a>
+            <a href="#toc_h4_13">参考实现</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_14">编程带来的快乐</a>
+            <a href="#toc_h4_14">编程带来的快乐</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_15">潜意识和睡眠</a>
+            <a href="#toc_h4_15">潜意识和睡眠</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -374,7 +377,7 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -416,19 +419,20 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -465,7 +469,7 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1567062979327",
@@ -485,4 +489,4 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 353ms, 2020/01/18 20:44:21 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 377ms, 2020/03/25 10:29:32 -->

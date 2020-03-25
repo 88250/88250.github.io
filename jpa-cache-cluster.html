@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>JPA 缓存与应用集群 - D 的个人博客</title><meta name="description" content="本文主要介绍了 JPA 缓存体系结构以及在集群环境下 JPA 二级缓存的问题及应对策略。"/><meta property="og:description" content="本文主要介绍了 JPA 缓存体系结构以及在集群环境下 JPA 二级缓存的问题及应对策略。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="JPA 缓存与应用集群 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/jpa-cache-cluster.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="JPA 缓存与应用集群 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/jpa-cache-cluster.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>JPA 缓存与应用集群 - D 的个人博客</title><meta name="description" content="本文主要介绍了 JPA 缓存体系结构以及在集群环境下 JPA 二级缓存的问题及应对策略。"/><meta property="og:description" content="本文主要介绍了 JPA 缓存体系结构以及在集群环境下 JPA 二级缓存的问题及应对策略。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="JPA 缓存与应用集群 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/jpa-cache-cluster.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="JPA 缓存与应用集群 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/jpa-cache-cluster.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="道道道" href="https://88250.github.io/articles/2011/04/24/1303657005035.html">
             <link rel="next" title="准备入职支付宝" href="https://88250.github.io/articles/2011/05/03/1304392185486.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -138,7 +140,7 @@ bold;">Sym</span></a>
      data-title="JPA 缓存与应用集群"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/jpa-cache-cluster.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -166,9 +168,9 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h1 id="b3_solo_h1_0">JPA 缓存与集群</h1>
+                <h1 id="toc_h1_0">JPA 缓存与集群</h1>
 <p>转载请保留作者信息：<br>作者：<a title="88250's Blog" href="http://b3log-88250.appspot.com/undefined/" target="_blank">88250</a><br>日期：2011 年 4 月 25 日</p>
-<h2 id="b3_solo_h2_1">ToC</h2>
+<h2 id="toc_h2_1">ToC</h2>
 <p style="padding-left: 30px;"><a href="#abstraction">摘要</a></p>
 <p style="padding-left: 30px;"><a href="#jpa-cache">JPA 缓存</a></p>
 <p style="padding-left: 30px;"><a href="#jpa-cluster">JPA 与应用集群</a></p>
@@ -179,18 +181,18 @@ bold;">Sym</span></a>
 <p style="padding-left: 30px;">&nbsp;&nbsp;&nbsp; <a href="#reflection">反思</a></p>
 <p style="padding-left: 30px;"><a href="#reference">参考</a></p>
 <p>&nbsp;</p>
-<h2 id="b3_solo_h2_2">摘要<a name="abstraction" target="_blank"></a></h2>
+<h2 id="toc_h2_2">摘要<a name="abstraction" target="_blank"></a></h2>
 <p>本文主要介绍了 JPA 缓存体系结构以及在集群环境下 JPA 二级缓存的问题及应对策略。</p>
-<h2 id="b3_solo_h2_3">JPA 缓存<a name="jpa-cache" target="_blank"></a></h2>
+<h2 id="toc_h2_3">JPA 缓存<a name="jpa-cache" target="_blank"></a></h2>
 <p>JPA 缓存分为一级缓存（L1）与二级缓存（L2）。</p>
 <p>其中，一级缓存即实体管理器（EntityManager），主要负责实体状态管理。<br>二级缓存即 EntityManagerFactory 缓存，主要负责缓存实体或数据行（例如 EclipseLink 缓存实体，Hibernate 缓存实体 Id 与数据行）。</p>
 <p>查询时，二级缓存可以有效缓解数据库压力，并有助于集合实体的初始化。</p>
-<p><img src="https://sn2files.storage.live.com/y1pWKDxEFMij0zxNKgX_lhUqaeFR62lPZjKKR7ly_um6Q91HtEihEETBybFxqy6np7oJQy__KakeFs/JPACache1.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="JPA Cache" width="288" height="404"></p>
-<h2 id="b3_solo_h2_4">JPA 与应用集群<a name="jpa-cluster" target="_blank"></a></h2>
+<p><img src="https://sn2files.storage.live.com/y1pWKDxEFMij0zxNKgX_lhUqaeFR62lPZjKKR7ly_um6Q91HtEihEETBybFxqy6np7oJQy__KakeFs/JPACache1.png?psid=1" alt="JPA Cache" width="288" height="404"></p>
+<h2 id="toc_h2_4">JPA 与应用集群<a name="jpa-cluster" target="_blank"></a></h2>
 <p>当应用运行在一个 JVM 里时，JPA 缓存是没有问题的。但如果进行应用集群，那么 L2 的更新机制将出现一致性问题。</p>
-<p><img src="https://sn2files.storage.live.com/y1pPuSs30DQkDK_EgXA6PBBap5Ybp0pLpdztE2NNbbRIAJxBLm5CRaY50k11-THBAGe8ufZn1Dhs6A/JPACache2.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="JPA Cache in Cluster" width="612" height="393">&nbsp;</p>
+<p><img src="https://sn2files.storage.live.com/y1pPuSs30DQkDK_EgXA6PBBap5Ybp0pLpdztE2NNbbRIAJxBLm5CRaY50k11-THBAGe8ufZn1Dhs6A/JPACache2.png?psid=1" alt="JPA Cache in Cluster" width="612" height="393">&nbsp;</p>
 <p>下面提供两个通用策略以及一个产品相关策略来解决这个问题。</p>
-<h3 id="b3_solo_h3_5">策略 1：禁用 L2 缓存<a name="strategy1-disable-l2cache" target="_blank"></a></h3>
+<h3 id="toc_h3_5">策略 1：禁用 L2 缓存<a name="strategy1-disable-l2cache" target="_blank"></a></h3>
 <p>如果禁用二级缓存的话，</p>
 <ul>
 <li>所有节点的数据视图总是可以保证一致<br>
@@ -206,8 +208,8 @@ bold;">Sym</span></a>
 <li>每次事务需要效率变低，因为需要构造实体</li>
 <li><span style="color: #ff0000;">性能瓶颈——数据库</span></li>
 </ul>
-<h3 id="b3_solo_h3_6">策略 2：L2 缓存同步<a name="strategy2-cache-coordination" target="_blank"></a></h3>
-<p><img src="https://sn2files.storage.live.com/y1pGKMpanIlF2A0O4UH36RwVa9qUTFsblo0uv_5ebcM7hAXBGsCrt6lm8xeO71qEBRjcwmtg7Vyh4s/JPACache3.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="JPA Cache Coordination in Cluster" width="594" height="376"></p>
+<h3 id="toc_h3_6">策略 2：L2 缓存同步<a name="strategy2-cache-coordination" target="_blank"></a></h3>
+<p><img src="https://sn2files.storage.live.com/y1pGKMpanIlF2A0O4UH36RwVa9qUTFsblo0uv_5ebcM7hAXBGsCrt6lm8xeO71qEBRjcwmtg7Vyh4s/JPACache3.png?psid=1" alt="JPA Cache Coordination in Cluster" width="594" height="376"></p>
 <p>如果进行 L2 缓存同步，</p>
 <ul>
 <li>所有节点的数据视图总是可以保证一致<br>
@@ -220,22 +222,22 @@ bold;">Sym</span></a>
 <ul>
 <li>创建/更新/删除 实体时需要同步所有其他节点</li>
 <li>同步代价为 O(n<sup>2</sup>)——<span style="color: #ff0000;">网络通讯与同步处理开销可能会超过缓存带来的好处</span><br>
-<p><img src="https://sn2files.storage.live.com/y1pAzqWsbNguFcsRC-oShNG0sPXRcyfOsPfdhgfJfrSjt77ci6VDnH8f_N5-atp37Rib0O4FfDDvow/Cache%2BCoordination.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Cache Cooradination" width="267" height="230">（Orz）</p>
+<p><img src="https://sn2files.storage.live.com/y1pAzqWsbNguFcsRC-oShNG0sPXRcyfOsPfdhgfJfrSjt77ci6VDnH8f_N5-atp37Rib0O4FfDDvow/Cache%2BCoordination.png?psid=1" alt="Cache Cooradination" width="267" height="230">（Orz）</p>
 </li>
 <li>L2 缓存大小受限于单个节点 JVM 内存堆大小</li>
 </ul>
 <p>主流 JPA 实现一般会提供 JMS、RMI、JGroups 来进行缓存同步。</p>
-<h3 id="b3_solo_h3_7">策略3：一致性数据层<a name="strategy3-coherent-data-service" target="_blank"></a></h3>
+<h3 id="toc_h3_7">策略3：一致性数据层<a name="strategy3-coherent-data-service" target="_blank"></a></h3>
 <p>这里所谓的“一致性数据层”就是指使用一个能够保证分布式时数据一致性的服务，用于替换 L2。</p>
 <p>例如组合使用 <a href="http://www.oracle.com/technetwork/middleware/coherence/overview/index.html" target="_blank">Oracle Coherence</a> 与 <a href="http://www.oracle.com/technetwork/middleware/toplink/overview/index.html" target="_blank">TopLink Grid</a>。</p>
-<h2 id="b3_solo_h2_8">结语<a name="conclusion" target="_blank"></a></h2>
+<h2 id="toc_h2_8">结语<a name="conclusion" target="_blank"></a></h2>
 <p>对于一个基于 JPA 的 Web 应用，我们必须注意 JPA 二级缓存在集群时的问题，这是可伸缩的基本点之一。</p>
 <p>为了解决 JPA 二级缓存不一致的问题，我们必须牺牲一定的应用性能，或是使用商业产品。</p>
-<h3 id="b3_solo_h3_9">反思<a name="reflection" target="_blank"></a></h3>
+<h3 id="toc_h3_9">反思<a name="reflection" target="_blank"></a></h3>
 <p>ORM 固然方便，但我认为它带来的问题远比解决的问题多，基于关系型数据库的应用还是 JDBC 直接。</p>
 <p>框架是为了简化代码，统一管理。但同时带来的限制也不容忽视。</p>
 <p>个人还是偏向于自造轮子，宁肯多写一些代码，也不愿被框架束缚。</p>
-<h2 id="b3_solo_h2_10">参考<a name="reference" target="_blank"></a></h2>
+<h2 id="toc_h2_10">参考<a name="reference" target="_blank"></a></h2>
 <ul>
 <li>Shaun Smith, <em>TopLink Grid: Scaling JPA Application with Coherence</em>, 2010</li>
 <li>Tom Pfaeffle, <em>Oracle Fusion Middleware Integration Guide for Oracle TopLink with Coherence Grid, 11g Release 1 (11.1.1)&nbsp; E16596-02</em>, 2011-02</li>
@@ -247,7 +249,8 @@ bold;">Sym</span></a>
 <p>Updates:</p>
 <p>Nov 26, 2011 - 把图片移到了 SkyDrive</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -265,37 +268,37 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h1">
-            <a href="#b3_solo_h1_0">JPA 缓存与集群</a>
+            <a href="#toc_h1_0">JPA 缓存与集群</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">ToC</a>
+            <a href="#toc_h2_1">ToC</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">摘要</a>
+            <a href="#toc_h2_2">摘要</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">JPA 缓存</a>
+            <a href="#toc_h2_3">JPA 缓存</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">JPA 与应用集群</a>
+            <a href="#toc_h2_4">JPA 与应用集群</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">策略 1：禁用 L2 缓存</a>
+            <a href="#toc_h3_5">策略 1：禁用 L2 缓存</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">策略 2：L2 缓存同步</a>
+            <a href="#toc_h3_6">策略 2：L2 缓存同步</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">策略3：一致性数据层</a>
+            <a href="#toc_h3_7">策略3：一致性数据层</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">结语</a>
+            <a href="#toc_h2_8">结语</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">反思</a>
+            <a href="#toc_h3_9">反思</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_10">参考</a>
+            <a href="#toc_h2_10">参考</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -321,7 +324,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -363,19 +366,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -412,7 +416,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1303710040684",
@@ -432,4 +436,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 221ms, 2020/01/18 20:44:30 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 173ms, 2020/03/25 10:29:40 -->

@@ -20,16 +20,12 @@
  * skin metro-hot style
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
- * @version 2.3.0.0, Jul 17, 2019
+ * @version 2.3.1.0, Mar 19, 2020
  */
 @import "../../../scss/toc";
 @import "../../../scss/usite";
 @import "../../../scss/function";
-@import "vditor/src/assets/scss/dark";
-
-.vditor-reset pre > code {
-  background-color: rgba(255, 255, 255, 0.04);
-}
+@import "vditor/src/assets/scss/index";
 
 .user__site {
   svg {
@@ -65,7 +61,7 @@ html {
 }
 
 body {
-  font-family: Verdana, arial, '\5fae\8f6f\96c5\9ed1';
+  font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
   font-size: 12px;
   background-color: #292929;
   margin: 0;
@@ -579,7 +575,7 @@ textarea {
   width: 60px;
 }
 
-.online-count{
+.online-count {
   background-color: #20608E;
 }
 
@@ -748,7 +744,6 @@ textarea {
 }
 
 .vditor-reset {
-  background-color: #323232;
   margin-bottom: 30px;
   overflow: hidden;
   padding: 10px;
@@ -756,6 +751,21 @@ textarea {
   word-break: break-all;
   font-size: 14px;
   word-wrap: break-word;
+  --border-color: #141414;
+  --second-color: hsla(0, 0%, 72.5%, 0.36);
+  --panel-background-color: #24292e;
+  --toolbar-background-color: #1d2125;
+  --toolbar-icon-color: #b9b9b9;
+  --toolbar-icon-hover-color: #fff;
+  --textarea-background-color: #2f363d;
+  --textarea-text-color: #d1d5da;
+  --resize-icon-color: var(--border-color);
+  --resize-background-color: var(--second-color);
+  --resize-hover-icon-color: var(--toolbar-icon-hover-color);
+  --resize-hover-background-color: hsla(0, 0%, 72.5%, 0.86);
+  --code-background-color: rgba(66, 133, 244, 0.36);
+  --heading-border-color: var(--textarea-text-color);
+  --blockquote-color: var(--toolbar-icon-color);
 
   &::-webkit-scrollbar {
     display: none;
@@ -775,6 +785,8 @@ pre.prettyprint {
 
 /* start comment */
 #vcomment {
+  margin-bottom: 20px;
+
   .vcomment {
 
     &__item {

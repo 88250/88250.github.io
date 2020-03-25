@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>GAE 数据保存方式 - D 的个人博客</title><meta name="description" content="GAE 为应用提供了多种保存数据的方式，例如大家熟知的 Datastore，不过也有一些方式大家不太熟悉。本文将尽量全地列出所有 GAE 上保存数据的方式，并分别描述其优势与劣势，以便开发者更明晰地进行选择。"/><meta property="og:description" content="GAE 为应用提供了多种保存数据的方式，例如大家熟知的 Datastore，不过也有一些方式大家不太熟悉。本文将尽量全地列出所有 GAE 上保存数据的方式，并分别描述其优势与劣势，以便开发者更明晰地进行选择。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="GAE 数据保存方式 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/storage-options-on-google-appengine.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="GAE 数据保存方式 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/storage-options-on-google-appengine.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>GAE 数据保存方式 - D 的个人博客</title><meta name="description" content="GAE 为应用提供了多种保存数据的方式，例如大家熟知的 Datastore，不过也有一些方式大家不太熟悉。本文将尽量全地列出所有 GAE 上保存数据的方式，并分别描述其优势与劣势，以便开发者更明晰地进行选择。"/><meta property="og:description" content="GAE 为应用提供了多种保存数据的方式，例如大家熟知的 Datastore，不过也有一些方式大家不太熟悉。本文将尽量全地列出所有 GAE 上保存数据的方式，并分别描述其优势与劣势，以便开发者更明晰地进行选择。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="GAE 数据保存方式 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/storage-options-on-google-appengine.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="GAE 数据保存方式 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/storage-options-on-google-appengine.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="Java 7 的新特性一览表" href="https://88250.github.io/java-7-technologies.html">
             <link rel="next" title="GAE 事务隔离" href="https://88250.github.io/transaction_isolation.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -134,7 +136,7 @@ bold;">Sym</span></a>
      data-title="GAE 数据保存方式"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/storage-options-on-google-appengine.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -163,85 +165,85 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p>GAE 为应用提供了多种保存数据的方式，例如大家熟知的 <a href="http://code.google.com/appengine/docs/java/datastore/" target="_blank">Datastore</a>，不过也有一些方式大家不太熟悉。本文将尽量全地列出所有 GAE 上保存数据的方式，并分别描述其优势与劣势，以便开发者更明晰地进行选择。</p>
-<h2 id="b3_solo_h2_0">Datastore</h2>
+<h2 id="toc_h2_0">Datastore</h2>
 <p>大家最熟悉、使用最广泛的保存数据的方式自然是 <a href="http://code.google.com/appengine/docs/java/datastore/" target="_blank">Datastore</a> 了。Datastore 是 GAE 的非关系型数据库，它提供了健壮、持久的存贮，也提供了最具灵活性性的数据存取操作。</p>
-<h3 id="b3_solo_h3_1">优势</h3>
+<h3 id="toc_h3_1">优势</h3>
 <ul>
 <li>持久 - 保存在 datastore 里的数据是持久的。</li>
 <li>读写 - 应用能够读写保存在 datastore 里的数据，并且 datastore 提供了事务机制以保证完整性。</li>
 <li>全局一致 - 所有应用实例拥有同一个 datastore 视图。</li>
 <li>灵活 - 通过查询（Query）与索引提供了多种获取数据的方式。</li>
 </ul>
-<h3 id="b3_solo_h3_2">劣势</h3>
+<h3 id="toc_h3_2">劣势</h3>
 <ul>
 <li>延迟 - datastore 是把数据保存在磁盘上，并提供了可靠保证，写操作必须确保数据已经被保存才返回<span style="color: #888888;">（译注：异步 API 呢？）</span>，读操作不得不经常从磁盘取回数据<span style="color: #888888;">（译注：底层如何进行缓存的呢？）</span></li>
 </ul>
-<h2 id="b3_solo_h2_3">Memcache</h2>
+<h2 id="toc_h2_3">Memcache</h2>
 <p><a href="http://code.google.com/appengine/docs/java/memcache/" target="_blank">Memcache</a> 是大家最熟悉的“二级”存储机制，它缓存数据以避免重复进行代价高<span style="color: #888888;">（译注：例如 CPU、API 耗时特别高的调用）</span>的操作。Memcache 常作为其他 APIs 的缓存层，例如 datastore，缓存某种数据源生成的结果集。</p>
-<h3 id="b3_solo_h3_4">优势</h3>
+<h3 id="toc_h3_4">优势</h3>
 <ul>
 <li>快 -&nbsp;毫秒级别的存取操作<span style="color: #888888;">（译注：1-4 毫秒，还是比较慢的-_-b）</span>。</li>
 <li>全局一致 - 所有应用实例拥有同一个 memcache 视图。Memcache 提供了操作数据的原子操作，保证完整性<span style="color: #888888;">（译注：对象序列化）</span>。</li>
 </ul>
-<h3 id="b3_solo_h3_5">劣势</h3>
+<h3 id="toc_h3_5">劣势</h3>
 <ul>
 <li>不可靠 - 数据可能随时被丢弃<span style="color: #888888;">（译注：GAE 默认会<a href="http://code.google.com/appengine/docs/java/memcache/overview.html#How_Cached_Data_Expires" target="_blank">尽可能长时间地持有</a>缓存项）</span>。</li>
 </ul>
-<h2 id="b3_solo_h2_6">Blobstore</h2>
+<h2 id="toc_h2_6">Blobstore</h2>
 <p>&nbsp;</p>
 <p><a href="http://code.google.com/appengine/docs/java/blobstore/" target="_blank">Blobstore</a> 提供了便捷高效保存用户上传的大数据的方法。</p>
-<h3 id="b3_solo_h3_7">优势</h3>
+<h3 id="toc_h3_7">优势</h3>
 <ul>
 <li>支持大文件 - 2GB<span style="color: #888888;">（译注：没有在现在的官方文档里找到根据。另外，30 秒的请求限制能传 2G？-_-b）</span>。</li>
 <li>不用自己处理 blob。</li>
 <li>提供了高性能的 blobs 存取，特别是对图片。</li>
 <li>应用能够向读取本地文件一样读取 blob。</li>
 </ul>
-<h3 id="b3_solo_h3_8">劣势</h3>
+<h3 id="toc_h3_8">劣势</h3>
 <ul>
 <li>只读 - 应用不能自行创建 blobs，也不能修改已上传的 blobs。</li>
 <li>需要要付费才能使用 blobstore。</li>
 </ul>
-<h2 id="b3_solo_h2_9">实例内存</h2>
+<h2 id="toc_h2_9">实例内存</h2>
 <p>应用实例也能通过类成员<span style="color: #888888;">（译注：Java 里是类字段）</span>或 globals<span style="color: #888888;">（译注：貌似是 Python 里的概念）</span>在本地<span style="color: #888888;">（译注：该实例 JVM）</span>内存中缓存数据。这个方式提供了最快的存取速度，但却有一些不利的方面。</p>
-<h3 id="b3_solo_h3_10">优势</h3>
+<h3 id="toc_h3_10">优势</h3>
 <ul>
 <li>快 - 能有多快有多快，因为数据保存在正在访问的同一个进程中。</li>
 <li>方便 - 不需要 GAE APIs。</li>
 <li>灵活 - 能够保存任何格式的数据，没有序列化/反序列化限制。</li>
 </ul>
-<h3 id="b3_solo_h3_11">劣势</h3>
+<h3 id="toc_h3_11">劣势</h3>
 <ul>
 <li>不可靠 - 实例可能在任何时间被启动或关闭，所以应用只应该用这种方式来进行缓存数据<span style="color: #888888;">（译注：应用实例的 JVM 内存不是跨实例的哦，所以这种方式缓存的数据可能会有一致性问题，见下点）</span>。</li>
 <li>不全局一致 - 每个应用实例都拥有自己的运行环境，自己的本地变量。对某一实例中的变量修改并不会影响其他实例。</li>
 <li>容量限制 - 实例的内存使用是有大小限制的。</li>
 </ul>
-<h2 id="b3_solo_h2_12">本地文件</h2>
+<h2 id="toc_h2_12">本地文件</h2>
 <p>应用可以使用标准文件系统 APIs 来读取随应用一起上传的文件。</p>
-<h3 id="b3_solo_h3_13">优势</h3>
+<h3 id="toc_h3_13">优势</h3>
 <ul>
 <li>快 - 读取本地文件只需要访问应用实例运行的机器磁盘，延迟与 Memcache 接近。</li>
 <li>可靠 - 只要应用在服务，就能够读取到文件。</li>
 <li>灵活 - 能够使用任何格式的文件。</li>
 </ul>
-<h3 id="b3_solo_h3_14">劣势</h3>
+<h3 id="toc_h3_14">劣势</h3>
 <ul>
 <li>只读 - 应用不能修改文件；这些文件的内容在部署的时候就已经确定了。</li>
 <li>容量限制 - 单个文件最大 10MB，应用所有文件大小总和必须小于 150MB。</li>
 </ul>
-<h2 id="b3_solo_h2_15">任务队列负荷（Payloads）</h2>
+<h2 id="toc_h2_15">任务队列负荷（Payloads）</h2>
 <p>虽然这不是传统意义上的存贮，但任务队列是能够保存持有一定的数据的。</p>
-<h3 id="b3_solo_h3_16">优势</h3>
+<h3 id="toc_h3_16">优势</h3>
 <ul>
 <li>快 - 任务运行时发送 payloads，获取这些数据不用调用额外的 API。</li>
 <li>如果使用得到，可以不用保存任务数据<span style="color: #888888;">（译注：？）</span>。</li>
 </ul>
-<h3 id="b3_solo_h3_17">劣势</h3>
+<h3 id="toc_h3_17">劣势</h3>
 <ul>
 <li>意图单一 - payloads 是提供给任务队列任务的数据存贮。</li>
 <li>容量限制 - 任务最大大小 10KB<span style="color: #888888;">（译注：现在 Push 队列是 100KB，Pull 队列是 1MB）</span>，包含了负荷数据。</li>
 </ul>
-<h2 id="b3_solo_h2_18">结论</h2>
+<h2 id="toc_h2_18">结论</h2>
 <p>GAE 提供了多种数据存储机制，我们得在应用场景下选择适当的存储方式。通常，较好的方案是组合使用这些数据保存方式，例如 datastore 与 memcache，本地文件与实例内存。</p>
 <p><a href="http://blog.notdot.net/" target="_blank">Nick Johnson</a> 于 2010 年 11 月 3 日</p>
 <p>&nbsp;</p>
@@ -253,88 +255,89 @@ bold;">Sym</span></a>
 <p>---- </p>
 <p>附上原文（<a href="http://blog.notdot.net/2010/11/Storage-options-on-App-Engine" target="_blank">Storage options on App Engine</a>）：</p>
 <p>App Engine provides a number of ways for your app to store data. Some, such as the datastore, are well known, but others are less so, and all of them have different characteristics. This article is intended to enumerate the different options, and describe the pros and cons of each, so you can make more informed decisions about how to store your data.</p>
-<h3 id="b3_solo_h3_19">Datastore</h3>
+<h3 id="toc_h3_19">Datastore</h3>
 <p>The best known, most widely used, and most versatile storage option is, of course, the <a href="http://code.google.com/appengine/docs/python/datastore/" target="_blank">datastore</a>. The datastore is App Engine's non-relational database, and it provides robust, durable storage, as well as providing the most flexibility in how your data is stored, retrieved, and manipulated.</p>
-<h4 id="b3_solo_h4_20">Pros</h4>
+<h4 id="toc_h4_20">Pros</h4>
 <ul>
 <li>Durable - data stored in the datastore is permanent.</li>
 <li>Read-write - apps can both read and write datastore data, and the datastore provides transaction mechanisms to enforce integrity.</li>
 <li>Globally consistent - all instances of an app have the same view of the datastore.</li>
 <li>Flexible - queries and indexing provide many ways to query and retrieve data.</li>
 </ul>
-<h4 id="b3_solo_h4_21">Cons</h4>
+<h4 id="toc_h4_21">Cons</h4>
 <ul>
 <li>Latency - because the datastore stores data on disk and provides reliability guarantees, writes need to wait until data is confirmed to be stored before returning, and reads often have to fetch data from disk.</li>
 </ul>
-<h3 id="b3_solo_h3_22">Memcache</h3>
+<h3 id="toc_h3_22">Memcache</h3>
 <p>Memcache is the best known of the 'secondary' storage mechanisms. The <a href="http://code.google.com/appengine/docs/python/memcache/" target="_blank">memcache API</a> provides a means for applications to optimistically cache data to avoid redoing expensive operations. Memcache is often used as a caching layer for other APIs, such as the datastore, or to cache generated results from any source.</p>
-<h4 id="b3_solo_h4_23">Pros</h4>
+<h4 id="toc_h4_23">Pros</h4>
 <ul>
 <li>Fast - memcache accesses typically take only a few milliseconds to complete.</li>
 <li>Globally consistent - all instances of an app have the same view of memcache. Memcache provides atomic operations so applications can ensure the integrity of data stored in it.</li>
 </ul>
-<h4 id="b3_solo_h4_24">Cons</h4>
+<h4 id="toc_h4_24">Cons</h4>
 <ul>
 <li>Unreliable - data may be evicted from memcache at any time.</li>
 </ul>
-<h3 id="b3_solo_h3_25">Blobstore</h3>
+<h3 id="toc_h3_25">Blobstore</h3>
 <p>The blobstore offers a way to store and serve large amounts of user-uploaded data easily and efficiently.</p>
-<h4 id="b3_solo_h4_26">Pros</h4>
+<h4 id="toc_h4_26">Pros</h4>
 <ul>
 <li>Supports large files - up to 2GB per blob.</li>
 <li>Removes the need for you to handle blobs yourself.</li>
 <li>Provides mechanism for high-performance serving of blobs, particularly images.</li>
 <li>Applications can read blob contents as they would local files.</li>
 </ul>
-<h4 id="b3_solo_h4_27">Cons</h4>
+<h4 id="toc_h4_27">Cons</h4>
 <ul>
 <li>Read-only - applications cannot modify uploaded blobs, or create new ones.</li>
 <li>Billing must be enabled to use the blobstore.</li>
 </ul>
-<h3 id="b3_solo_h3_28">Instance memory</h3>
+<h3 id="toc_h3_28">Instance memory</h3>
 <p>Application instances may also cache data in local memory, through the use of globals or class members. This provides the ultimate in speed, but comes with several downsides.</p>
-<h4 id="b3_solo_h4_29">Pros</h4>
+<h4 id="toc_h4_29">Pros</h4>
 <ul>
 <li>Fast - literally as fast as it's possible to be, since data is stored in the same process that is accessing it.</li>
 <li>Convenient - no API required, just store data in globals or class members.</li>
 <li>Flexible - data can be stored in any format your program can manipulate. No serialization or deserialization is required.</li>
 </ul>
-<h4 id="b3_solo_h4_30">Cons</h4>
+<h4 id="toc_h4_30">Cons</h4>
 <ul>
 <li>Unreliable - instances can be started or stopped at any time, so applications should only use it to cache data.</li>
 <li>Not globally consistent - each instance of your app has its own runtime environment, and hence its own local variables. Changes in one instance are not reflected in other instances.</li>
 <li>Limited capacity - instances are limited in how much memory they can consume before they are terminated. This puts a hard limit on how much data you can cache in memory.</li>
 </ul>
-<h3 id="b3_solo_h3_31">Local files</h3>
+<h3 id="toc_h3_31">Local files</h3>
 <p>Applications may read from any file that was uploaded with the application and not marked as static content, using standard filesystem operations. This includes read-only datasets that the application may need.</p>
-<h4 id="b3_solo_h4_32">Pros</h4>
+<h4 id="toc_h4_32">Pros</h4>
 <ul>
 <li>Fast - reading local files requires only standard disk access on the machine the application instance is running on, so latency is almost as good as memcache.</li>
 <li>Reliable - if your app is serving, your local files are always available</li>
 <li>Flexible - you can use any format or mechanism for accessing local files that you wish.</li>
 </ul>
-<h4 id="b3_solo_h4_33">Cons</h4>
+<h4 id="toc_h4_33">Cons</h4>
 <ul>
 <li>Read-only - applications may not modify the contents of local files; they are fixed at deployment time.</li>
 <li>Limited capacity - applications are limited to 10MB per file, and 150MB in total for the application.</li>
 </ul>
-<h3 id="b3_solo_h3_34">Task queue payloads</h3>
+<h3 id="toc_h3_34">Task queue payloads</h3>
 <p>While not storage in the traditional sense, task queue tasks can have payloads attached, which can obviate the need to use other storage systems.</p>
-<h4 id="b3_solo_h4_35">Pros</h4>
+<h4 id="toc_h4_35">Pros</h4>
 <ul>
 <li>Fast - payloads are sent to the task when it's run, so no additional API calls are required to fetch the data.</li>
 <li>Used properly, allows you to avoid the need to store task data elsewhere.</li>
 </ul>
-<h4 id="b3_solo_h4_36">Cons</h4>
+<h4 id="toc_h4_36">Cons</h4>
 <ul>
 <li>Single-purpose - payloads are only useful as storage for data being provided to a task queue task.</li>
 <li>Limited capacity - tasks are limited to 10KB in size, including their payload data.</li>
 </ul>
-<h3 id="b3_solo_h3_37">Conclusion</h3>
+<h3 id="toc_h3_37">Conclusion</h3>
 <p>App Engine provides more data storage mechanisms than is apparrent at first glance. All of them have different tradeoffs, so it's likely that one - or more - of them will suit your application well. Often, the ideal solution involves a combination, such as the datastore and memcache, or local files and instance memory.</p>
 <p class="postmeta"><span class="date">03 November, 2010</span></p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -352,118 +355,118 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">Datastore</a>
+            <a href="#toc_h2_0">Datastore</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">优势</a>
+            <a href="#toc_h3_1">优势</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">劣势</a>
+            <a href="#toc_h3_2">劣势</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">Memcache</a>
+            <a href="#toc_h2_3">Memcache</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">优势</a>
+            <a href="#toc_h3_4">优势</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">劣势</a>
+            <a href="#toc_h3_5">劣势</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_6">Blobstore</a>
+            <a href="#toc_h2_6">Blobstore</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">优势</a>
+            <a href="#toc_h3_7">优势</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">劣势</a>
+            <a href="#toc_h3_8">劣势</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_9">实例内存</a>
+            <a href="#toc_h2_9">实例内存</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_10">优势</a>
+            <a href="#toc_h3_10">优势</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_11">劣势</a>
+            <a href="#toc_h3_11">劣势</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_12">本地文件</a>
+            <a href="#toc_h2_12">本地文件</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_13">优势</a>
+            <a href="#toc_h3_13">优势</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_14">劣势</a>
+            <a href="#toc_h3_14">劣势</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_15">任务队列负荷（Payloads）</a>
+            <a href="#toc_h2_15">任务队列负荷（Payloads）</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_16">优势</a>
+            <a href="#toc_h3_16">优势</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_17">劣势</a>
+            <a href="#toc_h3_17">劣势</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_18">结论</a>
+            <a href="#toc_h2_18">结论</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_19">Datastore</a>
+            <a href="#toc_h3_19">Datastore</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_20">Pros</a>
+            <a href="#toc_h4_20">Pros</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_21">Cons</a>
+            <a href="#toc_h4_21">Cons</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_22">Memcache</a>
+            <a href="#toc_h3_22">Memcache</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_23">Pros</a>
+            <a href="#toc_h4_23">Pros</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_24">Cons</a>
+            <a href="#toc_h4_24">Cons</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_25">Blobstore</a>
+            <a href="#toc_h3_25">Blobstore</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_26">Pros</a>
+            <a href="#toc_h4_26">Pros</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_27">Cons</a>
+            <a href="#toc_h4_27">Cons</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_28">Instance memory</a>
+            <a href="#toc_h3_28">Instance memory</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_29">Pros</a>
+            <a href="#toc_h4_29">Pros</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_30">Cons</a>
+            <a href="#toc_h4_30">Cons</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_31">Local files</a>
+            <a href="#toc_h3_31">Local files</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_32">Pros</a>
+            <a href="#toc_h4_32">Pros</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_33">Cons</a>
+            <a href="#toc_h4_33">Cons</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_34">Task queue payloads</a>
+            <a href="#toc_h3_34">Task queue payloads</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_35">Pros</a>
+            <a href="#toc_h4_35">Pros</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_36">Cons</a>
+            <a href="#toc_h4_36">Cons</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_37">Conclusion</a>
+            <a href="#toc_h3_37">Conclusion</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -489,7 +492,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -531,19 +534,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -580,7 +584,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1314018435458",
@@ -600,4 +604,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 264ms, 2020/01/18 20:44:30 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 145ms, 2020/03/25 10:29:39 -->

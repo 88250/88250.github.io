@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>以太坊 JavaScript API web3.js 打币 - D 的个人博客</title><meta name="description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/><meta property="og:description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="以太坊 JavaScript API web3.js 打币 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/09/1520583695227.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="以太坊 JavaScript API web3.js 打币 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/09/1520583695227.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>以太坊 JavaScript API web3.js 打币 - D 的个人博客</title><meta name="description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/><meta property="og:description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="以太坊 JavaScript API web3.js 打币 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/09/1520583695227.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="以太坊 JavaScript API web3.js 打币 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/09/1520583695227.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="重装系统后 git 烂了" href="https://88250.github.io/articles/2018/02/24/1519471473213.html">
             <link rel="next" title="以太坊同步一直“卡着”的原因" href="https://88250.github.io/articles/2018/03/11/1520767628593.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -134,7 +136,7 @@ bold;">Sym</span></a>
      data-title="以太坊 JavaScript API web3.js 打币"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2018/03/09/1520583695227.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -163,7 +165,7 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p><img src="https://img.hacpai.com/e/20d13d1dcdc5487e926182af71e03616.jpeg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Ethereum"></p>
-<h2 id="b3_solo_h2_0">ABI 简介</h2>
+<h2 id="toc_h2_0">ABI 简介</h2>
 <p>关于什么是 ABI（Application Binary Interface）请看<a href="https://solidity.readthedocs.io/en/develop/abi-spec.html" target="_blank">官网文档</a>。简单来说 ABI 就是外界和合约交互的方式：</p>
 <ul>
 <li>ABI 用 JSON 描述合约的接口定义</li>
@@ -171,10 +173,10 @@ bold;">Sym</span></a>
 </ul>
 <p>做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。</p>
 <p>ABI 的实例请看<a href="https://etherscan.io/address/0xe249e7a6f5a9efee03b4c5090c77245ef6fe0f5e#code" target="_blank">这里</a>。</p>
-<h2 id="b3_solo_h2_1">web3.js 简介</h2>
+<h2 id="toc_h2_1">web3.js 简介</h2>
 <p><a href="https://github.com/ethereum/web3.js" target="_blank">web3.js</a> 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。</p>
 <p>下面的代码示例基于 web3.js <code>v1.0</code> 开发，请注意不同版本之间的差异。</p>
-<h2 id="b3_solo_h2_2">同步区块</h2>
+<h2 id="toc_h2_2">同步区块</h2>
 <p>人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！</p>
 <p>试了 <a href="http://ethfans.org" target="_blank">ETHFANS</a> 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。</p>
 <p>后来在阿里云<strong>海外节点</strong>开了台服务器几个小时就同步好了（国内节点我也试过，一晚上没同步好，没耐心就放弃了），下面给出服务器配置大家可以参考下：</p>
@@ -184,7 +186,7 @@ bold;">Sym</span></a>
 <li>带宽我开的是 5M</li>
 </ul>
 <p>同步使用<a href="https://geth.ethereum.org/install" target="_blank">官方 geth</a>就行，启动不用带参。每次下载最新的 geth 后最好浏览一下帮助，避免用了过时的参数而掉坑里。</p>
-<h2 id="b3_solo_h2_3">交易（打币/转账）</h2>
+<h2 id="toc_h2_3">交易（打币/转账）</h2>
 <p>前面铺垫完，正式进入今天的主题：如何通过 web3.js 打币。我们大致需要用到如下几个 API（看命名就懂的 API 我就不啰嗦了）：</p>
 <ul>
 <li>personal.unlockAccount：调用后等待用户输入对应解锁账户的私钥密码完成解锁</li>
@@ -192,7 +194,7 @@ bold;">Sym</span></a>
 <li>eth.contract：合约接口</li>
 </ul>
 <p>先启动 geth 的交互式可执行环境：<code>geth attach</code>（Windows 上面<em>可能</em>需要用 <code>geth attach ipc:\\.\pipe\geth.ipc</code>），然后分两种打币情况：以太坊、ERC20 令牌。</p>
-<h3 id="b3_solo_h3_4">以太坊转账</h3>
+<h3 id="toc_h3_4">以太坊转账</h3>
 <p>这种情况是最简单的，只需两步：</p>
 <ol>
 <li>解锁源账户</li>
@@ -201,7 +203,7 @@ bold;">Sym</span></a>
 <pre><code class="language-js">personal.unlockAccount(fromAddr); // 输入正确的私钥密码后将允许进行交易操作
 eth.sendTransaction({from: fromAddr, to: toAddr, value: web3.toWei(0.1, "ether")}); // 转账 0.1 eth
 </code></pre>
-<h3 id="b3_solo_h3_5">ERC20 令牌转账</h3>
+<h3 id="toc_h3_5">ERC20 令牌转账</h3>
 <ol>
 <li>构造 ERC20 令牌合约操作对象</li>
 <li>解锁源账户</li>
@@ -219,9 +221,9 @@ var toAddr = "0x.."; // 目标账户地址
 personal.unlockAccount(fromAddr); // 输入正确的私钥密码后将允许进行交易操作
 tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行令牌转账 
 </code></pre>
-<h2 id="b3_solo_h2_6">事件处理</h2>
+<h2 id="toc_h2_6">事件处理</h2>
 <p>主要使用场景是发送交易后等待网络确认，然后通知外部程序做相应的处理；也用于和合约定义的事件进行交互。</p>
-<h3 id="b3_solo_h3_7">使用回调</h3>
+<h3 id="toc_h3_7">使用回调</h3>
 <pre><code class="language-js">eth.sendTransaction({
     from: '0x..',
     to: '0x..',
@@ -230,7 +232,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     ...
 });
 </code></pre>
-<h3 id="b3_solo_h3_8">使用 Promise</h3>
+<h3 id="toc_h3_8">使用 Promise</h3>
 <pre><code class="language-js">eth.sendTransaction({
     from: '0x..',
     to: '0x..',
@@ -239,7 +241,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     ...
 });
 </code></pre>
-<h3 id="b3_solo_h3_9">使用监听</h3>
+<h3 id="toc_h3_9">使用监听</h3>
 <pre><code class="language-js">eth.sendTransaction({
     from: '0x..',
     to: '0x..',
@@ -252,11 +254,12 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     ... 
 }).on('error', console.error);
 </code></pre>
-<h2 id="b3_solo_h2_10">总结</h2>
+<h2 id="toc_h2_10">总结</h2>
 <p>web3.js 是以太坊的 JavaScript API 实现，作为交互式可执行环境被集成在了 以太坊节点 geth 中，也可以单独引入 JavaScript 应用中进行使用。它提供了通过 JS 和以太坊网络、智能合约交互的方式，开箱即用。对于新手来说，学习以太坊开发的最大难点是区块同步，当然也可以使用测试网络或者自建私网来进行开发调试。</p>
 <p>关于更多以太坊、区块链开发的干货，请浏览黑客派社区<a href="https://hacpai.com/tag/ethereum" target="_blank">以太坊</a>、<a href="https://hacpai.com/tag/blockchain" target="_blank">区块链</a>。</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -274,37 +277,37 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">ABI 简介</a>
+            <a href="#toc_h2_0">ABI 简介</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">web3.js 简介</a>
+            <a href="#toc_h2_1">web3.js 简介</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">同步区块</a>
+            <a href="#toc_h2_2">同步区块</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">交易（打币/转账）</a>
+            <a href="#toc_h2_3">交易（打币/转账）</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">以太坊转账</a>
+            <a href="#toc_h3_4">以太坊转账</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">ERC20 令牌转账</a>
+            <a href="#toc_h3_5">ERC20 令牌转账</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_6">事件处理</a>
+            <a href="#toc_h2_6">事件处理</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">使用回调</a>
+            <a href="#toc_h3_7">使用回调</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">使用 Promise</a>
+            <a href="#toc_h3_8">使用 Promise</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">使用监听</a>
+            <a href="#toc_h3_9">使用监听</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_10">总结</a>
+            <a href="#toc_h2_10">总结</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -330,7 +333,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -372,19 +375,20 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -421,7 +425,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1520583695227",
@@ -441,4 +445,4 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 238ms, 2020/01/18 20:44:24 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 206ms, 2020/03/25 10:29:34 -->

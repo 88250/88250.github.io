@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>细节见真功之 Javadoc - D 的个人博客</title><meta name="description" content="作为一个 Java 程序员，Javadoc 大家都应该写过吧，是不是觉得写的时候特简单呢？相信看完本文后你会若有所思。另外，本文非常适合处女座程序员阅读。"/><meta property="og:description" content="作为一个 Java 程序员，Javadoc 大家都应该写过吧，是不是觉得写的时候特简单呢？相信看完本文后你会若有所思。另外，本文非常适合处女座程序员阅读。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="细节见真功之 Javadoc - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/when-the-little-things-count-javadoc?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="细节见真功之 Javadoc - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/when-the-little-things-count-javadoc">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>细节见真功之 Javadoc - D 的个人博客</title><meta name="description" content="作为一个 Java 程序员，Javadoc 大家都应该写过吧，是不是觉得写的时候特简单呢？相信看完本文后你会若有所思。另外，本文非常适合处女座程序员阅读。"/><meta property="og:description" content="作为一个 Java 程序员，Javadoc 大家都应该写过吧，是不是觉得写的时候特简单呢？相信看完本文后你会若有所思。另外，本文非常适合处女座程序员阅读。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="细节见真功之 Javadoc - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/when-the-little-things-count-javadoc?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="细节见真功之 Javadoc - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/when-the-little-things-count-javadoc">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="Wordman 1.0.0 发布！" href="https://88250.github.io/b3log-wordman-1.0.0-released">
             <link rel="next" title="全文搜索之 Elasticsearch " href="https://88250.github.io/full-text-search-elasticsearch">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -132,7 +134,7 @@ bold;">Sym</span></a>
      data-title="细节见真功之 Javadoc"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/when-the-little-things-count-javadoc"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -161,16 +163,16 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p>作为一个 Java 程序员，Javadoc 大家都应该写过吧，是不是觉得写的时候特简单呢？相信看完本文后你会若有所思。另外，本文非常适合处女座程序员阅读。</p>
-<h3 id="b3_solo_h3_0">句号</h3>
+<h3 id="toc_h3_0">句号</h3>
 <p>为什么是句号而不是其他的标点符号呢？因为这涉及到一个 JDK 文档生成的规则：</p>
 <blockquote>
 <p>The first sentence of each doc comment should be a summary sentence, containing a concise but complete description of the API item. This means the first sentence of each member, class, interface or package description. （成员、类、接口或包注释的第一个句子将作为该注释项的总结，这个句子应该是言简意赅的）</p>
 </blockquote>
 <p>既然提到了句子，那就说明应该用标准的方式——句号来进行第一个句子的断句识别。也许是为了简洁，Javadoc 工具并没有“多语言句号识别”这个特性，所以不管我们用什么语言撰写文档注释，断句符号都必须是英文状态下的句号——.</p>
 <p>比如在 NetBeans IDE 里（默认编辑器配置）可以很直观的看到用于总结的第一个句子和后面描述的区别：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2p5S5BWi5Trv27KDTDHjYqwMIo0q7G-2213JLLC24bgGcXFMgipHSTSu9rKMA7fEi1EfaRmKQOiwT-zdEEKiRmbkjT5MVZ0cyHQU5PIY7_BMc/first-sentence.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p5S5BWi5Trv27KDTDHjYqwMIo0q7G-2213JLLC24bgGcXFMgipHSTSu9rKMA7fEi1EfaRmKQOiwT-zdEEKiRmbkjT5MVZ0cyHQU5PIY7_BMc/first-sentence.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="first-sentence" width="427" height="123"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2p5S5BWi5Trv27KDTDHjYqwMIo0q7G-2213JLLC24bgGcXFMgipHSTSu9rKMA7fEi1EfaRmKQOiwT-zdEEKiRmbkjT5MVZ0cyHQU5PIY7_BMc/first-sentence.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p5S5BWi5Trv27KDTDHjYqwMIo0q7G-2213JLLC24bgGcXFMgipHSTSu9rKMA7fEi1EfaRmKQOiwT-zdEEKiRmbkjT5MVZ0cyHQU5PIY7_BMc/first-sentence.png?psid=1" alt="first-sentence" width="427" height="123"></a></p>
 <p>在生成 Javadoc 后，类概要页面我们可以看到最终的效果：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2peA4JAgPOEgPewxNZIw6lVCzd-IHNOozsmmwVh_WjvXdZ5GJFZICgSeBkOsuNQVxOmkTrQLmhnV9FRAwqL0rvymqP2puNZlxN-Oig_sF3EB4/class-summary.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2peA4JAgPOEgPewxNZIw6lVCzd-IHNOozsmmwVh_WjvXdZ5GJFZICgSeBkOsuNQVxOmkTrQLmhnV9FRAwqL0rvymqP2puNZlxN-Oig_sF3EB4/class-summary.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="class-summery" width="540" height="118"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2peA4JAgPOEgPewxNZIw6lVCzd-IHNOozsmmwVh_WjvXdZ5GJFZICgSeBkOsuNQVxOmkTrQLmhnV9FRAwqL0rvymqP2puNZlxN-Oig_sF3EB4/class-summary.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2peA4JAgPOEgPewxNZIw6lVCzd-IHNOozsmmwVh_WjvXdZ5GJFZICgSeBkOsuNQVxOmkTrQLmhnV9FRAwqL0rvymqP2puNZlxN-Oig_sF3EB4/class-summary.png?psid=1" alt="class-summery" width="540" height="118"></a></p>
 <p>在使用中文撰写文档注释时，为了保持整体风格一致，在所有需要使用句号的地方有两种策略可选择：</p>
 <ul>
 <li>都使用英文句号：这样做可以让生成的文档句号统一，但缺点是看上去有点别扭</li>
@@ -179,14 +181,14 @@ bold;">Sym</span></a>
 <p>当然，最彻底的解决方案是不用中文写文档注释，这样就不存在要统一的问题了！</p>
 <p>&nbsp;</p>
 <p>下面我们重点介绍各种你熟悉的或是不熟悉的 Javadoc 文档标记（它们很有内涵）</p>
-<h3 id="b3_solo_h3_1">@author</h3>
+<h3 id="toc_h3_1">@author</h3>
 <p>该标记使用频率是所有文档标记中最高的，我想这是因为：</p>
 <ul>
 <li>做好事要留名</li>
 <li>使用超简单，就像在填表格（姓名：<span style="text-decoration: underline;">&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>）一样自然</li>
 </ul>
 <p>来看看大牛怎么写的：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2p_oXGAVLGdkskphXOjyuQjFpTSgEmOcHdRHXvRddiy26L6DUhOX-Wv34uVXrg7dqFHO1dMvt5PsQeeP6LdwxQBVV-zA49B2kijLJF2fNy9sU/commons-lang-stringutils.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p_oXGAVLGdkskphXOjyuQjFpTSgEmOcHdRHXvRddiy26L6DUhOX-Wv34uVXrg7dqFHO1dMvt5PsQeeP6LdwxQBVV-zA49B2kijLJF2fNy9sU/commons-lang-stringutils.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="commons-lang-stringutils" width="634" height="388"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2p_oXGAVLGdkskphXOjyuQjFpTSgEmOcHdRHXvRddiy26L6DUhOX-Wv34uVXrg7dqFHO1dMvt5PsQeeP6LdwxQBVV-zA49B2kijLJF2fNy9sU/commons-lang-stringutils.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p_oXGAVLGdkskphXOjyuQjFpTSgEmOcHdRHXvRddiy26L6DUhOX-Wv34uVXrg7dqFHO1dMvt5PsQeeP6LdwxQBVV-zA49B2kijLJF2fNy9sU/commons-lang-stringutils.png?psid=1" alt="commons-lang-stringutils" width="634" height="388"></a></p>
 <p><span style="font-size: xx-small;">（from Commons Lang 2.5 StringUtils）</span></p>
 <p>总结下来有三种写法：</p>
 <ul>
@@ -196,42 +198,42 @@ bold;">Sym</span></a>
 </ul>
 <p>（个人建议用 HTTP 链接：打码时可以顺便推广一下自己的博客，哈哈）</p>
 <p>另外，在 JDK 代码中我们经常看到 @author&nbsp;unascribed，意思是：“该代码第一原作者不是我，但我实在也不知道是谁，就记作无名氏吧”（这是多么严肃的一种版权意识啊）</p>
-<h3 id="b3_solo_h3_2">@serialXXX</h3>
+<h3 id="toc_h3_2">@serialXXX</h3>
 <p>这个系列应该是最不常用的文档标记了，它们到底是干嘛用的呢？请看<a href="http://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#serial" target="_blank">这里</a>。</p>
 <p>（我一次也没有使用过这些文档标记，看了官方文档后也还是没有搞懂怎么用，求各位指教）</p>
-<h3 id="b3_solo_h3_3">@value</h3>
+<h3 id="toc_h3_3">@value</h3>
 <p>这个文档标记非常实用（不光好用），可以用于生成被标记的常量字段的值。</p>
 <p>直接用于常量字段时：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pnvWxihuLOEnImS8xyuaWK-Eht_JyEOF7hDWrpcwmiXRcteuAs2sUnTzMAYmZmAv-Y1cZjy6EFmoHiG126eG53J03k9KSuT4wj1RhAGJyJVw/value-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pnvWxihuLOEnImS8xyuaWK-Eht_JyEOF7hDWrpcwmiXRcteuAs2sUnTzMAYmZmAv-Y1cZjy6EFmoHiG126eG53J03k9KSuT4wj1RhAGJyJVw/value-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="value-code" width="343" height="105"></a></p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pLtQMm5FoWU02cixAJoH8QEBCyo_I_9ssqvPiF-Tl8mIlxdT9fyWuLELes8HJMgh9xxVepLQEASxtBSYPeR093VTE-Tmvqk3tgfAqd8FqLoM/value-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pLtQMm5FoWU02cixAJoH8QEBCyo_I_9ssqvPiF-Tl8mIlxdT9fyWuLELes8HJMgh9xxVepLQEASxtBSYPeR093VTE-Tmvqk3tgfAqd8FqLoM/value-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="value-html" width="354" height="177"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pnvWxihuLOEnImS8xyuaWK-Eht_JyEOF7hDWrpcwmiXRcteuAs2sUnTzMAYmZmAv-Y1cZjy6EFmoHiG126eG53J03k9KSuT4wj1RhAGJyJVw/value-code.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pnvWxihuLOEnImS8xyuaWK-Eht_JyEOF7hDWrpcwmiXRcteuAs2sUnTzMAYmZmAv-Y1cZjy6EFmoHiG126eG53J03k9KSuT4wj1RhAGJyJVw/value-code.png?psid=1" alt="value-code" width="343" height="105"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pLtQMm5FoWU02cixAJoH8QEBCyo_I_9ssqvPiF-Tl8mIlxdT9fyWuLELes8HJMgh9xxVepLQEASxtBSYPeR093VTE-Tmvqk3tgfAqd8FqLoM/value-html.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pLtQMm5FoWU02cixAJoH8QEBCyo_I_9ssqvPiF-Tl8mIlxdT9fyWuLELes8HJMgh9xxVepLQEASxtBSYPeR093VTE-Tmvqk3tgfAqd8FqLoM/value-html.png?psid=1" alt="value-html" width="354" height="177"></a></p>
 <p>也可以使用引用方式：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2p0JF14tRuSfjarfg9QuYSOCdvpLC-LzY73CTKqLlrxpxZmO1SH9y5aqDv4WOdIhOdhAY2TZulhTswAocMoL5o8sveStzfFjxuZnWCTYutXYI/value-ref-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p0JF14tRuSfjarfg9QuYSOCdvpLC-LzY73CTKqLlrxpxZmO1SH9y5aqDv4WOdIhOdhAY2TZulhTswAocMoL5o8sveStzfFjxuZnWCTYutXYI/value-ref-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="value-ref-code" width="497" height="198"></a></p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pG-6eXeG1fRAO1O1AbGzMofB3uyMPxd-q1Zvu680JceRBttDJjUhpeYqNhyMVu4B_ky6rVnCk7Q9YwfK8pRdjFAmmZSlRWY9DOvrtQlVztX4/value-ref-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pG-6eXeG1fRAO1O1AbGzMofB3uyMPxd-q1Zvu680JceRBttDJjUhpeYqNhyMVu4B_ky6rVnCk7Q9YwfK8pRdjFAmmZSlRWY9DOvrtQlVztX4/value-ref-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="value-ref-html" width="380" height="181"></a>&nbsp;</p>
-<h3 id="b3_solo_h3_4">{@inheritDoc}</h3>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2p0JF14tRuSfjarfg9QuYSOCdvpLC-LzY73CTKqLlrxpxZmO1SH9y5aqDv4WOdIhOdhAY2TZulhTswAocMoL5o8sveStzfFjxuZnWCTYutXYI/value-ref-code.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p0JF14tRuSfjarfg9QuYSOCdvpLC-LzY73CTKqLlrxpxZmO1SH9y5aqDv4WOdIhOdhAY2TZulhTswAocMoL5o8sveStzfFjxuZnWCTYutXYI/value-ref-code.png?psid=1" alt="value-ref-code" width="497" height="198"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pG-6eXeG1fRAO1O1AbGzMofB3uyMPxd-q1Zvu680JceRBttDJjUhpeYqNhyMVu4B_ky6rVnCk7Q9YwfK8pRdjFAmmZSlRWY9DOvrtQlVztX4/value-ref-html.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pG-6eXeG1fRAO1O1AbGzMofB3uyMPxd-q1Zvu680JceRBttDJjUhpeYqNhyMVu4B_ky6rVnCk7Q9YwfK8pRdjFAmmZSlRWY9DOvrtQlVztX4/value-ref-html.png?psid=1" alt="value-ref-html" width="380" height="181"></a>&nbsp;</p>
+<h3 id="toc_h3_4">{@inheritDoc}</h3>
 <p>&nbsp;这个标签体现了 Java 面向对象的精辟所在：不但可以类可以集成，连文档都可以继承（足见 Java 在经典面向对象概念上的完备与圆润）。</p>
 <p>比如有个计算面积的接口：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pJKJ6CL0KWglqfNdV73U3dySu1SAeX0uMpMBe2GK3rRrX-AgsbdveU5nkUY4ofiPvWt8K-3Fddkuxr9cQMmkrnOnexiBHVsvCskw9p0G0L58/inheritdoc-interface-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pJKJ6CL0KWglqfNdV73U3dySu1SAeX0uMpMBe2GK3rRrX-AgsbdveU5nkUY4ofiPvWt8K-3Fddkuxr9cQMmkrnOnexiBHVsvCskw9p0G0L58/inheritdoc-interface-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="inheritdoc-interface-code" width="197" height="133"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pJKJ6CL0KWglqfNdV73U3dySu1SAeX0uMpMBe2GK3rRrX-AgsbdveU5nkUY4ofiPvWt8K-3Fddkuxr9cQMmkrnOnexiBHVsvCskw9p0G0L58/inheritdoc-interface-code.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pJKJ6CL0KWglqfNdV73U3dySu1SAeX0uMpMBe2GK3rRrX-AgsbdveU5nkUY4ofiPvWt8K-3Fddkuxr9cQMmkrnOnexiBHVsvCskw9p0G0L58/inheritdoc-interface-code.png?psid=1" alt="inheritdoc-interface-code" width="197" height="133"></a></p>
 <p>它的实现方法标注了 {@inheritDoc}<em>（处女座阅读提示：无 .）</em>：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pEBtBhvFFNe_z3L-5JNzWcaa6_B-6NcwY24ljeAhkUpOU5Mx4NYZetayMfP-3DwXrd9uL1mmqQw9q-pJU9K2nATNWL5fSHodgvCDrgAzxfqc/inheritdoc-impl-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pEBtBhvFFNe_z3L-5JNzWcaa6_B-6NcwY24ljeAhkUpOU5Mx4NYZetayMfP-3DwXrd9uL1mmqQw9q-pJU9K2nATNWL5fSHodgvCDrgAzxfqc/inheritdoc-impl-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="inheritdoc-impl-code" width="264" height="253"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pEBtBhvFFNe_z3L-5JNzWcaa6_B-6NcwY24ljeAhkUpOU5Mx4NYZetayMfP-3DwXrd9uL1mmqQw9q-pJU9K2nATNWL5fSHodgvCDrgAzxfqc/inheritdoc-impl-code.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pEBtBhvFFNe_z3L-5JNzWcaa6_B-6NcwY24ljeAhkUpOU5Mx4NYZetayMfP-3DwXrd9uL1mmqQw9q-pJU9K2nATNWL5fSHodgvCDrgAzxfqc/inheritdoc-impl-code.png?psid=1" alt="inheritdoc-impl-code" width="264" height="253"></a></p>
 <p>最后生成的文档：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pAfyk_fIGUC6Sh1GnOZREbXoB0tnBEIB79GxsaZNeLUkzmE0n-uobEFXIqVaclv4bChzpqOOn2wapcsEq4vELKaA99sDb7obypbSjkykPSd4/inheritdoc-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pAfyk_fIGUC6Sh1GnOZREbXoB0tnBEIB79GxsaZNeLUkzmE0n-uobEFXIqVaclv4bChzpqOOn2wapcsEq4vELKaA99sDb7obypbSjkykPSd4/inheritdoc-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="inheritdoc-html" width="251" height="254"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pAfyk_fIGUC6Sh1GnOZREbXoB0tnBEIB79GxsaZNeLUkzmE0n-uobEFXIqVaclv4bChzpqOOn2wapcsEq4vELKaA99sDb7obypbSjkykPSd4/inheritdoc-html.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pAfyk_fIGUC6Sh1GnOZREbXoB0tnBEIB79GxsaZNeLUkzmE0n-uobEFXIqVaclv4bChzpqOOn2wapcsEq4vELKaA99sDb7obypbSjkykPSd4/inheritdoc-html.png?psid=1" alt="inheritdoc-html" width="251" height="254"></a></p>
 <ul>
 <li>基类的文档注释被继承到了子类</li>
 <li>子类可以再加入自己的注释（特殊化扩展）</li>
 <li>@return @param @throws 也会被继承</li>
 </ul>
 <p>其实在不写 {@inheritDoc} 的情况下也存在文档注释的继承，具体规则请看<a href="http://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#inheritingcomments" target="_blank">这里</a>。</p>
-<h3 id="b3_solo_h3_5">{@link} {@linkplain}</h3>
+<h3 id="toc_h3_5">{@link} {@linkplain}</h3>
 <p>这两个链接标记大家用/见的应该比较多，但它们有什么区别、在什么场景下该怎么使用很少有人能够区分开（我猜你要用的时候一般也都是用 link 吧）。</p>
 <p>看看官网的标准解释：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2psbvmx2xRhV7NF38YP_Od56KwjR19yZ_fXjbR6fxa5Df4QGKrC85--iWgYIioNLZ5vK8tol2bQQ-YI2DfaWZlLkqkmm0gn2YlU4w78q8jmMs/link.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2psbvmx2xRhV7NF38YP_Od56KwjR19yZ_fXjbR6fxa5Df4QGKrC85--iWgYIioNLZ5vK8tol2bQQ-YI2DfaWZlLkqkmm0gn2YlU4w78q8jmMs/link.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="link" width="743" height="142"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2psbvmx2xRhV7NF38YP_Od56KwjR19yZ_fXjbR6fxa5Df4QGKrC85--iWgYIioNLZ5vK8tol2bQQ-YI2DfaWZlLkqkmm0gn2YlU4w78q8jmMs/link.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2psbvmx2xRhV7NF38YP_Od56KwjR19yZ_fXjbR6fxa5Df4QGKrC85--iWgYIioNLZ5vK8tol2bQQ-YI2DfaWZlLkqkmm0gn2YlU4w78q8jmMs/link.png?psid=1" alt="link" width="743" height="142"></a></p>
 <p><br>link 和 linkplain 的实参都是 <strong><em>package.class#member label</em></strong> 。唯一的不同就是因为字体不同，如果 label 是个纯文本，那就使用 linkplain 吧。（根据这点，我严重怀疑 Javadoc 文档标记的设计者是处女座，~ ~）</p>
-<h3 id="b3_solo_h3_6">pre</h3>
+<h3 id="toc_h3_6">pre</h3>
 <p>没错，这就是那个 HTML 标签，用于显示“原始样子”的。这个标签在写 Javadoc 的时候非常有用，用或者不使用在打码的时候看上去差别不大：</p>
-<p>&nbsp;<a href="https://plokra.dm2301.livefilestore.com/y2p43U983cfZ-13wUPO3HoElbzhwERyGlv8obqaKt_ChrXO2yH-T_SzYQTma4_CdDZszFVsjq1JV4oBxTMwzWx2DQeL9K28fFsb577oZ5qZp3E/pre-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p43U983cfZ-13wUPO3HoElbzhwERyGlv8obqaKt_ChrXO2yH-T_SzYQTma4_CdDZszFVsjq1JV4oBxTMwzWx2DQeL9K28fFsb577oZ5qZp3E/pre-code.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="pre-code" width="231" height="546"></a></p>
+<p>&nbsp;<a href="https://plokra.dm2301.livefilestore.com/y2p43U983cfZ-13wUPO3HoElbzhwERyGlv8obqaKt_ChrXO2yH-T_SzYQTma4_CdDZszFVsjq1JV4oBxTMwzWx2DQeL9K28fFsb577oZ5qZp3E/pre-code.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2p43U983cfZ-13wUPO3HoElbzhwERyGlv8obqaKt_ChrXO2yH-T_SzYQTma4_CdDZszFVsjq1JV4oBxTMwzWx2DQeL9K28fFsb577oZ5qZp3E/pre-code.png?psid=1" alt="pre-code" width="231" height="546"></a></p>
 <p>但最终生成 apidocs 之后差别一目了然<em>（处女座阅读提示：在源码文档注释中特别需要注意 pre 后 { 的位置，紧跟 *，无空格）</em>：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pQ7YGtOOaZLPNHNXvar56b304Eyp8QAeyFEvtQo1QhicFR3CiPutcDyCTvMm2juc6d8yImclF72TW9lbajvfwhIEf24Y2OiGTtINSDodobyo/pre-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pQ7YGtOOaZLPNHNXvar56b304Eyp8QAeyFEvtQo1QhicFR3CiPutcDyCTvMm2juc6d8yImclF72TW9lbajvfwhIEf24Y2OiGTtINSDodobyo/pre-html.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="pre-html" width="358" height="445"></a></p>
-<h3 id="b3_solo_h3_7">@since</h3>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pQ7YGtOOaZLPNHNXvar56b304Eyp8QAeyFEvtQo1QhicFR3CiPutcDyCTvMm2juc6d8yImclF72TW9lbajvfwhIEf24Y2OiGTtINSDodobyo/pre-html.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pQ7YGtOOaZLPNHNXvar56b304Eyp8QAeyFEvtQo1QhicFR3CiPutcDyCTvMm2juc6d8yImclF72TW9lbajvfwhIEf24Y2OiGTtINSDodobyo/pre-html.png?psid=1" alt="pre-html" width="358" height="445"></a></p>
+<h3 id="toc_h3_7">@since</h3>
 <p>这个从字面的意思上很好理解，所以使用的比较多（如同 @author、@version 一样）。但问题是大家写的时候表达的意思五花八门，常见的有：</p>
 <ol>
 <li>想表达日期/时间<br>@since 2014-01-01<br>@since 2014-01-01 14:00:00</li>
@@ -239,9 +241,9 @@ bold;">Sym</span></a>
 <li>想表达加入这个元素的版本<br>@since 1.0.0</li>
 </ol>
 <p>根据官方文档解释，@since 表达的是被标记元素是哪个发布版本引入的（3）。比如别人在我们的文档注释中看到</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pJWYTK3eXMyb-5BrNEav_0kpZ1yOAgBEdUW8hWyeOKRutVC6XkjTwdYaMK-9uu5zIGQRs0BAPUNnYZBeQt_du2ycM0VGmTwJ_gW0a_Hu_vX8/since.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pJWYTK3eXMyb-5BrNEav_0kpZ1yOAgBEdUW8hWyeOKRutVC6XkjTwdYaMK-9uu5zIGQRs0BAPUNnYZBeQt_du2ycM0VGmTwJ_gW0a_Hu_vX8/since.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="since" width="245" height="144"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pJWYTK3eXMyb-5BrNEav_0kpZ1yOAgBEdUW8hWyeOKRutVC6XkjTwdYaMK-9uu5zIGQRs0BAPUNnYZBeQt_du2ycM0VGmTwJ_gW0a_Hu_vX8/since.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pJWYTK3eXMyb-5BrNEav_0kpZ1yOAgBEdUW8hWyeOKRutVC6XkjTwdYaMK-9uu5zIGQRs0BAPUNnYZBeQt_du2ycM0VGmTwJ_gW0a_Hu_vX8/since.png?psid=1" alt="since" width="245" height="144"></a></p>
 <p>那他可以（应该）认为这个类是在该程序对外发布 1.0.0 版本时已经引入的。如果他要做二次开发，那他就可以很清晰的向后兼容了（我们在用 JDK 的时候就是这个场景）。</p>
-<h3 id="b3_solo_h3_8">@version</h3>
+<h3 id="toc_h3_8">@version</h3>
 <p>提到了 @since 就自然会联想到 @version，因为它们的实参都是版本相关的。@version 要表达的是被标记元素自己的版本（注意对比 @since），也就是说这个版本只要代码改过就应该发生变化，而 @since 是不会变的。</p>
 <p>官方文档也解释了<a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#@version" target="_blank">怎么用好</a>这个文档标记：通过 SCCS 字符 "%I%, %G%"，例如 1.39, 02/28/97（文件版本号, 日期）生成。但实际上很少有项目这么做（至少目前 Oracle JDK 没这么做，甚至都没有使用 @version，或者是使用了但最后由于特殊原因总体移除了），大家一般都是 @version 1.0.0 然后就再也不修改了，不管被标记的元素改了多少次（这样的做法还不如不写）。</p>
 <p>当然，通过版本控制系统 hook 来做是比较经典的做法，不过这样总感觉没有把这个标记的能力完全发挥出来。在<a href="https://github.com/b3log" target="_blank">我们的项目</a>里是这样使用的：@version 1.2.3.4, Jun 9, 2014</p>
@@ -253,9 +255,9 @@ bold;">Sym</span></a>
 <li>重构位 4，表示已经进行了 4 次重构，每次 +1 说明重构了一次</li>
 </ul>
 <p>前面 3 位表达的意义和&nbsp;<a href="http://semver.org" target="_blank">Semantic Versioning</a>&nbsp;建议的一致，重构我觉得非常重要，所以也加了进来。</p>
-<h3 id="b3_solo_h3_9">@exception @throws</h3>
+<h3 id="toc_h3_9">@exception @throws</h3>
 <p>这两兄弟的情况比 @link @linkplain 更纠结（人家 link 兄弟最起码可以区分出来使用场景）。按照官方文档解释：它们完全是同义词，没有任何区分。那当年 Sun 在 JDK1.2 的时候为什么要加入 @throws 呢——答案是起名失误了，词性没弄匹配：@throws Exception 比 @exception Exception 更符合语法，代入感更好！（细节：<a href="http://stackoverflow.com/questions/5510170/in-javadoc-what-is-the-difference-between-the-tags-throws-and-exception" target="_blank">In javadoc, what is the difference between the tags @throws and @exception?</a>）</p>
-<h3 id="b3_solo_h3_10">标记总表</h3>
+<h3 id="toc_h3_10">标记总表</h3>
 <p>来张 Javadoc 文档标记总表：</p>
 <div>
 <table summary="list of current javadoc tags" width="40%" border="0">
@@ -346,11 +348,11 @@ bold;">Sym</span></a>
 <li>*Sun：“看吧，Oracle 严重缺乏折腾精神，当初不应该卖给它的”</li>
 </ul>
 <p>文档标记介绍完了，下面我们来聊聊 Javadoc 相关的其他侃点。</p>
-<h3 id="b3_solo_h3_11">getter/setter/isTrue</h3>
+<h3 id="toc_h3_11">getter/setter/isTrue</h3>
 <p>对于 POJO 来说，这几个方法的注释格式非常固定，一般我们都是用 IDE 自动生成：这样的话别人一看到这样固定格式的注释（或者索性不要添加任何注释）就知道这部分相对于其他部分并不重要，而一旦有的 getter/setter/isTrue 注释不是这样约定的，那就说明了实现上面不只是简单的 get/set/is，还加入了额外的逻辑处理。</p>
-<h3 id="b3_solo_h3_12">对齐</h3>
+<h3 id="toc_h3_12">对齐</h3>
 <p>Javadoc 文档注释也有对齐（不是前面 pre 例子那种），这里说的对齐主要指的是以源码视图看到的，最典型的场景就是在给方法添加文档注释的时候，我们经常看到两种风格：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pYDTzzMXOqGBvjzfpI05LLv010MGJEegleDkUcNgy0ykwWyDU4Ze9knP8RusW5NM0h26984EueVPm_13iD_KyLXmg7xiJ6h8QMtD-rOq2OPM/align-para.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pYDTzzMXOqGBvjzfpI05LLv010MGJEegleDkUcNgy0ykwWyDU4Ze9knP8RusW5NM0h26984EueVPm_13iD_KyLXmg7xiJ6h8QMtD-rOq2OPM/align-para.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="align-para" width="506" height="507"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pYDTzzMXOqGBvjzfpI05LLv010MGJEegleDkUcNgy0ykwWyDU4Ze9knP8RusW5NM0h26984EueVPm_13iD_KyLXmg7xiJ6h8QMtD-rOq2OPM/align-para.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pYDTzzMXOqGBvjzfpI05LLv010MGJEegleDkUcNgy0ykwWyDU4Ze9knP8RusW5NM0h26984EueVPm_13iD_KyLXmg7xiJ6h8QMtD-rOq2OPM/align-para.png?psid=1" alt="align-para" width="506" height="507"></a></p>
 <p>第一眼看上去是不是风格 2 要顺眼得多？但最好还是使用风格 1，因为：</p>
 <ul>
 <li>这和编辑器配置的字体有关，如果不是（适合的）等宽字体，那会非常的参差不齐</li>
@@ -358,16 +360,16 @@ bold;">Sym</span></a>
 <li>最后生成的 apidocs 效果是一模一样的（无对齐）</li>
 </ul>
 <p>（一些 IDE 默认格式化文档注释的时候也是使用风格 1 进行格式化的，强烈建议使用风格 1）</p>
-<h3 id="b3_solo_h3_13">包注释</h3>
+<h3 id="toc_h3_13">包注释</h3>
 <p>和前面几点打码风格相关的细节比起来，包注释是具有一定的实用性的。虽然大家可能用得很少，但看得应该比较多，就是这部分：</p>
-<p><a href="https://plokra.dm2301.livefilestore.com/y2pxjXlPHiuouivoM_I4eK9QzBSFj8bhvXX0Q5RWPyt-XYRKNi0Wy3iFFHe14jr9NkTZXjSIpXHEPKZ1ZurUX6dRbyz-jZBtqyzEaNFAKCZDvo/package.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pxjXlPHiuouivoM_I4eK9QzBSFj8bhvXX0Q5RWPyt-XYRKNi0Wy3iFFHe14jr9NkTZXjSIpXHEPKZ1ZurUX6dRbyz-jZBtqyzEaNFAKCZDvo/package.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="package" width="512" height="185"></a></p>
+<p><a href="https://plokra.dm2301.livefilestore.com/y2pxjXlPHiuouivoM_I4eK9QzBSFj8bhvXX0Q5RWPyt-XYRKNi0Wy3iFFHe14jr9NkTZXjSIpXHEPKZ1ZurUX6dRbyz-jZBtqyzEaNFAKCZDvo/package.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://plokra.dm2301.livefilestore.com/y2pxjXlPHiuouivoM_I4eK9QzBSFj8bhvXX0Q5RWPyt-XYRKNi0Wy3iFFHe14jr9NkTZXjSIpXHEPKZ1ZurUX6dRbyz-jZBtqyzEaNFAKCZDvo/package.png?psid=1" alt="package" width="512" height="185"></a></p>
 <p>这里我们使用了两种方式来生成包文档：</p>
 <ul>
 <li>package.html：这是 JDK1.5 以前的方式，现在已经不推荐使用</li>
 <li>package-info.java：目前推荐方式，因为这样可以<strong><em>使用注解</em></strong></li>
 </ul>
 <p>在包上面使用注解？这个用法和在其他地方使用注解一样，只是被标注的元素变成了包，在运行时可以获取到包的注解，然后做你想做的事情吧！</p>
-<h3 id="b3_solo_h3_14">中文</h3>
+<h3 id="toc_h3_14">中文</h3>
 <p>一开始我们提到了句号的问题（那的确是一个问题），最后我们来看看中文在写文档注释的时候也非常值得注意的一点（其实不只是 Javadoc 文档注释，该建议也适用于其他一些情况）：在中文和英文、数字中间插入一个空格（本文就是这样排版的）。</p>
 <p>比如说：</p>
 <ul>
@@ -376,7 +378,7 @@ bold;">Sym</span></a>
 <li>我觉得 Java 非常 cool，特别是 JDK8 中的 lambda，真希望 9 能带来更多实用特性</li>
 </ul>
 <p>后者看上去就比前者更舒服一些，这样的排版方式适合纯文本编辑器，如果使用的是 Office 之类的工具就不需要手动空格了，因为它们默认已经处理的很好了。</p>
-<h3 id="b3_solo_h3_15">总结</h3>
+<h3 id="toc_h3_15">总结</h3>
 <p>本文介绍了一些 Javadoc 文档注释相关的细节，从这冰山一角相信你对 Java 也有了另一番体验（Java 的进化、工业化）。</p>
 <p>总结一下本文内容：</p>
 <ul>
@@ -384,13 +386,14 @@ bold;">Sym</span></a>
 <li>对于风格相关，大家也可以适当尝试（处女座/强迫症就算了）：某大厂在某次改句号问题后出现过生产故障</li>
 </ul>
 <p>不过，大家也千万不要太较真，毕竟对于一个好的程序来说，代码应该就是它的文档（之一）。</p>
-<h3 id="b3_solo_h3_16">参考</h3>
+<h3 id="toc_h3_16">参考</h3>
 <ul>
 <li><a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html" target="_blank">http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html</a></li>
 <li><a href="http://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html" target="_blank">http://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html</a></li>
 </ul>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -408,55 +411,55 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">句号</a>
+            <a href="#toc_h3_0">句号</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">@author</a>
+            <a href="#toc_h3_1">@author</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">@serialXXX</a>
+            <a href="#toc_h3_2">@serialXXX</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">@value</a>
+            <a href="#toc_h3_3">@value</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">{@inheritDoc}</a>
+            <a href="#toc_h3_4">{@inheritDoc}</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">{@link} {@linkplain}</a>
+            <a href="#toc_h3_5">{@link} {@linkplain}</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">pre</a>
+            <a href="#toc_h3_6">pre</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">@since</a>
+            <a href="#toc_h3_7">@since</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">@version</a>
+            <a href="#toc_h3_8">@version</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">@exception @throws</a>
+            <a href="#toc_h3_9">@exception @throws</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_10">标记总表</a>
+            <a href="#toc_h3_10">标记总表</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_11">getter/setter/isTrue</a>
+            <a href="#toc_h3_11">getter/setter/isTrue</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_12">对齐</a>
+            <a href="#toc_h3_12">对齐</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_13">包注释</a>
+            <a href="#toc_h3_13">包注释</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_14">中文</a>
+            <a href="#toc_h3_14">中文</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_15">总结</a>
+            <a href="#toc_h3_15">总结</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_16">参考</a>
+            <a href="#toc_h3_16">参考</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -482,7 +485,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -524,19 +527,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -573,7 +577,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1402394334880",
@@ -593,4 +597,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 211ms, 2020/01/18 20:44:27 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 174ms, 2020/03/25 10:29:37 -->

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>云平台之多租户 - D 的个人博客</title><meta name="description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/><meta property="og:description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="云平台之多租户 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/cloud-app-platform-multitenancy?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="云平台之多租户 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/cloud-app-platform-multitenancy">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>云平台之多租户 - D 的个人博客</title><meta name="description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/><meta property="og:description" content="在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="云平台之多租户 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/cloud-app-platform-multitenancy?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="云平台之多租户 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/cloud-app-platform-multitenancy">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="吃什么" href="https://88250.github.io/articles/2014/05/09/1399599408605.html">
             <link rel="next" title="AngularJS 与 EmberJS" href="https://88250.github.io/angularjs-vs-emberjs">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -140,7 +142,7 @@ bold;">Sym</span></a>
      data-title="云平台之多租户"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/cloud-app-platform-multitenancy"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -169,9 +171,9 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p>在云领域我们经常会听到一个词：多租户。这个词在不同的语境中有着不同的含义，本文将介绍云平台中的多租户的概念以及实现多租户支持的思路。</p>
-<h3 id="b3_solo_h3_0">什么是租户</h3>
+<h3 id="toc_h3_0">什么是租户</h3>
 <p>刚开始接触这个概念时，你肯定感觉“租户”这个词怪怪的，但如果我们换个词，我相信你马上就有感觉了，这个词就是“客户”（这里的客户指的就是商业上面的<a href="http://wiki.mbalib.com/wiki/%E5%AE%A2%E6%88%B7" target="_blank">客户</a>）。一个租户就是一个客户，比如我们开发的服务是给 XXX 企业使用的，那该企业就是我们的一个客户/租户；如果这个服务是面向互联网的，那么使用该服务的每个互联网用户都是一个客户/租户。</p>
-<h3 id="b3_solo_h3_1">为什么需要多租户支持</h3>
+<h3 id="toc_h3_1">为什么需要多租户支持</h3>
 <p>开发者辛辛苦苦开发出一个服务，提供给了个人/企业使用，这样就完事了么？当然不应该只是这样，我们开发出一个服务，最好是能够<strong>同时</strong>提供给<strong>多个</strong>个人/企业使用，而且这些客户最好是共享同一套服务运行时（Runtime），这样可以大大降低服务的运维成本：</p>
 <ul>
 <li>服务运行时如果分开，则运维的成本与客户数成正比（比如更新部署大量客户的场景）</li>
@@ -182,7 +184,7 @@ bold;">Sym</span></a>
 <li>我们只需要考虑如何实现单用户的服务逻辑：业务逻辑对应其所有客户都是相同的，无论什么客户来使用，程序提供的服务都是一样的。进一步说，在业务层面我们开发这个服务时理论上不需要考虑多客户支持，我们只用关注该服务的业务逻辑如何实现</li>
 <li>多客户的管理功能可以进行统一：开发者应该不用考虑客户管理功能，这部分应该是由云平台统一提供的</li>
 </ul>
-<h4 id="b3_solo_h4_2">多租户场景举例</h4>
+<h4 id="toc_h4_2">多租户场景举例</h4>
 <p>假设我们要开发的服务是一个博客平台，这个服务是面向互联网用户的，每个互联网用户都是我们的客户（一个用户就是一个租户）。</p>
 <p>在不支持多租户的环境中，为了隔离每个用户的数据，至少我们在设计数据库表时会考虑大多数表都存在一个 user_id 字段，用于 <em>CRUD</em>&nbsp;数据时使用该字段进行<em>用户隔离</em>。</p>
 <p>比如现在的业务是“发布文章”，需要将文章数据保存在 article 表中，在实现时实际上我们关注了两件事情：</p>
@@ -191,7 +193,7 @@ bold;">Sym</span></a>
 <li>用户隔离：需要加入 user_id，做业务关联</li>
 </ol>
 <p>1 是“纯”业务逻辑部分的实现，这是必须实现的；2 则是为了多用户博客平台而需要考虑的，这并不是博客平台本身的业务逻辑。这里如果能得到平台的多租户支持，就不用考虑第 2 点了，这样可以将注意力集中于第 1 点业务逻辑实现上，这是非常典型的一个多租户场景。</p>
-<h3 id="b3_solo_h3_3">多租户支持</h3>
+<h3 id="toc_h3_3">多租户支持</h3>
 <p>我们可以这样理解多租户支持：</p>
 <ul>
 <li>从服务提供的角度看，我们开发的一个服务运行时可以同时提供给多个客户使用，并且客户之间的数据/状态是保持隔离的</li>
@@ -199,7 +201,7 @@ bold;">Sym</span></a>
 </ul>
 <p>那么这个服务就是支持多“客户”的，即该服务支持多租户。这里的“服务”可以是应用，可以是 SaaS 平台，也可以是 PaaS 平台。不过按目前我们熟悉的云平台看，应用的多租户支持应该是最常规的，这是因为应用面向的是用户，这个群体是很庞大的。</p>
 <p>多租户支持从实现的角度看，“<a href="http://zh.wikipedia.org/wiki/%E5%A4%9A%E7%A7%9F%E6%88%B7" target="_blank">是一种软件架构技术</a>”，之所以强调它是属于架构层面是因为要实现它必须在做技术架构时就要将其考虑在内。</p>
-<h4 id="b3_solo_h4_4">一种租户模型</h4>
+<h4 id="toc_h4_4">一种租户模型</h4>
 <p>本文一开始我们提到使用“客户”来置换“租户”来理解租户的含义，再从“商业”这个方面来看的话，我们不难发现租户其实就是其云环境中的商业模式实现的一部分。商业模式是多样的，这意味着租户的划分也是多样的，这里我们描述其中一种可能的租户栈：</p>
 <ul>
 <li>应用程序是提供给用户使用的，对于应用来说，用户就是它的租户（这一点业界比较统一）</li>
@@ -207,7 +209,7 @@ bold;">Sym</span></a>
 <li>PaaS 提供的服务是给应用系统使用的，对于 PaaS 来说，相关应用的组合就是它的租户</li>
 </ul>
 <p>SaaS 和 PaaS 面向的是开发商、系统等非端用户角色，这一部分一般是由云平台开发者决定的（捆绑商业模式），特别是私有/企业云平台一般不会考虑形如“在 PaaS 平台上支持运行多个 SaaS 平台”这样的场景。所以下面我们更多的是围绕“应用对多租户支持”进行讨论。</p>
-<h3 id="b3_solo_h3_5">应用多租户</h3>
+<h3 id="toc_h3_5">应用多租户</h3>
 <p>应用多租户的使用场景前面已经介绍过了，现在假设我们是一个云平台开发者，为了满足支持应用支持多租户的需求，在云平台中我们需要提供下面几个支持：</p>
 <ul>
 <li>租户管理：CRUD，统计</li>
@@ -221,9 +223,9 @@ bold;">Sym</span></a>
 </ol>
 <p>第 1 点比较容易实现，这是一个业务模型方面的问题，可以根据业务域来抽象租户模型，比如企业应用一般是按照“组织机构”来区分租户的；</p>
 <p>第 2 点是一个纯技术的需求，需要在平台技术实现上支持按“租户”的运行时<em>隔离</em>，我们强调的是隔离，因为在实现时我们要达到的目标就是隔离，只不过这里是按租户（租户只是一个商业概念，技术层面我们最好能够将其进行抽象，尽量减小商业模式多样化对技术架构的冲击），我们可以将租户映射到一个抽象概念上，这个抽象概念可以实现我们的隔离需求。</p>
-<h3 id="b3_solo_h3_6">命名空间</h3>
+<h3 id="toc_h3_6">命名空间</h3>
 <p>前面我们讨论多租户支持都是自上而下的：从应用多租户需求到数据隔离实现；现在我们再换种视角，自下而上：先通过命名空间隔离数据，再将命名空间提供给应用多租户的实现使用。自下而上的目的主要是在平台内部，我们可以通过“命名空间”来进行数据/状态隔离的抽象，最终的理想情况是命名空间不仅能够支持应用多租户实现，还能够可选择性地暴露命名空间 APIs，让应用可以进行某些数据的隔离（比如缓存），方便业务实现。</p>
-<h4 id="b3_solo_h4_7">隔离的实现</h4>
+<h4 id="toc_h4_7">隔离的实现</h4>
 <p>租户请求从开始到结束平台都需要知晓这个请求映射的命名空间，从请求处理栈我们可以这样大致划分一下：</p>
 <ul>
 <li>负载均衡器（LB）</li>
@@ -239,11 +241,11 @@ bold;">Sym</span></a>
 <li>根据服务的不同进行命名空间实现（例如 DB 根据命名空间使用不同的 Schema，MQ 根据命名空间使用不同的队列）</li>
 </ul>
 <p>这里我们使用的隔离实现基本思路是“Shared application”，即多租户共享一个应用，对应一套基础设施（请参考：<a href="http://www.ibm.com/developerworks/cn/cloud/library/cl-tenantconversion/" target="_blank">将单租户应用程序转换为多租户应用程序</a>）。</p>
-<h3 id="b3_solo_h3_8">&nbsp;一种平台设计</h3>
+<h3 id="toc_h3_8">&nbsp;一种平台设计</h3>
 <p>&nbsp;前面谈了这么多，现在我们可以脑补出一种支持应用多租户的云平台：</p>
-<p><a href="https://01z42g.dm2302.livefilestore.com/y2pzWmlH7Wqj5s6IOAeiXKox3ekow6tL9P5WT-uZpFwuh0DsFxac7fikAg-Pmn4TYuWbSf-wS5DXNSuJcw2-BJfhvGJ-6Y_u8AdPesI00pTgI8/%E4%BA%91%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%9A%E7%A7%9F%E6%88%B7.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://01z42g.dm2302.livefilestore.com/y2pzWmlH7Wqj5s6IOAeiXKox3ekow6tL9P5WT-uZpFwuh0DsFxac7fikAg-Pmn4TYuWbSf-wS5DXNSuJcw2-BJfhvGJ-6Y_u8AdPesI00pTgI8/%E4%BA%91%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%9A%E7%A7%9F%E6%88%B7.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="多租户云平台设计" width="960" height="720"></a></p>
+<p><a href="https://01z42g.dm2302.livefilestore.com/y2pzWmlH7Wqj5s6IOAeiXKox3ekow6tL9P5WT-uZpFwuh0DsFxac7fikAg-Pmn4TYuWbSf-wS5DXNSuJcw2-BJfhvGJ-6Y_u8AdPesI00pTgI8/%E4%BA%91%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%9A%E7%A7%9F%E6%88%B7.png?psid=1" class="fancybox" data-fancybox-group="group" target="_blank"><img src="https://01z42g.dm2302.livefilestore.com/y2pzWmlH7Wqj5s6IOAeiXKox3ekow6tL9P5WT-uZpFwuh0DsFxac7fikAg-Pmn4TYuWbSf-wS5DXNSuJcw2-BJfhvGJ-6Y_u8AdPesI00pTgI8/%E4%BA%91%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%A4%9A%E7%A7%9F%E6%88%B7.png?psid=1" alt="多租户云平台设计" width="960" height="720"></a></p>
 <p>（这里的设计思路也包含了有的租户要求独享资源的场景）</p>
-<h3 id="b3_solo_h3_9">总结</h3>
+<h3 id="toc_h3_9">总结</h3>
 <ul>
 <li>租户和客户的概念类似</li>
 <li>对多租户的支持我们一般指的是应用对多租户的支持</li>
@@ -251,7 +253,7 @@ bold;">Sym</span></a>
 <li>使用命名空间进行隔离实现抽象</li>
 <li>租户到命名空间的映射可由平台集成</li>
 </ul>
-<h3 id="b3_solo_h3_10">参考</h3>
+<h3 id="toc_h3_10">参考</h3>
 <ul>
 <li><a href="http://zh.wikipedia.org/wiki/%E5%A4%9A%E7%A7%9F%E6%88%B7" target="_blank">Wikipedia：多租户技术</a></li>
 <li><a href="http://wiki.mbalib.com/wiki/%E5%AE%A2%E6%88%B7" target="_blank">客户的概念</a></li>
@@ -260,7 +262,8 @@ bold;">Sym</span></a>
 <li><a href="https://developers.google.com/appengine/docs/java/multitenancy/" target="_blank">GAE 多租户支持</a></li>
 </ul>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -278,37 +281,37 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">什么是租户</a>
+            <a href="#toc_h3_0">什么是租户</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">为什么需要多租户支持</a>
+            <a href="#toc_h3_1">为什么需要多租户支持</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">多租户场景举例</a>
+            <a href="#toc_h4_2">多租户场景举例</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">多租户支持</a>
+            <a href="#toc_h3_3">多租户支持</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">一种租户模型</a>
+            <a href="#toc_h4_4">一种租户模型</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">应用多租户</a>
+            <a href="#toc_h3_5">应用多租户</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">命名空间</a>
+            <a href="#toc_h3_6">命名空间</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">隔离的实现</a>
+            <a href="#toc_h4_7">隔离的实现</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">一种平台设计</a>
+            <a href="#toc_h3_8">一种平台设计</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">总结</a>
+            <a href="#toc_h3_9">总结</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_10">参考</a>
+            <a href="#toc_h3_10">参考</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -334,7 +337,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -376,19 +379,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -425,7 +429,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1399968489552",
@@ -445,4 +449,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 309ms, 2020/01/18 20:44:27 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 195ms, 2020/03/25 10:29:37 -->

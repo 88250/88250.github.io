@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>C语言中级 - D 的个人博客</title><meta name="description" content="以下转自一位学长的C语言笔记。。。。 有些是从其他资料里找的。希望对大家有用。1.表达式的值：表达式有表达式的值，它是无名的，短暂的。2.case 常量不可以是运算3.数据区栈,静态区,堆和代码区4.sizeof与数组下边的说明不考虑机器或者平台等因素.一.int i[10];int *pp=i;上边sizeofi为40.但是sizeofp是4.原因:数组名不是指针. 二.数组的大小:sizeofisizeofi[0];前者为40,后者为4,于是就是10个.三.如果把数组名作为参数传给函数,那么函数的形参一定是指针了.于是在函数内就无法算出来数组的大小了.因为sizeof这个参数是4.所以我觉...."/><meta property="og:description" content="以下转自一位学长的C语言笔记。。。。 有些是从其他资料里找的。希望对大家有用。1.表达式的值：表达式有表达式的值，它是无名的，短暂的。2.case 常量不可以是运算3.数据区栈,静态区,堆和代码区4.sizeof与数组下边的说明不考虑机器或者平台等因素.一.int i[10];int *pp=i;上边sizeofi为40.但是sizeofp是4.原因:数组名不是指针. 二.数组的大小:sizeofisizeofi[0];前者为40,后者为4,于是就是10个.三.如果把数组名作为参数传给函数,那么函数的形参一定是指针了.于是在函数内就无法算出来数组的大小了.因为sizeof这个参数是4.所以我觉...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="C语言中级 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2006/12/15/1166225280000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="C语言中级 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2006/12/15/1166225280000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>C语言中级 - D 的个人博客</title><meta name="description" content="以下转自一位学长的C语言笔记。。。。 有些是从其他资料里找的。希望对大家有用。1.表达式的值：表达式有表达式的值，它是无名的，短暂的。2.case 常量不可以是运算3.数据区栈,静态区,堆和代码区4.sizeof与数组下边的说明不考虑机器或者平台等因素.一.int i[10];int *pp=i;上边sizeofi为40.但是sizeofp是4.原因:数组名不是指针. 二.数组的大小:sizeofisizeofi[0];前者为40,后者为4,于是就是10个.三.如果把数组名作为参数传给函数,那么函数的形参一定是指针了.于是在函数内就无法算出来数组的大小了.因为sizeof这个参数是4.所以我觉...."/><meta property="og:description" content="以下转自一位学长的C语言笔记。。。。 有些是从其他资料里找的。希望对大家有用。1.表达式的值：表达式有表达式的值，它是无名的，短暂的。2.case 常量不可以是运算3.数据区栈,静态区,堆和代码区4.sizeof与数组下边的说明不考虑机器或者平台等因素.一.int i[10];int *pp=i;上边sizeofi为40.但是sizeofp是4.原因:数组名不是指针. 二.数组的大小:sizeofisizeofi[0];前者为40,后者为4,于是就是10个.三.如果把数组名作为参数传给函数,那么函数的形参一定是指针了.于是在函数内就无法算出来数组的大小了.因为sizeof这个参数是4.所以我觉...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="C语言中级 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2006/12/15/1166225280000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="C语言中级 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2006/12/15/1166225280000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="破解QQ键盘保护的方法" href="https://88250.github.io/articles/2006/12/13/1165969260000.html">
             <link rel="next" title="VC++ 2005下Debug / Release的问题" href="https://88250.github.io/articles/2006/12/29/1167431760000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -128,7 +130,7 @@ bold;">Sym</span></a>
      data-title="C语言中级"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2006/12/15/1166225280000.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -159,7 +161,8 @@ bold;">Sym</span></a>
                 <p>以下转自一位学长的C语言笔记。。。。</p>
 <p>有些是从其他资料里找的。希望对大家有用。<br><br>1.表达式的值：表达式有表达式的值，它是无名的，短暂的。<br>2.case 常量(不可以是运算)<br>3.数据区(栈,静态区,堆)和代码区<br>4.sizeof与数组(下边的说明不考虑机器或者平台等因素).<br>一.<br>&nbsp;&nbsp;int i[10];<br>&nbsp;&nbsp;int *p<br>&nbsp;&nbsp;p=i;<br>&nbsp;&nbsp;上边sizeof(i)为40.但是sizeof(p)是4.原因:数组名不是指针.<br>&nbsp; &nbsp;<br>二.<br>&nbsp;&nbsp;数组的大小:<br>&nbsp;&nbsp;sizeof(i)/sizeof(i[0]);<br>&nbsp;&nbsp;前者为40,后者为4,于是就是10个.<br>三.<br>&nbsp;&nbsp;如果把数组名作为参数传给函数,那么函数的形参一定是指针了.于是在函数内就无法算出来数组的大小了.因为sizeof(这个参数)是4.所以我觉得很多函数需要传size进去.而不是函数内计算大小.<br>5.const<br><br>const int a;<br>int const a;<br>const int *a;<br>int * const a;<br>int const * a const;<br>前两个的作用是一样：a是一个常整型数。第三个意味着a是一个指向常整型数的指针（也就是，整型数是不可修改的，但指针可以）。第四个意思a是一个指向整型数的常指针（也就是说，指针指向的整型数是可以修改的，但指针是不可修改的）。最后一个意味着a是一个指向常整型数的常指针（也就是说，指针和所指向的整型数都是不可修改的）。<br><br>6.typedef的陷阱：<br><br>&nbsp; &nbsp; typedef&nbsp;&nbsp;char * pstr;<br>&nbsp; &nbsp; /*若我们这样使用：*/<br>&nbsp; &nbsp; int mystrcmp(const pstr, const pstr); <br>&nbsp; &nbsp; /*我们希望表达的是：*/<br>&nbsp; &nbsp; int mystrcmp( const char*, const char* )；<br>&nbsp; &nbsp; /*（即 2个指向常量的char指针）*/<br>&nbsp; &nbsp; /*可它被解释为：<br>&nbsp; &nbsp; int mystrcmp( char* const, char* const )&nbsp;&nbsp;；<br>&nbsp; &nbsp; /*（2个指向char的常指针）*/<br><br>分析：<br>const修饰的是pstr，而pstr被定义为char *，而不是char。<br><br><br>应修改为： <br>&nbsp; &nbsp; &nbsp; &nbsp; typedef const char* cpstr;<br>&nbsp; &nbsp; &nbsp; &nbsp; int myctrcmp( cpstr, cpstr);<br><br><br><br><br><br>7.复杂指针解析<br>&nbsp;&nbsp;比如int (*(*func)[5][6])[7][8];<br>&nbsp;&nbsp;func是指向三维数组的指针，这类数组的大元素是具有5X6个int元素的二维数组，而指向三维数组的指针又是另一个三维指针数组的元素。<br><br>8.为什么会有匿名结构体呢?<br>&nbsp;&nbsp;为了不想让其他人再声明该类型的变量.<br>9.struct的大小<br>&nbsp;&nbsp;struct{<br>&nbsp; &nbsp; char ch;<br>&nbsp; &nbsp; int i;<br>&nbsp; &nbsp; float f;<br>&nbsp; &nbsp; char ch2;<br>&nbsp;&nbsp;}a;<br>&nbsp;&nbsp;struct{<br>&nbsp; &nbsp; char ch;<br>&nbsp; &nbsp; char ch2;<br>&nbsp; &nbsp; float f;<br>&nbsp; &nbsp; int i;<br>&nbsp;&nbsp;}b;<br><br>&nbsp; &nbsp;sizeof(a)==16<br>&nbsp; &nbsp;sizeof(b)==12<br>&nbsp; &nbsp;为什么成员一样,但是顺序不同,占的空间不一样呢?<br>&nbsp; &nbsp;a的存储:ch,_,_,_(补了三个字节),i,float f,ch2,_,_,_<br>&nbsp; &nbsp;b的存储:ch,ch2,_,_f,i<br>&nbsp; &nbsp;得出结论,用成员中占最大字节的类型为单位,然后填充变量.要是填得下就填,填不下就新找个该单位填.如b的存储ch,ch2,放到四字节的内存,还空两个位置.<br>&nbsp; &nbsp;再一个结论:声明struct 的时候要注意成员的先后顺序.<br>10.malloc和calloc<br>&nbsp; &nbsp;一.malloc(大小),calloc(个数,每个的大小)用哪个更好?<br>&nbsp; &nbsp;&nbsp; &nbsp;用calloc好.<br>&nbsp; &nbsp;&nbsp; &nbsp;原因:因为大小虽然可以个数*每个的大小得出来.但是要使这个值很大很大怎么办?所以分开写(calloc)比计算这个大小(malloc)要好.这个原因是个人认为.但是应该用calloc的结论非个人认为.<br>&nbsp; &nbsp;二.malloc(0)<br>&nbsp; &nbsp;&nbsp; &nbsp;虽然申请0大小的内存,但是结果是malloc返回的结果并不等于NULL,就是说它是有返回内存的.有多大?忘了...<br><br>11.FILE指针<br>一.<br>&nbsp; &nbsp; 当使用文件指针的时候,指针指的是一个结构体,该结构体除了包含各种各样的和该文件相关的信息,还指着一个buffer,而该buffer和文件又有一个有时读入有时写入的流.<br>&nbsp; &nbsp; 就是说,fopen,不单单返回了一个文件指针,而是构建了整个读取文件的环境.<br>二.文件的文本方式与二进制方式.<br>&nbsp; &nbsp;假设123,文本方式用每个字的ASCII值表示'49','50','51'<br>&nbsp; &nbsp;二进制方式则一个字节就可以表示了1111011.<br>&nbsp; &nbsp;<br>&nbsp; &nbsp;使用场合:一个是方便人类,一个方便计算机<br><br>&nbsp; &nbsp;另外,附一个ASCII编码表的链接<a href="http://www.blabla.cn/ref/ascii.html" target="_blank">http://www.blabla.cn/ref/ascii.html</a><br><br>12.预处理<br>一.<br>不要忽视宏定义中的空格：<br>#define f&nbsp;&nbsp;(x) (x) +1 //实际上是把f 定义成了(x) (x)+1 <br><br>对于不带参的宏，若宏值多于一项，一定要使用括号<br>#define MAX (M+N)<br>要给每个参数加上括号，否则可能影响计算的优先级<br>#define abs(x)&nbsp;&nbsp;(x&gt;=0)?x:-x<br>z =abs(a+b); /*相当于 z= (a+b&gt;=0)?a+b:-a+b<br>//修改后：<br>#define abs(x) ((x)&gt;=0?(x): -(x))<br>尽量用typedef而不是宏定义去定义类型。<br>&nbsp; &nbsp;<br>二. <br>用typedef和宏都可以定义新类型.那么哪个更好.<br>答:typedef更好.<br>原因:int* a,b;&nbsp; &nbsp;a和b的类型,a是指针,b是整形.同样的,用宏定义出来的新类型,使用的时候也会出现这样不知道是新类型指针还是新类型的情况.<br><br>三.<br>由于头文件包含可以嵌套，那么C文件就有可能多次包含同一个头文件，就可能出现重复定义的问题<br>通过条件编译开关来避免重复包含<br>例如<br>#ifndef&nbsp;&nbsp;__headerfileXXX__<br>&nbsp; &nbsp; ＃define&nbsp;&nbsp;__headerfileXXX__<br>&nbsp; &nbsp;…<br>&nbsp; &nbsp; 文件内容<br>&nbsp; &nbsp;…<br>#endif<br>四.<br>#include “xxxx.h”<br>到本级目录去找和到系统默认目录去找。<br>#include &lt;xxxx.h&gt;<br>到系统默认目录。<br><br>13.常用库函数(总结略,举assert为例)<br>诊断函数（assert.h）<br>测试一个条件test ，当结果为假时使程序终止，为真时没反应 。<br><br>不要将assert函数用于程序的执行逻辑中，它仅用于调试。<br>即：程序的 if( 条件 ) 语句不可用 assert( 条件 ) 来替代。<br><br>如果在程序开始加入代码：<br>#define&nbsp;&nbsp;NDEBUG&nbsp; &nbsp; &nbsp; &nbsp; <br>则该程序中的assert函数全部失效，不必逐一删除。(有待验证.因为我试验了怎么不管用)<br><br>14.关键字static的作用是什么？<br>在C语言中，关键字static有三个明显的作用：<br>&nbsp;&nbsp;在函数体，一个被声明为静态的变量在这一函数被调用过程中维持其值不变。<br>&nbsp;&nbsp;在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所用函数访问，但不能被模块外其它函数访问。它是一个本地的全局变量。<br>&nbsp;&nbsp;在模块内，一个被声明为静态的函数只可被这一模块内的其它函数调用。那就是，这个函数被限制在声明它的模块的本地范围内使用。<br><br>15.竟然允许这样使用指针：<br>#include "stdio.h"<br>void main()<br>{<br>&nbsp; &nbsp; &nbsp; &nbsp; int a = 1234;<br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;// 0x0012ff7c是&amp;a的值。<br>&nbsp; &nbsp; &nbsp; &nbsp; int *p =( (int*)0x0012ff7c );<br>&nbsp; &nbsp; &nbsp; &nbsp; printf("&amp;a = %x\n",&amp;a);<br>&nbsp; &nbsp; &nbsp; &nbsp; printf("a = %d\n*p = %d\n",a,*p);<br>}<br><br>16.最后.留个题目.<br>&nbsp; &nbsp;不申请新的空间,对数组进行逆序.&nbsp;</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -197,7 +200,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -239,19 +242,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -285,7 +289,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1166225280000",
@@ -305,4 +309,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 121ms, 2020/01/18 20:44:38 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 198ms, 2020/03/25 10:29:48 -->

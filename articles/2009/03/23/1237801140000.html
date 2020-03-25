@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>再论 Java 应用中的“领域建模” - D 的个人博客</title><meta name="description" content="再论 Java 应用中的领域建模 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 再论 Java 应用中的领域建模 相关术语与概念 POJO（Plain Old Java Object） 领域模型（Domain Model） 各种风格（Style）的领域模型 贫血的领域模型（Anemic Domain Model） 富领域模型（Rich Domain Model） 公认的问题 EJB 3 ＆ JPA Domain Logic ...."/><meta property="og:description" content="再论 Java 应用中的领域建模 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 再论 Java 应用中的领域建模 相关术语与概念 POJO（Plain Old Java Object） 领域模型（Domain Model） 各种风格（Style）的领域模型 贫血的领域模型（Anemic Domain Model） 富领域模型（Rich Domain Model） 公认的问题 EJB 3 ＆ JPA Domain Logic ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="再论 Java 应用中的“领域建模” - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/03/23/1237801140000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="再论 Java 应用中的“领域建模” - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/03/23/1237801140000.html">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>再论 Java 应用中的“领域建模” - D 的个人博客</title><meta name="description" content="再论 Java 应用中的领域建模 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 再论 Java 应用中的领域建模 相关术语与概念 POJO（Plain Old Java Object） 领域模型（Domain Model） 各种风格（Style）的领域模型 贫血的领域模型（Anemic Domain Model） 富领域模型（Rich Domain Model） 公认的问题 EJB 3 ＆ JPA Domain Logic ...."/><meta property="og:description" content="再论 Java 应用中的领域建模 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 再论 Java 应用中的领域建模 相关术语与概念 POJO（Plain Old Java Object） 领域模型（Domain Model） 各种风格（Style）的领域模型 贫血的领域模型（Anemic Domain Model） 富领域模型（Rich Domain Model） 公认的问题 EJB 3 ＆ JPA Domain Logic ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="再论 Java 应用中的“领域建模” - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/03/23/1237801140000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="再论 Java 应用中的“领域建模” - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/03/23/1237801140000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="2009 中国软件技术英雄会" href="https://88250.github.io/articles/2009/03/12/1236862440000.html">
             <link rel="next" title="与 CSDN 社区相伴的点滴" href="https://88250.github.io/articles/2009/03/26/1238099880000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -138,7 +140,7 @@ bold;">Sym</span></a>
      data-title="再论 Java 应用中的“领域建模”"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/articles/2009/03/23/1237801140000.html"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -166,7 +168,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h1 id="b3_solo_h1_0"><a name="_Java_8586819757090429_2534334" target="_blank"></a> 再论 Java 应用中的“领域建模”</h1>
+                <h1 id="toc_h1_0"><a name="_Java_8586819757090429_2534334" target="_blank"></a> 再论 Java 应用中的“领域建模”</h1>
 <p>&nbsp;</p>
 <p style="font-family: Verdana;">转载请保留作者信息：</p>
 <p style="font-family: Verdana;">作者：88250</p>
@@ -193,17 +195,17 @@ bold;">Sym</span></a>
 </ol></li>
 </ol></div>
 <p><br> <br> 最近又重新整理了一下项目中领域模型建模的思路。记得范凯（<a title="robbin" href="http://robbin.javaeye.com/" target="_blank">robbin</a> ） 在 2005 年时候总结的四种风格的“领域模型”及其一些变种相信大家的耳熟能详了。以现在的观点来看，不管其划分是否合理，是否适合任何项目，讨论都是有意义的。从 2004 年到 2008 年来领域模型的话题一直都是各个技术论坛、邮件列表必讨论的话题之一，这里我只是想就‘领域模型建模’这个问题发表一下我的观点，相信讨论还会继续下去，这才是本质——演化。这里的观点都是基于 Java 环境上的应用展开的，其他语言环境另当别论。</p>
-<h2 id="b3_solo_h2_1"><a name="1_4989230424423763_48548911551" target="_blank"></a> 相关术语与概念 </h2>
+<h2 id="toc_h2_1"><a name="1_4989230424423763_48548911551" target="_blank"></a> 相关术语与概念 </h2>
 <p>首先，让我们澄清一些相关术语与概念。很多时候发现大家讨论问题前都没有一个共同的基本假设作为前提，导致了问题越讨论越混乱，引入的其他问题越来越多。这里，我先对本文涉及的几个非常基本的概念做个统一的假设。</p>
-<h3 id="b3_solo_h3_2"><a name="1_1_POJO_Plain_Old_Java_Object" target="_blank"></a> POJO（<a title="Plain Old Java Object" href="http://www.martinfowler.com/bliki/POJO.html" target="_blank">Plain Old Java Object</a> ） </h3>
+<h3 id="toc_h3_2"><a name="1_1_POJO_Plain_Old_Java_Object" target="_blank"></a> POJO（<a title="Plain Old Java Object" href="http://www.martinfowler.com/bliki/POJO.html" target="_blank">Plain Old Java Object</a> ） </h3>
 <p>POJO 是一个简单的、常规的 Java 对象，它包含业务逻辑处理或持久化逻辑等，但不是 JavaBean、EntityBean 等，不具有任何特殊角色并且不继承/不实现任何其它 Java 框架的类或接口（java.io.Serializable 除外）。例如下面这个类就是一个 POJO，注意业务逻辑方法：<br> <span style="font-family: Courier New;"><span style="font-size: xx-small;"><br> <br> /**<br> &nbsp;* A POJO user description.<br> &nbsp;* @author <a href="mailto:DL88250@gmail.com" target="_blank">88250</a> <br> &nbsp;* @version 1.0.0.0, Jan 15, 2009<br> &nbsp;*/<br> public class User implements Serializable {<br> <br> &nbsp;&nbsp;&nbsp; /**<br> &nbsp;&nbsp;&nbsp;&nbsp; * user name.<br> &nbsp;&nbsp;&nbsp;&nbsp; */<br> &nbsp;&nbsp;&nbsp; private String name;<br> <br> &nbsp;&nbsp;&nbsp; /**<br> &nbsp;&nbsp;&nbsp;&nbsp; * Default constructor.<br> &nbsp;&nbsp;&nbsp;&nbsp; */<br> &nbsp;&nbsp;&nbsp; public User() {<br> &nbsp;&nbsp;&nbsp; }<br> <br> <span style="color: #0b5394;">&nbsp;&nbsp;&nbsp; /**</span> <br style="color: #0b5394;"> <span style="color: #0b5394;">&nbsp;&nbsp;&nbsp;&nbsp; * User login business logic.</span> <br style="color: #0b5394;"> <span style="color: #0b5394;">&nbsp;&nbsp;&nbsp;&nbsp; */</span> <br style="color: #0b5394;"> <span style="color: #0b5394;">&nbsp;&nbsp;&nbsp; public void login() {</span> <br style="color: #0b5394;"> <span style="color: #0b5394;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ....</span> <br style="color: #0b5394;"> <span style="color: #0b5394;">&nbsp;&nbsp;&nbsp; }</span> <br> <br> &nbsp;&nbsp;&nbsp; /**<br> &nbsp;&nbsp;&nbsp;&nbsp; * Gets the name of this user.<br> &nbsp;&nbsp;&nbsp;&nbsp; * @return the value of <code>name</code> <br> &nbsp;&nbsp;&nbsp;&nbsp; */<br> &nbsp;&nbsp;&nbsp; public String getName() {<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br> &nbsp;&nbsp;&nbsp; }<br> <br> &nbsp;&nbsp;&nbsp; /**<br> &nbsp;&nbsp;&nbsp;&nbsp; * Sets the name of this user.<br> &nbsp;&nbsp;&nbsp;&nbsp; * @param name new value of <code>name</code> <br> &nbsp;&nbsp;&nbsp;&nbsp; */<br> &nbsp;&nbsp;&nbsp; public void setName(String name) {<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br> &nbsp;&nbsp;&nbsp; }<br> }</span> <br> <br> </span> 从 OO 的角度看，这是一个纯粹的 Java 类，它拥有状态与行为，这也就构成了这个 User 类的职责。可惜现在 POJO 这个词简直是滥用啊，大家都认为只要描述的是一个领域<span style="color: #0b5394;">实体，一个纯数据类就是 POJO 了<span style="color: #000000;">。</span> </span></p>
-<h3 id="b3_solo_h3_3"><a name="1_2_Domain_Model_8521481592546" target="_blank"></a> 领域模型（<a title="Domain Model" href="http://martinfowler.com/eaaCatalog/domainModel.html" target="_blank">Domain Model</a> ） </h3>
+<h3 id="toc_h3_3"><a name="1_2_Domain_Model_8521481592546" target="_blank"></a> 领域模型（<a title="Domain Model" href="http://martinfowler.com/eaaCatalog/domainModel.html" target="_blank">Domain Model</a> ） </h3>
 <p>根据 Martin 大叔的解释，领域模型就是统一了<strong><span style="color: #cc0000;">行为</span> </strong> 与<strong><span style="color: #38761d;">数据</span> </strong> 的<span style="color: #741b47;">对象模型</span> 。从 OO 的角度上看是没有任何难点与疑问的，但是开始对具体项目着手进行 OO 设计的时候问题就很多了，后面将阐述一些在实施领域模型建模时“公认”的问题。再来看看 Wikipedia 上关于<a title="领域模型的定义" href="http://en.wikipedia.org/wiki/Domain_model" target="_blank">领域模型的解释</a> ，其中涉及到了“领域层（<a title="Domain Layer" href="http://en.wikipedia.org/wiki/Domain_layer" target="_blank">Domain Layer</a> ） ”这个概念，并且说明了<span style="color: #674ea7;"> DDD 中的领域模型是领域层的一个部分</span> 。如下图：</p>
 <p>&nbsp;</p>
 <p><img style="width: 648px; height: 469.469px;" src="https://pyqdbw-dm2305.files.1drv.com/y2pE2v1_U2G3ghy9FbBRCup9vhnPo1xSPmjNMoGQrPxZgL_tzw8sLOXP71DmkLaEJdDlctorsPDZAGdk7snzYbjrlkHxH-el35beZeYJJ3edGbh8ZXI51FUylLOTGraFfj_MVZaoop-d6yhA2FCe9VQgw/domain.png?psid=1" alt="domain" width="573" height="470"></p>
 <p>&nbsp;</p>
 <p>根据 Wikipedia 上的解释，领域层与<a title="业务层" href="http://en.wikipedia.org/wiki/Business_layer" target="_blank">业务层</a> 是同一个概念，这样划分的确是纯粹的 DDD。不过，这与 JavaEE 规范中的分层理念有一点冲突，与 EJB 3 编程模型有着明显的冲突。</p>
-<h3 id="b3_solo_h3_4"><a name="1_4_Style_6844703077777617_167" target="_blank"></a> 各种风格（Style）的领域模型&nbsp; </h3>
+<h3 id="toc_h3_4"><a name="1_4_Style_6844703077777617_167" target="_blank"></a> 各种风格（Style）的领域模型&nbsp; </h3>
 <p>这里的“风格”是按照 Martin 的观点进行阐述的。在<strong><a title="以往的讨论" href="http://www.javaeye.com/topic/17579" target="_blank">以往的讨论</a> </strong> 中，有四种可行的模型：</p>
 <ul>
 <li>失血模型</li>
@@ -216,24 +218,24 @@ bold;">Sym</span></a>
 <li>贫血的领域模型（Anemic Domain Model）</li>
 <li>富领域模型（Rich Domain Model）</li>
 </ul>
-<h4 id="b3_solo_h4_5"><a name="3_1_Anemic_Domain_Model_718666" target="_blank"></a> 贫血的领域模型（<a title="Anemic Domain Model" href="http://www.martinfowler.com/bliki/AnemicDomainModel.html" target="_blank">Anemic Domain Model</a> ）</h4>
+<h4 id="toc_h4_5"><a name="3_1_Anemic_Domain_Model_718666" target="_blank"></a> 贫血的领域模型（<a title="Anemic Domain Model" href="http://www.martinfowler.com/bliki/AnemicDomainModel.html" target="_blank">Anemic Domain Model</a> ）</h4>
 <p>贫血的领域模型就是在领域对象中<strong><span style="color: #ff0000;">只</span> </strong> 包含了 accessors 方法，默认的构造器，不包含任何逻辑处理。而逻辑处理放置于 xxxManager 中，使用事务脚本（<a title="Transaction Script" href="http://martinfowler.com/eaaCatalog/transactionScript.html" target="_blank">Transaction Script</a> ，<a title="PoEAA" href="http://martinfowler.com/books.html#eaa" target="_blank">PoEAA</a> ）进行操作。</p>
 <p>&nbsp;</p>
-<h4 id="b3_solo_h4_6"><a name="1_3_2_Rich_Domain_Model_032032_8507447456431984" target="_blank"></a> 富领域模型（<a title="Rich Domain Model" href="http://martinfowler.com/bliki/AnemicDomainModel.html" target="_blank">Rich Domain Model</a> ） </h4>
+<h4 id="toc_h4_6"><a name="1_3_2_Rich_Domain_Model_032032_8507447456431984" target="_blank"></a> 富领域模型（<a title="Rich Domain Model" href="http://martinfowler.com/bliki/AnemicDomainModel.html" target="_blank">Rich Domain Model</a> ） </h4>
 <p>富领域模型就是 DDD 中所描述的模型，完全的 <strong>OO Concerns</strong> 。</p>
-<h2 id="b3_solo_h2_7"><a name="2_9860244643874926_69775184362" target="_blank"></a> “公认”的问题&nbsp;</h2>
-<h3 id="b3_solo_h3_8"><a name="2_1_EJB_3_8413102627609017_543_1669382981823745" target="_blank"></a> EJB 3 ＆ JPA </h3>
+<h2 id="toc_h2_7"><a name="2_9860244643874926_69775184362" target="_blank"></a> “公认”的问题&nbsp;</h2>
+<h3 id="toc_h3_8"><a name="2_1_EJB_3_8413102627609017_543_1669382981823745" target="_blank"></a> EJB 3 ＆ JPA </h3>
 <p>众所周知，EJB 3 + JPA 的编程模型是典型的贫血模型，也是 JavaEE 所推广的<strong><em>最佳实践</em> </strong> ，唯一正统的编程模型。 在这个模型中，EJBs 扮演了业务逻辑处理的角色，在分层设计中处于服务层 / 业务层。而 JPA entities 则扮演了典型的<strong>纯稚数据类</strong> ，其行为完全由 EJBs 负责。这些也许与早先的 SSH 这样一个<strong><span style="color: #b45f06;">无状态</span> </strong> 框架组合那么深入人心密切相关吧。目前来说，Seam 框架 / WebBeans 规范是解决客户端与服务端状态问题的较好实现与规范。另外，Seam 中的 Entity 也是可以作为 Component 而 inject / outject 的，所以 Seam <span style="color: #990000;">有在尝试</span> 提供一个 DDD 的框架给开发者。</p>
-<h3 id="b3_solo_h3_9"><a name="2_Domain_Logic_v_s_Business_Lo" target="_blank"></a> Domain Logic vs Business Logic</h3>
+<h3 id="toc_h3_9"><a name="2_Domain_Logic_v_s_Business_Lo" target="_blank"></a> Domain Logic vs Business Logic</h3>
 <p>如果你是一个 DDD 的纯粹拥护者，不存在区分领域逻辑与业务逻辑，统称为领域逻辑。下面这个划分领域逻辑与服务逻辑是针对类 EJB 3 + JPA 纯粹用户者的。<br> Domain 业务逻辑（Domain Logic）与 Service 业务逻辑（Business Logic）划分的原则:</p>
 <ol>
 <li>根据是否依赖持久化逻辑划分<br> 领域模型只包含不<span style="color: #ff0000;">依赖于持久化</span> 的领域逻辑，而那些依赖持久化的领域逻辑应该被分离到 Service 层</li>
 <li>使用 Rod Johnson 的"case by case"原则 <br> 可重用度高的，和 domain object <span style="color: #ff0000;">状态密切关联</span> 的放在 domain 中，可重用度低的，和 domain object 状态没有密切关联的放在 Service 中</li>
 </ol>
 <p>这样，貌似是解决了 Java 应用中使用“正统”方式（JavaEE 规范）实现领域驱动开发。但是，这样不觉得过于复杂和画蛇添足吗？<br> <br> <a name="4_Java_4529669216109383_700722_4885585786669472" target="_blank"></a></p>
-<h2 id="b3_solo_h2_10"><a name="5_04324820484365799_7262811230" target="_blank"></a> 结论 </h2>
+<h2 id="toc_h2_10"><a name="5_04324820484365799_7262811230" target="_blank"></a> 结论 </h2>
 <p>领域模型驱动的设计（DDD）是需要开发团队在特定行业中<strong>积累</strong> 到一定的时候才能真正做到的，这涉及到了企业（客户）的核心价值实现与业务实现<span style="color: #cc0000;">重用</span> ，如果不是本着这个<strong>最终目的</strong> ，Java 下的 DDD 慎用。在建模你的 Java 项目时，一定要对项目的 Scope 做好分析，认真做好技术选型。一般来说，贫血模型（Anemic Domain Model）是最容易设计和实现的，也足够满足一般 Java Web 项目了。而领域模型（Rich Domain Model）是用在复杂 JavaEE 项目上的（例如实施 SOA 时），切勿杀鸡用牛刀 :-)</p>
-<h2 id="b3_solo_h2_11"><a name="4_7478917358259445_58122038122_6494631905789775" target="_blank"></a> 参考列表 </h2>
+<h2 id="toc_h2_11"><a name="4_7478917358259445_58122038122_6494631905789775" target="_blank"></a> 参考列表 </h2>
 <p>下面的文章是精华中的精华，有兴趣、时间的朋友一定不要错过 :-)</p>
 <ul>
 <li><a title="Anemic Domain Model" href="http://martinfowler.com/bliki/AnemicDomainModel.html" target="_blank">Anemic Domain Model</a></li>
@@ -245,7 +247,8 @@ bold;">Sym</span></a>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -263,40 +266,40 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h1">
-            <a href="#b3_solo_h1_0">再论 Java 应用中的“领域建模”</a>
+            <a href="#toc_h1_0">再论 Java 应用中的“领域建模”</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">相关术语与概念</a>
+            <a href="#toc_h2_1">相关术语与概念</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">POJO（Plain Old Java Object ）</a>
+            <a href="#toc_h3_2">POJO（Plain Old Java Object ）</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">领域模型（Domain Model ）</a>
+            <a href="#toc_h3_3">领域模型（Domain Model ）</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">各种风格（Style）的领域模型</a>
+            <a href="#toc_h3_4">各种风格（Style）的领域模型</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">贫血的领域模型（Anemic Domain Model ）</a>
+            <a href="#toc_h4_5">贫血的领域模型（Anemic Domain Model ）</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">富领域模型（Rich Domain Model ）</a>
+            <a href="#toc_h4_6">富领域模型（Rich Domain Model ）</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">“公认”的问题</a>
+            <a href="#toc_h2_7">“公认”的问题</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">EJB 3 ＆ JPA</a>
+            <a href="#toc_h3_8">EJB 3 ＆ JPA</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">Domain Logic vs Business Logic</a>
+            <a href="#toc_h3_9">Domain Logic vs Business Logic</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_10">结论</a>
+            <a href="#toc_h2_10">结论</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_11">参考列表</a>
+            <a href="#toc_h2_11">参考列表</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -322,7 +325,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -364,19 +367,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -413,7 +417,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1237801140000",
@@ -433,4 +437,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 169ms, 2020/01/18 20:44:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 137ms, 2020/03/25 10:29:42 -->

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>即时消息协议预研 - D 的个人博客</title><meta name="description" content="选取了主流的四种即时消息协议作为预研对象，分别描述了这四种消息技术的原理、适用场景以及限制。"/><meta property="og:description" content="选取了主流的四种即时消息协议作为预研对象，分别描述了这四种消息技术的原理、适用场景以及限制。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="即时消息协议预研 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/xmpp-simple-irc-psyc?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="即时消息协议预研 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/xmpp-simple-irc-psyc">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>即时消息协议预研 - D 的个人博客</title><meta name="description" content="选取了主流的四种即时消息协议作为预研对象，分别描述了这四种消息技术的原理、适用场景以及限制。"/><meta property="og:description" content="选取了主流的四种即时消息协议作为预研对象，分别描述了这四种消息技术的原理、适用场景以及限制。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="即时消息协议预研 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/xmpp-simple-irc-psyc?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="即时消息协议预研 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/xmpp-simple-irc-psyc">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="ActiveMQ JDBC 主从集群" href="https://88250.github.io/ActiveMQ-JDBC-Master-Slave">
             <link rel="next" title="MyBatis MySQL Oracle 分页插件" href="https://88250.github.io/mybatis-mysql-oracle-paging-plugin">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -140,7 +142,7 @@ bold;">Sym</span></a>
      data-title="即时消息协议预研"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/xmpp-simple-irc-psyc"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -170,14 +172,14 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p class="a">选取了主流的四种即时消息协议作为预研对象，分别描述了这四种消息技术的原理、适用场景以及限制。</p>
 <p class="a">&nbsp;</p>
-<h2 class="a" id="b3_solo_h2_0">XMPP</h2>
+<h2 class="a" id="toc_h2_0">XMPP</h2>
 <p>XMPP（<span>The Extensible Messaging and Presence Protocol，可扩展的消息通讯与呈现协议</span>），前身是开源即时消息协议 <a href="http://www.jabber.org/" target="_blank">Jabber</a>，现在已经被 IETF 标准化（<a href="http://www.ietf.org/rfc/rfc3920.txt" target="_blank">RFC 3920</a>）。</p>
 <p>应用非常广泛，可选择的实现很多，<a href="http://www.igniterealtime.org/projects/openfire/" target="_blank">Openfire</a> 是目前比较成熟的。</p>
 <p><img src="https://py8ifw.dm1.livefilestore.com/y1pIDQtf-tFsJZ_2e0f4a6C02OuBYE5Qr2WpFLYgQoc_wXaRB_vz13zpAoNPkbaY7KD6Sr7bqPtYwldqB6lQTV6Gq758-fbIQl8/xmpp.gif?psid=1" alt="XMPP" width="465" height="358"></p>
 <p>&nbsp;</p>
-<h2 class="a" id="b3_solo_h2_1">SIMPLE</h2>
+<h2 class="a" id="toc_h2_1">SIMPLE</h2>
 <p class="a">SIMPLE（SIP for Instant Messaging and Presence Leveraging Extensions，基于 SIP 的即时消息与呈现扩展），IBM/微软主推的即时消息协议，虽然 Java 有相关 JSRs（164、165）定义了接口，但没有找到适合的实现。</p>
-<p><img src="https://py8ifw.dm1.livefilestore.com/y1p4KVz3qLNvK7CoVUFkHOnnPMV0zNntw81J_c2uC5PDkoVycAhsBO-mFG_nbNwV1TNoPBO_UP6o738vPOvdVys_95bMuYHQanE/simple.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="SIMPLE" width="476" height="321"></p>
+<p><img src="https://py8ifw.dm1.livefilestore.com/y1p4KVz3qLNvK7CoVUFkHOnnPMV0zNntw81J_c2uC5PDkoVycAhsBO-mFG_nbNwV1TNoPBO_UP6o738vPOvdVys_95bMuYHQanE/simple.png?psid=1" alt="SIMPLE" width="476" height="321"></p>
 <p class="a">各实体功能如下：</p>
 <ul>
 <li>Presence Service：接收、存储和分发 presence information。Presence Service 既可以是一个物理实体上的 server，也可以只是 presentity 和 watcher 之间的直接通信。在具体实现中前者比较常见，后者是 P2P 的模式</li>
@@ -189,21 +191,22 @@ bold;">Sym</span></a>
 <li>Presence Protocol：定义了 Presentity 和 Presence Service，Watcher 和 Presence Service 之间交换消息的一组标准</li>
 <li>在具体的实现中最常见的是把 Presence Service 实现为一个 Presence Server，Presence User Agent 和 Presentity 组合在一起，Watcher 和 Watcher User Agent 组合在一起，由一个终端来同时支持这两种组合体，这样，一个终端就既能订阅别人的也能发布自己的 presence information</li>
 </ul>
-<h2 id="b3_solo_h2_2">IRC</h2>
+<h2 id="toc_h2_2">IRC</h2>
 <p class="a">IRC（Internet Relay Chat，互联网中继聊天协议），以服务器中转为原理进行消息转发，机制成熟稳定，应用广泛，可选择的实现较多。</p>
-<p class="a"><img src="https://py8ifw.dm1.livefilestore.com/y1pYk_HjXE41e-TbezFqQ9VdnWRBcaLlNfkC5_lIfnE7ZKOkLkV20-JdTwxV-3AIbyRetleM8LCZxXFOWV-WpaSmqbIaXbp03UN/irc.png?psid=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="IRC" width="545" height="155"></p>
+<p class="a"><img src="https://py8ifw.dm1.livefilestore.com/y1pYk_HjXE41e-TbezFqQ9VdnWRBcaLlNfkC5_lIfnE7ZKOkLkV20-JdTwxV-3AIbyRetleM8LCZxXFOWV-WpaSmqbIaXbp03UN/irc.png?psid=1" alt="IRC" width="545" height="155"></p>
 <p class="a">A作为客户端连接到了服务器 S1 的 ChannelX 频道，B 作为客户端连接到了服务器 S2 的 ChannelX 频道，此时 A 发消息后通过 S1 转发给 S2，然后 S2 有把消息发送给了 B。</p>
 <p class="a">其中频道是一个广播组，用户可以进入频道，也可以离开频道。当一个用户在频道里发消息时，频道里的其他所有用户都能够收到该消息。当第一个用户进入频道，频道被创建，当最后一个用户离开此频道时，频道被销毁。</p>
 <p class="a">在 IRC 服务器网络中，频道由这些服务器共同维护，频道相当于一条通信管道，将所有开通此项频道的服务器贯穿起来，消息在这个管道中流通。</p>
-<h2 class="a" id="b3_solo_h2_3">PSYC</h2>
+<h2 class="a" id="toc_h2_3">PSYC</h2>
 <p class="a">PSYC（Protocol for SYnchronous Conferencing，同步会话协议），设计用来取代 IRC，兼容 IRC/XMPP 客户端，据称其可以无限扩容，弥补 IRC/XMPP 中使用 s2s 后服务器网络拓扑膨胀时性能急剧下降的缺陷。</p>
 <p class="a">比较新，应用较少，可选择的实现较少。<a href="http://about.psyc.eu/Comparison" target="_blank">http://about.psyc.eu/Comparison</a>。</p>
-<h2 class="a" id="b3_solo_h2_4">结论</h2>
+<h2 class="a" id="toc_h2_4">结论</h2>
 <p class="a">可选择 XMPP 作为即时消息底层支持协议，Openfire 作为实现。</p>
 <p class="a">在单机 Openfire 不能满足用户数时可考虑使用 Openfire Connection Manager 模块增加客户端连接数；配置 Openfire 集群增加整体容量。</p>
 <p class="a">&nbsp;</p>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -221,19 +224,19 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">XMPP</a>
+            <a href="#toc_h2_0">XMPP</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">SIMPLE</a>
+            <a href="#toc_h2_1">SIMPLE</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">IRC</a>
+            <a href="#toc_h2_2">IRC</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">PSYC</a>
+            <a href="#toc_h2_3">PSYC</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">结论</a>
+            <a href="#toc_h2_4">结论</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -259,7 +262,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -301,19 +304,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -350,7 +354,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1363573079807",
@@ -370,4 +374,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 209ms, 2020/01/18 20:44:28 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 194ms, 2020/03/25 10:29:38 -->

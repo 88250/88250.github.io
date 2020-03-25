@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>消息推送技术 - D 的个人博客</title><meta name="description" content="消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等场景。 要实现消息推送机制，涉及两方面的内容： Web 层消息推送 服务层消息服务"/><meta property="og:description" content="消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等场景。 要实现消息推送机制，涉及两方面的内容： Web 层消息推送 服务层消息服务"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://88250.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://88250.github.io"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="消息推送技术 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/web-message-push?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/256/h/256/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="消息推送技术 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/web-message-push">        <link rel="stylesheet"
-              href="https://88250.github.io/skins/Bubble/css/base.css?1579351433357"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>消息推送技术 - D 的个人博客</title><meta name="description" content="消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等场景。 要实现消息推送机制，涉及两方面的内容： Web 层消息推送 服务层消息服务"/><meta property="og:description" content="消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等场景。 要实现消息推送机制，涉及两方面的内容： Web 层消息推送 服务层消息服务"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="消息推送技术 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/web-message-push?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="消息推送技术 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/web-message-push">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
             <link rel="prev" title="Fancybox 插件介绍" href="https://88250.github.io/b3log-solo-041-fancybox-plugin">
             <link rel="next" title="基于 Pushlets 的消息推送设计" href="https://88250.github.io/server-push-based-on-pushlets">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,15 +23,17 @@
             <h1 class="header__h1 fn__flex-inline">
                 <a href="https://88250.github.io" rel="start">D 的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">开源程序员，自由职业者</h2>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <div>
+                <!--
+<div>
 小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
 Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
 bold;">Wide</span></a><br/>
 黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
 bold;">Sym</span></a>
 </div>
+-->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -55,10 +57,10 @@ bold;">Sym</span></a>
             </svg>
 
             <div class="side__header">
-                <a href="https://88250.github.io" rel="start"><img class="side__logo" src="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    404 文章 <br>
+                    410 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -75,19 +77,19 @@ bold;">Sym</span></a>
                 </li>
                     <li>
                         <a href="/about" target="_self"><img
-                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png">关于我</a>
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
                     </li>
                     <li>
                         <a href="/my-github-repos" target="_self"><img
-                                class="page-icon" src="/images/github-icon.png">我的开源</a>
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
                     </li>
                     <li>
                         <a href="https://hacpai.com" target="_blank"><img
-                                class="page-icon" src="https://static.hacpai.com/images/favicon.png">黑客派</a>
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
                     </li>
                     <li>
                         <a href="https://b3log.org" target="_blank"><img
-                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png">B3log</a>
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
                     </li>
                 <li>
                     <a href="https://88250.github.io/categories.html">分类</a>
@@ -140,7 +142,7 @@ bold;">Sym</span></a>
      data-title="消息推送技术"
      data-blogtitle="D 的个人博客"
      data-url="https://88250.github.io/web-message-push"
-     data-avatar="https://img.hacpai.com/avatar/1353745196354_1572999872077.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
             <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
@@ -168,19 +170,19 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h1 dir="ltr" id="b3_solo_h1_0"><span>消息推送技术</span></h1>
-<h2 dir="ltr" id="b3_solo_h2_1"><span>消息推送</span></h2>
+                <h1 dir="ltr" id="toc_h1_0"><span>消息推送技术</span></h1>
+<h2 dir="ltr" id="toc_h2_1"><span>消息推送</span></h2>
 <p>消息推送是针对 Web 应用开发领域的技术，指服务端以主动方式将信息送达客户端。主要用于提升用户体验，避免用户刷新页面从服务端拉取数据。例如 Web 邮件中自动出现刚收到的邮件项，Web 即时通讯自动提示新到消息等应用场景。<strong><strong><br><br></strong></strong>要实现消息推送机制，涉及两方面的内容：</p>
 <ul>
 <li><span>Web 层消息推送</span></li>
 <li><span>服务层消息服务</span></li>
 </ul>
-<h2 dir="ltr" id="b3_solo_h2_2"><span>Web 层消息推送</span></h2>
-<h3 dir="ltr" id="b3_solo_h3_3"><span>套接字</span></h3>
+<h2 dir="ltr" id="toc_h2_2"><span>Web 层消息推送</span></h2>
+<h3 dir="ltr" id="toc_h3_3"><span>套接字</span></h3>
 <p dir="ltr">可以使用套接字接口进行全双工通讯。可以通过 Flash XMLSocket、Java Applet 技术实现。<br>但由于实现方案与厂商技术绑定过紧，不属于 Web 标准化范畴，并且存在一些限制（通讯端口开启安全、客户端插件），这里不进行描述。<strong><strong><br></strong></strong></p>
-<h3 dir="ltr" id="b3_solo_h3_4"><span>HTTP 请求轮询</span></h3>
+<h3 dir="ltr" id="toc_h3_4"><span>HTTP 请求轮询</span></h3>
 <p dir="ltr">目前的 Web 应用是基于 HTTP 协议的，其规定了请求-响应的处理模型，位于应用层的单工通讯模式使得纯粹意义上的服务端推送方式变得难以实现。<strong><strong><br><br></strong></strong>为了基于 HTTP 协议进行“推送”实现，可由客户端发起 HTTP 请求轮询，服务端在请求后返回响应。<br><br>根据轮询时间、请求处理方式，分为以下三种推。<strong><strong><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_5"><span>简单轮询</span></h4>
+<h4 dir="ltr" id="toc_h4_5"><span>简单轮询</span></h4>
 <p dir="ltr">客户端一般以定时方式发起请求，服务端处理后返回响应。</p>
 <p dir="ltr"><img title="简单轮询" src="https://public.sn2.livefilestore.com/y1pKG8qSIKx4nniHeaUQwfGkn7_AOS8GwVUrn63-xV6m5W6slIEvRMWLM8c13e6gqWmfcoNq-KPHaE_cSzsWYiPSg/simple-poll.png?psid=1" alt="简单轮询" width="440" height="263"></p>
 <ul>
@@ -188,51 +190,51 @@ bold;">Sym</span></a>
 <li><span>可根据应用场景调整轮询时间间隔</span></li>
 <li><span>服务端需要处理大量请求</span></li>
 </ul>
-<h4 dir="ltr" id="b3_solo_h4_6"><span>长轮询</span></h4>
+<h4 dir="ltr" id="toc_h4_6"><span>长轮询</span></h4>
 <p dir="ltr">客户端发起请求后服务端将该请求挂起（不返回响应），直到超时、异常或需要处理响应（推内容）才返回。客户端收到响应后再次请求（即轮询）服务端，并处理响应。</p>
 <p dir="ltr"><img title="长轮询" src="https://public.sn2.livefilestore.com/y1pg8zn2O3wRB9FvU9eVTCSJTko6y9nBiqZDzKVBAR6PA5ZEeQWUo-g9-BIDGUcnzgp-o2jfNqeKa9iMtg-8oP80w/long-poll.png?psid=1" alt="长轮询" width="502" height="365"></p>
 <ul>
 <li><span>实时性高</span></li>
 <li><span>服务端需要管理挂起请求</span></li>
 </ul>
-<h4 dir="ltr" id="b3_solo_h4_7"><span>HTTP 流</span></h4>
+<h4 dir="ltr" id="toc_h4_7"><span>HTTP 流</span></h4>
 <p dir="ltr">客户端发起请求后服务器端处理请求，并通过 HTTP 流一直向客户端写入数据，直到超时或异常才返回响应。连接断开后客户端再次请求服务端，属于长轮询的一种。</p>
 <p dir="ltr"><strong><strong><img title="HTTP 流" src="https://public.sn2.livefilestore.com/y1pg8zn2O3wRB_dSNHMdTAGrE3L-qzp-3wRJGRGg3vep25W61bdfXvlMSZZn7xezEgptcNNk3MPEAEZ1W-7BEOuzw/stream.png?psid=1" alt="HTTP 流" width="533" height="387"></strong></strong></p>
-<h3 dir="ltr" id="b3_solo_h3_8"><span>HTML 5 WebSocket</span></h3>
+<h3 dir="ltr" id="toc_h3_8"><span>HTML 5 WebSocket</span></h3>
 <p dir="ltr">这是标准化的客户端全<a href="http://dev.w3.org/html5/websockets/" target="_blank">双工通讯规范</a>，但由于目前<a href="http://jcp.org/en/jsr/summary?id=356" target="_blank">服务端规范</a>尚未成型，且考虑到现有客户端对 HTML 5 的支持有限，这里不进行描述。<strong><strong><br></strong></strong></p>
-<h3 dir="ltr" id="b3_solo_h3_9"><span>多客户端支持</span></h3>
+<h3 dir="ltr" id="toc_h3_9"><span>多客户端支持</span></h3>
 <p dir="ltr">上述介绍是针对浏览器客户端的，在实际应用场景中，还需要考虑其他客户端支持，例如 iOS、Android 等。<br><br>在移动客户端方面，需要考虑如下几点。<strong><strong><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_10"><span>APIs 多样</span></h4>
+<h4 dir="ltr" id="toc_h4_10"><span>APIs 多样</span></h4>
 <p dir="ltr">不同客户端本地 APIs 接口存在差异，但都支持基本的 HTTP 协议。直接基于 HTTP 协议进行开发可将差异最小化。<strong><strong><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_11"><span>网络连接不稳定</span></h4>
+<h4 dir="ltr" id="toc_h4_11"><span>网络连接不稳定</span></h4>
 <p dir="ltr">通讯信道打开后不一定能长时间维护，客户端与服务端的状态管理复杂。<strong><strong><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_12"><span>最小化流量</span></h4>
+<h4 dir="ltr" id="toc_h4_12"><span>最小化流量</span></h4>
 <p dir="ltr">需要尽量最小化网络流量，提升移动客户端可用性。</p>
-<h2 dir="ltr" id="b3_solo_h2_13">服务层消息服务</h2>
+<h2 dir="ltr" id="toc_h2_13">服务层消息服务</h2>
 <p dir="ltr">消息是系统或组件间通讯的一种低耦合方式，是系统级异步架构的基础。<strong><strong><br><br></strong></strong>在 Web 消息推送中，服务端管理应用状态，当状态发生变迁时需要通知客户端，完成消息推送。<strong><strong><br></strong></strong></p>
-<h3 dir="ltr" id="b3_solo_h3_14"><span>Java Message Service</span></h3>
+<h3 dir="ltr" id="toc_h3_14"><span>Java Message Service</span></h3>
 <p dir="ltr">需要重点关注如下技术点：<strong><strong><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_15"><span>消息域</span></h4>
+<h4 dir="ltr" id="toc_h4_15"><span>消息域</span></h4>
 <ul>
 <li><span>点对点只有一个客户端可以接收到消息。<br><img src="https://public.sn2.livefilestore.com/y1pn-rGJlFftKx8JlI0OEosOio1o4ukP3Xlq1Fb-gzO4T6rXa4vrjXP8MUUFgk6R5_c9lltWVrQtnO3aeZi5AjD7Q/jms-pointToPoint.gif?psid=1" alt="JMS p2p" width="376" height="154"><br class="kix-line-break"><br></span></li>
 <li><span>发布/订阅<br class="kix-line-break">广播给订阅的客户端。可配置持久化订阅。<br class="kix-line-break"><img title="JMS Pub/Sub" src="https://public.sn2.livefilestore.com/y1pn-rGJlFftKxAtr19116nVAs_T-MJCBnyLPgpCZA8UyOT6A9Komub9StYUSNXykqk8WFB3IKt6DPC3KU4FtVHow/jms-publishSubscribe.gif?psid=1" alt="JMS Pub/Sub" width="373" height="168"><br></span></li>
 </ul>
-<h4 dir="ltr" id="b3_solo_h4_16"><span>消息确认</span></h4>
+<h4 dir="ltr" id="toc_h4_16"><span>消息确认</span></h4>
 <ul>
 <li><span>会话本地事务提交时会对收到的消息进行确认，回滚时将重传所有消息</span></li>
 <li><span>非本地事务确认：Session.AUTO_ACKNOWLEDGE、Session.CLIENT_ACKNOWLEDGE、Session.DUPS_OK_ACKNOWLEDGE</span></li>
 </ul>
-<h2 dir="ltr" id="b3_solo_h2_17"><span>技术设计</span></h2>
-<h3 dir="ltr" id="b3_solo_h3_18"><span>目标</span></h3>
+<h2 dir="ltr" id="toc_h2_17"><span>技术设计</span></h2>
+<h3 dir="ltr" id="toc_h3_18"><span>目标</span></h3>
 <ul>
 <li><span>支持浏览器客户端的推送</span></li>
 <li><span>高性能、高可靠</span></li>
 <li><span>模块化，不与应用耦合</span></li>
 <li><span>未来可支持多种移动客户端</span></li>
 </ul>
-<h3 dir="ltr" id="b3_solo_h3_19"><span>Web 层设计</span></h3>
+<h3 dir="ltr" id="toc_h3_19"><span>Web 层设计</span></h3>
 <p dir="ltr">Web 层考虑采用开源组件 <a href="http://www.pushlets.com/" target="_blank">Pushlets</a> 进行实现。<strong><strong><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_20"><span>Pushlets 组件</span></h4>
+<h4 dir="ltr" id="toc_h4_20"><span>Pushlets 组件</span></h4>
 <p dir="ltr">Pushlets 基于 HTTP 协议的发布/订阅模型，提供了 Poll（轮询）、Pull（拉）两种推方式实现。其中 Pull 即长轮询方式，当有消息时就返回。<strong><strong><br></strong></strong></p>
 <ul>
 <li><span>发布：GET/POST 或方法调用ethod call（Dispatcher 接口）</span></li>
@@ -244,8 +246,8 @@ bold;">Sym</span></a>
 <li><span>方便整合：可独立为 Web 应用，也可为 Web 应用组件</span></li>
 <li><span>多种实现：J2EE/servlets，JavaScript (AJAX)</span></li>
 </ul>
-<h1 dir="ltr" id="b3_solo_h1_21"><img title="Pushlets" src="https://public.sn2.livefilestore.com/y1pTsZtjVvNgmTlwZ7_PaqcNsOFttmKJ49e0S4_L482d0X0nfuF5xG0pWYpaCmSIj46i7iq0EzCuKuDZTW_mBfz8w/pushlets.png?psid=1" alt="Pushlets" width="434" height="391"></h1>
-<h4 dir="ltr" id="b3_solo_h4_22"><span>JS 客户端</span></h4>
+<h1 dir="ltr" id="toc_h1_21"><img title="Pushlets" src="https://public.sn2.livefilestore.com/y1pTsZtjVvNgmTlwZ7_PaqcNsOFttmKJ49e0S4_L482d0X0nfuF5xG0pWYpaCmSIj46i7iq0EzCuKuDZTW_mBfz8w/pushlets.png?psid=1" alt="Pushlets" width="434" height="391"></h1>
+<h4 dir="ltr" id="toc_h4_22"><span>JS 客户端</span></h4>
 <ul>
 <li><span>js-pushlet-client.js</span></li>
 <ul>
@@ -260,16 +262,16 @@ bold;">Sym</span></a>
 </ul>
 </ul>
 <p dir="ltr">使用 AJAX 客户端，较为灵活，便于封装。<strong><strong><br></strong></strong></p>
-<h3 dir="ltr" id="b3_solo_h3_23"><span>服务层设计</span></h3>
+<h3 dir="ltr" id="toc_h3_23"><span>服务层设计</span></h3>
 <p dir="ltr">服务层消息服务采用应用服务器 JMS 中间件。通过发布/订阅模型实现状态同步。<strong><strong><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_24"><span>处理步骤</span></h4>
+<h4 dir="ltr" id="toc_h4_24"><span>处理步骤</span></h4>
 <ol>
 <li><span>配置主题订阅</span></li>
 <li><span>应用状态变迁时发布 JMS 消息</span></li>
 <li><span>JMS 消息监听器将监听到的消息发布到 Pushlets</span></li>
 <li><span>将该消息写入 Web 层消息表</span></li>
 </ol>
-<h4 dir="ltr" id="b3_solo_h4_25"><span>消息表</span></h4>
+<h4 dir="ltr" id="toc_h4_25"><span>消息表</span></h4>
 <p dir="ltr">保存推送多的消息记录，用于客户端刷新时/多客户端查找消息。<strong><strong><br></strong></strong></p>
 <div dir="ltr">
 <div dir="ltr">
@@ -344,18 +346,18 @@ bold;">Sym</span></a>
 </div>
 </div>
 <p dir="ltr">消息体使用 JSON 字符串存放于 msg 字段中。其余字段可根据通用性进行抽取，比如用户名等。<br><br>消息监听器接收到消息时推 Pushlets，并进行记录写入（记录 lastGetTime 为写入时间，表示这条消息已经推送过）。<br><br>设置定时任务对超时记录进行删除。<strong><strong><br></strong></strong></p>
-<h3 dir="ltr" id="b3_solo_h3_26"><span>逻辑架构</span></h3>
+<h3 dir="ltr" id="toc_h3_26"><span>逻辑架构</span></h3>
 <p dir="ltr">JMS 消息系统为单独的通讯总线服务独立于应用系统，Pushlets 为应用系统中的一个组件。<br><br>消息表管理组件提供消息新增，以及对推送过的消息记录的查询、删除。<strong><strong><br><img title="组件图" src="https://public.sn2.livefilestore.com/y1pJ_acuYt_CkkiHarLltUaKNjDom3zMbwe4EIjC5Uaj_Z-dS8TjrLofeSWl8BCH1e6xApcxf200RDtKTNiWNq4nQ/components.png?psid=1" alt="组件图" width="489" height="494"><br></strong></strong></p>
-<h4 dir="ltr" id="b3_solo_h4_27"><span>推时序</span></h4>
-<h4 dir="ltr" id="b3_solo_h4_28"><img title="时序图" src="https://public.sn2.livefilestore.com/y1pg8zn2O3wRB-AzkrrJdr8rJyXVHgO0CgLBYHOKqFk15LmxOJMRsmKkOnqQBG4TEOGvpF_-gPnW9v0NEL2FXa_0Q/sequences.png?psid=1" alt="时序图" width="566" height="239"></h4>
-<h3 dir="ltr" id="b3_solo_h3_29"><span>关键点</span></h3>
+<h4 dir="ltr" id="toc_h4_27"><span>推时序</span></h4>
+<h4 dir="ltr" id="toc_h4_28"><img title="时序图" src="https://public.sn2.livefilestore.com/y1pg8zn2O3wRB-AzkrrJdr8rJyXVHgO0CgLBYHOKqFk15LmxOJMRsmKkOnqQBG4TEOGvpF_-gPnW9v0NEL2FXa_0Q/sequences.png?psid=1" alt="时序图" width="566" height="239"></h4>
+<h3 dir="ltr" id="toc_h3_29"><span>关键点</span></h3>
 <ul>
 <li><span>服务层消息监听</span></li>
 <li><span>消息表管理</span></li>
 <li><span>Pushlets 配置，License 问题：Pushlets 是以 LGPL 开源的，对于商业项目使用时必须进行封装</span></li>
 <li><span>前端容错开关</span></li>
 </ul>
-<h2 dir="ltr" id="b3_solo_h2_30"><span>参考</span></h2>
+<h2 dir="ltr" id="toc_h2_30"><span>参考</span></h2>
 <ul>
 <li><a href="http://www.ibm.com/developerworks/cn/web/wa-lo-comet/" target="_blank"><span>Comet：基于 HTTP 长连接的“服务器推”技术</span></a></li>
 <li><a href="http://88250.b3log.org/articles/2010/01/09/1263000240000.html" target="_blank"><span>初探 HTML 5 之 WebSocket</span></a></li>
@@ -365,7 +367,8 @@ bold;">Sym</span></a>
 </ul>
 <div>原文：<a href="https://docs.google.com/document/d/1qHVKlGz1raVemA2eHMSrPQppVKAiIrnFmfkpoyYE-U4/edit" target="_blank">《消息推送技术》via Google Docs</a></div>
                     <div>
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -383,97 +386,97 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h1">
-            <a href="#b3_solo_h1_0">消息推送技术</a>
+            <a href="#toc_h1_0">消息推送技术</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">消息推送</a>
+            <a href="#toc_h2_1">消息推送</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">Web 层消息推送</a>
+            <a href="#toc_h2_2">Web 层消息推送</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">套接字</a>
+            <a href="#toc_h3_3">套接字</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">HTTP 请求轮询</a>
+            <a href="#toc_h3_4">HTTP 请求轮询</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">简单轮询</a>
+            <a href="#toc_h4_5">简单轮询</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">长轮询</a>
+            <a href="#toc_h4_6">长轮询</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">HTTP 流</a>
+            <a href="#toc_h4_7">HTTP 流</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">HTML 5 WebSocket</a>
+            <a href="#toc_h3_8">HTML 5 WebSocket</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">多客户端支持</a>
+            <a href="#toc_h3_9">多客户端支持</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_10">APIs 多样</a>
+            <a href="#toc_h4_10">APIs 多样</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_11">网络连接不稳定</a>
+            <a href="#toc_h4_11">网络连接不稳定</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_12">最小化流量</a>
+            <a href="#toc_h4_12">最小化流量</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_13">服务层消息服务</a>
+            <a href="#toc_h2_13">服务层消息服务</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_14">Java Message Service</a>
+            <a href="#toc_h3_14">Java Message Service</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_15">消息域</a>
+            <a href="#toc_h4_15">消息域</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_16">消息确认</a>
+            <a href="#toc_h4_16">消息确认</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_17">技术设计</a>
+            <a href="#toc_h2_17">技术设计</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_18">目标</a>
+            <a href="#toc_h3_18">目标</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_19">Web 层设计</a>
+            <a href="#toc_h3_19">Web 层设计</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_20">Pushlets 组件</a>
+            <a href="#toc_h4_20">Pushlets 组件</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_21"></a>
+            <a href="#toc_h1_21"></a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_22">JS 客户端</a>
+            <a href="#toc_h4_22">JS 客户端</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_23">服务层设计</a>
+            <a href="#toc_h3_23">服务层设计</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_24">处理步骤</a>
+            <a href="#toc_h4_24">处理步骤</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_25">消息表</a>
+            <a href="#toc_h4_25">消息表</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_26">逻辑架构</a>
+            <a href="#toc_h3_26">逻辑架构</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_27">推时序</a>
+            <a href="#toc_h4_27">推时序</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_28"></a>
+            <a href="#toc_h4_28"></a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_29">关键点</a>
+            <a href="#toc_h3_29">关键点</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_30">参考</a>
+            <a href="#toc_h2_30">参考</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -499,7 +502,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/TweenMax.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -541,19 +544,20 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
     luteAvailable: false,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "3.8.0",
+    version: "4.0.0",
     staticSite: true,
+    showCodeBlockLn: false,
   }
 </script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/common.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://88250.github.io/skins/Bubble/js/circleMagic.min.js?1579351433357"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -590,7 +594,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://88250.github.io/js/page.min.js?1579351433357', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1336373136382",
@@ -610,4 +614,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 171ms, 2020/01/18 20:44:29 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 266ms, 2020/03/25 10:29:39 -->
