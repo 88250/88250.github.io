@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（十四）（已完结） - D 的个人博客</title><meta name="description" content="上一篇： [1438938175118] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438938175118] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（十四）（已完结） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/10/1439194647152.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（十四）（已完结） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/10/1439194647152.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（十三）" href="https://88250.github.io/articles/2015/08/07/1438938175118.html">
             <link rel="next" title="Go 编译跨平台" href="https://88250.github.io/compile-go-cross-platform">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1438938175118]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,9 +184,9 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h4 id="toc_h4_1">7.2.1 单向</h4>
+<h4 id="7-2-1-单向">7.2.1 单向</h4>
 <p>可以将 <code>channel</code> 隐式转换为单向队列，只收或只发。</p>
-<pre><code>c := make(chan int, 3)
+<pre><code class="highlight-chroma">c := make(chan int, 3)
 var send chan&lt;- int = c // send-only
 var recv &lt;-chan int = c // receive-only
 send &lt;- 1
@@ -195,16 +195,16 @@ send &lt;- 1
 // recv &lt;- 2 // Error: send to receive-only type &lt;-chan int
 </code></pre>
 <p>不能将单向 <code>channel</code> 转换为普通 <code>channel</code>。</p>
-<pre><code>d := (chan int)(send) // Error: cannot convert type chan&lt;- int to type chan int
+<pre><code class="highlight-chroma">d := (chan int)(send) // Error: cannot convert type chan&lt;- int to type chan int
 d := (chan int)(recv) // Error: cannot convert type &lt;-chan int to type chan int
 </code></pre>
-<h4 id="toc_h4_2">7.2.2 选择</h4>
+<h4 id="7-2-2-选择">7.2.2 选择</h4>
 <p>如果需要同时处理多个 <code>channel</code>，可使用 <code>select</code> 语句。它随机选择一个可用 <code>channel</code> 做收发操作，或执行 <code>default case</code>。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/73b28a1e3a400e6e66893c7a99e66e0d.go?embed=true" width="99%" height="930"></iframe>
 <p>在循环中使用 <code>select default case</code> 需要小心，避免形成洪水。</p>
-<h4 id="toc_h4_3">7.2.3 模式</h4>
+<h4 id="7-2-3-模式">7.2.3 模式</h4>
 <p>用简单工厂模式打包并发任务和 <code>channel</code>。</p>
-<pre><code>func NewTest() chan int {
+<pre><code class="highlight-chroma">func NewTest() chan int {
 	c := make(chan int)
 	rand.Seed(time.Now().UnixNano())
 
@@ -226,7 +226,7 @@ func main() {
 <p>用 <code>closed channel</code> 发出退出通知。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/fba53ba1f4116b4ce998f67a716160df.go?embed=true" width="99%" height="930"></iframe>
 <p>用 <code>select</code> 实现超时 (timeout)。</p>
-<pre><code>func main() {
+<pre><code class="highlight-chroma">func main() {
 	w := make(chan bool)
 	c := make(chan int, 2)
     
@@ -244,7 +244,7 @@ func main() {
 }
 </code></pre>
 <p><code>channel</code> 是第一类对象，可传参 (内部实现为指针) 或者作为结构成员。</p>
-<pre><code>type Request struct {
+<pre><code class="highlight-chroma">type Request struct {
 	data []int
 	ret chan int
 }
@@ -305,16 +305,16 @@ func main() {
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_1">7.2.1 单向</a>
+            <a href="#7-2-1-单向">7.2.1 单向</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_2">7.2.2 选择</a>
+            <a href="#7-2-2-选择">7.2.2 选择</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_3">7.2.3 模式</a>
+            <a href="#7-2-3-模式">7.2.3 模式</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -340,7 +340,7 @@ func main() {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -383,7 +383,7 @@ func main() {
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -392,10 +392,10 @@ func main() {
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -432,7 +432,7 @@ func main() {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1439194647152",
@@ -452,4 +452,4 @@ func main() {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 172ms, 2020/03/25 10:29:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 225ms, 2020/03/25 10:36:35 -->

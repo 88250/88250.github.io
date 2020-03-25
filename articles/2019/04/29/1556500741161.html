@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（三） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（二）。 LESSION 4 - 内容标识符（CID） 之前我们通过可爱的照片举例让讨论不那么无趣，但实际上内容寻址可用于所有不同类型的文件和数据，JSON 对象、学术论文还有视频。要使加密哈希工作，我们需要知道我们正在使用的是哪种数据格式并使用适当的工具。 数据结构解码 CID 是内容寻址的特定方式。它是 IPFS 的规范之一，IPFS 是一种去中心化的 Web 协议，我们将在后面的教程中讨论，它具有非常广泛的含义。 CID 是包含加密哈希的单个标识符，并包含了编码解码器（&quot;codec&quot;）相关所需的信息。编解码器以某些格式编码和解码数据。 +-------+------------------------------+ | Codec | Multihash | +-------+------------------------------+ 许多格式和协议都是使用内容寻址的...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（二）。 LESSION 4 - 内容标识符（CID） 之前我们通过可爱的照片举例让讨论不那么无趣，但实际上内容寻址可用于所有不同类型的文件和数据，JSON 对象、学术论文还有视频。要使加密哈希工作，我们需要知道我们正在使用的是哪种数据格式并使用适当的工具。 数据结构解码 CID 是内容寻址的特定方式。它是 IPFS 的规范之一，IPFS 是一种去中心化的 Web 协议，我们将在后面的教程中讨论，它具有非常广泛的含义。 CID 是包含加密哈希的单个标识符，并包含了编码解码器（&quot;codec&quot;）相关所需的信息。编解码器以某些格式编码和解码数据。 +-------+------------------------------+ | Codec | Multihash | +-------+------------------------------+ 许多格式和协议都是使用内容寻址的...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（三） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/29/1556500741161.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（三） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/29/1556500741161.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="IPFS 去中心化数据结构（二）" href="https://88250.github.io/articles/2019/04/27/1556347691544.html">
             <link rel="next" title="IPFS 去中心化数据结构（四）" href="https://88250.github.io/articles/2019/04/30/1556585434162.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,18 +166,18 @@ bold;">Sym</span></a>
 <p>本文翻译自 IPFS 社区教程 <a href="https://proto.school" target="_blank">ProtoSchool</a>。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！</p>
 </blockquote>
 <p>本文接上篇 <a href="https://hacpai.com/article/1556347691544" target="_blank">IPFS 去中心化数据结构（二）</a>。</p>
-<h3 id="toc_h3_0">LESSION 4 - 内容标识符（CID）</h3>
+<h3 id="LESSION-4---内容标识符-CID-">LESSION 4 - 内容标识符（CID）</h3>
 <p>之前我们通过可爱的照片举例让讨论不那么无趣，但实际上内容寻址可用于所有不同类型的文件和数据，JSON 对象、学术论文还有视频。要使加密哈希工作，我们需要知道我们正在使用的是哪种数据格式并使用适当的工具。</p>
-<h4 id="toc_h4_1">数据结构解码</h4>
+<h4 id="数据结构解码">数据结构解码</h4>
 <p><code>CID</code> 是内容寻址的特定方式。它是 IPFS 的规范之一，IPFS 是一种去中心化的 Web 协议，我们将在后面的教程中讨论，它具有非常广泛的含义。</p>
 <p><code>CID</code> 是包含加密哈希的单个标识符，并包含了编码解码器（"codec"）相关所需的信息。编解码器以某些格式编码和解码数据。</p>
-<pre><code class="language-plaintext">+-------+------------------------------+
+<pre><code class="language-text highlight-chroma">+-------+------------------------------+
 | Codec | Multihash                    |
 +-------+------------------------------+
 </code></pre>
 <p>许多格式和协议都是使用内容寻址的。 <code>CID</code> 让我们可以为任何系统机制创建通用标识符。 像 git 、以太坊和比特币都使用内容寻址，只是它们在解析数据加密哈希函数上有所不同。</p>
 <p><code>CID</code> 是一种标识符，包含用于解释数据的编解码器和多重哈希值（<code>multihash</code>），它是一种自描述哈希值（值中标识了使用什么类型的哈希函数来创建该值）。</p>
-<pre><code class="language-plaintext">+------------------------------+
+<pre><code class="language-text highlight-chroma">+------------------------------+
 | Codec                        |
 +------------------------------+
 |                              |
@@ -188,7 +188,7 @@ bold;">Sym</span></a>
 |                              |
 +------------------------------+
 </code></pre>
-<h4 id="toc_h4_2">链接不同的数据结构</h4>
+<h4 id="链接不同的数据结构">链接不同的数据结构</h4>
 <p><code>CID</code> 允许我们对完全不同的数据结构进行链接。 想象一下，一个 JSON 对象树链接到 BSON 对象，这些对象又链接到 git 提交。（或者想象一个包含小狗照片和小猫视频的文件夹，其子文件夹包含长颈鹿的文章。存在各种各样无穷的可能性！）在这棵文件树下，我们有一个加密哈希值，我们用它来分发或链接到其他数据。</p>
 <p>为什么在不同的数据结构之间建立链接很重要？在中心化的网络上，我们将文本链接到图片，从徽标链接到主页，从电子邮件链接到 PDF。链接将资源联系在一起，传达意义，形成网络互动！</p>
 <hr>
@@ -213,13 +213,13 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">LESSION 4 - 内容标识符（CID）</a>
+            <a href="#LESSION-4---内容标识符-CID-">LESSION 4 - 内容标识符（CID）</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_1">数据结构解码</a>
+            <a href="#数据结构解码">数据结构解码</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_2">链接不同的数据结构</a>
+            <a href="#链接不同的数据结构">链接不同的数据结构</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -245,7 +245,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -288,7 +288,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -297,10 +297,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -337,7 +337,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1556500741161",
@@ -357,4 +357,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 394ms, 2020/03/25 10:29:33 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 327ms, 2020/03/25 10:36:32 -->

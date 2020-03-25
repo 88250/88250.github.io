@@ -28,7 +28,7 @@
 整合测试	7
 总结	7
  摘要 本文以Liferay与CAS整合为例，将CAS登录验证从输入相同的用户名密码定制为以Liferay的用户身份进行验证。 环境 My...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="定制CAS登录验证 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/08/26/1219750620000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="定制CAS登录验证 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/08/26/1219750620000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Liferay 5.1.1 安装与整合CAS" href="https://88250.github.io/articles/2008/08/20/1219250340000.html">
             <link rel="next" title="NetBeans 10th Birthday" href="https://88250.github.io/articles/2008/10/20/1224545820000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -191,7 +191,7 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p style="margin-top: 0.17in; page-break-after: avoid; font-size: 20pt;" align="center"><font face="DejaVu Sans"><font size="4"><font face="DejaVu Sans"></font></font></font>
-</p><pre><code>&lt;meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"&gt;
+</p><pre><code class="highlight-chroma">&lt;meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"&gt;
 &lt;title&gt;&lt;/title&gt;
 &lt;meta name="GENERATOR" content="OpenOffice.org 2.4  (Linux)"&gt;
 &lt;style type="text/css"&gt;
@@ -648,7 +648,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -691,7 +691,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -700,10 +700,10 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -740,7 +740,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1219750620000",
@@ -760,4 +760,4 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 163ms, 2020/03/25 10:29:43 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 143ms, 2020/03/25 10:36:41 -->

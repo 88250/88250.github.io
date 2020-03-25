@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java 正则中的非捕获组 - D 的个人博客</title><meta name="description" content="正则表达式中的非捕获组（non-capturing group）用于匹配但不“保存”匹配结果，出现在正则表达式模式中的 (?:pattern) 这部分就是非捕获组。 我试了几个在线的正则表达式测试工具，返回的匹配结果都是“整个组”，不是非捕获组。 Java 中 Matcher#group() 返回的是 group(0)，也是整个匹配结果，如果要返回第一个非捕获组，需要用 group(1)。 Pattern pattern = Pattern.compile(&quot;([0-9]+)(?:st|nd|rd|th)?&quot;); Matcher matcher = pattern.matcher(&quot;1st 2nd 3 4th&quot;); while (matcher.find()) { System.out.printf(&quot;%3s %s\n&quot;, matcher.group(), matcher.group(1)); } 输出： 1st 1 2nd 2 3 3 4th 4 另外，使用非捕获组时需要注意结尾的 ?，在上面例子中 ([0-9]+)(?:st|nd|rd|th)? 说明该非捕获组是可选的，如...."/><meta property="og:description" content="正则表达式中的非捕获组（non-capturing group）用于匹配但不“保存”匹配结果，出现在正则表达式模式中的 (?:pattern) 这部分就是非捕获组。 我试了几个在线的正则表达式测试工具，返回的匹配结果都是“整个组”，不是非捕获组。 Java 中 Matcher#group() 返回的是 group(0)，也是整个匹配结果，如果要返回第一个非捕获组，需要用 group(1)。 Pattern pattern = Pattern.compile(&quot;([0-9]+)(?:st|nd|rd|th)?&quot;); Matcher matcher = pattern.matcher(&quot;1st 2nd 3 4th&quot;); while (matcher.find()) { System.out.printf(&quot;%3s %s\n&quot;, matcher.group(), matcher.group(1)); } 输出： 1st 1 2nd 2 3 3 4th 4 另外，使用非捕获组时需要注意结尾的 ?，在上面例子中 ([0-9]+)(?:st|nd|rd|th)? 说明该非捕获组是可选的，如...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java 正则中的非捕获组 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/09/30/1538320113750.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Java 正则中的非捕获组 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/09/30/1538320113750.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="《提问的智慧》精读注解版" href="https://88250.github.io/articles/2018/09/08/1536377163156.html">
             <link rel="next" title="协慌网，一个汉化 Stack Overflow 的网站" href="https://88250.github.io/articles/2018/10/03/1538577113305.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -164,22 +164,22 @@ bold;">Sym</span></a>
 <p>我试了几个在线的正则表达式测试工具，返回的匹配结果都是“整个组”，不是非捕获组。</p>
 <p><img src="https://img.hacpai.com/file/2018/09/3d117ec92447488b871acc88490ed573_image.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="imagepng"></p>
 <p>Java 中 <code>Matcher#group()</code> 返回的是 group(0)，也是整个匹配结果，如果要返回第一个非捕获组，需要用 <strong>group(1)</strong>。</p>
-<pre><code class="language-java">Pattern pattern = Pattern.compile("([0-9]+)(?:st|nd|rd|th)?");
-Matcher matcher = pattern.matcher("1st 2nd 3 4th");
-while (matcher.find()) {
-    System.out.printf("%3s %s\n", matcher.group(), matcher.group(1));
-}
+<pre><code class="language-java highlight-chroma"><span class="highlight-n">Pattern</span> <span class="highlight-n">pattern</span> <span class="highlight-o">=</span> <span class="highlight-n">Pattern</span><span class="highlight-o">.</span><span class="highlight-na">compile</span><span class="highlight-o">(</span><span class="highlight-s">"([0-9]+)(?:st|nd|rd|th)?"</span><span class="highlight-o">);</span>
+<span class="highlight-n">Matcher</span> <span class="highlight-n">matcher</span> <span class="highlight-o">=</span> <span class="highlight-n">pattern</span><span class="highlight-o">.</span><span class="highlight-na">matcher</span><span class="highlight-o">(</span><span class="highlight-s">"1st 2nd 3 4th"</span><span class="highlight-o">);</span>
+<span class="highlight-k">while</span> <span class="highlight-o">(</span><span class="highlight-n">matcher</span><span class="highlight-o">.</span><span class="highlight-na">find</span><span class="highlight-o">())</span> <span class="highlight-o">{</span>
+    <span class="highlight-n">System</span><span class="highlight-o">.</span><span class="highlight-na">out</span><span class="highlight-o">.</span><span class="highlight-na">printf</span><span class="highlight-o">(</span><span class="highlight-s">"%3s %s\n"</span><span class="highlight-o">,</span> <span class="highlight-n">matcher</span><span class="highlight-o">.</span><span class="highlight-na">group</span><span class="highlight-o">(),</span> <span class="highlight-n">matcher</span><span class="highlight-o">.</span><span class="highlight-na">group</span><span class="highlight-o">(</span><span class="highlight-n">1</span><span class="highlight-o">));</span>
+<span class="highlight-o">}</span>
 </code></pre>
 <p>输出：</p>
-<pre><code class="language-shell">1st 1
-2nd 2
-  3 3
-4th 4
+<pre><code class="language-bash highlight-chroma">1st <span class="highlight-m">1</span>
+2nd <span class="highlight-m">2</span>
+  <span class="highlight-m">3</span> <span class="highlight-m">3</span>
+4th <span class="highlight-m">4</span>
 </code></pre>
 <p>另外，使用非捕获组时需要注意结尾的 <code>?</code>，在上面例子中 ([0-9]+)(?:st|nd|rd|th)<strong>?</strong> 说明该非捕获组是可选的，如果缺少该 <code>?</code>，则输出结果：</p>
-<pre><code class="language-shell">1st 1
-2nd 2
-4th 4
+<pre><code class="language-bash highlight-chroma">1st <span class="highlight-m">1</span>
+2nd <span class="highlight-m">2</span>
+4th <span class="highlight-m">4</span>
 </code></pre>
 <p>因为 3 没有 st|nd|rd|th 结尾，所以没有匹配上。</p>
 <p>非捕获组的概念很好理解，在 Java 中获取非捕获组也很简单，但在需要替换匹配的场景下，不能使用非捕获组，因为 <code>Matcher#appendReplacement</code>、<code>Matcher#appendTail</code> 或者 <code>Matcher#replace*</code> 并不支持非捕获组替换。</p>
@@ -223,7 +223,7 @@ while (matcher.find()) {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -266,7 +266,7 @@ while (matcher.find()) {
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -275,10 +275,10 @@ while (matcher.find()) {
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -312,7 +312,7 @@ while (matcher.find()) {
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1538320113750",
@@ -332,4 +332,4 @@ while (matcher.find()) {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 183ms, 2020/03/25 10:29:34 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 205ms, 2020/03/25 10:36:33 -->

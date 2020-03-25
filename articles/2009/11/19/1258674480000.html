@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java 依赖注入标准（JSR-330）简介 - D 的个人博客</title><meta name="description" content="Java 依赖注入标准（JSR-330）简介 转载请保留作者信息： 作者：88250 ，Vanessa 时间：2009 年 11 月 19 日 Java 依赖注入标准（JSR-330，Dependency Injection for Java）1.0 规范已于今年 10 月份发布 。该规范主要是面向依赖注入使用者，而对注入器实现、配置并未作详细要求。目前 Spring 、Guice 已经开始兼容该规范，JSR-299（Contexts and Dependency Injection for Java EE platform，参考实现 Weld ）在依赖...."/><meta property="og:description" content="Java 依赖注入标准（JSR-330）简介 转载请保留作者信息： 作者：88250 ，Vanessa 时间：2009 年 11 月 19 日 Java 依赖注入标准（JSR-330，Dependency Injection for Java）1.0 规范已于今年 10 月份发布 。该规范主要是面向依赖注入使用者，而对注入器实现、配置并未作详细要求。目前 Spring 、Guice 已经开始兼容该规范，JSR-299（Contexts and Dependency Injection for Java EE platform，参考实现 Weld ）在依赖...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java 依赖注入标准（JSR-330）简介 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/11/19/1258674480000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Java 依赖注入标准（JSR-330）简介 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/11/19/1258674480000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Ubuntu ADSL 拨号上网时断时续问题" href="https://88250.github.io/articles/2009/10/31/1257009480000.html">
             <link rel="next" title="Drop 简介" href="https://88250.github.io/articles/2009/11/30/1259620560000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -186,53 +186,53 @@ bold;">Sym</span></a>
   <ol class="writely-toc-decimal">
 <li>
       <a href="#javax_inject_40504930880883183_2007533775100061" target="_self">javax.inject</a>
-<pre><code>&lt;/li&gt;
+<pre><code class="highlight-chroma">&lt;/li&gt;
 </code></pre>
 </li><li>
       <a href="#_Inject_6802068962399098_56394_26207626942120477" target="_self">@Inject</a>
-<pre><code>  &lt;ol class="writely-toc-subheading writely-toc-disc" style="MARGIN-LEFT:0pt"&gt;
+<pre><code class="highlight-chroma">  &lt;ol class="writely-toc-subheading writely-toc-disc" style="MARGIN-LEFT:0pt"&gt;
 </code></pre>
 </li><li>
           <a href="#_7534470724411853_742038611373_8582904548586772" target="_self">限定器</a>
-<pre><code>    &lt;/li&gt;
+<pre><code class="highlight-chroma">    &lt;/li&gt;
 </code></pre>
 </li><li>
           <a href="#_1763349362688431_111739045016_0020549850838221806" target="_self">可注入的值</a>
-<pre><code>    &lt;/li&gt;
+<pre><code class="highlight-chroma">    &lt;/li&gt;
 </code></pre>
 </li><li>
           <a href="#_8464816905984055_785867212452" target="_self">循环依赖</a>
-<pre><code>    &lt;/li&gt;
+<pre><code class="highlight-chroma">    &lt;/li&gt;
 </code></pre>
 </li></ol>
-<pre><code>&lt;/li&gt;
+<pre><code class="highlight-chroma">&lt;/li&gt;
 </code></pre>
 <li>
       <a href="#_Qualifier_9535574146353466_06" target="_self">@Qualifier</a>
-<pre><code>&lt;/li&gt;
+<pre><code class="highlight-chroma">&lt;/li&gt;
 </code></pre>
 </li><li>
       <a href="#Provider_003165169731463413_78_6869560700092526" target="_self">Provider</a>
-<pre><code>  &lt;ol class="writely-toc-subheading writely-toc-disc" style="MARGIN-LEFT:0pt"&gt;
+<pre><code class="highlight-chroma">  &lt;ol class="writely-toc-subheading writely-toc-disc" style="MARGIN-LEFT:0pt"&gt;
 </code></pre>
 </li><li>
           <a href="#get_" target="_self">get()</a>
-<pre><code>    &lt;/li&gt;
+<pre><code class="highlight-chroma">    &lt;/li&gt;
 </code></pre>
 
-<pre><code>&lt;/li&gt;
+<pre><code class="highlight-chroma">&lt;/li&gt;
 </code></pre>
 </li><li>
       <a href="#_Named_1262163341270509_233694_37767472601897867" target="_self">@Named</a>
-<pre><code>&lt;/li&gt;
+<pre><code class="highlight-chroma">&lt;/li&gt;
 </code></pre>
 </li><li>
       <a href="#_Scope_6014748620887402_713421_7367540373832964" target="_self">@Scope</a>
-<pre><code>&lt;/li&gt;
+<pre><code class="highlight-chroma">&lt;/li&gt;
 </code></pre>
 </li><li>
       <a href="#_Singleton_3104547156494192_71_7467978559797065" target="_self">@Singleton</a>
-<pre><code>&lt;/li&gt;
+<pre><code class="highlight-chroma">&lt;/li&gt;
 </code></pre>
 
 </li></div>
@@ -358,19 +358,19 @@ StopwatchWidget 实例：<br></p>
 <div style="MARGIN-LEFT:40px">
     <span style="FONT-FAMILY:Courier New">&nbsp;/** GUI for a Stopwatch */</span>
 <br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;class StopwatchWidget {&lt;/span&gt;
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;class StopwatchWidget {&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject StopwatchWidget(Stopwatch sw) { ... }&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject StopwatchWidget(Stopwatch sw) { ... }&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ...&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ...&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;}&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;}&lt;/span&gt;
 </code></pre>
 <br>
-<pre><code>&lt;br style="FONT-FAMILY:Courier New" /&gt;
+<pre><code class="highlight-chroma">&lt;br style="FONT-FAMILY:Courier New" /&gt;
 </code></pre>
   </div>
 &nbsp;&nbsp;&nbsp;&nbsp; 注入器可能会：<br>
@@ -500,7 +500,7 @@ MethodBody<br></p>
 <br style="FONT-FAMILY:Courier New"></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject private Provider&lt;Seat&gt; seatProvider;</span><br>
 <br style="FONT-FAMILY:Courier New"></p>
-  <br style="FONT-FAMILY:Courier New">
+<p><br style="FONT-FAMILY:Courier New"></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Injectable package-private method</span><br>
 <br style="FONT-FAMILY:Courier New"></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject void install(Windshield windshield, Trunk trunk) { ... }</span><br>
@@ -524,7 +524,7 @@ MethodBody<br></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject private <strong>@Leather</strong><br>
 Provider&lt;Seat&gt; seatProvider;</span><br>
 <br style="FONT-FAMILY:Courier New"></p>
-  <br style="FONT-FAMILY:Courier New">
+<p><br style="FONT-FAMILY:Courier New"></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; &nbsp; &nbsp; @Inject void install(<strong>@Tinted</strong><br>
 Windshield windshield,</span><br>
 <br style="FONT-FAMILY:Courier New"></p>
@@ -552,27 +552,27 @@ Trunk trunk) { ... }</span><br>
 循环依赖
     </h3>
 &nbsp;&nbsp;&nbsp;&nbsp; 本规范并未详细要求探测循环依赖与解析循环依赖。两个构造器间的循环依赖是一个非常明显的问题，另外，对于可注入字段或方法的循环依赖也很常见，例如：<br>
-<pre><code>&lt;br /&gt;
+<pre><code class="highlight-chroma">&lt;br /&gt;
 
 &lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; class A {&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject B b;&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject B b;&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; }&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; }&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; class B {&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; class B {&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject A a;&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject A a;&lt;/span&gt;
 </code></pre>
-<br style="FONT-FAMILY:Courier New">
-<pre><code>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; }&lt;/span&gt;
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma">&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; }&lt;/span&gt;
 </code></pre>
 <br>
-<pre><code>&lt;br /&gt;
+<pre><code class="highlight-chroma">&lt;br /&gt;
 
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 当构造 A 的一个实例时，一个简单的注入器可能会无限循环构造：B 的一个实例注入给 A 的一个实例，第二个 A 的实例注入给 B 的一个实例，第二个 B 的实例注入给第二个 A 的实例，&amp;hellip;&amp;hellip;&lt;br style="FONT-FAMILY:Courier New" /&gt;
 
@@ -626,7 +626,7 @@ Trunk trunk) { ... }</span><br>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public enum Color { RED, BLACK, TAN }</span><br>
 <br style="FONT-FAMILY:Courier New"></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; }<br></span></p>
-  <br style="FONT-FAMILY:Courier New">
+<p><br style="FONT-FAMILY:Courier New"></p>
   
 &nbsp;&nbsp;&nbsp;&nbsp; 请查阅：<br>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; <a title="@Named" href="#_Named_1262163341270509_233694_37767472601897867" target="_self">@Named</a><br>
@@ -683,7 +683,7 @@ get()
 &nbsp;&nbsp;&nbsp;&nbsp; 基于 String 的<a href="#_Qualifier_9535574146353466_06">限定器</a>
 。<br>
 <p>&nbsp;&nbsp; &nbsp; 例子：<br></p>
-  <br style="FONT-FAMILY:Courier New">
+<p><br style="FONT-FAMILY:Courier New"></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; public class Car {</span><br>
 <br style="FONT-FAMILY:Courier New"></p>
 <p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @Inject @Named("driver") Seat driverSeat;</span><br>
@@ -810,7 +810,7 @@ get()
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -853,7 +853,7 @@ get()
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -862,10 +862,10 @@ get()
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -902,7 +902,7 @@ get()
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1258674480000",
@@ -922,4 +922,4 @@ get()
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 261ms, 2020/03/25 10:29:42 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 138ms, 2020/03/25 10:36:40 -->

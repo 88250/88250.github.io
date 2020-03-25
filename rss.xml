@@ -6,7 +6,7 @@
     <atom:link href="https://88250.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <description>全职做开源，自由职业者</description>
     <generator>Solo, v4.0.0, https://solo.b3log.org</generator>
-    <lastBuildDate>Wed, 25 Mar 2020 10:29:31 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2020 10:36:31 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
       <title>Windows 10 搭建 TensorFlow 试玩 fast-style-transfer</title>
@@ -16,9 +16,9 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/03/15/1584270480065.html</guid>
-      <category>图片处理</category>
-      <category>深度学习</category>
       <category>TensorFlow</category>
+      <category>深度学习</category>
+      <category>图片处理</category>
       <pubDate>Sun, 15 Mar 2020 19:08:02 +0800</pubDate>
     </item>
     <item>
@@ -29,8 +29,8 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/11/11/1573402018349.html</guid>
-      <category>B3log</category>
       <category>创业</category>
+      <category>B3log</category>
       <pubDate>Sun, 09 Feb 2020 11:31:52 +0800</pubDate>
     </item>
     <item>
@@ -53,24 +53,24 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/02/08/1581145208243.html</guid>
-      <category>博客</category>
-      <category>Solo</category>
-      <category>开源</category>
       <category>感悟</category>
+      <category>开源</category>
+      <category>Solo</category>
+      <category>博客</category>
       <pubDate>Sat, 08 Feb 2020 15:02:21 +0800</pubDate>
     </item>
     <item>
       <title>搭建 GitHub 镜像仓库</title>
       <link>https://88250.github.io/articles/2020/02/07/1581004860744.html</link>
       <description>
-        <![CDATA[<p>需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端   创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类：  客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys    切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare <a href="mailto:git@github.com" target="_blank">git@github.com</a>:youraccount/sample.git    在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh  g....</p>]]>
+        <![CDATA[<p>需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端   创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类：  客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys    切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git    在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh  g....</p>]]>
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/02/07/1581004860744.html</guid>
-      <category>同步</category>
-      <category>Git</category>
-      <category>GitHub</category>
       <category>镜像</category>
+      <category>GitHub</category>
+      <category>Git</category>
+      <category>同步</category>
       <pubDate>Fri, 07 Feb 2020 10:55:01 +0800</pubDate>
     </item>
     <item>
@@ -83,8 +83,8 @@
       <guid>https://88250.github.io/articles/2019/12/26/1577370404903.html</guid>
       <category>Markdown</category>
       <category>编辑器</category>
-      <category>Vditor</category>
       <category>所见即所得</category>
+      <category>Vditor</category>
       <pubDate>Thu, 30 Jan 2020 11:37:26 +0800</pubDate>
     </item>
     <item>
@@ -95,10 +95,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/01/23/1579786655216.html</guid>
-      <category>路线图</category>
+      <category>链滴笔记</category>
       <category>WebDAV</category>
       <category>Markdown</category>
-      <category>链滴笔记</category>
+      <category>路线图</category>
       <pubDate>Thu, 30 Jan 2020 11:24:43 +0800</pubDate>
     </item>
     <item>
@@ -109,10 +109,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/01/19/1579414663700.html</guid>
-      <category>Markdown</category>
+      <category>Typora</category>
       <category>所见即所得</category>
       <category>Vditor</category>
-      <category>Typora</category>
+      <category>Markdown</category>
       <pubDate>Sun, 19 Jan 2020 14:20:42 +0800</pubDate>
     </item>
     <item>
@@ -123,10 +123,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/12/30/1577712379212.html</guid>
-      <category>开源</category>
-      <category>2019</category>
       <category>创业</category>
+      <category>2019</category>
       <category>总结</category>
+      <category>开源</category>
       <pubDate>Mon, 30 Dec 2019 21:31:08 +0800</pubDate>
     </item>
     <item>

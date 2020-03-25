@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>呼叫中心架构设计 - D 的个人博客</title><meta name="description" content="从呼叫模式上看，目前业界大多数采用的是“回拨”模式，即由呼叫中心发起两路呼叫，然后将两路进行连通。"/><meta property="og:description" content="从呼叫模式上看，目前业界大多数采用的是“回拨”模式，即由呼叫中心发起两路呼叫，然后将两路进行连通。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="呼叫中心架构设计 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2016/07/24/1469349167953.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="呼叫中心架构设计 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2016/07/24/1469349167953.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="基于数据库复制的技术架构讨论" href="https://88250.github.io/articles/2016/06/07/1465278948107.html">
             <link rel="next" title="链接熔炉设计" href="https://88250.github.io/articles/2016/09/07/1473238756829.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -164,7 +164,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h2 id="toc_h2_0">背景</h2>
+                <h2 id="背景">背景</h2>
 <ul>
 <li>客户在打电话给客服（坐席）时需要保护自己的隐私（客户电话号码不能透传给客服）</li>
 <li>客服在打电话给客户时可根据实际对应业务来设定是否进行号码透传（大部分场景是透传）</li>
@@ -172,11 +172,11 @@ bold;">Sym</span></a>
 <li>不建立真正的实体呼叫中心，而是接入多个第三方提供的云通话服务完成实际通话过程，降低成本和风险</li>
 </ul>
 <p>为此我们需要实现一个能够能够支撑业务实现并能够接入多个云通话服务渠道的系统，命名为 CC（Call Center，呼叫中心）。</p>
-<h2 id="toc_h2_1">架构设计</h2>
+<h2 id="架构设计">架构设计</h2>
 <p>从呼叫模式上看，目前业界大多数采用的是“回拨”模式，即由呼叫中心发起两路呼叫，然后将两路进行连通。提供回拨服务的厂商比较多，比如玖云、华为、吉亚等，下面以玖云和华为为例进行架构设计。（选择玖云和华为主要是因为他们正好使用了不同的两种通话状态获取模式，玖云是回调，而华为是轮询）</p>
 <p><img src="http://7xlu8j.com1.z0.glb.clouddn.com/ddc7826b19ad4d578cf0f8f346f881fd.png" alt="1468845260279"></p>
 <p>（图片看不清的话请另存为后查看）</p>
-<h3 id="toc_h3_2">子模块</h3>
+<h3 id="子模块">子模块</h3>
 <ul>
 <li>Callback Logging：玖云事件回调持久化，实现上使用 NGINX 写文件日志</li>
 <li>Scheduled Task：华为事件轮询</li>
@@ -189,41 +189,176 @@ bold;">Sym</span></a>
 <li>Health：渠道及回调日志健康状态检查，以及渠道故障时让 Channel 自动切换渠道</li>
 <li><em>Aliyun OSS</em>：将获取到的通话录音上传到阿里云 OSS 进行存储</li>
 </ul>
-<h3 id="toc_h3_3">通话记录表</h3>
+<h3 id="通话记录表">通话记录表</h3>
 <table>
 <thead>
-<tr><th>列名</th><th>类型</th><th>长度</th><th>备注</th></tr>
+<tr>
+<th>列名</th>
+<th>类型</th>
+<th>长度</th>
+<th>备注</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>id</td><td>bigint</td><td>20</td><td>主键</td></tr>
-<tr><td>tenant</td><td>varchar</td><td>32</td><td>租户标识</td></tr>
-<tr><td>main_num</td><td>varchar</td><td>16</td><td>400 商户号码</td></tr>
-<tr><td>ext_num</td><td>varchar</td><td>8</td><td>400 商户分机号码</td></tr>
-<tr><td>agent</td><td>varchar</td><td>64</td><td>坐席标识</td></tr>
-<tr><td>call_id</td><td>varchar</td><td>64</td><td>由渠道返回的话单 id</td></tr>
-<tr><td>caller</td><td>varchar</td><td>16</td><td>主叫（A 路）号码</td></tr>
-<tr><td>called</td><td>varchar</td><td>16</td><td>被叫（B 路）号码</td></tr>
-<tr><td>biz_data</td><td>text</td><td> </td><td>业务数据</td></tr>
-<tr><td>channel</td><td>varchar</td><td>8</td><td>渠道标识：（玖云：e9；华为：hw；吉亚：jy）</td></tr>
-<tr><td>ch_state</td><td>varchar</td><td>32</td><td>渠道返回的话单当前状态</td></tr>
-<tr><td>state</td><td>varchar</td><td>8</td><td>话单当前状态。初始化（发起呼叫 A 路）：init；双通：conn；关闭：close</td></tr>
-<tr><td>a_call_time</td><td>bigint</td><td>20</td><td>呼叫 A 路时间</td></tr>
-<tr><td>b_call_time</td><td>bigint</td><td>20</td><td>呼叫 B 路时间</td></tr>
-<tr><td>a_offhook_time</td><td>bigint</td><td>20</td><td>A 路摘机（接通）时间</td></tr>
-<tr><td>b_offhook_time</td><td>bigint</td><td>20</td><td>B 路摘机（接通）时间</td></tr>
-<tr><td>conn_time</td><td>bigint</td><td>20</td><td>双通时间</td></tr>
-<tr><td>close_time</td><td>bigint</td><td>20</td><td>关闭通话时间</td></tr>
-<tr><td>duration</td><td>int</td><td>11</td><td>通话时长（秒）</td></tr>
-<tr><td>ch_audio_url</td><td>varchar</td><td>512</td><td>渠道录音文件 URL</td></tr>
-<tr><td>audio_url</td><td>varchar</td><td>512</td><td>外部存储录音文件 URL</td></tr>
-<tr><td>ivr_url</td><td>varchar</td><td>512</td><td>IVR 语音文件 URL</td></tr>
-<tr><td>ivr_text</td><td>text</td><td> </td><td>IVR 文本内容</td></tr>
-<tr><td>close_type</td><td>varchar</td><td>32</td><td>0：正常挂断；1：A 路无法接通；2：B 路无法接通；3：A 路目标忙；4：B 路目标忙；5：通话达到最大时长；6：渠道服务器错误；7：渠道网络错误；255：其他错误</td></tr>
-<tr><td>updated</td><td>bigint</td><td>20</td><td>记录更新时间</td></tr>
-<tr><td>created</td><td>bigint</td><td>20</td><td>记录创建时间</td></tr>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>20</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>tenant</td>
+<td>varchar</td>
+<td>32</td>
+<td>租户标识</td>
+</tr>
+<tr>
+<td>main_num</td>
+<td>varchar</td>
+<td>16</td>
+<td>400 商户号码</td>
+</tr>
+<tr>
+<td>ext_num</td>
+<td>varchar</td>
+<td>8</td>
+<td>400 商户分机号码</td>
+</tr>
+<tr>
+<td>agent</td>
+<td>varchar</td>
+<td>64</td>
+<td>坐席标识</td>
+</tr>
+<tr>
+<td>call_id</td>
+<td>varchar</td>
+<td>64</td>
+<td>由渠道返回的话单 id</td>
+</tr>
+<tr>
+<td>caller</td>
+<td>varchar</td>
+<td>16</td>
+<td>主叫（A 路）号码</td>
+</tr>
+<tr>
+<td>called</td>
+<td>varchar</td>
+<td>16</td>
+<td>被叫（B 路）号码</td>
+</tr>
+<tr>
+<td>biz_data</td>
+<td>text</td>
+<td></td>
+<td>业务数据</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>varchar</td>
+<td>8</td>
+<td>渠道标识：（玖云：e9；华为：hw；吉亚：jy）</td>
+</tr>
+<tr>
+<td>ch_state</td>
+<td>varchar</td>
+<td>32</td>
+<td>渠道返回的话单当前状态</td>
+</tr>
+<tr>
+<td>state</td>
+<td>varchar</td>
+<td>8</td>
+<td>话单当前状态。初始化（发起呼叫 A 路）：init；双通：conn；关闭：close</td>
+</tr>
+<tr>
+<td>a_call_time</td>
+<td>bigint</td>
+<td>20</td>
+<td>呼叫 A 路时间</td>
+</tr>
+<tr>
+<td>b_call_time</td>
+<td>bigint</td>
+<td>20</td>
+<td>呼叫 B 路时间</td>
+</tr>
+<tr>
+<td>a_offhook_time</td>
+<td>bigint</td>
+<td>20</td>
+<td>A 路摘机（接通）时间</td>
+</tr>
+<tr>
+<td>b_offhook_time</td>
+<td>bigint</td>
+<td>20</td>
+<td>B 路摘机（接通）时间</td>
+</tr>
+<tr>
+<td>conn_time</td>
+<td>bigint</td>
+<td>20</td>
+<td>双通时间</td>
+</tr>
+<tr>
+<td>close_time</td>
+<td>bigint</td>
+<td>20</td>
+<td>关闭通话时间</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>int</td>
+<td>11</td>
+<td>通话时长（秒）</td>
+</tr>
+<tr>
+<td>ch_audio_url</td>
+<td>varchar</td>
+<td>512</td>
+<td>渠道录音文件 URL</td>
+</tr>
+<tr>
+<td>audio_url</td>
+<td>varchar</td>
+<td>512</td>
+<td>外部存储录音文件 URL</td>
+</tr>
+<tr>
+<td>ivr_url</td>
+<td>varchar</td>
+<td>512</td>
+<td>IVR 语音文件 URL</td>
+</tr>
+<tr>
+<td>ivr_text</td>
+<td>text</td>
+<td></td>
+<td>IVR 文本内容</td>
+</tr>
+<tr>
+<td>close_type</td>
+<td>varchar</td>
+<td>32</td>
+<td>0：正常挂断；1：A 路无法接通；2：B 路无法接通；3：A 路目标忙；4：B 路目标忙；5：通话达到最大时长；6：渠道服务器错误；7：渠道网络错误；255：其他错误</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>bigint</td>
+<td>20</td>
+<td>记录更新时间</td>
+</tr>
+<tr>
+<td>created</td>
+<td>bigint</td>
+<td>20</td>
+<td>记录创建时间</td>
+</tr>
 </tbody>
 </table>
-<h3 id="toc_h3_4">回拨流程</h3>
+<h3 id="回拨流程">回拨流程</h3>
 <ol>
 <li>应用发起回拨请求，调用 Call</li>
 <li>Call 调用 Channel，有 Channel 选择适合的渠道，并通过公网 HTTP(S) 进行回拨请求</li>
@@ -239,7 +374,7 @@ bold;">Sym</span></a>
 <li>回拨接口的返回值中会返回一个 callId，用来表示该次回拨，以便将通话记录和业务实体进行关联对应</li>
 <li>在通话期间，应用可以使用 callId 来轮询 CC 查看通话状态</li>
 </ul>
-<h3 id="toc_h3_5">用户-坐席-渠道</h3>
+<h3 id="用户-坐席-渠道">用户-坐席-渠道</h3>
 <p>这个模型用于描述业务系统中的用户实体以及坐席（可以理解为渠道提供的通话线路，同一时刻同一个线路只能有一通电话在拨打）的关联，并却定了这个用户所使用的通话渠道。</p>
 <ul>
 <li>对于玖云，坐席对应的是电话号码</li>
@@ -268,22 +403,22 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#toc_h2_0">背景</a>
+            <a href="#背景">背景</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_1">架构设计</a>
+            <a href="#架构设计">架构设计</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">子模块</a>
+            <a href="#子模块">子模块</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">通话记录表</a>
+            <a href="#通话记录表">通话记录表</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_4">回拨流程</a>
+            <a href="#回拨流程">回拨流程</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_5">用户-坐席-渠道</a>
+            <a href="#用户-坐席-渠道">用户-坐席-渠道</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -309,7 +444,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -352,7 +487,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -361,10 +496,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -401,7 +536,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1469349167953",
@@ -421,4 +556,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 189ms, 2020/03/25 10:29:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 179ms, 2020/03/25 10:36:35 -->

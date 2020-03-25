@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（七） - D 的个人博客</title><meta name="description" content="上一篇： [1438164538421] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438164538421] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（七） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/30/1438260619759.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（七） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/30/1438260619759.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（六）" href="https://88250.github.io/articles/2015/07/29/1438164538421.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（八）" href="https://88250.github.io/articles/2015/07/31/1438311936449.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1438164538421]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,9 +184,9 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h3 id="toc_h3_1">3.5 延迟调用</h3>
+<h3 id="3-5-延迟调用">3.5 延迟调用</h3>
 <p>关键字 <code>defer</code> 用于注册延迟调用。这些调用直到 <code>return</code> 前才被执行，通常⽤用于释放资源或错误处理。</p>
-<pre><code>func test() error {
+<pre><code class="highlight-chroma">func test() error {
 	f, err := os.Create("test.txt")
     if err != nil { return err }
     
@@ -201,7 +201,7 @@ bold;">Sym</span></a>
 <p>延迟调用参数在注册时求值或复制，可用指针或闭包 "延迟" 读取。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/d14360d2f3a048aa9d1edd09179a929d.go?embed=true" width="99%" height="500"></iframe>
 <p>滥用 <code>defer</code> 可能会导致性能问题，尤其是在一个 "大循环" 里。</p>
-<pre><code>var lock sync.Mutex
+<pre><code class="highlight-chroma">var lock sync.Mutex
   	func test() {
   	lock.Lock()
   	lock.Unlock()
@@ -225,12 +225,12 @@ func BenchmarkTestDefer(b *testing.B) {
 }
 </code></pre>
 <p>输出：</p>
-<pre><code>BenchmarkTest" 50000000 43 ns/op
+<pre><code class="highlight-chroma">BenchmarkTest" 50000000 43 ns/op
 BenchmarkTestDefer 20000000 128 ns/op
 </code></pre>
-<h3 id="toc_h3_2">3.6 错误处理</h3>
+<h3 id="3-6-错误处理">3.6 错误处理</h3>
 <p>没有结构化异常，使用 <code>panic</code> 抛出错误，<code>recover</code> 捕获错误。</p>
-<pre><code>func test() {
+<pre><code class="highlight-chroma">func test() {
 	defer func() {
 		if err := recover(); err != nil {
 			println(err.(string)) // 将 interface{} 转型为具体类型。
@@ -241,11 +241,11 @@ BenchmarkTestDefer 20000000 128 ns/op
 }
 </code></pre>
 <p>由于 <code>panic</code>、<code>recover</code> 参数类型为 <code>interface{}</code>，因此可抛出任何类型对象。</p>
-<pre><code>func panic(v interface{})
+<pre><code class="highlight-chroma">func panic(v interface{})
 func recover() interface{}
 </code></pre>
 <p>延迟调用中引发的错误，可被后续延迟调用捕获，但仅最后一个错误可被捕获。</p>
-<pre><code>func test() {
+<pre><code class="highlight-chroma">func test() {
 	defer func() {
 		fmt.Println(recover())
 	}()
@@ -262,10 +262,10 @@ func main() {
 }
 </code></pre>
 <p>输出：</p>
-<pre><code>defer panic
+<pre><code class="highlight-chroma">defer panic
 </code></pre>
 <p>捕获函数 <code>recover</code> 只有在延迟调用内直接调用才会终止错误，否则总是返回 <code>nil</code>。任何未捕获的错误都会沿调用堆栈向外传递。</p>
-<pre><code>func test() {
+<pre><code class="highlight-chroma">func test() {
 	defer recover() // 无效！
 	defer fmt.Println(recover()) // 无效！
 	defer func() {
@@ -283,12 +283,12 @@ func main() {
 }
 </code></pre>
 <p>输出：</p>
-<pre><code>defer inner
+<pre><code class="highlight-chroma">defer inner
 &lt;nil&gt;
 panic: test panic
 </code></pre>
 <p>使用延迟匿名函数或下面这样都是有效的。</p>
-<pre><code>func except() {
+<pre><code class="highlight-chroma">func except() {
 	recover()
 }
 
@@ -298,7 +298,7 @@ func test() {
 }
 </code></pre>
 <p>如果需要保护代码片段，可将代码块重构成匿名函数，如此可确保后续代码被执行。</p>
-<pre><code>func test(x, y int) {
+<pre><code class="highlight-chroma">func test(x, y int) {
 	var z int
 	
     func() {
@@ -314,7 +314,7 @@ func test() {
 }
 </code></pre>
 <p>除用 <code>panic</code> 引发中断性错误外，还可返回 <code>error</code> 类型错误对象来表示函数调用状态。</p>
-<pre><code>type error interface {
+<pre><code class="highlight-chroma">type error interface {
 	Error() string
 }
 </code></pre>
@@ -358,13 +358,13 @@ func test() {
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">3.5 延迟调用</a>
+            <a href="#3-5-延迟调用">3.5 延迟调用</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">3.6 错误处理</a>
+            <a href="#3-6-错误处理">3.6 错误处理</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -390,7 +390,7 @@ func test() {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -433,7 +433,7 @@ func test() {
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -442,10 +442,10 @@ func test() {
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -482,7 +482,7 @@ func test() {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438260619759",
@@ -502,4 +502,4 @@ func test() {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 229ms, 2020/03/25 10:29:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 159ms, 2020/03/25 10:36:35 -->

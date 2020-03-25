@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（三） - D 的个人博客</title><meta name="description" content="上一篇： [1437558810339] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1437558810339] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（三） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/24/1437719712835.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（三） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/24/1437719712835.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（二）" href="https://88250.github.io/articles/2015/07/22/1437558810339.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（四）" href="https://88250.github.io/articles/2015/07/27/1437984612418.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1437558810339]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,7 +184,7 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h3 id="toc_h3_1">1.7 指针</h3>
+<h3 id="1-7-指针">1.7 指针</h3>
 <p>支持指针类型 <code>*T</code>，指针的指针 <code>**T</code>，以及包含包名前缀的 <code>*&lt;package&gt;.T</code>。</p>
 <ul>
 <li>默认值 <code>nil</code>，没有 <code>NULL</code> 常量。</li>
@@ -193,14 +193,14 @@ bold;">Sym</span></a>
 </ul>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/184423db927cf64ca677675ab6db789d.go?embed=true" width="99%" height="400"></iframe>
 <p>不能对指针做加减法等运算。</p>
-<pre><code>x := 1234
+<pre><code class="highlight-chroma">x := 1234
 p := &amp;x
 p++ // Error: invalid operation: p += 1 (mismatched types *int and int)
 </code></pre>
 <p>可以在 <code>unsafe.Pointer</code> 和任意类型指针间进行转换。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/7af2e598bd6ba3613dbad1fc8cf83168.go?embed=true" width="99%" height="500"></iframe>
 <p>返回局部变量指针是安全的，编译器会根据需要将其分配在 GC Heap 上。</p>
-<pre><code>func test() *int {
+<pre><code class="highlight-chroma">func test() *int {
 	x := 100
 	return &amp;x // 在堆上分配 x 内存。但在内联时，也可能直接分配在目标栈。
 }
@@ -208,7 +208,7 @@ p++ // Error: invalid operation: p += 1 (mismatched types *int and int)
 <p>将 <code>Pointer</code> 转换成 <code>uintptr</code>，可变相实现指针运算。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/4e01a7824fff97c5a8bf4f16771a3abd.go?embed=true" width="99%" height="600"></iframe>
 <p>注意：GC 把 <code>uintptr</code> 当成普通整数对象，它无法阻止 "关联" 对象被回收。</p>
-<h3 id="toc_h3_2">1.8 自定义类型</h3>
+<h3 id="1-8-自定义类型">1.8 自定义类型</h3>
 <p>可将类型分为命名和未命名两大类。命名类型包括 <code>bool</code>、<code>int</code>、<code>string</code> 等，而 <code>array</code>、<code>slice</code>、<code>map</code> 等和具体元素类型、长度等有关，属于未命名类型。</p>
 <p>具有相同声明的未命名类型被视为同一类型。</p>
 <ul>
@@ -222,14 +222,14 @@ p++ // Error: invalid operation: p += 1 (mismatched types *int and int)
 <li>方法集相同 (方法名、方法签名相同，和次序无关) 的 <code>interface</code>。</li>
 </ul>
 <p>例如，</p>
-<pre><code>var a struct { x int \`a\` }
+<pre><code class="highlight-chroma">var a struct { x int \`a\` }
 var b struct { x int \`ab\` }
 
 // cannot use a (type struct { x int "a" }) as type struct { x int "ab" } in assignment
 b = a
 </code></pre>
 <p>可用 <code>type</code> 在全局或函数内定义新类型。</p>
-<pre><code>func main() {
+<pre><code class="highlight-chroma">func main() {
 	type bigint int64
 
 	var x bigint = 100
@@ -237,7 +237,7 @@ b = a
 }
 </code></pre>
 <p>新类型不是原类型的别名，除拥有相同数据存储结构外，它们之间没有任何关系，不会持有原类型任何信息。除非目标类型是未命名类型，否则必须显式转换。</p>
-<pre><code>x := 1234
+<pre><code class="highlight-chroma">x := 1234
 var b bigint = bigint(x) // 必须显式转换，除非是常量。
 var b2 int64 = int64(b)
 
@@ -281,13 +281,13 @@ var s2 []int = s
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">1.7 指针</a>
+            <a href="#1-7-指针">1.7 指针</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">1.8 自定义类型</a>
+            <a href="#1-8-自定义类型">1.8 自定义类型</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -313,7 +313,7 @@ var s2 []int = s
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -356,7 +356,7 @@ var s2 []int = s
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -365,10 +365,10 @@ var s2 []int = s
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -405,7 +405,7 @@ var s2 []int = s
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1437719712835",
@@ -425,4 +425,4 @@ var s2 []int = s
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 260ms, 2020/03/25 10:29:37 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 236ms, 2020/03/25 10:36:36 -->

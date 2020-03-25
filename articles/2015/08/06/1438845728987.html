@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（十二） - D 的个人博客</title><meta name="description" content="上一篇： [1438763483577] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438763483577] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（十二） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/06/1438845728987.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（十二） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/06/1438845728987.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（十一）" href="https://88250.github.io/articles/2015/08/05/1438763483577.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（十三）" href="https://88250.github.io/articles/2015/08/07/1438938175118.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1438763483577]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,7 +184,7 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h3 id="toc_h3_1">6.1 接口定义</h3>
+<h3 id="6-1-接口定义">6.1 接口定义</h3>
 <p>接口是一个或多个方法签名的集合，任何类型的方法集中只要拥有与之对应的全部方法，就表示它 "实现" 了该接口，无须在该类型上显式添加接口声明。</p>
 <p>所谓对应方法，是指有相同名称、参数列表 (不包括参数名) 以及返回值。当然，该类型还可以有其他方法。</p>
 <ul>
@@ -196,7 +196,7 @@ bold;">Sym</span></a>
 </ul>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/258b8a46339ef0544189ed004dd4f3b8.go?embed=true" width="99%" height="750"></iframe>
 <p>空接口 <code>interface{}</code> 没有任何方法签名，也就意味着任何类型都实现了空接口。其作用类似面向对象语言中的根对象 <code>Object</code>。</p>
-<pre><code>func Print(v interface{}) {
+<pre><code class="highlight-chroma">func Print(v interface{}) {
 	fmt.Printf("%T: %v\n", v, v)
 }
 
@@ -206,15 +206,15 @@ func main() {
 }
 </code></pre>
 <p>输出：</p>
-<pre><code>int: 1
+<pre><code class="highlight-chroma">int: 1
 string: Hello, World!
 </code></pre>
 <p>匿名接口可用作变量类型，或结构成员。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/bb45f4ffd96bf6c85b2953837bc8f8de.go?embed=true" width="99%" height="600"></iframe>
-<h3 id="toc_h3_2">6.2 执行机制</h3>
+<h3 id="6-2-执行机制">6.2 执行机制</h3>
 <p>接口对象由接口表 (interface table) 指针和数据指针组成。</p>
 <p>runtime.h</p>
-<pre><code>struct Iface
+<pre><code class="highlight-chroma">struct Iface
 {
 	Itab* tab;
 	void* data;
@@ -233,7 +233,7 @@ struct Itab
 <p>接口转型返回临时对象，只有使用指针才能修改其状态。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/0e60e29cd72bff02c7b64fe97e7394a7.go?embed=true" width="99%" height="520"></iframe>
 <p>只有 <code>tab</code> 和 <code>data</code> 都为 <code>nil</code> 时，接口才等于 <code>nil</code>。</p>
-<pre><code>var a interface{} = nil // tab = nil, data = nil
+<pre><code class="highlight-chroma">var a interface{} = nil // tab = nil, data = nil
 var b interface{} = (*int)(nil) // tab 包含 *int 类型信息, data = nil
 
 type iface struct {
@@ -247,12 +247,12 @@ fmt.Println(a == nil, ia)
 fmt.Println(b == nil, ib, reflect.ValueOf(b).IsNil())
 </code></pre>
 <p>输出：</p>
-<pre><code>true {0 0}
+<pre><code class="highlight-chroma">true {0 0}
 false {505728 0} true
 </code></pre>
-<h3 id="toc_h3_3">6.3 接口转换</h3>
+<h3 id="6-3-接口转换">6.3 接口转换</h3>
 <p>利用类型推断，可判断接口对象是否某个具体的接口或类型。</p>
-<pre><code>type User struct {
+<pre><code class="highlight-chroma">type User struct {
 	id int
 	name string
 }
@@ -274,7 +274,7 @@ func main() {
 }
 </code></pre>
 <p>还可用 <code>switch</code> 做批量类型判断，不支持 <code>fallthrough</code>。</p>
-<pre><code>func main() {
+<pre><code class="highlight-chroma">func main() {
     var o interface{} = &amp;User{1, "Tom"}
     
     switch v := o.(type) {
@@ -292,7 +292,7 @@ func main() {
 }
 </code></pre>
 <p>超集接口对象可转换为子集接口，反之出错。</p>
-<pre><code>type Stringer interface {
+<pre><code class="highlight-chroma">type Stringer interface {
 	String() string
 }
 
@@ -320,12 +320,12 @@ func main() {
 	fmt.Println(s.String())
 }
 </code></pre>
-<h3 id="toc_h3_4">6.4 接口技巧</h3>
+<h3 id="6-4-接口技巧">6.4 接口技巧</h3>
 <p>让编译器检查，以确保某个类型实现接口。</p>
-<pre><code>var _ fmt.Stringer = (*Data)(nil)
+<pre><code class="highlight-chroma">var _ fmt.Stringer = (*Data)(nil)
 </code></pre>
 <p>某些时候，让函数直接 "实现" 接口能省不少事。</p>
-<pre><code>type Tester interface {
+<pre><code class="highlight-chroma">type Tester interface {
 	Do()
 }
 
@@ -374,19 +374,19 @@ func main() {
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">6.1 接口定义</a>
+            <a href="#6-1-接口定义">6.1 接口定义</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">6.2 执行机制</a>
+            <a href="#6-2-执行机制">6.2 执行机制</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">6.3 接口转换</a>
+            <a href="#6-3-接口转换">6.3 接口转换</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_4">6.4 接口技巧</a>
+            <a href="#6-4-接口技巧">6.4 接口技巧</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -412,7 +412,7 @@ func main() {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -455,7 +455,7 @@ func main() {
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -464,10 +464,10 @@ func main() {
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -504,7 +504,7 @@ func main() {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438845728987",
@@ -524,4 +524,4 @@ func main() {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 210ms, 2020/03/25 10:29:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 225ms, 2020/03/25 10:36:35 -->

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>以太坊 JavaScript API web3.js 打币 - D 的个人博客</title><meta name="description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/><meta property="og:description" content="ABI 简介 关于什么是 ABI（Application Binary Interface）请看官网文档。简单来说 ABI 就是外界和合约交互的方式： ABI 用 JSON 描述合约的接口定义用约定好的编码方式进行实际调用 做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。 ABI 的实例请看这里。 web3.js 简介 web3.js 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。 下面的代码示例基于 web3.js v1.0 开发，请注意不同版本之间的差异。 同步区块 人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！ 试了 ETHFANS 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。 后来在阿里云海外节点开了台服务器几...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="以太坊 JavaScript API web3.js 打币 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/09/1520583695227.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="以太坊 JavaScript API web3.js 打币 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/09/1520583695227.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="重装系统后 git 烂了" href="https://88250.github.io/articles/2018/02/24/1519471473213.html">
             <link rel="next" title="以太坊同步一直“卡着”的原因" href="https://88250.github.io/articles/2018/03/11/1520767628593.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -165,7 +165,7 @@ bold;">Sym</span></a>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
                 <p><img src="https://img.hacpai.com/e/20d13d1dcdc5487e926182af71e03616.jpeg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Ethereum"></p>
-<h2 id="toc_h2_0">ABI 简介</h2>
+<h2 id="ABI-简介">ABI 简介</h2>
 <p>关于什么是 ABI（Application Binary Interface）请看<a href="https://solidity.readthedocs.io/en/develop/abi-spec.html" target="_blank">官网文档</a>。简单来说 ABI 就是外界和合约交互的方式：</p>
 <ul>
 <li>ABI 用 JSON 描述合约的接口定义</li>
@@ -173,10 +173,10 @@ bold;">Sym</span></a>
 </ul>
 <p>做过 RPC 的同学可以理解为这就是异构平台的 RPC 实现，需要进行接口定义、存根生成、寻址、序列化、网络通讯等步骤就能调用到合约上的函数了。</p>
 <p>ABI 的实例请看<a href="https://etherscan.io/address/0xe249e7a6f5a9efee03b4c5090c77245ef6fe0f5e#code" target="_blank">这里</a>。</p>
-<h2 id="toc_h2_1">web3.js 简介</h2>
+<h2 id="web3-js-简介">web3.js 简介</h2>
 <p><a href="https://github.com/ethereum/web3.js" target="_blank">web3.js</a> 是以太坊 JavaScript API 的官方实现，用它来和以太坊节点进行可编程通讯，基于 HTTP 或 IPC 连接。简单来说 web3.js 就是可以通过 JavaScript 调用本地或远程的以太坊节点，完成网络管理、账户管理、交易等操作。</p>
 <p>下面的代码示例基于 web3.js <code>v1.0</code> 开发，请注意不同版本之间的差异。</p>
-<h2 id="toc_h2_2">同步区块</h2>
+<h2 id="同步区块">同步区块</h2>
 <p>人们都说以太坊发币最大的技术难点就是同步区块，一点儿没错！</p>
 <p>试了 <a href="http://ethfans.org" target="_blank">ETHFANS</a> 星火计划提供的静态节点也不行，最后还是放弃本地电脑同步，主要问题是我家这里的网络质量太差，很多时候藕断丝连。</p>
 <p>后来在阿里云<strong>海外节点</strong>开了台服务器几个小时就同步好了（国内节点我也试过，一晚上没同步好，没耐心就放弃了），下面给出服务器配置大家可以参考下：</p>
@@ -185,8 +185,8 @@ bold;">Sym</span></a>
 <li>磁盘至少 100G（区块高度 530W）</li>
 <li>带宽我开的是 5M</li>
 </ul>
-<p>同步使用<a href="https://geth.ethereum.org/install" target="_blank">官方 geth</a>就行，启动不用带参。每次下载最新的 geth 后最好浏览一下帮助，避免用了过时的参数而掉坑里。</p>
-<h2 id="toc_h2_3">交易（打币/转账）</h2>
+<p>同步使用<a href="https://geth.ethereum.org/install" target="_blank">官方 geth </a>就行，启动不用带参。每次下载最新的 geth 后最好浏览一下帮助，避免用了过时的参数而掉坑里。</p>
+<h2 id="交易-打币-转账-">交易（打币/转账）</h2>
 <p>前面铺垫完，正式进入今天的主题：如何通过 web3.js 打币。我们大致需要用到如下几个 API（看命名就懂的 API 我就不啰嗦了）：</p>
 <ul>
 <li>personal.unlockAccount：调用后等待用户输入对应解锁账户的私钥密码完成解锁</li>
@@ -194,67 +194,67 @@ bold;">Sym</span></a>
 <li>eth.contract：合约接口</li>
 </ul>
 <p>先启动 geth 的交互式可执行环境：<code>geth attach</code>（Windows 上面<em>可能</em>需要用 <code>geth attach ipc:\\.\pipe\geth.ipc</code>），然后分两种打币情况：以太坊、ERC20 令牌。</p>
-<h3 id="toc_h3_4">以太坊转账</h3>
+<h3 id="以太坊转账">以太坊转账</h3>
 <p>这种情况是最简单的，只需两步：</p>
 <ol>
 <li>解锁源账户</li>
 <li>执行转账</li>
 </ol>
-<pre><code class="language-js">personal.unlockAccount(fromAddr); // 输入正确的私钥密码后将允许进行交易操作
-eth.sendTransaction({from: fromAddr, to: toAddr, value: web3.toWei(0.1, "ether")}); // 转账 0.1 eth
-</code></pre>
-<h3 id="toc_h3_5">ERC20 令牌转账</h3>
+<pre><code class="language-js highlight-chroma"><span class="highlight-nx">personal</span><span class="highlight-p">.</span><span class="highlight-nx">unlockAccount</span><span class="highlight-p">(</span><span class="highlight-nx">fromAddr</span><span class="highlight-p">);</span> <span class="highlight-c1">// 输入正确的私钥密码后将允许进行交易操作
+</span><span class="highlight-c1"></span><span class="highlight-nx">eth</span><span class="highlight-p">.</span><span class="highlight-nx">sendTransaction</span><span class="highlight-p">({</span><span class="highlight-nx">from</span><span class="highlight-o">:</span> <span class="highlight-nx">fromAddr</span><span class="highlight-p">,</span> <span class="highlight-nx">to</span><span class="highlight-o">:</span> <span class="highlight-nx">toAddr</span><span class="highlight-p">,</span> <span class="highlight-nx">value</span><span class="highlight-o">:</span> <span class="highlight-nx">web3</span><span class="highlight-p">.</span><span class="highlight-nx">toWei</span><span class="highlight-p">(</span><span class="highlight-mf">0.1</span><span class="highlight-p">,</span> <span class="highlight-s2">"ether"</span><span class="highlight-p">)});</span> <span class="highlight-c1">// 转账 0.1 eth
+</span></code></pre>
+<h3 id="ERC20-令牌转账">ERC20 令牌转账</h3>
 <ol>
 <li>构造 ERC20 令牌合约操作对象</li>
 <li>解锁源账户</li>
 <li>调用 ERC20 令牌转账接口执行转账</li>
 </ol>
-<pre><code class="language-js">var tokenContractABI = [....] // JSON ABI
-var contractAddr = "0xe249e7a6f5a9efee03b4c5090c77245ef6fe0f5e";
-var tokenContract = eth.contract(tokenContractABI).at(contractAddr); // 构造合约对象
-
-var fromAddr = "0xb3d201b5963db83c434e5810b54ac62e3ee05c00"; // 源账户地址
-tokenContract.balanceOf(fromAddr); // 查看令牌余额
-var amount = 20000;  // 转账金额
-var toAddr = "0x.."; // 目标账户地址
-
-personal.unlockAccount(fromAddr); // 输入正确的私钥密码后将允许进行交易操作
-tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行令牌转账 
-</code></pre>
-<h2 id="toc_h2_6">事件处理</h2>
+<pre><code class="language-js highlight-chroma"><span class="highlight-kd">var</span> <span class="highlight-nx">tokenContractABI</span> <span class="highlight-o">=</span> <span class="highlight-p">[....]</span> <span class="highlight-c1">// JSON ABI
+</span><span class="highlight-c1"></span><span class="highlight-kd">var</span> <span class="highlight-nx">contractAddr</span> <span class="highlight-o">=</span> <span class="highlight-s2">"0xe249e7a6f5a9efee03b4c5090c77245ef6fe0f5e"</span><span class="highlight-p">;</span>
+<span class="highlight-kd">var</span> <span class="highlight-nx">tokenContract</span> <span class="highlight-o">=</span> <span class="highlight-nx">eth</span><span class="highlight-p">.</span><span class="highlight-nx">contract</span><span class="highlight-p">(</span><span class="highlight-nx">tokenContractABI</span><span class="highlight-p">).</span><span class="highlight-nx">at</span><span class="highlight-p">(</span><span class="highlight-nx">contractAddr</span><span class="highlight-p">);</span> <span class="highlight-c1">// 构造合约对象
+</span><span class="highlight-c1"></span>
+<span class="highlight-kd">var</span> <span class="highlight-nx">fromAddr</span> <span class="highlight-o">=</span> <span class="highlight-s2">"0xb3d201b5963db83c434e5810b54ac62e3ee05c00"</span><span class="highlight-p">;</span> <span class="highlight-c1">// 源账户地址
+</span><span class="highlight-c1"></span><span class="highlight-nx">tokenContract</span><span class="highlight-p">.</span><span class="highlight-nx">balanceOf</span><span class="highlight-p">(</span><span class="highlight-nx">fromAddr</span><span class="highlight-p">);</span> <span class="highlight-c1">// 查看令牌余额
+</span><span class="highlight-c1"></span><span class="highlight-kd">var</span> <span class="highlight-nx">amount</span> <span class="highlight-o">=</span> <span class="highlight-mi">20000</span><span class="highlight-p">;</span>  <span class="highlight-c1">// 转账金额
+</span><span class="highlight-c1"></span><span class="highlight-kd">var</span> <span class="highlight-nx">toAddr</span> <span class="highlight-o">=</span> <span class="highlight-s2">"0x.."</span><span class="highlight-p">;</span> <span class="highlight-c1">// 目标账户地址
+</span><span class="highlight-c1"></span>
+<span class="highlight-nx">personal</span><span class="highlight-p">.</span><span class="highlight-nx">unlockAccount</span><span class="highlight-p">(</span><span class="highlight-nx">fromAddr</span><span class="highlight-p">);</span> <span class="highlight-c1">// 输入正确的私钥密码后将允许进行交易操作
+</span><span class="highlight-c1"></span><span class="highlight-nx">tokenContract</span><span class="highlight-p">.</span><span class="highlight-nx">transfer</span><span class="highlight-p">(</span><span class="highlight-nx">toAddr</span><span class="highlight-p">,</span> <span class="highlight-nx">web3</span><span class="highlight-p">.</span><span class="highlight-nx">toWei</span><span class="highlight-p">(</span><span class="highlight-nx">amount</span><span class="highlight-p">),</span> <span class="highlight-p">{</span><span class="highlight-nx">from</span><span class="highlight-o">:</span> <span class="highlight-nx">fromAddr</span><span class="highlight-p">});</span> <span class="highlight-c1">// 执行令牌转账 
+</span></code></pre>
+<h2 id="事件处理">事件处理</h2>
 <p>主要使用场景是发送交易后等待网络确认，然后通知外部程序做相应的处理；也用于和合约定义的事件进行交互。</p>
-<h3 id="toc_h3_7">使用回调</h3>
-<pre><code class="language-js">eth.sendTransaction({
-    from: '0x..',
-    to: '0x..',
-    value: '10000'
-}, function(error, hash){
-    ...
-});
+<h3 id="使用回调">使用回调</h3>
+<pre><code class="language-js highlight-chroma"><span class="highlight-nx">eth</span><span class="highlight-p">.</span><span class="highlight-nx">sendTransaction</span><span class="highlight-p">({</span>
+    <span class="highlight-nx">from</span><span class="highlight-o">:</span> <span class="highlight-s1">'0x..'</span><span class="highlight-p">,</span>
+    <span class="highlight-nx">to</span><span class="highlight-o">:</span> <span class="highlight-s1">'0x..'</span><span class="highlight-p">,</span>
+    <span class="highlight-nx">value</span><span class="highlight-o">:</span> <span class="highlight-s1">'10000'</span>
+<span class="highlight-p">},</span> <span class="highlight-kd">function</span><span class="highlight-p">(</span><span class="highlight-nx">error</span><span class="highlight-p">,</span> <span class="highlight-nx">hash</span><span class="highlight-p">){</span>
+    <span class="highlight-p">...</span>
+<span class="highlight-p">});</span>
 </code></pre>
-<h3 id="toc_h3_8">使用 Promise</h3>
-<pre><code class="language-js">eth.sendTransaction({
-    from: '0x..',
-    to: '0x..',
-    value: '10000'
-}).then(function(receipt){
-    ...
-});
+<h3 id="使用-Promise">使用 Promise</h3>
+<pre><code class="language-js highlight-chroma"><span class="highlight-nx">eth</span><span class="highlight-p">.</span><span class="highlight-nx">sendTransaction</span><span class="highlight-p">({</span>
+    <span class="highlight-nx">from</span><span class="highlight-o">:</span> <span class="highlight-s1">'0x..'</span><span class="highlight-p">,</span>
+    <span class="highlight-nx">to</span><span class="highlight-o">:</span> <span class="highlight-s1">'0x..'</span><span class="highlight-p">,</span>
+    <span class="highlight-nx">value</span><span class="highlight-o">:</span> <span class="highlight-s1">'10000'</span>
+<span class="highlight-p">}).</span><span class="highlight-nx">then</span><span class="highlight-p">(</span><span class="highlight-kd">function</span><span class="highlight-p">(</span><span class="highlight-nx">receipt</span><span class="highlight-p">){</span>
+    <span class="highlight-p">...</span>
+<span class="highlight-p">});</span>
 </code></pre>
-<h3 id="toc_h3_9">使用监听</h3>
-<pre><code class="language-js">eth.sendTransaction({
-    from: '0x..',
-    to: '0x..',
-    value: '10000'
-}).on('transactionHash', function(hash) {
-    ...
-}).on('receipt', function(receipt) {
-    ...
-}).on('confirmation', function(confirmationNumber, receipt) { 
-    ... 
-}).on('error', console.error);
+<h3 id="使用监听">使用监听</h3>
+<pre><code class="language-js highlight-chroma"><span class="highlight-nx">eth</span><span class="highlight-p">.</span><span class="highlight-nx">sendTransaction</span><span class="highlight-p">({</span>
+    <span class="highlight-nx">from</span><span class="highlight-o">:</span> <span class="highlight-s1">'0x..'</span><span class="highlight-p">,</span>
+    <span class="highlight-nx">to</span><span class="highlight-o">:</span> <span class="highlight-s1">'0x..'</span><span class="highlight-p">,</span>
+    <span class="highlight-nx">value</span><span class="highlight-o">:</span> <span class="highlight-s1">'10000'</span>
+<span class="highlight-p">}).</span><span class="highlight-nx">on</span><span class="highlight-p">(</span><span class="highlight-s1">'transactionHash'</span><span class="highlight-p">,</span> <span class="highlight-kd">function</span><span class="highlight-p">(</span><span class="highlight-nx">hash</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
+    <span class="highlight-p">...</span>
+<span class="highlight-p">}).</span><span class="highlight-nx">on</span><span class="highlight-p">(</span><span class="highlight-s1">'receipt'</span><span class="highlight-p">,</span> <span class="highlight-kd">function</span><span class="highlight-p">(</span><span class="highlight-nx">receipt</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
+    <span class="highlight-p">...</span>
+<span class="highlight-p">}).</span><span class="highlight-nx">on</span><span class="highlight-p">(</span><span class="highlight-s1">'confirmation'</span><span class="highlight-p">,</span> <span class="highlight-kd">function</span><span class="highlight-p">(</span><span class="highlight-nx">confirmationNumber</span><span class="highlight-p">,</span> <span class="highlight-nx">receipt</span><span class="highlight-p">)</span> <span class="highlight-p">{</span> 
+    <span class="highlight-p">...</span> 
+<span class="highlight-p">}).</span><span class="highlight-nx">on</span><span class="highlight-p">(</span><span class="highlight-s1">'error'</span><span class="highlight-p">,</span> <span class="highlight-nx">console</span><span class="highlight-p">.</span><span class="highlight-nx">error</span><span class="highlight-p">);</span>
 </code></pre>
-<h2 id="toc_h2_10">总结</h2>
+<h2 id="总结">总结</h2>
 <p>web3.js 是以太坊的 JavaScript API 实现，作为交互式可执行环境被集成在了 以太坊节点 geth 中，也可以单独引入 JavaScript 应用中进行使用。它提供了通过 JS 和以太坊网络、智能合约交互的方式，开箱即用。对于新手来说，学习以太坊开发的最大难点是区块同步，当然也可以使用测试网络或者自建私网来进行开发调试。</p>
 <p>关于更多以太坊、区块链开发的干货，请浏览黑客派社区<a href="https://hacpai.com/tag/ethereum" target="_blank">以太坊</a>、<a href="https://hacpai.com/tag/blockchain" target="_blank">区块链</a>。</p>
                     <div>
@@ -277,37 +277,37 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#toc_h2_0">ABI 简介</a>
+            <a href="#ABI-简介">ABI 简介</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_1">web3.js 简介</a>
+            <a href="#web3-js-简介">web3.js 简介</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_2">同步区块</a>
+            <a href="#同步区块">同步区块</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_3">交易（打币/转账）</a>
+            <a href="#交易-打币-转账-">交易（打币/转账）</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_4">以太坊转账</a>
+            <a href="#以太坊转账">以太坊转账</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_5">ERC20 令牌转账</a>
+            <a href="#ERC20-令牌转账">ERC20 令牌转账</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_6">事件处理</a>
+            <a href="#事件处理">事件处理</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_7">使用回调</a>
+            <a href="#使用回调">使用回调</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_8">使用 Promise</a>
+            <a href="#使用-Promise">使用 Promise</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_9">使用监听</a>
+            <a href="#使用监听">使用监听</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_10">总结</a>
+            <a href="#总结">总结</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -333,7 +333,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -376,7 +376,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -385,10 +385,10 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -425,7 +425,7 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1520583695227",
@@ -445,4 +445,4 @@ tokenContract.transfer(toAddr, web3.toWei(amount), {from: fromAddr}); // 执行�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 206ms, 2020/03/25 10:29:34 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 202ms, 2020/03/25 10:36:33 -->

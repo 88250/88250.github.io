@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Golang 获取用户 home 目录路径 - D 的个人博客</title><meta name="description" content="一般情况下我们可以使用 os/user 包提供的 Current() 函数来获取用户信息，但这个方式不支持跨平台，所以我们需要进行一点增强。"/><meta property="og:description" content="一般情况下我们可以使用 os/user 包提供的 Current() 函数来获取用户信息，但这个方式不支持跨平台，所以我们需要进行一点增强。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Golang 获取用户 home 目录路径 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/golang-get-user-home-dir?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Golang 获取用户 home 目录路径 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/golang-get-user-home-dir">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Java Web 框架开发基础" href="https://88250.github.io/java-web-framework-dev-fundamentals">
             <link rel="next" title="Wide 新特性 —— Playground" href="https://88250.github.io/golang-playground-in-wide">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -158,7 +158,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="toc_h3_0">os/user</h3>
+                <h3 id="os-user">os/user</h3>
 <p>一般情况下我们可以使用 <code>os/user</code> 包提供的 <code>Current()</code> 函数来获取用户信息：</p>
 <pre class="prettyprint">user, err := user.Current()
 if nil == err {
@@ -166,7 +166,7 @@ if nil == err {
 }
 </pre>
 <p>但这个方式交叉编译后不能完全跨平台，在 darwin 下需要 cgo 才能正常工作。</p>
-<h3 id="toc_h3_1">改进</h3>
+<h3 id="改进">改进</h3>
 <p>为了解决这个问题，我们需要进行一点增强，在通过 <code>os/user</code> 获取失败时再通过环境变量、命令来获取：</p>
 <pre class="prettyprint">// Home returns the home directory for the executing user.
 //
@@ -224,7 +224,7 @@ func homeWindows() (string, error) {
 	return home, nil
 }
 </pre>
-<h3 id="toc_h3_2">参考</h3>
+<h3 id="参考">参考</h3>
 <ul>
 <li><a href="http://stackoverflow.com/questions/7922270/obtain-users-home-directory" target="_blank">Obtain user's home directory</a></li>
 <li><a href="https://github.com/mitchellh/go-homedir" target="_blank">go-homedir</a></li>
@@ -250,13 +250,13 @@ func homeWindows() (string, error) {
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">os/user</a>
+            <a href="#os-user">os/user</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">改进</a>
+            <a href="#改进">改进</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">参考</a>
+            <a href="#参考">参考</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -282,7 +282,7 @@ func homeWindows() (string, error) {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -325,7 +325,7 @@ func homeWindows() (string, error) {
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -334,10 +334,10 @@ func homeWindows() (string, error) {
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -374,7 +374,7 @@ func homeWindows() (string, error) {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1424064516615",
@@ -394,4 +394,4 @@ func homeWindows() (string, error) {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 152ms, 2020/03/25 10:29:37 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 207ms, 2020/03/25 10:36:36 -->

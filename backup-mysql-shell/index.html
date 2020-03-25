@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>MySQL 自动备份 Shell 脚本 - D 的个人博客</title><meta name="description" content="可以选择设置需要备份的库，自动备份压缩，自动删除 7 天前的备份，需要使用 crontab 定时执行。"/><meta property="og:description" content="可以选择设置需要备份的库，自动备份压缩，自动删除 7 天前的备份，需要使用 crontab 定时执行。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="MySQL 自动备份 Shell 脚本 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/backup-mysql-shell?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="MySQL 自动备份 Shell 脚本 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/backup-mysql-shell">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Java 执行命令" href="https://88250.github.io/java-exec-utli">
             <link rel="next" title="一起走过 2013" href="https://88250.github.io/life-2013">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,26 +166,26 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>可以选择设置需要备份的库，自动备份压缩，自动删除 7 天前的备份，需要使用 crontab 定时执行。</p>
 <pre class="prettyprint">#!/bin/bash
-<h1>要备份的数据库名，多个数据库用空格分开</h1>
+<h1 id="要备份的数据库名-多个数据库用空格分开">要备份的数据库名，多个数据库用空格分开</h1>
 <p>databases=(db1 db2 db3)</p>
-<h1>备份文件要保存的目录</h1>
+<h1 id="备份文件要保存的目录">备份文件要保存的目录</h1>
 <p>basepath='/root/backup/b3log.org/mysql/'</p>
-<p>if [ ! -d "$basepath" ]; then<br>
-mkdir -p "$basepath"<br>
+<p>if [ ! -d "<span class="vditor-math">basepath" ]; then
+mkdir -p "</span>basepath"<br>
 fi</p>
-<h1>循环databases数组</h1>
-<p>for db in ${databases[*]}<br>
-do<br>
-# 备份数据库生成SQL文件<br>
-/bin/nice -n 19 /usr/bin/mysqldump -uUSER -pPASSWORD --database $db &gt; $basepath$db-$(date +%Y%m%d).sql</p>
-<pre><code># 将生成的SQL文件压缩
+<h1 id="循环databases数组">循环databases数组</h1>
+<p>for db in <span class="vditor-math">{databases[*]}
+do
+# 备份数据库生成SQL文件
+/bin/nice -n 19 /usr/bin/mysqldump -uUSER -pPASSWORD --database </span>db &gt; <span class="vditor-math">basepath</span>db-$(date +%Y%m%d).sql</p>
+<pre><code class="highlight-chroma"># 将生成的SQL文件压缩
 /bin/nice -n 19 tar zPcf $basepath$db-$(date +%Y%m%d).sql.tar.gz $basepath$db-$(date +%Y%m%d).sql
 
 # 删除7天之前的备份数据
 find $basepath -mtime +7 -name "*.sql.tar.gz" -exec rm -rf {} \;
 </code></pre>
 <p>done</p>
-<h1>删除生成的SQL文件</h1>
+<h1 id="删除生成的SQL文件">删除生成的SQL文件</h1>
 <p>rm -rf $basepath/*.sql</p></pre><p></p>
 <p>其中备份目录、MySQL 口令需要配置。</p>
 <p>然后使用 crontab 设置该脚本定时执行：</p>
@@ -233,7 +233,7 @@ find $basepath -mtime +7 -name "*.sql.tar.gz" -exec rm -rf {} \;
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -276,7 +276,7 @@ find $basepath -mtime +7 -name "*.sql.tar.gz" -exec rm -rf {} \;
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -285,10 +285,10 @@ find $basepath -mtime +7 -name "*.sql.tar.gz" -exec rm -rf {} \;
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -322,7 +322,7 @@ find $basepath -mtime +7 -name "*.sql.tar.gz" -exec rm -rf {} \;
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1390361644624",
@@ -342,4 +342,4 @@ find $basepath -mtime +7 -name "*.sql.tar.gz" -exec rm -rf {} \;
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 163ms, 2020/03/25 10:29:38 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 148ms, 2020/03/25 10:36:37 -->

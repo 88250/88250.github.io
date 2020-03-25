@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客</title><meta name="description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能***边看边练***就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/><meta property="og:description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能***边看边练***就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/22/1437497122181.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/22/1437497122181.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客</title><meta name="description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能边看边练就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/><meta property="og:description" content="相信大家在看编程语言学习教程的时候都会难免觉得有点枯燥： * 自己看书，遇到问题不方便求助 * 书上的代码片段、示例是静态的 * 虽然有时书上会给出运行输出，但是不够直观 * 自己拷贝代码到 IDE 里运行是也比较麻烦 * 即使运行了也要来回在 IDE 和书之间切换，还是麻烦 * 总之，程序员都是懒人 如果能边看边练就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。 基于这个出发点，Sym 社区决定给大家上干货中的干货： * 从内容上：选择了雨痕的《Go 学习笔记》作为教...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/22/1437497122181.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（一） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/22/1437497122181.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="优化 Go 中的 map 并发存取" href="https://88250.github.io/optimizing-concurrent-map-access-in-go-chinese">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（二）" href="https://88250.github.io/articles/2015/07/22/1437558810339.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -173,16 +173,16 @@ bold;">Sym</span></a>
 <li>即使运行了也要来回在 IDE 和书之间切换，还是麻烦</li>
 <li>总之，<a href="https://www.baidu.com/s?wd=%E7%A8%8B%E5%BA%8F%E5%91%98%20%E6%87%92%E4%BA%BA&amp;rsv_spt=1&amp;issp=1&amp;f=8&amp;rsv_bp=0&amp;rsv_idx=2&amp;ie=utf-8&amp;tn=baiduhome_pg&amp;rsv_enter=1&amp;rsv_sug3=14&amp;rsv_sug1=5&amp;rsv_sug2=0&amp;inputT=2021&amp;rsv_sug4=2022" target="_blank">程序员都是懒人</a></li>
 </ul>
-<p>如果能***边看边练***就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。</p>
+<p>如果能<em><strong>边看边练</strong></em>就会舒服很多，书上的示例代码经过自己实际验证/微调后也更容易理解并消化。</p>
 <p>基于这个出发点，<a href="http://symphony.b3log.org" target="_blank">Sym 社区</a>决定给大家上干货中的干货：</p>
 <ul>
 <li>从内容上：选择了雨痕的《Go 学习笔记》作为教程，该书言简意赅，讲解的都是 Go 关键点</li>
-<li>从技术上：社区整合了 Go 黑科技——<a href="https://wide.b3log.org" target="_blank">Wide</a>，在技术上实现了***边看边练***！</li>
+<li>从技术上：社区整合了 Go 黑科技——<a href="https://wide.b3log.org" target="_blank">Wide</a>，在技术上实现了<em><strong>边看边练</strong></em>！</li>
 </ul>
 <p><em>即使你以前看过该书，我们也强烈建议你在这里再看一遍，因为这将会带来完全不一样的体验~</em></p>
 <p>光说不练假把式，上货！</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -200,28 +200,28 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h3 id="toc_h3_1">1.1 变量</h3>
+<h3 id="1-1-变量">1.1 变量</h3>
 <p>Go 是静态类型语言，不能在运行期改变变量类型。</p>
 <p>使用关键字 <code>var</code> 定义变量，自动初始化为零值。如果提供初始化值，可省略变量类型，由编译器自动推断。</p>
-<pre><code>var x int
+<pre><code class="highlight-chroma">var x int
 var f float32 = 1.6
 var s = "abc"	
 </code></pre>
 <p>在函数内部，可用更简略的 ":=" 方式定义变量。</p>
-<pre><code>func main() {
+<pre><code class="highlight-chroma">func main() {
     x := 123        // 注意检查，是定义新局部变量，还是修改全局变量。该方式容易造成错误。
 }
 </code></pre>
 <p>可一次定义多个变量。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/a19ff7e5335b49c924293e421f16530a.go?embed=true" width="99%" height="500"></iframe>
 <p>多变量赋值时，先计算所有相关值，然后再从左到右依次赋值。</p>
-<pre><code>data, i := [3]int{0, 1, 2}, 0 
+<pre><code class="highlight-chroma">data, i := [3]int{0, 1, 2}, 0 
 i, data[i] = 2, 100                // (i = 0) -&gt; (i = 2), (data[0] = 100) 
 </code></pre>
 <p>特殊只写变量 "_"，用于忽略值占位。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/72d626d489db0c12b0bedb350455e495.go?embed=true" width="99%" height="400"></iframe>
 <p>编译器会将未使用的局部变量当做错误。</p>
-<pre><code>var s string      // 全局变量没问题。
+<pre><code class="highlight-chroma">var s string      // 全局变量没问题。
 
 func main() {
 	i := 0        // Error: i declared and not used。(可使用 "_ = i" 规避)
@@ -229,9 +229,9 @@ func main() {
 </code></pre>
 <p>注意重新赋值与定义新同名变量的区别。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/6e98455f94b87d00bf4fc2e8b80578a5.go?embed=true" width="99%" height="450"></iframe>
-<h3 id="toc_h3_2">1.2 常量</h3>
+<h3 id="1-2-常量">1.2 常量</h3>
 <p>常量值必须是编译期可确定的数字、字符串、布尔值。</p>
-<pre><code>const x, y int = 1, 2 // 多常量初始化
+<pre><code class="highlight-chroma">const x, y int = 1, 2 // 多常量初始化
 const s = "Hello, World!" // 类型推断
 
 const ( // 常量组
@@ -245,27 +245,27 @@ func main() {
 </code></pre>
 <p>不支持 1UL、2LL 这样的类型后缀。</p>
 <p>在常量组中，如不提供类型和初始化值，那么视作与上一常量相同。</p>
-<pre><code>const (
+<pre><code class="highlight-chroma">const (
 	s = "abc"
 	x // x = "abc"
 )
 </code></pre>
 <p>常量值还可以是 <code>len</code>、<code>cap</code>、<code>unsafe.Sizeof</code> 等编译期可确定结果的函数返回值。</p>
-<pre><code>const (
+<pre><code class="highlight-chroma">const (
 	a = "abc"
 	b = len(a)
 	c = unsafe.Sizeof(b)
 )
 </code></pre>
 <p>如果常量类型足以存储初始化值，那么不会引发溢出错误。</p>
-<pre><code>const (
+<pre><code class="highlight-chroma">const (
 	a byte = 100 // int to byte
 	b int = 1e20 // float64 to int, overflows
 )
 </code></pre>
-<h4 id="toc_h4_3">枚举</h4>
+<h4 id="枚举">枚举</h4>
 <p>关键字 <code>iota</code> 定义常量组中从 0 开始按行计数的自增枚举值。</p>
-<pre><code>const (
+<pre><code class="highlight-chroma">const (
     Sunday = iota     // 0
     Monday            // 1，通常省略后续⾏行表达式。
     Tuesday           // 2
@@ -284,13 +284,13 @@ const (
 )
 </code></pre>
 <p>在同一常量组中，可以提供多个 <code>iota</code>，它们各自增长。</p>
-<pre><code>const (
+<pre><code class="highlight-chroma">const (
     A, B = iota, iota &lt;&lt; 10   // 0, 0 &lt;&lt; 10
     C, D                      // 1, 1 &lt;&lt; 10
 )
 </code></pre>
 <p>如果 <code>iota</code> 自增被打断，须显式恢复。</p>
-<pre><code>const (
+<pre><code class="highlight-chroma">const (
     A   = iota      // 0
     B               // 1
     C   = "c"       // c 
@@ -338,16 +338,16 @@ const (
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">1.1 变量</a>
+            <a href="#1-1-变量">1.1 变量</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">1.2 常量</a>
+            <a href="#1-2-常量">1.2 常量</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_3">枚举</a>
+            <a href="#枚举">枚举</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -373,7 +373,7 @@ const (
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -416,7 +416,7 @@ const (
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -425,10 +425,10 @@ const (
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -465,7 +465,7 @@ const (
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1437497122181",
@@ -485,4 +485,4 @@ const (
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 306ms, 2020/03/25 10:29:37 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 196ms, 2020/03/25 10:36:35 -->

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>开源经验谈 - D 的个人博客</title><meta name="description" content="Bootstrap 古话说得好：“万事开头难”。 开头在本质上是解决 “Bootstrapping”，人们一直使用这个比喻来描述解决启动问题的方法，即一个人试图用自己的鞋带将自己拉起来。比如按下电脑开机按钮后初始化系统被广泛称作自举引导（简称 booting）。 想做好一个开源项目，就先得规划一个好的启动方式。 GitHub 10 多年前做开源项目托管的话基本只有一个选择，那就是 SourceForge。期间也有过一些其他大厂的项目托管服务，比如 Google Code，Sun/Oracle 的 Project Kenai，现在都停服了。目前 GitHub 已然是全球最大的开源项目托管服务商了，促成这样现状的最大原因有这几个方面吧： git 版本控制系统的流行，并做了一些更简单的工作流，比如 Pull Request更好、更现代化的用户体验，比如 issue comments 的实时推送 API 开放平台，构建第三方应用的生态系统持续不断的改进，GitHub 隔三差五会有一些细节改进，并且桌面客户端工具也在不断演进 目前 GitHub 是开源项目托管的不二之选。国内也有类 GitHu...."/><meta property="og:description" content="Bootstrap 古话说得好：“万事开头难”。 开头在本质上是解决 “Bootstrapping”，人们一直使用这个比喻来描述解决启动问题的方法，即一个人试图用自己的鞋带将自己拉起来。比如按下电脑开机按钮后初始化系统被广泛称作自举引导（简称 booting）。 想做好一个开源项目，就先得规划一个好的启动方式。 GitHub 10 多年前做开源项目托管的话基本只有一个选择，那就是 SourceForge。期间也有过一些其他大厂的项目托管服务，比如 Google Code，Sun/Oracle 的 Project Kenai，现在都停服了。目前 GitHub 已然是全球最大的开源项目托管服务商了，促成这样现状的最大原因有这几个方面吧： git 版本控制系统的流行，并做了一些更简单的工作流，比如 Pull Request更好、更现代化的用户体验，比如 issue comments 的实时推送 API 开放平台，构建第三方应用的生态系统持续不断的改进，GitHub 隔三差五会有一些细节改进，并且桌面客户端工具也在不断演进 目前 GitHub 是开源项目托管的不二之选。国内也有类 GitHu...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="开源经验谈 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/08/01/1501603146956.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="开源经验谈 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/08/01/1501603146956.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="理解 Eureka 的 P2P 通讯" href="https://88250.github.io/articles/2017/06/29/1498726165535.html">
             <link rel="next" title="Solo 的 golang 版计划" href="https://88250.github.io/articles/2017/09/11/1505113028471.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -162,11 +162,11 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h2 id="toc_h2_0">Bootstrap</h2>
+                <h2 id="Bootstrap">Bootstrap</h2>
 <p>古话说得好：“万事开头难”。</p>
 <p>开头在本质上是解决 “Bootstrapping”，人们一直使用这个比喻来描述解决启动问题的方法，即一个人试图用自己的鞋带将自己拉起来。比如按下电脑开机按钮后初始化系统被广泛称作自举引导（简称 booting）。</p>
 <p>想做好一个开源项目，就先得规划一个好的启动方式。</p>
-<h2 id="toc_h2_1">GitHub</h2>
+<h2 id="GitHub">GitHub</h2>
 <p>10 多年前做开源项目托管的话基本只有一个选择，那就是 <a href="https://sourceforge.net" target="_blank">SourceForge</a>。<br>
 期间也有过一些其他大厂的项目托管服务，比如 Google Code，Sun/Oracle 的 Project Kenai，现在都停服了。目前 <a href="https://github.com" target="_blank">GitHub</a> 已然是全球最大的开源项目托管服务商了，促成这样现状的最大原因有这几个方面吧：</p>
 <ol>
@@ -176,7 +176,7 @@ bold;">Sym</span></a>
 <li>持续不断的改进，GitHub 隔三差五会有一些细节改进，并且桌面客户端工具也在不断演进</li>
 </ol>
 <p>**目前 GitHub 是开源项目托管的不二之选。**国内也有类 GitHub 的项目托管服务，比如<a href="https://gitee.com" target="_blank">码云</a>和 <a href="https://coding.net" target="_blank">Coding</a>，希望它们越做越好 👍</p>
-<h2 id="toc_h2_2">Repo</h2>
+<h2 id="Repo">Repo</h2>
 <p>建库是第一步，首先需要确定的是开个人项目还是组织项目，这两者有些许不同：</p>
 <ul>
 <li>个人项目：项目如果受欢迎一般来说人们都会浏览下作者主页并关注，有利于作者本人涨粉</li>
@@ -188,7 +188,7 @@ bold;">Sym</span></a>
 <li>库名命名优先是全小写，如果需要分隔单词则使用 <code>-</code>，最后遵循开发语言、框架的约定</li>
 <li>如果项目是一个系列的，需要考虑好前缀，或者按前面说的走组织项目</li>
 </ul>
-<h2 id="toc_h2_3">Init Commit</h2>
+<h2 id="Init-Commit">Init Commit</h2>
 <p>初始提交尽量是核心功能可用的，这样能给别人一个好印象。并且<strong>必须写好 README</strong>，内容至少覆盖如下几个方面：</p>
 <ul>
 <li>项目介绍：该项目是什么，主要用于解决什么问题，这个部分主要阐述项目的动机</li>
@@ -199,11 +199,11 @@ bold;">Sym</span></a>
 </ul>
 <p>除了 README，GitHub 还建议加入编码规范、贡献指南说明，这个可以后期慢慢加入。</p>
 <p>文本的介绍是一方面，另一方面是多媒体格式，如果能有使用视频是最好的，但至少项目的 logo 是要有的，一开始稍微丑一点没关系 😊，可以鼓励其他人参与贡献。</p>
-<h2 id="toc_h2_4">Document</h2>
+<h2 id="Document">Document</h2>
 <p>项目托管服务商一般都提供了 wiki 服务，主要用于项目相关文档。直接使用 wiki 的最大好处是可以让其他人参与进来维护文档，比如有错别字时其他人可以很方便地帮忙修改。</p>
 <p>但直接使用 wiki 服务也有个致命的缺点，就是当项目要迁移托管商时就很麻烦，不同服务商支持的文档语法不尽相同，排版也比较麻烦。推荐的做法是<strong>项目的文档自己搭建一个站点来管理</strong>，虽然运维麻烦一些，但这样不存在迁移问题，并且自由度也更大一些。</p>
 <p>建议通过论坛系统来维护文档，这样方便用户进行提问，也促进了项目社区的发展。</p>
-<h2 id="toc_h2_5">Issues</h2>
+<h2 id="Issues">Issues</h2>
 <p>Issue 最好先建立模板，让用户提问的时候有章可循。不过即使有模板，issue 描述不清晰还是很常见的，用户的系统环境千奇百怪，遇到奇葩的系统不工作其实也正常。</p>
 <p>关于 issue 你未来可能会面临如下情况：</p>
 <ul>
@@ -224,7 +224,7 @@ bold;">Sym</span></a>
 <li><a href="https://github.com/b3log/solo/issues/12124" target="_blank">和作者本意相矛盾</a></li>
 </ul>
 <p>总之，做开源很重要一点就是和参与者、用户保持交流，等项目用的人多了以后责任也会变大，所以不能太随意，尽量做到变更可追溯。</p>
-<h2 id="toc_h2_6">回归本质</h2>
+<h2 id="回归本质">回归本质</h2>
 <p>总之，开始一个开源项目时最重要的一点就是要问自己：<em>为什么要做这个开源项目？</em><br>
 这个问题的答案将解释该项目的动机并且为项目设定了目标。</p>
 <p>开源项目成千上万，并且同质化严重，但总有一些开源项目能够脱颖而出，因为这些项目抓住了本质：</p>
@@ -234,7 +234,7 @@ bold;">Sym</span></a>
 <li>长期投入精力情感：你投入的情感使它与众不同，保持细水长流</li>
 </ol>
 <p>以上都是我的经验之谈，如果你想更全面了解开源，请访问 GitHub 出品的 <a href="https://opensource.guide" target="_blank">Open Source Guide</a>。</p>
-<h2 id="toc_h2_7">本文作者</h2>
+<h2 id="本文作者">本文作者</h2>
 <p><a href="https://github.com/88250" target="_blank">https://github.com/88250</a> ，欢迎关注。</p>
                     <div>
                         <br>
@@ -256,28 +256,28 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#toc_h2_0">Bootstrap</a>
+            <a href="#Bootstrap">Bootstrap</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_1">GitHub</a>
+            <a href="#GitHub">GitHub</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_2">Repo</a>
+            <a href="#Repo">Repo</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_3">Init Commit</a>
+            <a href="#Init-Commit">Init Commit</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_4">Document</a>
+            <a href="#Document">Document</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_5">Issues</a>
+            <a href="#Issues">Issues</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_6">回归本质</a>
+            <a href="#回归本质">回归本质</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_7">本文作者</a>
+            <a href="#本文作者">本文作者</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -303,7 +303,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -346,7 +346,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -355,10 +355,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -395,7 +395,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1501603146956",
@@ -415,4 +415,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 262ms, 2020/03/25 10:29:35 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 207ms, 2020/03/25 10:36:34 -->

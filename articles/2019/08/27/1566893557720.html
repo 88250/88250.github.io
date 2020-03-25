@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>CommonMark 规范要点解读 - D 的个人博客</title><meta name="description" content="为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。 由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。 在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括： David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei...."/><meta property="og:description" content="为什么需要 Markdown 规范 CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。 由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。 在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。 作者阵容 CommonMark 规范的主创 John MacFarlane（jgm）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 Pandoc（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。 该规范的其他参与者包括： David Greenspan, 来自 Meteor Vicent Marti, 来自 GitHub Nei...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="CommonMark 规范要点解读 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/27/1566893557720.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="CommonMark 规范要点解读 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="我为什么要用中文写项目文档" href="https://88250.github.io/articles/2019/08/19/1566191673842.html">
             <link rel="next" title="Lute 实现后记" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -160,13 +160,13 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="toc_h3_0">为什么需要 Markdown 规范</h3>
+                <h3 id="为什么需要-Markdown-规范">为什么需要 Markdown 规范</h3>
 <p>CommonMark 规范开篇就提到了这个问题，并列举了十多个例子来说明制定一个 Markdown 规范的必要性。</p>
 <blockquote>
 <p>由于没有明确的规范，Markdown 解析渲染会有很大差异。因此用户经常会发现在一个系统（例如 GitHub）上渲染正常的文档在另一个系统上渲染不正常。更糟糕的是由于 Markdown 中不存在“语法错误”，所以无法立即发现这类问题。</p>
 </blockquote>
 <p>在 Markdown 处理上“模糊的正确”是不可取的。所以 CommonMark 规范的目的就是消除二义性，制定统一明确的 Markdown 解析渲染规则。</p>
-<h3 id="toc_h3_1">作者阵容</h3>
+<h3 id="作者阵容">作者阵容</h3>
 <p>CommonMark 规范的主创 <a href="https://johnmacfarlane.net" target="_blank">John MacFarlane</a>（<a href="https://github.com/jgm" target="_blank">jgm</a>）是加州大学伯克利分校的哲学教授，他在文本标记语言领域有一个很出名的项目 <a href="https://github.com/jgm/pandoc" target="_blank">Pandoc</a>（用于在各种文本标记语言之间互转格式）。他用多种编程语言实现过 Markdown 引擎，在 Markdown 处理方面他可以称得上行家中的行家。</p>
 <p>该规范的其他参与者包括：</p>
 <ul>
@@ -179,37 +179,37 @@ bold;">Sym</span></a>
 <p>从作者阵容我们可以看出，该规范算是众望所归了，因为这几大社区都需要一个标准化的 Markdown。</p>
 <p>除了强大的作者阵容外，最重要的是规范的严谨度我相信不会有任何问题，600+ 测试用例也尽量将各种情况都列举验证了，整体的权威性毋庸置疑。</p>
 <p>介绍完大致背景，下面我们进入技术细节，对规范中定义的要点进行解读。</p>
-<h3 id="toc_h3_2">元素分类</h3>
+<h3 id="元素分类">元素分类</h3>
 <p>为了方便解析，将内容元素分为块级元素和行级元素，其中块级元素又分为两类：</p>
 <ul>
 <li>容器块：可包含其他块级元素，只有 3 种容器块：块引用（<code>&gt;</code>）、列表项和列表（列表只能包含列表项）</li>
 <li>叶子块：不能包含其他块级元素，只能包含行级元素。比如分隔线、标题、代码块、某些 HTML 块、段落等</li>
 </ul>
 <p>行级元素包括：内联代码（<code>`code`</code>）、强调、加粗、链接、图片、某些 HTML 标签、文本等。</p>
-<h3 id="toc_h3_3">优先级</h3>
+<h3 id="优先级">优先级</h3>
 <ul>
 <li>块级元素解析优先级永远高于行级元素（先生成块级元素后生成行级元素）</li>
 <li>行级元素中 HTML 标签和自动链接的优先级最高，Code Span 次之</li>
 <li>Setext 标题优先级高于分隔线。比如如下示例
-<pre><code class="language-markdown">Foo
+<pre><code class="language-md highlight-chroma">Foo
 ---
 bar
 </code></pre>
-<p>将生成</p>
-<pre><code class="language-html">&lt;h2&gt;Foo&lt;/h2&gt;
-&lt;p&gt;bar&lt;/p&gt;
+将生成
+<pre><code class="language-html highlight-chroma"><span class="highlight-p">&lt;</span><span class="highlight-nt">h2</span><span class="highlight-p">&gt;</span>Foo<span class="highlight-p">&lt;/</span><span class="highlight-nt">h2</span><span class="highlight-p">&gt;</span>
+<span class="highlight-p">&lt;</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>bar<span class="highlight-p">&lt;/</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>
 </code></pre>
 </li>
 <li>分隔线优先级高于列表项</li>
 <li>缩进如果出现在列表项中，以列表项对齐优先（不解析为缩进代码块）。比如如下示例
-<pre><code class="language-markdown">  - foo（f 之前是 2 个空格、1 个 - 然后再加 1 个空格）
+<pre><code class="language-md highlight-chroma">  <span class="highlight-k">-</span> foo（f 之前是 2 个空格、1 个 - 然后再加 1 个空格）
     bar（b 之前是 4 个空格）
 </code></pre>
-<p>将生成</p>
-<pre><code class="language-html">&lt;ul&gt;
-&lt;li&gt;foo
-bar&lt;/li&gt;
-&lt;/ul&gt;
+将生成
+<pre><code class="language-html highlight-chroma"><span class="highlight-p">&lt;</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
+<span class="highlight-p">&lt;</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>foo
+bar<span class="highlight-p">&lt;/</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>
+<span class="highlight-p">&lt;/</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
 </code></pre>
 </li>
 <li>强调分隔（ <code>*</code> 或 <code>_</code>）出现嵌套情况时，优先第一个。比如 <code>*foo _bar* baz_</code> 将生成 <code>&lt;em&gt;foo _bar&lt;/em&gt; baz_</code> 而不是生成 <code>*foo &lt;em&gt;bar* baz&lt;/em&gt;</code></li>
@@ -217,38 +217,38 @@ bar&lt;/li&gt;
 <li>链接文本（<a href="https://spec.commonmark.org/0.29/#link-text" target="_blank">link-text</a>）优先级高于强调：<code>*[foo*](/uri)</code> 将生成 <code>&lt;p&gt;*&lt;a href="/uri"&gt;foo*&lt;/a&gt;&lt;/p&gt;</code></li>
 </ul>
 <p>具体场景细节可在规范中搜索关键字 <em>precedence</em>。</p>
-<h3 id="toc_h3_4">段落分段规则</h3>
+<h3 id="段落分段规则">段落分段规则</h3>
 <p>某些情况下不需要空行即可“打断”当前内容，形成新的段落或者其他块级元素。</p>
 <ul>
 <li>专题分隔线 <code>***</code> 打断段落</li>
 <li>ATX 标题 <code># h</code> 打断段落，Setext 标题不打断，需要用空行分隔之前的内容</li>
 <li>围栏代码块 <code>```</code> 打断段落</li>
-<li>大部分 HTML 标签可打断段落，除了带属性的，比如 <code>&lt;a</code>、<code>&lt;img</code></li>
+<li>大部分 HTML 标签可打断段落，除了带属性的，比如 <code>&lt;a </code>、<code>&lt;img </code></li>
 <li>块引用 <code>&gt;</code> 打断段落</li>
 <li>第一个非空列表项打断段落（即新列表打断段落）</li>
 </ul>
 <p>每种情况的细节可以到规范中搜索关键字 <em>interrupt</em>。</p>
-<h3 id="toc_h3_5">段落延续文本</h3>
+<h3 id="段落延续文本">段落延续文本</h3>
 <p>段落延续文本（<a href="https://spec.commonmark.org/0.29/#paragraph-continuation-text" target="_blank">Paragraph continuation text</a>）即段落开始后不被分段规则打断的部分，该部分也算作当前段落。</p>
 <p>最简单的例子是以 <code>\n</code> 分隔的两行文本：</p>
-<pre><code class="language-text">foo
+<pre><code class="language-text highlight-chroma">foo
 bar
 </code></pre>
 <p>渲染的 HTML 结果应该是：</p>
-<pre><code class="language-html">&lt;p&gt;foo
-bar&lt;/p&gt;
+<pre><code class="language-html highlight-chroma"><span class="highlight-p">&lt;</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>foo
+bar<span class="highlight-p">&lt;/</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>
 </code></pre>
 <p>在其他元素中的例子：</p>
-<pre><code class="language-text">&gt; foo
+<pre><code class="language-text highlight-chroma">&gt; foo
 bar
 </code></pre>
 <p>渲染的 HTML 结果应该是：</p>
-<pre><code class="language-html">&lt;blockquote&gt;
-&lt;p&gt;foo
-bar&lt;/p&gt;
-&lt;/blockquote&gt;
+<pre><code class="language-html highlight-chroma"><span class="highlight-p">&lt;</span><span class="highlight-nt">blockquote</span><span class="highlight-p">&gt;</span>
+<span class="highlight-p">&lt;</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>foo
+bar<span class="highlight-p">&lt;/</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>
+<span class="highlight-p">&lt;/</span><span class="highlight-nt">blockquote</span><span class="highlight-p">&gt;</span>
 </code></pre>
-<h3 id="toc_h3_6">强调和加粗</h3>
+<h3 id="强调和加粗">强调和加粗</h3>
 <p>分隔符序列（<a href="https://spec.commonmark.org/0.29/#delimiter-run" target="_blank">delimiter run</a>）：</p>
 <ul>
 <li>由一个或多个非 <code>\</code> 转义的 <code>*</code> 构成或者</li>
@@ -266,21 +266,21 @@ bar&lt;/p&gt;
 <li>前面不能是空白</li>
 <li>前面不能是标点；或者前面是标点并且后面是空白或者标点</li>
 </ol>
-<h3 id="toc_h3_7">解析策略参考</h3>
+<h3 id="解析策略参考">解析策略参考</h3>
 <p>规范附录部分介绍了一种解析策略，总的来说分为两个阶段：</p>
 <ol>
 <li>将输入文本断行，顺序解析每一行并生成块级节点。文本作为块级节点的内容，暂时不进行解析。链接引用定义在这个阶段也会被解析构造放到一个 Map 中</li>
 <li>解析每个块级节点的内容生成行级节点。如果有引用定义的话使用阶段 1 中的 Map 进行解析</li>
 </ol>
 <p>举个例子，对于给定的 Markdown 文本：</p>
-<pre><code class="language-markdown">## 简介
+<pre><code class="language-md highlight-chroma"><span class="highlight-gu">## 简介
+</span><span class="highlight-gu"></span>
+一款 <span class="highlight-ge">*Markdown*</span> 引擎。
 
-一款 *Markdown* 引擎。
-
-## 特性
-
-* 实现 _GFM_
-* 非常快
+<span class="highlight-gu">## 特性
+</span><span class="highlight-gu"></span>
+<span class="highlight-k">*</span> 实现 <span class="highlight-ge">_GFM_</span>
+<span class="highlight-k">*</span> 非常快
 </code></pre>
 <p>生成 Markdown 语法树为：</p>
 <pre><code class="language-echarts">{
@@ -390,7 +390,7 @@ bar&lt;/p&gt;
 }
 </code></pre>
 <p>下面介绍强调和链接解析处理，这部分比较有技巧。</p>
-<h3 id="toc_h3_8">嵌套强调和链接的解析算法</h3>
+<h3 id="嵌套强调和链接的解析算法">嵌套强调和链接的解析算法</h3>
 <p>强调、加粗、链接、图片这四种节点都是行级元素，但这四种元素的解析生成稍微有点麻烦，因为它们有可能存在嵌套。建议结合 CommonM 官方参考实现 JavaScript 版的<a href="https://github.com/commonmark/commonmark.js/blob/master/lib/inlines.js" target="_blank">文件 inlines.js</a> 来看就容易理解了（注意该实现进行了一定优化，比如去掉了 <code>current_position</code> 变量，但总体逻辑没有变）。</p>
 <p>解析行级元素时，如果遇到：</p>
 <ul>
@@ -407,7 +407,7 @@ bar&lt;/p&gt;
 </ul>
 <p>当我们解析时遇到 <code>]</code>，则进入下面介绍的<em>链接和图片处理过程</em>。</p>
 <p>当我们解析到输入结束时，则将 <code>stack_bottom</code> 置为 NULL 并进入下面介绍的<em>强调处理过程</em>。</p>
-<h4 id="toc_h4_9">链接和图片处理过程</h4>
+<h4 id="链接和图片处理过程">链接和图片处理过程</h4>
 <p>从分隔符栈顶部开始回看寻找开始的 <code>[</code> 或者 <code>![</code> 分隔符元素。</p>
 <ul>
 <li>如果没有找到，则返回一个文本节点 <code>]</code></li>
@@ -426,7 +426,7 @@ bar&lt;/p&gt;
 </ul>
 </li>
 </ul>
-<h4 id="toc_h4_10">强调处理过程</h4>
+<h4 id="强调处理过程">强调处理过程</h4>
 <p>参数 <code>stack_bottom</code> 设置了分隔符栈的栈底下限。如果其值为 NULL 则我们可以一直遍历到栈底。否则我们应该在访问到 <code>stack_bottom</code> 之前停止。</p>
 <p><code>current_position</code> 指向分隔符栈中高于 <code>stack_bottom</code> 的元素（当 <code>stack_bottom</code> 为 NULL 时指向第一个元素）。</p>
 <p>使用 <code>openers_bottom</code> 来跟踪每种分隔符（按类型 <code>*</code>、<code>_</code> 和结束分隔符长度模 3）。初始化值为 <code>stack_bottom</code>。</p>
@@ -471,37 +471,37 @@ bar&lt;/p&gt;
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">为什么需要 Markdown 规范</a>
+            <a href="#为什么需要-Markdown-规范">为什么需要 Markdown 规范</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">作者阵容</a>
+            <a href="#作者阵容">作者阵容</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">元素分类</a>
+            <a href="#元素分类">元素分类</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">优先级</a>
+            <a href="#优先级">优先级</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_4">段落分段规则</a>
+            <a href="#段落分段规则">段落分段规则</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_5">段落延续文本</a>
+            <a href="#段落延续文本">段落延续文本</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_6">强调和加粗</a>
+            <a href="#强调和加粗">强调和加粗</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_7">解析策略参考</a>
+            <a href="#解析策略参考">解析策略参考</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_8">嵌套强调和链接的解析算法</a>
+            <a href="#嵌套强调和链接的解析算法">嵌套强调和链接的解析算法</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_9">链接和图片处理过程</a>
+            <a href="#链接和图片处理过程">链接和图片处理过程</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_10">强调处理过程</a>
+            <a href="#强调处理过程">强调处理过程</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -527,7 +527,7 @@ bar&lt;/p&gt;
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -570,7 +570,7 @@ bar&lt;/p&gt;
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -579,10 +579,10 @@ bar&lt;/p&gt;
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -619,7 +619,7 @@ bar&lt;/p&gt;
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1566893557720",
@@ -639,4 +639,4 @@ bar&lt;/p&gt;
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 455ms, 2020/03/25 10:29:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 261ms, 2020/03/25 10:36:31 -->

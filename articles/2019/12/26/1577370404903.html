@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Vditor 实现 Markdown 所见即所得 - D 的个人博客</title><meta name="description" content="阶段性目标 大概在去年这个时候萌生了开发 Vditor 的念头，两个月后 Vditor 第一版完成。第一版基于 textarea 开发，该版本的主要目标是替换在用的第三方编辑器，实现 B3log 各产品线上编辑器的统一。 Vditor 的定位是“下一代的 Markdown 编辑器，为未来而构建”。第一版离这个目标相差还远，但经过这大半年的迭代我们离目标已经越来越近了： 由基于 textarea 改为基于 contenteditable 实现 Markdown 引擎 Lute，并由 markdown-it 切换为 Lute 图表渲染、多媒体播放、语音阅读等功能 所见即所得模式 所见即所得 所见即所得（What you see is what you get，缩写即 WYSIWYG）在编辑器领域指的是看到啥就是啥，比如我想加粗某个字，那“加粗”只是个操作，操作结果就是得到加粗后的文本，而加粗的操作（标记符）是不会出现在文本中的。 目前看来，大部分人习惯所见即所得的编辑方式，因为这种方式非常直观。但在程序员圈子里却恰恰相反，我们更喜欢标记类排版编辑方式，其中最为流行的是 Markdown...."/><meta property="og:description" content="阶段性目标 大概在去年这个时候萌生了开发 Vditor 的念头，两个月后 Vditor 第一版完成。第一版基于 textarea 开发，该版本的主要目标是替换在用的第三方编辑器，实现 B3log 各产品线上编辑器的统一。 Vditor 的定位是“下一代的 Markdown 编辑器，为未来而构建”。第一版离这个目标相差还远，但经过这大半年的迭代我们离目标已经越来越近了： 由基于 textarea 改为基于 contenteditable 实现 Markdown 引擎 Lute，并由 markdown-it 切换为 Lute 图表渲染、多媒体播放、语音阅读等功能 所见即所得模式 所见即所得 所见即所得（What you see is what you get，缩写即 WYSIWYG）在编辑器领域指的是看到啥就是啥，比如我想加粗某个字，那“加粗”只是个操作，操作结果就是得到加粗后的文本，而加粗的操作（标记符）是不会出现在文本中的。 目前看来，大部分人习惯所见即所得的编辑方式，因为这种方式非常直观。但在程序员圈子里却恰恰相反，我们更喜欢标记类排版编辑方式，其中最为流行的是 Markdown...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Vditor 实现 Markdown 所见即所得 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/12/26/1577370404903.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Vditor 实现 Markdown 所见即所得 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/12/26/1577370404903.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="创业的第二个秋天" href="https://88250.github.io/articles/2019/11/11/1573402018349.html">
             <link rel="next" title="2019 用善意面对世界" href="https://88250.github.io/articles/2019/12/30/1577712379212.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -164,7 +164,7 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="toc_h3_0">阶段性目标</h3>
+                <h3 id="阶段性目标">阶段性目标</h3>
 <p>大概在去年这个时候萌生了开发 Vditor 的念头，两个月后 Vditor 第一版完成。第一版基于 textarea 开发，该版本的主要目标是替换在用的第三方编辑器，实现 B3log 各产品线上编辑器的统一。</p>
 <p>Vditor 的定位是“下一代的 Markdown 编辑器，为未来而构建”。第一版离这个目标相差还远，但经过这大半年的迭代我们离目标已经越来越近了：</p>
 <ul>
@@ -173,15 +173,15 @@ bold;">Sym</span></a>
 <li>图表渲染、多媒体播放、语音阅读等功能</li>
 <li>所见即所得模式</li>
 </ul>
-<h3 id="toc_h3_1">所见即所得</h3>
+<h3 id="所见即所得">所见即所得</h3>
 <p>所见即所得（What you see is what you get，缩写即 WYSIWYG）在编辑器领域指的是看到啥就是啥，比如我想加粗某个字，那“加粗”只是个操作，操作结果就是得到加粗后的文本，而加粗的操作（标记符）是不会出现在文本中的。</p>
 <p>目前看来，大部分人习惯所见即所得的编辑方式，因为这种方式非常直观。但在程序员圈子里却恰恰相反，我们更喜欢标记类排版编辑方式，其中最为流行的是 Markdown。显然这类标记语言不是所见即所得的，但从程序员的角度理解的话，其实这才是真正的所见即所得，就像《黑客帝国》中的代码绿幕。</p>
-<h3 id="toc_h3_2">Markdown 实时渲染</h3>
+<h3 id="Markdown-实时渲染">Markdown 实时渲染</h3>
 <p>在实现“Markdown 所见即所得”的方向上，Typora 作为先行者广受好评，但它到目前为止并不开源。和它类似的应用并开源的是 Mark Text，不过它的编辑器似乎还不能方便地抽取出来应用于其他 Web 应用。</p>
 <p>通用的所见即所得 Markdown 编辑器也有项目，比如 <a href="https://github.com/laobubu/HyperMD" target="_blank">HyperMD</a>。它的编辑器内核用了 CodeMirror，依赖项较多。</p>
 <p>除此之外，从标准 Markdown 规范（CommonMark/GFM）的支持上来看，它们都有或多或少的问题。不遵循规范的话一旦渲染出现偏差，会给用户带来较大困扰，编辑发布后的渲染结果和编辑时的渲染结果不一致，这个问题在内容发布多平台时尤为严重。</p>
 <p>这三款编辑器设计的出发点是以 Markdown 为核心，所达到的效果是 Markdown 实时渲染，并且保留标记符，光标如果在标记内部则展开整个标记节点。这个设计可以让 Markdown 用户更专注于内容创作，减少标记符带来的视觉干扰，同时也基本兼顾 Markdown 的优势：排版不用记各种不同编辑器的快捷键。但这样设计的不足之处是对非 Markdown 用户不太友好，展开的标记符会让普通用户有点不知所措，并且还是会产生视觉干扰。</p>
-<h3 id="toc_h3_3">选择方向</h3>
+<h3 id="选择方向">选择方向</h3>
 <p>综上，Vditor 的演进路线有两个方向：</p>
 <ol>
 <li>实现保留标记符的 Markdown 实时渲染</li>
@@ -191,7 +191,7 @@ bold;">Sym</span></a>
 <p>方向 2 是实现一款所见即所得的富文本编辑器，并对 Markdown 提供支持。这样一来，Vditor 的受众用户会变宽很多，同时 Markdown 用户也可以继续平滑地使用 Markdown 语法进行排版。知乎的编辑器是支持简单的、类似 Markdown 语法排版的，不过稍微复杂一点的排版标记支持就不太好了。</p>
 <p>另外，在表格的处理上实时渲染方案是不一致的。表格的 Markdown 表示稍微复杂，所以现有的实时渲染方案也都是做成了所见即所得（弹框编辑）的，这导致整体设计不太一致。</p>
 <p>这些因素促使我们决定将 Vditor 往所见即所得的方向演进，同时保留传统的 Markdown 分屏预览模式。从此 Vditor 的定位也就变成了：“一款所见即所得的编辑器，支持 Markdown”。</p>
-<h3 id="toc_h3_4">技术实现</h3>
+<h3 id="技术实现">技术实现</h3>
 <p>虽然前面提到的路线 1 已经放弃了，但还是分享一下技术实现。这个方案主要构成如下：</p>
 <ul>
 <li>基于 AST 渲染带各种标记语义的 DOM，标记语义主要通过 span 属性实现</li>
@@ -208,7 +208,7 @@ bold;">Sym</span></a>
 </ul>
 <p>“插入字符”目前用的是 <code>wbr</code> 标签，解析时内部映射为 Caret <code>\u2038</code> ，在解析过程中带着这个字符走，渲染 DOM 时在替换为 <code>wbr</code> 。使用标签的原因是通过 DOM API 处理起来较为方便。</p>
 <p>这个方案的弊端显而易见，输入 <code>wbr</code> 标签或者 Caret 字符将影响解析导致错误，不过实际使用时不大可能出现，所以暂时就这样吧。</p>
-<h3 id="toc_h3_5">计划未来</h3>
+<h3 id="计划未来">计划未来</h3>
 <p>功能实现好后就是性能优化了。大致的技术方案是局部解析渲染，这一步较为容易的是先做到根上的第一层块级，一般来说一个块子树不会太大，所以估计这样做性能应该足够好了。如果追求极致的话可以考虑将这个算法在块级子树上递归，通过控制深度来进行较细粒度的局部解析渲染。</p>
 <p>在源码模式上可以基于 AST 做语法高亮，因为 Lute 实现了完整的 Markdown AST，“完整的”意思就是所有源码都会被解析为节点，包括了标记符。这样就比较容易在渲染时带上 CSS 类来实现语法高亮了。</p>
 <p>更远一些的构想：</p>
@@ -236,22 +236,22 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">阶段性目标</a>
+            <a href="#阶段性目标">阶段性目标</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">所见即所得</a>
+            <a href="#所见即所得">所见即所得</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">Markdown 实时渲染</a>
+            <a href="#Markdown-实时渲染">Markdown 实时渲染</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">选择方向</a>
+            <a href="#选择方向">选择方向</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_4">技术实现</a>
+            <a href="#技术实现">技术实现</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_5">计划未来</a>
+            <a href="#计划未来">计划未来</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -277,7 +277,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -320,7 +320,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -329,10 +329,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -369,7 +369,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1577370404903",
@@ -389,4 +389,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 312ms, 2020/03/25 10:29:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 301ms, 2020/03/25 10:36:31 -->

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（五） - D 的个人博客</title><meta name="description" content="上一篇： [1437984612418] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1437984612418] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（五） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/28/1438070631857.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（五） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/28/1438070631857.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（四）" href="https://88250.github.io/articles/2015/07/27/1437984612418.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（六）" href="https://88250.github.io/articles/2015/07/29/1438164538421.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1437984612418]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,9 +184,9 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h4 id="toc_h4_1">2.4.4 Switch</h4>
+<h4 id="2-4-4-Switch">2.4.4 Switch</h4>
 <p>分支表达式可以是任意类型，不限于常量。可省略 <code>break</code>，默认自动终止。</p>
-<pre><code>x := []int{1, 2, 3}
+<pre><code class="highlight-chroma">x := []int{1, 2, 3}
 i := 2
 
 switch i {
@@ -199,10 +199,10 @@ switch i {
 }
 </code></pre>
 <p>输出：</p>
-<pre><code>a
+<pre><code class="highlight-chroma">a
 </code></pre>
 <p>如需要继续下一分支，可使用 <code>fallthrough</code>，但不再判断条件。</p>
-<pre><code>x := 10
+<pre><code class="highlight-chroma">x := 10
 
 switch x {
 	case 10:
@@ -213,11 +213,11 @@ switch x {
 }
 </code></pre>
 <p>输出：</p>
-<pre><code>a
+<pre><code class="highlight-chroma">a
 b
 </code></pre>
 <p>省略条件表达式，可当 if...else if...else 使用。</p>
-<pre><code>switch {
+<pre><code class="highlight-chroma">switch {
 	case x[1] &gt; 0:
 		println("a")
 	case x[1] &lt; 0:
@@ -235,9 +235,9 @@ switch i := x[2]; { // 带初始化语句
 		println("c")
 }
 </code></pre>
-<h4 id="toc_h4_2">2.4.5 Goto, Break, Continue</h4>
+<h4 id="2-4-5-Goto--Break--Continue">2.4.5 Goto, Break, Continue</h4>
 <p>支持在函数内 <code>goto</code> 跳转。标签名区分大小写，未使用标签引发错误。</p>
-<pre><code>func main() {
+<pre><code class="highlight-chroma">func main() {
     var i int
     for {
         fmt.Println(i)
@@ -255,7 +255,7 @@ EXIT: // Error: label EXIT defined and not used
 <p>配合标签，<code>break</code> 和 <code>continue</code> 可在多级嵌套循环中跳出。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/571e693b091b555adec40312b7d12ca9.go?embed=true" width="99%" height="600"></iframe>
 <p>附：<code>break</code> 可用于 <code>for</code>、<code>switch</code>、<code>select</code>，而 <code>continue</code> 仅能用于 <code>for</code> 循环。</p>
-<pre><code>x := 100
+<pre><code class="highlight-chroma">x := 100
 
 switch {
 	case x &gt;= 0:
@@ -300,13 +300,13 @@ switch {
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_1">2.4.4 Switch</a>
+            <a href="#2-4-4-Switch">2.4.4 Switch</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_2">2.4.5 Goto, Break, Continue</a>
+            <a href="#2-4-5-Goto--Break--Continue">2.4.5 Goto, Break, Continue</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -332,7 +332,7 @@ switch {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -375,7 +375,7 @@ switch {
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -384,10 +384,10 @@ switch {
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -424,7 +424,7 @@ switch {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438070631857",
@@ -444,4 +444,4 @@ switch {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 187ms, 2020/03/25 10:29:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 145ms, 2020/03/25 10:36:35 -->

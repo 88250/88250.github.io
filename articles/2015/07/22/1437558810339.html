@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（二） - D 的个人博客</title><meta name="description" content="上一篇： [1437497122181] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1437497122181] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（二） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/22/1437558810339.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（二） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/22/1437558810339.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（一）" href="https://88250.github.io/articles/2015/07/22/1437497122181.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（三）" href="https://88250.github.io/articles/2015/07/24/1437719712835.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1437497122181]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,7 +184,7 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h3 id="toc_h3_1">1.3 基本类型</h3>
+<h3 id="1-3-基本类型">1.3 基本类型</h3>
 <p>更明确的数字类型命名，支持 Unicode，支持常用数据结构。</p>
 <table style="width: 80%;">
   <tbody><tr>
@@ -321,13 +321,13 @@ bold;">Sym</span></a>
   </tr>
 </tbody></table>
 <p>支持八进制、十六进制，以及科学记数法。标准库 <code>math</code> 定义了各数字类型取值范围。</p>
-<pre><code>a, b, c, d := 071, 0x1F, 1e9, math.MinInt16
+<pre><code class="highlight-chroma">a, b, c, d := 071, 0x1F, 1e9, math.MinInt16
 </code></pre>
 <p>空指针值 <code>nil</code>，而非 C/C++ NULL。</p>
-<h3 id="toc_h3_2">1.4 引用类型</h3>
+<h3 id="1-4-引用类型">1.4 引用类型</h3>
 <p>引用类型包括 <code>slice</code>、<code>map</code> 和 <code>channel</code>。它们有复杂的内部结构，除了申请内存外，还需要初始化相关属性。</p>
 <p>内置函数 <code>new</code> 计算类型大小，为其分配零值内存，返回指针。而 <code>make</code> 会被编译器翻译成具体的创建函数，由其分配内存和初始化成员结构，返回对象而非指针。</p>
-<pre><code>a := []int{0, 0, 0} // 提供初始化表达式。
+<pre><code class="highlight-chroma">a := []int{0, 0, 0} // 提供初始化表达式。
 a[1] = 10
 
 b := make([]int, 3) // makeslice
@@ -337,25 +337,25 @@ c := new([]int)
 c[1] = 10 // Error: invalid operation: c[1] (index of type *[]int)
 </code></pre>
 <p>有关引用类型具体的内存布局，可参考后续章节。</p>
-<h3 id="toc_h3_3">1.5 类型转换</h3>
+<h3 id="1-5-类型转换">1.5 类型转换</h3>
 <p>不支持隐式类型转换，即便是从窄向宽转换也不行。</p>
-<pre><code>var b byte = 100
+<pre><code class="highlight-chroma">var b byte = 100
 // var n int = b // Error: cannot use b (type byte) as type int in assignment
 var n int = int(b) // 显式转换
 </code></pre>
 <p>使用括号避免优先级错误。</p>
-<pre><code>*Point(p) // 相当于 *(Point(p))
+<pre><code class="highlight-chroma">*Point(p) // 相当于 *(Point(p))
 (*Point)(p)
 &lt;-chan int(c) // 相当于 &lt;-(chan int(c))
 (&lt;-chan int)(c)
 </code></pre>
 <p>同样不能将其他类型当 <code>bool</code> 值使用。</p>
-<pre><code>a := 100
+<pre><code class="highlight-chroma">a := 100
 if a { // Error: non-bool a (type int) used as if condition
 	println("true")
 }
 </code></pre>
-<h3 id="toc_h3_4">1.6 字符串</h3>
+<h3 id="1-6-字符串">1.6 字符串</h3>
 <p>字符串是不可变值类型，内部用指针指向 UTF-8 字节数组。</p>
 <ul>
 <li>默认值是空字符串 ""。</li>
@@ -365,40 +365,40 @@ if a { // Error: non-bool a (type int) used as if condition
 <li>字节数组尾部不包含 <code>NULL</code>。</li>
 </ul>
 <p>runtime.h</p>
-<pre><code>struct String
+<pre><code class="highlight-chroma">struct String
 {
 	byte* str;
 	intgo len;
 };
 </code></pre>
 <p>使用索引号访问字符 (byte)。</p>
-<pre><code>s := "abc"
+<pre><code class="highlight-chroma">s := "abc"
 println(s[0] == '\x61', s[1] == 'b', s[2] == 0x63)
 </code></pre>
 <p>输出：</p>
-<pre><code>true true true
+<pre><code class="highlight-chroma">true true true
 </code></pre>
 <p>使用 "`" 定义不做转义处理的原始字符串，支持跨行。</p>
-<pre><code>s := `a
+<pre><code class="highlight-chroma">s := `a
 b\r\n\x00
 c`
 
 println(s)
 </code></pre>
 <p>输出：</p>
-<pre><code>a
+<pre><code class="highlight-chroma">a
 b\r\n\x00
 c
 </code></pre>
 <p>连接跨行字符串时，"+" 必须在上一行末尾，否则导致编译错误。</p>
-<pre><code>s := "Hello, " +
+<pre><code class="highlight-chroma">s := "Hello, " +
 "World!"
 
 s2 := "Hello, "
 + "World!" // Error: invalid operation: + untyped string
 </code></pre>
 <p>支持用两个索引号返回子串。子串依然指向原字节数组，仅修改了指针和长度属性。</p>
-<pre><code>s := "Hello, World!"
+<pre><code class="highlight-chroma">s := "Hello, World!"
 s1 := s[:5] // Hello
 s2 := s[7:] // World!
 s3 := s[1:5] // ello
@@ -446,19 +446,19 @@ s3 := s[1:5] // ello
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">1.3 基本类型</a>
+            <a href="#1-3-基本类型">1.3 基本类型</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">1.4 引用类型</a>
+            <a href="#1-4-引用类型">1.4 引用类型</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">1.5 类型转换</a>
+            <a href="#1-5-类型转换">1.5 类型转换</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_4">1.6 字符串</a>
+            <a href="#1-6-字符串">1.6 字符串</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -484,7 +484,7 @@ s3 := s[1:5] // ello
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -527,7 +527,7 @@ s3 := s[1:5] // ello
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -536,10 +536,10 @@ s3 := s[1:5] // ello
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -576,7 +576,7 @@ s3 := s[1:5] // ello
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1437558810339",
@@ -596,4 +596,4 @@ s3 := s[1:5] // ello
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 302ms, 2020/03/25 10:29:37 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 218ms, 2020/03/25 10:36:36 -->

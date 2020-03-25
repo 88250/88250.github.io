@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 数据链接与内容寻址 - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文将介绍如何在对等节点上创建和获取可验证的数据链接。 LESSION 1 - 创建节点并返回内容标识符（CID） 在本教程中，我们将探索 IPFS DAG API，它允许我们将数据对象存储在 IPFS 中，你可以在 IPFS 中存储一些令人兴奋的东西，比如你最喜欢的小猫的 GIF。 你可以将数据对象作为参数传入 ipfs.dag.put 方法来创建新节点，该方法返回新创建的节点的内容标识符（CID）。 ipfs.dag.put({ hello: &#39;world&#39; }) CID 是 IPFS 中从其内容生成的数据地址。每当有人将相同的 {hello：&#39;world&#39;} 数据放入 IPFS 时，他们将获得与你获得的相同的 CID。 如果他们改为输入 {hell0：&#39;w0rld&#39;}，则 CID 会有所不同。 如下示例代码将创建 { test: 1 } 节点并返回其 CID： const run = async () =&amp;g...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文将介绍如何在对等节点上创建和获取可验证的数据链接。 LESSION 1 - 创建节点并返回内容标识符（CID） 在本教程中，我们将探索 IPFS DAG API，它允许我们将数据对象存储在 IPFS 中，你可以在 IPFS 中存储一些令人兴奋的东西，比如你最喜欢的小猫的 GIF。 你可以将数据对象作为参数传入 ipfs.dag.put 方法来创建新节点，该方法返回新创建的节点的内容标识符（CID）。 ipfs.dag.put({ hello: &#39;world&#39; }) CID 是 IPFS 中从其内容生成的数据地址。每当有人将相同的 {hello：&#39;world&#39;} 数据放入 IPFS 时，他们将获得与你获得的相同的 CID。 如果他们改为输入 {hell0：&#39;w0rld&#39;}，则 CID 会有所不同。 如下示例代码将创建 { test: 1 } 节点并返回其 CID： const run = async () =&amp;g...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 数据链接与内容寻址 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/05/05/1557020262516.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 数据链接与内容寻址 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/05/05/1557020262516.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="IPFS 去中心化数据结构（四）" href="https://88250.github.io/articles/2019/04/30/1556585434162.html">
             <link rel="next" title="如何限制 docker run 容器执行时长？" href="https://88250.github.io/articles/2019/05/19/1558229770509.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -162,76 +162,76 @@ bold;">Sym</span></a>
 <p>本文翻译自 IPFS 社区教程 <a href="https://proto.school" target="_blank">ProtoSchool</a>。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！</p>
 </blockquote>
 <p>本文将介绍如何在对等节点上创建和获取可验证的数据链接。</p>
-<h3 id="toc_h3_0">LESSION 1 - 创建节点并返回内容标识符（CID）</h3>
+<h3 id="LESSION-1---创建节点并返回内容标识符-CID-">LESSION 1 - 创建节点并返回内容标识符（CID）</h3>
 <p>在本教程中，我们将探索 IPFS DAG API，它允许我们将数据对象存储在 IPFS 中，你可以在 IPFS 中存储一些令人兴奋的东西，比如你最喜欢的小猫的 GIF。</p>
 <p>你可以将数据对象作为参数传入 <code>ipfs.dag.put</code> 方法来创建新节点，该方法返回新创建的节点的内容标识符（CID）。</p>
-<pre><code class="language-javascript">ipfs.dag.put({ hello: 'world' })
+<pre><code class="language-js highlight-chroma"><span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">hello</span><span class="highlight-o">:</span> <span class="highlight-s1">'world'</span> <span class="highlight-p">})</span>
 </code></pre>
 <p>CID 是 IPFS 中从其内容生成的数据地址。每当有人将相同的 <code>{hello：'world'}</code> 数据放入 IPFS 时，他们将获得与你获得的相同的 CID。 如果他们改为输入 <code>{hell0：'w0rld'}</code>，则 CID 会有所不同。</p>
 <p>如下示例代码将创建 <code>{ test: 1 }</code> 节点并返回其 CID：</p>
-<pre><code class="language-javascript">const run = async () =&gt; {
-  let cid = await ipfs.dag.put({ test: 1 })
-  return cid
-}
+<pre><code class="language-js highlight-chroma"><span class="highlight-kr">const</span> <span class="highlight-nx">run</span> <span class="highlight-o">=</span> <span class="highlight-nx">async</span> <span class="highlight-p">()</span> <span class="highlight-p">=&gt;</span> <span class="highlight-p">{</span>
+  <span class="highlight-kd">let</span> <span class="highlight-nx">cid</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">test</span><span class="highlight-o">:</span> <span class="highlight-mi">1</span> <span class="highlight-p">})</span>
+  <span class="highlight-k">return</span> <span class="highlight-nx">cid</span>
+<span class="highlight-p">}</span>
 
-return run
+<span class="highlight-k">return</span> <span class="highlight-nx">run</span>
 </code></pre>
-<h3 id="toc_h3_1">LESSION 2 - 链接到已有节点</h3>
+<h3 id="LESSION-2---链接到已有节点">LESSION 2 - 链接到已有节点</h3>
 <p>有向无环图（DAG）的一个重要特性就是可以相互链接。链接的方式就是存储相关节点的 CID。</p>
 <p>例如一个节点存有一个 <code>foo</code> 指向另一个 CID 节点 <code>barCid</code>：</p>
-<pre><code>{
+<pre><code class="highlight-chroma">{
   foo: barCid
 }
 </code></pre>
 <p>上述示例我们创建了一个 <code>foo</code> 字段并将其值链接到了另一个 CID，我们将其称之为<code>命名链接</code>。</p>
 <p>我们可以将命名链接保存到 IPFS 中：</p>
-<pre><code class="language-javascript">await ipfs.dag.put({ foo: barCid })
+<pre><code class="language-js highlight-chroma"><span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">foo</span><span class="highlight-o">:</span> <span class="highlight-nx">barCid</span> <span class="highlight-p">})</span>
 </code></pre>
 <p>如下示例代码将创建 <code>{ test: 1}</code> 并将其命名为 <code>bar</code> 链接到新创建的节点上：</p>
-<pre><code class="language-javascript">const run = async () =&gt; {
-  let cid = await ipfs.dag.put({ test: 1 })
-  let cid2 = await ipfs.dag.put({ bar: cid })
-  return cid2
-}
+<pre><code class="language-js highlight-chroma"><span class="highlight-kr">const</span> <span class="highlight-nx">run</span> <span class="highlight-o">=</span> <span class="highlight-nx">async</span> <span class="highlight-p">()</span> <span class="highlight-p">=&gt;</span> <span class="highlight-p">{</span>
+  <span class="highlight-kd">let</span> <span class="highlight-nx">cid</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">test</span><span class="highlight-o">:</span> <span class="highlight-mi">1</span> <span class="highlight-p">})</span>
+  <span class="highlight-kd">let</span> <span class="highlight-nx">cid2</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">bar</span><span class="highlight-o">:</span> <span class="highlight-nx">cid</span> <span class="highlight-p">})</span>
+  <span class="highlight-k">return</span> <span class="highlight-nx">cid2</span>
+<span class="highlight-p">}</span>
 
-return run
+<span class="highlight-k">return</span> <span class="highlight-nx">run</span>
 </code></pre>
-<h3 id="toc_h3_2">LESSION 3 - 通过链接读取嵌套数据</h3>
+<h3 id="LESSION-3---通过链接读取嵌套数据">LESSION 3 - 通过链接读取嵌套数据</h3>
 <p>我们可通过路径查询读取嵌套数据。</p>
-<pre><code class="language-javascript">let cid = await ipfs.dag.put({
-  my: {
-    deep: {
-      obj: 'is cool'
-    }
-  }
-})
+<pre><code class="language-js highlight-chroma"><span class="highlight-kd">let</span> <span class="highlight-nx">cid</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span>
+  <span class="highlight-nx">my</span><span class="highlight-o">:</span> <span class="highlight-p">{</span>
+    <span class="highlight-nx">deep</span><span class="highlight-o">:</span> <span class="highlight-p">{</span>
+      <span class="highlight-nx">obj</span><span class="highlight-o">:</span> <span class="highlight-s1">'is cool'</span>
+    <span class="highlight-p">}</span>
+  <span class="highlight-p">}</span>
+<span class="highlight-p">})</span>
 
-console.log(await ipfs.dag.get(cid, '/my/deep/obj'))
-// prints { value: 'is cool', remainderPath: '' }
-</code></pre>
+<span class="highlight-nx">console</span><span class="highlight-p">.</span><span class="highlight-nx">log</span><span class="highlight-p">(</span><span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">get</span><span class="highlight-p">(</span><span class="highlight-nx">cid</span><span class="highlight-p">,</span> <span class="highlight-s1">'/my/deep/obj'</span><span class="highlight-p">))</span>
+<span class="highlight-c1">// prints { value: 'is cool', remainderPath: '' }
+</span></code></pre>
 <p><code>ipfs.dag.get</code> 可 IPFS 路径进行查询，查询结果包含了结果值以及尚未解析的路径。我们可以通过该 API 进行遍历：</p>
-<pre><code class="language-javascript">let cid = await ipfs.dag.put({ foo: 'bar' })
-let cid2 = await ipfs.dag.put({
-  my: {
-    other: cid
-  }
-})
+<pre><code class="language-js highlight-chroma"><span class="highlight-kd">let</span> <span class="highlight-nx">cid</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">foo</span><span class="highlight-o">:</span> <span class="highlight-s1">'bar'</span> <span class="highlight-p">})</span>
+<span class="highlight-kd">let</span> <span class="highlight-nx">cid2</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span>
+  <span class="highlight-nx">my</span><span class="highlight-o">:</span> <span class="highlight-p">{</span>
+    <span class="highlight-nx">other</span><span class="highlight-o">:</span> <span class="highlight-nx">cid</span>
+  <span class="highlight-p">}</span>
+<span class="highlight-p">})</span>
 
-console.log(await ipfs.dag.get(cid2, '/my/other/foo'))
-// prints { value: 'bar', remainderPath: '' }
-
-// Notice above how this method returns not the value itself,
-// but an object that contains a `value` property
-</code></pre>
+<span class="highlight-nx">console</span><span class="highlight-p">.</span><span class="highlight-nx">log</span><span class="highlight-p">(</span><span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">get</span><span class="highlight-p">(</span><span class="highlight-nx">cid2</span><span class="highlight-p">,</span> <span class="highlight-s1">'/my/other/foo'</span><span class="highlight-p">))</span>
+<span class="highlight-c1">// prints { value: 'bar', remainderPath: '' }
+</span><span class="highlight-c1"></span>
+<span class="highlight-c1">// Notice above how this method returns not the value itself,
+</span><span class="highlight-c1">// but an object that contains a `value` property
+</span></code></pre>
 <p>如下示例代码将返回 <code>test</code> 的值：</p>
-<pre><code class="language-javascript">const run = async () =&gt; {
-  let cid = await ipfs.dag.put({ test: 1 })
-  let cid2 = await ipfs.dag.put({ bar: cid })
-  let cid3 = await ipfs.dag.get(cid2, '/bar/test')
-  return cid3.value
-}
+<pre><code class="language-js highlight-chroma"><span class="highlight-kr">const</span> <span class="highlight-nx">run</span> <span class="highlight-o">=</span> <span class="highlight-nx">async</span> <span class="highlight-p">()</span> <span class="highlight-p">=&gt;</span> <span class="highlight-p">{</span>
+  <span class="highlight-kd">let</span> <span class="highlight-nx">cid</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">test</span><span class="highlight-o">:</span> <span class="highlight-mi">1</span> <span class="highlight-p">})</span>
+  <span class="highlight-kd">let</span> <span class="highlight-nx">cid2</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">put</span><span class="highlight-p">({</span> <span class="highlight-nx">bar</span><span class="highlight-o">:</span> <span class="highlight-nx">cid</span> <span class="highlight-p">})</span>
+  <span class="highlight-kd">let</span> <span class="highlight-nx">cid3</span> <span class="highlight-o">=</span> <span class="highlight-nx">await</span> <span class="highlight-nx">ipfs</span><span class="highlight-p">.</span><span class="highlight-nx">dag</span><span class="highlight-p">.</span><span class="highlight-nx">get</span><span class="highlight-p">(</span><span class="highlight-nx">cid2</span><span class="highlight-p">,</span> <span class="highlight-s1">'/bar/test'</span><span class="highlight-p">)</span>
+  <span class="highlight-k">return</span> <span class="highlight-nx">cid3</span><span class="highlight-p">.</span><span class="highlight-nx">value</span>
+<span class="highlight-p">}</span>
 
-return run
+<span class="highlight-k">return</span> <span class="highlight-nx">run</span>
 </code></pre>
                     <div>
                         <br>
@@ -253,13 +253,13 @@ return run
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">LESSION 1 - 创建节点并返回内容标识符（CID）</a>
+            <a href="#LESSION-1---创建节点并返回内容标识符-CID-">LESSION 1 - 创建节点并返回内容标识符（CID）</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">LESSION 2 - 链接到已有节点</a>
+            <a href="#LESSION-2---链接到已有节点">LESSION 2 - 链接到已有节点</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">LESSION 3 - 通过链接读取嵌套数据</a>
+            <a href="#LESSION-3---通过链接读取嵌套数据">LESSION 3 - 通过链接读取嵌套数据</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -285,7 +285,7 @@ return run
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -328,7 +328,7 @@ return run
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -337,10 +337,10 @@ return run
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -377,7 +377,7 @@ return run
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1557020262516",
@@ -397,4 +397,4 @@ return run
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 231ms, 2020/03/25 10:29:33 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 197ms, 2020/03/25 10:36:32 -->

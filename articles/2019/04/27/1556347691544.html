@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>IPFS 去中心化数据结构（二） - D 的个人博客</title><meta name="description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/><meta property="og:description" content="本文翻译自 IPFS 社区教程 ProtoSchool。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！ 本文接上篇 IPFS 去中心化数据结构（一）。 LESSION 3 - 通过加密哈希进行内容寻址 正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。 加密哈希 加密哈希是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。 哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的： zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein 说实话，由内容衍生的名字目前对人类来说并不友好（beagle...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="IPFS 去中心化数据结构（二） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/04/27/1556347691544.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="IPFS 去中心化数据结构（二） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/04/27/1556347691544.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="IPFS 去中心化数据结构（一）" href="https://88250.github.io/articles/2019/04/27/1556347438386.html">
             <link rel="next" title="IPFS 去中心化数据结构（三）" href="https://88250.github.io/articles/2019/04/29/1556500741161.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,19 +166,19 @@ bold;">Sym</span></a>
 <p>本文翻译自 IPFS 社区教程 <a href="https://proto.school" target="_blank">ProtoSchool</a>。ProtoSchool 是一个可以交互式学习 IPFS 编程的网站，涉及代码的部分大家可到该网站上直接运行测试！</p>
 </blockquote>
 <p>本文接上篇 <a href="https://hacpai.com/article/1556347438386" target="_blank">IPFS 去中心化数据结构（一）</a>。</p>
-<h3 id="toc_h3_0">LESSION 3 - 通过加密哈希进行内容寻址</h3>
+<h3 id="LESSION-3---通过加密哈希进行内容寻址">LESSION 3 - 通过加密哈希进行内容寻址</h3>
 <p>正如我们之前说的，中心化的 Web 依赖于中央机构来托管我们的数据，并使用 URL 作为地址来进行访问。但位置寻址不是唯一的选择。在去中心化的 Web 上，我们可以托管彼此的数据，并且通过一种特殊的链接方式让我们彼此间访问数据更可信和安全。</p>
-<h4 id="toc_h4_1">加密哈希</h4>
+<h4 id="加密哈希">加密哈希</h4>
 <p><a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function" target="_blank">加密哈希</a>是去中心化数据结构中最重要的工具函数。它打开了新链接形式的大门，我们称之为内容寻址，这样我们才能在没有中央机构的去中心化环境中链接数据。</p>
 <p>哈希可以用于任何大小的数据，并为该数据返回单个固定大小的“哈希值”。 哈希值是一个看起来像 gobbledygook 的字符串，你可以将其视为数据的名称。它可能是这样的：</p>
 <p><code>zdpuAsHkamdCQgrDrNSwJVgjMkQWoLxdrccxV6qe9htipNein</code></p>
 <p>说实话，由内容衍生的名字目前对人类来说并不友好（<code>beagle.jpg</code> 更具描述性！），但哈希值更加安全。 原因如下：</p>
 <p><strong>加密哈希值是数据本身产生的</strong>，这意味着在相同数据上使用相同哈希算法将得到相同的哈希值。如果 Ada 和 Grace 都使用相同的去中心化 Web 协议（例如 IPFS）来共享完全相同的小猫照片，则两个图片文件会具有完全相同的哈希值。通过比较这些哈希值，我们可以保证这两张照片中的每个像素都是相同的。</p>
 <p><strong>加密哈希值也是独一无二的</strong>。这意味着如果  Grace 使用 Photoshop 从该小猫中删除了一些胡须，则更新后的图片会具有新的哈希值，并且很容易分辨 - 仅从哈希值，不用访问文件本身 - 它包含不同的数据。</p>
-<h4 id="toc_h4_2">去中心化 Web 上的信任</h4>
+<h4 id="去中心化-Web-上的信任">去中心化 Web 上的信任</h4>
 <p>在中心化的网络上，我们信任某些机构，不信任其他机构。我们利用 URL 提供的线索尽力而为，但有些有恶意的人会使用位置寻址的缺点来欺骗我们。</p>
 <p>在去中心化的网络上，我们能够传播并托管彼此的数据，我们可能不太了解托管数据的其他节点，但内容寻址为我们提供了一种信任他们所共享的数据的方法。通过内容寻址，我们不会被恶意行为者欺骗导致访问错误的数据。这就是加密哈希对去中心化网络如此重要的原因。</p>
-<h4 id="toc_h4_3">向对等节点查找数据</h4>
+<h4 id="向对等节点查找数据">向对等节点查找数据</h4>
 <p>通过传统的位置寻址，我们知道需要访问域名 <code>puppies.com</code> 来查找 <code>beagle.jpg</code> 保存的数据内容。如果 <code>puppies.com</code> 域由于某种原因被破坏，我们将无法访问该图片。</p>
 <p>去中心化网络的工作方式则是完全不同的。当我们想要一张可爱宠物的照片时，我们会通过其内容地址（哈希值）来进行查找。我们向谁查找呢？答案是整个网络！如果 Ada 在线，我们会看到她有我们正在寻找的内容，我们可以验证数据是否为我们正在寻找的内容，只要它具有匹配的哈希值。如果她下线，我们仍然可以从 Grace 或其他节点获得相同的照片。</p>
 <p>由于我们使用哈希值来在去中心化的网络上请求数据，因此我们可以将哈希值视为链接，而不仅仅是数据名称。</p>
@@ -204,16 +204,16 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">LESSION 3 - 通过加密哈希进行内容寻址</a>
+            <a href="#LESSION-3---通过加密哈希进行内容寻址">LESSION 3 - 通过加密哈希进行内容寻址</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_1">加密哈希</a>
+            <a href="#加密哈希">加密哈希</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_2">去中心化 Web 上的信任</a>
+            <a href="#去中心化-Web-上的信任">去中心化 Web 上的信任</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_3">向对等节点查找数据</a>
+            <a href="#向对等节点查找数据">向对等节点查找数据</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -239,7 +239,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -282,7 +282,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -291,10 +291,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -331,7 +331,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1556347691544",
@@ -351,4 +351,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 231ms, 2020/03/25 10:29:33 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 207ms, 2020/03/25 10:36:32 -->

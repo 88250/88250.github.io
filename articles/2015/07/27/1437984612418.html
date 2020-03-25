@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（四） - D 的个人博客</title><meta name="description" content="上一篇： [1437719712835] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1437719712835] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（四） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/27/1437984612418.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（四） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/27/1437984612418.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（三）" href="https://88250.github.io/articles/2015/07/24/1437719712835.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（五）" href="https://88250.github.io/articles/2015/07/28/1438070631857.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1437719712835]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,17 +184,17 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h3 id="toc_h3_1">2.1 表达式</h3>
+<h3 id="2-1-表达式">2.1 表达式</h3>
 <p>语言设计简练，保留字不多。</p>
-<pre><code>break default func interface select
-case defer go map struct
-chan else goto package switch
-const fallthrough if range type
-continue for import return var
+<pre><code class="language-go highlight-chroma"><span class="highlight-k">break</span> <span class="highlight-k">default</span> <span class="highlight-kd">func</span> <span class="highlight-kd">interface</span> <span class="highlight-k">select</span>
+<span class="highlight-k">case</span> <span class="highlight-k">defer</span> <span class="highlight-k">go</span> <span class="highlight-kd">map</span> <span class="highlight-kd">struct</span>
+<span class="highlight-kd">chan</span> <span class="highlight-k">else</span> <span class="highlight-k">goto</span> <span class="highlight-kn">package</span> <span class="highlight-k">switch</span>
+<span class="highlight-kd">const</span> <span class="highlight-k">fallthrough</span> <span class="highlight-k">if</span> <span class="highlight-k">range</span> <span class="highlight-kd">type</span>
+<span class="highlight-k">continue</span> <span class="highlight-k">for</span> <span class="highlight-kn">import</span> <span class="highlight-k">return</span> <span class="highlight-kd">var</span>
 </code></pre>
-<h3 id="toc_h3_2">2.2 运算符</h3>
+<h3 id="2-2-运算符">2.2 运算符</h3>
 <p>全部运算符、分隔符，以及其他符号。</p>
-<pre><code>+ &amp; += &amp;= &amp;&amp; == != ( )
+<pre><code class="highlight-chroma">+ &amp; += &amp;= &amp;&amp; == != ( )
 - | -= |= || &lt; &lt;= [ ]
 * ^ *= ^= &lt;- &gt; &gt;= { }
 / &lt;&lt; /= &lt;&lt;= ++ = := , ;
@@ -202,7 +202,7 @@ continue for import return var
 &amp;^ &amp;^=
 </code></pre>
 <p>运算符结合律全部从左到右。</p>
-<pre><code>优先级 运算符 说明
+<pre><code class="highlight-chroma">优先级 运算符 说明
 ------------+---------------------------------------------+----------------------------
 high * / &amp; &lt;&lt; &gt;&gt; &amp; &amp;^
 + - |" ^
@@ -212,19 +212,19 @@ high * / &amp; &lt;&lt; &gt;&gt; &amp; &amp;^
 low ||
 </code></pre>
 <p>简单位运算演示。</p>
-<pre><code>0110 &amp; 1011 = 0010 AND 都为 1。
+<pre><code class="highlight-chroma">0110 &amp; 1011 = 0010 AND 都为 1。
 0110 | 1011 = 1111 OR ⾄至少⼀一个为 1。
 0110 ^ 1011 = 1101 XOR 只能⼀一个为 1。
 0110 &amp;^ 1011 = 0100 AND NOT 清除标志位。
 </code></pre>
 <p>标志位操作。</p>
-<pre><code>a := 0
+<pre><code class="highlight-chroma">a := 0
 a |= 1 &lt;&lt; 2 // 0000100: 在 bit2 设置标志位。
 a |= 1 &lt;&lt; 6 // 1000100: 在 bit6 设置标志位
 a = a &amp;^ (1 &lt;&lt; 6) // 0000100: 清除 bit6 标志位。
 </code></pre>
 <p>不支持运算符重载。尤其需要注意，"++"、"--" 是语句而非表达式。</p>
-<pre><code>n := 0
+<pre><code class="highlight-chroma">n := 0
 p := &amp;n
 // b := n++ // syntax error
 // if n++ == 1 {} // syntax error
@@ -233,12 +233,12 @@ n++
 *p++ // (*p)++
 </code></pre>
 <p>没有 "~"，取反运算也用 "^"。</p>
-<pre><code>x := 1
+<pre><code class="highlight-chroma">x := 1
 x, ^x // 0001, -0010
 </code></pre>
-<h3 id="toc_h3_3">2.3 初始化</h3>
+<h3 id="2-3-初始化">2.3 初始化</h3>
 <p>初始化复合对象，必须使用类型标签，且左大括号必须在类型尾部。</p>
-<pre><code>// var a struct { x int } = { 100 } // syntax error
+<pre><code class="highlight-chroma">// var a struct { x int } = { 100 } // syntax error
 // var b []int = { 1, 2, 3 } // syntax error
 // c := struct {x int; y string} // syntax error: unexpected semicolon or newline
 // {
@@ -247,7 +247,7 @@ var a = struct{ x int }{100}
 var b = []int{1, 2, 3}
 </code></pre>
 <p>初始化值以 "," 分隔。可以分多行，但最后一行必须以 "," 或 "}" 结尾。</p>
-<pre><code>a := []int{
+<pre><code class="highlight-chroma">a := []int{
 	1,
 	2 // Error: need trailing comma before newline in composite literal
 }
@@ -261,8 +261,8 @@ b := []int{
 	1,
 	2 } // ok
 </code></pre>
-<h3 id="toc_h3_4">2.4 控制流</h3>
-<h4 id="toc_h4_5">2.4.1 IF</h4>
+<h3 id="2-4-控制流">2.4 控制流</h3>
+<h4 id="2-4-1-IF">2.4.1 IF</h4>
 <p>很特别的写法：</p>
 <ul>
 <li>可省略条件表达式括号。</li>
@@ -270,7 +270,7 @@ b := []int{
 <li>代码块左大括号必须在条件表达式尾部。</li>
 </ul>
 <p>例如：</p>
-<pre><code>x := 0
+<pre><code class="highlight-chroma">x := 0
 
 // if x &gt; 10 // Error: missing condition in if statement
 // {
@@ -285,9 +285,9 @@ if n := "abc"; x &gt; 0 { // 初始化语句未必就是定义变量，比如 pr
 }
 </code></pre>
 <p>不支持三元操作符 "a &gt; b ? a : b"。</p>
-<h4 id="toc_h4_6">2.4.2 For</h4>
+<h4 id="2-4-2-For">2.4.2 For</h4>
 <p>支持三种循环方式，包括类 <code>while</code> 语法。</p>
-<pre><code>s := "abc"
+<pre><code class="highlight-chroma">s := "abc"
 
 for i, n := 0, len(s); i &lt; n; i++ { // 常见的 for 循环，支持初始化语句。
 	println(s[i])
@@ -305,9 +305,9 @@ for { // 替代 while (true) {}
 </code></pre>
 <p>不要期望编译器能理解你的想法，在初始化语句中计算出全部结果是个好主意。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/635bd3e676694ee98b8083057610b350.go?embed=true" width="99%" height="500"></iframe>
-<h4 id="toc_h4_7">2.4.3 Range</h4>
+<h4 id="2-4-3-Range">2.4.3 Range</h4>
 <p>类似迭代器操作，返回 (索引, 值) 或 (键, 值)。</p>
-<pre><code>1st value 2nd value
+<pre><code class="highlight-chroma">1st value 2nd value
 ------------------+-------------------+------------------+-------------------
 string index s[index] unicode, rune
 array/slice index s[index]
@@ -315,7 +315,7 @@ map key m[key]
 channel element
 </code></pre>
 <p>可忽略不想要的返回值，或用 "_" 这个特殊变量。</p>
-<pre><code>s := "abc"
+<pre><code class="highlight-chroma">s := "abc"
 
 for i := range s { // 忽略 2nd value，支持 string/array/slice/map。
 	println(s[i])
@@ -336,7 +336,7 @@ for k, v := range m { // 返回 (key, value)。
 }
 </code></pre>
 <p>注意，<code>range</code> 会复制对象。</p>
-<pre><code>a := [3]int{0, 1, 2}
+<pre><code class="highlight-chroma">a := [3]int{0, 1, 2}
 
 for i, v := range a { // index、value 都是从复制品中取出。
 	if i == 0 { // 在修改前，我们先修改原数组。
@@ -389,28 +389,28 @@ fmt.Println(a) // 输出 [100, 101, 102]。
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">2.1 表达式</a>
+            <a href="#2-1-表达式">2.1 表达式</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">2.2 运算符</a>
+            <a href="#2-2-运算符">2.2 运算符</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">2.3 初始化</a>
+            <a href="#2-3-初始化">2.3 初始化</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_4">2.4 控制流</a>
+            <a href="#2-4-控制流">2.4 控制流</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_5">2.4.1 IF</a>
+            <a href="#2-4-1-IF">2.4.1 IF</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_6">2.4.2 For</a>
+            <a href="#2-4-2-For">2.4.2 For</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_7">2.4.3 Range</a>
+            <a href="#2-4-3-Range">2.4.3 Range</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -436,7 +436,7 @@ fmt.Println(a) // 输出 [100, 101, 102]。
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -479,7 +479,7 @@ fmt.Println(a) // 输出 [100, 101, 102]。
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -488,10 +488,10 @@ fmt.Println(a) // 输出 [100, 101, 102]。
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -528,7 +528,7 @@ fmt.Println(a) // 输出 [100, 101, 102]。
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1437984612418",
@@ -548,4 +548,4 @@ fmt.Println(a) // 输出 [100, 101, 102]。
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 161ms, 2020/03/25 10:29:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 157ms, 2020/03/25 10:36:35 -->

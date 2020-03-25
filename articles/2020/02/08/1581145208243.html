@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Solo 从设计到实现后记 - D 的个人博客</title><meta name="description" content="本文是《Solo 从设计到实现》的一个章节，该系列文章将介绍 Solo 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给重复发明重新定义博客系统的人做个参考 ❤️ 轮子和时间 “不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。 重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。 新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。 我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。 成功的开源 什么是成功 一个开源项目...."/><meta property="og:description" content="本文是《Solo 从设计到实现》的一个章节，该系列文章将介绍 Solo 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给重复发明重新定义博客系统的人做个参考 ❤️ 轮子和时间 “不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。 重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。 新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。 我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。 成功的开源 什么是成功 一个开源项目...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Solo 从设计到实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/08/1581145208243.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Solo 从设计到实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/08/1581145208243.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="搭建 GitHub 镜像仓库" href="https://88250.github.io/articles/2020/02/07/1581004860744.html">
             <link rel="next" title="创业的第二个冬天" href="https://88250.github.io/articles/2020/02/09/1581219038316.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -167,13 +167,13 @@ bold;">Sym</span></a>
                 <blockquote>
 <p>本文是<a href="https://hacpai.com/article/1537690756242" target="_blank">《Solo 从设计到实现》</a>的一个章节，该系列文章将介绍 <a href="https://solo.b3log.org" target="_blank">Solo</a> 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给<del>重复发明</del>重新定义博客系统的人做个参考 ❤️</p>
 </blockquote>
-<h2 id="toc_h2_0">轮子和时间</h2>
+<h2 id="轮子和时间">轮子和时间</h2>
 <p>“不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。</p>
 <p>重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。</p>
 <p>新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。</p>
 <p>我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。</p>
-<h2 id="toc_h2_1">成功的开源</h2>
-<h3 id="toc_h3_2">什么是成功</h3>
+<h2 id="成功的开源">成功的开源</h2>
+<h3 id="什么是成功">什么是成功</h3>
 <p>一个开源项目是否能够流行，很大程度上取决于主创人员是否能够在一定时间跨度（比如 5 年[^5y]）内坚持不断更，因为只要在更新就意味着在改进，项目没有死掉，充满着希望。而要定义一个开源项目是否成功则取决于贡献者数量，贡献者的多少定义了该项目存在的意义。</p>
 <p>你可能会认为通过贡献者的多少来定义成功存在矛盾：不完善的项目对其他人来说会具有更多的施展空间，可这样一个不完善的项目怎么能算作是成功呢？反过来，一个完善的项目对其他人来说改进空间有限，这样的项目难道不算成功吗？</p>
 <p>我觉得通过贡献者数量来定义开源项目的成功是成立的，因为：</p>
@@ -183,18 +183,18 @@ bold;">Sym</span></a>
 </ol>
 <p>可以这样说，主创人员离开后项目依然能保持活力，那这个项目就真正成功了。所以对于主创个人来说，是否能够成功在于如何让项目脱离自己依然能存活下去，个人名利只是朝这个方向努力的副产品。可惜很多人却本末倒置，把开源当做收割名利的工具，这样的开源项目必定是失败的。</p>
 <p>[^5y]: 为什么要把持续更新定在 5 年呢？“5 年”是拍脑袋的，这里主要是想说明技术框架的更迭。如果项目引用了过多的第三方依赖，那这个周期内依赖会发生一些大的变化，对项目会产生很多影响。所以如果想做一个长期的开源项目，一定要逐步减少依赖</p>
-<h3 id="toc_h3_3">如果不能成功</h3>
+<h3 id="如果不能成功">如果不能成功</h3>
 <p>这是一个令人有点沮丧的话题。对于一个开源项目的主创人员来说，追求成功是很正常的。可以说人人都渴望成功，但如果人人都能成功，那成功就失去了意义。</p>
 <p>“我都做到如此程度了，为何还是得不到大家的认可？”后来发现那时的“如此程度”是那么微不足道甚至荒谬可笑。我们应该让自己不要变得爱慕虚荣，让自己不要变得那么虚伪，因为越想得到时往往越不可能得到，这也许真的是宇宙运行的法则之一。</p>
 <p>开源不只可以丰富我们对外界的认知，也可以丰富自己的内心世界。可以这样说，心有多大，开源的世界就有多大。所以放下那些所谓的得失，开源才会变得真正有意义。</p>
 <p>所以不成功就不成功吧，自求己道。</p>
-<h2 id="toc_h2_4">博客的未来</h2>
-<h3 id="toc_h3_5">服务平台消亡</h3>
+<h2 id="博客的未来">博客的未来</h2>
+<h3 id="服务平台消亡">服务平台消亡</h3>
 <p>随着时间的推移，博客服务平台将逐渐减少直至消亡，个人独立博客将逐渐兴起。博客服务平台的消亡已经有很多案例，最直接的原因是提供商很难从中赚到钱。现存的几个类博客服务平台也面临同样问题，解决方案要么是扩大融资输血，要么就是不顾吃相地铺天盖地挂广告。</p>
 <p>平台赚钱难是一方面，另一方面促进其消亡的原因在于网络环境的改变。过去要建立一个个人独立博客成本是很高的，主要代价是“昂贵”的服务器费用，这使很多博主只能到平台上开博。但随着网络基建、云计算的普及，费用方面的成本也逐渐在降低。并且“提速降费”已经上升到国家战略高度，运营商的实施成效大家也是有目共睹的。所以，随着服务器费用的降低，建立个人独立博客的门槛也被大大降低。</p>
-<p>另外，在博客系统软件方面，静态博客的流行对博客服务平台消亡也起了推波助澜的作用。在这方面，有技术前瞻性的平台都转向提供 “Pages” 托管了，对用户来说唯一的门槛就是域名备案，但目前来看这也不是多麻烦的事情<a href="域名备案不是多麻烦的事情，比如阿里云提供的代备服务就很方便。“域名备案”更多的可能是一种思想上的抵触，我觉得完全没有必要。国家既然设定这方面的法律框架，作为公民去实现依法守法是必须的。所以不要被某些居心叵测的人误导了，他们那样说更多是为了实现他们的利益。当然，如果你是发自内心的抵触，那么只能用我们都知道的那个办法了" target="_blank">^beian</a>。</p>
+<p>另外，在博客系统软件方面，静态博客的流行对博客服务平台消亡也起了推波助澜的作用。在这方面，有技术前瞻性的平台都转向提供 “Pages” 托管了，对用户来说唯一的门槛就是域名备案，但目前来看这也不是多麻烦的事情<a href="%E5%9F%9F%E5%90%8D%E5%A4%87%E6%A1%88%E4%B8%8D%E6%98%AF%E5%A4%9A%E9%BA%BB%E7%83%A6%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%8C%E6%AF%94%E5%A6%82%E9%98%BF%E9%87%8C%E4%BA%91%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BB%A3%E5%A4%87%E6%9C%8D%E5%8A%A1%E5%B0%B1%E5%BE%88%E6%96%B9%E4%BE%BF%E3%80%82%E2%80%9C%E5%9F%9F%E5%90%8D%E5%A4%87%E6%A1%88%E2%80%9D%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%8F%AF%E8%83%BD%E6%98%AF%E4%B8%80%E7%A7%8D%E6%80%9D%E6%83%B3%E4%B8%8A%E7%9A%84%E6%8A%B5%E8%A7%A6%EF%BC%8C%E6%88%91%E8%A7%89%E5%BE%97%E5%AE%8C%E5%85%A8%E6%B2%A1%E6%9C%89%E5%BF%85%E8%A6%81%E3%80%82%E5%9B%BD%E5%AE%B6%E6%97%A2%E7%84%B6%E8%AE%BE%E5%AE%9A%E8%BF%99%E6%96%B9%E9%9D%A2%E7%9A%84%E6%B3%95%E5%BE%8B%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%BD%9C%E4%B8%BA%E5%85%AC%E6%B0%91%E5%8E%BB%E5%AE%9E%E7%8E%B0%E4%BE%9D%E6%B3%95%E5%AE%88%E6%B3%95%E6%98%AF%E5%BF%85%E9%A1%BB%E7%9A%84%E3%80%82%E6%89%80%E4%BB%A5%E4%B8%8D%E8%A6%81%E8%A2%AB%E6%9F%90%E4%BA%9B%E5%B1%85%E5%BF%83%E5%8F%B5%E6%B5%8B%E7%9A%84%E4%BA%BA%E8%AF%AF%E5%AF%BC%E4%BA%86%EF%BC%8C%E4%BB%96%E4%BB%AC%E9%82%A3%E6%A0%B7%E8%AF%B4%E6%9B%B4%E5%A4%9A%E6%98%AF%E4%B8%BA%E4%BA%86%E5%AE%9E%E7%8E%B0%E4%BB%96%E4%BB%AC%E7%9A%84%E5%88%A9%E7%9B%8A%E3%80%82%E5%BD%93%E7%84%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%98%AF%E5%8F%91%E8%87%AA%E5%86%85%E5%BF%83%E7%9A%84%E6%8A%B5%E8%A7%A6%EF%BC%8C%E9%82%A3%E4%B9%88%E5%8F%AA%E8%83%BD%E7%94%A8%E6%88%91%E4%BB%AC%E9%83%BD%E7%9F%A5%E9%81%93%E7%9A%84%E9%82%A3%E4%B8%AA%E5%8A%9E%E6%B3%95%E4%BA%86" target="_blank">^beian</a>。</p>
 <p>所以，传统博客服务平台的消亡将成定势。但并不是所有“平台”都会被独立博客取代，平台本身作为流量入口的优势是独立博客无法比拟的。</p>
-<h3 id="toc_h3_6">聚合平台崛起</h3>
+<h3 id="聚合平台崛起">聚合平台崛起</h3>
 <p>大部分博主都想让自己写的文章被更多人看到。但有很少部分的博主不这么想，他们不希望自己的文章在网络上“公开”，该想法其实非常矛盾，因为无论是出于安全隐私的角度不想公开，亦或是出于“不好意思”让其他人看到而不想公开，较好的方式是离线存储，更好的方式是手写在纸上并藏好，最好的方式是不要写出来仅存在于脑海里。内容一旦被发布到网上就避免不了公开的结局，这就是互联网。</p>
 <p>提到“内容聚合”，大家印象里可能会觉得这类平台就是靠爬虫搞些内容搬运的勾当。我这里说的聚合平台不是这种聚合方式，而是博主自愿手动推送内容到平台的方式。内容的聚合只是其中一部分，更重要的部分是交互的聚合。比如平台上的评论也会推送到博客端，平台上的个人设置也会在博客端展示等等。</p>
 <p>这样的交互式聚合平台将在未来逐步崛起，这也是一种新的博客网络，可以看作是博客+社区的网络体验。往更远的未来看，这是一种个人数据服务端点+平台融合交互的架构，它可能会在更大范围内将影响数据的产生和消费方式，让我们拭目以待！</p>
@@ -218,25 +218,25 @@ bold;">Sym</span></a>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#toc_h2_0">轮子和时间</a>
+            <a href="#轮子和时间">轮子和时间</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_1">成功的开源</a>
+            <a href="#成功的开源">成功的开源</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">什么是成功</a>
+            <a href="#什么是成功">什么是成功</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">如果不能成功</a>
+            <a href="#如果不能成功">如果不能成功</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_4">博客的未来</a>
+            <a href="#博客的未来">博客的未来</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_5">服务平台消亡</a>
+            <a href="#服务平台消亡">服务平台消亡</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_6">聚合平台崛起</a>
+            <a href="#聚合平台崛起">聚合平台崛起</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -262,7 +262,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -305,7 +305,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -314,10 +314,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -354,7 +354,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1581145208243",
@@ -374,4 +374,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 305ms, 2020/03/25 10:29:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 426ms, 2020/03/25 10:36:32 -->

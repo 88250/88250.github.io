@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>搭建 GitHub 镜像仓库 - D 的个人博客</title><meta name="description" content="需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端 创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类： 客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys 切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git 在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh g...."/><meta property="og:description" content="需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端 创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类： 客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys 切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git 在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh g...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="搭建 GitHub 镜像仓库 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/07/1581004860744.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="搭建 GitHub 镜像仓库 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/07/1581004860744.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="链滴笔记路线图" href="https://88250.github.io/articles/2020/01/23/1579786655216.html">
             <link rel="next" title="Solo 从设计到实现后记" href="https://88250.github.io/articles/2020/02/08/1581145208243.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -164,10 +164,10 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h3 id="toc_h3_0">需求背景</h3>
+                <h3 id="需求背景">需求背景</h3>
 <p>国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。</p>
 <p>将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。</p>
-<h3 id="toc_h3_1">服务端</h3>
+<h3 id="服务端">服务端</h3>
 <ol>
 <li>
 <p>创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类：</p>
@@ -178,26 +178,26 @@ bold;">Sym</span></a>
 </li>
 <li>
 <p>切换到 Git 用户，并在 ~ 下创建仓库</p>
-<pre><code class="language-shell">mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; git clone --bare git@github.com:youraccount/sample.git
+<pre><code class="language-bash highlight-chroma">mkdir sample.git <span class="highlight-o">&amp;&amp;</span> <span class="highlight-nb">cd</span> sample.git <span class="highlight-o">&amp;&amp;</span> git clone --bare git@github.com:youraccount/sample.git
 </code></pre>
 </li>
 <li>
 <p>在 hooks 目录下创建名为 <code>post-receive</code> 的脚本：</p>
-<pre><code class="language-shell">#!/bin/sh
-
-git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;&amp;1 &amp;
+<pre><code class="language-bash highlight-chroma"><span class="highlight-cp">#!/bin/sh
+</span><span class="highlight-cp"></span>
+git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;<span class="highlight-p">&amp;</span><span class="highlight-m">1</span> <span class="highlight-p">&amp;</span>
 </code></pre>
 <p>设置脚本执行权限：</p>
-<pre><code class="language-shell">chmod +x post-receive
+<pre><code class="language-bash highlight-chroma">chmod +x post-receive
 </code></pre>
 </li>
 </ol>
-<h3 id="toc_h3_2">客户端</h3>
+<h3 id="客户端">客户端</h3>
 <p>克隆服务器上的仓库或者将现有仓库的远程地址改为服务端仓库：</p>
-<pre><code class="language-shell">git remote set-url origin git@yourserver:sample.git
+<pre><code class="language-bash highlight-chroma">git remote set-url origin git@yourserver:sample.git
 </code></pre>
 <p>这样以后推送本地仓库就会推送到服务端仓库，然后服务端仓库触发 post-receive 钩子，覆盖 GitHub 上的镜像仓库。</p>
-<h3 id="toc_h3_3">注意事项</h3>
+<h3 id="注意事项">注意事项</h3>
 <ul>
 <li><code>git push --mirror</code> 是个“危险”的操作，它会完全覆盖 GitHub 上的远程仓库，包括分支、标签，所以推送前一定要确认清楚。可以在 GitHub 上建立一个测试仓库来先测试一下，一切正常的话再改成最终的镜像仓库</li>
 <li>上面的 <code>post-receive</code> 脚本通过后台执行 push 实现“异步”推送镜像仓库，并且输出都被忽略了，所以无论是否成功脚本都不会返回报错。建议在测试阶段改成同步执行，这样客户端可以看到输出结果。后期改成后台执行以后，也许会因为某些原因（比如网络问题）导致推送失败，可以考虑加个系统定时任务周期执行</li>
@@ -223,16 +223,16 @@ git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;&amp;
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">需求背景</a>
+            <a href="#需求背景">需求背景</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">服务端</a>
+            <a href="#服务端">服务端</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">客户端</a>
+            <a href="#客户端">客户端</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_3">注意事项</a>
+            <a href="#注意事项">注意事项</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -258,7 +258,7 @@ git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;&amp;
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -301,7 +301,7 @@ git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;&amp;
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -310,10 +310,10 @@ git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;&amp;
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -350,7 +350,7 @@ git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;&amp;
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1581004860744",
@@ -370,4 +370,4 @@ git push --mirror git@github.com:youraccount/sample.git &gt;/dev/null 2&gt;&amp;
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 315ms, 2020/03/25 10:29:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 240ms, 2020/03/25 10:36:31 -->

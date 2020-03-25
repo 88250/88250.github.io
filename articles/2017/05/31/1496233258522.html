@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>模板引擎实现（一）词法分析 - D 的个人博客</title><meta name="description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/><meta property="og:description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="模板引擎实现（一）词法分析 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/05/31/1496233258522.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="模板引擎实现（一）词法分析 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="ScaleIO 2.0 基础及安装纪要" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">
             <link rel="next" title="Solo 支持 Hexo/Jekyll 数据导入" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -180,20 +180,32 @@ bold;">Sym</span></a>
 </blockquote>
 <hr>
 <p>本文介绍了<strong>词法分析</strong>的基本概念，主要参考 golang 的 <code>text/template/parse</code> 包源码进行解析。</p>
-<h2 id="toc_h2_0">词法分析</h2>
+<h2 id="词法分析">词法分析</h2>
 <p>将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是<strong>有序</strong>和<strong>连续</strong>的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。</p>
 <p>当我们在源码中看到 scanner、lex/lexeme、token/tokenize、item 等描述的时候我们就应该知道这是在干词法分析相关的事情了。</p>
-<h3 id="toc_h3_1">Token</h3>
+<h3 id="Token">Token</h3>
 <p>一个 Token 是带了一个分类的字符串，这个字符串叫做词素（lexeme）。</p>
 <p>比如对于源码语句 <code>sum = 3 + 2</code> 来说，</p>
 <table>
 <thead>
-<tr><th>Lexeme</th><th>Token 分类</th></tr>
+<tr>
+<th>Lexeme</th>
+<th>Token 分类</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>sum</td><td>Identifier</td></tr>
-<tr><td>=</td><td>Assignment operator</td></tr>
-<tr><td>3</td><td>Integer literal</td></tr>
+<tr>
+<td>sum</td>
+<td>Identifier</td>
+</tr>
+<tr>
+<td>=</td>
+<td>Assignment operator</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Integer literal</td>
+</tr>
 </tbody>
 </table>
 <ul>
@@ -202,47 +214,47 @@ bold;">Sym</span></a>
 </ul>
 <p>详见 <a href="https://en.wikipedia.org/wiki/Lexical_analysis" target="_blank">Lexical analysis</a>。</p>
 <p>golang 的模版包中是使用 item 结构体来描述 token 的。</p>
-<h3 id="toc_h3_2">状态机</h3>
+<h3 id="状态机">状态机</h3>
 <p>词法分析中用到状态机是为了解决“当前 token 识别后下一步怎么处理”的问题。</p>
-<h4 id="toc_h4_3">switch-case</h4>
+<h4 id="switch-case">switch-case</h4>
 <p>传统状态机的实现是在状态处理函数中返回下一个待执行的状态：</p>
-<pre><code class="language-golang">for state != nil {
-    switch state {
-    case state1:
-        state = action1()
-    case state2:
-        state = action2()
-    case state3:
-        state = action3()
-    }
-}
+<pre><code class="language-go highlight-chroma"><span class="highlight-k">for</span> <span class="highlight-nx">state</span> <span class="highlight-o">!=</span> <span class="highlight-kc">nil</span> <span class="highlight-p">{</span>
+	<span class="highlight-k">switch</span> <span class="highlight-nx">state</span> <span class="highlight-p">{</span>
+	<span class="highlight-k">case</span> <span class="highlight-nx">state1</span><span class="highlight-p">:</span>
+		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action1</span><span class="highlight-p">()</span>
+	<span class="highlight-k">case</span> <span class="highlight-nx">state2</span><span class="highlight-p">:</span>
+		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action2</span><span class="highlight-p">()</span>
+	<span class="highlight-k">case</span> <span class="highlight-nx">state3</span><span class="highlight-p">:</span>
+		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action3</span><span class="highlight-p">()</span>
+	<span class="highlight-p">}</span>
+<span class="highlight-p">}</span>
 </code></pre>
 <p>这是一个典型的<strong>命令式编程</strong>范式的过程化实现（也可以用面向对象实现，下面会提到）。</p>
-<h4 id="toc_h4_4">状态函数</h4>
+<h4 id="状态函数">状态函数</h4>
 <p>而 lex.go 的实现方式是通过“置换”下一个待执行的行为，将状态迁移的实现从<strong>状态</strong>决定改进为<strong>行为</strong>决定：</p>
-<pre><code class="language-golang">type stateFn func() stateFn
-func action1() stateFn { return actionN }
-func action2() stateFn { return actionM }
+<pre><code class="language-go highlight-chroma"><span class="highlight-kd">type</span> <span class="highlight-nx">stateFn</span> <span class="highlight-kd">func</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span>
+<span class="highlight-kd">func</span> <span class="highlight-nf">action1</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span> <span class="highlight-p">{</span> <span class="highlight-k">return</span> <span class="highlight-nx">actionN</span> <span class="highlight-p">}</span>
+<span class="highlight-kd">func</span> <span class="highlight-nf">action2</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span> <span class="highlight-p">{</span> <span class="highlight-k">return</span> <span class="highlight-nx">actionM</span> <span class="highlight-p">}</span>
 
-for state = action1; state != nil; {
-	state = state()
-}
+<span class="highlight-k">for</span> <span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nx">action1</span><span class="highlight-p">;</span> <span class="highlight-nx">state</span> <span class="highlight-o">!=</span> <span class="highlight-kc">nil</span><span class="highlight-p">;</span> <span class="highlight-p">{</span>
+	<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">state</span><span class="highlight-p">()</span>
+<span class="highlight-p">}</span>
 </code></pre>
 <p>这是<strong>声明式编程</strong>范式中函数式的典型实现，该实现的巧妙之处在于 <code>stateFn</code> 是递归定义的，函数的返回值是符合该签名的自身定义，整个状态变迁过程就是这个函数的迭代展开。</p>
-<h4 id="toc_h4_5">其他状态机实现</h4>
+<h4 id="其他状态机实现">其他状态机实现</h4>
 <p>另外还有两种常见的状态机实现：</p>
 <ol>
 <li>状态表/表驱动：可理解为将所有可能出现的状态及其变迁状态表格化，状态变迁就是查表找到下一个状态</li>
 <li>状态模式：使用面向对象设计模式中的状态模式来实现，本质上和上面的 switch-case 无差异</li>
 </ol>
-<h3 id="toc_h3_6">回退</h3>
+<h3 id="回退">回退</h3>
 <p>回退指的是当前字符读取后需要“退格”一下，比如读到一个字符 <code>'a'</code> 时，我们将进入到标识符处理函数。进入之前需要将 <code>a</code> 退格出来，以便在标识符处理函数里面能够完整读取。</p>
-<pre><code class="language-go">case isAlphaNumeric(r):
-	l.backup() // 退格
-
-	return lexIdentifier
+<pre><code class="language-go highlight-chroma"><span class="highlight-k">case</span> <span class="highlight-nf">isAlphaNumeric</span><span class="highlight-p">(</span><span class="highlight-nx">r</span><span class="highlight-p">):</span>
+	<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nf">backup</span><span class="highlight-p">()</span> <span class="highlight-c1">// 退格
+</span><span class="highlight-c1"></span>
+	<span class="highlight-k">return</span> <span class="highlight-nx">lexIdentifier</span>
 </code></pre>
-<h2 id="toc_h2_7">并发分析</h2>
+<h2 id="并发分析">并发分析</h2>
 <p><code>text/template/parse</code> 使用 goroutine 并发执行词法分析和语法分析。parser 通过 channel 来接收 lexer 处理好的 tokens，每当一个新的 token 产生，parser 就会收到并处理，生成 node，构建 ast。</p>
 <p>并发分析的好处是：</p>
 <ul>
@@ -251,10 +263,10 @@ for state = action1; state != nil; {
 <li>能够更早地发现语法错误，因为不必等词法分析都跑完</li>
 <li>性能相对于词法分析完再进行语法分析可能会更好（我瞎猜的 😂 ）</li>
 </ul>
-<h2 id="toc_h2_8">结语</h2>
+<h2 id="结语">结语</h2>
 <p>golang 模版的词法分析实现是非常简洁的，亮点主要在于通过<strong>函数式编程实现状态机</strong>，并使用了 channel 进行<strong>词法、语法并发分析</strong>，简化了设计并提高了效率。</p>
 <p>模版引擎的词法分析部分我们就此结束，下一次我们将介绍语法分析，谢谢大家阅读 😅</p>
-<h2 id="toc_h2_9">参考</h2>
+<h2 id="参考">参考</h2>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=HxaD_trXwRE" target="_blank">Lexical Scanning in Go - Rob Pike</a> 大神亲自介绍 go 模版词法分析实现</li>
 <li><a href="https://blog.gopheracademy.com/advent-2014/parsers-lexers/" target="_blank">Handwritten Parsers &amp; Lexers in Go</a> 类 SQL 解析器实现</li>
@@ -279,34 +291,34 @@ for state = action1; state != nil; {
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#toc_h2_0">词法分析</a>
+            <a href="#词法分析">词法分析</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">Token</a>
+            <a href="#Token">Token</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">状态机</a>
+            <a href="#状态机">状态机</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_3">switch-case</a>
+            <a href="#switch-case">switch-case</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_4">状态函数</a>
+            <a href="#状态函数">状态函数</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_5">其他状态机实现</a>
+            <a href="#其他状态机实现">其他状态机实现</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_6">回退</a>
+            <a href="#回退">回退</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_7">并发分析</a>
+            <a href="#并发分析">并发分析</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_8">结语</a>
+            <a href="#结语">结语</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_9">参考</a>
+            <a href="#参考">参考</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -332,7 +344,7 @@ for state = action1; state != nil; {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -375,7 +387,7 @@ for state = action1; state != nil; {
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -384,10 +396,10 @@ for state = action1; state != nil; {
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -424,7 +436,7 @@ for state = action1; state != nil; {
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1496233258522",
@@ -444,4 +456,4 @@ for state = action1; state != nil; {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 294ms, 2020/03/25 10:29:35 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 280ms, 2020/03/25 10:36:34 -->

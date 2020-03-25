@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客</title><meta name="description" content="上一篇： [1438311936449] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438311936449] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/03/1438596722873.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/03/1438596722873.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（八）" href="https://88250.github.io/articles/2015/07/31/1438311936449.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（十）" href="https://88250.github.io/articles/2015/08/04/1438699210452.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -166,7 +166,7 @@ bold;">Sym</span></a>
             <section class="vditor-reset articles article__content">
                 <p>上一篇： [1438311936449]</p>
 <hr>
-<h3 id="toc_h3_0">ToC</h3>
+<h3 id="ToC">ToC</h3>
 <ul>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
@@ -184,9 +184,9 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1439194647152" target="_blank">Go 边看边练 -《Go 学习笔记》系列（十四）- Channel</a></li>
 </ul>
 <hr>
-<h3 id="toc_h3_1">4.3 Map</h3>
+<h3 id="4-3-Map">4.3 Map</h3>
 <p>引用类型，哈希表。键必须是支持相等运算符 (==、!=) 类型，比如 <code>number</code>、<code>string</code>、<code>pointer</code>、<code>array</code>、<code>struct</code>，以及对应的 <code>interface</code>。值可以是任意类型，没有限制。</p>
-<pre><code>m := map[int]struct {
+<pre><code class="highlight-chroma">m := map[int]struct {
 	name string
 	age int
 }{
@@ -197,10 +197,10 @@ bold;">Sym</span></a>
 println(m[1].name)
 </code></pre>
 <p>预先给 <code>make</code> 函数一个合理元素数量参数，有助于提升性能。因为事先申请一大块内存，可避免后续操作时频繁扩张。</p>
-<pre><code>m := make(map[string]int, 1000)
+<pre><code class="highlight-chroma">m := make(map[string]int, 1000)
 </code></pre>
 <p>常见操作：</p>
-<pre><code>m := map[string]int{
+<pre><code class="highlight-chroma">m := map[string]int{
 	"a": 1,
 }
 
@@ -222,7 +222,7 @@ for k, v := range m { // 迭代，可仅返回 key。随机顺序返回，每次
 </code></pre>
 <p>不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。</p>
 <p>从 <code>map</code> 中取回的是一个 <code>value</code> 临时复制品，对其成员的修改是没有任何意义的。</p>
-<pre><code>type user struct{ name string }
+<pre><code class="highlight-chroma">type user struct{ name string }
 
 m := map[int]user{ // 当 map 因扩张而重新哈希时，各键值项存储位置都会发生改变。 因此，map
 	1: {"user1"}, // 被设计成 not addressable。 类似 m[1].name 这种期望透过原 value
@@ -231,7 +231,7 @@ m := map[int]user{ // 当 map 因扩张而重新哈希时，各键值项存储�
 m[1].name = "Tom" // Error: cannot assign to m[1].name
 </code></pre>
 <p>正确做法是完整替换 <code>value</code> 或使用指针。</p>
-<pre><code>u := m[1]
+<pre><code class="highlight-chroma">u := m[1]
 u.name = "Tom"
 m[1] = u // 替换 value。
 
@@ -243,9 +243,9 @@ m2[1].name = "Jack" // 返回的是指针复制品。透过指针修改原对象
 </code></pre>
 <p>可以在迭代时安全删除键值。但如果期间有新增操作，那么就不知道会有什么意外了。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/953c1eef3162b8a3aec5b78d0405e667.go?embed=true" width="99%" height="600"></iframe>
-<h3 id="toc_h3_2">4.4 Struct</h3>
+<h3 id="4-4-Struct">4.4 Struct</h3>
 <p>值类型，赋值和传参会复制全部内容。可用 "_" 定义补位字段，支持指向自身类型的指针成员。</p>
-<pre><code>type Node struct {
+<pre><code class="highlight-chroma">type Node struct {
 	_ int
 	id int
 	data *byte
@@ -266,7 +266,7 @@ func main() {
 }
 </code></pre>
 <p>顺序初始化必须包含全部字段，否则会出错。</p>
-<pre><code>type User struct {
+<pre><code class="highlight-chroma">type User struct {
 	name string
 	age int
 }
@@ -275,7 +275,7 @@ u1 := User{"Tom", 20}
 u2 := User{"Tom"} // Error: too few values in struct initializer
 </code></pre>
 <p>支持匿名结构，可用作结构成员或定义变量。</p>
-<pre><code>type File struct {
+<pre><code class="highlight-chroma">type File struct {
 	name string
 	size int
 	attr struct {
@@ -301,7 +301,7 @@ var attr = struct {
 f.attr = attr
 </code></pre>
 <p>支持 "=="、"!=" 相等操作符，可用作 <code>map</code> 键类型。</p>
-<pre><code>type User struct {
+<pre><code class="highlight-chroma">type User struct {
 	id int
 	name string
 }
@@ -311,21 +311,21 @@ m := map[User]int{
 }
 </code></pre>
 <p>可定义字段标签，用反射读取。标签是类型的组成部分。</p>
-<pre><code>var u1 struct { name string "username" }
+<pre><code class="highlight-chroma">var u1 struct { name string "username" }
 var u2 struct { name string }
 
 u2 = u1 // Error: cannot use u1 (type struct { name string "username" }) as
 			 // type struct { name string } in assignment
 </code></pre>
 <p>空结构 "节省" 内存，比如用来实现 <code>set</code> 数据结构，或者实现没有 "状态" 只有方法的 "静态类"。</p>
-<pre><code>var null struct{}
+<pre><code class="highlight-chroma">var null struct{}
 
 set := make(map[string]struct{})
 set["a"] = null
 </code></pre>
-<h4 id="toc_h4_3">4.4.1 匿名字段</h4>
+<h4 id="4-4-1-匿名字段">4.4.1 匿名字段</h4>
 <p>匿名字段不过是一种语法糖，从根本上说，就是一个与成员类型同名 (不含包名) 的字段。被匿名嵌入的可以是任何类型，当然也包括指针。</p>
-<pre><code>type User struct {
+<pre><code class="highlight-chroma">type User struct {
 	name string
 }
 
@@ -340,7 +340,7 @@ m := Manager{
 }
 </code></pre>
 <p>可以像普通字段那样访问匿名字段成员，编译器从外向内逐级查找所有层次的匿名字段，直到发现目标或出错。</p>
-<pre><code>type Resource struct {
+<pre><code class="highlight-chroma">type Resource struct {
 	id int
 }
 
@@ -360,7 +360,7 @@ m.name = "Jack"
 m.title = "Administrator"
 </code></pre>
 <p>外层同名字段会遮蔽嵌入字段成员，相同层次的同名字段也会让编译器无所适从。解决方法是使用显式字段名。</p>
-<pre><code>type Resource struct {
+<pre><code class="highlight-chroma">type Resource struct {
 	id int
 	name string
 }
@@ -388,7 +388,7 @@ println(u.Resource.name) // people
 println(u.Classify.id) // 100
 </code></pre>
 <p>不能同时嵌入某一类型和其指针类型，因为它们名字相同。</p>
-<pre><code>type Resource struct {
+<pre><code class="highlight-chroma">type Resource struct {
 	id int
 }
 
@@ -406,9 +406,9 @@ u := User{
 println(u.id)
 println(u.Resource.id)
 </code></pre>
-<h4 id="toc_h4_4">4.4.2 面向对象</h4>
+<h4 id="4-4-2-面向对象">4.4.2 面向对象</h4>
 <p>面向对象三大特征里，Go 仅支持封装，尽管匿名字段的内存布局和行为类似继承。没有 <code>class</code> 关键字，没有继承、多态等等。</p>
-<pre><code>type User struct {
+<pre><code class="highlight-chroma">type User struct {
 	id int
 	name string
 }
@@ -428,7 +428,7 @@ var u User = m.User // 同类型拷⻉贝。
 <p>内存布局和 C struct 相同，没有任何附加的 object 信息。</p>
 <p><img src="http://7xjwh5.com1.z0.glb.clouddn.com/FvhXPGczq22tZbJ6E2ogSx7vXD2s" alt=" "></p>
 <p>可用 <code>unsafe</code> 包相关函数输出内存地址信息。</p>
-<pre><code>m : 0x2102271b0, size: 40, align: 8
+<pre><code class="highlight-chroma">m : 0x2102271b0, size: 40, align: 8
 m.id : 0x2102271b0, offset: 0
 m.name : 0x2102271b8, offset: 8
 m.title: 0x2102271c8, offset: 24
@@ -470,19 +470,19 @@ m.title: 0x2102271c8, offset: 24
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#toc_h3_0">ToC</a>
+            <a href="#ToC">ToC</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_1">4.3 Map</a>
+            <a href="#4-3-Map">4.3 Map</a>
         </li>
         <li class="toc__h3">
-            <a href="#toc_h3_2">4.4 Struct</a>
+            <a href="#4-4-Struct">4.4 Struct</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_3">4.4.1 匿名字段</a>
+            <a href="#4-4-1-匿名字段">4.4.1 匿名字段</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_4">4.4.2 面向对象</a>
+            <a href="#4-4-2-面向对象">4.4.2 面向对象</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -508,7 +508,7 @@ m.title: 0x2102271c8, offset: 24
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -551,7 +551,7 @@ m.title: 0x2102271c8, offset: 24
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -560,10 +560,10 @@ m.title: 0x2102271c8, offset: 24
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -600,7 +600,7 @@ m.title: 0x2102271c8, offset: 24
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438596722873",
@@ -620,4 +620,4 @@ m.title: 0x2102271c8, offset: 24
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 159ms, 2020/03/25 10:29:36 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 141ms, 2020/03/25 10:36:35 -->

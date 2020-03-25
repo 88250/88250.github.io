@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客</title><meta name="description" content="MySQL 版本和驱动 MySQL 至少是 5.5.3+mysql-connector-java 至少是 5.1.13，修改连接串参数 characterEncoding=UTF-8 历史数据迁移 生成表字符迁移 SQL： SELECT CONCAT( &#39;ALTER TABLE &#39;, TABLE_NAME, &#39; CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;&#39; ) AS mySQL FROM INFORMATION_SCHEMA. TABLES WHERE TABLE_SCHEMA = &#39;your_schema&#39; 生成后执行一把，这样表和列的字符集就改完了。我这里通过修改表的字符集就自动修改列的了，最好自己确认下列是否已经改对。 修改库字符集： ALTER DATABASE your_schema CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci; 上面示例代码中的 COLLATE（排序规则）请按需修改。 关于连接串参数 characterEn...."/><meta property="og:description" content="MySQL 版本和驱动 MySQL 至少是 5.5.3+mysql-connector-java 至少是 5.1.13，修改连接串参数 characterEncoding=UTF-8 历史数据迁移 生成表字符迁移 SQL： SELECT CONCAT( &#39;ALTER TABLE &#39;, TABLE_NAME, &#39; CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;&#39; ) AS mySQL FROM INFORMATION_SCHEMA. TABLES WHERE TABLE_SCHEMA = &#39;your_schema&#39; 生成后执行一把，这样表和列的字符集就改完了。我这里通过修改表的字符集就自动修改列的了，最好自己确认下列是否已经改对。 修改库字符集： ALTER DATABASE your_schema CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci; 上面示例代码中的 COLLATE（排序规则）请按需修改。 关于连接串参数 characterEn...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/03/15/1521094110639.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="MySQL 迁移 utf8 到 utf8mb4 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/03/15/1521094110639.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="以太坊同步一直“卡着”的原因" href="https://88250.github.io/articles/2018/03/11/1520767628593.html">
             <link rel="next" title="创业的第一个春天" href="https://88250.github.io/articles/2018/04/20/1524191993505.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -164,42 +164,42 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h2 id="toc_h2_0">MySQL 版本和驱动</h2>
+                <h2 id="MySQL-版本和驱动">MySQL 版本和驱动</h2>
 <ul>
 <li>MySQL 至少是 5.5.3+</li>
 <li>mysql-connector-java 至少是 5.1.13，修改连接串参数 <code>characterEncoding=UTF-8</code></li>
 </ul>
-<h2 id="toc_h2_1">历史数据迁移</h2>
+<h2 id="历史数据迁移">历史数据迁移</h2>
 <p>生成表字符迁移 SQL：</p>
-<pre><code class="language-sql">SELECT
-	CONCAT(
-		'ALTER TABLE `',
-		TABLE_NAME,
-		'` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;'
-	) AS mySQL
-FROM
-	INFORMATION_SCHEMA. TABLES
-WHERE
-	TABLE_SCHEMA = 'your_schema'
+<pre><code class="language-sql highlight-chroma"><span class="highlight-k">SELECT</span>
+	<span class="highlight-n">CONCAT</span><span class="highlight-p">(</span>
+		<span class="highlight-s1">'ALTER TABLE `'</span><span class="highlight-p">,</span>
+		<span class="highlight-k">TABLE_NAME</span><span class="highlight-p">,</span>
+		<span class="highlight-s1">'` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;'</span>
+	<span class="highlight-p">)</span> <span class="highlight-k">AS</span> <span class="highlight-n">mySQL</span>
+<span class="highlight-k">FROM</span>
+	<span class="highlight-n">INFORMATION_SCHEMA</span><span class="highlight-p">.</span> <span class="highlight-n">TABLES</span>
+<span class="highlight-k">WHERE</span>
+	<span class="highlight-n">TABLE_SCHEMA</span> <span class="highlight-o">=</span> <span class="highlight-s1">'your_schema'</span>
 </code></pre>
 <p>生成后执行一把，这样表和列的字符集就改完了。我这里通过修改表的字符集就自动修改列的了，最好自己确认下列是否已经改对。</p>
 <p>修改库字符集：</p>
-<pre><code class="language-sql">ALTER DATABASE `your_schema` CHARACTER
-SET = utf8mb4 COLLATE = utf8mb4_general_ci;
+<pre><code class="language-sql highlight-chroma"><span class="highlight-k">ALTER</span> <span class="highlight-k">DATABASE</span> <span class="highlight-o">`</span><span class="highlight-n">your_schema</span><span class="highlight-o">`</span> <span class="highlight-nb">CHARACTER</span>
+<span class="highlight-k">SET</span> <span class="highlight-o">=</span> <span class="highlight-n">utf8mb4</span> <span class="highlight-k">COLLATE</span> <span class="highlight-o">=</span> <span class="highlight-n">utf8mb4_general_ci</span><span class="highlight-p">;</span>
 </code></pre>
 <p>上面示例代码中的 <code>COLLATE</code>（排序规则）请按需修改。</p>
-<h2 id="toc_h2_2">关于连接串参数 characterEncoding</h2>
+<h2 id="关于连接串参数-characterEncoding">关于连接串参数 characterEncoding</h2>
 <p>有的时候可能会觉得是写错了，应该用 <code>characterEncoding=utf8</code>。其实 <code>UTF-8</code> 是允许客户端发送多种字符集（三字节 utf8 /四字节 utf8mb4）的配置。</p>
 <p>如果要使用 utf8mb4 有两种方案：</p>
 <ol>
 <li>在连接串中指定 <code>characterEncoding=UTF-8</code>，MySQL 服务端不用做任何修改</li>
 <li>修改 MySQL 服务端配置后重启，连接串中移除 <code>characterEncoding=utf8</code></li>
 </ol>
-<pre><code class="language-ini">[mysql]
-default-character-set = utf8mb4
-[mysqld]
-character-set-server = utf8mb4
-collation-server = utf8mb4_general_ci
+<pre><code class="language-ini highlight-chroma"><span class="highlight-k">[mysql]</span>
+<span class="highlight-na">default-character-set</span> <span class="highlight-o">=</span> <span class="highlight-s">utf8mb4</span>
+<span class="highlight-k">[mysqld]</span>
+<span class="highlight-na">character-set-server</span> <span class="highlight-o">=</span> <span class="highlight-s">utf8mb4</span>
+<span class="highlight-na">collation-server</span> <span class="highlight-o">=</span> <span class="highlight-s">utf8mb4_general_ci</span>
 </code></pre>
 <p>具体细节请参考<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-charsets.html" target="_blank">这里</a>和<a href="https://stackoverflow.com/a/35156926/1043233" target="_blank">这里</a>。</p>
                     <div>
@@ -222,13 +222,13 @@ collation-server = utf8mb4_general_ci
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#toc_h2_0">MySQL 版本和驱动</a>
+            <a href="#MySQL-版本和驱动">MySQL 版本和驱动</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_1">历史数据迁移</a>
+            <a href="#历史数据迁移">历史数据迁移</a>
         </li>
         <li class="toc__h2">
-            <a href="#toc_h2_2">关于连接串参数 characterEncoding</a>
+            <a href="#关于连接串参数-characterEncoding">关于连接串参数 characterEncoding</a>
         </li>
 </ul>        </div>
         <div id="b3logsolocomments"></div>
@@ -254,7 +254,7 @@ collation-server = utf8mb4_general_ci
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -297,7 +297,7 @@ collation-server = utf8mb4_general_ci
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -306,10 +306,10 @@ collation-server = utf8mb4_general_ci
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -346,7 +346,7 @@ collation-server = utf8mb4_general_ci
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1521094110639",
@@ -366,4 +366,4 @@ collation-server = utf8mb4_general_ci
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 213ms, 2020/03/25 10:29:34 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 228ms, 2020/03/25 10:36:34 -->

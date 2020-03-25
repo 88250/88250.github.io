@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>ActiveMQ JDBC 主从集群 - D 的个人博客</title><meta name="description" content="从 ActiveMQ 4.1 版本开始支持 JDBC 主从集群。 如果你正在使用纯 JDBC 以及非高性能日志，那可以认为数据库是一个存在单点故障的地方。 如果你的应用没有高性能需求，那单一数据库的方式是最容易备份与管理的。"/><meta property="og:description" content="从 ActiveMQ 4.1 版本开始支持 JDBC 主从集群。 如果你正在使用纯 JDBC 以及非高性能日志，那可以认为数据库是一个存在单点故障的地方。 如果你的应用没有高性能需求，那单一数据库的方式是最容易备份与管理的。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="ActiveMQ JDBC 主从集群 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/ActiveMQ-JDBC-Master-Slave?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="ActiveMQ JDBC 主从集群 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/ActiveMQ-JDBC-Master-Slave">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="一起走过 2012" href="https://88250.github.io/life-2012">
             <link rel="next" title="即时消息协议预研" href="https://88250.github.io/xmpp-simple-irc-psyc">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -188,8 +188,8 @@ bold;">Sym</span></a>
 <pre class="brush: xml">&lt;beans&gt;
 <p>&lt;!-- Allows us to use system properties as variables in this configuration file --&gt;<br>
 &lt;bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/&gt;</p>
-<p>&lt;broker xmlns="<a href="http://activemq.apache.org/schema/core" target="_blank">http://activemq.apache.org/schema/core</a>"&gt;</p>
-<pre><code>&amp;lt;destinationPolicy&amp;gt;
+<p>&lt;broker xmlns="<a href="http://activemq.apache.org/schema/core%22" target="_blank">http://activemq.apache.org/schema/core"</a>&gt;</p>
+<pre><code class="highlight-chroma">&amp;lt;destinationPolicy&amp;gt;
   &amp;lt;policyMap&amp;gt;&amp;lt;policyEntries&amp;gt;
     
       &amp;lt;policyEntry topic="FOO.&amp;gt;"&amp;gt;
@@ -236,7 +236,7 @@ bold;">Sym</span></a>
 &lt;!--<br>
 &lt;bean id="mysql-ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;<br>
 &lt;property name="driverClassName" value="com.mysql.jdbc.Driver"/&gt;<br>
-&lt;property name="url" value="jdbc:<a href="mysql://localhost/activemq?relaxAutoCommit=true" target="_blank">mysql://localhost/activemq?relaxAutoCommit=true</a>"/&gt;<br>
+&lt;property name="url" value="jdbc:mysql://localhost/activemq?relaxAutoCommit=true"/&gt;<br>
 &lt;property name="username" value="activemq"/&gt;<br>
 &lt;property name="password" value="activemq"/&gt;<br>
 &lt;property name="poolPreparedStatements" value="true"/&gt;<br>
@@ -317,7 +317,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -360,7 +360,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -369,10 +369,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -409,7 +409,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1362647143599",
@@ -429,4 +429,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 145ms, 2020/03/25 10:29:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 164ms, 2020/03/25 10:36:37 -->

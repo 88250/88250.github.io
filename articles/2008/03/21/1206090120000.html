@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>自动生成的测试与TDD[翻译自Uncle Bob的博文] - D 的个人博客</title><meta name="description" content="自动生成的测试与TDD Posted by Uncle Bob 译者：88250 测试驱动的开发方式TDD现在已经很流行了，很多公司都在采用。不过，一些人也当心这会花费太多的时间去写单元测试，所以并一直在寻找自动生成测试的工具，以降低编写单元测试的负担。 这负担可不是无关紧要的。在很恰当地使用TDD后，创建一个具有45,000行Java代码的应用，其中有15,000行代码是单元测试。我们可以很快计算出TDD增加了编码负担的整整13！ 当然了，这是一个消极的分析。使用TDD带来的好处是很重要的，其价值远远超出了编写额外代码的负担。但是，33％的测试代码仍然觉得过...."/><meta property="og:description" content="自动生成的测试与TDD Posted by Uncle Bob 译者：88250 测试驱动的开发方式TDD现在已经很流行了，很多公司都在采用。不过，一些人也当心这会花费太多的时间去写单元测试，所以并一直在寻找自动生成测试的工具，以降低编写单元测试的负担。 这负担可不是无关紧要的。在很恰当地使用TDD后，创建一个具有45,000行Java代码的应用，其中有15,000行代码是单元测试。我们可以很快计算出TDD增加了编码负担的整整13！ 当然了，这是一个消极的分析。使用TDD带来的好处是很重要的，其价值远远超出了编写额外代码的负担。但是，33％的测试代码仍然觉得过...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="自动生成的测试与TDD[翻译自Uncle Bob的博文] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/03/21/1206090120000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="自动生成的测试与TDD[翻译自Uncle Bob的博文] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/03/21/1206090120000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="细节的感动" href="https://88250.github.io/articles/2008/03/14/1205489700000.html">
             <link rel="next" title="Java文字图像识别(1)[88250原创]" href="https://88250.github.io/articles/2008/03/21/1206099420000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -160,7 +160,22 @@ bold;">Sym</span></a>
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h1 class="western" id="toc_h1_0"><font face="Microsoft YaHei">自动生成的测试与</font><font face="Microsoft YaHei">TDD</font></h1>
+                <p><meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE"></p>
+<title></title>
+<meta content="OpenOffice.org 2.3  (Linux)" name="GENERATOR"> 	 	 	<style type="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		H1 { margin-bottom: 0.08in }
+		H1.western { font-family: "Times New Roman", serif }
+		H1.cjk { font-family: "AR PL ShanHeiSun Uni" }
+		H1.ctl { font-family: "Tahoma" }
+		H2 { margin-bottom: 0.08in }
+		H2.cjk { font-family: "AR PL ShanHeiSun Uni" }
+		PRE.cjk { font-family: "AR PL ShanHeiSun Uni", monospace }
+	-->
+	</style>
+<h1 class="western" id="toc_h1_0"><font face="Microsoft YaHei">自动生成的测试与</font><font face="Microsoft YaHei">TDD</font></h1>
 <p><font face="Microsoft YaHei"><font face="Microsoft YaHei">Posted by </font><cite><a href="http://blog.objectmentor.com/articles/category/uncle-bobs-blatherings" target="_blank"><font face="Microsoft YaHei">Uncle Bob</font></a></cite> </font> </p>
 <p><font face="DejaVuSans"><font face="Microsoft YaHei">译者：</font></font><a href="http://blog.csdn.net/DL88250" target="_blank"><font face="Microsoft YaHei">88250</font></a></p>
 <p><br> </p>
@@ -245,7 +260,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -288,7 +303,7 @@ bold;">Sym</span></a>
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -297,10 +312,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -337,7 +352,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1206090120000",
@@ -357,4 +372,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 172ms, 2020/03/25 10:29:44 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 192ms, 2020/03/25 10:36:41 -->

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>规范化中的 JSR 299 与可能到来的 JSR 330 - D 的个人博客</title><meta name="description" content="规范化中的 JSR 299 与可能到来的 JSR 330 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 目前，JSR 299（Contexts and Dependency Injection for Java EE） 处于社区评审状态 ，预计今年 9 月会出现在 Java EE 6 规范中。JSR 330（Dependency Injection for Java ）是一个提交中的规范。还没有规范文件可以下载到。 299 的 Lead 是来自 JBoss ...."/><meta property="og:description" content="规范化中的 JSR 299 与可能到来的 JSR 330 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 目前，JSR 299（Contexts and Dependency Injection for Java EE） 处于社区评审状态 ，预计今年 9 月会出现在 Java EE 6 规范中。JSR 330（Dependency Injection for Java ）是一个提交中的规范。还没有规范文件可以下载到。 299 的 Lead 是来自 JBoss ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="规范化中的 JSR 299 与可能到来的 JSR 330 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/05/25/1243275960000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="规范化中的 JSR 299 与可能到来的 JSR 330 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/05/25/1243275960000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103338395"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
             <link rel="prev" title="Java 上下文与依赖注入（JSR 299）[1] " href="https://88250.github.io/articles/2009/05/20/1242830400000.html">
             <link rel="next" title="新书上架：《Java SE 实践教程》" href="https://88250.github.io/articles/2009/06/08/1244452860000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -167,7 +167,7 @@ bold;">Sym</span></a>
 <p>作者：88250 <br>
 Blog：<a href="http://blog.csdn.net/DL88250" target="_blank">http:/blog.csdn.net/DL88250</a>
 <br>
-MSN &amp; Gmail &amp; QQ：DL88250@gmail.com 
+MSN &amp; Gmail &amp; QQ：DL88250@gmail.com
 </p>
 <p>&nbsp;</p>
 <p>目前，JSR 299（Contexts and Dependency Injection for&nbsp; Java EE） 处于<a href="http://in.relation.to/Bloggers/NewDraftOfJSR299ForReviewByTheCommunity" target="_blank">社区评审状态</a>
@@ -230,7 +230,7 @@ MSN &amp; Gmail &amp; QQ：DL88250@gmail.com
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -273,7 +273,7 @@ MSN &amp; Gmail &amp; QQ：DL88250@gmail.com
   var Label = {
     servePath: "https://88250.github.io",
     staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
-    luteAvailable: false,
+    luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
     version: "4.0.0",
@@ -282,10 +282,10 @@ MSN &amp; Gmail &amp; QQ：DL88250@gmail.com
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103338395"
+        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -322,7 +322,7 @@ MSN &amp; Gmail &amp; QQ：DL88250@gmail.com
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103338395', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1243275960000",
@@ -342,4 +342,4 @@ MSN &amp; Gmail &amp; QQ：DL88250@gmail.com
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 231ms, 2020/03/25 10:29:42 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 126ms, 2020/03/25 10:36:40 -->
