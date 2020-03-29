@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Windows 通过命令行安装根证书 - D 的个人博客</title><meta name="description" content="背景 有的时候我们需要在用户机器上将自制的 CA 证书安装到“受信任的根证书颁发机构”下，这样就能使用该 CA 颁发自签名的证书了，以便后续完成一些安全相关的操作。 工具 在命令行安装证书需要用到证书管理器 certmgr.exe，这个二进制可执行文件在 Win10 中 大概 这个路径下，C:\Program Files (x86)\Windows Kits\8.1\bin\x86\certmgr.exe，建议把这个二进制打在程序的发布包中，或者让程序从网络上拉取到本地。 不带参直接运行的话会弹出一个简单的图形界面： 另外，还有个证书管理器 certmgr.msc，看上去功能更多一些，不过这个是纯图形界面的： certmgr.exe 可以通过该工具实现证书的管理操作： D:&amp;gt;certmgr.exe /? Usage: CertMgr [options][-s [-r &lt;location&gt;][SourceStoreName] [-s [-r &lt;location&gt;][DestinationStoreName] Options: -add Add cert...."/><meta property="og:description" content="背景 有的时候我们需要在用户机器上将自制的 CA 证书安装到“受信任的根证书颁发机构”下，这样就能使用该 CA 颁发自签名的证书了，以便后续完成一些安全相关的操作。 工具 在命令行安装证书需要用到证书管理器 certmgr.exe，这个二进制可执行文件在 Win10 中 大概 这个路径下，C:\Program Files (x86)\Windows Kits\8.1\bin\x86\certmgr.exe，建议把这个二进制打在程序的发布包中，或者让程序从网络上拉取到本地。 不带参直接运行的话会弹出一个简单的图形界面： 另外，还有个证书管理器 certmgr.msc，看上去功能更多一些，不过这个是纯图形界面的： certmgr.exe 可以通过该工具实现证书的管理操作： D:&amp;gt;certmgr.exe /? Usage: CertMgr [options][-s [-r &lt;location&gt;][SourceStoreName] [-s [-r &lt;location&gt;][DestinationStoreName] Options: -add Add cert...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Windows 通过命令行安装根证书 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/05/03/1525333052172.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Windows 通过命令行安装根证书 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/05/03/1525333052172.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Windows 通过命令行安装根证书 - D 的个人博客</title><meta name="description" content="背景 有的时候我们需要在用户机器上将自制的 CA 证书安装到“受信任的根证书颁发机构”下，这样就能使用该 CA 颁发自签名的证书了，以便后续完成一些安全相关的操作。 工具 在命令行安装证书需要用到证书管理器 certmgr.exe，这个二进制可执行文件在 Win10 中 大概 这个路径下，C:\Program Files (x86)\Windows Kits\8.1\bin\x86\certmgr.exe，建议把这个二进制打在程序的发布包中，或者让程序从网络上拉取到本地。 不带参直接运行的话会弹出一个简单的图形界面： 另外，还有个证书管理器 certmgr.msc，看上去功能更多一些，不过这个是纯图形界面的： certmgr.exe 可以通过该工具实现证书的管理操作： D:&amp;gt;certmgr.exe /? Usage: CertMgr [options][-s [-r &lt;location&gt;][SourceStoreName] [-s [-r &lt;location&gt;][DestinationStoreName] Options: -add Add cert...."/><meta property="og:description" content="背景 有的时候我们需要在用户机器上将自制的 CA 证书安装到“受信任的根证书颁发机构”下，这样就能使用该 CA 颁发自签名的证书了，以便后续完成一些安全相关的操作。 工具 在命令行安装证书需要用到证书管理器 certmgr.exe，这个二进制可执行文件在 Win10 中 大概 这个路径下，C:\Program Files (x86)\Windows Kits\8.1\bin\x86\certmgr.exe，建议把这个二进制打在程序的发布包中，或者让程序从网络上拉取到本地。 不带参直接运行的话会弹出一个简单的图形界面： 另外，还有个证书管理器 certmgr.msc，看上去功能更多一些，不过这个是纯图形界面的： certmgr.exe 可以通过该工具实现证书的管理操作： D:&amp;gt;certmgr.exe /? Usage: CertMgr [options][-s [-r &lt;location&gt;][SourceStoreName] [-s [-r &lt;location&gt;][DestinationStoreName] Options: -add Add cert...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Windows 通过命令行安装根证书 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/05/03/1525333052172.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Windows 通过命令行安装根证书 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/05/03/1525333052172.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="创业的第一个春天" href="https://88250.github.io/articles/2018/04/20/1524191993505.html">
             <link rel="next" title="关于解散所有 B3log 开源社区官方 QQ 群的公告" href="https://88250.github.io/articles/2018/05/17/1526517679116.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -262,7 +262,7 @@ Options:
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -304,7 +304,7 @@ Options:
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -314,10 +314,10 @@ Options:
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -354,7 +354,7 @@ Options:
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1525333052172",
@@ -374,4 +374,4 @@ Options:
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 209ms, 2020/03/25 10:36:34 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 212ms, 2020/03/29 11:55:19 -->

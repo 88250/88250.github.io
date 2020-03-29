@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>链滴笔记路线图 - D 的个人博客</title><meta name="description" content="设计原则 以文件系统为基础，不做私有格式封装 无需账号注册，可离线使用，无广告 v1 第一版主要目标是完成笔记应用基础功能，实现单机离线可用。 用户界面 分为三栏，参考有道云笔记： 文件夹 文件 编辑区 功能导航 通过 double shift 弹出功能搜索导航对话框： 配置入口 功能入口 全文搜索 不做菜单导航，所有功能入口均通过搜索导航实现。 图片/文件 使用本地绝对路径，文件由用户自己组织管理。 配置项 自动检查更新 Lute 相关设置 元数据 应用元数据保存在 ~/.liandi/conf.json ，记录已经打开的文件夹、各种配置项等 搜索索引缓存 ~/.liandi/index/ v2 第二版的主要目标是更好看的界面以及接入 B3log 分布式社区，实现分享互动。 用户界面 多主题切换，实现暗黑主题。 接入社区 作为 B3log 分布式社区的笔记端节点接入社区网络，实现文章推送和评论互动。 导出站点 支持生成导出静态站点，包含多款主题。 编辑器 实现 Typora 保留 Markdown 标记符的实时渲染模式。 架构设计 欢迎参与讨论，让我们一起来打造...."/><meta property="og:description" content="设计原则 以文件系统为基础，不做私有格式封装 无需账号注册，可离线使用，无广告 v1 第一版主要目标是完成笔记应用基础功能，实现单机离线可用。 用户界面 分为三栏，参考有道云笔记： 文件夹 文件 编辑区 功能导航 通过 double shift 弹出功能搜索导航对话框： 配置入口 功能入口 全文搜索 不做菜单导航，所有功能入口均通过搜索导航实现。 图片/文件 使用本地绝对路径，文件由用户自己组织管理。 配置项 自动检查更新 Lute 相关设置 元数据 应用元数据保存在 ~/.liandi/conf.json ，记录已经打开的文件夹、各种配置项等 搜索索引缓存 ~/.liandi/index/ v2 第二版的主要目标是更好看的界面以及接入 B3log 分布式社区，实现分享互动。 用户界面 多主题切换，实现暗黑主题。 接入社区 作为 B3log 分布式社区的笔记端节点接入社区网络，实现文章推送和评论互动。 导出站点 支持生成导出静态站点，包含多款主题。 编辑器 实现 Typora 保留 Markdown 标记符的实时渲染模式。 架构设计 欢迎参与讨论，让我们一起来打造...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="链滴笔记路线图 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/01/23/1579786655216.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="链滴笔记路线图 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/01/23/1579786655216.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>链滴笔记路线图 - D 的个人博客</title><meta name="description" content="设计原则 以文件系统为基础，不做私有格式封装 无需账号注册，可离线使用，无广告 v1 第一版主要目标是完成笔记应用基础功能，实现单机离线可用。 用户界面 分为三栏，参考有道云笔记： 文件夹 文件 编辑区 功能导航 通过 double shift 弹出功能搜索导航对话框： 配置入口 功能入口 全文搜索 不做菜单导航，所有功能入口均通过搜索导航实现。 图片/文件 使用本地绝对路径，文件由用户自己组织管理。 配置项 自动检查更新 Lute 相关设置 元数据 应用元数据保存在 ~/.liandi/conf.json ，记录已经打开的文件夹、各种配置项等 搜索索引缓存 ~/.liandi/index/ v2 第二版的主要目标是更好看的界面以及接入 B3log 分布式社区，实现分享互动。 用户界面 多主题切换，实现暗黑主题。 接入社区 作为 B3log 分布式社区的笔记端节点接入社区网络，实现文章推送和评论互动。 导出站点 支持生成导出静态站点，包含多款主题。 编辑器 实现 Typora 保留 Markdown 标记符的实时渲染模式。 架构设计 欢迎参与讨论，让我们一起来打造...."/><meta property="og:description" content="设计原则 以文件系统为基础，不做私有格式封装 无需账号注册，可离线使用，无广告 v1 第一版主要目标是完成笔记应用基础功能，实现单机离线可用。 用户界面 分为三栏，参考有道云笔记： 文件夹 文件 编辑区 功能导航 通过 double shift 弹出功能搜索导航对话框： 配置入口 功能入口 全文搜索 不做菜单导航，所有功能入口均通过搜索导航实现。 图片/文件 使用本地绝对路径，文件由用户自己组织管理。 配置项 自动检查更新 Lute 相关设置 元数据 应用元数据保存在 ~/.liandi/conf.json ，记录已经打开的文件夹、各种配置项等 搜索索引缓存 ~/.liandi/index/ v2 第二版的主要目标是更好看的界面以及接入 B3log 分布式社区，实现分享互动。 用户界面 多主题切换，实现暗黑主题。 接入社区 作为 B3log 分布式社区的笔记端节点接入社区网络，实现文章推送和评论互动。 导出站点 支持生成导出静态站点，包含多款主题。 编辑器 实现 Typora 保留 Markdown 标记符的实时渲染模式。 架构设计 欢迎参与讨论，让我们一起来打造...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="链滴笔记路线图 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/01/23/1579786655216.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="链滴笔记路线图 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/01/23/1579786655216.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="关于所见即所得 Markdown 编辑器的讨论" href="https://88250.github.io/articles/2020/01/19/1579414663700.html">
             <link rel="next" title="搭建 GitHub 镜像仓库" href="https://88250.github.io/articles/2020/02/07/1581004860744.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -293,7 +293,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -335,7 +335,7 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -345,10 +345,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -385,7 +385,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1579786655216",
@@ -405,4 +405,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 438ms, 2020/03/25 10:36:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 432ms, 2020/03/29 11:55:17 -->

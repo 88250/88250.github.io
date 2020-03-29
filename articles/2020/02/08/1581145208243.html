@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Solo 从设计到实现后记 - D 的个人博客</title><meta name="description" content="本文是《Solo 从设计到实现》的一个章节，该系列文章将介绍 Solo 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给重复发明重新定义博客系统的人做个参考 ❤️ 轮子和时间 “不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。 重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。 新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。 我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。 成功的开源 什么是成功 一个开源项目...."/><meta property="og:description" content="本文是《Solo 从设计到实现》的一个章节，该系列文章将介绍 Solo 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给重复发明重新定义博客系统的人做个参考 ❤️ 轮子和时间 “不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。 重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。 新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。 我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。 成功的开源 什么是成功 一个开源项目...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Solo 从设计到实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/08/1581145208243.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Solo 从设计到实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/08/1581145208243.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Solo 从设计到实现后记 - D 的个人博客</title><meta name="description" content="本文是《Solo 从设计到实现》的一个章节，该系列文章将介绍 Solo 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给重复发明重新定义博客系统的人做个参考 ❤️ 轮子和时间 “不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。 重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。 新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。 我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。 成功的开源 什么是成功 一个开源项目...."/><meta property="og:description" content="本文是《Solo 从设计到实现》的一个章节，该系列文章将介绍 Solo 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给重复发明重新定义博客系统的人做个参考 ❤️ 轮子和时间 “不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。 重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。 新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。 我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。 成功的开源 什么是成功 一个开源项目...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Solo 从设计到实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/08/1581145208243.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Solo 从设计到实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/08/1581145208243.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="搭建 GitHub 镜像仓库" href="https://88250.github.io/articles/2020/02/07/1581004860744.html">
             <link rel="next" title="创业的第二个冬天" href="https://88250.github.io/articles/2020/02/09/1581219038316.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -262,7 +262,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -304,7 +304,7 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -314,10 +314,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -354,7 +354,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1581145208243",
@@ -374,4 +374,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 426ms, 2020/03/25 10:36:32 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 407ms, 2020/03/29 11:55:17 -->

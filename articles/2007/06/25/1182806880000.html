@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Linux下进程的创建及其使用管道进行进程之间的通讯[00原创] - D 的个人博客</title><meta name="description" content="**********************************************************************文件名：multiTasks.c 功能：创建进程，并使用管道进行进程间的通讯方法：step1：使用fork函数创建两个子进程1和2step2：创建两个管道1和2step3：父进程使用管道1向子进程1传输数据step4：子进程1从管道1里读取父进程写的数据step5：子进程1使用管道2向子进程2传输数据step6：子进程2从管道2里读取子进程1写的数据 完成step2后父进程进行等待，知道step6完成编译环境：Ubuntu7.04+gcc4.1.2 作者...."/><meta property="og:description" content="**********************************************************************文件名：multiTasks.c 功能：创建进程，并使用管道进行进程间的通讯方法：step1：使用fork函数创建两个子进程1和2step2：创建两个管道1和2step3：父进程使用管道1向子进程1传输数据step4：子进程1从管道1里读取父进程写的数据step5：子进程1使用管道2向子进程2传输数据step6：子进程2从管道2里读取子进程1写的数据 完成step2后父进程进行等待，知道step6完成编译环境：Ubuntu7.04+gcc4.1.2 作者...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Linux下进程的创建及其使用管道进行进程之间的通讯[00原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/06/25/1182806880000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Linux下进程的创建及其使用管道进行进程之间的通讯[00原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/06/25/1182806880000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Linux下进程的创建及其使用管道进行进程之间的通讯[00原创] - D 的个人博客</title><meta name="description" content="**********************************************************************文件名：multiTasks.c 功能：创建进程，并使用管道进行进程间的通讯方法：step1：使用fork函数创建两个子进程1和2step2：创建两个管道1和2step3：父进程使用管道1向子进程1传输数据step4：子进程1从管道1里读取父进程写的数据step5：子进程1使用管道2向子进程2传输数据step6：子进程2从管道2里读取子进程1写的数据 完成step2后父进程进行等待，知道step6完成编译环境：Ubuntu7.04+gcc4.1.2 作者...."/><meta property="og:description" content="**********************************************************************文件名：multiTasks.c 功能：创建进程，并使用管道进行进程间的通讯方法：step1：使用fork函数创建两个子进程1和2step2：创建两个管道1和2step3：父进程使用管道1向子进程1传输数据step4：子进程1从管道1里读取父进程写的数据step5：子进程1使用管道2向子进程2传输数据step6：子进程2从管道2里读取子进程1写的数据 完成step2后父进程进行等待，知道step6完成编译环境：Ubuntu7.04+gcc4.1.2 作者...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Linux下进程的创建及其使用管道进行进程之间的通讯[00原创] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/06/25/1182806880000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Linux下进程的创建及其使用管道进行进程之间的通讯[00原创] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/06/25/1182806880000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="明天考CET4[00原创]" href="https://88250.github.io/articles/2007/06/22/1182552840000.html">
             <link rel="next" title="Ubuntu下转换M$ Access到mysql" href="https://88250.github.io/articles/2007/06/26/1182898440000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -204,7 +204,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -246,7 +246,7 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -256,10 +256,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -293,7 +293,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1182806880000",
@@ -313,4 +313,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 115ms, 2020/03/25 10:36:43 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 133ms, 2020/03/29 11:55:30 -->

@@ -6,7 +6,7 @@
     <atom:link href="https://88250.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <description>全职做开源，自由职业者</description>
     <generator>Solo, v4.0.0, https://solo.b3log.org</generator>
-    <lastBuildDate>Wed, 25 Mar 2020 10:36:31 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2020 11:55:16 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
       <title>Windows 10 搭建 TensorFlow 试玩 fast-style-transfer</title>
@@ -17,8 +17,8 @@
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/03/15/1584270480065.html</guid>
       <category>TensorFlow</category>
-      <category>深度学习</category>
       <category>图片处理</category>
+      <category>深度学习</category>
       <pubDate>Sun, 15 Mar 2020 19:08:02 +0800</pubDate>
     </item>
     <item>
@@ -53,10 +53,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/02/08/1581145208243.html</guid>
-      <category>感悟</category>
       <category>开源</category>
       <category>Solo</category>
       <category>博客</category>
+      <category>感悟</category>
       <pubDate>Sat, 08 Feb 2020 15:02:21 +0800</pubDate>
     </item>
     <item>
@@ -67,9 +67,9 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/02/07/1581004860744.html</guid>
+      <category>Git</category>
       <category>镜像</category>
       <category>GitHub</category>
-      <category>Git</category>
       <category>同步</category>
       <pubDate>Fri, 07 Feb 2020 10:55:01 +0800</pubDate>
     </item>
@@ -81,10 +81,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/12/26/1577370404903.html</guid>
-      <category>Markdown</category>
-      <category>编辑器</category>
       <category>所见即所得</category>
       <category>Vditor</category>
+      <category>Markdown</category>
+      <category>编辑器</category>
       <pubDate>Thu, 30 Jan 2020 11:37:26 +0800</pubDate>
     </item>
     <item>
@@ -95,10 +95,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/01/23/1579786655216.html</guid>
-      <category>链滴笔记</category>
-      <category>WebDAV</category>
       <category>Markdown</category>
+      <category>链滴笔记</category>
       <category>路线图</category>
+      <category>WebDAV</category>
       <pubDate>Thu, 30 Jan 2020 11:24:43 +0800</pubDate>
     </item>
     <item>
@@ -109,10 +109,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/01/19/1579414663700.html</guid>
-      <category>Typora</category>
-      <category>所见即所得</category>
       <category>Vditor</category>
+      <category>Typora</category>
       <category>Markdown</category>
+      <category>所见即所得</category>
       <pubDate>Sun, 19 Jan 2020 14:20:42 +0800</pubDate>
     </item>
     <item>

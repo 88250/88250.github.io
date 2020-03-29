@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Ubuntu下音乐列表乱码解决[00整理] - D 的个人博客</title><meta name="description" content="虽然下载了w32codecs,gstreamer, mp3这些是可以顺利的播放了，但是 Rhythmbox 0.10.0还是在播放列表中显示为乱码，虽然不影响音质，但总归是不爽的。在网上搜索了下，还真有解决办法，甚至还有原因分析，我是懒人，也懒得搞懂这 些，只要解决的办法方便我继续深入的使用ubuntu就可以。方法如下：一种办法就像 Win 上的播放器一样，可以根据本地的编码方式来解码，或使用一些其他转码机制，要不还可以选择优先读取顺序。以上测试的播放器中除了 Audacious 外其他都不支自定义编码读取功能。另外一个解决办法就是把 mp3 标签转换为 Unicode 编码，这种方式既简单又...."/><meta property="og:description" content="虽然下载了w32codecs,gstreamer, mp3这些是可以顺利的播放了，但是 Rhythmbox 0.10.0还是在播放列表中显示为乱码，虽然不影响音质，但总归是不爽的。在网上搜索了下，还真有解决办法，甚至还有原因分析，我是懒人，也懒得搞懂这 些，只要解决的办法方便我继续深入的使用ubuntu就可以。方法如下：一种办法就像 Win 上的播放器一样，可以根据本地的编码方式来解码，或使用一些其他转码机制，要不还可以选择优先读取顺序。以上测试的播放器中除了 Audacious 外其他都不支自定义编码读取功能。另外一个解决办法就是把 mp3 标签转换为 Unicode 编码，这种方式既简单又...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Ubuntu下音乐列表乱码解决[00整理] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/10/21/1192967340000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Ubuntu下音乐列表乱码解决[00整理] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/10/21/1192967340000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Ubuntu下音乐列表乱码解决[00整理] - D 的个人博客</title><meta name="description" content="虽然下载了w32codecs,gstreamer, mp3这些是可以顺利的播放了，但是 Rhythmbox 0.10.0还是在播放列表中显示为乱码，虽然不影响音质，但总归是不爽的。在网上搜索了下，还真有解决办法，甚至还有原因分析，我是懒人，也懒得搞懂这 些，只要解决的办法方便我继续深入的使用ubuntu就可以。方法如下：一种办法就像 Win 上的播放器一样，可以根据本地的编码方式来解码，或使用一些其他转码机制，要不还可以选择优先读取顺序。以上测试的播放器中除了 Audacious 外其他都不支自定义编码读取功能。另外一个解决办法就是把 mp3 标签转换为 Unicode 编码，这种方式既简单又...."/><meta property="og:description" content="虽然下载了w32codecs,gstreamer, mp3这些是可以顺利的播放了，但是 Rhythmbox 0.10.0还是在播放列表中显示为乱码，虽然不影响音质，但总归是不爽的。在网上搜索了下，还真有解决办法，甚至还有原因分析，我是懒人，也懒得搞懂这 些，只要解决的办法方便我继续深入的使用ubuntu就可以。方法如下：一种办法就像 Win 上的播放器一样，可以根据本地的编码方式来解码，或使用一些其他转码机制，要不还可以选择优先读取顺序。以上测试的播放器中除了 Audacious 外其他都不支自定义编码读取功能。另外一个解决办法就是把 mp3 标签转换为 Unicode 编码，这种方式既简单又...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Ubuntu下音乐列表乱码解决[00整理] - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/10/21/1192967340000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Ubuntu下音乐列表乱码解决[00整理] - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/10/21/1192967340000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="在 Ubuntu 7.10 上安装 Compiz Fusion" href="https://88250.github.io/articles/2007/10/19/1192805640000.html">
             <link rel="next" title="正式转用NetBeans[00原创]" href="https://88250.github.io/articles/2007/10/30/1193719500000.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -212,7 +212,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -254,7 +254,7 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -264,10 +264,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -301,7 +301,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1192967340000",
@@ -321,4 +321,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 138ms, 2020/03/25 10:36:42 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 156ms, 2020/03/29 11:55:29 -->

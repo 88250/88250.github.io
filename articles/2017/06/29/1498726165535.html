@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>理解 Eureka 的 P2P 通讯 - D 的个人博客</title><meta name="description" content="Eureka 客户端会和在同一个可用区（Zone）的服务端进行通讯，如果通讯失败或者服务端没有和客户端在一个可用区，则客户端将进行失效转移：对其他可用区的服务端发起通讯。 服务端接收到客户端信息后，会进行一些列操作将信息同步给其他服务端节点。如果某步操作失败，信息将在下一次心跳时同步给其他服务端节点。 当一个 Eureka 服务端节点启动后，它将向其他服务端节点获取所有实例的注册信息。服务端获取到实例列表后将根据信息创建续约（renew）相关数据并准备接收来自客户端的续约请求。如果在某个时刻客户端续约失败（15 分钟内低于 85%），服务端将停止实例过期防止该实例注册信息丢失。 在 Netflix 内部，上述过程称作自我保护模式，是 Eureka 客户端和服务端通讯时发生断网的一个保护机制。在这个场景下，服务端将尝试保存住已有的注册信息。此时客户端获取的实例列表中有可能有的实例已经不能正常服务了，客户端需要自己保证 Eureka 服务端返回的实例在不存在或不响应情况下是弹性的，最好的处理方式就是对该实例的调用设置较短超时并尝试其他服务器。 当服务端没法从其他节点获取注册信息时，...."/><meta property="og:description" content="Eureka 客户端会和在同一个可用区（Zone）的服务端进行通讯，如果通讯失败或者服务端没有和客户端在一个可用区，则客户端将进行失效转移：对其他可用区的服务端发起通讯。 服务端接收到客户端信息后，会进行一些列操作将信息同步给其他服务端节点。如果某步操作失败，信息将在下一次心跳时同步给其他服务端节点。 当一个 Eureka 服务端节点启动后，它将向其他服务端节点获取所有实例的注册信息。服务端获取到实例列表后将根据信息创建续约（renew）相关数据并准备接收来自客户端的续约请求。如果在某个时刻客户端续约失败（15 分钟内低于 85%），服务端将停止实例过期防止该实例注册信息丢失。 在 Netflix 内部，上述过程称作自我保护模式，是 Eureka 客户端和服务端通讯时发生断网的一个保护机制。在这个场景下，服务端将尝试保存住已有的注册信息。此时客户端获取的实例列表中有可能有的实例已经不能正常服务了，客户端需要自己保证 Eureka 服务端返回的实例在不存在或不响应情况下是弹性的，最好的处理方式就是对该实例的调用设置较短超时并尝试其他服务器。 当服务端没法从其他节点获取注册信息时，...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="理解 Eureka 的 P2P 通讯 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/06/29/1498726165535.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="理解 Eureka 的 P2P 通讯 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/06/29/1498726165535.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>理解 Eureka 的 P2P 通讯 - D 的个人博客</title><meta name="description" content="Eureka 客户端会和在同一个可用区（Zone）的服务端进行通讯，如果通讯失败或者服务端没有和客户端在一个可用区，则客户端将进行失效转移：对其他可用区的服务端发起通讯。 服务端接收到客户端信息后，会进行一些列操作将信息同步给其他服务端节点。如果某步操作失败，信息将在下一次心跳时同步给其他服务端节点。 当一个 Eureka 服务端节点启动后，它将向其他服务端节点获取所有实例的注册信息。服务端获取到实例列表后将根据信息创建续约（renew）相关数据并准备接收来自客户端的续约请求。如果在某个时刻客户端续约失败（15 分钟内低于 85%），服务端将停止实例过期防止该实例注册信息丢失。 在 Netflix 内部，上述过程称作自我保护模式，是 Eureka 客户端和服务端通讯时发生断网的一个保护机制。在这个场景下，服务端将尝试保存住已有的注册信息。此时客户端获取的实例列表中有可能有的实例已经不能正常服务了，客户端需要自己保证 Eureka 服务端返回的实例在不存在或不响应情况下是弹性的，最好的处理方式就是对该实例的调用设置较短超时并尝试其他服务器。 当服务端没法从其他节点获取注册信息时，...."/><meta property="og:description" content="Eureka 客户端会和在同一个可用区（Zone）的服务端进行通讯，如果通讯失败或者服务端没有和客户端在一个可用区，则客户端将进行失效转移：对其他可用区的服务端发起通讯。 服务端接收到客户端信息后，会进行一些列操作将信息同步给其他服务端节点。如果某步操作失败，信息将在下一次心跳时同步给其他服务端节点。 当一个 Eureka 服务端节点启动后，它将向其他服务端节点获取所有实例的注册信息。服务端获取到实例列表后将根据信息创建续约（renew）相关数据并准备接收来自客户端的续约请求。如果在某个时刻客户端续约失败（15 分钟内低于 85%），服务端将停止实例过期防止该实例注册信息丢失。 在 Netflix 内部，上述过程称作自我保护模式，是 Eureka 客户端和服务端通讯时发生断网的一个保护机制。在这个场景下，服务端将尝试保存住已有的注册信息。此时客户端获取的实例列表中有可能有的实例已经不能正常服务了，客户端需要自己保证 Eureka 服务端返回的实例在不存在或不响应情况下是弹性的，最好的处理方式就是对该实例的调用设置较短超时并尝试其他服务器。 当服务端没法从其他节点获取注册信息时，...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="理解 Eureka 的 P2P 通讯 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/06/29/1498726165535.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="理解 Eureka 的 P2P 通讯 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/06/29/1498726165535.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="Solo 支持 Hexo/Jekyll 数据导入" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">
             <link rel="next" title="开源经验谈" href="https://88250.github.io/articles/2017/08/01/1501603146956.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -216,7 +216,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -258,7 +258,7 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -268,10 +268,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -305,7 +305,7 @@ bold;">Sym</span></a>
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1498726165535",
@@ -325,4 +325,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 315ms, 2020/03/25 10:36:34 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 171ms, 2020/03/29 11:55:20 -->

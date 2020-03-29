@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>创业的第二个冬天 - D 的个人博客</title><meta name="description" content="如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》^1 看起。 认真积累，别走捷径。 CDN 盗刷 12 月份的某天，社区的 CDN 图床被人恶意刷了好几十 G 流量，虽然造成的损失就几十块钱，但我觉得这不是钱的问题，而是对我技术能力的嘲讽。通过分析日志，基本可以判断攻击来源是类似基于 Electron、Headless Chrome 的应用，因为这些攻击流量的来源 IP 大部分不是来自机房服务器。 随后我们通过七牛云提供的“回源鉴权”机制解决了这个问题，所有对图床 CDN 的请求都需要鉴权。判断依据是通过 Referer、IP，大致规则是禁止为空的 Referer，并且 IP 不能来自机房。顺手也加了防盗链，综合了博客端节点（Solo、Pipe）回调接口来判断请求是否是博客端发起的。 后来攻击者发现我们的应对措施后，就将流量转移到了攻击博客端节点，一些用户的博客被恶意请求，请求并不密集，攻击者企图慢慢消耗社区图床 CDN 以造成损失。这部分攻击流量后来也通过限流算法做了判断，最终将不合法的 IP 加入到社区 IP 黑名单^2中，博客端节点会定时获取这份黑名单列表，在节点...."/><meta property="og:description" content="如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》^1 看起。 认真积累，别走捷径。 CDN 盗刷 12 月份的某天，社区的 CDN 图床被人恶意刷了好几十 G 流量，虽然造成的损失就几十块钱，但我觉得这不是钱的问题，而是对我技术能力的嘲讽。通过分析日志，基本可以判断攻击来源是类似基于 Electron、Headless Chrome 的应用，因为这些攻击流量的来源 IP 大部分不是来自机房服务器。 随后我们通过七牛云提供的“回源鉴权”机制解决了这个问题，所有对图床 CDN 的请求都需要鉴权。判断依据是通过 Referer、IP，大致规则是禁止为空的 Referer，并且 IP 不能来自机房。顺手也加了防盗链，综合了博客端节点（Solo、Pipe）回调接口来判断请求是否是博客端发起的。 后来攻击者发现我们的应对措施后，就将流量转移到了攻击博客端节点，一些用户的博客被恶意请求，请求并不密集，攻击者企图慢慢消耗社区图床 CDN 以造成损失。这部分攻击流量后来也通过限流算法做了判断，最终将不合法的 IP 加入到社区 IP 黑名单^2中，博客端节点会定时获取这份黑名单列表，在节点...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="创业的第二个冬天 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/09/1581219038316.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="创业的第二个冬天 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/09/1581219038316.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>创业的第二个冬天 - D 的个人博客</title><meta name="description" content="如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》^1 看起。 认真积累，别走捷径。 CDN 盗刷 12 月份的某天，社区的 CDN 图床被人恶意刷了好几十 G 流量，虽然造成的损失就几十块钱，但我觉得这不是钱的问题，而是对我技术能力的嘲讽。通过分析日志，基本可以判断攻击来源是类似基于 Electron、Headless Chrome 的应用，因为这些攻击流量的来源 IP 大部分不是来自机房服务器。 随后我们通过七牛云提供的“回源鉴权”机制解决了这个问题，所有对图床 CDN 的请求都需要鉴权。判断依据是通过 Referer、IP，大致规则是禁止为空的 Referer，并且 IP 不能来自机房。顺手也加了防盗链，综合了博客端节点（Solo、Pipe）回调接口来判断请求是否是博客端发起的。 后来攻击者发现我们的应对措施后，就将流量转移到了攻击博客端节点，一些用户的博客被恶意请求，请求并不密集，攻击者企图慢慢消耗社区图床 CDN 以造成损失。这部分攻击流量后来也通过限流算法做了判断，最终将不合法的 IP 加入到社区 IP 黑名单^2中，博客端节点会定时获取这份黑名单列表，在节点...."/><meta property="og:description" content="如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》^1 看起。 认真积累，别走捷径。 CDN 盗刷 12 月份的某天，社区的 CDN 图床被人恶意刷了好几十 G 流量，虽然造成的损失就几十块钱，但我觉得这不是钱的问题，而是对我技术能力的嘲讽。通过分析日志，基本可以判断攻击来源是类似基于 Electron、Headless Chrome 的应用，因为这些攻击流量的来源 IP 大部分不是来自机房服务器。 随后我们通过七牛云提供的“回源鉴权”机制解决了这个问题，所有对图床 CDN 的请求都需要鉴权。判断依据是通过 Referer、IP，大致规则是禁止为空的 Referer，并且 IP 不能来自机房。顺手也加了防盗链，综合了博客端节点（Solo、Pipe）回调接口来判断请求是否是博客端发起的。 后来攻击者发现我们的应对措施后，就将流量转移到了攻击博客端节点，一些用户的博客被恶意请求，请求并不密集，攻击者企图慢慢消耗社区图床 CDN 以造成损失。这部分攻击流量后来也通过限流算法做了判断，最终将不合法的 IP 加入到社区 IP 黑名单^2中，博客端节点会定时获取这份黑名单列表，在节点...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="创业的第二个冬天 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/09/1581219038316.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="创业的第二个冬天 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/09/1581219038316.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="Solo 从设计到实现后记" href="https://88250.github.io/articles/2020/02/08/1581145208243.html">
             <link rel="next" title="Windows 10 搭建 TensorFlow 试玩 fast-style-transfer" href="https://88250.github.io/articles/2020/03/15/1584270480065.html">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -245,7 +245,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -287,7 +287,7 @@ bold;">Sym</span></a>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -297,10 +297,10 @@ bold;">Sym</span></a>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -337,7 +337,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1581219038316",
@@ -357,4 +357,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 377ms, 2020/03/25 10:36:31 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 356ms, 2020/03/29 11:55:17 -->

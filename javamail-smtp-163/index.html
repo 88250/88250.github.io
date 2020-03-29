@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>JavaMail 使用 163 发送邮件 - D 的个人博客</title><meta name="description" content="在通过 JavaMail 使用 163 邮箱发邮件时有几点问题需要注意。 550 用户被锁定：普通 163 邮箱是无法通过 smtp.163.com 发送邮件的，只有 163 VIP 邮箱才行，然后设置 mail.smtp.host=smtp.vip.163.com 454 Command not permitted when TLS active：需要设置 mail.smtp.starttls.enable=false 553 authentication is required：需要设置 mail.smtp.auth=true 550 Invalid User：from 必须写成带 @ 的邮件格式，且 username 要用 @ 前面的"/><meta property="og:description" content="在通过 JavaMail 使用 163 邮箱发邮件时有几点问题需要注意。 550 用户被锁定：普通 163 邮箱是无法通过 smtp.163.com 发送邮件的，只有 163 VIP 邮箱才行，然后设置 mail.smtp.host=smtp.vip.163.com 454 Command not permitted when TLS active：需要设置 mail.smtp.starttls.enable=false 553 authentication is required：需要设置 mail.smtp.auth=true 550 Invalid User：from 必须写成带 @ 的邮件格式，且 username 要用 @ 前面的"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="JavaMail 使用 163 发送邮件 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/javamail-smtp-163?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="JavaMail 使用 163 发送邮件 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/javamail-smtp-163">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/css/base.css?1585103683303"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>JavaMail 使用 163 发送邮件 - D 的个人博客</title><meta name="description" content="在通过 JavaMail 使用 163 邮箱发邮件时有几点问题需要注意。 550 用户被锁定：普通 163 邮箱是无法通过 smtp.163.com 发送邮件的，只有 163 VIP 邮箱才行，然后设置 mail.smtp.host=smtp.vip.163.com 454 Command not permitted when TLS active：需要设置 mail.smtp.starttls.enable=false 553 authentication is required：需要设置 mail.smtp.auth=true 550 Invalid User：from 必须写成带 @ 的邮件格式，且 username 要用 @ 前面的"/><meta property="og:description" content="在通过 JavaMail 使用 163 邮箱发邮件时有几点问题需要注意。 550 用户被锁定：普通 163 邮箱是无法通过 smtp.163.com 发送邮件的，只有 163 VIP 邮箱才行，然后设置 mail.smtp.host=smtp.vip.163.com 454 Command not permitted when TLS active：需要设置 mail.smtp.starttls.enable=false 553 authentication is required：需要设置 mail.smtp.auth=true 550 Invalid User：from 必须写成带 @ 的邮件格式，且 username 要用 @ 前面的"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="JavaMail 使用 163 发送邮件 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/javamail-smtp-163?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="JavaMail 使用 163 发送邮件 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/javamail-smtp-163">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
             <link rel="prev" title="maven-jdocbook-plugin 使用" href="https://88250.github.io/maven-jdocbook-plugin">
             <link rel="next" title="Cobar 概述" href="https://88250.github.io/alibaba-cobar-survey">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -221,7 +221,7 @@ mail.smtp.socketFactory.port=465</pre>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -263,7 +263,7 @@ mail.smtp.socketFactory.port=465</pre>
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -273,10 +273,10 @@ mail.smtp.socketFactory.port=465</pre>
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/common.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585103683303"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
@@ -310,7 +310,7 @@ mail.smtp.socketFactory.port=465</pre>
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo/src/main/resources/js/page.min.js?1585103683303', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1397114169669",
@@ -330,4 +330,4 @@ mail.smtp.socketFactory.port=465</pre>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 163ms, 2020/03/25 10:36:37 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 234ms, 2020/03/29 11:55:22 -->
