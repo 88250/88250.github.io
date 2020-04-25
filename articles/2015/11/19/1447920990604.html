@@ -2,18 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客</title><meta name="description" content="###为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ###历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/><meta property="og:description" content="###为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ###历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/11/19/1447920990604.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/11/19/1447920990604.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="www 开头的域名和 Cookie-free" href="https://88250.github.io/articles/2015/10/19/1445234634721.html">
             <link rel="next" title="标签服务实现漫谈" href="https://88250.github.io/articles/2015/12/01/1448958541321.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -235,54 +228,54 @@ bold;">Sym</span></a>
 </ul>
 <p>最终我们需要的就是公钥 <code>auto.key</code> 以及证书 <code>auto.crt</code>。</p>
 <p>####服务端使用证书</p>
-<pre><code class="highlight-chroma">http.ListenAndServeTLS(Auto.Server, "auto.crt", "auto.key", nil)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>http.ListenAndServeTLS(Auto.Server, "auto.crt", "auto.key", nil)
 </code></pre>
 <p>####客户端发起请求</p>
 <p>这里假设客户端已经获得了服务端的证书。</p>
-<pre><code class="highlight-chroma">// getClient 根据传入的 url 实参中协议部分返回适当的 HTTP 客户端.
-func getClient(url string) *http.Client {
-	if !strings.Contains(url, "https://") {
-		return &amp;http.Client{}
-	}
-
-	certName := strings.Split(url, "https://")[1]
-	certName = strings.Split(certName, ":")[0]
-
-	// Load client cert
-	cert, err := tls.LoadX509KeyPair("certs/"+certName+".crt", "certs/"+certName+".key")
-	if err != nil {
-		logger.Error(err)
-	}
-
-	// Load CA cert
-	caCert, err := ioutil.ReadFile("certs/ca.crt")
-	if err != nil {
-		logger.Error(err)
-	}
-	caCertPool := x509.NewCertPool()
-	ok := caCertPool.AppendCertsFromPEM(caCert)
-	if !ok {
-		logger.Error("Load CA cert failed")
-	}
-
-	// Setup HTTPS client
-	tlsConfig := &amp;tls.Config{
-		Certificates: []tls.Certificate{cert},
-		RootCAs:      caCertPool,
-	}
-	tlsConfig.BuildNameToCertificate()
-
-	transport := &amp;http.Transport{TLSClientConfig: tlsConfig}
-
-	return &amp;http.Client{Transport: transport}
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>// getClient 根据传入的 url 实参中协议部分返回适当的 HTTP 客户端.
+<span class="highlight-ln"> 2</span>func getClient(url string) *http.Client {
+<span class="highlight-ln"> 3</span>	if !strings.Contains(url, "https://") {
+<span class="highlight-ln"> 4</span>		return &amp;http.Client{}
+<span class="highlight-ln"> 5</span>	}
+<span class="highlight-ln"> 6</span>
+<span class="highlight-ln"> 7</span>	certName := strings.Split(url, "https://")[1]
+<span class="highlight-ln"> 8</span>	certName = strings.Split(certName, ":")[0]
+<span class="highlight-ln"> 9</span>
+<span class="highlight-ln">10</span>	// Load client cert
+<span class="highlight-ln">11</span>	cert, err := tls.LoadX509KeyPair("certs/"+certName+".crt", "certs/"+certName+".key")
+<span class="highlight-ln">12</span>	if err != nil {
+<span class="highlight-ln">13</span>		logger.Error(err)
+<span class="highlight-ln">14</span>	}
+<span class="highlight-ln">15</span>
+<span class="highlight-ln">16</span>	// Load CA cert
+<span class="highlight-ln">17</span>	caCert, err := ioutil.ReadFile("certs/ca.crt")
+<span class="highlight-ln">18</span>	if err != nil {
+<span class="highlight-ln">19</span>		logger.Error(err)
+<span class="highlight-ln">20</span>	}
+<span class="highlight-ln">21</span>	caCertPool := x509.NewCertPool()
+<span class="highlight-ln">22</span>	ok := caCertPool.AppendCertsFromPEM(caCert)
+<span class="highlight-ln">23</span>	if !ok {
+<span class="highlight-ln">24</span>		logger.Error("Load CA cert failed")
+<span class="highlight-ln">25</span>	}
+<span class="highlight-ln">26</span>
+<span class="highlight-ln">27</span>	// Setup HTTPS client
+<span class="highlight-ln">28</span>	tlsConfig := &amp;tls.Config{
+<span class="highlight-ln">29</span>		Certificates: []tls.Certificate{cert},
+<span class="highlight-ln">30</span>		RootCAs:      caCertPool,
+<span class="highlight-ln">31</span>	}
+<span class="highlight-ln">32</span>	tlsConfig.BuildNameToCertificate()
+<span class="highlight-ln">33</span>
+<span class="highlight-ln">34</span>	transport := &amp;http.Transport{TLSClientConfig: tlsConfig}
+<span class="highlight-ln">35</span>
+<span class="highlight-ln">36</span>	return &amp;http.Client{Transport: transport}
+<span class="highlight-ln">37</span>}
 </code></pre>
 <p>其中载入了 CA 证书，原因就是因为我们自建的 CA 不在系统自带的“受信任的根证书颁发机构”中。</p>
 <p>###参考</p>
 <ul>
 <li><a href="http://www.wosign.com/Basic/howsslwork.htm" target="_blank">数字证书基础知识：SSL 工作原理</a></li>
 <li><a href="https://program-think.blogspot.com/2014/11/https-ssl-tls-1.html" target="_blank">扫盲 HTTPS 和 SSL/TLS 协议</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank">SSL/TLS协议运行机制的概述</a><br><br><p style="font-size: 12px;"><i>该文章同步自 <a href="http://hacpai.com/article/1447920990604" target="_blank">黑客派</a></i></p></li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank">SSL/TLS 协议运行机制的概述</a><br><br><p style="font-size: 12px;"><i>该文章同步自 <a href="http://hacpai.com/article/1447920990604" target="_blank">黑客派</a></i></p></li>
 </ul>
                     <div>
                         <br>
@@ -324,7 +317,7 @@ func getClient(url string) *http.Client {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -353,11 +346,6 @@ func getClient(url string) *http.Client {
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -372,17 +360,17 @@ func getClient(url string) *http.Client {
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -413,7 +401,7 @@ func getClient(url string) *http.Client {
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1447920990604",
@@ -433,4 +421,4 @@ func getClient(url string) *http.Client {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 187ms, 2020/03/29 11:55:21 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 135ms, 2020/04/25 21:02:09 -->

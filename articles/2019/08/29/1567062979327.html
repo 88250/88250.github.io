@@ -2,18 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Lute 实现后记 - D 的个人博客</title><meta name="description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/><meta property="og:description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Lute 实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/29/1567062979327.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Lute 实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="CommonMark 规范要点解读" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
             <link rel="next" title="创业的第二个秋天" href="https://88250.github.io/articles/2019/11/11/1573402018349.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -169,34 +162,34 @@ bold;">Sym</span></a>
 <p>块级解析算法是基于行的，每次读取一行进行处理，断行的依据是 <code>\r\n</code> 和 <code>\n</code>，因为规范中定义了行结束符就是这两者。Lute 是在词法分析阶段做了预处理，将 <code>\r\n</code> 替换为 <code>\n</code>，后续统一使用 <code>\n</code> 进行断行。</p>
 <h4 id="软硬换行">软硬换行</h4>
 <p>规范定义了两种换行节点：软换行 <code>\n</code> 和硬换行 <code>&lt;br /&gt;</code>，HTML 渲染时这两者会有明显的区别。规范定义的硬换行规则是行结尾用 <code>\</code> 或者结尾两个空格，这个规则我相信很少人知道。</p>
-<pre><code class="language-md highlight-chroma">规范定义硬换行需要结尾用\
-或者结尾用两个空格  
-这样渲染结果才会有 &lt;br /&gt; 以达到换行的目的
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span>规范定义硬换行需要结尾用\
+<span class="highlight-ln">2</span>或者结尾用两个空格  
+<span class="highlight-ln">3</span>这样渲染结果才会有 <span class="highlight-p">&lt;</span><span class="highlight-nt">br</span> <span class="highlight-p">/&gt;</span> 以达到换行的目的
 </code></pre>
 <p>鉴于大部分 Markdown 用户习惯了软换行自动转硬换行，所以建议实现时考虑默认开启这个支持：用户只需一个换行就可以渲染出 <code>&lt;br /&gt;</code>。</p>
-<pre><code class="language-md highlight-chroma">开启软换行自动转硬换行后结尾不需要标记
-就可以达到渲染 &lt;br /&gt; 的效果
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span>开启软换行自动转硬换行后结尾不需要标记
+<span class="highlight-ln">2</span>就可以达到渲染 <span class="highlight-p">&lt;</span><span class="highlight-nt">br</span> <span class="highlight-p">/&gt;</span> 的效果
 </code></pre>
 <h4 id="渲染时的换行">渲染时的换行</h4>
 <p>规范中对渲染结果 HTML 中的 <code>\n</code> 是有明确要求的，有的情况下标签结尾需要带换行，有点情况下不需要。比如下面渲染结果中的 <code>&lt;li&gt;</code> 标签：</p>
-<pre><code class="language-html highlight-chroma"><span class="highlight-p">&lt;</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>foo<span class="highlight-p">&lt;/</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>bar<span class="highlight-p">&lt;/</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>baz<span class="highlight-p">&lt;/</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;/</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;/</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>
-<span class="highlight-p">&lt;/</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
+<pre><code class="language-html highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-p">&lt;</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">2</span><span class="highlight-p">&lt;</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">3</span><span class="highlight-p">&lt;</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>foo<span class="highlight-p">&lt;/</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">4</span><span class="highlight-p">&lt;</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>bar<span class="highlight-p">&lt;/</span><span class="highlight-nt">p</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">5</span><span class="highlight-p">&lt;</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">6</span><span class="highlight-p">&lt;</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>baz<span class="highlight-p">&lt;/</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">7</span><span class="highlight-p">&lt;/</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">8</span><span class="highlight-p">&lt;/</span><span class="highlight-nt">li</span><span class="highlight-p">&gt;</span>
+<span class="highlight-ln">9</span><span class="highlight-p">&lt;/</span><span class="highlight-nt">ul</span><span class="highlight-p">&gt;</span>
 </code></pre>
 <p>这类换行不是用户输入的，所以不会解析生成软换行节点，只能靠渲染时进行处理。总体的处理逻辑是某些标签后需要跟换行，但是换行不能重复。可通过记录最后一个输出字符，如果是换行的话则下次不再重复输出。</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-c1">// newline 会在最新内容不是换行符 \n 时输出一个换行符。
-</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-p">(</span><span class="highlight-nx">r</span> <span class="highlight-o">*</span><span class="highlight-nx">Renderer</span><span class="highlight-p">)</span> <span class="highlight-nf">newline</span><span class="highlight-p">()</span> <span class="highlight-p">{</span>
-	<span class="highlight-k">if</span> <span class="highlight-nx">itemNewline</span> <span class="highlight-o">!=</span> <span class="highlight-nx">r</span><span class="highlight-p">.</span><span class="highlight-nx">lastOut</span> <span class="highlight-p">{</span>
-		<span class="highlight-nx">r</span><span class="highlight-p">.</span><span class="highlight-nx">writer</span><span class="highlight-p">.</span><span class="highlight-nf">WriteByte</span><span class="highlight-p">(</span><span class="highlight-nx">itemNewline</span><span class="highlight-p">)</span>
-		<span class="highlight-nx">r</span><span class="highlight-p">.</span><span class="highlight-nx">lastOut</span> <span class="highlight-p">=</span> <span class="highlight-nx">itemNewline</span>
-	<span class="highlight-p">}</span>
-<span class="highlight-p">}</span>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-c1">// newline 会在最新内容不是换行符 \n 时输出一个换行符。
+</span><span class="highlight-ln">2</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-p">(</span><span class="highlight-nx">r</span> <span class="highlight-o">*</span><span class="highlight-nx">Renderer</span><span class="highlight-p">)</span> <span class="highlight-nf">newline</span><span class="highlight-p">()</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">3</span>	<span class="highlight-k">if</span> <span class="highlight-nx">itemNewline</span> <span class="highlight-o">!=</span> <span class="highlight-nx">r</span><span class="highlight-p">.</span><span class="highlight-nx">lastOut</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">4</span>		<span class="highlight-nx">r</span><span class="highlight-p">.</span><span class="highlight-nx">writer</span><span class="highlight-p">.</span><span class="highlight-nf">WriteByte</span><span class="highlight-p">(</span><span class="highlight-nx">itemNewline</span><span class="highlight-p">)</span>
+<span class="highlight-ln">5</span>		<span class="highlight-nx">r</span><span class="highlight-p">.</span><span class="highlight-nx">lastOut</span> <span class="highlight-p">=</span> <span class="highlight-nx">itemNewline</span>
+<span class="highlight-ln">6</span>	<span class="highlight-p">}</span>
+<span class="highlight-ln">7</span><span class="highlight-p">}</span>
 </code></pre>
 <h3 id="性能优化">性能优化</h3>
 <h4 id="能不构造对象就不要构造对象">能不构造对象就不要构造对象</h4>
@@ -207,26 +200,26 @@ bold;">Sym</span></a>
 <p>靠自动增长会增加内存分配次数，这是 slice、map 的常规优化手段。</p>
 <h4 id="快速的---byte-string-转换优化">快速的 []byte~string 转换优化</h4>
 <p>直接上代码吧（<code>items</code> 是 <code>[]byte</code> 类型）：</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-c1">// fromItems 快速转换 items 为 string。
-</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-nf">fromItems</span><span class="highlight-p">(</span><span class="highlight-nx">items</span> <span class="highlight-nx">items</span><span class="highlight-p">)</span> <span class="highlight-kt">string</span> <span class="highlight-p">{</span>
-	<span class="highlight-k">return</span> <span class="highlight-o">*</span><span class="highlight-p">(</span><span class="highlight-o">*</span><span class="highlight-kt">string</span><span class="highlight-p">)(</span><span class="highlight-nx">unsafe</span><span class="highlight-p">.</span><span class="highlight-nf">Pointer</span><span class="highlight-p">(</span><span class="highlight-o">&amp;</span><span class="highlight-nx">items</span><span class="highlight-p">))</span>
-<span class="highlight-p">}</span>
-
-<span class="highlight-c1">// toItems 快速转换 str 为 items。
-</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-nf">toItems</span><span class="highlight-p">(</span><span class="highlight-nx">str</span> <span class="highlight-kt">string</span><span class="highlight-p">)</span> <span class="highlight-nx">items</span> <span class="highlight-p">{</span>
-	<span class="highlight-nx">x</span> <span class="highlight-o">:=</span> <span class="highlight-p">(</span><span class="highlight-o">*</span><span class="highlight-p">[</span><span class="highlight-mi">2</span><span class="highlight-p">]</span><span class="highlight-kt">uintptr</span><span class="highlight-p">)(</span><span class="highlight-nx">unsafe</span><span class="highlight-p">.</span><span class="highlight-nf">Pointer</span><span class="highlight-p">(</span><span class="highlight-o">&amp;</span><span class="highlight-nx">str</span><span class="highlight-p">))</span>
-	<span class="highlight-nx">h</span> <span class="highlight-o">:=</span> <span class="highlight-p">[</span><span class="highlight-mi">3</span><span class="highlight-p">]</span><span class="highlight-kt">uintptr</span><span class="highlight-p">{</span><span class="highlight-nx">x</span><span class="highlight-p">[</span><span class="highlight-mi">0</span><span class="highlight-p">],</span> <span class="highlight-nx">x</span><span class="highlight-p">[</span><span class="highlight-mi">1</span><span class="highlight-p">],</span> <span class="highlight-nx">x</span><span class="highlight-p">[</span><span class="highlight-mi">1</span><span class="highlight-p">]}</span>
-	<span class="highlight-k">return</span> <span class="highlight-o">*</span><span class="highlight-p">(</span><span class="highlight-o">*</span><span class="highlight-nx">items</span><span class="highlight-p">)(</span><span class="highlight-nx">unsafe</span><span class="highlight-p">.</span><span class="highlight-nf">Pointer</span><span class="highlight-p">(</span><span class="highlight-o">&amp;</span><span class="highlight-nx">h</span><span class="highlight-p">))</span>
-<span class="highlight-p">}</span>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln"> 1</span><span class="highlight-c1">// fromItems 快速转换 items 为 string。
+</span><span class="highlight-ln"> 2</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-nf">fromItems</span><span class="highlight-p">(</span><span class="highlight-nx">items</span> <span class="highlight-nx">items</span><span class="highlight-p">)</span> <span class="highlight-kt">string</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 3</span>	<span class="highlight-k">return</span> <span class="highlight-o">*</span><span class="highlight-p">(</span><span class="highlight-o">*</span><span class="highlight-kt">string</span><span class="highlight-p">)(</span><span class="highlight-nx">unsafe</span><span class="highlight-p">.</span><span class="highlight-nf">Pointer</span><span class="highlight-p">(</span><span class="highlight-o">&amp;</span><span class="highlight-nx">items</span><span class="highlight-p">))</span>
+<span class="highlight-ln"> 4</span><span class="highlight-p">}</span>
+<span class="highlight-ln"> 5</span>
+<span class="highlight-ln"> 6</span><span class="highlight-c1">// toItems 快速转换 str 为 items。
+</span><span class="highlight-ln"> 7</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-nf">toItems</span><span class="highlight-p">(</span><span class="highlight-nx">str</span> <span class="highlight-kt">string</span><span class="highlight-p">)</span> <span class="highlight-nx">items</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 8</span>	<span class="highlight-nx">x</span> <span class="highlight-o">:=</span> <span class="highlight-p">(</span><span class="highlight-o">*</span><span class="highlight-p">[</span><span class="highlight-mi">2</span><span class="highlight-p">]</span><span class="highlight-kt">uintptr</span><span class="highlight-p">)(</span><span class="highlight-nx">unsafe</span><span class="highlight-p">.</span><span class="highlight-nf">Pointer</span><span class="highlight-p">(</span><span class="highlight-o">&amp;</span><span class="highlight-nx">str</span><span class="highlight-p">))</span>
+<span class="highlight-ln"> 9</span>	<span class="highlight-nx">h</span> <span class="highlight-o">:=</span> <span class="highlight-p">[</span><span class="highlight-mi">3</span><span class="highlight-p">]</span><span class="highlight-kt">uintptr</span><span class="highlight-p">{</span><span class="highlight-nx">x</span><span class="highlight-p">[</span><span class="highlight-mi">0</span><span class="highlight-p">],</span> <span class="highlight-nx">x</span><span class="highlight-p">[</span><span class="highlight-mi">1</span><span class="highlight-p">],</span> <span class="highlight-nx">x</span><span class="highlight-p">[</span><span class="highlight-mi">1</span><span class="highlight-p">]}</span>
+<span class="highlight-ln">10</span>	<span class="highlight-k">return</span> <span class="highlight-o">*</span><span class="highlight-p">(</span><span class="highlight-o">*</span><span class="highlight-nx">items</span><span class="highlight-p">)(</span><span class="highlight-nx">unsafe</span><span class="highlight-p">.</span><span class="highlight-nf">Pointer</span><span class="highlight-p">(</span><span class="highlight-o">&amp;</span><span class="highlight-nx">h</span><span class="highlight-p">))</span>
+<span class="highlight-ln">11</span><span class="highlight-p">}</span>
 </code></pre>
 <p>需要注意的是转换后如果要进行写操作，则转换前要进行一次动态构造：</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-c1">// 动态构造一次，因为后续有可能会对字节数组进行赋值
-</span><span class="highlight-c1">// 不构造的话会报错 fatal error: fault
-</span><span class="highlight-c1"></span><span class="highlight-nx">builder</span> <span class="highlight-o">:=</span> <span class="highlight-nx">strings</span><span class="highlight-p">.</span><span class="highlight-nx">Builder</span><span class="highlight-p">{}</span>
-<span class="highlight-nx">builder</span><span class="highlight-p">.</span><span class="highlight-nf">Write</span><span class="highlight-p">(</span><span class="highlight-nx">input</span><span class="highlight-p">)</span>
-<span class="highlight-nx">input</span> <span class="highlight-p">=</span> <span class="highlight-nf">items</span><span class="highlight-p">(</span><span class="highlight-nx">builder</span><span class="highlight-p">.</span><span class="highlight-nf">String</span><span class="highlight-p">())</span>
-<span class="highlight-c1">// 后续会对 input 中的 byte 进行赋值
-</span><span class="highlight-c1">// 并且可以放心地使用 toItems 和 fromItems 互转
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-c1">// 动态构造一次，因为后续有可能会对字节数组进行赋值
+</span><span class="highlight-ln">2</span><span class="highlight-c1">// 不构造的话会报错 fatal error: fault
+</span><span class="highlight-ln">3</span><span class="highlight-c1"></span><span class="highlight-nx">builder</span> <span class="highlight-o">:=</span> <span class="highlight-nx">strings</span><span class="highlight-p">.</span><span class="highlight-nx">Builder</span><span class="highlight-p">{}</span>
+<span class="highlight-ln">4</span><span class="highlight-nx">builder</span><span class="highlight-p">.</span><span class="highlight-nf">Write</span><span class="highlight-p">(</span><span class="highlight-nx">input</span><span class="highlight-p">)</span>
+<span class="highlight-ln">5</span><span class="highlight-nx">input</span> <span class="highlight-p">=</span> <span class="highlight-nf">items</span><span class="highlight-p">(</span><span class="highlight-nx">builder</span><span class="highlight-p">.</span><span class="highlight-nf">String</span><span class="highlight-p">())</span>
+<span class="highlight-ln">6</span><span class="highlight-c1">// 后续会对 input 中的 byte 进行赋值
+</span><span class="highlight-ln">7</span><span class="highlight-c1">// 并且可以放心地使用 toItems 和 fromItems 互转
 </span></code></pre>
 <h4 id="并行解析">并行解析</h4>
 <p>在 CM 规范的<a href="https://spec.commonmark.org/0.29/#precedence" target="_blank">优先级</a>一节中提到了块级元素解析要按行顺序解析，但行级元素可并行解析，因为块级节点下的行级解析不会相互影响。</p>
@@ -234,18 +227,18 @@ bold;">Sym</span></a>
 <p>Note that the first step requires processing lines in sequence, but the second can be parallelized, since the inline parsing of one block element does not affect the inline parsing of any other.</p>
 </blockquote>
 <p>Lute 基于该提示进行了行级并行解析实现：</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-c1">// 遍历处理子节点，通过并行处理提升性能
-</span><span class="highlight-c1"></span><span class="highlight-nx">cwg</span> <span class="highlight-o">:=</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">sync</span><span class="highlight-p">.</span><span class="highlight-nx">WaitGroup</span><span class="highlight-p">{}</span>
-<span class="highlight-k">for</span> <span class="highlight-nx">child</span> <span class="highlight-o">:=</span> <span class="highlight-nx">node</span><span class="highlight-p">.</span><span class="highlight-nf">FirstChild</span><span class="highlight-p">();</span> <span class="highlight-kc">nil</span> <span class="highlight-o">!=</span> <span class="highlight-nx">child</span><span class="highlight-p">;</span> <span class="highlight-nx">child</span> <span class="highlight-p">=</span> <span class="highlight-nx">child</span><span class="highlight-p">.</span><span class="highlight-nf">Next</span><span class="highlight-p">()</span> <span class="highlight-p">{</span>
-	<span class="highlight-nx">cwg</span><span class="highlight-p">.</span><span class="highlight-nf">Add</span><span class="highlight-p">(</span><span class="highlight-mi">1</span><span class="highlight-p">)</span>
-	<span class="highlight-k">go</span> <span class="highlight-nx">t</span><span class="highlight-p">.</span><span class="highlight-nf">walkParseInline</span><span class="highlight-p">(</span><span class="highlight-nx">child</span><span class="highlight-p">,</span> <span class="highlight-nx">cwg</span><span class="highlight-p">)</span>
-<span class="highlight-p">}</span>
-<span class="highlight-nx">cwg</span><span class="highlight-p">.</span><span class="highlight-nf">Wait</span><span class="highlight-p">()</span>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-c1">// 遍历处理子节点，通过并行处理提升性能
+</span><span class="highlight-ln">2</span><span class="highlight-c1"></span><span class="highlight-nx">cwg</span> <span class="highlight-o">:=</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">sync</span><span class="highlight-p">.</span><span class="highlight-nx">WaitGroup</span><span class="highlight-p">{}</span>
+<span class="highlight-ln">3</span><span class="highlight-k">for</span> <span class="highlight-nx">child</span> <span class="highlight-o">:=</span> <span class="highlight-nx">node</span><span class="highlight-p">.</span><span class="highlight-nf">FirstChild</span><span class="highlight-p">();</span> <span class="highlight-kc">nil</span> <span class="highlight-o">!=</span> <span class="highlight-nx">child</span><span class="highlight-p">;</span> <span class="highlight-nx">child</span> <span class="highlight-p">=</span> <span class="highlight-nx">child</span><span class="highlight-p">.</span><span class="highlight-nf">Next</span><span class="highlight-p">()</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">4</span>	<span class="highlight-nx">cwg</span><span class="highlight-p">.</span><span class="highlight-nf">Add</span><span class="highlight-p">(</span><span class="highlight-mi">1</span><span class="highlight-p">)</span>
+<span class="highlight-ln">5</span>	<span class="highlight-k">go</span> <span class="highlight-nx">t</span><span class="highlight-p">.</span><span class="highlight-nf">walkParseInline</span><span class="highlight-p">(</span><span class="highlight-nx">child</span><span class="highlight-p">,</span> <span class="highlight-nx">cwg</span><span class="highlight-p">)</span>
+<span class="highlight-ln">6</span><span class="highlight-p">}</span>
+<span class="highlight-ln">7</span><span class="highlight-nx">cwg</span><span class="highlight-p">.</span><span class="highlight-nf">Wait</span><span class="highlight-p">()</span>
 </code></pre>
 <p>基准测试结果也印证了并行解析在超过 2 核的情况下性能提升很显著：</p>
-<pre><code class="highlight-chroma">BenchmarkLute-2   	     300	   5132936 ns/op	 2994687 B/op	   21333 allocs/op
-BenchmarkLute-4   	     300	   4351804 ns/op	 2995676 B/op	   21345 allocs/op
-BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>BenchmarkLute-2   	     300	   5132936 ns/op	 2994687 B/op	   21333 allocs/op
+<span class="highlight-ln">2</span>BenchmarkLute-4   	     300	   4351804 ns/op	 2995676 B/op	   21345 allocs/op
+<span class="highlight-ln">3</span>BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 </code></pre>
 <h3 id="其他选手">其他选手</h3>
 <p>在 CM 规范实现这条赛道上的选手并不多，甚至可以说是非常少。我整理了下 GitHub 上相关的项目，目前实现了 CM 规范的项目有这几个：</p>
@@ -322,7 +315,7 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 </table>
 <h3 id="后记">后记</h3>
 <h4 id="前车之鉴">前车之鉴</h4>
-<p>一开始走了一段弯路，我打算“一遍”就处理完（尽量减少回溯和遍历），并沿用 Go 模板引擎的解析策略，递归下降+词法分析和语法分析并行处理，输入文本一遍过完后就得到语法树。后来实在是编不下去了，因为规范细节的情况太繁琐，有的情况需要向前读取很多字符才能确定当前节点（或者说当前字符可能会改变已经解析的节点），所以用递归下降分析法是实现不了的，只能考虑通过多次迭代进行解析。</p>
+<p>一开始走了一段弯路，我打算“一遍”就处理完（尽量减少回溯和遍历），并沿用 Go 模板引擎的解析策略，递归下降 + 词法分析和语法分析并行处理，输入文本一遍过完后就得到语法树。后来实在是编不下去了，因为规范细节的情况太繁琐，有的情况需要向前读取很多字符才能确定当前节点（或者说当前字符可能会改变已经解析的节点），所以用递归下降分析法是实现不了的，只能考虑通过多次迭代进行解析。</p>
 <p>后来我还是老老实实按照规范附录部分介绍的解析策略进行实现。总之，心太急、忽略别人的经验之谈、自作聪明容易自讨苦吃。</p>
 <h4 id="参考实现">参考实现</h4>
 <p>自编解析策略翻车后，我基本有时间就看规范，反复看以确认细节并加深理解，特别是附录的解析策略部分。</p>
@@ -429,7 +422,7 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -458,11 +451,6 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -477,17 +465,17 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -521,7 +509,7 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1567062979327",
@@ -541,4 +529,4 @@ BenchmarkLute-8   	     300	   4168959 ns/op	 2996725 B/op	   21355 allocs/op
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 444ms, 2020/03/29 11:55:17 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 215ms, 2020/04/25 21:02:08 -->

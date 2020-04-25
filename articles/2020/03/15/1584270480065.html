@@ -2,17 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Windows 10 搭建 TensorFlow 试玩 fast-style-transfer - D 的个人博客</title><meta name="description" content="本文适用于 TensorFlow 新手搭建试玩“图片快速风格迁移”，系统环境： Windows 10 显卡 NVIDIA GTX 1070 安装 TensorFlow 环境 用 Anaconda 来装环境可以省很多事。 安装 Anaconda，步骤中有两个选项记得勾上（添加 PATH 环境变量和使用 Anaconda 作为 Python 环境） 现在的 Anaconda 似乎已经内置了国内的几个镜像源，所以不用手动切换镜像，用默认配置即可 如果已经折腾过，可以考虑用如下命令恢复： conda config --remove-key channels conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --set show_channel_urls yes 如果你像我一样只是个入门玩家（并且平时没装过 Python 环境），那就不用搞 conda 的环境隔离了。直接执行 conda install tensorflow-gpu，...."/><meta property="og:description" content="本文适用于 TensorFlow 新手搭建试玩“图片快速风格迁移”，系统环境： Windows 10 显卡 NVIDIA GTX 1070 安装 TensorFlow 环境 用 Anaconda 来装环境可以省很多事。 安装 Anaconda，步骤中有两个选项记得勾上（添加 PATH 环境变量和使用 Anaconda 作为 Python 环境） 现在的 Anaconda 似乎已经内置了国内的几个镜像源，所以不用手动切换镜像，用默认配置即可 如果已经折腾过，可以考虑用如下命令恢复： conda config --remove-key channels conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --set show_channel_urls yes 如果你像我一样只是个入门玩家（并且平时没装过 Python 环境），那就不用搞 conda 的环境隔离了。直接执行 conda install tensorflow-gpu，...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Windows 10 搭建 TensorFlow 试玩 fast-style-transfer - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/03/15/1584270480065.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Windows 10 搭建 TensorFlow 试玩 fast-style-transfer - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/03/15/1584270480065.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="创业的第二个冬天" href="https://88250.github.io/articles/2020/02/09/1581219038316.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+            <link rel="next" title="Markdown 解析原理详解和 Markdown AST 描述" href="https://88250.github.io/articles/2020/04/23/1587637426085.html">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -24,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -59,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -175,9 +169,9 @@ bold;">Sym</span></a>
 <li>
 <p>现在的 Anaconda 似乎已经内置了国内的几个镜像源，所以不用手动切换镜像，用默认配置即可</p>
 <p>如果已经折腾过，可以考虑用如下命令恢复：</p>
-<pre><code class="language-bash highlight-chroma">conda config --remove-key channels
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes
+<pre><code class="language-bash highlight-chroma"><span class="highlight-ln">1</span>conda config --remove-key channels
+<span class="highlight-ln">2</span>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+<span class="highlight-ln">3</span>conda config --set show_channel_urls yes
 </code></pre>
 </li>
 <li>
@@ -189,7 +183,7 @@ conda config --set show_channel_urls yes
 <h3 id="图片快速风格迁移">图片快速风格迁移</h3>
 <p>克隆<a href="https://github.com/lengstrom/fast-style-transfer" target="_blank">仓库</a>，然后<a href="https://drive.google.com/drive/folders/0B9jhaT37ydSyRk9UX0wwX3BpMzQ?usp=sharing" target="_blank">下载</a>已经训练好的风格，放到 model 目录下。</p>
 <p>弄好以后就可以开始玩了，仓库根目录下执行：</p>
-<pre><code class="language-bash highlight-chroma">python evaluate.py --checkpoint model/udnie.ckpt --in-path eval/ --out-path result/
+<pre><code class="language-bash highlight-chroma"><span class="highlight-ln">1</span>python evaluate.py --checkpoint model/udnie.ckpt --in-path eval/ --out-path result/
 </code></pre>
 <p>如果报错，请参考<a href="#%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86">报错处理</a>解决。</p>
 <p>如果要创建新风格，需要自己训练。先下载训练所需数据：</p>
@@ -199,34 +193,34 @@ conda config --set show_channel_urls yes
 </ul>
 <p>不要下其他的，就用 beta16 目录下的，否则后面训练时会报错。新手入门就按部就班吧，别折腾。</p>
 <p>下载好后将 train2014.zip 解压到 data 目录下，imagenet-vgg-verydeep-19.mat 直接放到 data 目录下，可参考根目录下的 setup.sh 脚本。</p>
-<pre><code class="highlight-chroma">├─data
-│  │  imagenet-vgg-verydeep-19.mat
-│  │
-│  ├─bin
-│  └─train2014
-│          COCO_train2014_000000000009.jpg
-│          COCO_train2014_000000000025.jpg
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>├─data
+<span class="highlight-ln">2</span>│  │  imagenet-vgg-verydeep-19.mat
+<span class="highlight-ln">3</span>│  │
+<span class="highlight-ln">4</span>│  ├─bin
+<span class="highlight-ln">5</span>│  └─train2014
+<span class="highlight-ln">6</span>│          COCO_train2014_000000000009.jpg
+<span class="highlight-ln">7</span>│          COCO_train2014_000000000025.jpg
 </code></pre>
 <p>然后根目录下执行：</p>
-<pre><code class="language-bash highlight-chroma">python style.py --style style/1.jpg --checkpoint-dir checkpoint --content-weight 1.5e1 --checkpoint-iterations <span class="highlight-m">1000</span> --batch-size <span class="highlight-m">12</span>
+<pre><code class="language-bash highlight-chroma"><span class="highlight-ln">1</span>python style.py --style style/1.jpg --checkpoint-dir checkpoint --content-weight 1.5e1 --checkpoint-iterations <span class="highlight-m">1000</span> --batch-size <span class="highlight-m">12</span>
 </code></pre>
 <p>大概经过 6 小时以后训练完成，在 checkpoint 目录下生成了模型文件：</p>
-<pre><code class="highlight-chroma">checkpoint
-fns.ckpt.data-00000-of-00001
-fns.ckpt.index
-fns.ckpt.meta
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>checkpoint
+<span class="highlight-ln">2</span>fns.ckpt.data-00000-of-00001
+<span class="highlight-ln">3</span>fns.ckpt.index
+<span class="highlight-ln">4</span>fns.ckpt.meta
 </code></pre>
 <p>将 fns.ckpt.meta 复制一个，重命名为 fns.ckpt，然后就可以使用评估方法来生成图片了：</p>
-<pre><code class="language-bash highlight-chroma">python evaluate.py --checkpoint checkpoint/fns.ckpt --in-path eval/ --out-path result/
+<pre><code class="language-bash highlight-chroma"><span class="highlight-ln">1</span>python evaluate.py --checkpoint checkpoint/fns.ckpt --in-path eval/ --out-path result/
 </code></pre>
 <h3 id="报错处理">报错处理</h3>
 <ol>
 <li><code>AttributeError: 'module' object has no attribute 'imread'</code>，执行：
-<pre><code class="language-bash highlight-chroma">pip install --upgrade <span class="highlight-nv">scipy</span><span class="highlight-o">==</span>1.1.0
+<pre><code class="language-bash highlight-chroma"><span class="highlight-ln">1</span>pip install --upgrade <span class="highlight-nv">scipy</span><span class="highlight-o">==</span>1.1.0
 </code></pre>
 </li>
 <li><code>ImportError: No module named moviepy.video.io.VideoFileClip</code>，执行：
-<pre><code class="language-bash highlight-chroma">pip install moviepy
+<pre><code class="language-bash highlight-chroma"><span class="highlight-ln">1</span>pip install moviepy
 </code></pre>
 </li>
 <li><code>cudaGetDevice() failed. Status: CUDA driver version is insufficient for runtime version</code>，升级显卡驱动就行了</li>
@@ -236,8 +230,8 @@ fns.ckpt.meta
 <ul>
 <li>
 <p><a href="https://github.com/anishathalye/neural-style" target="_blank">anishathalye/neural-style</a></p>
-<p>该仓库的输入是待处理图片+风格图片，边训练边生成，优点是方便切换风格，缺点是每次生成大概需要好几分钟。imagenet-vgg-verydeep-19.mat 和 train2014 可以用上面下载好的。</p>
-<pre><code class="language-bash highlight-chroma">python neural_style.py --content examples/test.png --styles examples/style/udnie.jpg --output test-result.jpg
+<p>该仓库的输入是待处理图片 + 风格图片，边训练边生成，优点是方便切换风格，缺点是每次生成大概需要好几分钟。imagenet-vgg-verydeep-19.mat 和 train2014 可以用上面下载好的。</p>
+<pre><code class="language-bash highlight-chroma"><span class="highlight-ln">1</span>python neural_style.py --content examples/test.png --styles examples/style/udnie.jpg --output test-result.jpg
 </code></pre>
 </li>
 <li>
@@ -299,7 +293,7 @@ fns.ckpt.meta
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -328,11 +322,6 @@ fns.ckpt.meta
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -347,17 +336,17 @@ fns.ckpt.meta
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -391,7 +380,7 @@ fns.ckpt.meta
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1584270480065",
@@ -411,4 +400,4 @@ fns.ckpt.meta
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 251ms, 2020/03/29 11:55:17 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 148ms, 2020/04/25 21:02:08 -->

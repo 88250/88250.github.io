@@ -2,18 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>模板引擎实现（一）词法分析 - D 的个人博客</title><meta name="description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/><meta property="og:description" content="如果你想实现模版引擎、编译器前端、文本解析器（比如 Markdown ）或想要了解它们的实现原理，请一定不要错过本系列的文章 😁 模板引擎实现（一）词法分析 另外，* 本系列的文章面向的是撸起袖子就开干的朋友，所以不会介绍基础理论，比如 DFA/NFA，算法复杂度等（确切的说是没法介绍理论，因为作者能力有限 😂）* 在使用到的术语/定义方面作者是认真查过资料并再三斟酌的，不会出现胡编乱造，请放心理解和使用 ✅* 本系列文章的对应项目是 freemarker.go（FreeMarker 的 golang 实现），欢迎大家关注点赞 🌟 本文介绍了词法分析的基本概念，主要参考 golang 的 text/template/parse 包源码进行解析。 词法分析 将面向源码的字符流转成 token 流的过程是词法分析。用“流”来描述主要说明了处理过程是有序和连续的。比如读取源码文件时是一个字符一个字符读取的，生成的 token 也是一个接一个的。 当我们在源码中看到 scanner、lex/le...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="模板引擎实现（一）词法分析 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/05/31/1496233258522.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="模板引擎实现（一）词法分析 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="ScaleIO 2.0 基础及安装纪要" href="https://88250.github.io/articles/2017/04/20/1492618091927.html">
             <link rel="next" title="Solo 支持 Hexo/Jekyll 数据导入" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -218,27 +211,27 @@ bold;">Sym</span></a>
 <p>词法分析中用到状态机是为了解决“当前 token 识别后下一步怎么处理”的问题。</p>
 <h4 id="switch-case">switch-case</h4>
 <p>传统状态机的实现是在状态处理函数中返回下一个待执行的状态：</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-k">for</span> <span class="highlight-nx">state</span> <span class="highlight-o">!=</span> <span class="highlight-kc">nil</span> <span class="highlight-p">{</span>
-	<span class="highlight-k">switch</span> <span class="highlight-nx">state</span> <span class="highlight-p">{</span>
-	<span class="highlight-k">case</span> <span class="highlight-nx">state1</span><span class="highlight-p">:</span>
-		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action1</span><span class="highlight-p">()</span>
-	<span class="highlight-k">case</span> <span class="highlight-nx">state2</span><span class="highlight-p">:</span>
-		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action2</span><span class="highlight-p">()</span>
-	<span class="highlight-k">case</span> <span class="highlight-nx">state3</span><span class="highlight-p">:</span>
-		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action3</span><span class="highlight-p">()</span>
-	<span class="highlight-p">}</span>
-<span class="highlight-p">}</span>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln"> 1</span><span class="highlight-k">for</span> <span class="highlight-nx">state</span> <span class="highlight-o">!=</span> <span class="highlight-kc">nil</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 2</span>	<span class="highlight-k">switch</span> <span class="highlight-nx">state</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 3</span>	<span class="highlight-k">case</span> <span class="highlight-nx">state1</span><span class="highlight-p">:</span>
+<span class="highlight-ln"> 4</span>		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action1</span><span class="highlight-p">()</span>
+<span class="highlight-ln"> 5</span>	<span class="highlight-k">case</span> <span class="highlight-nx">state2</span><span class="highlight-p">:</span>
+<span class="highlight-ln"> 6</span>		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action2</span><span class="highlight-p">()</span>
+<span class="highlight-ln"> 7</span>	<span class="highlight-k">case</span> <span class="highlight-nx">state3</span><span class="highlight-p">:</span>
+<span class="highlight-ln"> 8</span>		<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">action3</span><span class="highlight-p">()</span>
+<span class="highlight-ln"> 9</span>	<span class="highlight-p">}</span>
+<span class="highlight-ln">10</span><span class="highlight-p">}</span>
 </code></pre>
 <p>这是一个典型的<strong>命令式编程</strong>范式的过程化实现（也可以用面向对象实现，下面会提到）。</p>
 <h4 id="状态函数">状态函数</h4>
 <p>而 lex.go 的实现方式是通过“置换”下一个待执行的行为，将状态迁移的实现从<strong>状态</strong>决定改进为<strong>行为</strong>决定：</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-kd">type</span> <span class="highlight-nx">stateFn</span> <span class="highlight-kd">func</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span>
-<span class="highlight-kd">func</span> <span class="highlight-nf">action1</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span> <span class="highlight-p">{</span> <span class="highlight-k">return</span> <span class="highlight-nx">actionN</span> <span class="highlight-p">}</span>
-<span class="highlight-kd">func</span> <span class="highlight-nf">action2</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span> <span class="highlight-p">{</span> <span class="highlight-k">return</span> <span class="highlight-nx">actionM</span> <span class="highlight-p">}</span>
-
-<span class="highlight-k">for</span> <span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nx">action1</span><span class="highlight-p">;</span> <span class="highlight-nx">state</span> <span class="highlight-o">!=</span> <span class="highlight-kc">nil</span><span class="highlight-p">;</span> <span class="highlight-p">{</span>
-	<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">state</span><span class="highlight-p">()</span>
-<span class="highlight-p">}</span>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-kd">type</span> <span class="highlight-nx">stateFn</span> <span class="highlight-kd">func</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span>
+<span class="highlight-ln">2</span><span class="highlight-kd">func</span> <span class="highlight-nf">action1</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span> <span class="highlight-p">{</span> <span class="highlight-k">return</span> <span class="highlight-nx">actionN</span> <span class="highlight-p">}</span>
+<span class="highlight-ln">3</span><span class="highlight-kd">func</span> <span class="highlight-nf">action2</span><span class="highlight-p">()</span> <span class="highlight-nx">stateFn</span> <span class="highlight-p">{</span> <span class="highlight-k">return</span> <span class="highlight-nx">actionM</span> <span class="highlight-p">}</span>
+<span class="highlight-ln">4</span>
+<span class="highlight-ln">5</span><span class="highlight-k">for</span> <span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nx">action1</span><span class="highlight-p">;</span> <span class="highlight-nx">state</span> <span class="highlight-o">!=</span> <span class="highlight-kc">nil</span><span class="highlight-p">;</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">6</span>	<span class="highlight-nx">state</span> <span class="highlight-p">=</span> <span class="highlight-nf">state</span><span class="highlight-p">()</span>
+<span class="highlight-ln">7</span><span class="highlight-p">}</span>
 </code></pre>
 <p>这是<strong>声明式编程</strong>范式中函数式的典型实现，该实现的巧妙之处在于 <code>stateFn</code> 是递归定义的，函数的返回值是符合该签名的自身定义，整个状态变迁过程就是这个函数的迭代展开。</p>
 <h4 id="其他状态机实现">其他状态机实现</h4>
@@ -249,10 +242,10 @@ bold;">Sym</span></a>
 </ol>
 <h3 id="回退">回退</h3>
 <p>回退指的是当前字符读取后需要“退格”一下，比如读到一个字符 <code>'a'</code> 时，我们将进入到标识符处理函数。进入之前需要将 <code>a</code> 退格出来，以便在标识符处理函数里面能够完整读取。</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-k">case</span> <span class="highlight-nf">isAlphaNumeric</span><span class="highlight-p">(</span><span class="highlight-nx">r</span><span class="highlight-p">):</span>
-	<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nf">backup</span><span class="highlight-p">()</span> <span class="highlight-c1">// 退格
-</span><span class="highlight-c1"></span>
-	<span class="highlight-k">return</span> <span class="highlight-nx">lexIdentifier</span>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-k">case</span> <span class="highlight-nf">isAlphaNumeric</span><span class="highlight-p">(</span><span class="highlight-nx">r</span><span class="highlight-p">):</span>
+<span class="highlight-ln">2</span>	<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nf">backup</span><span class="highlight-p">()</span> <span class="highlight-c1">// 退格
+</span><span class="highlight-ln">3</span><span class="highlight-c1"></span>
+<span class="highlight-ln">4</span>	<span class="highlight-k">return</span> <span class="highlight-nx">lexIdentifier</span>
 </code></pre>
 <h2 id="并发分析">并发分析</h2>
 <p><code>text/template/parse</code> 使用 goroutine 并发执行词法分析和语法分析。parser 通过 channel 来接收 lexer 处理好的 tokens，每当一个新的 token 产生，parser 就会收到并处理，生成 node，构建 ast。</p>
@@ -344,7 +337,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -373,11 +366,6 @@ bold;">Sym</span></a>
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -392,17 +380,17 @@ bold;">Sym</span></a>
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -436,7 +424,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1496233258522",
@@ -456,4 +444,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 246ms, 2020/03/29 11:55:20 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 149ms, 2020/04/25 21:02:09 -->

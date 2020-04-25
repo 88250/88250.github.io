@@ -2,18 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>MyBatis MySQL Oracle 分页插件 - D 的个人博客</title><meta name="description" content="MyBatis 的 MySQL、Oracle 分页插件，使用相同的分页接口。"/><meta property="og:description" content="MyBatis 的 MySQL、Oracle 分页插件，使用相同的分页接口。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="MyBatis MySQL Oracle 分页插件 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/mybatis-mysql-oracle-paging-plugin?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="MyBatis MySQL Oracle 分页插件 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/mybatis-mysql-oracle-paging-plugin">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="即时消息协议预研" href="https://88250.github.io/xmpp-simple-irc-psyc">
             <link rel="next" title="应用开发积累" href="https://88250.github.io/app-dev-accumulation">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -169,188 +162,188 @@ bold;">Sym</span></a>
  * @version 1.0.1.0, Oct 6, 2012
  */
 public final class Page implements Serializable {
-<pre><code class="highlight-chroma">/**
- * 默认的序列化版本 id.
- */
-private static final long serialVersionUID = 1L;
-/**
- * 分页查询开始记录位置.
- */
-private int               begin;
-/**
- * 分页查看下结束位置.
- */
-private int               end;
-/**
- * 每页显示记录数.
- */
-private int               length           = 20;
-/**
- * 查询结果总记录数.
- */
-private int               totalRecords;
-/**
- * 当前页码.
- */
-private int               pageNo;
-/**
- * 总共页数.
- */
-private int               pageCount;
-
-public Page() {
-}
-
-/**
- * 构造函数.
- * 
- * @param begin
- * @param length
- */
-public Page(int begin, int length) {
-    this.begin = begin;
-    this.length = length;
-    this.end = this.begin + this.length;
-    this.pageNo = (int) Math.floor((this.begin * 1.0d) / this.length) + 1;
-}
-
-/**
- * @param begin
- * @param length
- * @param count
- */
-public Page(int begin, int length, int totalRecords) {
-    this(begin, length);
-    this.totalRecords = totalRecords;
-}
-
-/**
- * 设置页数，自动计算数据范围.
- * 
- * @param pageNo
- */
-public Page(int pageNo) {
-    this.pageNo = pageNo;
-    pageNo = pageNo &amp;gt; 0 ? pageNo : 1;
-    this.begin = this.length * (pageNo - 1);
-    this.end = this.length * pageNo;
-}
-
-/**
- * @return the begin
- */
-public int getBegin() {
-    return begin;
-}
-
-/**
- * @return the end
- */
-public int getEnd() {
-    return end;
-}
-
-/**
- * @param end
- *            the end to set
- */
-public void setEnd(int end) {
-    this.end = end;
-}
-
-/**
- * @param begin
- *            the begin to set
- */
-public void setBegin(int begin) {
-    this.begin = begin;
-    if (this.length != 0) {
-        this.pageNo = (int) Math.floor((this.begin * 1.0d) / this.length) + 1;
-    }
-}
-
-/**
- * @return the length
- */
-public int getLength() {
-    return length;
-}
-
-/**
- * @param length
- *            the length to set
- */
-public void setLength(int length) {
-    this.length = length;
-    if (this.begin != 0) {
-        this.pageNo = (int) Math.floor((this.begin * 1.0d) / this.length) + 1;
-    }
-}
-
-/**
- * @return the totalRecords
- */
-public int getTotalRecords() {
-    return totalRecords;
-}
-
-/**
- * @param totalRecords
- *            the totalRecords to set
- */
-public void setTotalRecords(int totalRecords) {
-    this.totalRecords = totalRecords;
-    this.pageCount = (int) Math.floor((this.totalRecords * 1.0d) / this.length);
-    if (this.totalRecords % this.length != 0) {
-        this.pageCount++;
-    }
-}
-
-/**
- * @return the pageNo
- */
-public int getPageNo() {
-    return pageNo;
-}
-
-/**
- * @param pageNo
- *            the pageNo to set
- */
-public void setPageNo(int pageNo) {
-    this.pageNo = pageNo;
-    pageNo = pageNo &amp;gt; 0 ? pageNo : 1;
-    this.begin = this.length * (pageNo - 1);
-    this.end = this.length * pageNo;
-}
-
-/**
- * @return the pageCount
- */
-public int getPageCount() {
-    if (pageCount == 0) {
-        return 1;
-    }
-    return pageCount;
-}
-
-/**
- * @param pageCount
- *            the pageCount to set
- */
-public void setPageCount(int pageCount) {
-    this.pageCount = pageCount;
-}
-
-@Override
-public String toString() {
-    final StringBuilder builder = new StringBuilder("begin=").append(begin).append(", end=")
-            .append(end).append(", length=").append(length).append(", totalRecords=").append(
-                    totalRecords).append(", pageNo=").append(pageNo).append(", pageCount=")
-            .append(pageCount);
-
-    return builder.toString();
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln">  1</span>/**
+<span class="highlight-ln">  2</span> * 默认的序列化版本 id.
+<span class="highlight-ln">  3</span> */
+<span class="highlight-ln">  4</span>private static final long serialVersionUID = 1L;
+<span class="highlight-ln">  5</span>/**
+<span class="highlight-ln">  6</span> * 分页查询开始记录位置.
+<span class="highlight-ln">  7</span> */
+<span class="highlight-ln">  8</span>private int               begin;
+<span class="highlight-ln">  9</span>/**
+<span class="highlight-ln"> 10</span> * 分页查看下结束位置.
+<span class="highlight-ln"> 11</span> */
+<span class="highlight-ln"> 12</span>private int               end;
+<span class="highlight-ln"> 13</span>/**
+<span class="highlight-ln"> 14</span> * 每页显示记录数.
+<span class="highlight-ln"> 15</span> */
+<span class="highlight-ln"> 16</span>private int               length           = 20;
+<span class="highlight-ln"> 17</span>/**
+<span class="highlight-ln"> 18</span> * 查询结果总记录数.
+<span class="highlight-ln"> 19</span> */
+<span class="highlight-ln"> 20</span>private int               totalRecords;
+<span class="highlight-ln"> 21</span>/**
+<span class="highlight-ln"> 22</span> * 当前页码.
+<span class="highlight-ln"> 23</span> */
+<span class="highlight-ln"> 24</span>private int               pageNo;
+<span class="highlight-ln"> 25</span>/**
+<span class="highlight-ln"> 26</span> * 总共页数.
+<span class="highlight-ln"> 27</span> */
+<span class="highlight-ln"> 28</span>private int               pageCount;
+<span class="highlight-ln"> 29</span>
+<span class="highlight-ln"> 30</span>public Page() {
+<span class="highlight-ln"> 31</span>}
+<span class="highlight-ln"> 32</span>
+<span class="highlight-ln"> 33</span>/**
+<span class="highlight-ln"> 34</span> * 构造函数.
+<span class="highlight-ln"> 35</span> * 
+<span class="highlight-ln"> 36</span> * @param begin
+<span class="highlight-ln"> 37</span> * @param length
+<span class="highlight-ln"> 38</span> */
+<span class="highlight-ln"> 39</span>public Page(int begin, int length) {
+<span class="highlight-ln"> 40</span>    this.begin = begin;
+<span class="highlight-ln"> 41</span>    this.length = length;
+<span class="highlight-ln"> 42</span>    this.end = this.begin + this.length;
+<span class="highlight-ln"> 43</span>    this.pageNo = (int) Math.floor((this.begin * 1.0d) / this.length) + 1;
+<span class="highlight-ln"> 44</span>}
+<span class="highlight-ln"> 45</span>
+<span class="highlight-ln"> 46</span>/**
+<span class="highlight-ln"> 47</span> * @param begin
+<span class="highlight-ln"> 48</span> * @param length
+<span class="highlight-ln"> 49</span> * @param count
+<span class="highlight-ln"> 50</span> */
+<span class="highlight-ln"> 51</span>public Page(int begin, int length, int totalRecords) {
+<span class="highlight-ln"> 52</span>    this(begin, length);
+<span class="highlight-ln"> 53</span>    this.totalRecords = totalRecords;
+<span class="highlight-ln"> 54</span>}
+<span class="highlight-ln"> 55</span>
+<span class="highlight-ln"> 56</span>/**
+<span class="highlight-ln"> 57</span> * 设置页数，自动计算数据范围.
+<span class="highlight-ln"> 58</span> * 
+<span class="highlight-ln"> 59</span> * @param pageNo
+<span class="highlight-ln"> 60</span> */
+<span class="highlight-ln"> 61</span>public Page(int pageNo) {
+<span class="highlight-ln"> 62</span>    this.pageNo = pageNo;
+<span class="highlight-ln"> 63</span>    pageNo = pageNo &amp;gt; 0 ? pageNo : 1;
+<span class="highlight-ln"> 64</span>    this.begin = this.length * (pageNo - 1);
+<span class="highlight-ln"> 65</span>    this.end = this.length * pageNo;
+<span class="highlight-ln"> 66</span>}
+<span class="highlight-ln"> 67</span>
+<span class="highlight-ln"> 68</span>/**
+<span class="highlight-ln"> 69</span> * @return the begin
+<span class="highlight-ln"> 70</span> */
+<span class="highlight-ln"> 71</span>public int getBegin() {
+<span class="highlight-ln"> 72</span>    return begin;
+<span class="highlight-ln"> 73</span>}
+<span class="highlight-ln"> 74</span>
+<span class="highlight-ln"> 75</span>/**
+<span class="highlight-ln"> 76</span> * @return the end
+<span class="highlight-ln"> 77</span> */
+<span class="highlight-ln"> 78</span>public int getEnd() {
+<span class="highlight-ln"> 79</span>    return end;
+<span class="highlight-ln"> 80</span>}
+<span class="highlight-ln"> 81</span>
+<span class="highlight-ln"> 82</span>/**
+<span class="highlight-ln"> 83</span> * @param end
+<span class="highlight-ln"> 84</span> *            the end to set
+<span class="highlight-ln"> 85</span> */
+<span class="highlight-ln"> 86</span>public void setEnd(int end) {
+<span class="highlight-ln"> 87</span>    this.end = end;
+<span class="highlight-ln"> 88</span>}
+<span class="highlight-ln"> 89</span>
+<span class="highlight-ln"> 90</span>/**
+<span class="highlight-ln"> 91</span> * @param begin
+<span class="highlight-ln"> 92</span> *            the begin to set
+<span class="highlight-ln"> 93</span> */
+<span class="highlight-ln"> 94</span>public void setBegin(int begin) {
+<span class="highlight-ln"> 95</span>    this.begin = begin;
+<span class="highlight-ln"> 96</span>    if (this.length != 0) {
+<span class="highlight-ln"> 97</span>        this.pageNo = (int) Math.floor((this.begin * 1.0d) / this.length) + 1;
+<span class="highlight-ln"> 98</span>    }
+<span class="highlight-ln"> 99</span>}
+<span class="highlight-ln">100</span>
+<span class="highlight-ln">101</span>/**
+<span class="highlight-ln">102</span> * @return the length
+<span class="highlight-ln">103</span> */
+<span class="highlight-ln">104</span>public int getLength() {
+<span class="highlight-ln">105</span>    return length;
+<span class="highlight-ln">106</span>}
+<span class="highlight-ln">107</span>
+<span class="highlight-ln">108</span>/**
+<span class="highlight-ln">109</span> * @param length
+<span class="highlight-ln">110</span> *            the length to set
+<span class="highlight-ln">111</span> */
+<span class="highlight-ln">112</span>public void setLength(int length) {
+<span class="highlight-ln">113</span>    this.length = length;
+<span class="highlight-ln">114</span>    if (this.begin != 0) {
+<span class="highlight-ln">115</span>        this.pageNo = (int) Math.floor((this.begin * 1.0d) / this.length) + 1;
+<span class="highlight-ln">116</span>    }
+<span class="highlight-ln">117</span>}
+<span class="highlight-ln">118</span>
+<span class="highlight-ln">119</span>/**
+<span class="highlight-ln">120</span> * @return the totalRecords
+<span class="highlight-ln">121</span> */
+<span class="highlight-ln">122</span>public int getTotalRecords() {
+<span class="highlight-ln">123</span>    return totalRecords;
+<span class="highlight-ln">124</span>}
+<span class="highlight-ln">125</span>
+<span class="highlight-ln">126</span>/**
+<span class="highlight-ln">127</span> * @param totalRecords
+<span class="highlight-ln">128</span> *            the totalRecords to set
+<span class="highlight-ln">129</span> */
+<span class="highlight-ln">130</span>public void setTotalRecords(int totalRecords) {
+<span class="highlight-ln">131</span>    this.totalRecords = totalRecords;
+<span class="highlight-ln">132</span>    this.pageCount = (int) Math.floor((this.totalRecords * 1.0d) / this.length);
+<span class="highlight-ln">133</span>    if (this.totalRecords % this.length != 0) {
+<span class="highlight-ln">134</span>        this.pageCount++;
+<span class="highlight-ln">135</span>    }
+<span class="highlight-ln">136</span>}
+<span class="highlight-ln">137</span>
+<span class="highlight-ln">138</span>/**
+<span class="highlight-ln">139</span> * @return the pageNo
+<span class="highlight-ln">140</span> */
+<span class="highlight-ln">141</span>public int getPageNo() {
+<span class="highlight-ln">142</span>    return pageNo;
+<span class="highlight-ln">143</span>}
+<span class="highlight-ln">144</span>
+<span class="highlight-ln">145</span>/**
+<span class="highlight-ln">146</span> * @param pageNo
+<span class="highlight-ln">147</span> *            the pageNo to set
+<span class="highlight-ln">148</span> */
+<span class="highlight-ln">149</span>public void setPageNo(int pageNo) {
+<span class="highlight-ln">150</span>    this.pageNo = pageNo;
+<span class="highlight-ln">151</span>    pageNo = pageNo &amp;gt; 0 ? pageNo : 1;
+<span class="highlight-ln">152</span>    this.begin = this.length * (pageNo - 1);
+<span class="highlight-ln">153</span>    this.end = this.length * pageNo;
+<span class="highlight-ln">154</span>}
+<span class="highlight-ln">155</span>
+<span class="highlight-ln">156</span>/**
+<span class="highlight-ln">157</span> * @return the pageCount
+<span class="highlight-ln">158</span> */
+<span class="highlight-ln">159</span>public int getPageCount() {
+<span class="highlight-ln">160</span>    if (pageCount == 0) {
+<span class="highlight-ln">161</span>        return 1;
+<span class="highlight-ln">162</span>    }
+<span class="highlight-ln">163</span>    return pageCount;
+<span class="highlight-ln">164</span>}
+<span class="highlight-ln">165</span>
+<span class="highlight-ln">166</span>/**
+<span class="highlight-ln">167</span> * @param pageCount
+<span class="highlight-ln">168</span> *            the pageCount to set
+<span class="highlight-ln">169</span> */
+<span class="highlight-ln">170</span>public void setPageCount(int pageCount) {
+<span class="highlight-ln">171</span>    this.pageCount = pageCount;
+<span class="highlight-ln">172</span>}
+<span class="highlight-ln">173</span>
+<span class="highlight-ln">174</span>@Override
+<span class="highlight-ln">175</span>public String toString() {
+<span class="highlight-ln">176</span>    final StringBuilder builder = new StringBuilder("begin=").append(begin).append(", end=")
+<span class="highlight-ln">177</span>            .append(end).append(", length=").append(length).append(", totalRecords=").append(
+<span class="highlight-ln">178</span>                    totalRecords).append(", pageNo=").append(pageNo).append(", pageCount=")
+<span class="highlight-ln">179</span>            .append(pageCount);
+<span class="highlight-ln">180</span>
+<span class="highlight-ln">181</span>    return builder.toString();
+<span class="highlight-ln">182</span>}
 </code></pre>
 <p>}</p></pre><p></p>
 <p>&nbsp;</p>
@@ -361,99 +354,99 @@ public String toString() {
  * @version 1.0.0.0, May 31, 2012
  */
 public class OraclePaginationPlugin extends PluginAdapter {
-<pre><code class="highlight-chroma">@Override
-public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,
-        IntrospectedTable introspectedTable) {
-    // add field, getter, setter for limit clause
-    addPage(topLevelClass, introspectedTable, "page");
-    return super.modelExampleClassGenerated(topLevelClass, introspectedTable);
-}
-
-@Override
-public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
-    XmlElement parentElement = document.getRootElement();
-
-    // 产生分页语句前半部分
-    XmlElement paginationPrefixElement = new XmlElement("sql");
-    paginationPrefixElement.addAttribute(new Attribute("id", "OracleDialectPrefix"));
-    XmlElement pageStart = new XmlElement("if");
-    pageStart.addAttribute(new Attribute("test", "page != null"));
-    pageStart.addElement(new TextElement(
-            "select * from ( select row_.*, rownum rownum_ from ( "));
-    paginationPrefixElement.addElement(pageStart);
-    parentElement.addElement(paginationPrefixElement);
-
-    // 产生分页语句后半部分
-    XmlElement paginationSuffixElement = new XmlElement("sql");
-    paginationSuffixElement.addAttribute(new Attribute("id", "OracleDialectSuffix"));
-    XmlElement pageEnd = new XmlElement("if");
-    pageEnd.addAttribute(new Attribute("test", "page != null"));
-    pageEnd
-            .addElement(new TextElement(
-                    "&amp;lt;![CDATA[ ) row_  where rownum &amp;lt;= #{page.end} ) where rownum_ &amp;gt; #{page.begin}  ]]&amp;gt;"));
-    paginationSuffixElement.addElement(pageEnd);
-    parentElement.addElement(paginationSuffixElement);
-
-    return super.sqlMapDocumentGenerated(document, introspectedTable);
-}
-
-@Override
-public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element,
-        IntrospectedTable introspectedTable) {
-
-    XmlElement pageStart = new XmlElement("include"); //$NON-NLS-1$   
-    pageStart.addAttribute(new Attribute("refid", "OracleDialectPrefix"));
-    element.getElements().add(0, pageStart);
-
-    XmlElement isNotNullElement = new XmlElement("include"); //$NON-NLS-1$   
-    isNotNullElement.addAttribute(new Attribute("refid", "OracleDialectSuffix"));
-    element.getElements().add(isNotNullElement);
-
-    return super.sqlMapUpdateByExampleWithoutBLOBsElementGenerated(element, introspectedTable);
-}
-
-/**
- * @param topLevelClass
- * @param introspectedTable
- * @param name
- */
-private void addPage(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
-        String name) {
-    topLevelClass.addImportedType(new FullyQualifiedJavaType(
-            "com.yuanxin.framework.mybatis.Page"));
-    CommentGenerator commentGenerator = context.getCommentGenerator();
-    Field field = new Field();
-    field.setVisibility(JavaVisibility.PROTECTED);
-    field.setType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
-    field.setName(name);
-    commentGenerator.addFieldComment(field, introspectedTable);
-    topLevelClass.addField(field);
-    char c = name.charAt(0);
-    String camel = Character.toUpperCase(c) + name.substring(1);
-    Method method = new Method();
-    method.setVisibility(JavaVisibility.PUBLIC);
-    method.setName("set" + camel);
-    method.addParameter(new Parameter(new FullyQualifiedJavaType(
-            "com.yuanxin.framework.mybatis.Page"), name));
-    method.addBodyLine("this." + name + "=" + name + ";");
-    commentGenerator.addGeneralMethodComment(method, introspectedTable);
-    topLevelClass.addMethod(method);
-    method = new Method();
-    method.setVisibility(JavaVisibility.PUBLIC);
-    method.setReturnType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
-    method.setName("get" + camel);
-    method.addBodyLine("return " + name + ";");
-    commentGenerator.addGeneralMethodComment(method, introspectedTable);
-    topLevelClass.addMethod(method);
-}
-
-/**
- * This plugin is always valid - no properties are required
- */
-@Override
-public boolean validate(List&amp;lt;String&amp;gt; warnings) {
-    return true;
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>@Override
+<span class="highlight-ln"> 2</span>public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,
+<span class="highlight-ln"> 3</span>        IntrospectedTable introspectedTable) {
+<span class="highlight-ln"> 4</span>    // add field, getter, setter for limit clause
+<span class="highlight-ln"> 5</span>    addPage(topLevelClass, introspectedTable, "page");
+<span class="highlight-ln"> 6</span>    return super.modelExampleClassGenerated(topLevelClass, introspectedTable);
+<span class="highlight-ln"> 7</span>}
+<span class="highlight-ln"> 8</span>
+<span class="highlight-ln"> 9</span>@Override
+<span class="highlight-ln">10</span>public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
+<span class="highlight-ln">11</span>    XmlElement parentElement = document.getRootElement();
+<span class="highlight-ln">12</span>
+<span class="highlight-ln">13</span>    // 产生分页语句前半部分
+<span class="highlight-ln">14</span>    XmlElement paginationPrefixElement = new XmlElement("sql");
+<span class="highlight-ln">15</span>    paginationPrefixElement.addAttribute(new Attribute("id", "OracleDialectPrefix"));
+<span class="highlight-ln">16</span>    XmlElement pageStart = new XmlElement("if");
+<span class="highlight-ln">17</span>    pageStart.addAttribute(new Attribute("test", "page != null"));
+<span class="highlight-ln">18</span>    pageStart.addElement(new TextElement(
+<span class="highlight-ln">19</span>            "select * from ( select row_.*, rownum rownum_ from ( "));
+<span class="highlight-ln">20</span>    paginationPrefixElement.addElement(pageStart);
+<span class="highlight-ln">21</span>    parentElement.addElement(paginationPrefixElement);
+<span class="highlight-ln">22</span>
+<span class="highlight-ln">23</span>    // 产生分页语句后半部分
+<span class="highlight-ln">24</span>    XmlElement paginationSuffixElement = new XmlElement("sql");
+<span class="highlight-ln">25</span>    paginationSuffixElement.addAttribute(new Attribute("id", "OracleDialectSuffix"));
+<span class="highlight-ln">26</span>    XmlElement pageEnd = new XmlElement("if");
+<span class="highlight-ln">27</span>    pageEnd.addAttribute(new Attribute("test", "page != null"));
+<span class="highlight-ln">28</span>    pageEnd
+<span class="highlight-ln">29</span>            .addElement(new TextElement(
+<span class="highlight-ln">30</span>                    "&amp;lt;![CDATA[ ) row_  where rownum &amp;lt;= #{page.end} ) where rownum_ &amp;gt; #{page.begin}  ]]&amp;gt;"));
+<span class="highlight-ln">31</span>    paginationSuffixElement.addElement(pageEnd);
+<span class="highlight-ln">32</span>    parentElement.addElement(paginationSuffixElement);
+<span class="highlight-ln">33</span>
+<span class="highlight-ln">34</span>    return super.sqlMapDocumentGenerated(document, introspectedTable);
+<span class="highlight-ln">35</span>}
+<span class="highlight-ln">36</span>
+<span class="highlight-ln">37</span>@Override
+<span class="highlight-ln">38</span>public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element,
+<span class="highlight-ln">39</span>        IntrospectedTable introspectedTable) {
+<span class="highlight-ln">40</span>
+<span class="highlight-ln">41</span>    XmlElement pageStart = new XmlElement("include"); //$NON-NLS-1$   
+<span class="highlight-ln">42</span>    pageStart.addAttribute(new Attribute("refid", "OracleDialectPrefix"));
+<span class="highlight-ln">43</span>    element.getElements().add(0, pageStart);
+<span class="highlight-ln">44</span>
+<span class="highlight-ln">45</span>    XmlElement isNotNullElement = new XmlElement("include"); //$NON-NLS-1$   
+<span class="highlight-ln">46</span>    isNotNullElement.addAttribute(new Attribute("refid", "OracleDialectSuffix"));
+<span class="highlight-ln">47</span>    element.getElements().add(isNotNullElement);
+<span class="highlight-ln">48</span>
+<span class="highlight-ln">49</span>    return super.sqlMapUpdateByExampleWithoutBLOBsElementGenerated(element, introspectedTable);
+<span class="highlight-ln">50</span>}
+<span class="highlight-ln">51</span>
+<span class="highlight-ln">52</span>/**
+<span class="highlight-ln">53</span> * @param topLevelClass
+<span class="highlight-ln">54</span> * @param introspectedTable
+<span class="highlight-ln">55</span> * @param name
+<span class="highlight-ln">56</span> */
+<span class="highlight-ln">57</span>private void addPage(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
+<span class="highlight-ln">58</span>        String name) {
+<span class="highlight-ln">59</span>    topLevelClass.addImportedType(new FullyQualifiedJavaType(
+<span class="highlight-ln">60</span>            "com.yuanxin.framework.mybatis.Page"));
+<span class="highlight-ln">61</span>    CommentGenerator commentGenerator = context.getCommentGenerator();
+<span class="highlight-ln">62</span>    Field field = new Field();
+<span class="highlight-ln">63</span>    field.setVisibility(JavaVisibility.PROTECTED);
+<span class="highlight-ln">64</span>    field.setType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
+<span class="highlight-ln">65</span>    field.setName(name);
+<span class="highlight-ln">66</span>    commentGenerator.addFieldComment(field, introspectedTable);
+<span class="highlight-ln">67</span>    topLevelClass.addField(field);
+<span class="highlight-ln">68</span>    char c = name.charAt(0);
+<span class="highlight-ln">69</span>    String camel = Character.toUpperCase(c) + name.substring(1);
+<span class="highlight-ln">70</span>    Method method = new Method();
+<span class="highlight-ln">71</span>    method.setVisibility(JavaVisibility.PUBLIC);
+<span class="highlight-ln">72</span>    method.setName("set" + camel);
+<span class="highlight-ln">73</span>    method.addParameter(new Parameter(new FullyQualifiedJavaType(
+<span class="highlight-ln">74</span>            "com.yuanxin.framework.mybatis.Page"), name));
+<span class="highlight-ln">75</span>    method.addBodyLine("this." + name + "=" + name + ";");
+<span class="highlight-ln">76</span>    commentGenerator.addGeneralMethodComment(method, introspectedTable);
+<span class="highlight-ln">77</span>    topLevelClass.addMethod(method);
+<span class="highlight-ln">78</span>    method = new Method();
+<span class="highlight-ln">79</span>    method.setVisibility(JavaVisibility.PUBLIC);
+<span class="highlight-ln">80</span>    method.setReturnType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
+<span class="highlight-ln">81</span>    method.setName("get" + camel);
+<span class="highlight-ln">82</span>    method.addBodyLine("return " + name + ";");
+<span class="highlight-ln">83</span>    commentGenerator.addGeneralMethodComment(method, introspectedTable);
+<span class="highlight-ln">84</span>    topLevelClass.addMethod(method);
+<span class="highlight-ln">85</span>}
+<span class="highlight-ln">86</span>
+<span class="highlight-ln">87</span>/**
+<span class="highlight-ln">88</span> * This plugin is always valid - no properties are required
+<span class="highlight-ln">89</span> */
+<span class="highlight-ln">90</span>@Override
+<span class="highlight-ln">91</span>public boolean validate(List&amp;lt;String&amp;gt; warnings) {
+<span class="highlight-ln">92</span>    return true;
+<span class="highlight-ln">93</span>}
 </code></pre>
 <p>}</p></pre><p></p>
 <p>&nbsp;</p>
@@ -464,66 +457,66 @@ public boolean validate(List&amp;lt;String&amp;gt; warnings) {
  * @version 1.0.0.1, Oct 10, 2012
  */
 public final class MySQLPaginationPlugin extends PluginAdapter {
-<pre><code class="highlight-chroma">@Override
-public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,
-        IntrospectedTable introspectedTable) {
-    // add field, getter, setter for limit clause
-    addPage(topLevelClass, introspectedTable, "page");
-    return super.modelExampleClassGenerated(topLevelClass, introspectedTable);
-}
-
-@Override
-public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element,
-        IntrospectedTable introspectedTable) {
-    XmlElement page = new XmlElement("if");
-    page.addAttribute(new Attribute("test", "page != null"));
-    page.addElement(new TextElement("limit #{page.begin} , #{page.length}"));
-    element.addElement(page);
-
-    return super.sqlMapUpdateByExampleWithoutBLOBsElementGenerated(element, introspectedTable);
-}
-
-/**
- * @param topLevelClass
- * @param introspectedTable
- * @param name
- */
-private void addPage(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
-        String name) {
-    topLevelClass.addImportedType(new FullyQualifiedJavaType(
-            "com.yuanxin.framework.mybatis.Page"));
-    CommentGenerator commentGenerator = context.getCommentGenerator();
-    Field field = new Field();
-    field.setVisibility(JavaVisibility.PROTECTED);
-    field.setType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
-    field.setName(name);
-    commentGenerator.addFieldComment(field, introspectedTable);
-    topLevelClass.addField(field);
-    char c = name.charAt(0);
-    String camel = Character.toUpperCase(c) + name.substring(1);
-    Method method = new Method();
-    method.setVisibility(JavaVisibility.PUBLIC);
-    method.setName("set" + camel);
-    method.addParameter(new Parameter(new FullyQualifiedJavaType(
-            "com.yuanxin.framework.mybatis.Page"), name));
-    method.addBodyLine("this." + name + "=" + name + ";");
-    commentGenerator.addGeneralMethodComment(method, introspectedTable);
-    topLevelClass.addMethod(method);
-    method = new Method();
-    method.setVisibility(JavaVisibility.PUBLIC);
-    method.setReturnType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
-    method.setName("get" + camel);
-    method.addBodyLine("return " + name + ";");
-    commentGenerator.addGeneralMethodComment(method, introspectedTable);
-    topLevelClass.addMethod(method);
-}
-
-/**
- * This plugin is always valid - no properties are required
- */
-public boolean validate(List&amp;lt;String&amp;gt; warnings) {
-    return true;
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>@Override
+<span class="highlight-ln"> 2</span>public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,
+<span class="highlight-ln"> 3</span>        IntrospectedTable introspectedTable) {
+<span class="highlight-ln"> 4</span>    // add field, getter, setter for limit clause
+<span class="highlight-ln"> 5</span>    addPage(topLevelClass, introspectedTable, "page");
+<span class="highlight-ln"> 6</span>    return super.modelExampleClassGenerated(topLevelClass, introspectedTable);
+<span class="highlight-ln"> 7</span>}
+<span class="highlight-ln"> 8</span>
+<span class="highlight-ln"> 9</span>@Override
+<span class="highlight-ln">10</span>public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element,
+<span class="highlight-ln">11</span>        IntrospectedTable introspectedTable) {
+<span class="highlight-ln">12</span>    XmlElement page = new XmlElement("if");
+<span class="highlight-ln">13</span>    page.addAttribute(new Attribute("test", "page != null"));
+<span class="highlight-ln">14</span>    page.addElement(new TextElement("limit #{page.begin} , #{page.length}"));
+<span class="highlight-ln">15</span>    element.addElement(page);
+<span class="highlight-ln">16</span>
+<span class="highlight-ln">17</span>    return super.sqlMapUpdateByExampleWithoutBLOBsElementGenerated(element, introspectedTable);
+<span class="highlight-ln">18</span>}
+<span class="highlight-ln">19</span>
+<span class="highlight-ln">20</span>/**
+<span class="highlight-ln">21</span> * @param topLevelClass
+<span class="highlight-ln">22</span> * @param introspectedTable
+<span class="highlight-ln">23</span> * @param name
+<span class="highlight-ln">24</span> */
+<span class="highlight-ln">25</span>private void addPage(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
+<span class="highlight-ln">26</span>        String name) {
+<span class="highlight-ln">27</span>    topLevelClass.addImportedType(new FullyQualifiedJavaType(
+<span class="highlight-ln">28</span>            "com.yuanxin.framework.mybatis.Page"));
+<span class="highlight-ln">29</span>    CommentGenerator commentGenerator = context.getCommentGenerator();
+<span class="highlight-ln">30</span>    Field field = new Field();
+<span class="highlight-ln">31</span>    field.setVisibility(JavaVisibility.PROTECTED);
+<span class="highlight-ln">32</span>    field.setType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
+<span class="highlight-ln">33</span>    field.setName(name);
+<span class="highlight-ln">34</span>    commentGenerator.addFieldComment(field, introspectedTable);
+<span class="highlight-ln">35</span>    topLevelClass.addField(field);
+<span class="highlight-ln">36</span>    char c = name.charAt(0);
+<span class="highlight-ln">37</span>    String camel = Character.toUpperCase(c) + name.substring(1);
+<span class="highlight-ln">38</span>    Method method = new Method();
+<span class="highlight-ln">39</span>    method.setVisibility(JavaVisibility.PUBLIC);
+<span class="highlight-ln">40</span>    method.setName("set" + camel);
+<span class="highlight-ln">41</span>    method.addParameter(new Parameter(new FullyQualifiedJavaType(
+<span class="highlight-ln">42</span>            "com.yuanxin.framework.mybatis.Page"), name));
+<span class="highlight-ln">43</span>    method.addBodyLine("this." + name + "=" + name + ";");
+<span class="highlight-ln">44</span>    commentGenerator.addGeneralMethodComment(method, introspectedTable);
+<span class="highlight-ln">45</span>    topLevelClass.addMethod(method);
+<span class="highlight-ln">46</span>    method = new Method();
+<span class="highlight-ln">47</span>    method.setVisibility(JavaVisibility.PUBLIC);
+<span class="highlight-ln">48</span>    method.setReturnType(new FullyQualifiedJavaType("com.yuanxin.framework.mybatis.Page"));
+<span class="highlight-ln">49</span>    method.setName("get" + camel);
+<span class="highlight-ln">50</span>    method.addBodyLine("return " + name + ";");
+<span class="highlight-ln">51</span>    commentGenerator.addGeneralMethodComment(method, introspectedTable);
+<span class="highlight-ln">52</span>    topLevelClass.addMethod(method);
+<span class="highlight-ln">53</span>}
+<span class="highlight-ln">54</span>
+<span class="highlight-ln">55</span>/**
+<span class="highlight-ln">56</span> * This plugin is always valid - no properties are required
+<span class="highlight-ln">57</span> */
+<span class="highlight-ln">58</span>public boolean validate(List&amp;lt;String&amp;gt; warnings) {
+<span class="highlight-ln">59</span>    return true;
+<span class="highlight-ln">60</span>}
 </code></pre>
 <p>}</p></pre><p></p>
 <p>&nbsp;</p>
@@ -569,7 +562,7 @@ public boolean validate(List&amp;lt;String&amp;gt; warnings) {
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -598,11 +591,6 @@ public boolean validate(List&amp;lt;String&amp;gt; warnings) {
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -617,17 +605,17 @@ public boolean validate(List&amp;lt;String&amp;gt; warnings) {
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -658,7 +646,7 @@ public boolean validate(List&amp;lt;String&amp;gt; warnings) {
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1366178423880",
@@ -678,4 +666,4 @@ public boolean validate(List&amp;lt;String&amp;gt; warnings) {
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 139ms, 2020/03/29 11:55:23 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 117ms, 2020/04/25 21:02:10 -->

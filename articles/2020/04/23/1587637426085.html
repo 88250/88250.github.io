@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Markdown 解析原理详解和 Markdown AST 描述 - D 的个人博客</title><meta name="description" content="概述 本文主要介绍 Markdown 引擎 Lute 的整体处理流程，并详细描述了 Markdown 抽象语法树结构。 编译原理 我们通过编译原理实现了 Lute ，大致步骤是预处理、词法分析、语法分析、代码生成这几个步骤。代码结构方面我们分为两部分，解析和渲染。 1// Markdown 将 Markdown 文本字节数组处理为相应的 HTML 字节数组。name 参数仅用于标识文本，比如可传入 id 或者标题，也可以传入 &quot;&quot;。 2func (lute *Lute) Markdown(name string, Markdown []byte) (html []byte) { 3 tree := parse.Parse(name, markdown, lute.Options) 4 renderer := render.NewHtmlRenderer(tree) 5 HTML = renderer.Render() 6 return 7} 解析过程用于从 Markdown 原文构造抽象语法树。 1// Parse 会将 Markdown 原始文本字节数组解析为一颗语法树。 2f...."/><meta property="og:description" content="概述 本文主要介绍 Markdown 引擎 Lute 的整体处理流程，并详细描述了 Markdown 抽象语法树结构。 编译原理 我们通过编译原理实现了 Lute ，大致步骤是预处理、词法分析、语法分析、代码生成这几个步骤。代码结构方面我们分为两部分，解析和渲染。 1// Markdown 将 Markdown 文本字节数组处理为相应的 HTML 字节数组。name 参数仅用于标识文本，比如可传入 id 或者标题，也可以传入 &quot;&quot;。 2func (lute *Lute) Markdown(name string, Markdown []byte) (html []byte) { 3 tree := parse.Parse(name, markdown, lute.Options) 4 renderer := render.NewHtmlRenderer(tree) 5 HTML = renderer.Render() 6 return 7} 解析过程用于从 Markdown 原文构造抽象语法树。 1// Parse 会将 Markdown 原始文本字节数组解析为一颗语法树。 2f...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Markdown 解析原理详解和 Markdown AST 描述 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/04/23/1587637426085.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Markdown 解析原理详解和 Markdown AST 描述 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/04/23/1587637426085.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
+            <link rel="prev" title="Windows 10 搭建 TensorFlow 试玩 fast-style-transfer" href="https://88250.github.io/articles/2020/03/15/1584270480065.html">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://88250.github.io" rel="start">D 的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
+            <div class="header__desc">
+                
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
+            </svg>
+        </div>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    411 文章 <br>
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
+                <li>
+                    <a href="https://88250.github.io" rel="start">
+                            D 的个人博客
+                    </a>
+                </li>
+                    <li>
+                        <a href="/about" target="_self"><img
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
+                    </li>
+                    <li>
+                        <a href="/my-github-repos" target="_self"><img
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
+                    </li>
+                    <li>
+                        <a href="https://hacpai.com" target="_blank"><img
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
+                    </li>
+                    <li>
+                        <a href="https://b3log.org" target="_blank"><img
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
+                    </li>
+                <li>
+                    <a href="https://88250.github.io/categories.html">分类</a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html">标签墙</a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/links.html">友情链接</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article__top" style="background-image: url(https://img.hacpai.com/file/2020/04/devtool-d3d8a727.gif?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        <div style="background-image: url(https://img.hacpai.com/file/2020/04/devtool-d3d8a727.gif?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2020-04-23
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/Lute">Lute</a> &nbsp;
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/Markdown">Markdown</a> &nbsp;
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86">编译原理</a> &nbsp;
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91">抽象语法树</a> &nbsp;
+            </div>
+            <h2 class="article__title">
+                Markdown 解析原理详解和 Markdown AST 描述
+            </h2>
+<div class="article__share"
+     data-title="Markdown 解析原理详解和 Markdown AST 描述"
+     data-blogtitle="D 的个人博客"
+     data-url="https://88250.github.io/articles/2020/04/23/1587637426085.html"
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <h3 id="概述">概述</h3>
+<p>本文主要介绍 Markdown 引擎 <a href="https://github.com/88250/lute" target="_blank">Lute</a> 的整体处理流程，并详细描述了 Markdown 抽象语法树结构。</p>
+<h3 id="编译原理">编译原理</h3>
+<p>我们通过编译原理实现了 Lute ，大致步骤是预处理、词法分析、语法分析、代码生成这几个步骤。代码结构方面我们分为两部分，解析和渲染。</p>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-c1">// Markdown 将 markdown 文本字节数组处理为相应的 html 字节数组。name 参数仅用于标识文本，比如可传入 id 或者标题，也可以传入 ""。
+</span><span class="highlight-ln">2</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-p">(</span><span class="highlight-nx">lute</span> <span class="highlight-o">*</span><span class="highlight-nx">Lute</span><span class="highlight-p">)</span> <span class="highlight-nf">Markdown</span><span class="highlight-p">(</span><span class="highlight-nx">name</span> <span class="highlight-kt">string</span><span class="highlight-p">,</span> <span class="highlight-nx">markdown</span> <span class="highlight-p">[]</span><span class="highlight-kt">byte</span><span class="highlight-p">)</span> <span class="highlight-p">(</span><span class="highlight-nx">html</span> <span class="highlight-p">[]</span><span class="highlight-kt">byte</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">3</span>	<span class="highlight-nx">tree</span> <span class="highlight-o">:=</span> <span class="highlight-nx">parse</span><span class="highlight-p">.</span><span class="highlight-nf">Parse</span><span class="highlight-p">(</span><span class="highlight-nx">name</span><span class="highlight-p">,</span> <span class="highlight-nx">markdown</span><span class="highlight-p">,</span> <span class="highlight-nx">lute</span><span class="highlight-p">.</span><span class="highlight-nx">Options</span><span class="highlight-p">)</span>
+<span class="highlight-ln">4</span>	<span class="highlight-nx">renderer</span> <span class="highlight-o">:=</span> <span class="highlight-nx">render</span><span class="highlight-p">.</span><span class="highlight-nf">NewHtmlRenderer</span><span class="highlight-p">(</span><span class="highlight-nx">tree</span><span class="highlight-p">)</span>
+<span class="highlight-ln">5</span>	<span class="highlight-nx">html</span> <span class="highlight-p">=</span> <span class="highlight-nx">renderer</span><span class="highlight-p">.</span><span class="highlight-nf">Render</span><span class="highlight-p">()</span>
+<span class="highlight-ln">6</span>	<span class="highlight-k">return</span>
+<span class="highlight-ln">7</span><span class="highlight-p">}</span>
+</code></pre>
+<p>解析过程用于从 Markdown 原文构造抽象语法树。</p>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln"> 1</span><span class="highlight-c1">// Parse 会将 markdown 原始文本字节数组解析为一颗语法树。
+</span><span class="highlight-ln"> 2</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-nf">Parse</span><span class="highlight-p">(</span><span class="highlight-nx">name</span> <span class="highlight-kt">string</span><span class="highlight-p">,</span> <span class="highlight-nx">markdown</span> <span class="highlight-p">[]</span><span class="highlight-kt">byte</span><span class="highlight-p">,</span> <span class="highlight-nx">options</span> <span class="highlight-o">*</span><span class="highlight-nx">Options</span><span class="highlight-p">)</span> <span class="highlight-p">(</span><span class="highlight-nx">tree</span> <span class="highlight-o">*</span><span class="highlight-nx">Tree</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 3</span>	<span class="highlight-nx">tree</span> <span class="highlight-p">=</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">Tree</span><span class="highlight-p">{</span><span class="highlight-nx">Name</span><span class="highlight-p">:</span> <span class="highlight-nx">name</span><span class="highlight-p">,</span> <span class="highlight-nx">Context</span><span class="highlight-p">:</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">Context</span><span class="highlight-p">{</span><span class="highlight-nx">Option</span><span class="highlight-p">:</span> <span class="highlight-nx">options</span><span class="highlight-p">}}</span>
+<span class="highlight-ln"> 4</span>	<span class="highlight-nx">tree</span><span class="highlight-p">.</span><span class="highlight-nx">Context</span><span class="highlight-p">.</span><span class="highlight-nx">Tree</span> <span class="highlight-p">=</span> <span class="highlight-nx">tree</span>
+<span class="highlight-ln"> 5</span>	<span class="highlight-nx">tree</span><span class="highlight-p">.</span><span class="highlight-nx">lexer</span> <span class="highlight-p">=</span> <span class="highlight-nx">lex</span><span class="highlight-p">.</span><span class="highlight-nf">NewLexer</span><span class="highlight-p">(</span><span class="highlight-nx">markdown</span><span class="highlight-p">)</span>
+<span class="highlight-ln"> 6</span>	<span class="highlight-nx">tree</span><span class="highlight-p">.</span><span class="highlight-nx">Root</span> <span class="highlight-p">=</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">ast</span><span class="highlight-p">.</span><span class="highlight-nx">Node</span><span class="highlight-p">{</span><span class="highlight-nx">Type</span><span class="highlight-p">:</span> <span class="highlight-nx">ast</span><span class="highlight-p">.</span><span class="highlight-nx">NodeDocument</span><span class="highlight-p">}</span>
+<span class="highlight-ln"> 7</span>	<span class="highlight-nx">tree</span><span class="highlight-p">.</span><span class="highlight-nf">parseBlocks</span><span class="highlight-p">()</span>
+<span class="highlight-ln"> 8</span>	<span class="highlight-nx">tree</span><span class="highlight-p">.</span><span class="highlight-nf">parseInlines</span><span class="highlight-p">()</span>
+<span class="highlight-ln"> 9</span>	<span class="highlight-nx">tree</span><span class="highlight-p">.</span><span class="highlight-nx">lexer</span> <span class="highlight-p">=</span> <span class="highlight-kc">nil</span>
+<span class="highlight-ln">10</span>	<span class="highlight-k">return</span>
+<span class="highlight-ln">11</span><span class="highlight-p">}</span>
+</code></pre>
+<p>渲染过程将遍历语法树生成 HTML 代码，本文略过。下面我们将着重介绍解析过程，从预处理阶段开始。</p>
+<h3 id="预处理">预处理</h3>
+<p>预处理阶段主要是将输入的 Markdown 文本字节数组结尾添加换行符 <code>\n</code>，以方便后续解析可以统一按行读取。</p>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln"> 1</span><span class="highlight-c1">// NewLexer 创建一个词法分析器。
+</span><span class="highlight-ln"> 2</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-nf">NewLexer</span><span class="highlight-p">(</span><span class="highlight-nx">input</span> <span class="highlight-p">[]</span><span class="highlight-kt">byte</span><span class="highlight-p">)</span> <span class="highlight-p">(</span><span class="highlight-nx">ret</span> <span class="highlight-o">*</span><span class="highlight-nx">Lexer</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 3</span>	<span class="highlight-nx">ret</span> <span class="highlight-p">=</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">Lexer</span><span class="highlight-p">{}</span>
+<span class="highlight-ln"> 4</span>	<span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">input</span> <span class="highlight-p">=</span> <span class="highlight-nx">input</span>
+<span class="highlight-ln"> 5</span>	<span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">length</span> <span class="highlight-p">=</span> <span class="highlight-nb">len</span><span class="highlight-p">(</span><span class="highlight-nx">input</span><span class="highlight-p">)</span>
+<span class="highlight-ln"> 6</span>	<span class="highlight-k">if</span> <span class="highlight-mi">0</span> <span class="highlight-p">&lt;</span> <span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">length</span> <span class="highlight-o">&amp;&amp;</span> <span class="highlight-nx">ItemNewline</span> <span class="highlight-o">!=</span> <span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">length</span><span class="highlight-o">-</span><span class="highlight-mi">1</span><span class="highlight-p">]</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 7</span>		<span class="highlight-c1">// 以 \n 结尾预处理
+</span><span class="highlight-ln"> 8</span><span class="highlight-c1"></span>		<span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">input</span> <span class="highlight-p">=</span> <span class="highlight-nb">append</span><span class="highlight-p">(</span><span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">,</span> <span class="highlight-nx">ItemNewline</span><span class="highlight-p">)</span>
+<span class="highlight-ln"> 9</span>		<span class="highlight-nx">ret</span><span class="highlight-p">.</span><span class="highlight-nx">length</span><span class="highlight-o">++</span>
+<span class="highlight-ln">10</span>	<span class="highlight-p">}</span>
+<span class="highlight-ln">11</span>	<span class="highlight-k">return</span>
+<span class="highlight-ln">12</span><span class="highlight-p">}</span>
+</code></pre>
+<h3 id="词法分析">词法分析</h3>
+<p>词法分析的目的是将 Markdown 文本转换为 token 数组。标准的编译原理中词法分析产生的 token 将带有如下这样一些属性：</p>
+<ul>
+<li>类型（token type），比如标识符、操作符、数字、字符等</li>
+<li>词素（lexeme），原始的文本字节数组</li>
+<li>位置（pos），该 token 的第一个字节相对于整个文本字节数组的下标</li>
+</ul>
+<p>Markdown 的词法分析进行了简化，仅返回词素作为 token，因为：</p>
+<ul>
+<li>Markdown 解析不需要类型信息，使用的标记符（比如 <code>#</code>、<code>*</code> 等）本身就是 token 类型和词素</li>
+<li>大部分场景下的 Markdown 解析不需要实现<a href="#sourcemap">源码映射</a></li>
+<li>提升性能</li>
+</ul>
+<p>另外，编译原理教科书中是将词法分析和语法分析完全分开介绍的，即词法分析器产生 token 数组后作为参数传入语法分析器，而实际工程上因为性能考虑，是在语法分析中调用词法分析来按需获得 token 数组，这样可以减少内存分配。</p>
+<p>Markdown 词法分析的具体实现是按行进行处理的，每次处理后词法分析器会记录当前读取位置，以便下次继续按行处理。</p>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln"> 1</span><span class="highlight-c1">// Lexer 描述了词法分析器结构。
+</span><span class="highlight-ln"> 2</span><span class="highlight-c1"></span><span class="highlight-kd">type</span> <span class="highlight-nx">Lexer</span> <span class="highlight-kd">struct</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 3</span>	<span class="highlight-nx">input</span>  <span class="highlight-p">[]</span><span class="highlight-kt">byte</span> <span class="highlight-c1">// 输入的文本字节数组
+</span><span class="highlight-ln"> 4</span><span class="highlight-c1"></span>	<span class="highlight-nx">length</span> <span class="highlight-kt">int</span>    <span class="highlight-c1">// 输入的文本字节数组的长度
+</span><span class="highlight-ln"> 5</span><span class="highlight-c1"></span>	<span class="highlight-nx">offset</span> <span class="highlight-kt">int</span>    <span class="highlight-c1">// 当前读取字节位置
+</span><span class="highlight-ln"> 6</span><span class="highlight-c1"></span>	<span class="highlight-nx">width</span>  <span class="highlight-kt">int</span>    <span class="highlight-c1">// 最新一个字符的长度（字节数）
+</span><span class="highlight-ln"> 7</span><span class="highlight-c1"></span><span class="highlight-p">}</span>
+<span class="highlight-ln"> 8</span>
+<span class="highlight-ln"> 9</span><span class="highlight-c1">// NextLine 返回下一行。
+</span><span class="highlight-ln">10</span><span class="highlight-c1"></span><span class="highlight-kd">func</span> <span class="highlight-p">(</span><span class="highlight-nx">l</span> <span class="highlight-o">*</span><span class="highlight-nx">Lexer</span><span class="highlight-p">)</span> <span class="highlight-nf">NextLine</span><span class="highlight-p">()</span> <span class="highlight-p">(</span><span class="highlight-nx">ret</span> <span class="highlight-p">[]</span><span class="highlight-kt">byte</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">11</span>	<span class="highlight-k">if</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">offset</span> <span class="highlight-o">&gt;=</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">length</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">12</span>		<span class="highlight-k">return</span>
+<span class="highlight-ln">13</span>	<span class="highlight-p">}</span>
+<span class="highlight-ln">14</span>
+<span class="highlight-ln">15</span>	<span class="highlight-kd">var</span> <span class="highlight-nx">b</span><span class="highlight-p">,</span> <span class="highlight-nx">nb</span> <span class="highlight-kt">byte</span>
+<span class="highlight-ln">16</span>	<span class="highlight-nx">i</span> <span class="highlight-o">:=</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">offset</span>
+<span class="highlight-ln">17</span>	<span class="highlight-k">for</span> <span class="highlight-p">;</span> <span class="highlight-nx">i</span> <span class="highlight-p">&lt;</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">length</span><span class="highlight-p">;</span> <span class="highlight-nx">i</span> <span class="highlight-o">+=</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">width</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">18</span>		<span class="highlight-nx">b</span> <span class="highlight-p">=</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-p">]</span>
+<span class="highlight-ln">19</span>		<span class="highlight-k">if</span> <span class="highlight-nx">ItemNewline</span> <span class="highlight-o">==</span> <span class="highlight-nx">b</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">20</span>			<span class="highlight-nx">i</span><span class="highlight-o">++</span>
+<span class="highlight-ln">21</span>			<span class="highlight-k">break</span>
+<span class="highlight-ln">22</span>		<span class="highlight-p">}</span> <span class="highlight-k">else</span> <span class="highlight-k">if</span> <span class="highlight-nx">ItemCarriageReturn</span> <span class="highlight-o">==</span> <span class="highlight-nx">b</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">23</span>			<span class="highlight-c1">// 处理 \r
+</span><span class="highlight-ln">24</span><span class="highlight-c1"></span>			<span class="highlight-k">if</span> <span class="highlight-nx">i</span> <span class="highlight-p">&lt;</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">length</span><span class="highlight-o">-</span><span class="highlight-mi">1</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">25</span>				<span class="highlight-nx">nb</span> <span class="highlight-p">=</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-o">+</span><span class="highlight-mi">1</span><span class="highlight-p">]</span>
+<span class="highlight-ln">26</span>				<span class="highlight-k">if</span> <span class="highlight-nx">ItemNewline</span> <span class="highlight-o">==</span> <span class="highlight-nx">nb</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">27</span>					<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span> <span class="highlight-p">=</span> <span class="highlight-nb">append</span><span class="highlight-p">(</span><span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[:</span><span class="highlight-nx">i</span><span class="highlight-p">],</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-o">+</span><span class="highlight-mi">1</span><span class="highlight-p">:]</span><span class="highlight-o">...</span><span class="highlight-p">)</span> <span class="highlight-c1">// 移除 \r，依靠下一个的 \n 切行
+</span><span class="highlight-ln">28</span><span class="highlight-c1"></span>					<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">length</span><span class="highlight-o">--</span>                                      <span class="highlight-c1">// 重新计算总长
+</span><span class="highlight-ln">29</span><span class="highlight-c1"></span>				<span class="highlight-p">}</span>
+<span class="highlight-ln">30</span>			<span class="highlight-p">}</span>
+<span class="highlight-ln">31</span>			<span class="highlight-nx">i</span><span class="highlight-o">++</span>
+<span class="highlight-ln">32</span>			<span class="highlight-k">break</span>
+<span class="highlight-ln">33</span>		<span class="highlight-p">}</span> <span class="highlight-k">else</span> <span class="highlight-k">if</span> <span class="highlight-sc">'\u0000'</span> <span class="highlight-o">==</span> <span class="highlight-nx">b</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">34</span>			<span class="highlight-c1">// 将 \u0000 替换为 \uFFFD
+</span><span class="highlight-ln">35</span><span class="highlight-c1"></span>			<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span> <span class="highlight-p">=</span> <span class="highlight-nb">append</span><span class="highlight-p">(</span><span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">,</span> <span class="highlight-mi">0</span><span class="highlight-p">,</span> <span class="highlight-mi">0</span><span class="highlight-p">)</span>
+<span class="highlight-ln">36</span>			<span class="highlight-nb">copy</span><span class="highlight-p">(</span><span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-o">+</span><span class="highlight-mi">2</span><span class="highlight-p">:],</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-p">:])</span>
+<span class="highlight-ln">37</span>			<span class="highlight-c1">// \uFFFD 的 UTF-8 编码为 \xEF\xBF\xBD 共三个字节
+</span><span class="highlight-ln">38</span><span class="highlight-c1"></span>			<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-p">],</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-o">+</span><span class="highlight-mi">1</span><span class="highlight-p">],</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-o">+</span><span class="highlight-mi">2</span><span class="highlight-p">]</span> <span class="highlight-p">=</span> <span class="highlight-sc">'\xEF'</span><span class="highlight-p">,</span> <span class="highlight-sc">'\xBF'</span><span class="highlight-p">,</span> <span class="highlight-sc">'\xBD'</span>
+<span class="highlight-ln">39</span>			<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">length</span> <span class="highlight-o">+=</span> <span class="highlight-mi">2</span> <span class="highlight-c1">// 重新计算总长
+</span><span class="highlight-ln">40</span><span class="highlight-c1"></span>			<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">width</span> <span class="highlight-p">=</span> <span class="highlight-mi">3</span>
+<span class="highlight-ln">41</span>			<span class="highlight-k">continue</span>
+<span class="highlight-ln">42</span>		<span class="highlight-p">}</span>
+<span class="highlight-ln">43</span>
+<span class="highlight-ln">44</span>		<span class="highlight-k">if</span> <span class="highlight-nx">utf8</span><span class="highlight-p">.</span><span class="highlight-nx">RuneSelf</span> <span class="highlight-o">&lt;=</span> <span class="highlight-nx">b</span> <span class="highlight-p">{</span> <span class="highlight-c1">// 说明占用多个字节
+</span><span class="highlight-ln">45</span><span class="highlight-c1"></span>			<span class="highlight-nx">_</span><span class="highlight-p">,</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">width</span> <span class="highlight-p">=</span> <span class="highlight-nx">utf8</span><span class="highlight-p">.</span><span class="highlight-nf">DecodeRune</span><span class="highlight-p">(</span><span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">i</span><span class="highlight-p">:])</span>
+<span class="highlight-ln">46</span>		<span class="highlight-p">}</span> <span class="highlight-k">else</span> <span class="highlight-p">{</span>
+<span class="highlight-ln">47</span>			<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">width</span> <span class="highlight-p">=</span> <span class="highlight-mi">1</span>
+<span class="highlight-ln">48</span>		<span class="highlight-p">}</span>
+<span class="highlight-ln">49</span>	<span class="highlight-p">}</span>
+<span class="highlight-ln">50</span>	<span class="highlight-nx">ret</span> <span class="highlight-p">=</span> <span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">input</span><span class="highlight-p">[</span><span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">offset</span><span class="highlight-p">:</span><span class="highlight-nx">i</span><span class="highlight-p">]</span>
+<span class="highlight-ln">51</span>	<span class="highlight-nx">l</span><span class="highlight-p">.</span><span class="highlight-nx">offset</span> <span class="highlight-p">=</span> <span class="highlight-nx">i</span>
+<span class="highlight-ln">52</span>	<span class="highlight-k">return</span>
+<span class="highlight-ln">53</span><span class="highlight-p">}</span>
+</code></pre>
+<h3 id="语法分析">语法分析</h3>
+<p>CommonMark 规范中介绍了一种<a href="https://spec.commonmark.org/0.29/#appendix-a-parsing-strategy" target="_blank">解析算法</a>，分为两个阶段：</p>
+<ol>
+<li>构造所有块级节点，包括标题、块引用、代码块、分隔线、列表、段落等，还需要构造好链接引用定义映射表</li>
+<li>遍历每个块级节点，构造行级节点，包括文本、链接、强调、加粗等，链接的处理可能会需要查找步骤 1 中构造好的链接引用定义映射表</li>
+</ol>
+<p>关于 CommonMark 规范的一些实现细节可参考我之前的笔记（<a href="https://hacpai.com/article/1566893557720" target="_blank">CommonMark 规范要点解读</a>、<a href="https://hacpai.com/article/1567062979327" target="_blank">Lute 实现后记</a>），这里就不展开了，如果感兴趣欢迎跟帖讨论。</p>
+<h3 id="抽象语法树">抽象语法树</h3>
+<p>Markdown 抽象语法树是由节点构成的树，从包含关系来说节点可以分为四类：</p>
+<ol>
+<li>根节点，可以包含所有其他任意节点</li>
+<li>块级容器节点，可以包含非根节点的其他任意节点，比如列表项包含段落</li>
+<li>块级节点，可以包含行级节点，比如段落包含强调</li>
+<li>行级节点，可以包含行级节点，比如强调包含文本</li>
+</ol>
+<p>我们在实现 Lute 时做了“最细粒度”的节点结构，比如对于超链接 <code>[foo](bar)</code> 形成的节点结构包含了左方括号 <code>[</code>、链接文本 <code>foo</code>、右方括号 <code>]</code>、左圆括号 <code>(</code>、链接地址 <code>bar</code> 和右圆括号 <code>)</code>。这样做的优点是方便处理细致的节点操作，缺点是性能稍差，因为需要构造和遍历更多的节点。</p>
+<p>如果你想看到较粗粒度的语法树，可以通过 <a href="https://github.com/Vanessa219/vditor" target="_blank">Vditor Markdown 编辑器</a>的开发者工具来查看，请<a href="https://hacpai.com/guide/markdown" target="_blank">到此</a>进行测试（点击编辑器工具栏上的“开发者工具”按钮就可以看到根据输入进行实时渲染的语法树了）。</p>
+<p><img src="https://img.hacpai.com/file/2020/04/devtool-d3d8a727.gif" alt="devtool.gif"></p>
+<p>下面我们按 Lute 源码中的<a href="https://github.com/88250/lute/blob/master/ast/node.go" target="_blank">节点</a>类型常量顺序来逐一描述。</p>
+<h4 id="根-Document">根 Document</h4>
+<p>语法树的根节点。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-gh"># foo
+</span><span class="highlight-ln">2</span><span class="highlight-gh"></span>
+<span class="highlight-ln">3</span>bar
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Document-b3727b18.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Document.png"></p>
+<h4 id="段落-Paragraph">段落 Paragraph</h4>
+<p>段落属于块级节点，可包含行级节点。</p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>foo
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Paragraph-8bc1d6b9.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Paragraph.png"></p>
+<h4 id="标题-Heading">标题 Heading</h4>
+<p>标题属于块级节点，可包含行级节点。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-gh"># foo
+</span></code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Heading-28bbf657.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Heading.png"></p>
+<h4 id="分隔线-ThematicBreak">分隔线 ThematicBreak</h4>
+<p>分隔线属于块级节点，没有子节点。</p>
+<p><img src="https://img.hacpai.com/file/2020/04/ThematicBreak-759ca82c.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="ThematicBreak.png"></p>
+<h4 id="块引用-Blockquote">块引用 Blockquote</h4>
+<p>块引用属于块级容器节点，可包含任意（非根）节点。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-k">&gt; </span><span class="highlight-ge">foo
+</span><span class="highlight-ln">2</span><span class="highlight-ge"></span><span class="highlight-k">&gt;
+</span><span class="highlight-ln">3</span><span class="highlight-k"></span><span class="highlight-ge">&gt;&gt; bar
+</span></code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Blockquote-b5cb0007.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Blockquote.png"></p>
+<h4 id="列表-List">列表 List</h4>
+<p>列表属于块级容器节点，但只能包含列表项节点。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-k">*</span> foo
+<span class="highlight-ln">2</span>  <span class="highlight-k">*</span> bar
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/List-61a2348e.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="List.png"></p>
+<h4 id="HTML-块-HTML-Block">HTML 块 HTML Block</h4>
+<p>HTML 块属于块级节点，不包含其他子节点。</p>
+<h4 id="行级-HTML-Inline-HTML">行级 HTML Inline HTML</h4>
+<p>行级 HTML 属于行级节点，不包含其他子节点。</p>
+<h4 id="代码块-Code-Block">代码块 Code Block</h4>
+<p>代码块属于块级节点，围栏代码块包含一些标记节点和代码块代码节点。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-s">```lang
+</span><span class="highlight-ln">2</span><span class="highlight-s"></span>foo
+<span class="highlight-ln">3</span><span class="highlight-s">```</span>
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/CodeBlock-3b423ade.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="CodeBlock.png"></p>
+<h4 id="文本-Text">文本 Text</h4>
+<p>文本属于行级节点，不包含其他子节点。</p>
+<h4 id="强调-Emphasis">强调 Emphasis</h4>
+<p>强调属于行级节点，可包含文本、加粗、链接等行级子节点。强调标识符有两种，<code>*</code> 和 <code>_</code>。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span>*foo*
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Emphasis-db5090cc.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Emphasis.png"></p>
+<h4 id="加粗-Strong">加粗 Strong</h4>
+<p>加粗属于行级节点，可包含文本、强调、链接等行级子节点。加粗标识符有两种，<code>**</code> 和 <code>__</code>。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span>**foo**
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Strong-b2f492ff.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Strong.png"></p>
+<h4 id="代码-Code-Span">代码 Code Span</h4>
+<p>代码属于行级节点，包含开始代码标记符 `、代码内容和结束代码标记符 `。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-sb">`code`</span>
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/CodeSpan-9e9dfa8e.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="CodeSpan.png"></p>
+<h4 id="硬换行-Hard-Break">硬换行 Hard Break</h4>
+<p>硬换行属于行级节点，不包含其他子节点。</p>
+<h4 id="软换行-Soft-Break">软换行 Soft Break</h4>
+<p>软换行属于行级节点，不包含其他子节点。</p>
+<h4 id="链接-Link">链接 Link</h4>
+<p>链接属于行级节点，由链接相关标识符、链接文本等构成，可包含图片、强调和加粗等行级子节点。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span>[<span class="highlight-nt">foo</span>](<span class="highlight-na">bar "baz"</span>)
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Link-866e636f.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Link.png"></p>
+<p>以上是 Lute 实现 CommonMark 规范时用到的全部语法树节点结构，下面继续介绍 GFM 规范扩展的一些节点类型。</p>
+<h4 id="任务列表项-Task-List-Item">任务列表项 Task List Item</h4>
+<p>任务列表项属于块级容器节点，相比列表项节点多了一个任务列表项标记符。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span><span class="highlight-k">* [x]</span> foo
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/TaskListItem-92351134.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="TaskListItem.png"></p>
+<h4 id="删除线-Strikethrough">删除线 Strikethrough</h4>
+<p>删除线属于行级节点，可包含文本、强调、加粗、链接等行级子节点。删除线标识符有两种，<code>~</code> 和 <code>~~</code>。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span>~foo~
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Strikethrought-81f72415.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Strikethrought.png"></p>
+<h4 id="表格-Table">表格 Table</h4>
+<p>表格是块级节点，可包含其他行级子节点。</p>
+<pre><code class="language-md highlight-chroma"><span class="highlight-ln">1</span>| foo | bar |
+<span class="highlight-ln">2</span>| --- | --- |
+<span class="highlight-ln">3</span>| c1  | c2  |
+</code></pre>
+<p><img src="https://img.hacpai.com/file/2020/04/Table-08836277.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Table.png"></p>
+<p>除了以上介绍的节点结构，还有一些扩展语法比如 Emoji、数学公式、脚注和 ToC 等，这里就不展开描述了。</p>
+<p>总结一下 Markdown AST：</p>
+<ul>
+<li>语法树节点结构 CommonMark 规范并未定义，解析器实现时可以自由发挥</li>
+<li>细粒度节点表达更丰富，但同时也会有一定性能消耗</li>
+</ul>
+<h3 id="sourcemap">关于 Markdown 源码映射</h3>
+<p>什么是 Source Map？</p>
+<p>Source Map 即 Markdown 源码和 HTML 目标代码之间的字符关联信息。要实现双向映射 AST 上必须要有结构来存储映射关系：</p>
+<ul>
+<li>源码中每个字符都可以在 AST 上找到对应节点</li>
+<li>从 AST 节点也可以在源码中找到对应字符位置</li>
+</ul>
+<p>Source Map 有什么用？</p>
+<ul>
+<li>为编辑器和预览视图联动提供支持</li>
+<li>为 Markdown 语法高亮提供基础</li>
+</ul>
+<h3 id="本文涉及的开源项目">本文涉及的开源项目</h3>
+<ul>
+<li><a href="https://github.com/commonmark/commonmark-spec" target="_blank">CommonMark Spec</a></li>
+<li><a href="https://github.com/88250/lute" target="_blank">Lute</a> 一款对中文语境优化的 Markdown 引擎，支持 Go 和 JavaScript</li>
+<li><a href="https://github.com/Vanessa219/vditor" target="_blank">Vditor</a> 一款浏览器端的 Markdown 编辑器，支持所见即所得、即时渲染（类似 Typora）和分屏预览模式</li>
+</ul>
+                    <div>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="9726081163"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    </div>
+            </section>
+        </div>
+
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#概述">概述</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#编译原理">编译原理</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#预处理">预处理</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#词法分析">词法分析</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#语法分析">语法分析</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#抽象语法树">抽象语法树</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#根-Document">根 Document</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#段落-Paragraph">段落 Paragraph</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#标题-Heading">标题 Heading</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#分隔线-ThematicBreak">分隔线 ThematicBreak</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#块引用-Blockquote">块引用 Blockquote</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#列表-List">列表 List</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#HTML-块-HTML-Block">HTML 块 HTML Block</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#行级-HTML-Inline-HTML">行级 HTML Inline HTML</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#代码块-Code-Block">代码块 Code Block</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#文本-Text">文本 Text</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#强调-Emphasis">强调 Emphasis</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#加粗-Strong">加粗 Strong</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#代码-Code-Span">代码 Code Span</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#硬换行-Hard-Break">硬换行 Hard Break</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#软换行-Soft-Break">软换行 Soft Break</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#链接-Link">链接 Link</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#任务列表项-Task-List-Item">任务列表项 Task List Item</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#删除线-Strikethrough">删除线 Strikethrough</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#表格-Table">表格 Table</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#sourcemap">关于 Markdown 源码映射</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#本文涉及的开源项目">本文涉及的开源项目</a>
+        </li>
+</ul>        </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1587637426085"></div>
+        </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                    <div class="item" id="externalRelevantArticles"></div>
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
+        charset="utf-8"></script>
+<footer class="footer">
+    <div class="wrapper">
+            <a href="https://hacpai.com/member/88250"
+       title="https://hacpai.com/member/88250"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           title="https://github.com/88250"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+ <br>
+        &copy; 2020
+        <a href="https://88250.github.io">D 的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+    </div>
+</footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+<script>
+  var Label = {
+    servePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
+    luteAvailable: true,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "4.0.0",
+    staticSite: true,
+    showCodeBlockLn: true,
+  }
+</script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
+        charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+    <svg viewBox="0 0 32 32" width="100%" height="100%" class="side__top side__top--toc">
+        <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+    </svg>
+
+<script type="text/javascript">
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1587637426085",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadExternalRelevantArticles("Lute,Markdown,编译原理,抽象语法树",
+        '<h3>站外相关阅读</h3>');
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 127ms, 2020/04/25 21:02:08 -->

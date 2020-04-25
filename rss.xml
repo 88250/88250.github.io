@@ -6,8 +6,22 @@
     <atom:link href="https://88250.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <description>全职做开源，自由职业者</description>
     <generator>Solo, v4.0.0, https://solo.b3log.org</generator>
-    <lastBuildDate>Sun, 29 Mar 2020 11:55:16 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Apr 2020 21:02:08 +0800</lastBuildDate>
     <language>zh-cn</language>
+    <item>
+      <title>Markdown 解析原理详解和 Markdown AST 描述</title>
+      <link>https://88250.github.io/articles/2020/04/23/1587637426085.html</link>
+      <description>
+        <![CDATA[<p>概述 本文主要介绍 Markdown 引擎 Lute 的整体处理流程，并详细描述了 Markdown 抽象语法树结构。 编译原理 我们通过编译原理实现了 Lute ，大致步骤是预处理、词法分析、语法分析、代码生成这几个步骤。代码结构方面我们分为两部分，解析和渲染。 1// Markdown 将 Markdown 文本字节数组处理为相应的 HTML 字节数组。name 参数仅用于标识文本，比如可传入 id 或者标题，也可以传入 ""。 2func (lute *Lute) Markdown(name string, Markdown []byte) (html []byte) { 3 tree := parse.Parse(name, markdown, lute.Options) 4 renderer := render.NewHtmlRenderer(tree) 5 HTML = renderer.Render() 6 return 7}  解析过程用于从 Markdown 原文构造抽象语法树。  1// Parse 会将 Markdown 原始文本字节数组解析为一颗语法树。  2f....</p>]]>
+      </description>
+      <author>88250</author>
+      <guid>https://88250.github.io/articles/2020/04/23/1587637426085.html</guid>
+      <category>Lute</category>
+      <category>Markdown</category>
+      <category>编译原理</category>
+      <category>抽象语法树</category>
+      <pubDate>Thu, 23 Apr 2020 18:24:06 +0800</pubDate>
+    </item>
     <item>
       <title>Windows 10 搭建 TensorFlow 试玩 fast-style-transfer</title>
       <link>https://88250.github.io/articles/2020/03/15/1584270480065.html</link>
@@ -16,8 +30,8 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/03/15/1584270480065.html</guid>
-      <category>TensorFlow</category>
       <category>图片处理</category>
+      <category>TensorFlow</category>
       <category>深度学习</category>
       <pubDate>Sun, 15 Mar 2020 19:08:02 +0800</pubDate>
     </item>
@@ -25,19 +39,19 @@
       <title>创业的第二个秋天</title>
       <link>https://88250.github.io/articles/2019/11/11/1573402018349.html</link>
       <description>
-        <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。  帮助别人成功，自己才有成功的机会。 Vditor &amp; Lute 这个秋天开始实现 Vditor 的“所见即所得”特性，即实现 Typora2 那样写 Markdown 时不用分屏预览，而是边写边渲染。不过 Markdown 本身的设计用意就是“所见即所得”，所以把这个特性叫做“实时渲染”更恰当一些。这个月应该能实现完，下个月正式发布。 技术方案上我们是通过让 Lute 支持渲染“Vditor DOM”来实现。这个方案最难的部分莫过于实现源码映射3，即渲染结果字符和 Markdown 原文字符的位置对应关系。只有实现了源码映射才能实现编辑（光标）位置的正确移动。完整方案和技术细节后续会单独写一篇文档来介绍，希望能给其他在做 Markdown 编辑器的开发者带来帮助。 Latke Latke 是我们 Java 产品线的开发框架，之前的 Latke 是基于 Servlet 实现的，虽然能用但是一直不太满意：  Servlet 有点重，很多特性用不上 性能不足够好 不同的 Servlet 容器有不同的部署细节，....</p>]]>
+        <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。  帮助别人成功，自己才有成功的机会。 Vditor &amp; Lute 这个秋天开始实现 Vditor 的“所见即所得”特性，即实现 Typora2 那样写 Markdown 时不用分屏预览，而是边写边渲染。不过 Markdown 本身的设计用意就是“所见即所得”，所以把这个特性叫做“实时渲染”更恰当一些。这个月应该能实现完，下个月正式发布。 技术方案上我们是通过让 Lute 支持渲染“Vditor DOM”来实现。这个方案最难的部分莫过于实现源码映射 3，即渲染结果字符和 Markdown 原文字符的位置对应关系。只有实现了源码映射才能实现编辑（光标）位置的正确移动。完整方案和技术细节后续会单独写一篇文档来介绍，希望能给其他在做 Markdown 编辑器的开发者带来帮助。 Latke Latke 是我们 Java 产品线的开发框架，之前的 Latke 是基于 Servlet 实现的，虽然能用但是一直不太满意：  Servlet 有点重，很多特性用不上 性能不足够好 不同的 Servlet 容器有不同的部署细节，....</p>]]>
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/11/11/1573402018349.html</guid>
-      <category>创业</category>
       <category>B3log</category>
+      <category>创业</category>
       <pubDate>Sun, 09 Feb 2020 11:31:52 +0800</pubDate>
     </item>
     <item>
       <title>创业的第二个冬天</title>
       <link>https://88250.github.io/articles/2020/02/09/1581219038316.html</link>
       <description>
-        <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》^1 看起。  认真积累，别走捷径。 CDN 盗刷 12 月份的某天，社区的 CDN 图床被人恶意刷了好几十 G 流量，虽然造成的损失就几十块钱，但我觉得这不是钱的问题，而是对我技术能力的嘲讽。通过分析日志，基本可以判断攻击来源是类似基于 Electron、Headless Chrome 的应用，因为这些攻击流量的来源 IP 大部分不是来自机房服务器。 随后我们通过七牛云提供的“回源鉴权”机制解决了这个问题，所有对图床 CDN 的请求都需要鉴权。判断依据是通过 Referer、IP，大致规则是禁止为空的 Referer，并且 IP 不能来自机房。顺手也加了防盗链，综合了博客端节点（Solo、Pipe）回调接口来判断请求是否是博客端发起的。 后来攻击者发现我们的应对措施后，就将流量转移到了攻击博客端节点，一些用户的博客被恶意请求，请求并不密集，攻击者企图慢慢消耗社区图床 CDN 以造成损失。这部分攻击流量后来也通过限流算法做了判断，最终将不合法的 IP 加入到社区 IP 黑名单^2中，博客端节点会定时获取这份黑名单列表，在节点....</p>]]>
+        <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》^1 看起。  认真积累，别走捷径。 CDN 盗刷 12 月份的某天，社区的 CDN 图床被人恶意刷了好几十 G 流量，虽然造成的损失就几十块钱，但我觉得这不是钱的问题，而是对我技术能力的嘲讽。通过分析日志，基本可以判断攻击来源是类似基于 Electron、Headless Chrome 的应用，因为这些攻击流量的来源 IP 大部分不是来自机房服务器。 随后我们通过七牛云提供的“回源鉴权”机制解决了这个问题，所有对图床 CDN 的请求都需要鉴权。判断依据是通过 Referer、IP，大致规则是禁止为空的 Referer，并且 IP 不能来自机房。顺手也加了防盗链，综合了博客端节点（Solo、Pipe）回调接口来判断请求是否是博客端发起的。 后来攻击者发现我们的应对措施后，就将流量转移到了攻击博客端节点，一些用户的博客被恶意请求，请求并不密集，攻击者企图慢慢消耗社区图床 CDN 以造成损失。这部分攻击流量后来也通过限流算法做了判断，最终将不合法的 IP 加入到社区 IP 黑名单 ^2 中，博客端节点会定时获取这份黑名单列表，在节点....</p>]]>
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/02/09/1581219038316.html</guid>
@@ -53,10 +67,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/02/08/1581145208243.html</guid>
-      <category>开源</category>
-      <category>Solo</category>
       <category>博客</category>
+      <category>Solo</category>
       <category>感悟</category>
+      <category>开源</category>
       <pubDate>Sat, 08 Feb 2020 15:02:21 +0800</pubDate>
     </item>
     <item>
@@ -67,10 +81,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/02/07/1581004860744.html</guid>
-      <category>Git</category>
       <category>镜像</category>
-      <category>GitHub</category>
       <category>同步</category>
+      <category>Git</category>
+      <category>GitHub</category>
       <pubDate>Fri, 07 Feb 2020 10:55:01 +0800</pubDate>
     </item>
     <item>
@@ -81,10 +95,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/12/26/1577370404903.html</guid>
-      <category>所见即所得</category>
-      <category>Vditor</category>
       <category>Markdown</category>
+      <category>所见即所得</category>
       <category>编辑器</category>
+      <category>Vditor</category>
       <pubDate>Thu, 30 Jan 2020 11:37:26 +0800</pubDate>
     </item>
     <item>
@@ -95,10 +109,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/01/23/1579786655216.html</guid>
-      <category>Markdown</category>
-      <category>链滴笔记</category>
       <category>路线图</category>
+      <category>链滴笔记</category>
       <category>WebDAV</category>
+      <category>Markdown</category>
       <pubDate>Thu, 30 Jan 2020 11:24:43 +0800</pubDate>
     </item>
     <item>
@@ -109,10 +123,10 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2020/01/19/1579414663700.html</guid>
-      <category>Vditor</category>
-      <category>Typora</category>
       <category>Markdown</category>
       <category>所见即所得</category>
+      <category>Vditor</category>
+      <category>Typora</category>
       <pubDate>Sun, 19 Jan 2020 14:20:42 +0800</pubDate>
     </item>
     <item>
@@ -123,22 +137,11 @@
       </description>
       <author>88250</author>
       <guid>https://88250.github.io/articles/2019/12/30/1577712379212.html</guid>
-      <category>创业</category>
+      <category>总结</category>
       <category>2019</category>
-      <category>总结</category>
       <category>开源</category>
+      <category>创业</category>
       <pubDate>Mon, 30 Dec 2019 21:31:08 +0800</pubDate>
-    </item>
-    <item>
-      <title>关于我</title>
-      <link>https://88250.github.io/about</link>
-      <description>
-        <![CDATA[<p>我叫丁亮（Daniel/D/88250），是一名开源程序员，自由职业者。</p>]]>
-      </description>
-      <author>88250</author>
-      <guid>https://88250.github.io/about</guid>
-      <category>总结</category>
-      <pubDate>Sun, 15 Dec 2019 10:38:51 +0800</pubDate>
     </item>
   </channel>
 </rss>

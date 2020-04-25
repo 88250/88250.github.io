@@ -2,18 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>《提问的智慧》精读注解版 - D 的个人博客</title><meta name="description" content="大学期间，我看过《大教堂与集市》、《提问的智慧》以及影片《操作系统的革命》，它们对我后来的职业生涯产生了重要的影响。其中《提问的智慧》是篇长文，几十分钟就能看完，此文作者 Eric Steven Raymond（ESR）也是《大教堂与集市》的作者，著名的黑客，开源先驱。他在 2001 年第一次发布《提》后一直对此文进行着更新维护，以保证它尽量适用于最新的情况，比如与时俱进地加入新章节、修复 URL 地址、更新翻译版链接等。 今天我又读了一遍《提》，作为一个开源项目的维护者，感慨万千。下文是我对《提》的 部分 注解，如果你时间有限，可以通过该注解版进行有限的了解。但还是强烈建议你精读一遍《提问的智慧》，英语好的同学可直接看原文 How To Ask Questions The Smart Way。 下面按照原文章节进行注解，标题即原文章节标题。再次说明，我仅仅是注解了《提》中的部分内容，有时间的话请一定要看原文。 声明 该小节 ESR 建议项目维护者在用户指南文档的显著位置标注： 本指南不提供此项目的实际支持服务！ 我们已经深刻领教到少了上述声明所带来的痛苦。因为少了这点声明，我们不停...."/><meta property="og:description" content="大学期间，我看过《大教堂与集市》、《提问的智慧》以及影片《操作系统的革命》，它们对我后来的职业生涯产生了重要的影响。其中《提问的智慧》是篇长文，几十分钟就能看完，此文作者 Eric Steven Raymond（ESR）也是《大教堂与集市》的作者，著名的黑客，开源先驱。他在 2001 年第一次发布《提》后一直对此文进行着更新维护，以保证它尽量适用于最新的情况，比如与时俱进地加入新章节、修复 URL 地址、更新翻译版链接等。 今天我又读了一遍《提》，作为一个开源项目的维护者，感慨万千。下文是我对《提》的 部分 注解，如果你时间有限，可以通过该注解版进行有限的了解。但还是强烈建议你精读一遍《提问的智慧》，英语好的同学可直接看原文 How To Ask Questions The Smart Way。 下面按照原文章节进行注解，标题即原文章节标题。再次说明，我仅仅是注解了《提》中的部分内容，有时间的话请一定要看原文。 声明 该小节 ESR 建议项目维护者在用户指南文档的显著位置标注： 本指南不提供此项目的实际支持服务！ 我们已经深刻领教到少了上述声明所带来的痛苦。因为少了这点声明，我们不停...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="《提问的智慧》精读注解版 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/09/08/1536377163156.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="《提问的智慧》精读注解版 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/09/08/1536377163156.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="百度不限速下载器 BND2 技术架构简介" href="https://88250.github.io/articles/2018/08/26/1535277215816.html">
             <link rel="next" title="Java 正则中的非捕获组" href="https://88250.github.io/articles/2018/09/30/1538320113750.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -262,7 +255,7 @@ bold;">Sym</span></a>
 <p>正确的拼写、标点符号和大小写是很重要的。通常来说，如果你觉得这样做很麻烦，不想在乎这些，那我们也觉得麻烦，不想在乎你的提问。</p>
 </blockquote>
 <p>别以为别人不在乎拼写、标点符号和大小写，黑客们甚至在乎空格的使用！比如中文和英文、数字、符号之间必须要有空格，这个空格被称作<a href="https://github.com/vinta/pangu.js" target="_blank">“盘古之白”</a>。</p>
-<p>关于大小写引发的“悲剧”也不少，甚至可能就发生在你身上。比如你简历是不是写过“iphone/ios 开发”，“熟练使用 JAVA”，“熟悉 Mysql”？这样“不拘小节”的人恐怕不知道大多数编程语言是区分大小写的吧....</p>
+<p>关于大小写引发的“悲剧”也不少，甚至可能就发生在你身上。比如你简历是不是写过“iphone/ios 开发”，“熟练使用 Java”，“熟悉 MySQL”？这样“不拘小节”的人恐怕不知道大多数编程语言是区分大小写的吧....</p>
 <blockquote>
 <p>如果在使用非母语的论坛提问，你可以犯点拼写和语法上的小错，但决不能在思考上马虎（没错，我们通常能弄清两者的分别）。同时，除非你知道回复者使用的语言，否则请使用英语书写。</p>
 </blockquote>
@@ -276,7 +269,7 @@ bold;">Sym</span></a>
 <p>帖日志要保证是纯文本格式，特别是服务器端日志，千万不要截图（特别是那种截图还“勾画重点”的行为应该立刻停止）；对于浏览器端的监控调试输出可以截图，但截图时要考虑信息是否完整，也不要包含无用画面。</p>
 <blockquote>
 <ul>
-<li>勿滥用表情符号和HTML功能（当它们提供时）。一两个表情符号通常没有问题，但花哨的彩色文本倾向于使人认为你是个无能之辈。过滥地使用表情符号、色彩和字体会使你看来像个傻笑的小姑娘。这通常不是个好主意，除非你只是对性而不是对答案感兴趣。</li>
+<li>勿滥用表情符号和 HTML 功能（当它们提供时）。一两个表情符号通常没有问题，但花哨的彩色文本倾向于使人认为你是个无能之辈。过滥地使用表情符号、色彩和字体会使你看来像个傻笑的小姑娘。这通常不是个好主意，除非你只是对性而不是对答案感兴趣。</li>
 </ul>
 </blockquote>
 <p>可能你碰到问题后心情很复杂，需要大量表情符号、红绿色、超大标题或者 gif 动图来表达你心中的困惑，但是这样做除了表现出幼稚、干扰阅读外没有任何用。</p>
@@ -285,7 +278,7 @@ bold;">Sym</span></a>
 <blockquote>
 <ul>
 <li>仔细、清楚地描述你的问题或 Bug 的症状。</li>
-<li>描述问题发生的环境（机器配置、操作系统、应用程序、以及相关的信息），提供经销商的发行版和版本号（如：Fedora Core 4、Slackware 9.1等）。</li>
+<li>描述问题发生的环境（机器配置、操作系统、应用程序、以及相关的信息），提供经销商的发行版和版本号（如：Fedora Core 4、Slackware 9.1 等）。</li>
 <li>描述在提问前你是怎样去研究和理解这个问题的。</li>
 <li>描述在提问前为确定问题而采取的诊断步骤。</li>
 <li>描述最近做过什么可能相关的硬件或软件变更。</li>
@@ -366,14 +359,14 @@ bold;">Sym</span></a>
 <p>避免用无意义的话结束提问，例如“有人能帮我吗？”或者“这有答案吗？”。</p>
 </blockquote>
 <p>这和问你“在吗？”一样，大部分时候我都很想回复“不在。”你要知道，在一些代码实现中，我们都是尽自己的最大努力来做简化，看到你这样问，我们会条件反射地把它优化掉。</p>
-<h3 id="即使你很急也不要在标题写">即使你很急也不要在标题写<code>紧急</code></h3>
+<h3 id="即使你很急也不要在标题写">即使你很急也不要在标题写 <code>紧急</code></h3>
 <blockquote>
 <p>这是你的问题，不是我们的。…… 有半个例外的情况是，如果你是在一些很高调，会使黑客们兴奋的地方，也许值得这样去做。在这种情况下，如果你有时间压力，也很有礼貌地提到这点，人们也许会有兴趣回答快一点。</p>
 </blockquote>
 <p>过分强调往往适得其反。</p>
 <h3 id="礼多人不怪-而且有时还很有帮助">礼多人不怪，而且有时还很有帮助</h3>
 <blockquote>
-<p>彬彬有礼，多用<code>请</code>和<code>谢谢您的关注</code>，或<code>谢谢你的关照</code>。让大家都知道你对他们花时间免费提供帮助心存感激。…… 坦白说，这一点并没有比清晰、正确、精准并合法语法和避免使用专用格式重要（也不能取而代之）。</p>
+<p>彬彬有礼，多用 <code>请</code> 和 <code>谢谢您的关注</code>，或 <code>谢谢你的关照</code>。让大家都知道你对他们花时间免费提供帮助心存感激。…… 坦白说，这一点并没有比清晰、正确、精准并合法语法和避免使用专用格式重要（也不能取而代之）。</p>
 </blockquote>
 <p>礼多人不怪，但别颠倒主次，精准描述问题永远是第一位。</p>
 <h3 id="问题解决后-加个简短的补充说明">问题解决后，加个简短的补充说明</h3>
@@ -384,7 +377,7 @@ bold;">Sym</span></a>
 <h2 id="如何解读答案">如何解读答案</h2>
 <h3 id="RTFM-和-STFW-如何知道你已完全搞砸了">RTFM 和 STFW：如何知道你已完全搞砸了</h3>
 <blockquote>
-<p>如果你收到RTFM （Read The Fucking Manual）的回应，回答者认为你<code>应该去读他妈的手册</code>。当然，基本上他是对的，你应该去读一读。…… 如果你收到STFW（Search The Fucking Web）的回应，回答者认为你<code>应该到他妈的网上搜索</code>。那人多半也是对的，去搜索一下吧。…… 你不应该因此不爽；<strong>依照黑客的标准，他已经表示了对你一定程度的关注，而没有对你的要求视而不见。</strong></p>
+<p>如果你收到 RTFM （Read The Fucking Manual）的回应，回答者认为你 <code>应该去读他妈的手册</code>。当然，基本上他是对的，你应该去读一读。…… 如果你收到 STFW（Search The Fucking Web）的回应，回答者认为你 <code>应该到他妈的网上搜索</code>。那人多半也是对的，去搜索一下吧。…… 你不应该因此不爽；<strong>依照黑客的标准，他已经表示了对你一定程度的关注，而没有对你的要求视而不见。</strong></p>
 </blockquote>
 <p>鸟哥语录.jpg。</p>
 <h3 id="如果还是搞不懂">如果还是搞不懂</h3>
@@ -525,7 +518,7 @@ bold;">Sym</span></a>
             <a href="#去掉无意义的提问句">去掉无意义的提问句</a>
         </li>
         <li class="toc__h3">
-            <a href="#即使你很急也不要在标题写">即使你很急也不要在标题写紧急</a>
+            <a href="#即使你很急也不要在标题写">即使你很急也不要在标题写 紧急</a>
         </li>
         <li class="toc__h3">
             <a href="#礼多人不怪-而且有时还很有帮助">礼多人不怪，而且有时还很有帮助</a>
@@ -590,7 +583,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -619,11 +612,6 @@ bold;">Sym</span></a>
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -638,17 +626,17 @@ bold;">Sym</span></a>
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -682,7 +670,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1536377163156",
@@ -702,4 +690,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 354ms, 2020/03/29 11:55:18 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 117ms, 2020/04/25 21:02:09 -->

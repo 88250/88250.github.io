@@ -2,26 +2,19 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
-
 /**
  * @fileoverview Page util, load heighlight and process comment.
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.6.0.0, Jan 18, 2020
+ * @version 2.8.0.0, Apr 16, 2020
  */
 window.Page = function (tips) {
   this.currentCommentId = ''
@@ -32,7 +25,7 @@ $.extend(Page.prototype, {
   /**
    * 第三方评论
    */
-  vcomment: function ( ) {
+  vcomment: function () {
     const $vcomment = $('#vcomment')
     if ($vcomment.length === 0) {
       return
@@ -95,14 +88,14 @@ $.extend(Page.prototype, {
             'qriousScript')
         }
 
-        if ($qrCode.css('background-image') === "none") {
+        if ($qrCode.css('background-image') === 'none') {
           const qr = new QRious({
             padding: 0,
             element: $qrCode[0],
             value: shareURL,
             size: 99,
           })
-          $qrCode.css('background-image', `url(${qr.toDataURL('image/jpeg')})`)
+          $qrCode.css('background-image', `url(${qr.toDataURL('image/jpeg')})`).show()
         } else {
           $qrCode.slideToggle()
         }
@@ -150,12 +143,16 @@ $.extend(Page.prototype, {
         'list',
         'ordered-list',
         'check',
+        'outdent',
+        'indent',
         '|',
         'quote',
         'line',
         'code',
         'inline-code',
         'table',
+        'insert-before',
+        'insert-after',
         '|',
         'undo',
         'redo',
@@ -173,15 +170,12 @@ $.extend(Page.prototype, {
       if ($(window).width() < 768) {
         toolbar = [
           'emoji',
-          'bold',
-          'italic',
           'link',
-          'list',
-          'check',
+          'upload',
+          'insert-after',
           'edit-mode',
           'preview',
           'fullscreen',
-          'help',
         ]
         resizeEnable = false
       }
@@ -211,7 +205,10 @@ $.extend(Page.prototype, {
             Util.parseMarkdown()
           },
         },
-        counter: 500,
+        counter: {
+          enable: true,
+          max: 500,
+        },
         resize: {
           enable: resizeEnable,
           position: 'top',
@@ -220,7 +217,7 @@ $.extend(Page.prototype, {
         toolbar: toolbar,
         after: () => {
           vditor.focus()
-        }
+        },
       })
     }
 

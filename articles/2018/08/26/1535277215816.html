@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>百度不限速下载器 BND2 技术架构简介 - D 的个人博客</title><meta name="description" content="BND2 简介 BND2 是一款图形界面的百度不限速下载器，支持 64 位 Windows 和 Mac，仅提供给黑客派会员使用，下载地址：https://share.weiyun.com/5Z32JP8 高速下载原理 通过 PCS API 获得文件、下载链接通过 Aria2 实现高速下载 和百度网盘下载相关的内容我们就介绍到这里。下面我们主要介绍框架和实现相关的东西，如果你刚好想做一个桌面软件，可以参考借鉴一下。 技术架构 BND2 基于 Electron、React、golang 实现，通过主框架 - UI - 内核的分离实现 UI 以及内核的自动更新。 主框架：Electron 主进程，负责版本检查、账号登录以及管理内核UI：React 实现主界面，编译后上 CDN，通过 Electron &lt;webview&gt; 加载内核：golang 实现的 HTTP 服务，负责响应 UI 请求，管理 Aria2 进程。 编译后可执行二进制上 CDN 提供给主框架拉取更新 为什么选 Electron、React 和 golang 在选择 Electron 之前，我们大致看了下 NW...."/><meta property="og:description" content="BND2 简介 BND2 是一款图形界面的百度不限速下载器，支持 64 位 Windows 和 Mac，仅提供给黑客派会员使用，下载地址：https://share.weiyun.com/5Z32JP8 高速下载原理 通过 PCS API 获得文件、下载链接通过 Aria2 实现高速下载 和百度网盘下载相关的内容我们就介绍到这里。下面我们主要介绍框架和实现相关的东西，如果你刚好想做一个桌面软件，可以参考借鉴一下。 技术架构 BND2 基于 Electron、React、golang 实现，通过主框架 - UI - 内核的分离实现 UI 以及内核的自动更新。 主框架：Electron 主进程，负责版本检查、账号登录以及管理内核UI：React 实现主界面，编译后上 CDN，通过 Electron &lt;webview&gt; 加载内核：golang 实现的 HTTP 服务，负责响应 UI 请求，管理 Aria2 进程。 编译后可执行二进制上 CDN 提供给主框架拉取更新 为什么选 Electron、React 和 golang 在选择 Electron 之前，我们大致看了下 NW...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="百度不限速下载器 BND2 技术架构简介 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/08/26/1535277215816.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="百度不限速下载器 BND2 技术架构简介 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/08/26/1535277215816.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>百度不限速下载器 BND2 技术架构简介 - D 的个人博客</title><meta name="description" content="BND2 简介 BND2 是一款图形界面的百度不限速下载器，支持 64 位 Windows 和 Mac，仅提供给黑客派会员使用，下载地址：https://share.weiyun.com/5Z32JP8 高速下载原理 通过 PCS API 获得文件、下载链接通过 Aria2 实现高速下载 和百度网盘下载相关的内容我们就介绍到这里。下面我们主要介绍框架和实现相关的东西，如果你刚好想做一个桌面软件，可以参考借鉴一下。 技术架构 BND2 基于 Electron、React、golang 实现，通过主框架 - UI - 内核的分离实现 UI 以及内核的自动更新。 主框架：Electron 主进程，负责版本检查、账号登录以及管理内核 UI：React 实现主界面，编译后上 CDN，通过 Electron &lt;webview&gt; 加载内核：golang 实现的 HTTP 服务，负责响应 UI 请求，管理 Aria2 进程。 编译后可执行二进制上 CDN 提供给主框架拉取更新 为什么选 Electron、React 和 golang 在选择 Electron 之前，我们大致看了下 NW...."/><meta property="og:description" content="BND2 简介 BND2 是一款图形界面的百度不限速下载器，支持 64 位 Windows 和 Mac，仅提供给黑客派会员使用，下载地址：https://share.weiyun.com/5Z32JP8 高速下载原理 通过 PCS API 获得文件、下载链接通过 Aria2 实现高速下载 和百度网盘下载相关的内容我们就介绍到这里。下面我们主要介绍框架和实现相关的东西，如果你刚好想做一个桌面软件，可以参考借鉴一下。 技术架构 BND2 基于 Electron、React、golang 实现，通过主框架 - UI - 内核的分离实现 UI 以及内核的自动更新。 主框架：Electron 主进程，负责版本检查、账号登录以及管理内核 UI：React 实现主界面，编译后上 CDN，通过 Electron &lt;webview&gt; 加载内核：golang 实现的 HTTP 服务，负责响应 UI 请求，管理 Aria2 进程。 编译后可执行二进制上 CDN 提供给主框架拉取更新 为什么选 Electron、React 和 golang 在选择 Electron 之前，我们大致看了下 NW...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="百度不限速下载器 BND2 技术架构简介 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/08/26/1535277215816.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="百度不限速下载器 BND2 技术架构简介 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/08/26/1535277215816.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="创业的第一个夏天" href="https://88250.github.io/articles/2018/07/26/1532590847178.html">
             <link rel="next" title="《提问的智慧》精读注解版" href="https://88250.github.io/articles/2018/09/08/1536377163156.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -190,25 +183,25 @@ bold;">Sym</span></a>
 <p>Electron 内建有热更新机制，但不支持 Linux（虽然目前 BND2 也没支持 Linux，但未来会考虑支持），并且我们有自己的产品版本管理机制，所以就没有考虑使用 Electron 内建的热更新了。</p>
 <p>另外，无论给 Windows 还是 Mac 的升级包都是使用 zip 包，主要是为了统一。但 zip 包不会保留可执行权限，Linux/Mac 解压后需要再给二进制赋一下可执行权限。</p>
 <h3 id="账号登录">账号登录</h3>
-<p>为了“复用”登录，我们是通过 webview 直接引的待登录站点的 web 登录界面。没有在本地做登录框主要是考虑到：登录逻辑复杂，特别是登录异常处理。比如二维码、验证码、短信校验等等，这些如果通过后端对接非常繁琐，外部站点改一下实现就要跟着变，维护工作量巨大。</p>
+<p>为了“复用”登录，我们是通过 webview 直接引的待登录站点的 Web 登录界面。没有在本地做登录框主要是考虑到：登录逻辑复杂，特别是登录异常处理。比如二维码、验证码、短信校验等等，这些如果通过后端对接非常繁琐，外部站点改一下实现就要跟着变，维护工作量巨大。</p>
 <p>登录后我们只需要获取一下关键的 cookie 就行了，然后把这个 cookie 传给内核，后续由内核负责和外部站点的接口进行交互。</p>
 <h3 id="webview">webview</h3>
 <p>通过 webview 从 CDN 加载，如果要升级只需要编译并发布 CDN。</p>
-<p>每次启动加载的 HTML 是通过在客户端加入 <code>?时间戳</code>来引入，也就是说这个文件肯定不会在 CDN 上命中，都是回源加载最新的，CDN 主要是加速其引入的其他资源文件。</p>
+<p>每次启动加载的 HTML 是通过在客户端加入 <code>?时间戳</code> 来引入，也就是说这个文件肯定不会在 CDN 上命中，都是回源加载最新的，CDN 主要是加速其引入的其他资源文件。</p>
 <h3 id="前后端交互">前后端交互</h3>
 <p>UI 和内核的交互没有通过传统的 HTTP AJAX 实现，而是统一通过 WebSocket 来实现全双工的异步通讯。这样设计主要是考虑到 BND2 在异步推送的场景比较多，比如全局统计、下载进度统计、反馈内核报错等。</p>
 <p>实现上我们做了一个简单的抽象封装，通过命令模式实现指令分发和执行：</p>
-<pre><code class="language-go highlight-chroma"><span class="highlight-c1">// WebSocket 消息处理
-</span><span class="highlight-c1"></span><span class="highlight-nx">m</span><span class="highlight-p">.</span><span class="highlight-nf">HandleMessage</span><span class="highlight-p">(</span><span class="highlight-kd">func</span><span class="highlight-p">(</span><span class="highlight-nx">s</span> <span class="highlight-o">*</span><span class="highlight-nx">melody</span><span class="highlight-p">.</span><span class="highlight-nx">Session</span><span class="highlight-p">,</span> <span class="highlight-nx">msg</span> <span class="highlight-p">[]</span><span class="highlight-kt">byte</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
-    <span class="highlight-nx">request</span> <span class="highlight-o">:=</span> <span class="highlight-kd">map</span><span class="highlight-p">[</span><span class="highlight-kt">string</span><span class="highlight-p">]</span><span class="highlight-kd">interface</span><span class="highlight-p">{}{}</span>
-    <span class="highlight-nx">json</span><span class="highlight-p">.</span><span class="highlight-nf">Unmarshal</span><span class="highlight-p">(</span><span class="highlight-nx">msg</span><span class="highlight-p">,</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">request</span><span class="highlight-p">)</span> <span class="highlight-c1">// 反序列表指令
-</span><span class="highlight-c1"></span>    
-    <span class="highlight-nx">cmdStr</span> <span class="highlight-o">:=</span> <span class="highlight-nx">request</span><span class="highlight-p">[</span><span class="highlight-s">"cmd"</span><span class="highlight-p">].(</span><span class="highlight-kt">string</span><span class="highlight-p">)</span>
-    <span class="highlight-nx">cmd</span> <span class="highlight-o">:=</span> <span class="highlight-nx">command</span><span class="highlight-p">.</span><span class="highlight-nx">Commands</span><span class="highlight-p">[</span><span class="highlight-nx">cmdStr</span><span class="highlight-p">]</span> <span class="highlight-c1">// 指令路由分发
-</span><span class="highlight-c1"></span>    <span class="highlight-nx">param</span> <span class="highlight-o">:=</span> <span class="highlight-nx">request</span><span class="highlight-p">[</span><span class="highlight-s">"param"</span><span class="highlight-p">].(</span><span class="highlight-kd">map</span><span class="highlight-p">[</span><span class="highlight-kt">string</span><span class="highlight-p">]</span><span class="highlight-kd">interface</span><span class="highlight-p">{})</span>
-    
-    <span class="highlight-k">go</span> <span class="highlight-nx">cmd</span><span class="highlight-p">.</span><span class="highlight-nf">Exec</span><span class="highlight-p">(</span><span class="highlight-nx">param</span><span class="highlight-p">)</span> <span class="highlight-c1">// 异步执行
-</span><span class="highlight-c1"></span><span class="highlight-p">}</span>
+<pre><code class="language-go highlight-chroma"><span class="highlight-ln"> 1</span><span class="highlight-c1">// WebSocket 消息处理
+</span><span class="highlight-ln"> 2</span><span class="highlight-c1"></span><span class="highlight-nx">m</span><span class="highlight-p">.</span><span class="highlight-nf">HandleMessage</span><span class="highlight-p">(</span><span class="highlight-kd">func</span><span class="highlight-p">(</span><span class="highlight-nx">s</span> <span class="highlight-o">*</span><span class="highlight-nx">melody</span><span class="highlight-p">.</span><span class="highlight-nx">Session</span><span class="highlight-p">,</span> <span class="highlight-nx">msg</span> <span class="highlight-p">[]</span><span class="highlight-kt">byte</span><span class="highlight-p">)</span> <span class="highlight-p">{</span>
+<span class="highlight-ln"> 3</span>    <span class="highlight-nx">request</span> <span class="highlight-o">:=</span> <span class="highlight-kd">map</span><span class="highlight-p">[</span><span class="highlight-kt">string</span><span class="highlight-p">]</span><span class="highlight-kd">interface</span><span class="highlight-p">{}{}</span>
+<span class="highlight-ln"> 4</span>    <span class="highlight-nx">json</span><span class="highlight-p">.</span><span class="highlight-nf">Unmarshal</span><span class="highlight-p">(</span><span class="highlight-nx">msg</span><span class="highlight-p">,</span> <span class="highlight-o">&amp;</span><span class="highlight-nx">request</span><span class="highlight-p">)</span> <span class="highlight-c1">// 反序列表指令
+</span><span class="highlight-ln"> 5</span><span class="highlight-c1"></span>    
+<span class="highlight-ln"> 6</span>    <span class="highlight-nx">cmdStr</span> <span class="highlight-o">:=</span> <span class="highlight-nx">request</span><span class="highlight-p">[</span><span class="highlight-s">"cmd"</span><span class="highlight-p">].(</span><span class="highlight-kt">string</span><span class="highlight-p">)</span>
+<span class="highlight-ln"> 7</span>    <span class="highlight-nx">cmd</span> <span class="highlight-o">:=</span> <span class="highlight-nx">command</span><span class="highlight-p">.</span><span class="highlight-nx">Commands</span><span class="highlight-p">[</span><span class="highlight-nx">cmdStr</span><span class="highlight-p">]</span> <span class="highlight-c1">// 指令路由分发
+</span><span class="highlight-ln"> 8</span><span class="highlight-c1"></span>    <span class="highlight-nx">param</span> <span class="highlight-o">:=</span> <span class="highlight-nx">request</span><span class="highlight-p">[</span><span class="highlight-s">"param"</span><span class="highlight-p">].(</span><span class="highlight-kd">map</span><span class="highlight-p">[</span><span class="highlight-kt">string</span><span class="highlight-p">]</span><span class="highlight-kd">interface</span><span class="highlight-p">{})</span>
+<span class="highlight-ln"> 9</span>    
+<span class="highlight-ln">10</span>    <span class="highlight-k">go</span> <span class="highlight-nx">cmd</span><span class="highlight-p">.</span><span class="highlight-nf">Exec</span><span class="highlight-p">(</span><span class="highlight-nx">param</span><span class="highlight-p">)</span> <span class="highlight-c1">// 异步执行
+</span><span class="highlight-ln">11</span><span class="highlight-c1"></span><span class="highlight-p">}</span>
 </code></pre>
 <p>前端也非常类似，在 <code>ws.onmessage</code> 时分发并执行指令。</p>
 <h3 id="安全性">安全性</h3>
@@ -291,7 +284,7 @@ bold;">Sym</span></a>
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -320,11 +313,6 @@ bold;">Sym</span></a>
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -339,17 +327,17 @@ bold;">Sym</span></a>
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -383,7 +371,7 @@ bold;">Sym</span></a>
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1535277215816",
@@ -403,4 +391,4 @@ bold;">Sym</span></a>
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 400ms, 2020/03/29 11:55:19 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 136ms, 2020/04/25 21:02:09 -->

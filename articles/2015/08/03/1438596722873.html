@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客</title><meta name="description" content="上一篇： [1438311936449] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438311936449] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/03/1438596722873.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/03/1438596722873.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客</title><meta name="description" content="上一篇： [1438311936449] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438311936449] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/03/1438596722873.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（九） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/03/1438596722873.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（八）" href="https://88250.github.io/articles/2015/07/31/1438311936449.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（十）" href="https://88250.github.io/articles/2015/08/04/1438699210452.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -171,8 +164,8 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
 <li><a href="http://symphony.b3log.org/article/1437719712835" target="_blank">Go 边看边练 -《Go 学习笔记》系列（三）- 指针</a></li>
-<li><a href="http://symphony.b3log.org/article/1437984612418" target="_blank">Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1</a></li>
-<li><a href="http://symphony.b3log.org/article/1438070631857" target="_blank">Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2</a></li>
+<li><a href="http://symphony.b3log.org/article/1437984612418" target="_blank">Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1</a></li>
+<li><a href="http://symphony.b3log.org/article/1438070631857" target="_blank">Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2</a></li>
 <li><a href="http://symphony.b3log.org/article/1438164538421" target="_blank">Go 边看边练 -《Go 学习笔记》系列（六）- 函数</a></li>
 <li><a href="http://symphony.b3log.org/article/1438260619759" target="_blank">Go 边看边练 -《Go 学习笔记》系列（七）- 错误处理</a></li>
 <li><a href="http://symphony.b3log.org/article/1438311936449" target="_blank">Go 边看边练 -《Go 学习笔记》系列（八）- 数组、切片</a></li>
@@ -186,252 +179,252 @@ bold;">Sym</span></a>
 <hr>
 <h3 id="4-3-Map">4.3 Map</h3>
 <p>引用类型，哈希表。键必须是支持相等运算符 (==、!=) 类型，比如 <code>number</code>、<code>string</code>、<code>pointer</code>、<code>array</code>、<code>struct</code>，以及对应的 <code>interface</code>。值可以是任意类型，没有限制。</p>
-<pre><code class="highlight-chroma">m := map[int]struct {
-	name string
-	age int
-}{
-	1: {"user1", 10}, // 可省略元素类型。
-	2: {"user2", 20},
-}
-
-println(m[1].name)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>m := map[int]struct {
+<span class="highlight-ln">2</span>	name string
+<span class="highlight-ln">3</span>	age int
+<span class="highlight-ln">4</span>}{
+<span class="highlight-ln">5</span>	1: {"user1", 10}, // 可省略元素类型。
+<span class="highlight-ln">6</span>	2: {"user2", 20},
+<span class="highlight-ln">7</span>}
+<span class="highlight-ln">8</span>
+<span class="highlight-ln">9</span>println(m[1].name)
 </code></pre>
 <p>预先给 <code>make</code> 函数一个合理元素数量参数，有助于提升性能。因为事先申请一大块内存，可避免后续操作时频繁扩张。</p>
-<pre><code class="highlight-chroma">m := make(map[string]int, 1000)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>m := make(map[string]int, 1000)
 </code></pre>
 <p>常见操作：</p>
-<pre><code class="highlight-chroma">m := map[string]int{
-	"a": 1,
-}
-
-if v, ok := m["a"]; ok { // 判断 key 是否存在。
-	println(v)
-}
-
-println(m["c"]) // 对于不存在的 key，直接返回 \0，不会出错。
-
-m["b"] = 2 // 新增或修改。
-
-delete(m, "c") // 删除。如果 key 不存在，不会出错。
-
-println(len(m)) // 获取键值对数量。cap 无效。
-
-for k, v := range m { // 迭代，可仅返回 key。随机顺序返回，每次都不相同。
-	println(k, v)
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>m := map[string]int{
+<span class="highlight-ln"> 2</span>	"a": 1,
+<span class="highlight-ln"> 3</span>}
+<span class="highlight-ln"> 4</span>
+<span class="highlight-ln"> 5</span>if v, ok := m["a"]; ok { // 判断 key 是否存在。
+<span class="highlight-ln"> 6</span>	println(v)
+<span class="highlight-ln"> 7</span>}
+<span class="highlight-ln"> 8</span>
+<span class="highlight-ln"> 9</span>println(m["c"]) // 对于不存在的 key，直接返回 \0，不会出错。
+<span class="highlight-ln">10</span>
+<span class="highlight-ln">11</span>m["b"] = 2 // 新增或修改。
+<span class="highlight-ln">12</span>
+<span class="highlight-ln">13</span>delete(m, "c") // 删除。如果 key 不存在，不会出错。
+<span class="highlight-ln">14</span>
+<span class="highlight-ln">15</span>println(len(m)) // 获取键值对数量。cap 无效。
+<span class="highlight-ln">16</span>
+<span class="highlight-ln">17</span>for k, v := range m { // 迭代，可仅返回 key。随机顺序返回，每次都不相同。
+<span class="highlight-ln">18</span>	println(k, v)
+<span class="highlight-ln">19</span>}
 </code></pre>
 <p>不能保证迭代返回次序，通常是随机结果，具体和版本实现有关。</p>
 <p>从 <code>map</code> 中取回的是一个 <code>value</code> 临时复制品，对其成员的修改是没有任何意义的。</p>
-<pre><code class="highlight-chroma">type user struct{ name string }
-
-m := map[int]user{ // 当 map 因扩张而重新哈希时，各键值项存储位置都会发生改变。 因此，map
-	1: {"user1"}, // 被设计成 not addressable。 类似 m[1].name 这种期望透过原 value
-} // 指针修改成员的行为自然会被禁止。
-
-m[1].name = "Tom" // Error: cannot assign to m[1].name
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>type user struct{ name string }
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>m := map[int]user{ // 当 map 因扩张而重新哈希时，各键值项存储位置都会发生改变。 因此，map
+<span class="highlight-ln">4</span>	1: {"user1"}, // 被设计成 not addressable。 类似 m[1].name 这种期望透过原 value
+<span class="highlight-ln">5</span>} // 指针修改成员的行为自然会被禁止。
+<span class="highlight-ln">6</span>
+<span class="highlight-ln">7</span>m[1].name = "Tom" // Error: cannot assign to m[1].name
 </code></pre>
 <p>正确做法是完整替换 <code>value</code> 或使用指针。</p>
-<pre><code class="highlight-chroma">u := m[1]
-u.name = "Tom"
-m[1] = u // 替换 value。
-
-m2 := map[int]*user{
-	1: &amp;user{"user1"},
-}
-
-m2[1].name = "Jack" // 返回的是指针复制品。透过指针修改原对象是允许的。
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>u := m[1]
+<span class="highlight-ln">2</span>u.name = "Tom"
+<span class="highlight-ln">3</span>m[1] = u // 替换 value。
+<span class="highlight-ln">4</span>
+<span class="highlight-ln">5</span>m2 := map[int]*user{
+<span class="highlight-ln">6</span>	1: &amp;user{"user1"},
+<span class="highlight-ln">7</span>}
+<span class="highlight-ln">8</span>
+<span class="highlight-ln">9</span>m2[1].name = "Jack" // 返回的是指针复制品。透过指针修改原对象是允许的。
 </code></pre>
 <p>可以在迭代时安全删除键值。但如果期间有新增操作，那么就不知道会有什么意外了。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/953c1eef3162b8a3aec5b78d0405e667.go?embed=true" width="99%" height="600"></iframe>
 <h3 id="4-4-Struct">4.4 Struct</h3>
 <p>值类型，赋值和传参会复制全部内容。可用 "_" 定义补位字段，支持指向自身类型的指针成员。</p>
-<pre><code class="highlight-chroma">type Node struct {
-	_ int
-	id int
-	data *byte
-	next *Node
-}
-
-func main() {
-	n1 := Node{
-		id: 1,
-		data: nil,
-	}
-    
-	n2 := Node{
-		id: 2,
-		data: nil,
-		next: &amp;n1,
-	}
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>type Node struct {
+<span class="highlight-ln"> 2</span>	_ int
+<span class="highlight-ln"> 3</span>	id int
+<span class="highlight-ln"> 4</span>	data *byte
+<span class="highlight-ln"> 5</span>	next *Node
+<span class="highlight-ln"> 6</span>}
+<span class="highlight-ln"> 7</span>
+<span class="highlight-ln"> 8</span>func main() {
+<span class="highlight-ln"> 9</span>	n1 := Node{
+<span class="highlight-ln">10</span>		id: 1,
+<span class="highlight-ln">11</span>		data: nil,
+<span class="highlight-ln">12</span>	}
+<span class="highlight-ln">13</span>    
+<span class="highlight-ln">14</span>	n2 := Node{
+<span class="highlight-ln">15</span>		id: 2,
+<span class="highlight-ln">16</span>		data: nil,
+<span class="highlight-ln">17</span>		next: &amp;n1,
+<span class="highlight-ln">18</span>	}
+<span class="highlight-ln">19</span>}
 </code></pre>
 <p>顺序初始化必须包含全部字段，否则会出错。</p>
-<pre><code class="highlight-chroma">type User struct {
-	name string
-	age int
-}
-
-u1 := User{"Tom", 20}
-u2 := User{"Tom"} // Error: too few values in struct initializer
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>type User struct {
+<span class="highlight-ln">2</span>	name string
+<span class="highlight-ln">3</span>	age int
+<span class="highlight-ln">4</span>}
+<span class="highlight-ln">5</span>
+<span class="highlight-ln">6</span>u1 := User{"Tom", 20}
+<span class="highlight-ln">7</span>u2 := User{"Tom"} // Error: too few values in struct initializer
 </code></pre>
 <p>支持匿名结构，可用作结构成员或定义变量。</p>
-<pre><code class="highlight-chroma">type File struct {
-	name string
-	size int
-	attr struct {
-		perm int
-		owner int
-	}
-}
-
-f := File{
-	name: "test.txt",
-	size: 1025,
-	// attr: {0755, 1}, // Error: missing type in composite literal
-}
-
-f.attr.owner = 1
-f.attr.perm = 0755
-
-var attr = struct {
-	perm int
-	owner int
-}{2, 0755}
-
-f.attr = attr
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>type File struct {
+<span class="highlight-ln"> 2</span>	name string
+<span class="highlight-ln"> 3</span>	size int
+<span class="highlight-ln"> 4</span>	attr struct {
+<span class="highlight-ln"> 5</span>		perm int
+<span class="highlight-ln"> 6</span>		owner int
+<span class="highlight-ln"> 7</span>	}
+<span class="highlight-ln"> 8</span>}
+<span class="highlight-ln"> 9</span>
+<span class="highlight-ln">10</span>f := File{
+<span class="highlight-ln">11</span>	name: "test.txt",
+<span class="highlight-ln">12</span>	size: 1025,
+<span class="highlight-ln">13</span>	// attr: {0755, 1}, // Error: missing type in composite literal
+<span class="highlight-ln">14</span>}
+<span class="highlight-ln">15</span>
+<span class="highlight-ln">16</span>f.attr.owner = 1
+<span class="highlight-ln">17</span>f.attr.perm = 0755
+<span class="highlight-ln">18</span>
+<span class="highlight-ln">19</span>var attr = struct {
+<span class="highlight-ln">20</span>	perm int
+<span class="highlight-ln">21</span>	owner int
+<span class="highlight-ln">22</span>}{2, 0755}
+<span class="highlight-ln">23</span>
+<span class="highlight-ln">24</span>f.attr = attr
 </code></pre>
 <p>支持 "=="、"!=" 相等操作符，可用作 <code>map</code> 键类型。</p>
-<pre><code class="highlight-chroma">type User struct {
-	id int
-	name string
-}
-
-m := map[User]int{
-	User{1, "Tom"}: 100,
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>type User struct {
+<span class="highlight-ln">2</span>	id int
+<span class="highlight-ln">3</span>	name string
+<span class="highlight-ln">4</span>}
+<span class="highlight-ln">5</span>
+<span class="highlight-ln">6</span>m := map[User]int{
+<span class="highlight-ln">7</span>	User{1, "Tom"}: 100,
+<span class="highlight-ln">8</span>}
 </code></pre>
 <p>可定义字段标签，用反射读取。标签是类型的组成部分。</p>
-<pre><code class="highlight-chroma">var u1 struct { name string "username" }
-var u2 struct { name string }
-
-u2 = u1 // Error: cannot use u1 (type struct { name string "username" }) as
-			 // type struct { name string } in assignment
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>var u1 struct { name string "username" }
+<span class="highlight-ln">2</span>var u2 struct { name string }
+<span class="highlight-ln">3</span>
+<span class="highlight-ln">4</span>u2 = u1 // Error: cannot use u1 (type struct { name string "username" }) as
+<span class="highlight-ln">5</span>			 // type struct { name string } in assignment
 </code></pre>
 <p>空结构 "节省" 内存，比如用来实现 <code>set</code> 数据结构，或者实现没有 "状态" 只有方法的 "静态类"。</p>
-<pre><code class="highlight-chroma">var null struct{}
-
-set := make(map[string]struct{})
-set["a"] = null
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>var null struct{}
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>set := make(map[string]struct{})
+<span class="highlight-ln">4</span>set["a"] = null
 </code></pre>
 <h4 id="4-4-1-匿名字段">4.4.1 匿名字段</h4>
 <p>匿名字段不过是一种语法糖，从根本上说，就是一个与成员类型同名 (不含包名) 的字段。被匿名嵌入的可以是任何类型，当然也包括指针。</p>
-<pre><code class="highlight-chroma">type User struct {
-	name string
-}
-
-type Manager struct {
-	User
-	title string
-}
-
-m := Manager{
-	User: User{"Tom"}, // 匿名字段的显式字段名，和类型名相同。
-	title: "Administrator",
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>type User struct {
+<span class="highlight-ln"> 2</span>	name string
+<span class="highlight-ln"> 3</span>}
+<span class="highlight-ln"> 4</span>
+<span class="highlight-ln"> 5</span>type Manager struct {
+<span class="highlight-ln"> 6</span>	User
+<span class="highlight-ln"> 7</span>	title string
+<span class="highlight-ln"> 8</span>}
+<span class="highlight-ln"> 9</span>
+<span class="highlight-ln">10</span>m := Manager{
+<span class="highlight-ln">11</span>	User: User{"Tom"}, // 匿名字段的显式字段名，和类型名相同。
+<span class="highlight-ln">12</span>	title: "Administrator",
+<span class="highlight-ln">13</span>}
 </code></pre>
 <p>可以像普通字段那样访问匿名字段成员，编译器从外向内逐级查找所有层次的匿名字段，直到发现目标或出错。</p>
-<pre><code class="highlight-chroma">type Resource struct {
-	id int
-}
-
-type User struct {
-	Resource
-	name string
-}
-
-type Manager struct {
-	User
-	title string
-}
-
-var m Manager
-m.id = 1
-m.name = "Jack"
-m.title = "Administrator"
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>type Resource struct {
+<span class="highlight-ln"> 2</span>	id int
+<span class="highlight-ln"> 3</span>}
+<span class="highlight-ln"> 4</span>
+<span class="highlight-ln"> 5</span>type User struct {
+<span class="highlight-ln"> 6</span>	Resource
+<span class="highlight-ln"> 7</span>	name string
+<span class="highlight-ln"> 8</span>}
+<span class="highlight-ln"> 9</span>
+<span class="highlight-ln">10</span>type Manager struct {
+<span class="highlight-ln">11</span>	User
+<span class="highlight-ln">12</span>	title string
+<span class="highlight-ln">13</span>}
+<span class="highlight-ln">14</span>
+<span class="highlight-ln">15</span>var m Manager
+<span class="highlight-ln">16</span>m.id = 1
+<span class="highlight-ln">17</span>m.name = "Jack"
+<span class="highlight-ln">18</span>m.title = "Administrator"
 </code></pre>
 <p>外层同名字段会遮蔽嵌入字段成员，相同层次的同名字段也会让编译器无所适从。解决方法是使用显式字段名。</p>
-<pre><code class="highlight-chroma">type Resource struct {
-	id int
-	name string
-}
-
-type Classify struct {
-	id int
-}
-
-type User struct {
-	Resource // Resource.id 与 Classify.id 处于同一层次。
-	Classify
-	name string // 遮蔽 Resource.name。
-}
-
-u := User{
-	Resource{1, "people"},
-	Classify{100},
-	"Jack",
-}
-
-println(u.name) // User.name: Jack
-println(u.Resource.name) // people
-
-// println(u.id) // Error: ambiguous selector u.id
-println(u.Classify.id) // 100
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>type Resource struct {
+<span class="highlight-ln"> 2</span>	id int
+<span class="highlight-ln"> 3</span>	name string
+<span class="highlight-ln"> 4</span>}
+<span class="highlight-ln"> 5</span>
+<span class="highlight-ln"> 6</span>type Classify struct {
+<span class="highlight-ln"> 7</span>	id int
+<span class="highlight-ln"> 8</span>}
+<span class="highlight-ln"> 9</span>
+<span class="highlight-ln">10</span>type User struct {
+<span class="highlight-ln">11</span>	Resource // Resource.id 与 Classify.id 处于同一层次。
+<span class="highlight-ln">12</span>	Classify
+<span class="highlight-ln">13</span>	name string // 遮蔽 Resource.name。
+<span class="highlight-ln">14</span>}
+<span class="highlight-ln">15</span>
+<span class="highlight-ln">16</span>u := User{
+<span class="highlight-ln">17</span>	Resource{1, "people"},
+<span class="highlight-ln">18</span>	Classify{100},
+<span class="highlight-ln">19</span>	"Jack",
+<span class="highlight-ln">20</span>}
+<span class="highlight-ln">21</span>
+<span class="highlight-ln">22</span>println(u.name) // User.name: Jack
+<span class="highlight-ln">23</span>println(u.Resource.name) // people
+<span class="highlight-ln">24</span>
+<span class="highlight-ln">25</span>// println(u.id) // Error: ambiguous selector u.id
+<span class="highlight-ln">26</span>println(u.Classify.id) // 100
 </code></pre>
 <p>不能同时嵌入某一类型和其指针类型，因为它们名字相同。</p>
-<pre><code class="highlight-chroma">type Resource struct {
-	id int
-}
-
-type User struct {
-	*Resource
-	// Resource // Error: duplicate field Resource
-	name string
-}
-
-u := User{
-	&amp;Resource{1},
-	"Administrator",
-}
-
-println(u.id)
-println(u.Resource.id)
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>type Resource struct {
+<span class="highlight-ln"> 2</span>	id int
+<span class="highlight-ln"> 3</span>}
+<span class="highlight-ln"> 4</span>
+<span class="highlight-ln"> 5</span>type User struct {
+<span class="highlight-ln"> 6</span>	*Resource
+<span class="highlight-ln"> 7</span>	// Resource // Error: duplicate field Resource
+<span class="highlight-ln"> 8</span>	name string
+<span class="highlight-ln"> 9</span>}
+<span class="highlight-ln">10</span>
+<span class="highlight-ln">11</span>u := User{
+<span class="highlight-ln">12</span>	&amp;Resource{1},
+<span class="highlight-ln">13</span>	"Administrator",
+<span class="highlight-ln">14</span>}
+<span class="highlight-ln">15</span>
+<span class="highlight-ln">16</span>println(u.id)
+<span class="highlight-ln">17</span>println(u.Resource.id)
 </code></pre>
 <h4 id="4-4-2-面向对象">4.4.2 面向对象</h4>
 <p>面向对象三大特征里，Go 仅支持封装，尽管匿名字段的内存布局和行为类似继承。没有 <code>class</code> 关键字，没有继承、多态等等。</p>
-<pre><code class="highlight-chroma">type User struct {
-	id int
-	name string
-}
-
-type Manager struct {
-	User
-	title string
-}
-
-m := Manager{User{1, "Tom"}, "Administrator"}
-
-// var u User = m // Error: cannot use m (type Manager) as type User in assignment
-							 // 没有继承，自然也不会有多态。
-
-var u User = m.User // 同类型拷⻉贝。
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>type User struct {
+<span class="highlight-ln"> 2</span>	id int
+<span class="highlight-ln"> 3</span>	name string
+<span class="highlight-ln"> 4</span>}
+<span class="highlight-ln"> 5</span>
+<span class="highlight-ln"> 6</span>type Manager struct {
+<span class="highlight-ln"> 7</span>	User
+<span class="highlight-ln"> 8</span>	title string
+<span class="highlight-ln"> 9</span>}
+<span class="highlight-ln">10</span>
+<span class="highlight-ln">11</span>m := Manager{User{1, "Tom"}, "Administrator"}
+<span class="highlight-ln">12</span>
+<span class="highlight-ln">13</span>// var u User = m // Error: cannot use m (type Manager) as type User in assignment
+<span class="highlight-ln">14</span>							 // 没有继承，自然也不会有多态。
+<span class="highlight-ln">15</span>
+<span class="highlight-ln">16</span>var u User = m.User // 同类型拷⻉贝。
 </code></pre>
 <p>内存布局和 C struct 相同，没有任何附加的 object 信息。</p>
 <p><img src="http://7xjwh5.com1.z0.glb.clouddn.com/FvhXPGczq22tZbJ6E2ogSx7vXD2s" alt=" "></p>
 <p>可用 <code>unsafe</code> 包相关函数输出内存地址信息。</p>
-<pre><code class="highlight-chroma">m : 0x2102271b0, size: 40, align: 8
-m.id : 0x2102271b0, offset: 0
-m.name : 0x2102271b8, offset: 8
-m.title: 0x2102271c8, offset: 24
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>m : 0x2102271b0, size: 40, align: 8
+<span class="highlight-ln">2</span>m.id : 0x2102271b0, offset: 0
+<span class="highlight-ln">3</span>m.name : 0x2102271b8, offset: 8
+<span class="highlight-ln">4</span>m.title: 0x2102271c8, offset: 24
 </code></pre>
 <p>下一篇： [1438699210452]</p>
 <hr>
@@ -445,7 +438,7 @@ m.title: 0x2102271c8, offset: 24
 <p>社区小贴士</p>
 <ul>
 <li>关注标签 [golang] 可以方便查看 Go 相关帖子</li>
-<li>关注标签 [Go学习笔记] 可以方便查看本系列</li>
+<li>关注标签 [Go 学习笔记] 可以方便查看本系列</li>
 <li>关注作者后如有新帖将会收到通知</li>
 </ul>
 </blockquote>
@@ -508,7 +501,7 @@ m.title: 0x2102271c8, offset: 24
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -537,11 +530,6 @@ m.title: 0x2102271c8, offset: 24
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -556,17 +544,17 @@ m.title: 0x2102271c8, offset: 24
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -600,7 +588,7 @@ m.title: 0x2102271c8, offset: 24
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438596722873",
@@ -620,4 +608,4 @@ m.title: 0x2102271c8, offset: 24
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 143ms, 2020/03/29 11:55:21 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 108ms, 2020/04/25 21:02:09 -->

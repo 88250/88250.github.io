@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客</title><meta name="description" content="上一篇： [1438260619759] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438260619759] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/31/1438311936449.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/31/1438311936449.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客</title><meta name="description" content="上一篇： [1438260619759] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438260619759] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/07/31/1438311936449.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（八） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/07/31/1438311936449.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（七）" href="https://88250.github.io/articles/2015/07/30/1438260619759.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（九）" href="https://88250.github.io/articles/2015/08/03/1438596722873.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -171,8 +164,8 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
 <li><a href="http://symphony.b3log.org/article/1437719712835" target="_blank">Go 边看边练 -《Go 学习笔记》系列（三）- 指针</a></li>
-<li><a href="http://symphony.b3log.org/article/1437984612418" target="_blank">Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1</a></li>
-<li><a href="http://symphony.b3log.org/article/1438070631857" target="_blank">Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2</a></li>
+<li><a href="http://symphony.b3log.org/article/1437984612418" target="_blank">Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1</a></li>
+<li><a href="http://symphony.b3log.org/article/1438070631857" target="_blank">Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2</a></li>
 <li><a href="http://symphony.b3log.org/article/1438164538421" target="_blank">Go 边看边练 -《Go 学习笔记》系列（六）- 函数</a></li>
 <li><a href="http://symphony.b3log.org/article/1438260619759" target="_blank">Go 边看边练 -《Go 学习笔记》系列（七）- 错误处理</a></li>
 <li><a href="http://symphony.b3log.org/article/1438311936449" target="_blank">Go 边看边练 -《Go 学习笔记》系列（八）- 数组、切片</a></li>
@@ -193,37 +186,37 @@ bold;">Sym</span></a>
 <li>指针数组 <code>[n]*T</code>，数组指针 <code>*[n]T</code>。</li>
 </ul>
 <p>可用复合语句初始化。</p>
-<pre><code class="highlight-chroma">a := [3]int{1, 2} // 未初始化元素值为 0。
-b := [...]int{1, 2, 3, 4} // 通过初始化值确定数组长度。
-c := [5]int{2: 100, 4:200} // 使用索引号初始化元素。
-
-d := [...]struct {
-	name string
-	age uint8
-}{
-	{"user1", 10}, // 可省略元素类型。
-	{"user2", 20}, // 别忘了最后一行的逗号。
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>a := [3]int{1, 2} // 未初始化元素值为 0。
+<span class="highlight-ln"> 2</span>b := [...]int{1, 2, 3, 4} // 通过初始化值确定数组长度。
+<span class="highlight-ln"> 3</span>c := [5]int{2: 100, 4:200} // 使用索引号初始化元素。
+<span class="highlight-ln"> 4</span>
+<span class="highlight-ln"> 5</span>d := [...]struct {
+<span class="highlight-ln"> 6</span>	name string
+<span class="highlight-ln"> 7</span>	age uint8
+<span class="highlight-ln"> 8</span>}{
+<span class="highlight-ln"> 9</span>	{"user1", 10}, // 可省略元素类型。
+<span class="highlight-ln">10</span>	{"user2", 20}, // 别忘了最后一行的逗号。
+<span class="highlight-ln">11</span>}
 </code></pre>
 <p>支持多维数组。</p>
-<pre><code class="highlight-chroma">a := [2][3]int{{1, 2, 3}, {4, 5, 6}}
-b := [...][2]int{{1, 1}, {2, 2}, {3, 3}} // 第 2 纬度不能用 "..."。
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>a := [2][3]int{{1, 2, 3}, {4, 5, 6}}
+<span class="highlight-ln">2</span>b := [...][2]int{{1, 1}, {2, 2}, {3, 3}} // 第 2 纬度不能用 "..."。
 </code></pre>
 <p>值拷贝行为会造成性能问题，通常会建议使用 <code>slice</code>，或数组指针。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/84e741fc120579eb99eea9222db5a672.go?embed=true" width="99%" height="500"></iframe>
 <p>内置函数 <code>len</code> 和 <code>cap</code> 都返回数组长度 (元素数量)。</p>
-<pre><code class="highlight-chroma">a := [2]int{}
-println(len(a), cap(a)) // 2, 2
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>a := [2]int{}
+<span class="highlight-ln">2</span>println(len(a), cap(a)) // 2, 2
 </code></pre>
 <h3 id="4-2-Slice">4.2 Slice</h3>
 <p>需要说明，<code>slice</code> 并不是数组或数组指针。它通过内部指针和相关属性引用数组片段，以实现变长方案。</p>
 <p>runtime.h</p>
-<pre><code class="highlight-chroma">struct Slice
-{ // must not move anything
-	byte* array; // actual data
-	uintgo len; // number of elements
-	uintgo cap; // allocated number of elements
-};
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>struct Slice
+<span class="highlight-ln">2</span>{ // must not move anything
+<span class="highlight-ln">3</span>	byte* array; // actual data
+<span class="highlight-ln">4</span>	uintgo len; // number of elements
+<span class="highlight-ln">5</span>	uintgo cap; // allocated number of elements
+<span class="highlight-ln">6</span>};
 </code></pre>
 <ul>
 <li>
@@ -245,154 +238,154 @@ slice := data[1:4:5] // [low : high : max]</p>
 <p>创建表达式使用的是元素索引号，而非数量。</p>
 <p><img src="http://7xjwh5.com1.z0.glb.clouddn.com/Fgp40ptEGIehlonMASorKQUi1ngy" alt=" "></p>
 <p>读写操作实际目标是底层数组，只需注意索引号的差别。</p>
-<pre><code class="highlight-chroma">data := [...]int{0, 1, 2, 3, 4, 5}
-
-s := data[2:4]
-s[0] += 100
-s[1] += 200
-
-fmt.Println(s)
-fmt.Println(data)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>data := [...]int{0, 1, 2, 3, 4, 5}
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>s := data[2:4]
+<span class="highlight-ln">4</span>s[0] += 100
+<span class="highlight-ln">5</span>s[1] += 200
+<span class="highlight-ln">6</span>
+<span class="highlight-ln">7</span>fmt.Println(s)
+<span class="highlight-ln">8</span>fmt.Println(data)
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">[102 203]
-[0 1 102 203 4 5]
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>[102 203]
+<span class="highlight-ln">2</span>[0 1 102 203 4 5]
 </code></pre>
 <p>可直接创建 <code>slice</code> 对象，自动分配底层数组。</p>
-<pre><code class="highlight-chroma">s1 := []int{0, 1, 2, 3, 8: 100} // 通过初始化表达式构造，可使用索引号。
-fmt.Println(s1, len(s1), cap(s1))
-
-s2 := make([]int, 6, 8) // 使用 make 创建，指定 len 和 cap 值。
-fmt.Println(s2, len(s2), cap(s2))
-
-s3 := make([]int, 6) // 省略 cap，相当于 cap = len。
-fmt.Println(s3, len(s3), cap(s3))
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>s1 := []int{0, 1, 2, 3, 8: 100} // 通过初始化表达式构造，可使用索引号。
+<span class="highlight-ln">2</span>fmt.Println(s1, len(s1), cap(s1))
+<span class="highlight-ln">3</span>
+<span class="highlight-ln">4</span>s2 := make([]int, 6, 8) // 使用 make 创建，指定 len 和 cap 值。
+<span class="highlight-ln">5</span>fmt.Println(s2, len(s2), cap(s2))
+<span class="highlight-ln">6</span>
+<span class="highlight-ln">7</span>s3 := make([]int, 6) // 省略 cap，相当于 cap = len。
+<span class="highlight-ln">8</span>fmt.Println(s3, len(s3), cap(s3))
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">[0 1 2 3 0 0 0 0 100] 9 9
-[0 0 0 0 0 0]              6 8
-[0 0 0 0 0 0]              6 6
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>[0 1 2 3 0 0 0 0 100] 9 9
+<span class="highlight-ln">2</span>[0 0 0 0 0 0]              6 8
+<span class="highlight-ln">3</span>[0 0 0 0 0 0]              6 6
 </code></pre>
 <p>使用 <code>make</code> 动态创建 <code>slice</code>，避免了数组必须用常量做长度的麻烦。还可用指针直接访问底层数组，退化成普通数组操作。</p>
-<pre><code class="highlight-chroma">s := []int{0, 1, 2, 3}
-
-p := &amp;s[2] // *int, 获取底层数组元素指针。
-*p += 100
-
-fmt.Println(s)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>s := []int{0, 1, 2, 3}
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>p := &amp;s[2] // *int, 获取底层数组元素指针。
+<span class="highlight-ln">4</span>*p += 100
+<span class="highlight-ln">5</span>
+<span class="highlight-ln">6</span>fmt.Println(s)
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">[0 1 102 3]
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>[0 1 102 3]
 </code></pre>
 <p>至于 <code>[][]T</code>，是指元素类型为 <code>[]T</code> 。</p>
-<pre><code class="highlight-chroma">data := [][]int{
-	[]int{1, 2, 3},
-	[]int{100, 200},
-	[]int{11, 22, 33, 44},
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>data := [][]int{
+<span class="highlight-ln">2</span>	[]int{1, 2, 3},
+<span class="highlight-ln">3</span>	[]int{100, 200},
+<span class="highlight-ln">4</span>	[]int{11, 22, 33, 44},
+<span class="highlight-ln">5</span>}
 </code></pre>
 <p>可直接修改 <code>struct array</code>/<code>slice</code> 成员。</p>
-<pre><code class="highlight-chroma">d := [5]struct {
-	x int
-}{}
-
-s := d[:]
-
-d[1].x = 10
-s[2].x = 20
-
-fmt.Println(d)
-fmt.Printf("%p, %p\n", &amp;d, &amp;d[0])
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>d := [5]struct {
+<span class="highlight-ln"> 2</span>	x int
+<span class="highlight-ln"> 3</span>}{}
+<span class="highlight-ln"> 4</span>
+<span class="highlight-ln"> 5</span>s := d[:]
+<span class="highlight-ln"> 6</span>
+<span class="highlight-ln"> 7</span>d[1].x = 10
+<span class="highlight-ln"> 8</span>s[2].x = 20
+<span class="highlight-ln"> 9</span>
+<span class="highlight-ln">10</span>fmt.Println(d)
+<span class="highlight-ln">11</span>fmt.Printf("%p, %p\n", &amp;d, &amp;d[0])
 </code></pre>
-<p>输出:<br>
+<p>输出：<br>
 [{0} {10} {20} {0} {0}]<br>
 0x20819c180, 0x20819c180</p>
 <h4 id="4-2-1-reslice">4.2.1 reslice</h4>
 <p>所谓 <code>reslice</code>，是基于已有 <code>slice</code> 创建新 <code>slice</code> 对象，以便在 <code>cap</code> 允许范围内调整属性。</p>
-<pre><code class="highlight-chroma">s := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-
-s1 := s[2:5] // [2 3 4]
-s2 := s1[2:6:7] // [4 5 6 7]
-s3 := s2[3:6] // Error
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>s := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>s1 := s[2:5] // [2 3 4]
+<span class="highlight-ln">4</span>s2 := s1[2:6:7] // [4 5 6 7]
+<span class="highlight-ln">5</span>s3 := s2[3:6] // Error
 </code></pre>
 <p><img src="http://7xjwh5.com1.z0.glb.clouddn.com/FjcAhmgn8XiXeiZGGZYeGt2g-kvb" alt=" "></p>
 <p>新对象依旧指向原底层数组。</p>
-<pre><code class="highlight-chroma">s := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-
-s1 := s[2:5] // [2 3 4]
-s1[2] = 100
-
-s2 := s1[2:6] // [100 5 6 7]
-s2[3] = 200
-
-fmt.Println(s)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>s := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>s1 := s[2:5] // [2 3 4]
+<span class="highlight-ln">4</span>s1[2] = 100
+<span class="highlight-ln">5</span>
+<span class="highlight-ln">6</span>s2 := s1[2:6] // [100 5 6 7]
+<span class="highlight-ln">7</span>s2[3] = 200
+<span class="highlight-ln">8</span>
+<span class="highlight-ln">9</span>fmt.Println(s)
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">[0 1 2 3 100 5 6 200 8 9]
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>[0 1 2 3 100 5 6 200 8 9]
 </code></pre>
 <h4 id="4-2-2-append">4.2.2 append</h4>
 <p>向 <code>slice</code> 尾部添加数据，返回新的 <code>slice</code> 对象。</p>
-<pre><code class="highlight-chroma">s := make([]int, 0, 5)
-fmt.Printf("%p\n", &amp;s)
-
-s2 := append(s, 1)
-fmt.Printf("%p\n", &amp;s2)
-
-fmt.Println(s, s2)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>s := make([]int, 0, 5)
+<span class="highlight-ln">2</span>fmt.Printf("%p\n", &amp;s)
+<span class="highlight-ln">3</span>
+<span class="highlight-ln">4</span>s2 := append(s, 1)
+<span class="highlight-ln">5</span>fmt.Printf("%p\n", &amp;s2)
+<span class="highlight-ln">6</span>
+<span class="highlight-ln">7</span>fmt.Println(s, s2)
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">0x210230000
-0x210230040
-[] [1]
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>0x210230000
+<span class="highlight-ln">2</span>0x210230040
+<span class="highlight-ln">3</span>[] [1]
 </code></pre>
 <p>简单点说，就是在 <code>array[slice.high]</code> 写数据。</p>
-<pre><code class="highlight-chroma">data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-
-s := data[:3]
-s2 := append(s, 100, 200) // 添加多个值。
-
-fmt.Println(data)
-fmt.Println(s)
-fmt.Println(s2)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>s := data[:3]
+<span class="highlight-ln">4</span>s2 := append(s, 100, 200) // 添加多个值。
+<span class="highlight-ln">5</span>
+<span class="highlight-ln">6</span>fmt.Println(data)
+<span class="highlight-ln">7</span>fmt.Println(s)
+<span class="highlight-ln">8</span>fmt.Println(s2)
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">[0 1 2 100 200 5 6 7 8 9]
-[0 1 2]
-[0 1 2 100 200]
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>[0 1 2 100 200 5 6 7 8 9]
+<span class="highlight-ln">2</span>[0 1 2]
+<span class="highlight-ln">3</span>[0 1 2 100 200]
 </code></pre>
 <p>一旦超出原 <code>slice.cap</code> 限制，就会重新分配底层数组，即便原数组并未填满。</p>
-<pre><code class="highlight-chroma">data := [...]int{0, 1, 2, 3, 4, 10: 0}
-s := data[:2:3]
-
-s = append(s, 100, 200) // 一次 append 两个值，超出 s.cap 限制。
-
-fmt.Println(s, data) // 重新分配底层数组，与原数组无关。
-fmt.Println(&amp;s[0], &amp;data[0]) // 比对底层数组起始指针。
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>data := [...]int{0, 1, 2, 3, 4, 10: 0}
+<span class="highlight-ln">2</span>s := data[:2:3]
+<span class="highlight-ln">3</span>
+<span class="highlight-ln">4</span>s = append(s, 100, 200) // 一次 append 两个值，超出 s.cap 限制。
+<span class="highlight-ln">5</span>
+<span class="highlight-ln">6</span>fmt.Println(s, data) // 重新分配底层数组，与原数组无关。
+<span class="highlight-ln">7</span>fmt.Println(&amp;s[0], &amp;data[0]) // 比对底层数组起始指针。
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">[0 1 100 200] [0 1 2 3 4 0 0 0 0 0 0]
-0x20819c180 0x20817c0c0
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>[0 1 100 200] [0 1 2 3 4 0 0 0 0 0 0]
+<span class="highlight-ln">2</span>0x20819c180 0x20817c0c0
 </code></pre>
 <p>从输出结果可以看出，<code>append</code> 后的 <code>s</code> 重新分配了底层数组，并复制数据。如果只追加一个值，则不会超过 <code>s.cap</code> 限制，也就不会重新分配。</p>
 <p>通常以 <code>2</code> 倍容量重新分配底层数组。在大批量添加数据时，建议一次性分配足够大的空间，以减少内存分配和数据复制开销。或初始化足够长的 <code>len</code> 属性，改用索引号进行操作。及时释放不再使用的 <code>slice</code> 对象，避免持有过期数组，造成 <code>GC</code> 无法回收。</p>
-<pre><code class="highlight-chroma">s := make([]int, 0, 1)
-c := cap(s)
-
-for i := 0; i &lt; 50; i++ {
-	s = append(s, i)
-	if n := cap(s); n &gt; c {
-		fmt.Printf("cap: %d -&gt; %d\n", c, n)
-		c = n
-	}
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>s := make([]int, 0, 1)
+<span class="highlight-ln"> 2</span>c := cap(s)
+<span class="highlight-ln"> 3</span>
+<span class="highlight-ln"> 4</span>for i := 0; i &lt; 50; i++ {
+<span class="highlight-ln"> 5</span>	s = append(s, i)
+<span class="highlight-ln"> 6</span>	if n := cap(s); n &gt; c {
+<span class="highlight-ln"> 7</span>		fmt.Printf("cap: %d -&gt; %d\n", c, n)
+<span class="highlight-ln"> 8</span>		c = n
+<span class="highlight-ln"> 9</span>	}
+<span class="highlight-ln">10</span>}
 </code></pre>
-<p>输出:</p>
-<pre><code class="highlight-chroma">cap: 1 -&gt; 2
-cap: 2 -&gt; 4
-cap: 4 -&gt; 8
-cap: 8 -&gt; 16
-cap: 16 -&gt; 32
-cap: 32 -&gt; 64
+<p>输出：</p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>cap: 1 -&gt; 2
+<span class="highlight-ln">2</span>cap: 2 -&gt; 4
+<span class="highlight-ln">3</span>cap: 4 -&gt; 8
+<span class="highlight-ln">4</span>cap: 8 -&gt; 16
+<span class="highlight-ln">5</span>cap: 16 -&gt; 32
+<span class="highlight-ln">6</span>cap: 32 -&gt; 64
 </code></pre>
 <h4 id="4-2-3-copy">4.2.3 copy</h4>
 <p>函数 <code>copy</code> 在两个 <code>slice</code> 间复制数据，复制长度以 <code>len</code> 小的为准。两个 <code>slice</code> 可指向同一底层数组，允许元素区间重叠。</p>
@@ -410,7 +403,7 @@ cap: 32 -&gt; 64
 <p>社区小贴士</p>
 <ul>
 <li>关注标签 [golang] 可以方便查看 Go 相关帖子</li>
-<li>关注标签 [Go学习笔记] 可以方便查看本系列</li>
+<li>关注标签 [Go 学习笔记] 可以方便查看本系列</li>
 <li>关注作者后如有新帖将会收到通知</li>
 </ul>
 </blockquote>
@@ -476,7 +469,7 @@ cap: 32 -&gt; 64
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -505,11 +498,6 @@ cap: 32 -&gt; 64
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -524,17 +512,17 @@ cap: 32 -&gt; 64
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -568,7 +556,7 @@ cap: 32 -&gt; 64
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438311936449",
@@ -588,4 +576,4 @@ cap: 32 -&gt; 64
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 191ms, 2020/03/29 11:55:21 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 131ms, 2020/04/25 21:02:09 -->

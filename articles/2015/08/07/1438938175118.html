@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（十三） - D 的个人博客</title><meta name="description" content="上一篇： [1438845728987] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438845728987] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（十三） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/07/1438938175118.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（十三） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/07/1438938175118.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1585454085854"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Go 边看边练 -《Go 学习笔记》系列（十三） - D 的个人博客</title><meta name="description" content="上一篇： [1438845728987] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/><meta property="og:description" content="上一篇： [1438845728987] ---- ### ToC * Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量 * Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串 * Go 边看边练 -《Go 学习笔记》系列（三）- 指针 * Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1 * Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2 * [Go 边看边练 -《Go 学习笔记》系列（六）- 函数](http://symphony.b3...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Go 边看边练 -《Go 学习笔记》系列（十三） - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/08/07/1438938175118.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Go 边看边练 -《Go 学习笔记》系列（十三） - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/08/07/1438938175118.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
             <link rel="prev" title="Go 边看边练 -《Go 学习笔记》系列（十二）" href="https://88250.github.io/articles/2015/08/06/1438845728987.html">
             <link rel="next" title="Go 边看边练 -《Go 学习笔记》系列（十四）（已完结）" href="https://88250.github.io/articles/2015/08/10/1439194647152.html">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144185520-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-144185520-1');
-</script></head>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
@@ -25,15 +26,7 @@
             </h1>
             <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
             <div class="header__desc">
-                <!--
-<div>
-小而美的 Java 博客系统 <a style="text-decoration: none;" target="_blank" href="https://solo.b3log.org"><span style="color: orangered; font-weight: bold;">Solo</span></a><br/>
-Golang 在线 IDE <a style="text-decoration: none;" target="_blank" href="https://wide.b3log.org"><span style="color: #4183c4; font-weight: 
-bold;">Wide</span></a><br/>
-黑客与画家的社区 <a style="text-decoration: none;" target="_blank" href="https://hacpai.com/register?r=88250"><span style="color: #f47e00; font-weight: 
-bold;">Sym</span></a>
-</div>
--->
+                
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -60,7 +53,7 @@ bold;">Sym</span></a>
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    410 文章 <br>
+                    411 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -171,8 +164,8 @@ bold;">Sym</span></a>
 <li><a href="http://symphony.b3log.org/article/1437497122181" target="_blank">Go 边看边练 -《Go 学习笔记》系列（一）- 变量、常量</a></li>
 <li><a href="http://symphony.b3log.org/article/1437558810339" target="_blank">Go 边看边练 -《Go 学习笔记》系列（二）- 类型、字符串</a></li>
 <li><a href="http://symphony.b3log.org/article/1437719712835" target="_blank">Go 边看边练 -《Go 学习笔记》系列（三）- 指针</a></li>
-<li><a href="http://symphony.b3log.org/article/1437984612418" target="_blank">Go 边看边练 -《Go 学习笔记》系列（四）- 控制流1</a></li>
-<li><a href="http://symphony.b3log.org/article/1438070631857" target="_blank">Go 边看边练 -《Go 学习笔记》系列（五）- 控制流2</a></li>
+<li><a href="http://symphony.b3log.org/article/1437984612418" target="_blank">Go 边看边练 -《Go 学习笔记》系列（四）- 控制流 1</a></li>
+<li><a href="http://symphony.b3log.org/article/1438070631857" target="_blank">Go 边看边练 -《Go 学习笔记》系列（五）- 控制流 2</a></li>
 <li><a href="http://symphony.b3log.org/article/1438164538421" target="_blank">Go 边看边练 -《Go 学习笔记》系列（六）- 函数</a></li>
 <li><a href="http://symphony.b3log.org/article/1438260619759" target="_blank">Go 边看边练 -《Go 学习笔记》系列（七）- 错误处理</a></li>
 <li><a href="http://symphony.b3log.org/article/1438311936449" target="_blank">Go 边看边练 -《Go 学习笔记》系列（八）- 数组、切片</a></li>
@@ -186,56 +179,56 @@ bold;">Sym</span></a>
 <hr>
 <h3 id="7-1-Goroutine">7.1 Goroutine</h3>
 <p>Go 在语言层面对并发编程提供支持，一种类似协程，称作 <code>goroutine</code> 的机制。</p>
-<p>只需在函数调用语句前添加 <code>go</code> 关键字，就可创建并发执行单元。开发⼈人员无需了解任何执行细节，调度器会自动将其安排到合适的系统线程上执行。<code>goroutine</code> 是一种⾮非常轻量级的实现，可在单个进程里执行成千上万的并发任务。</p>
+<p>只需在函数调用语句前添加 <code>go</code> 关键字，就可创建并发执行单元。开发 ⼈人员无需了解任何执行细节，调度器会自动将其安排到合适的系统线程上执行。<code>goroutine</code> 是一种 ⾮非常轻量级的实现，可在单个进程里执行成千上万的并发任务。</p>
 <p>事实上，入口函数 <code>main</code> 就以 <code>goroutine</code> 运行。另有与之配套的 <code>channel</code> 类型，用以实现 "以通讯来共享内存" 的 <code>CSP</code> 模式。相关实现细节可参考本书第二部分的源码剖析。</p>
-<pre><code class="highlight-chroma">go func() {
-    println("Hello, World!")
-}()
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>go func() {
+<span class="highlight-ln">2</span>    println("Hello, World!")
+<span class="highlight-ln">3</span>}()
 </code></pre>
 <p>调度器不能保证多个 <code>goroutine</code> 执行次序，且进程退出时不会等待它们结束。</p>
 <p>默认情况下，进程启动后仅允许一个系统线程服务于 <code>goroutine</code>。可使用环境变量或标准库函数 <code>runtime.GOMAXPROCS</code> 修改，让调度器用多个线程实现多核并行，而不仅仅是并发。</p>
-<pre><code class="highlight-chroma">func sum(id int) {
-	var x int64
-	for i := 0; i &lt; math.MaxUint32; i++ {
-		x += int64(i)
-	}
-
-	println(id, x)
-}
-
-func main() {
-    wg := new(sync.WaitGroup)
-    wg.Add(2)
-    
-    for i := 0; i &lt; 2; i++ {
-    	go func(id int) {
-    		defer wg.Done()
-    		sum(id)
-    	}(i)
-    }
-    
-    wg.Wait()
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>func sum(id int) {
+<span class="highlight-ln"> 2</span>	var x int64
+<span class="highlight-ln"> 3</span>	for i := 0; i &lt; math.MaxUint32; i++ {
+<span class="highlight-ln"> 4</span>		x += int64(i)
+<span class="highlight-ln"> 5</span>	}
+<span class="highlight-ln"> 6</span>
+<span class="highlight-ln"> 7</span>	println(id, x)
+<span class="highlight-ln"> 8</span>}
+<span class="highlight-ln"> 9</span>
+<span class="highlight-ln">10</span>func main() {
+<span class="highlight-ln">11</span>    wg := new(sync.WaitGroup)
+<span class="highlight-ln">12</span>    wg.Add(2)
+<span class="highlight-ln">13</span>    
+<span class="highlight-ln">14</span>    for i := 0; i &lt; 2; i++ {
+<span class="highlight-ln">15</span>    	go func(id int) {
+<span class="highlight-ln">16</span>    		defer wg.Done()
+<span class="highlight-ln">17</span>    		sum(id)
+<span class="highlight-ln">18</span>    	}(i)
+<span class="highlight-ln">19</span>    }
+<span class="highlight-ln">20</span>    
+<span class="highlight-ln">21</span>    wg.Wait()
+<span class="highlight-ln">22</span>}
 </code></pre>
 <p>输出：</p>
-<pre><code class="highlight-chroma">$ go build -o test
-$ time -p ./test
-
-0 9223372030412324865
-1 9223372030412324865
-
-real 7.70 // 程序开始到结束时间差 (非 CPU 时间)
-user 7.66 // 用户态所使用 CPU 时间片 (多核累加)
-sys 0.01 // 内核态所使用 CPU 时间片
-
-$ GOMAXPROCS=2 time -p ./test
-
-0 9223372030412324865
-1 9223372030412324865
-
-real 4.18
-user 7.61 // 虽然总时间差不多，但由 2 个核并⾏行，real 时间⾃自然少了许多。
-sys 0.02
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>$ go build -o test
+<span class="highlight-ln"> 2</span>$ time -p ./test
+<span class="highlight-ln"> 3</span>
+<span class="highlight-ln"> 4</span>0 9223372030412324865
+<span class="highlight-ln"> 5</span>1 9223372030412324865
+<span class="highlight-ln"> 6</span>
+<span class="highlight-ln"> 7</span>real 7.70 // 程序开始到结束时间差 (非 CPU 时间)
+<span class="highlight-ln"> 8</span>user 7.66 // 用户态所使用 CPU 时间片 (多核累加)
+<span class="highlight-ln"> 9</span>sys 0.01 // 内核态所使用 CPU 时间片
+<span class="highlight-ln">10</span>
+<span class="highlight-ln">11</span>$ GOMAXPROCS=2 time -p ./test
+<span class="highlight-ln">12</span>
+<span class="highlight-ln">13</span>0 9223372030412324865
+<span class="highlight-ln">14</span>1 9223372030412324865
+<span class="highlight-ln">15</span>
+<span class="highlight-ln">16</span>real 4.18
+<span class="highlight-ln">17</span>user 7.61 // 虽然总时间差不多，但由 2 个核并⾏行，real 时间⾃自然少了许多。
+<span class="highlight-ln">18</span>sys 0.02
 </code></pre>
 <p>调用 <code>runtime.Goexit</code> 将立即终止当前 <code>goroutine</code> 执行，调度器确保所有已注册 <code>defer</code> 延迟调用被执行。</p>
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/83499692f329caf41f6974c5b5d2d473.go?embed=true" width="99%" height="700"></iframe>
@@ -247,50 +240,50 @@ sys 0.02
 <iframe style="border:1px solid" src="https://wide.b3log.org/playground/15183c59def4d52470c1490785075c42.go?embed=true" width="99%" height="630"></iframe>
 <p>异步方式通过判断缓冲区来决定是否阻塞。如果缓冲区已满，发送被阻塞；缓冲区为空，接收被阻塞。</p>
 <p>通常情况下，异步 <code>channel</code> 可减少排队阻塞，具备更高的效率。但应该考虑使用指针规避大对象拷贝，将多个元素打包，减小缓冲区大小等。</p>
-<pre><code class="highlight-chroma">func main() {
-	data := make(chan int, 3) // 缓冲区可以存储 3 个元素
-	exit := make(chan bool)
-    
-  	data &lt;- 1 // 在缓冲区未满前，不会阻塞。
-  	data &lt;- 2
-  	data &lt;- 3
-  
-  	go func() {
-  		for d := range data { // 在缓冲区未空前，不会阻塞。
-  			fmt.Println(d)
-		}
-
-		exit &lt;- true
-	}()
-
-	data &lt;- 4 // 如果缓冲区已满，阻塞。
-	data &lt;- 5
-	close(data)
-    
-	&lt;-exit
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>func main() {
+<span class="highlight-ln"> 2</span>	data := make(chan int, 3) // 缓冲区可以存储 3 个元素
+<span class="highlight-ln"> 3</span>	exit := make(chan bool)
+<span class="highlight-ln"> 4</span>    
+<span class="highlight-ln"> 5</span>  	data &lt;- 1 // 在缓冲区未满前，不会阻塞。
+<span class="highlight-ln"> 6</span>  	data &lt;- 2
+<span class="highlight-ln"> 7</span>  	data &lt;- 3
+<span class="highlight-ln"> 8</span>  
+<span class="highlight-ln"> 9</span>  	go func() {
+<span class="highlight-ln">10</span>  		for d := range data { // 在缓冲区未空前，不会阻塞。
+<span class="highlight-ln">11</span>  			fmt.Println(d)
+<span class="highlight-ln">12</span>		}
+<span class="highlight-ln">13</span>
+<span class="highlight-ln">14</span>		exit &lt;- true
+<span class="highlight-ln">15</span>	}()
+<span class="highlight-ln">16</span>
+<span class="highlight-ln">17</span>	data &lt;- 4 // 如果缓冲区已满，阻塞。
+<span class="highlight-ln">18</span>	data &lt;- 5
+<span class="highlight-ln">19</span>	close(data)
+<span class="highlight-ln">20</span>    
+<span class="highlight-ln">21</span>	&lt;-exit
+<span class="highlight-ln">22</span>}
 </code></pre>
 <p>缓冲区是内部属性，并非类型构成要素。</p>
-<pre><code class="highlight-chroma">var a, b chan int = make(chan int), make(chan int, 3)
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>var a, b chan int = make(chan int), make(chan int, 3)
 </code></pre>
 <p>除用 <code>range</code> 外，还可用 <code>ok-idiom</code> 模式判断 <code>channel</code> 是否关闭。</p>
-<pre><code class="highlight-chroma">for {
-	if d, ok := &lt;-data; ok {
-		fmt.Println(d)
-	} else {
-		break
-	}
-}
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>for {
+<span class="highlight-ln">2</span>	if d, ok := &lt;-data; ok {
+<span class="highlight-ln">3</span>		fmt.Println(d)
+<span class="highlight-ln">4</span>	} else {
+<span class="highlight-ln">5</span>		break
+<span class="highlight-ln">6</span>	}
+<span class="highlight-ln">7</span>}
 </code></pre>
 <p>向 <code>closed channel</code> 发送数据引发 <code>panic</code> 错误，接收立即返回零值。而 <code>nil channel</code>，无论收发都会被阻塞。</p>
 <p>内置函数 <code>len</code> 返回未被读取的缓冲元素数量，<code>cap</code> 返回缓冲区大小。</p>
-<pre><code class="highlight-chroma">d1 := make(chan int)
-d2 := make(chan int, 3)
-
-d2 &lt;- 1
-
-fmt.Println(len(d1), cap(d1)) // 0 0
-fmt.Println(len(d2), cap(d2)) // 1 3
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>d1 := make(chan int)
+<span class="highlight-ln">2</span>d2 := make(chan int, 3)
+<span class="highlight-ln">3</span>
+<span class="highlight-ln">4</span>d2 &lt;- 1
+<span class="highlight-ln">5</span>
+<span class="highlight-ln">6</span>fmt.Println(len(d1), cap(d1)) // 0 0
+<span class="highlight-ln">7</span>fmt.Println(len(d2), cap(d2)) // 1 3
 </code></pre>
 <p>下一篇： [1439194647152]</p>
 <hr>
@@ -304,7 +297,7 @@ fmt.Println(len(d2), cap(d2)) // 1 3
 <p>社区小贴士</p>
 <ul>
 <li>关注标签 [golang] 可以方便查看 Go 相关帖子</li>
-<li>关注标签 [Go学习笔记] 可以方便查看本系列</li>
+<li>关注标签 [Go 学习笔记] 可以方便查看本系列</li>
 <li>关注作者后如有新帖将会收到通知</li>
 </ul>
 </blockquote>
@@ -361,7 +354,7 @@ fmt.Println(len(d2), cap(d2)) // 1 3
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -390,11 +383,6 @@ fmt.Println(len(d2), cap(d2)) // 1 3
         <a href="https://88250.github.io">D 的个人博客</a>
         
         <span class="footer__heart">❤️</span>
-        Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-        <br>
-        Theme Bubble
-        <sup>[<a href="https://www.cnblogs.com/jajian" target="_blank">ref</a>]</sup>
-        by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a> <br>
     </div>
 </footer>
 <svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -409,17 +397,17 @@ fmt.Println(len(d2), cap(d2)) // 1 3
     langLabel: "zh_CN",
     version: "4.0.0",
     staticSite: true,
-    showCodeBlockLn: false,
+    showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1585454085854"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
         charset="utf-8"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
-<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
 <div class="solo-kanbanniang">
     <div class="solo-kanbanniang__tip"></div>
     <canvas id="soloKanbanniang" width="280" height="250"></canvas>
@@ -453,7 +441,7 @@ fmt.Println(len(d2), cap(d2)) // 1 3
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1585454085854', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1438938175118",
@@ -473,4 +461,4 @@ fmt.Println(len(d2), cap(d2)) // 1 3
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 145ms, 2020/03/29 11:55:21 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 198ms, 2020/04/25 21:02:09 -->
