@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>禁止浏览器自动填充表单字段 - D 的个人博客</title><meta name="description" content="###场景 我们的登录表单一般都是 input text + input password： 登录 登录后如果用户选择了保存登录密码，那后续界面中如果有形如： 这样的两个 input（text+password）接在一起，那浏览器就会自动填充登录时的输入。 要用程序清空自动填充有两个方案： ###使用 autocomplete 属性 在不需要自动填充的 input 上设置 autocomplete 属性： 这个方案对于某些版本的浏览器可能不行。 ###使用假的 input 让浏览器去填充 在页面 `` 后加入： 这个方案原理是让浏览器去填充用户实际上看不到的 input。虽然看上去代码比较 low，但是很实用。 参考：Disabling Chrome Autofill"/><meta property="og:description" content="###场景 我们的登录表单一般都是 input text + input password： 登录 登录后如果用户选择了保存登录密码，那后续界面中如果有形如： 这样的两个 input（text+password）接在一起，那浏览器就会自动填充登录时的输入。 要用程序清空自动填充有两个方案： ###使用 autocomplete 属性 在不需要自动填充的 input 上设置 autocomplete 属性： 这个方案对于某些版本的浏览器可能不行。 ###使用假的 input 让浏览器去填充 在页面 `` 后加入： 这个方案原理是让浏览器去填充用户实际上看不到的 input。虽然看上去代码比较 low，但是很实用。 参考：Disabling Chrome Autofill"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="禁止浏览器自动填充表单字段 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/12/09/1449633350961.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="禁止浏览器自动填充表单字段 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/12/09/1449633350961.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>禁止浏览器自动填充表单字段 - D 的个人博客</title><meta name="description" content="###场景 我们的登录表单一般都是 input text + input password： 登录 登录后如果用户选择了保存登录密码，那后续界面中如果有形如： 这样的两个 input（text+password）接在一起，那浏览器就会自动填充登录时的输入。 要用程序清空自动填充有两个方案： ###使用 autocomplete 属性 在不需要自动填充的 input 上设置 autocomplete 属性： 这个方案对于某些版本的浏览器可能不行。 ###使用假的 input 让浏览器去填充 在页面 `` 后加入： 这个方案原理是让浏览器去填充用户实际上看不到的 input。虽然看上去代码比较 low，但是很实用。 参考：Disabling Chrome Autofill"/><meta property="og:description" content="###场景 我们的登录表单一般都是 input text + input password： 登录 登录后如果用户选择了保存登录密码，那后续界面中如果有形如： 这样的两个 input（text+password）接在一起，那浏览器就会自动填充登录时的输入。 要用程序清空自动填充有两个方案： ###使用 autocomplete 属性 在不需要自动填充的 input 上设置 autocomplete 属性： 这个方案对于某些版本的浏览器可能不行。 ###使用假的 input 让浏览器去填充 在页面 `` 后加入： 这个方案原理是让浏览器去填充用户实际上看不到的 input。虽然看上去代码比较 low，但是很实用。 参考：Disabling Chrome Autofill"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="禁止浏览器自动填充表单字段 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/12/09/1449633350961.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="禁止浏览器自动填充表单字段 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/12/09/1449633350961.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
             <link rel="prev" title="标签服务实现漫谈" href="https://88250.github.io/articles/2015/12/01/1448958541321.html">
             <link rel="next" title="2015 年总结 - 十年" href="https://88250.github.io/articles/2016/01/30/1454085278317.html">
     <script>
@@ -224,7 +224,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -261,7 +261,7 @@ var _hmt = _hmt || [];
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -271,10 +271,10 @@ var _hmt = _hmt || [];
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -308,7 +308,7 @@ var _hmt = _hmt || [];
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1449633350961",
@@ -328,4 +328,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 136ms, 2020/04/25 21:02:09 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 268ms, 2020/04/25 21:12:00 -->

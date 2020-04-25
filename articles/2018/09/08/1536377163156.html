@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>《提问的智慧》精读注解版 - D 的个人博客</title><meta name="description" content="大学期间，我看过《大教堂与集市》、《提问的智慧》以及影片《操作系统的革命》，它们对我后来的职业生涯产生了重要的影响。其中《提问的智慧》是篇长文，几十分钟就能看完，此文作者 Eric Steven Raymond（ESR）也是《大教堂与集市》的作者，著名的黑客，开源先驱。他在 2001 年第一次发布《提》后一直对此文进行着更新维护，以保证它尽量适用于最新的情况，比如与时俱进地加入新章节、修复 URL 地址、更新翻译版链接等。 今天我又读了一遍《提》，作为一个开源项目的维护者，感慨万千。下文是我对《提》的 部分 注解，如果你时间有限，可以通过该注解版进行有限的了解。但还是强烈建议你精读一遍《提问的智慧》，英语好的同学可直接看原文 How To Ask Questions The Smart Way。 下面按照原文章节进行注解，标题即原文章节标题。再次说明，我仅仅是注解了《提》中的部分内容，有时间的话请一定要看原文。 声明 该小节 ESR 建议项目维护者在用户指南文档的显著位置标注： 本指南不提供此项目的实际支持服务！ 我们已经深刻领教到少了上述声明所带来的痛苦。因为少了这点声明，我们不停...."/><meta property="og:description" content="大学期间，我看过《大教堂与集市》、《提问的智慧》以及影片《操作系统的革命》，它们对我后来的职业生涯产生了重要的影响。其中《提问的智慧》是篇长文，几十分钟就能看完，此文作者 Eric Steven Raymond（ESR）也是《大教堂与集市》的作者，著名的黑客，开源先驱。他在 2001 年第一次发布《提》后一直对此文进行着更新维护，以保证它尽量适用于最新的情况，比如与时俱进地加入新章节、修复 URL 地址、更新翻译版链接等。 今天我又读了一遍《提》，作为一个开源项目的维护者，感慨万千。下文是我对《提》的 部分 注解，如果你时间有限，可以通过该注解版进行有限的了解。但还是强烈建议你精读一遍《提问的智慧》，英语好的同学可直接看原文 How To Ask Questions The Smart Way。 下面按照原文章节进行注解，标题即原文章节标题。再次说明，我仅仅是注解了《提》中的部分内容，有时间的话请一定要看原文。 声明 该小节 ESR 建议项目维护者在用户指南文档的显著位置标注： 本指南不提供此项目的实际支持服务！ 我们已经深刻领教到少了上述声明所带来的痛苦。因为少了这点声明，我们不停...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="《提问的智慧》精读注解版 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/09/08/1536377163156.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="《提问的智慧》精读注解版 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/09/08/1536377163156.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>《提问的智慧》精读注解版 - D 的个人博客</title><meta name="description" content="大学期间，我看过《大教堂与集市》、《提问的智慧》以及影片《操作系统的革命》，它们对我后来的职业生涯产生了重要的影响。其中《提问的智慧》是篇长文，几十分钟就能看完，此文作者 Eric Steven Raymond（ESR）也是《大教堂与集市》的作者，著名的黑客，开源先驱。他在 2001 年第一次发布《提》后一直对此文进行着更新维护，以保证它尽量适用于最新的情况，比如与时俱进地加入新章节、修复 URL 地址、更新翻译版链接等。 今天我又读了一遍《提》，作为一个开源项目的维护者，感慨万千。下文是我对《提》的 部分 注解，如果你时间有限，可以通过该注解版进行有限的了解。但还是强烈建议你精读一遍《提问的智慧》，英语好的同学可直接看原文 How To Ask Questions The Smart Way。 下面按照原文章节进行注解，标题即原文章节标题。再次说明，我仅仅是注解了《提》中的部分内容，有时间的话请一定要看原文。 声明 该小节 ESR 建议项目维护者在用户指南文档的显著位置标注： 本指南不提供此项目的实际支持服务！ 我们已经深刻领教到少了上述声明所带来的痛苦。因为少了这点声明，我们不停...."/><meta property="og:description" content="大学期间，我看过《大教堂与集市》、《提问的智慧》以及影片《操作系统的革命》，它们对我后来的职业生涯产生了重要的影响。其中《提问的智慧》是篇长文，几十分钟就能看完，此文作者 Eric Steven Raymond（ESR）也是《大教堂与集市》的作者，著名的黑客，开源先驱。他在 2001 年第一次发布《提》后一直对此文进行着更新维护，以保证它尽量适用于最新的情况，比如与时俱进地加入新章节、修复 URL 地址、更新翻译版链接等。 今天我又读了一遍《提》，作为一个开源项目的维护者，感慨万千。下文是我对《提》的 部分 注解，如果你时间有限，可以通过该注解版进行有限的了解。但还是强烈建议你精读一遍《提问的智慧》，英语好的同学可直接看原文 How To Ask Questions The Smart Way。 下面按照原文章节进行注解，标题即原文章节标题。再次说明，我仅仅是注解了《提》中的部分内容，有时间的话请一定要看原文。 声明 该小节 ESR 建议项目维护者在用户指南文档的显著位置标注： 本指南不提供此项目的实际支持服务！ 我们已经深刻领教到少了上述声明所带来的痛苦。因为少了这点声明，我们不停...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="《提问的智慧》精读注解版 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2018/09/08/1536377163156.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="《提问的智慧》精读注解版 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2018/09/08/1536377163156.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
             <link rel="prev" title="百度不限速下载器 BND2 技术架构简介" href="https://88250.github.io/articles/2018/08/26/1535277215816.html">
             <link rel="next" title="Java 正则中的非捕获组" href="https://88250.github.io/articles/2018/09/30/1538320113750.html">
     <script>
@@ -583,7 +583,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -620,7 +620,7 @@ var _hmt = _hmt || [];
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -630,10 +630,10 @@ var _hmt = _hmt || [];
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -670,7 +670,7 @@ var _hmt = _hmt || [];
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1536377163156",
@@ -690,4 +690,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 117ms, 2020/04/25 21:02:09 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 436ms, 2020/04/25 21:11:59 -->

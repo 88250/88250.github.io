@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>安装Stardict词典文件的小脚本，嘿嘿 - D 的个人博客</title><meta name="description" content="今早在 ubuntu-cn 的 irc 上忽闻 feisty 的 wiki 快速指南正在进行中。发现 Stardict 词典安装新手可能有些麻烦，周末闲来无事，特写此脚本。自己测试过一两种情况，当然了，您若是情况比较特殊，还望告之，不胜感谢！ 注： 1、通用词典文件有：21 世纪双向，朗道，韦氏，牛津，朗文，计算机专业；可自行添加。 2、词典文件来自 Ubuntu 中国之 ftp。 3、脚本文件见附件，高手可斧正。再谢！ #!binbash#installstardictif[[-f$whichstardict]]thenechoechoYouhavestardictinstalled.e...."/><meta property="og:description" content="今早在 ubuntu-cn 的 irc 上忽闻 feisty 的 wiki 快速指南正在进行中。发现 Stardict 词典安装新手可能有些麻烦，周末闲来无事，特写此脚本。自己测试过一两种情况，当然了，您若是情况比较特殊，还望告之，不胜感谢！ 注： 1、通用词典文件有：21 世纪双向，朗道，韦氏，牛津，朗文，计算机专业；可自行添加。 2、词典文件来自 Ubuntu 中国之 ftp。 3、脚本文件见附件，高手可斧正。再谢！ #!binbash#installstardictif[[-f$whichstardict]]thenechoechoYouhavestardictinstalled.e...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="安装Stardict词典文件的小脚本，嘿嘿 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/05/08/1178585160000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="安装Stardict词典文件的小脚本，嘿嘿 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/05/08/1178585160000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/css/base.css?1587819569620"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>安装Stardict词典文件的小脚本，嘿嘿 - D 的个人博客</title><meta name="description" content="今早在 ubuntu-cn 的 irc 上忽闻 feisty 的 wiki 快速指南正在进行中。发现 Stardict 词典安装新手可能有些麻烦，周末闲来无事，特写此脚本。自己测试过一两种情况，当然了，您若是情况比较特殊，还望告之，不胜感谢！ 注： 1、通用词典文件有：21 世纪双向，朗道，韦氏，牛津，朗文，计算机专业；可自行添加。 2、词典文件来自 Ubuntu 中国之 ftp。 3、脚本文件见附件，高手可斧正。再谢！ #!binbash#installstardictif[[-f$whichstardict]]thenechoechoYouhavestardictinstalled.e...."/><meta property="og:description" content="今早在 ubuntu-cn 的 irc 上忽闻 feisty 的 wiki 快速指南正在进行中。发现 Stardict 词典安装新手可能有些麻烦，周末闲来无事，特写此脚本。自己测试过一两种情况，当然了，您若是情况比较特殊，还望告之，不胜感谢！ 注： 1、通用词典文件有：21 世纪双向，朗道，韦氏，牛津，朗文，计算机专业；可自行添加。 2、词典文件来自 Ubuntu 中国之 ftp。 3、脚本文件见附件，高手可斧正。再谢！ #!binbash#installstardictif[[-f$whichstardict]]thenechoechoYouhavestardictinstalled.e...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="安装Stardict词典文件的小脚本，嘿嘿 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2007/05/08/1178585160000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="安装Stardict词典文件的小脚本，嘿嘿 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2007/05/08/1178585160000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
             <link rel="prev" title="把rpm包转成deb包的工具" href="https://88250.github.io/articles/2007/05/07/1178543460000.html">
             <link rel="next" title="Linux下小巧好用的截图程序" href="https://88250.github.io/articles/2007/05/09/1178706900000.html">
     <script>
@@ -196,7 +196,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -233,7 +233,7 @@ var _hmt = _hmt || [];
 <script>
   var Label = {
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -243,10 +243,10 @@ var _hmt = _hmt || [];
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/common.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587819569620"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -280,7 +280,7 @@ var _hmt = _hmt || [];
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.0.0/src/main/resources/js/page.min.js?1587819569620', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1178585160000",
@@ -300,4 +300,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 112ms, 2020/04/25 21:02:14 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 146ms, 2020/04/25 21:12:11 -->
