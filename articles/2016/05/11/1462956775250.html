@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>敏感数据处理 - D 的个人博客</title><meta name="description" content="背景 大多数应用或多或少都会涉及到敏感数据处理，比如用户的手机号、身份证号，甚至银行卡账号。作为应用的开发者，如何 安全地 维护这些敏感数据呢？ 这里讨论的安全不是指服务器如何保护，而是在数据库层面做敏感数据的分离： * 业务库中不保存敏感数据，只保存混淆过的数据，比如电话字段保存的是 133****9961，在数据层面就进行脱敏 * 敏感数据统一保存在另一个库中，有应用调用一个服务来建立原值和混淆值的映射关系 * 业务库中因为保存的是脱敏过的数据，通过只读复制镜像可以很方便地提供给其他服务使用，比如 OLAP * 除了技术开发上方便，运维上也方便了很多，降低了敏感数据被暴露到外部的可能性 ### 技术设计 提供服务接口给应用存取敏感数据，本质上是一个 KV 存取服务。 一些细节： * 表 protyle 的 domain 字段用于标识该记录的作用域，在一个作用域上相同的值要保证唯一 * 表 protyle 的 ha...."/><meta property="og:description" content="背景 大多数应用或多或少都会涉及到敏感数据处理，比如用户的手机号、身份证号，甚至银行卡账号。作为应用的开发者，如何 安全地 维护这些敏感数据呢？ 这里讨论的安全不是指服务器如何保护，而是在数据库层面做敏感数据的分离： * 业务库中不保存敏感数据，只保存混淆过的数据，比如电话字段保存的是 133****9961，在数据层面就进行脱敏 * 敏感数据统一保存在另一个库中，有应用调用一个服务来建立原值和混淆值的映射关系 * 业务库中因为保存的是脱敏过的数据，通过只读复制镜像可以很方便地提供给其他服务使用，比如 OLAP * 除了技术开发上方便，运维上也方便了很多，降低了敏感数据被暴露到外部的可能性 ### 技术设计 提供服务接口给应用存取敏感数据，本质上是一个 KV 存取服务。 一些细节： * 表 protyle 的 domain 字段用于标识该记录的作用域，在一个作用域上相同的值要保证唯一 * 表 protyle 的 ha...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="敏感数据处理 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2016/05/11/1462956775250.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="敏感数据处理 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2016/05/11/1462956775250.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593356700475"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>敏感数据处理 - D 的个人博客</title><meta name="description" content="背景 大多数应用或多或少都会涉及到敏感数据处理，比如用户的手机号、身份证号，甚至银行卡账号。作为应用的开发者，如何 安全地 维护这些敏感数据呢？ 这里讨论的安全不是指服务器如何保护，而是在数据库层面做敏感数据的分离： * 业务库中不保存敏感数据，只保存混淆过的数据，比如电话字段保存的是 133****9961，在数据层面就进行脱敏 * 敏感数据统一保存在另一个库中，有应用调用一个服务来建立原值和混淆值的映射关系 * 业务库中因为保存的是脱敏过的数据，通过只读复制镜像可以很方便地提供给其他服务使用，比如 OLAP * 除了技术开发上方便，运维上也方便了很多，降低了敏感数据被暴露到外部的可能性 ### 技术设计 提供服务接口给应用存取敏感数据，本质上是一个 KV 存取服务。 一些细节： * 表 protyle 的 domain 字段用于标识该记录的作用域，在一个作用域上相同的值要保证唯一 * 表 protyle 的 ha...."/><meta property="og:description" content="背景 大多数应用或多或少都会涉及到敏感数据处理，比如用户的手机号、身份证号，甚至银行卡账号。作为应用的开发者，如何 安全地 维护这些敏感数据呢？ 这里讨论的安全不是指服务器如何保护，而是在数据库层面做敏感数据的分离： * 业务库中不保存敏感数据，只保存混淆过的数据，比如电话字段保存的是 133****9961，在数据层面就进行脱敏 * 敏感数据统一保存在另一个库中，有应用调用一个服务来建立原值和混淆值的映射关系 * 业务库中因为保存的是脱敏过的数据，通过只读复制镜像可以很方便地提供给其他服务使用，比如 OLAP * 除了技术开发上方便，运维上也方便了很多，降低了敏感数据被暴露到外部的可能性 ### 技术设计 提供服务接口给应用存取敏感数据，本质上是一个 KV 存取服务。 一些细节： * 表 protyle 的 domain 字段用于标识该记录的作用域，在一个作用域上相同的值要保证唯一 * 表 protyle 的 ha...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="敏感数据处理 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2016/05/11/1462956775250.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="敏感数据处理 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2016/05/11/1462956775250.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/css/base.css?1593357893538"/>
             <link rel="prev" title="UGC 社区价值生态" href="https://88250.github.io/articles/2016/04/30/1462028669762.html">
             <link rel="next" title="基于数据库复制的技术架构讨论" href="https://88250.github.io/articles/2016/06/07/1465278948107.html">
     <script>
@@ -226,7 +226,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593357893538"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -264,7 +264,7 @@ var _hmt = _hmt || [];
   var Label = {
     speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -274,10 +274,10 @@ var _hmt = _hmt || [];
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/common.min.js?1593357893538"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593357893538"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -314,7 +314,7 @@ var _hmt = _hmt || [];
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593356700475', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/js/page.min.js?1593357893538', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1462956775250",
@@ -336,4 +336,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 131ms, 2020/06/28 23:07:07 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 319ms, 2020/06/28 23:25:28 -->

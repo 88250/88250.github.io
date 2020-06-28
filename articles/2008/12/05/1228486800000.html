@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>单元测试与敏捷开发 - D 的个人博客</title><meta name="description" content="单元测试与敏捷开发 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 在要求项目要尽量快地实现的时候，质量与开发进度上会出现一定的矛盾，最突出的就是单元测试代码与逻辑实现代码。 TDD 测试驱动开发必然没错，但是使用不当会造成开发效率的下降。在敏捷开发实践中，结合前辈经验与自己的经验， 如下几点是要关心的： 为主要的、关键的逻辑组件，关键的逻辑方法进行测试驱动开发 这样对设计、设计演化很有帮助 逻辑类似的组件如果存在多个，优先编写其中一种逻辑组件的测试代码 ...."/><meta property="og:description" content="单元测试与敏捷开发 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 在要求项目要尽量快地实现的时候，质量与开发进度上会出现一定的矛盾，最突出的就是单元测试代码与逻辑实现代码。 TDD 测试驱动开发必然没错，但是使用不当会造成开发效率的下降。在敏捷开发实践中，结合前辈经验与自己的经验， 如下几点是要关心的： 为主要的、关键的逻辑组件，关键的逻辑方法进行测试驱动开发 这样对设计、设计演化很有帮助 逻辑类似的组件如果存在多个，优先编写其中一种逻辑组件的测试代码 ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="单元测试与敏捷开发 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/12/05/1228486800000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="单元测试与敏捷开发 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/12/05/1228486800000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593356700475"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>单元测试与敏捷开发 - D 的个人博客</title><meta name="description" content="单元测试与敏捷开发 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 在要求项目要尽量快地实现的时候，质量与开发进度上会出现一定的矛盾，最突出的就是单元测试代码与逻辑实现代码。 TDD 测试驱动开发必然没错，但是使用不当会造成开发效率的下降。在敏捷开发实践中，结合前辈经验与自己的经验， 如下几点是要关心的： 为主要的、关键的逻辑组件，关键的逻辑方法进行测试驱动开发 这样对设计、设计演化很有帮助 逻辑类似的组件如果存在多个，优先编写其中一种逻辑组件的测试代码 ...."/><meta property="og:description" content="单元测试与敏捷开发 转载请保留作者信息： 作者：88250 Blog：http:blog.csdn.netDL88250 MSN Gmail QQ：DL88250@gmail.com 在要求项目要尽量快地实现的时候，质量与开发进度上会出现一定的矛盾，最突出的就是单元测试代码与逻辑实现代码。 TDD 测试驱动开发必然没错，但是使用不当会造成开发效率的下降。在敏捷开发实践中，结合前辈经验与自己的经验， 如下几点是要关心的： 为主要的、关键的逻辑组件，关键的逻辑方法进行测试驱动开发 这样对设计、设计演化很有帮助 逻辑类似的组件如果存在多个，优先编写其中一种逻辑组件的测试代码 ...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="单元测试与敏捷开发 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/12/05/1228486800000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="单元测试与敏捷开发 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/12/05/1228486800000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/css/base.css?1593357893538"/>
             <link rel="prev" title="Stairway To Heaven" href="https://88250.github.io/articles/2008/11/11/1226433900000.html">
             <link rel="next" title="Ubuntu 下发布 Maven2 Plugin 到 Java.net Maven2 Repositoty" href="https://88250.github.io/articles/2008/12/12/1229116860000.html">
     <script>
@@ -221,7 +221,7 @@ TDD (测试驱动开发)必然没错，但是使用不当会造成开发效率�
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593357893538"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -259,7 +259,7 @@ TDD (测试驱动开发)必然没错，但是使用不当会造成开发效率�
   var Label = {
     speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -269,10 +269,10 @@ TDD (测试驱动开发)必然没错，但是使用不当会造成开发效率�
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/common.min.js?1593357893538"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593357893538"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -306,7 +306,7 @@ TDD (测试驱动开发)必然没错，但是使用不当会造成开发效率�
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593356700475', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/js/page.min.js?1593357893538', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1228486800000",
@@ -328,4 +328,4 @@ TDD (测试驱动开发)必然没错，但是使用不当会造成开发效率�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 148ms, 2020/06/28 23:07:12 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 248ms, 2020/06/28 23:25:35 -->

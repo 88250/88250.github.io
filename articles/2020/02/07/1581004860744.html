@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>搭建 GitHub 镜像仓库 - D 的个人博客</title><meta name="description" content="需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端 创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类： 客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys 切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git 在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh g...."/><meta property="og:description" content="需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端 创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类： 客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys 切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git 在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh g...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="搭建 GitHub 镜像仓库 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/07/1581004860744.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="搭建 GitHub 镜像仓库 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/07/1581004860744.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593356700475"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>搭建 GitHub 镜像仓库 - D 的个人博客</title><meta name="description" content="需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端 创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类： 客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys 切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git 在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh g...."/><meta property="og:description" content="需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端 创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类： 客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys 切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git 在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh g...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="搭建 GitHub 镜像仓库 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2020/02/07/1581004860744.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="搭建 GitHub 镜像仓库 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2020/02/07/1581004860744.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/css/base.css?1593357893538"/>
             <link rel="prev" title="链滴笔记路线图" href="https://88250.github.io/articles/2020/01/23/1579786655216.html">
             <link rel="next" title="Solo 从设计到实现后记" href="https://88250.github.io/articles/2020/02/08/1581145208243.html">
     <script>
@@ -252,7 +252,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593357893538"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -290,7 +290,7 @@ var _hmt = _hmt || [];
   var Label = {
     speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -300,10 +300,10 @@ var _hmt = _hmt || [];
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/common.min.js?1593357893538"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593357893538"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -340,7 +340,7 @@ var _hmt = _hmt || [];
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593356700475', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/js/page.min.js?1593357893538', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1581004860744",
@@ -362,4 +362,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 222ms, 2020/06/28 23:07:05 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 259ms, 2020/06/28 23:25:25 -->

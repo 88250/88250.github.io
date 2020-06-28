@@ -27,8 +27,8 @@
 11启用定制后的登录验证	6
 12整合测试	7
 13总结	7
- 摘要 本文以 Liferay 与 CAS 整合为例，将 CAS 登录验证从输入相同的用户名密码定制为以 Liferay 的用户身份进行验证。 环境 My...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="定制CAS登录验证 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/08/26/1219750620000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="定制CAS登录验证 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/08/26/1219750620000.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593356700475"/>
+ 摘要 本文以 Liferay 与 CAS 整合为例，将 CAS 登录验证从输入相同的用户名密码定制为以 Liferay 的用户身份进行验证。 环境 My...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="定制CAS登录验证 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2008/08/26/1219750620000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="定制CAS登录验证 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2008/08/26/1219750620000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/css/base.css?1593357893538"/>
             <link rel="prev" title="Liferay 5.1.1 安装与整合CAS" href="https://88250.github.io/articles/2008/08/20/1219250340000.html">
             <link rel="next" title="NetBeans 10th Birthday" href="https://88250.github.io/articles/2008/10/20/1224545820000.html">
     <script>
@@ -642,7 +642,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593357893538"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -680,7 +680,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
   var Label = {
     speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
@@ -690,10 +690,10 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/common.min.js?1593357893538"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593356700475"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593357893538"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -730,7 +730,7 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593356700475', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@4.2.0/src/main/resources/js/page.min.js?1593357893538', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1219750620000",
@@ -752,4 +752,4 @@ Sign On)</font><font face="DejaVu Sans">将在下一次的文章中介绍，将�
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 154ms, 2020/06/28 23:07:12 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 183ms, 2020/06/28 23:25:35 -->
