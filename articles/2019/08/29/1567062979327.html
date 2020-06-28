@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Lute 实现后记 - D 的个人博客</title><meta name="description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/><meta property="og:description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Lute 实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/29/1567062979327.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Lute 实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Lute 实现后记 - D 的个人博客</title><meta name="description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/><meta property="og:description" content="CommonMark 规范实现难点 Markdown 解析没有“报错”一说：无论是词法分析还是语法分析阶段，都不可能出现 error 退出。换句话说，对于编程语言而已，其在设计时就是准结构化的，甚至为了解析方便而特设语法（比如 golang 数据类型后置、模板中的表达式使用前缀表达式等），而 CM 则是为兼容各种写法、将各种写法规范化而设计的，所以规则非常多，目的是为了兼容而不是报错。 整体解析方面比较难的是计算缩进宽度。缩进在 Markdown 中主要用于缩进代码块、列表项对齐。因为列表项作为块容器是可以容纳任何元素的（包括块级元素和行级元素），所以当列表项出现子块时缩进就要根据列表的定义来计算。比如要考虑列表标记宽度，标记后到第一个非空字符的空格数等。最麻烦的是块引用嵌套列表的场景，因为块引用也是一种块容器。 除了缩进，还有个比较难的是“延续”判断。比如换行以后需要判断是否需要延续之前的行所在的节点。不同节点类型有不同的打断规则，最麻烦的也还是列表项和块引用，因为它们是块容器，可能出现的状态有点多。 最后还有个难点是判断列表是紧凑模式还是松散模式。因为列表是块级容器，所以需要考虑嵌...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Lute 实现后记 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2019/08/29/1567062979327.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Lute 实现后记 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2019/08/29/1567062979327.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593351336803"/>
             <link rel="prev" title="CommonMark 规范要点解读" href="https://88250.github.io/articles/2019/08/27/1566893557720.html">
             <link rel="next" title="创业的第二个秋天" href="https://88250.github.io/articles/2019/11/11/1573402018349.html">
     <script>
@@ -53,7 +53,7 @@ var _hmt = _hmt || [];
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    411 文章 <br>
+                    413 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -334,12 +334,13 @@ var _hmt = _hmt || [];
                     <div>
                         <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- D博客文章签名档 -->
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
+     style="display:block"
      data-ad-client="ca-pub-5357405790190342"
-     data-ad-slot="9726081163"></ins>
+     data-ad-slot="7757575754"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -422,7 +423,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593351336803"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -458,21 +459,22 @@ var _hmt = _hmt || [];
 </svg>
 <script>
   var Label = {
+    speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "4.0.0",
+    version: "4.2.0",
     staticSite: true,
     showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593351336803"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593351336803"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -509,7 +511,7 @@ var _hmt = _hmt || [];
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593351336803', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1567062979327",
@@ -520,8 +522,10 @@ var _hmt = _hmt || [];
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
         page.loadExternalRelevantArticles("Lute",
         '<h3>站外相关阅读</h3>');
+        page.loadRelevantArticles('1567062979327', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -529,4 +533,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 307ms, 2020/04/25 21:11:56 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 453ms, 2020/06/28 21:36:43 -->

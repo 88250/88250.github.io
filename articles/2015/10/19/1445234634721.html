@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>www 开头的域名和 Cookie-free - D 的个人博客</title><meta name="description" content="本文我们会探索两个问题： 1. 网站是应该选择 www 开头的域名作为用户入口还是应该使用不带 www 的域名（裸域）？ 2. Cookie-free 是什么？为什么很重要？ ###www 开头的域名 国内外大多数知名站点都是使用带 www 的二级域名作为用户入口，其中有通过 301 将裸域重定向到 www 二级域名的，也有通过 302 的（较少）。 为什么这些大站（流量大/子域名众多）都要使用带 www 的域名呢，主要原因应该有以下几点： * 对用户来说识别度高，带了 www 后（即使不加 http://）用户就知道这是一个可以用浏览器打开的 URL * 避免将 Cookie 设置在裸域上（后面我们会讨论这样做的坏处） * 在其他地方引用带 www 的 URL 更容易被识别（比如会自动加上链接） 以上主要是对大站来说，我们经常使用的小站（流量小/子域名较少）入口很多是不带 www 的（两者都允许以及类似 Twitter 这样的个例除外），这样做原因应该主要只有一点： * 域名更短，突出简约的个性，特别是一些个性后缀的域名不带 www 时更有利于用户记忆 ###301 or 302...."/><meta property="og:description" content="本文我们会探索两个问题： 1. 网站是应该选择 www 开头的域名作为用户入口还是应该使用不带 www 的域名（裸域）？ 2. Cookie-free 是什么？为什么很重要？ ###www 开头的域名 国内外大多数知名站点都是使用带 www 的二级域名作为用户入口，其中有通过 301 将裸域重定向到 www 二级域名的，也有通过 302 的（较少）。 为什么这些大站（流量大/子域名众多）都要使用带 www 的域名呢，主要原因应该有以下几点： * 对用户来说识别度高，带了 www 后（即使不加 http://）用户就知道这是一个可以用浏览器打开的 URL * 避免将 Cookie 设置在裸域上（后面我们会讨论这样做的坏处） * 在其他地方引用带 www 的 URL 更容易被识别（比如会自动加上链接） 以上主要是对大站来说，我们经常使用的小站（流量小/子域名较少）入口很多是不带 www 的（两者都允许以及类似 Twitter 这样的个例除外），这样做原因应该主要只有一点： * 域名更短，突出简约的个性，特别是一些个性后缀的域名不带 www 时更有利于用户记忆 ###301 or 302...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="www 开头的域名和 Cookie-free - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/10/19/1445234634721.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="www 开头的域名和 Cookie-free - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/10/19/1445234634721.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>www 开头的域名和 Cookie-free - D 的个人博客</title><meta name="description" content="本文我们会探索两个问题： 1. 网站是应该选择 www 开头的域名作为用户入口还是应该使用不带 www 的域名（裸域）？ 2. Cookie-free 是什么？为什么很重要？ ###www 开头的域名 国内外大多数知名站点都是使用带 www 的二级域名作为用户入口，其中有通过 301 将裸域重定向到 www 二级域名的，也有通过 302 的（较少）。 为什么这些大站（流量大/子域名众多）都要使用带 www 的域名呢，主要原因应该有以下几点： * 对用户来说识别度高，带了 www 后（即使不加 http://）用户就知道这是一个可以用浏览器打开的 URL * 避免将 Cookie 设置在裸域上（后面我们会讨论这样做的坏处） * 在其他地方引用带 www 的 URL 更容易被识别（比如会自动加上链接） 以上主要是对大站来说，我们经常使用的小站（流量小/子域名较少）入口很多是不带 www 的（两者都允许以及类似 Twitter 这样的个例除外），这样做原因应该主要只有一点： * 域名更短，突出简约的个性，特别是一些个性后缀的域名不带 www 时更有利于用户记忆 ###301 or 302...."/><meta property="og:description" content="本文我们会探索两个问题： 1. 网站是应该选择 www 开头的域名作为用户入口还是应该使用不带 www 的域名（裸域）？ 2. Cookie-free 是什么？为什么很重要？ ###www 开头的域名 国内外大多数知名站点都是使用带 www 的二级域名作为用户入口，其中有通过 301 将裸域重定向到 www 二级域名的，也有通过 302 的（较少）。 为什么这些大站（流量大/子域名众多）都要使用带 www 的域名呢，主要原因应该有以下几点： * 对用户来说识别度高，带了 www 后（即使不加 http://）用户就知道这是一个可以用浏览器打开的 URL * 避免将 Cookie 设置在裸域上（后面我们会讨论这样做的坏处） * 在其他地方引用带 www 的 URL 更容易被识别（比如会自动加上链接） 以上主要是对大站来说，我们经常使用的小站（流量小/子域名较少）入口很多是不带 www 的（两者都允许以及类似 Twitter 这样的个例除外），这样做原因应该主要只有一点： * 域名更短，突出简约的个性，特别是一些个性后缀的域名不带 www 时更有利于用户记忆 ###301 or 302...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="www 开头的域名和 Cookie-free - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/10/19/1445234634721.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="www 开头的域名和 Cookie-free - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/10/19/1445234634721.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593351336803"/>
             <link rel="prev" title="PHP 异步 HTTP 与 NGINX 499" href="https://88250.github.io/articles/2015/10/09/1444367397136.html">
             <link rel="next" title="理解 HTTPS 原理，SSL/TLS 协议" href="https://88250.github.io/articles/2015/11/19/1447920990604.html">
     <script>
@@ -53,7 +53,7 @@ var _hmt = _hmt || [];
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    411 文章 <br>
+                    413 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -208,7 +208,7 @@ var _hmt = _hmt || [];
 <li>symphony-static.b3log.org 可以非常方便的做 CDN 加速，因为都是静态资源，不需要配置复杂的匹配策略或重写规则</li>
 </ul>
 <p>另外，Cookie 最好只设置在当前域名下，不要设置在裸域上，避免不必要的“污染”。当然， 有的场景下，“污染”是为了以最简单的方式实现某些特性，比如多个子站通过裸域会话追踪的 Cookie 实现会话共享。</p>
-<p>###结论</p>
+<p>### 结论</p>
 <ul>
 <li>尽量以 www 作为站的用户入口，避免将 Cookie 设置在裸域上</li>
 <li>尽量考虑 Cookie-free 问题，使用其他域名进行静态资源 Serve 是最好选择</li>
@@ -218,7 +218,7 @@ var _hmt = _hmt || [];
 <li>尽量安全地使用 Cookie，避免混乱和漏洞（比如子站 A 漏洞会影响子站 B）</li>
 <li>做好 Cache 控制（200 cache），减少不必要请求的发送</li>
 </ul>
-<p>###参考</p>
+<p>### 参考</p>
 <ul>
 <li><a href="http://www.zhihu.com/question/20414602" target="_blank">为什么越来越多的网站域名不加 ‘www’ 前缀？</a></li>
 <li><a href="https://developer.yahoo.com/performance/rules.html#cookie_free" target="_blank">Best Practices for Speeding Up Your Web Site</a></li>
@@ -228,12 +228,13 @@ var _hmt = _hmt || [];
                     <div>
                         <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- D博客文章签名档 -->
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
+     style="display:block"
      data-ad-client="ca-pub-5357405790190342"
-     data-ad-slot="9726081163"></ins>
+     data-ad-slot="7757575754"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -265,7 +266,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593351336803"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -301,21 +302,22 @@ var _hmt = _hmt || [];
 </svg>
 <script>
   var Label = {
+    speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "4.0.0",
+    version: "4.2.0",
     staticSite: true,
     showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593351336803"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593351336803"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -349,7 +351,7 @@ var _hmt = _hmt || [];
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593351336803', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1445234634721",
@@ -360,8 +362,10 @@ var _hmt = _hmt || [];
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
         page.loadExternalRelevantArticles("Cookie-free,Cookie,www,SEO,性能优化,域名",
         '<h3>站外相关阅读</h3>');
+        page.loadRelevantArticles('1445234634721', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -369,4 +373,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 304ms, 2020/04/25 21:12:01 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 208ms, 2020/06/28 21:36:46 -->

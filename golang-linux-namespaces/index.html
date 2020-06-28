@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>使用 Golang 操作 Linux Namespaces - D 的个人博客</title><meta name="description" content="Linux Namespaces（Linux 命名空间）机制提供了进程使用操作系统资源时的隔离方式，是基于内核实现轻量级虚拟化（容器化，例如 docker）的实现基础。 具体来说就是当我们创建一个进程时，可以给进程设置 flag 组合来构建进程的命名空间，处于不同命名空间的进程是相互隔离的。"/><meta property="og:description" content="Linux Namespaces（Linux 命名空间）机制提供了进程使用操作系统资源时的隔离方式，是基于内核实现轻量级虚拟化（容器化，例如 docker）的实现基础。 具体来说就是当我们创建一个进程时，可以给进程设置 flag 组合来构建进程的命名空间，处于不同命名空间的进程是相互隔离的。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="使用 Golang 操作 Linux Namespaces - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/golang-linux-namespaces?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="使用 Golang 操作 Linux Namespaces - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/golang-linux-namespaces">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>使用 Golang 操作 Linux Namespaces - D 的个人博客</title><meta name="description" content="Linux Namespaces（Linux 命名空间）机制提供了进程使用操作系统资源时的隔离方式，是基于内核实现轻量级虚拟化（容器化，例如 docker）的实现基础。 具体来说就是当我们创建一个进程时，可以给进程设置 flag 组合来构建进程的命名空间，处于不同命名空间的进程是相互隔离的。"/><meta property="og:description" content="Linux Namespaces（Linux 命名空间）机制提供了进程使用操作系统资源时的隔离方式，是基于内核实现轻量级虚拟化（容器化，例如 docker）的实现基础。 具体来说就是当我们创建一个进程时，可以给进程设置 flag 组合来构建进程的命名空间，处于不同命名空间的进程是相互隔离的。"/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="使用 Golang 操作 Linux Namespaces - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/golang-linux-namespaces?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="使用 Golang 操作 Linux Namespaces - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/golang-linux-namespaces">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593351336803"/>
             <link rel="prev" title="Docker 初探" href="https://88250.github.io/docker-first-step">
             <link rel="next" title="中央公园" href="https://88250.github.io/central-perk">
     <script>
@@ -53,7 +53,7 @@ var _hmt = _hmt || [];
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    411 文章 <br>
+                    413 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -168,24 +168,24 @@ var _hmt = _hmt || [];
 在该命名空间内创建的进程都将产生一个在该命名空间内独立的 PID。后续在该命名空间创建的进程都将作为 PID=1 的进程的子进程，当该进程被结束时，该命名空间内所有的进程都会被结束。</p>
 <p>PID 命名空间是层次性的，如果新创建一个命名空间，则该命名空间将会是创建该命名空间的进程属于的命名空间的子命名空间。子命名空间中的进程对于父命名空间是可见的，一个进程将拥有不止一个 PID，在其所在的命名空间以及所有直系祖先命名空间中都将有一个 PID。</p>
 <p>系统启动时，内核将创建一个默认的 PID 命名空间，该命名空间是所有以后创建的命名空间的祖先，因此系统所有的进程在该命名空间都是可见的。</p>
-<h4 id="toc_h4_3"><code>CLONE_NEWIPC</code></h4>
+<h4 id="-"><code>CLONE_NEWIPC</code></h4>
 <p>该标识创建一个新的 IPC 命名空间，新进程将成为命名空间里的第一个进程。</p>
 <p>一个 IPC 命名空间有一组 System V IPC objects 标识符构成，这标识符由 IPC 相关的系统调用创建。</p>
 <p>在一个 IPC 命名空间里面创建的 IPC object 对该命名空间内的所有进程可见，但是对其他命名空间不可见。这样就使得不同命名空间之间的进程不能直接通信，就像是在不同的系统里一样。当一个 IPC 命名空间被销毁，该命名空间内的所有 IPC object 会被内核自动销毁。</p>
 <p>PID 命名空间和 IPC 命名空间可以组合起来一起使用，只需在创建进程时，同时指定 <code>CLONE_NEWPID</code> 和 <code>CLONE_NEWIPC</code>，这样新创建的命名空间既是一个独立的 PID 空间又是一个独立的 IPC 空间。不同命名空间中的进程彼此不可见，也不能互相通信，这样就实现了进程的运行时隔离。</p>
-<h4 id="toc_h4_4"><code>CLONE_NEWNS</code></h4>
+<h4 id="--"><code>CLONE_NEWNS</code></h4>
 <p>该标识创建了一个新的 mount 命名空间。</p>
 <p>每个进程都存在于一个 mount 命名空间里面，mount 命名空间为进程提供了一个文件层次视图。如果不设定这个标识，子进程和父进程将共享一个 mount 命名空间，其后子进程调用 mount 或 umount 将会影响到所有该命名空间内的进程。如果子进程在一个独立的 mount 命名空间里面，就可以调用 mount 或 umount 建立一份新的文件层次视图。</p>
 <p>该标识配合 <code>pivot_root</code> 系统调用，可以为进程创建一个独立的目录空间。</p>
-<h4 id="toc_h4_5"><code>CLONE_NEWNET</code></h4>
+<h4 id="---"><code>CLONE_NEWNET</code></h4>
 <p>该标识创建了一个新的 Network 命名空间，为进程提供了一份独立的网络环境，就跟一个独立的系统网络一样。包括网络设备接口，IPv4 和 IPv6 协议栈，IP 路由表，防火墙规则，sockets 等等。</p>
 <p>虚拟网络设备（virtual network device）提供了一种类似管道的抽象，可以在不同的命名空间之间建立隧道。利用虚拟化网络设备，可以建立到其他命名空间中的物理设备的桥接。</p>
 <p>当一个 Network 命名空间被销毁时，物理设备会被自动移回 init Network 命名空间，即系统最开始的命名空间。</p>
-<h4 id="toc_h4_6"><code>CLONE_NEWUTS</code></h4>
+<h4 id="----"><code>CLONE_NEWUTS</code></h4>
 <p>该标识创建了一个新的 UTS 命名空间。一个 UTS 命名空间就是一组被 uname 返回的标识符。</p>
 <p>新的 UTS 命名空间中的标识符通过复制调用进程所属的命名空间的标识符来初始化。新创建的进程可以通过相关系统调用改变这些标识符，比如调用 sethostname 来改变该命名空间的 hostname。这一改变对该命名空间内的所有进程可见。</p>
 <p><code>CLONE_NEWUTS</code> 和 <code>CLONE_NEWNET</code> 一起使用，可以虚拟出一个有独立主机名和网络空间的环境，就跟网络上一台独立的主机一样。</p>
-<h4 id="toc_h4_7"><code>CLONE_NEWUSER</code></h4>
+<h4 id="-----"><code>CLONE_NEWUSER</code></h4>
 <p>该标识创建了一个新的 User 命名空间，用于隔离用户和用户组 ID。</p>
 <p>换句话说，同一个进程的 uid 和 gid 在命名空间内外可以不同。就是说，host 环境下的普通用户可以是某个命名空间的 root 用户，以此来完成一些需要 root 权限的操作。</p>
 <h3 id="代码示例">代码示例</h3>
@@ -233,12 +233,13 @@ var _hmt = _hmt || [];
                     <div>
                         <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- D博客文章签名档 -->
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
+     style="display:block"
      data-ad-client="ca-pub-5357405790190342"
-     data-ad-slot="9726081163"></ins>
+     data-ad-slot="7757575754"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -259,19 +260,19 @@ var _hmt = _hmt || [];
             <a href="#toc_h4_2">CLONE_NEWPID</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_3">CLONE_NEWIPC</a>
+            <a href="#-">CLONE_NEWIPC</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_4">CLONE_NEWNS</a>
+            <a href="#--">CLONE_NEWNS</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_5">CLONE_NEWNET</a>
+            <a href="#---">CLONE_NEWNET</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_6">CLONE_NEWUTS</a>
+            <a href="#----">CLONE_NEWUTS</a>
         </li>
         <li class="toc__h4">
-            <a href="#toc_h4_7">CLONE_NEWUSER</a>
+            <a href="#-----">CLONE_NEWUSER</a>
         </li>
         <li class="toc__h3">
             <a href="#代码示例">代码示例</a>
@@ -306,7 +307,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593351336803"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -342,21 +343,22 @@ var _hmt = _hmt || [];
 </svg>
 <script>
   var Label = {
+    speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "4.0.0",
+    version: "4.2.0",
     staticSite: true,
     showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593351336803"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593351336803"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -393,7 +395,7 @@ var _hmt = _hmt || [];
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593351336803', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1418870131032",
@@ -404,8 +406,10 @@ var _hmt = _hmt || [];
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
         page.loadExternalRelevantArticles("Docker,Linux,Linux Namespaces,golang",
         '<h3>站外相关阅读</h3>');
+        page.loadRelevantArticles('1418870131032', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -413,4 +417,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 164ms, 2020/04/25 21:12:01 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 147ms, 2020/06/28 21:36:47 -->

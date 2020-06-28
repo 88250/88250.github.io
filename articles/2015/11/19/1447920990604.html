@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客</title><meta name="description" content="###为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ###历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/><meta property="og:description" content="###为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ###历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/11/19/1447920990604.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/11/19/1447920990604.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客</title><meta name="description" content="### 为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ### 历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/><meta property="og:description" content="### 为什么要使用 HTTPS 当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文： * 第三方可以获取到真实数据 * 第三方可以篡改数据 * 第三方可以冒充服务端或客户端 为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。 ### 历史 SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。 1. 1994 年，网景（NetScape）公司设计了 SSL 1.0 2. 1995 年，SSL 2.0，存在严重漏洞 3. 1996 年，SSL 3.0，得到大规模应用 4. 1999 年，IETF 对 SSL 进行标准化，发布了 TLS 1.0 5. 2006 年和 2008 年，TLS 进行了两次升级，分别为 TLS 1.1 和 TLS 1.2 在应用层，我们习惯将两者并称 TL...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2015/11/19/1447920990604.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="理解 HTTPS 原理，SSL/TLS 协议 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2015/11/19/1447920990604.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593351336803"/>
             <link rel="prev" title="www 开头的域名和 Cookie-free" href="https://88250.github.io/articles/2015/10/19/1445234634721.html">
             <link rel="next" title="标签服务实现漫谈" href="https://88250.github.io/articles/2015/12/01/1448958541321.html">
     <script>
@@ -53,7 +53,7 @@ var _hmt = _hmt || [];
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    411 文章 <br>
+                    413 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -157,7 +157,7 @@ var _hmt = _hmt || [];
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <p>###为什么要使用 HTTPS</p>
+                <p>### 为什么要使用 HTTPS</p>
 <p>当我们使用 HTTP 协议时，传输的数据是不安全的，因为所有在客户端和服务端往来的数据都是明文：</p>
 <ul>
 <li>第三方可以获取到真实数据</li>
@@ -165,7 +165,7 @@ var _hmt = _hmt || [];
 <li>第三方可以冒充服务端或客户端</li>
 </ul>
 <p>为了解决这些问题，需要在 HTTP 协议中加入一个安全机制，由此并产生了 HTTPS，我们可以认为 HTTPS = HTTP + TLS/SSL。TLS/SSL 的引入解决了安全问题，而上层应用协议还是 HTTP。</p>
-<p>###历史</p>
+<p>### 历史</p>
 <p>SSL（Secure Sockets Layer）中文称作“安全套接层”，TLS（Transport Layer Security），中文称作“传输层安全协议”。</p>
 <ol>
 <li>1994 年，网景（NetScape）公司设计了 SSL 1.0</li>
@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
 </ol>
 <p>在应用层，我们习惯将两者并称 TLS/SSL，因为它们设计大致相同，我们可以认为它们是同一个事物在不同历史阶段的名称。</p>
 <p>前面我们介绍过，HTTPS 可以认为是 HTTP + TLS/SSL，所以我们只需要了解 TLS/SSL 原理即可。在进入原理之前，我们需要了解两个基础概念：数字证书、证书授权中心。</p>
-<p>###证书与授权</p>
+<p>### 证书与授权</p>
 <ul>
 <li>数字证书（Digital Certificate）是用来证明公钥（非对称密钥算法中用于加密的密钥）所有者身份的。我们人人都可以自己生成一个公钥，但是这个公钥是否能代表是你的，这个认证的过程需要一个权威机构执行，这个机构就是证书授权中心。</li>
 <li>证书授权中心（Certificate Authority）负责证书颁发。CA 是行业内信得过的组织机构，它具有权威性，由它颁发的证书大家都相信是可靠的。</li>
@@ -206,7 +206,7 @@ var _hmt = _hmt || [];
 </ul>
 <p>在握手阶段，安全与否的关键在于 PreMasterSecret 是否能够被破解，虽然理论上通过 RSA 算法加密是比较安全的，但还是有破解的可能性。最安全的做法是不发送 PreMasterSecret，而是根据一系列参数由客户端和服务端分别计算出 PreMasterSecret，这个算法就是<a href="https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2%EF%BC%8D%E8%B5%AB%E5%B0%94%E6%9B%BC%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2" target="_blank">迪菲－赫尔曼密钥交换</a>。</p>
 <p>另外，TLS/SSL 不只适用于 HTTP 的安全问题，它也可以和其他应用层协议搭配使用。</p>
-<p>###应用</p>
+<p>### 应用</p>
 <p>通过上述介绍，我们得知使用 SSL/TLS 需要做如下准备：</p>
 <ul>
 <li>数字证书：可以找权威的证书授权中心颁发证书（有付费的，也有免费的），也可以自己做 CA，然后自己给自己颁发证书</li>
@@ -214,12 +214,12 @@ var _hmt = _hmt || [];
 <li>客户端使用 SSL/TLS 协议和服务端进行通讯，如果是自己的 CA 颁发的证书，还需要在客户端导入 CA 的根证书</li>
 </ul>
 <p>下面我们针对自建 CA 做一个完整的示例（证书相关使用 Linux 的 openssl 命令，客户端、服务端使用 Golang）。</p>
-<p>####建立 CA</p>
+<p>#### 建立 CA</p>
 <ul>
 <li>生成 CA 私钥：<code>openssl genrsa -out ca.key 2048</code></li>
 <li>生成 CA 根证书：<code>openssl req -new -x509 -days 3650-key ca.key -out ca.crt</code></li>
 </ul>
-<p>####颁发证书</p>
+<p>#### 颁发证书</p>
 <ul>
 <li>生成证书私钥：<code>openssl genrsa -out auto.pem 1024</code></li>
 <li>生成证书公钥：<code>openssl rsa -in auto.pem -out auto.key</code></li>
@@ -227,10 +227,10 @@ var _hmt = _hmt || [];
 <li>CA 签名（颁发）证书：<code>openssl x509 -req -sha256 -in auto.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 3650 -out auto.crt</code></li>
 </ul>
 <p>最终我们需要的就是公钥 <code>auto.key</code> 以及证书 <code>auto.crt</code>。</p>
-<p>####服务端使用证书</p>
+<p>#### 服务端使用证书</p>
 <pre><code class="highlight-chroma"><span class="highlight-ln">1</span>http.ListenAndServeTLS(Auto.Server, "auto.crt", "auto.key", nil)
 </code></pre>
-<p>####客户端发起请求</p>
+<p>#### 客户端发起请求</p>
 <p>这里假设客户端已经获得了服务端的证书。</p>
 <pre><code class="highlight-chroma"><span class="highlight-ln"> 1</span>// getClient 根据传入的 url 实参中协议部分返回适当的 HTTP 客户端.
 <span class="highlight-ln"> 2</span>func getClient(url string) *http.Client {
@@ -271,7 +271,7 @@ var _hmt = _hmt || [];
 <span class="highlight-ln">37</span>}
 </code></pre>
 <p>其中载入了 CA 证书，原因就是因为我们自建的 CA 不在系统自带的“受信任的根证书颁发机构”中。</p>
-<p>###参考</p>
+<p>### 参考</p>
 <ul>
 <li><a href="http://www.wosign.com/Basic/howsslwork.htm" target="_blank">数字证书基础知识：SSL 工作原理</a></li>
 <li><a href="https://program-think.blogspot.com/2014/11/https-ssl-tls-1.html" target="_blank">扫盲 HTTPS 和 SSL/TLS 协议</a></li>
@@ -280,12 +280,13 @@ var _hmt = _hmt || [];
                     <div>
                         <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- D博客文章签名档 -->
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
+     style="display:block"
      data-ad-client="ca-pub-5357405790190342"
-     data-ad-slot="9726081163"></ins>
+     data-ad-slot="7757575754"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -317,7 +318,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593351336803"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -353,21 +354,22 @@ var _hmt = _hmt || [];
 </svg>
 <script>
   var Label = {
+    speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "4.0.0",
+    version: "4.2.0",
     staticSite: true,
     showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593351336803"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593351336803"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -401,7 +403,7 @@ var _hmt = _hmt || [];
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593351336803', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1447920990604",
@@ -412,8 +414,10 @@ var _hmt = _hmt || [];
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
         page.loadExternalRelevantArticles("SSL,HTTPS,CA,golang",
         '<h3>站外相关阅读</h3>');
+        page.loadRelevantArticles('1447920990604', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -421,4 +425,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 207ms, 2020/04/25 21:12:00 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 252ms, 2020/06/28 21:36:46 -->

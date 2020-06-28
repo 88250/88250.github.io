@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>疯狂的想法 C：书籍共享计划 - D 的个人博客</title><meta name="description" content="文档状态：基本完成开发状态：尚未开始更新时间：2017-01-01 共享机制 书籍以一个自贴二维码（共享码）作为标识，捐书的人通过微信小程序登录社区后扫描书籍 ISBN 将生成这个共享码，然后自己打印出来贴到书籍封面上就开始该书的共享了！ （必须）共享：当前的书籍持有者看完后必须将这本书寄出给需求的人 （必须）免费：当前的书籍持有者必须包邮 （必须）接收：收到书籍后必须确认，让其他人可以知道书在你这里 （可选）注解：当前的书籍持有者可在书页任何地方写上阅读注解 （可选）落款：当前的书籍持有者可在书籍封底页写上自己的 ID 和日期，表示读过/经手过该书 细节 收到书籍的确认是通过小程序扫码完成 是否存在”有需求的人“可以通过社区通知系统（站内通知 + 邮件）得知。如果当前没有需求的人，则请妥善保管好该书，随时等待它地下一个主人 注解请尽量整洁，请勿乱涂乱画（另外，字难看的请自重 ） 特例情况 如果有人捐了已经在共享的书（ISBN 相同），则也会单独开一个贴来进行 如果共享码被其他人误扫并做了接收确认 TBD 多个需求者问题 TBD 概要设计 发起共享 用户...."/><meta property="og:description" content="文档状态：基本完成开发状态：尚未开始更新时间：2017-01-01 共享机制 书籍以一个自贴二维码（共享码）作为标识，捐书的人通过微信小程序登录社区后扫描书籍 ISBN 将生成这个共享码，然后自己打印出来贴到书籍封面上就开始该书的共享了！ （必须）共享：当前的书籍持有者看完后必须将这本书寄出给需求的人 （必须）免费：当前的书籍持有者必须包邮 （必须）接收：收到书籍后必须确认，让其他人可以知道书在你这里 （可选）注解：当前的书籍持有者可在书页任何地方写上阅读注解 （可选）落款：当前的书籍持有者可在书籍封底页写上自己的 ID 和日期，表示读过/经手过该书 细节 收到书籍的确认是通过小程序扫码完成 是否存在”有需求的人“可以通过社区通知系统（站内通知 + 邮件）得知。如果当前没有需求的人，则请妥善保管好该书，随时等待它地下一个主人 注解请尽量整洁，请勿乱涂乱画（另外，字难看的请自重 ） 特例情况 如果有人捐了已经在共享的书（ISBN 相同），则也会单独开一个贴来进行 如果共享码被其他人误扫并做了接收确认 TBD 多个需求者问题 TBD 概要设计 发起共享 用户...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="疯狂的想法 C：书籍共享计划 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/01/01/1483240295087.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="疯狂的想法 C：书籍共享计划 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/01/01/1483240295087.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>疯狂的想法 C：书籍共享计划 - D 的个人博客</title><meta name="description" content="文档状态：基本完成开发状态：尚未开始更新时间：2017-01-01 共享机制 书籍以一个自贴二维码（共享码）作为标识，捐书的人通过微信小程序登录社区后扫描书籍 ISBN 将生成这个共享码，然后自己打印出来贴到书籍封面上就开始该书的共享了！ （必须）共享：当前的书籍持有者看完后必须将这本书寄出给需求的人 （必须）免费：当前的书籍持有者必须包邮 （必须）接收：收到书籍后必须确认，让其他人可以知道书在你这里 （可选）注解：当前的书籍持有者可在书页任何地方写上阅读注解 （可选）落款：当前的书籍持有者可在书籍封底页写上自己的 ID 和日期，表示读过/经手过该书 细节 收到书籍的确认是通过小程序扫码完成 是否存在”有需求的人“可以通过社区通知系统（站内通知 + 邮件）得知。如果当前没有需求的人，则请妥善保管好该书，随时等待它地下一个主人 注解请尽量整洁，请勿乱涂乱画（另外，字难看的请自重 ） 特例情况 如果有人捐了已经在共享的书（ISBN 相同），则也会单独开一个贴来进行 如果共享码被其他人误扫并做了接收确认 TBD 多个需求者问题 TBD 概要设计 发起共享 用户...."/><meta property="og:description" content="文档状态：基本完成开发状态：尚未开始更新时间：2017-01-01 共享机制 书籍以一个自贴二维码（共享码）作为标识，捐书的人通过微信小程序登录社区后扫描书籍 ISBN 将生成这个共享码，然后自己打印出来贴到书籍封面上就开始该书的共享了！ （必须）共享：当前的书籍持有者看完后必须将这本书寄出给需求的人 （必须）免费：当前的书籍持有者必须包邮 （必须）接收：收到书籍后必须确认，让其他人可以知道书在你这里 （可选）注解：当前的书籍持有者可在书页任何地方写上阅读注解 （可选）落款：当前的书籍持有者可在书籍封底页写上自己的 ID 和日期，表示读过/经手过该书 细节 收到书籍的确认是通过小程序扫码完成 是否存在”有需求的人“可以通过社区通知系统（站内通知 + 邮件）得知。如果当前没有需求的人，则请妥善保管好该书，随时等待它地下一个主人 注解请尽量整洁，请勿乱涂乱画（另外，字难看的请自重 ） 特例情况 如果有人捐了已经在共享的书（ISBN 相同），则也会单独开一个贴来进行 如果共享码被其他人误扫并做了接收确认 TBD 多个需求者问题 TBD 概要设计 发起共享 用户...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="疯狂的想法 C：书籍共享计划 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/01/01/1483240295087.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="疯狂的想法 C：书籍共享计划 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/01/01/1483240295087.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593351336803"/>
             <link rel="prev" title="2016 一个想做架构师的码农" href="https://88250.github.io/articles/2016/12/30/1483027205828.html">
             <link rel="next" title="使用 NGINX 流控和 fail2ban 防止 CC 攻击" href="https://88250.github.io/articles/2017/02/13/1486915389413.html">
     <script>
@@ -53,7 +53,7 @@ var _hmt = _hmt || [];
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    411 文章 <br>
+                    413 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -238,12 +238,13 @@ var _hmt = _hmt || [];
                     <div>
                         <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- D博客文章签名档 -->
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
+     style="display:block"
      data-ad-client="ca-pub-5357405790190342"
-     data-ad-slot="9726081163"></ins>
+     data-ad-slot="7757575754"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -314,7 +315,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593351336803"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -350,21 +351,22 @@ var _hmt = _hmt || [];
 </svg>
 <script>
   var Label = {
+    speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "4.0.0",
+    version: "4.2.0",
     staticSite: true,
     showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593351336803"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593351336803"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -401,7 +403,7 @@ var _hmt = _hmt || [];
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593351336803', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1483240295087",
@@ -412,8 +414,10 @@ var _hmt = _hmt || [];
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
         page.loadExternalRelevantArticles("Creative,书籍,共享",
         '<h3>站外相关阅读</h3>');
+        page.loadRelevantArticles('1483240295087', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -421,4 +425,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 428ms, 2020/04/25 21:12:00 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 280ms, 2020/06/28 21:36:46 -->

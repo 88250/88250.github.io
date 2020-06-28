@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客</title><meta name="description" content="自 Solo 2.2.0 开始将支持对 Hexo/Jekyll 两款静态博客系统的文章导入，具体使用方法如下： 在 Solo 根目录下放置 markdowns 目录，里面放置待导入的一些 md 文件（可新建目录，方便标识，比如可将 Hexo 的 _posts 文件夹直接拷贝进来） 重启 Solo，启动后将逐篇进行自动导入，可通过日志查看导入情况 导入结束后原 md 文件将被重命名为 .md.{时间毫秒} 这样的格式，如不需要，可将这类后缀的文件删除 导入失败的 md 文件不会被重命名，可将日志和 md 文件反馈给我们，以帮助我们继续改进 💓 另外，目前仅支持已发布的 post，不支持 draft、page 等。 Some technical details 每个 md 文件都会按照 Hexo/Jekyll 定义的头部进行解析，已确定标题、标签等： Hexo 头 Jekyll 头 支持头信息中使用 description、summary、abstract 作为文章摘要，如果没有的话将自动截取正文部分 如果没有定义头信息，或者解析失败，则以文件名作为标题、Not...."/><meta property="og:description" content="自 Solo 2.2.0 开始将支持对 Hexo/Jekyll 两款静态博客系统的文章导入，具体使用方法如下： 在 Solo 根目录下放置 markdowns 目录，里面放置待导入的一些 md 文件（可新建目录，方便标识，比如可将 Hexo 的 _posts 文件夹直接拷贝进来） 重启 Solo，启动后将逐篇进行自动导入，可通过日志查看导入情况 导入结束后原 md 文件将被重命名为 .md.{时间毫秒} 这样的格式，如不需要，可将这类后缀的文件删除 导入失败的 md 文件不会被重命名，可将日志和 md 文件反馈给我们，以帮助我们继续改进 💓 另外，目前仅支持已发布的 post，不支持 draft、page 等。 Some technical details 每个 md 文件都会按照 Hexo/Jekyll 定义的头部进行解析，已确定标题、标签等： Hexo 头 Jekyll 头 支持头信息中使用 description、summary、abstract 作为文章摘要，如果没有的话将自动截取正文部分 如果没有定义头信息，或者解析失败，则以文件名作为标题、Not...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/06/26/1498490209748.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/css/base.css?1587820240798"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客</title><meta name="description" content="自 Solo 2.2.0 开始将支持对 Hexo/Jekyll 两款静态博客系统的文章导入，具体使用方法如下： 在 Solo 根目录下放置 markdowns 目录，里面放置待导入的一些 md 文件（可新建目录，方便标识，比如可将 Hexo 的 _posts 文件夹直接拷贝进来） 重启 Solo，启动后将逐篇进行自动导入，可通过日志查看导入情况 导入结束后原 md 文件将被重命名为 .md.{时间毫秒} 这样的格式，如不需要，可将这类后缀的文件删除 导入失败的 md 文件不会被重命名，可将日志和 md 文件反馈给我们，以帮助我们继续改进 💓 另外，目前仅支持已发布的 post，不支持 draft、page 等。 Some technical details 每个 md 文件都会按照 Hexo/Jekyll 定义的头部进行解析，已确定标题、标签等： Hexo 头 Jekyll 头 支持头信息中使用 description、summary、abstract 作为文章摘要，如果没有的话将自动截取正文部分 如果没有定义头信息，或者解析失败，则以文件名作为标题、Not...."/><meta property="og:description" content="自 Solo 2.2.0 开始将支持对 Hexo/Jekyll 两款静态博客系统的文章导入，具体使用方法如下： 在 Solo 根目录下放置 markdowns 目录，里面放置待导入的一些 md 文件（可新建目录，方便标识，比如可将 Hexo 的 _posts 文件夹直接拷贝进来） 重启 Solo，启动后将逐篇进行自动导入，可通过日志查看导入情况 导入结束后原 md 文件将被重命名为 .md.{时间毫秒} 这样的格式，如不需要，可将这类后缀的文件删除 导入失败的 md 文件不会被重命名，可将日志和 md 文件反馈给我们，以帮助我们继续改进 💓 另外，目前仅支持已发布的 post，不支持 draft、page 等。 Some technical details 每个 md 文件都会按照 Hexo/Jekyll 定义的头部进行解析，已确定标题、标签等： Hexo 头 Jekyll 头 支持头信息中使用 description、summary、abstract 作为文章摘要，如果没有的话将自动截取正文部分 如果没有定义头信息，或者解析失败，则以文件名作为标题、Not...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2017/06/26/1498490209748.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Solo 支持 Hexo/Jekyll 数据导入 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2017/06/26/1498490209748.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593351336803"/>
             <link rel="prev" title="模板引擎实现（一）词法分析" href="https://88250.github.io/articles/2017/05/31/1496233258522.html">
             <link rel="next" title="理解 Eureka 的 P2P 通讯" href="https://88250.github.io/articles/2017/06/29/1498726165535.html">
     <script>
@@ -53,7 +53,7 @@ var _hmt = _hmt || [];
                 <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    411 文章 <br>
+                    413 文章 <br>
                     <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
                     
                 </div>
@@ -177,12 +177,13 @@ var _hmt = _hmt || [];
                     <div>
                         <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- D博客文章签名档 -->
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
+     style="display:block"
      data-ad-client="ca-pub-5357405790190342"
-     data-ad-slot="9726081163"></ins>
+     data-ad-slot="7757575754"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -214,7 +215,7 @@ var _hmt = _hmt || [];
     
 </div>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/TweenMax.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593351336803"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -250,21 +251,22 @@ var _hmt = _hmt || [];
 </svg>
 <script>
   var Label = {
+    speech: true,
     servePath: "https://88250.github.io",
-    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
     luteAvailable: true,
     hljsStyle: 'monokai',
     langLabel: "zh_CN",
-    version: "4.0.0",
+    version: "4.2.0",
     staticSite: true,
     showCodeBlockLn: true,
   }
 </script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/common.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593351336803"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/skins/Bubble/js/circleMagic.min.js?1587820240798"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593351336803"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
@@ -298,7 +300,7 @@ var _hmt = _hmt || [];
 
 
 <script type="text/javascript">
-    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@f03abf4a/src/main/resources/js/page.min.js?1587820240798', 'soloPageScript')
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593351336803', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1498490209748",
@@ -309,8 +311,10 @@ var _hmt = _hmt || [];
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
         page.loadExternalRelevantArticles("Solo,Hexo,Jekyll,导入",
         '<h3>站外相关阅读</h3>');
+        page.loadRelevantArticles('1498490209748', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -318,4 +322,4 @@ var _hmt = _hmt || [];
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 430ms, 2020/04/25 21:11:59 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 354ms, 2020/06/28 21:36:45 -->
