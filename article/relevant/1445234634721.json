@@ -1,0 +1,1 @@
+{"relevantArticles":[{"articleTitle":"跨域 Cookie 实现单点登录","articleAbstractText":"客户端浏览器在统一登录页登录后通过 HTTP 通知其他域进行登录设置 cookie，从而完成单点登录。","articleStatus":0,"articlePermalink":"/sso-via-cross-domain-cookie","articleImg1URL":"https://img.hacpai.com/bing/20190205.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100"}]}

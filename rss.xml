@@ -1,68 +1,144 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>88250 的个人博客</title>
+    <title>D 的个人博客</title>
     <link>https://88250.github.io</link>
     <atom:link href="https://88250.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-    <description>记录精彩的程序人生</description>
+    <description>全职做开源，自由职业者</description>
     <generator>Solo, v4.2.0, https://solo.b3log.org</generator>
-    <lastBuildDate>Sun, 28 Jun 2020 22:02:14 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2020 23:07:05 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
-      <title>fsdfsdfsdf</title>
-      <link>https://88250.github.io/articles/2020/06/28/1593352448450.html</link>
-      <description/>
+      <title>Java 提取和删除照片图片 Exif GPS 等隐私信息</title>
+      <link>https://88250.github.io/articles/2020/06/21/1592708224683.html</link>
+      <description>
+        <![CDATA[<p>照片图片 Exif 通过手机相机或者数码相机拍摄的照片都带有 Exif 元数据信息，比如下面这张照片：  它的 Exif 信息为：  1Root:  2 ImageWidth: 4000  3 ImageLength: 3000  4 Make: 'Xiaomi'  5 Model: 'MI CC 9'  6 Orientation: 1  7 XResolution: 72  8 YResolution: 72  9 ResolutionUnit: 2 10 DateTime: '2019:12:16 13:49:17' 11 YCbCrPositioning: 1 12 ExifOffset: 210 13 GPSInfo: 770 14 15Exif: 16 ExposureTime: 1/295 (0.003) 17 FNumber: 179/100 (1.79) 18 PhotographicSensitivity: 112 19 Unknown Tag (0x8895): 0 20 ExifVersion: 48, 50, 50, 48 21 DateTimeOrigina....</p>]]>
+      </description>
       <author>88250</author>
-      <guid>https://88250.github.io/articles/2020/06/28/1593352448450.html</guid>
-      <category>test</category>
-      <pubDate>Sun, 28 Jun 2020 21:54:08 +0800</pubDate>
+      <guid>https://88250.github.io/articles/2020/06/21/1592708224683.html</guid>
+      <category>Java</category>
+      <category>Exif</category>
+      <category>图片处理</category>
+      <pubDate>Sun, 21 Jun 2020 23:26:13 +0800</pubDate>
     </item>
     <item>
-      <title>Solo 2</title>
-      <link>https://88250.github.io/articles/2020/06/28/1593352377930.html</link>
-      <description/>
+      <title>创业的第二个冬天</title>
+      <link>https://88250.github.io/articles/2020/02/09/1581219038316.html</link>
+      <description>
+        <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》[^1] 看起。  认真积累，别走捷径。 CDN 盗刷 12 月份的某天，社区的 CDN 图床被人恶意刷了好几十 G 流量，虽然造成的损失就几十块钱，但我觉得这不是钱的问题，而是对我技术能力的嘲讽。通过分析日志，基本可以判断攻击来源是类似基于 Electron、Headless Chrome 的应用，因为这些攻击流量的来源 IP 大部分不是来自机房服务器。 随后我们通过七牛云提供的“回源鉴权”机制解决了这个问题，所有对图床 CDN 的请求都需要鉴权。判断依据是通过 Referer、IP，大致规则是禁止为空的 Referer，并且 IP 不能来自机房。顺手也加了防盗链，综合了博客端节点（Solo、Pipe）回调接口来判断请求是否是博客端发起的。 后来攻击者发现我们的应对措施后，就将流量转移到了攻击博客端节点，一些用户的博客被恶意请求，请求并不密集，攻击者企图慢慢消耗社区图床 CDN 以造成损失。这部分攻击流量后来也通过限流算法做了判断，最终将不合法的 IP 加入到社区 IP 黑名单[^2]中，博客端节点会定时获取这份黑名单列表....</p>]]>
+      </description>
       <author>88250</author>
-      <guid>https://88250.github.io/articles/2020/06/28/1593352377930.html</guid>
-      <category>Solo</category>
-      <pubDate>Sun, 28 Jun 2020 21:52:57 +0800</pubDate>
+      <guid>https://88250.github.io/articles/2020/02/09/1581219038316.html</guid>
+      <category>B3log</category>
+      <category>创业</category>
+      <pubDate>Thu, 30 Apr 2020 09:42:49 +0800</pubDate>
     </item>
     <item>
-      <title>第二篇</title>
-      <link>https://88250.github.io/articles/2020/06/28/1593352357887.html</link>
-      <description/>
+      <title>创业的第三个春天</title>
+      <link>https://88250.github.io/articles/2020/04/30/1588210663196.html</link>
+      <description>
+        <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一《创业的第一个春天》 看起。  创业第三个年头了，娃已经长大到会问我今天还有多少 issues 没改完。 博客端 将 Solo、Pipe 完整接入社区，文章浏览计数和评论使用了社区统一提供的服务组件：  uvstat：实现浏览、评论统计 vcomment：实现评论集成展现  另外，Solo 实现了静态化用法，可以生成导出静态站点，方便用户部署到 GitHub Pages 上。 笔记端 链滴笔记实现了初版，目前已经基本满足了我个人在本地 Markdown 编辑排版的需要：  有的长文需要好几天才能写完，本地陆续写好后再粘贴到线上发布。以前主要用有道云笔记，现在已经迁移到链滴笔记 记一些琐碎的记录，比如常用命令、TODO  后面我们将开始实现导出静态化站点功能，逐步集成社区，作为社区的笔记端节点。 社区端 暗黑模式 黑客派上线了暗黑模式，已经支持全部主题。具体的主题模式有三种：明亮、暗黑和随日出日落自动切换。为了“随日出日落自动切换”，我整理了中国城市经纬度数据，有需要的朋友可自取。 对于命名，之前稍微纠结过一下到底是叫“夜间模式”还是“暗黑模式”。....</p>]]>
+      </description>
       <author>88250</author>
-      <guid>https://88250.github.io/articles/2020/06/28/1593352357887.html</guid>
-      <category>test</category>
-      <pubDate>Sun, 28 Jun 2020 21:52:37 +0800</pubDate>
+      <guid>https://88250.github.io/articles/2020/04/30/1588210663196.html</guid>
+      <category>B3log</category>
+      <category>创业</category>
+      <pubDate>Thu, 30 Apr 2020 09:38:03 +0800</pubDate>
     </item>
     <item>
-      <title>我在 GitHub 上的开源项目</title>
-      <link>https://88250.github.io/my-github-repos</link>
-      <description><![CDATA[<ol>
-<li>solo Java 🤩16&nbsp;&nbsp;⭐️️680&nbsp;&nbsp;🖖190&nbsp;&nbsp;🏠<a href="https://solo.b3log.org" target="_blank">https://solo.b3log.org</a> 🎸 B3log 分布式社区的 Java 博客端节点系统，欢迎加入下一代社区网络。B3log distributed community blog-end node system, welcome to join the next generation community network.  2. baidu-netdisk-downloaderx JavaScript 🤩20&nbsp;&nbsp;⭐️️591&nbsp;&nbsp;🖖123 ⚡️️ 一款图形界面的百度网盘不限速下载器，支持 Windows、Linux 和 Mac。已于 2020 年 4 月 15 日正式停用，源码仅用于程序员交流学习，细节请查看：关于停用 BND 的说明 <a href="https://hacpai.com/article/1586956316578" target="_blank">https://hacpai.com/article/1586956316578</a>  3. symphony Java 🤩16&nbsp;&nbsp;⭐️️543&nbsp;&amp;....</li>
-</ol>]]></description>
+      <title>Markdown 解析原理详解和 Markdown AST 描述</title>
+      <link>https://88250.github.io/articles/2020/04/23/1587637426085.html</link>
+      <description>
+        <![CDATA[<p>概述 本文主要介绍 Markdown 引擎 Lute 的整体处理流程，并详细描述了 Markdown 抽象语法树结构。 编译原理 我们通过编译原理实现了 Lute ，大致步骤是预处理、词法分析、语法分析、代码生成这几个步骤。代码结构方面我们分为两部分，解析和渲染。 1// Markdown 将 Markdown 文本字节数组处理为相应的 HTML 字节数组。name 参数仅用于标识文本，比如可传入 id 或者标题，也可以传入 ""。 2func (lute *Lute) Markdown(name string, Markdown []byte) (html []byte) { 3 tree := parse.Parse(name, markdown, lute.Options) 4 renderer := render.NewHtmlRenderer(tree) 5 HTML = renderer.Render() 6 return 7}  解析过程用于从 Markdown 原文构造抽象语法树。  1// Parse 会将 Markdown 原始文本字节数组解析为一颗语法树。  2f....</p>]]>
+      </description>
       <author>88250</author>
-      <guid>https://88250.github.io/my-github-repos</guid>
-      <category>GitHub</category>
+      <guid>https://88250.github.io/articles/2020/04/23/1587637426085.html</guid>
+      <category>Markdown</category>
+      <category>编译原理</category>
+      <category>Lute</category>
+      <category>抽象语法树</category>
+      <pubDate>Thu, 23 Apr 2020 18:24:06 +0800</pubDate>
+    </item>
+    <item>
+      <title>Windows 10 搭建 TensorFlow 试玩 fast-style-transfer</title>
+      <link>https://88250.github.io/articles/2020/03/15/1584270480065.html</link>
+      <description>
+        <![CDATA[<p>本文适用于 TensorFlow 新手搭建试玩“图片快速风格迁移”，系统环境：  Windows 10 显卡 NVIDIA GTX 1070  安装 TensorFlow 环境 用 Anaconda 来装环境可以省很多事。   安装 Anaconda，步骤中有两个选项记得勾上（添加 PATH 环境变量和使用 Anaconda 作为 Python 环境）   现在的 Anaconda 似乎已经内置了国内的几个镜像源，所以不用手动切换镜像，用默认配置即可 如果已经折腾过，可以考虑用如下命令恢复： conda config --remove-key channels conda config --add channels <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</a> conda config --set show_channel_urls yes    如果你像我一样只是个入门玩家（并且平时没装过 Python 环境），那就不用搞 conda 的环境隔离了。直接执行 conda install tensorflow-gpu，....</p>]]>
+      </description>
+      <author>88250</author>
+      <guid>https://88250.github.io/articles/2020/03/15/1584270480065.html</guid>
+      <category>TensorFlow</category>
+      <category>图片处理</category>
+      <category>深度学习</category>
+      <pubDate>Sun, 15 Mar 2020 19:08:02 +0800</pubDate>
+    </item>
+    <item>
+      <title>创业的第二个秋天</title>
+      <link>https://88250.github.io/articles/2019/11/11/1573402018349.html</link>
+      <description>
+        <![CDATA[<p>如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。  帮助别人成功，自己才有成功的机会。 Vditor &amp; Lute 这个秋天开始实现 Vditor 的“所见即所得”特性，即实现 Typora2 那样写 Markdown 时不用分屏预览，而是边写边渲染。不过 Markdown 本身的设计用意就是“所见即所得”，所以把这个特性叫做“实时渲染”更恰当一些。这个月应该能实现完，下个月正式发布。 技术方案上我们是通过让 Lute 支持渲染“Vditor DOM”来实现。这个方案最难的部分莫过于实现源码映射 3，即渲染结果字符和 Markdown 原文字符的位置对应关系。只有实现了源码映射才能实现编辑（光标）位置的正确移动。完整方案和技术细节后续会单独写一篇文档来介绍，希望能给其他在做 Markdown 编辑器的开发者带来帮助。 Latke Latke 是我们 Java 产品线的开发框架，之前的 Latke 是基于 Servlet 实现的，虽然能用但是一直不太满意：  Servlet 有点重，很多特性用不上 性能不足够好 不同的 Servlet 容器有不同的部署细节，....</p>]]>
+      </description>
+      <author>88250</author>
+      <guid>https://88250.github.io/articles/2019/11/11/1573402018349.html</guid>
+      <category>B3log</category>
+      <category>创业</category>
+      <pubDate>Sun, 09 Feb 2020 11:31:52 +0800</pubDate>
+    </item>
+    <item>
+      <title>Solo 从设计到实现后记</title>
+      <link>https://88250.github.io/articles/2020/02/08/1581145208243.html</link>
+      <description>
+        <![CDATA[<p>本文是《Solo 从设计到实现》的一个章节，该系列文章将介绍 Solo 这款 Java 博客系统是如何从无到有的，希望大家能通过它对 Solo 从设计到实现有个直观地了解、能为想参与贡献的人介绍清楚项目，也希望能为给重复发明重新定义博客系统的人做个参考 ❤️️  轮子和时间 “不要重复发明轮子”在程序员界的流行应该是从 Rod 发明 Spring 开始。他曾经在其著作《Without EJB》中使用了这个谚语，并阐述了 Spring 的诞生基于这一理念。 重复发明轮子最大的问题在于浪费时间。作为作者，浪费时间重复劳动；作为用户，浪费时间尝试。一个不好的轮子会严重浪费大家的时间，所以“不要重复发明轮子”主要针对的是那些不够圆的轮子而言。 新轮子肯定不会很圆。要么是设计问题，要么是工艺问题。设计问题最好在设计阶段就确认好，工艺问题可以花时间解决。 我觉得只要大家有时间，就尽可能发明轮子吧。无论是产品层面的优化改进，还是框架技术层面的创新尝试，我觉得都是值得的。作为普通程序员，浪费一些时间并没有什么大不了的，相信勇于尝试并坚持下去，一定能够改变一些事情的。 成功的开源 什么是成功 一个开源项目....</p>]]>
+      </description>
+      <author>88250</author>
+      <guid>https://88250.github.io/articles/2020/02/08/1581145208243.html</guid>
       <category>开源</category>
-      <pubDate>Sun, 28 Jun 2020 21:52:16 +0800</pubDate>
+      <category>感悟</category>
+      <category>博客</category>
+      <category>Solo</category>
+      <pubDate>Sat, 08 Feb 2020 15:02:21 +0800</pubDate>
     </item>
     <item>
-      <title>世界，你好！</title>
-      <link>https://88250.github.io/hello-solo</link>
-      <description><![CDATA[<p><img src="https://b3logfile.com/bing/20180816.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100" alt=""></p>
-<p>Solo 博客系统已经初始化完毕，可在管理后台 - 工具 - 偏好设定中调整更多细节设置。如果需要导入已有博客文章，请参考文档 <a href="https://hacpai.com/article/1498490209748" target="_blank">Hexo/Jekyll/Markdown 文件导入</a>。</p>
-<p>对了，出于安全考虑请尽快完成如下操作：</p>
-<ol>
-<li>登录<a href="https://hacpai.com" target="_blank">社区</a></li>
-<li>在社区<a href="https://hacpai.com/settings/b3" target="_blank">个人设置 - B3</a> 中更新 B3 Key</li>
-<li>在 Solo 管理后台 - 工具 - 用户管理中也进行同样的 B3 Key 更新</li>
-</ol>
-<p>最后，如果你觉得 Solo 很赞，请到<a href="https://github.com/88250/solo" target="_blank">项目主页</a>给颗星鼓励一下 ❤️</p>]]></description>
+      <title>搭建 GitHub 镜像仓库</title>
+      <link>https://88250.github.io/articles/2020/02/07/1581004860744.html</link>
+      <description>
+        <![CDATA[<p>需求背景 国内访问 GitHub 仓库实在太慢，项目主要提交者也就我和 V，外加以后打算自己建立仓库，所以决定在新项目上试试。 将 GitHub 仓库作为镜像仓库，主库设在自建的服务器上。这样既能获得 GitHub 协作特性（Issues、PR、Actions、Release 等），开发时又能享受高速提交和拉取。 服务端   创建 Git 用户，配置 git-shell 等，然后配置 SSH 密钥，密钥分为两类：  客户端提交服务端用，修改 ~/.ssh/authorized_keys 服务端自动推送 GitHub，修改 ~/.ssh/id_rsa.pub。GitHub 上需要配置账号 SSH 或者仓库 Deploy Keys    切换到 Git 用户，并在 ~ 下创建仓库 mkdir sample.git &amp;&amp; cd sample.git &amp;&amp; Git clone --bare git@github.com:youraccount/sample.git    在 hooks 目录下创建名为 post-receive 的脚本： #!/bin/sh  g....</p>]]>
+      </description>
       <author>88250</author>
-      <guid>https://88250.github.io/hello-solo</guid>
-      <category>Solo</category>
-      <pubDate>Sun, 28 Jun 2020 21:52:07 +0800</pubDate>
+      <guid>https://88250.github.io/articles/2020/02/07/1581004860744.html</guid>
+      <category>同步</category>
+      <category>镜像</category>
+      <category>GitHub</category>
+      <category>Git</category>
+      <pubDate>Fri, 07 Feb 2020 10:55:01 +0800</pubDate>
+    </item>
+    <item>
+      <title>Vditor 实现 Markdown 所见即所得</title>
+      <link>https://88250.github.io/articles/2019/12/26/1577370404903.html</link>
+      <description>
+        <![CDATA[<p>阶段性目标 大概在去年这个时候萌生了开发 Vditor 的念头，两个月后 Vditor 第一版完成。第一版基于 textarea 开发，该版本的主要目标是替换在用的第三方编辑器，实现 B3log 各产品线上编辑器的统一。 Vditor 的定位是“下一代的 Markdown 编辑器，为未来而构建”。第一版离这个目标相差还远，但经过这大半年的迭代我们离目标已经越来越近了：  由基于 textarea 改为基于 contenteditable 实现 Markdown 引擎 Lute，并由 markdown-it 切换为 Lute 图表渲染、多媒体播放、语音阅读等功能 所见即所得模式  所见即所得 所见即所得（What you see is what you get，缩写即 WYSIWYG）在编辑器领域指的是看到啥就是啥，比如我想加粗某个字，那“加粗”只是个操作，操作结果就是得到加粗后的文本，而加粗的操作（标记符）是不会出现在文本中的。 目前看来，大部分人习惯所见即所得的编辑方式，因为这种方式非常直观。但在程序员圈子里却恰恰相反，我们更喜欢标记类排版编辑方式，其中最为流行的是 Markdown....</p>]]>
+      </description>
+      <author>88250</author>
+      <guid>https://88250.github.io/articles/2019/12/26/1577370404903.html</guid>
+      <category>编辑器</category>
+      <category>Vditor</category>
+      <category>Markdown</category>
+      <category>所见即所得</category>
+      <pubDate>Thu, 30 Jan 2020 11:37:26 +0800</pubDate>
+    </item>
+    <item>
+      <title>链滴笔记路线图</title>
+      <link>https://88250.github.io/articles/2020/01/23/1579786655216.html</link>
+      <description>
+        <![CDATA[<p>设计原则  以文件系统为基础，不做私有格式封装 无需账号注册，可离线使用，无广告  v1 第一版主要目标是完成笔记应用基础功能，实现单机离线可用。 用户界面 分为三栏，参考有道云笔记：  文件夹 文件 编辑区  功能导航 通过 double shift 弹出功能搜索导航对话框：  配置入口 功能入口 全文搜索  不做菜单导航，所有功能入口均通过搜索导航实现。 图片/文件 使用本地绝对路径，文件由用户自己组织管理。 配置项  自动检查更新 Lute 相关设置  元数据  应用元数据保存在 ~/.liandi/conf.json ，记录已经打开的文件夹、各种配置项等 搜索索引缓存 ~/.liandi/index/  v2 第二版的主要目标是更好看的界面以及接入 B3log 分布式社区，实现分享互动。 用户界面 多主题切换，实现暗黑主题。 接入社区 作为 B3log 分布式社区的笔记端节点接入社区网络，实现文章推送和评论互动。 导出站点 支持生成导出静态站点，包含多款主题。 编辑器 实现 Typora 保留 Markdown 标记符的实时渲染模式。 架构设计  欢迎参与讨论，让我们一起来打造....</p>]]>
+      </description>
+      <author>88250</author>
+      <guid>https://88250.github.io/articles/2020/01/23/1579786655216.html</guid>
+      <category>WebDAV</category>
+      <category>链滴笔记</category>
+      <category>Markdown</category>
+      <category>路线图</category>
+      <pubDate>Thu, 30 Jan 2020 11:24:43 +0800</pubDate>
     </item>
   </channel>
 </rss>

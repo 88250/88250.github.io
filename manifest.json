@@ -3,10 +3,10 @@
     "theme_color": "#1fb5ad",
     "background_color": "#f1f2f7",
     "display": "standalone",
-    "name": "88250 的个人博客",
+    "name": "D 的个人博客",
     "start_url": ".",
-    "description": "记录精彩的程序人生",
-    "short_name": "88250 的个人博客",
+    "description": "全职做开源，自由职业者",
+    "short_name": "D 的个人博客",
     "icons": [
         {
             "sizes": "48x48",

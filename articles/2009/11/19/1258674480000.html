@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java 依赖注入标准（JSR-330）简介 - D 的个人博客</title><meta name="description" content="Java 依赖注入标准（JSR-330）简介 转载请保留作者信息： 作者：88250 ，Vanessa 时间：2009 年 11 月 19 日 Java 依赖注入标准（JSR-330，Dependency Injection for Java）1.0 规范已于今年 10 月份发布 。该规范主要是面向依赖注入使用者，而对注入器实现、配置并未作详细要求。目前 Spring 、Guice 已经开始兼容该规范，JSR-299（Contexts and Dependency Injection for Java EE platform，参考实现 Weld ）在依赖...."/><meta property="og:description" content="Java 依赖注入标准（JSR-330）简介 转载请保留作者信息： 作者：88250 ，Vanessa 时间：2009 年 11 月 19 日 Java 依赖注入标准（JSR-330，Dependency Injection for Java）1.0 规范已于今年 10 月份发布 。该规范主要是面向依赖注入使用者，而对注入器实现、配置并未作详细要求。目前 Spring 、Guice 已经开始兼容该规范，JSR-299（Contexts and Dependency Injection for Java EE platform，参考实现 Weld ）在依赖...."/>    <meta name="keywords" content="88250"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources"><link rel="icon" type="image/png" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="apple-touch-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><link rel="shortcut icon" type="image/x-icon" href="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java 依赖注入标准（JSR-330）简介 - D 的个人博客"/><meta property="og:site_name" content="D 的个人博客"/><meta property="og:url"      content="https://88250.github.io/articles/2009/11/19/1258674480000.html?"/><meta property="og:image" content="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/256/h/256/interlace/0/q/100"/><link rel="search" type="application/opensearchdescription+xml" title="Java 依赖注入标准（JSR-330）简介 - D 的个人博客" href="/opensearch.xml"><link href="https://88250.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://88250.github.io/manifest.json">        <link rel="canonical" href="https://88250.github.io/articles/2009/11/19/1258674480000.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/css/base.css?1593356700475"/>
+            <link rel="prev" title="Ubuntu ADSL 拨号上网时断时续问题" href="https://88250.github.io/articles/2009/10/31/1257009480000.html">
+            <link rel="next" title="Drop 简介" href="https://88250.github.io/articles/2009/11/30/1259620560000.html">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf42ff23d16b7774f35a38218377e8a0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://88250.github.io" rel="start">D 的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">全职做开源，自由职业者</h2>
+            <div class="header__desc">
+                
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
+            </svg>
+        </div>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://88250.github.io" rel="start"><img class="side__logo" alt="D 的个人博客" src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    413 文章 <br>
+                    <span data-uvstaturl="https://88250.github.io">3446695</span> 浏览
+                    
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
+                <li>
+                    <a href="https://88250.github.io" rel="start">
+                            D 的个人博客
+                    </a>
+                </li>
+                    <li>
+                        <a href="/about" target="_self"><img
+                                class="page-icon" src="https://static.hacpai.com/images/tags/react.png" alt="关于我">关于我</a>
+                    </li>
+                    <li>
+                        <a href="/my-github-repos" target="_self"><img
+                                class="page-icon" src="/images/github-icon.png" alt="我的开源">我的开源</a>
+                    </li>
+                    <li>
+                        <a href="https://hacpai.com" target="_blank"><img
+                                class="page-icon" src="https://static.hacpai.com/images/favicon.png" alt="黑客派">黑客派</a>
+                    </li>
+                    <li>
+                        <a href="https://b3log.org" target="_blank"><img
+                                class="page-icon" src="https://static.b3log.org/images/brand/b3log-32.png" alt="B3log">B3log</a>
+                    </li>
+                <li>
+                    <a href="https://88250.github.io/categories.html">分类</a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/tags.html">标签墙</a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://88250.github.io/links.html">友情链接</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://88250.github.io/rss.xml">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article__top" style="background-image: url(https://img.hacpai.com/bing/20171106.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        <div style="background-image: url(https://img.hacpai.com/bing/20171106.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2009-11-20
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/JSR-299">JSR-299</a> &nbsp;
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/J2SE%2FJavaSE">J2SE/JavaSE</a> &nbsp;
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/Architecture%20Design">Architecture Design</a> &nbsp;
+                    <a rel="tag"
+                       href="https://88250.github.io/tags/J2EE%2FJavaEE">J2EE/JavaEE</a> &nbsp;
+            </div>
+            <h2 class="article__title">
+                Java 依赖注入标准（JSR-330）简介
+            </h2>
+<div class="article__share"
+     data-title="Java 依赖注入标准（JSR-330）简介"
+     data-blogtitle="D 的个人博客"
+     data-url="https://88250.github.io/articles/2009/11/19/1258674480000.html"
+     data-avatar="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <h1 style="FONT-FAMILY:Verdana" id="toc_h1_0">
+  Java 依赖注入标准（JSR-330）简介
+</h1>
+<p style="FONT-FAMILY:Verdana">
+  转载请保留作者信息：</p>
+<p style="FONT-FAMILY:Verdana">
+  作者：<a title="88250's Blog" href="http://blog.csdn.net/DL88250" target="_blank">88250</a>
+，<a title="Vanessa's Blog" href="http://blog.csdn.net/Vanessa219" target="_blank">Vanessa</a>
+</p>
+<p style="FONT-FAMILY:Verdana">
+  时间：2009 年 11 月 19 日</p>
+<p>
+<br>
+</p><p>&nbsp;&nbsp;&nbsp;&nbsp; Java 依赖注入标准（JSR-330，Dependency Injection for Java）1.0 规范已于今年 10 月份<a title="发布" href="http://blog.csdn.net/DL88250/archive/2009/10/16/4679164.aspx" target="_blank">发布</a><br>
+。该规范主要是面向依赖注入使用者，而对注入器实现、配置并未作详细要求。目前 <a title="Spring" href="http://www.springsource.org/node/2174" target="_blank">Spring</a><br>
+、<a title="Guice" href="http://code.google.com/p/google-guice/" target="_blank">Guice</a><br>
+已经开始兼容该规范，JSR-299（Contexts and Dependency Injection for Java EE platform，参考实现 <a title="Weld" href="http://seamframework.org/Weld" target="_blank">Weld</a><br>
+）在依赖注入上也使用该规范。JSR-330 规范并未按 JSR 惯例发布规范文档，只发布了规范 API 源码，本文翻译了该规范 API 文档（Javadoc）以作为对 Java 依赖注入标准规范的简介。</p><p></p>
+<div id="WritelyTableOfContents" class="writely-toc">
+  <ol class="writely-toc-decimal">
+<li>
+      <a href="#javax_inject_40504930880883183_2007533775100061" target="_self">javax.inject</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;/li&gt;
+</code></pre>
+</li><li>
+      <a href="#_Inject_6802068962399098_56394_26207626942120477" target="_self">@Inject</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>  &lt;ol class="writely-toc-subheading writely-toc-disc" style="MARGIN-LEFT:0pt"&gt;
+</code></pre>
+</li><li>
+          <a href="#_7534470724411853_742038611373_8582904548586772" target="_self">限定器</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>    &lt;/li&gt;
+</code></pre>
+</li><li>
+          <a href="#_1763349362688431_111739045016_0020549850838221806" target="_self">可注入的值</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>    &lt;/li&gt;
+</code></pre>
+</li><li>
+          <a href="#_8464816905984055_785867212452" target="_self">循环依赖</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>    &lt;/li&gt;
+</code></pre>
+</li></ol>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;/li&gt;
+</code></pre>
+<li>
+      <a href="#_Qualifier_9535574146353466_06" target="_self">@Qualifier</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;/li&gt;
+</code></pre>
+</li><li>
+      <a href="#Provider_003165169731463413_78_6869560700092526" target="_self">Provider</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>  &lt;ol class="writely-toc-subheading writely-toc-disc" style="MARGIN-LEFT:0pt"&gt;
+</code></pre>
+</li><li>
+          <a href="#get_" target="_self">get()</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>    &lt;/li&gt;
+</code></pre>
+
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;/li&gt;
+</code></pre>
+</li><li>
+      <a href="#_Named_1262163341270509_233694_37767472601897867" target="_self">@Named</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;/li&gt;
+</code></pre>
+</li><li>
+      <a href="#_Scope_6014748620887402_713421_7367540373832964" target="_self">@Scope</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;/li&gt;
+</code></pre>
+</li><li>
+      <a href="#_Singleton_3104547156494192_71_7467978559797065" target="_self">@Singleton</a>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;/li&gt;
+</code></pre>
+
+</li></div>
+<p>&nbsp;</p>
+<div>
+<h2>
+    <a name="javax_inject_40504930880883183_2007533775100061" target="_blank"></a>
+javax.inject
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; 包 javax.inject 指定了获取对象的一种方法，该方法与构造器、工厂以及服务定位器（例如 JNDI））这些传统方法相比可以获得更好的可重用性、可测试性以及可维护性。此方法的处理过程就是大家熟知的依赖注入，它对于大多数应用是非常有价值的。<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 在我们的程序中，很多类型依赖于其他类型。例如，一个 Stopwatch 可能依赖于一个 TimeSource。一些类型被另一个类型依赖，我们就把这些类型叫做这个类型的<strong>依赖（物）</strong><br>
+。在运行时查找一个依赖实例的过程叫做<strong>解析</strong><br>
+<strong>依赖</strong><br>
+。如果找不到依赖的实例，那我们称该依赖为<strong>不能满足的</strong><br>
+，并导致应用运行失败。<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 在不使用依赖注入时，对象的依赖解析有几种方式。最常见的就是通过编写直接调用构造器的代码完成：<span style="FONT-FAMILY:Courier New"><br></span></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; class Stopwatch {<br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final TimeSource timeSource;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stopwatch () {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; timeSource = new AtomicClock(...);</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void start() { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long stop() { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br></span></p>
+  <br>
+<p><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp;&nbsp; </span><br>
+<span style="FONT-FAMILY:Verdana">如果需要更有弹性一点，那么我们可以通过工厂或服务定位器实现：</span><br>
+<br>
+<br></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="FONT-FAMILY:Courier New">class Stopwatch {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final TimeSource timeSource;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stopwatch () {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; timeSource = DefaultTimeSource.getInstance();</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void start() { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; long stop() { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br></span></p>
+  <br>
+<p><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="FONT-FAMILY:Verdana">在使用这些传统方式进行依赖解析时，程序员必须</span><br>
+</span><br>
+<span style="FONT-FAMILY:Verdana">做出适当权衡。构造器非常简洁，但却有一些限制（对象生存期，对象复用）。工厂确实解耦了客户与实现，但却需要样本式的代码。</span><br>
+<br>
+<span style="FONT-FAMILY:Verdana">服务定位器更进一步地解耦了客户与实现，但却降低了编译时的类型安全。并且，这三个方式都不适合进行单元测试。例如，当程序员使用工厂时，该工厂的</span><br>
+<span style="FONT-FAMILY:Verdana">每一个</span><br>
+<span style="FONT-FAMILY:Verdana">产品都必须模拟出来，测试完后还要得记得清理：</span><br>
+<br></p>
+  <br>
+<div style="MARGIN-LEFT:40px">
+    <span style="FONT-FAMILY:Courier New">&nbsp;void testStopwatch() {</span>
+<br style="FONT-FAMILY:Courier New">
+  </div>
+<span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TimeSource original = DefaultTimeSource.getInstance();</span>
+<br style="FONT-FAMILY:Courier New">
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DefaultTimeSource.setInstance(new MockTimeSource());</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Now, we can actually test Stopwatch.</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stopwatch sw = new Stopwatch();</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DefaultTimeSource.setInstance(original);</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br></span></p>
+  <br>
+<p><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp;&nbsp; 现实中，</span><br>
+<span style="FONT-FAMILY:Verdana">要模拟工厂将导致更多的样本式代码。测试模拟出的产品并清理它们在依赖多的情况下很快就控制不了了。更糟的是，程序员必须精确地预测</span><br>
+未来到底需要多少这样的弹性，并为他做的“弹性选择”负责。如果程序员开始时选择了构造器方式，但后来需要一个更有弹性的方式，那他就不得不替换所有调用构造器的代码。<br>
+如果程序员一开始过于谨慎地选择了工厂方式，结果可能导致要编写很多额外的样本式代码，引入了不必要的复杂度，潜在的问题比比皆是。<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <strong>依赖注入</strong><br>
+就是为了解决这些问题。代替程序员调用构造器或工厂，一个称作<strong>依赖注入器</strong><br>
+的工具将把依赖传递给对象：<br></p>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; class Stopwatch {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final TimeSource timeSource;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; @Inject Stopwatch(TimeSource timeSource) {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; this.TimeSource = timeSource;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; void start() { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long stop() { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br></span></p>
+  <br>
+<p><span style="FONT-FAMILY:Verdana">&nbsp;&nbsp;&nbsp;&nbsp; 注入器将更进一步地传递依赖给其他的依赖，直到</span><br>
+<br>
+<span style="FONT-FAMILY:Courier New"><span style="FONT-FAMILY:Verdana">它</span><br>
+</span><br>
+<span style="FONT-FAMILY:Courier New"><span style="FONT-FAMILY:Verdana">构造出整个</span><br>
+</span><br>
+<span style="FONT-FAMILY:Verdana">对象图</span><br>
+<span style="FONT-FAMILY:Courier New"><span style="FONT-FAMILY:Verdana">。</span><br>
+例如，假设一个程序员需要注入器创建一个 </span><br>
+StopwatchWidget 实例：<br></p>
+  <br>
+<div style="MARGIN-LEFT:40px">
+    <span style="FONT-FAMILY:Courier New">&nbsp;/** GUI for a Stopwatch */</span>
+<br style="FONT-FAMILY:Courier New">
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;class StopwatchWidget {&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject StopwatchWidget(Stopwatch sw) { ... }&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ...&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;}&lt;/span&gt;
+</code></pre>
+<br>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;br style="FONT-FAMILY:Courier New" /&gt;
+</code></pre>
+  </div>
+&nbsp;&nbsp;&nbsp;&nbsp; 注入器可能会：<br>
+</div>
+<ol>
+<li>
+    查找一个 TimeSource 实例
+  </li>
+<li>
+    使用找到的 TimeSource 实例构造一个 Stopwatch
+  </li>
+<li>
+    使用构造的 Stopwatch 实例构造一个 StopwatchWidget
+  </li>
+</ol>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp; 这使得代码保持干净，使得程序员感到使用依赖（物）的基础设施非常容易。</p>
+<div>
+  &nbsp;&nbsp;&nbsp;&nbsp; 现在，在单元测试中，程序员可以直接构造对象（不使用注入器）并将该对象以模拟依赖的方式直接传入待测对象的构造中。程序员再也不需要为每一次测试都配置并清理工厂或服务定位器。这大大简化了我们的单元测试：<br>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void testStopwatch() {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stopwatch sw = new Stopwatch(new MockTimeSource());</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 完全降低了单元测试的复杂度，降低的复杂程度与待测对象的数目及其依赖成正比。<br></p>
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 包 javax.inject 为使用这样的轻便类提供了依赖注入注解</strong><br>
+，但没有引入依赖配置方式。依赖配置方式取决于注入器的实现。程序员只需要标注了构造器、方法或字段来说明它们的可注入性（上面的例子就是构造器注入）。依赖注入器通过这些注解来识别一个类的依赖，并在运行时注入这些依赖。此外，注入器要能够在<strong>构建时</strong><br>
+验证所有的依赖是否满足。相比之下，服务定位器在构建时是不能检测到依赖不满足情况的，直到运行时才能发现。<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 注入器实现有很多形式。一个注入器可以通过 XML、注解、DSL（领域规约语言），或是普通 Java 代码来进行配置。注入器实现可以使用反射或代码生成。使用编译时代码生成的注入器甚至可能没有它自己的运行时描述。而其他注入器实现无论在编译时还是运行时可能都不使用代码生成。一个“容器”，其实可以把它定义为一个注入器，不过包 javax.inject 不涉及非常大概念，旨在最小化注入器实现的限制。<br></p>
+</div>
+<p>
+<br>
+</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 请查阅：<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <a title="@Inject" href="#_Inject_6802068962399098_56394_26207626942120477" target="_self">@Inject</a></p>
+<p></p>
+<div>
+<h2>
+    <a name="_Inject_6802068962399098_56394_26207626942120477" target="_blank"></a>
+@Inject
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; 注解 @Inject 标识了可注入的构造器、方法或字段。可以用于静态或实例成员。一个可注入的成员可以被任何访问修饰符（private、package- private、protected、public）修饰。注入顺序为构造器，字段，最后是方法。超类的字段、方法将优先于子类的字段、方法被注入。对于同一个类的字段是不区分注入顺序的，同一个类的方法亦同。<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 可注入的构造器指的是标注了 @Inject 并接受 0 个或多个依赖作为实参的构造器。对于每一个类而言，@Inject 最多只允许对一个类的一个构造器进行标注：<br></p>
+<p><span style="FONT-FAMILY:Courier New"><br></span></p>
+<p>&nbsp;&nbsp; <span style="font-size: x-small;">@Inject<br></span></p>
+<p>&nbsp;&nbsp; ConstructorModifiers<sub>opt</sub><br>
+SimpleTypeName(FormalParameterList<sub>opt</sub><br>
+) Throws<sub>opt </sub><br>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; ConstructorBody<br>
+<br>
+<br style="FONT-FAMILY:Courier New"></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp; @Inject 对于仅存在默认构造器（访问修饰符为 public 并且无参数）的情况是可选的，注入器将调用默认构造器：<br></p>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @Inject<sub>opt </sub><br>
+<br></span></p>
+<p>&nbsp;&nbsp; Annotations<sub>opt</sub><br>
+<br></p>
+<p>&nbsp;&nbsp; public SimpleTypeName() Throws<sub>opt</sub><br>
+ConstructorBody<br></p>
+  <br>
+<p><span style="FONT-FAMILY:Verdana">&nbsp;&nbsp;&nbsp;&nbsp; 可注入的字段：</span><br>
+<br></p>
+  
+<ul>
+<li>
+      被 @Inject 标注。
+    </li>
+<li>
+      不是 final 的。
+    </li>
+<li>
+      可以使用任何有效名。
+    </li>
+</ul>
+<br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @Inject FieldModifiers<sub>opt</sub><br>
+Type VariableDeclarators;</span><br>
+<br></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 可注入的方法：<br></p>
+<ul>
+<li>
+      被 @Inject 标注。
+    </li>
+<li>
+      不是 abstract 的。
+    </li>
+<li>
+      没有声明类型参数的方法。
+    </li>
+<li>
+      可以带返回值。
+    </li>
+<li>
+      可以使用任何有效名。
+    </li>
+<li>
+      接受 0 个或多个依赖作为实参。
+    </li>
+</ul>
+<br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @Inject MethodModifiers<sub>opt</sub><br>
+ResultType Identifier(FormalParameterList<sub>opt</sub><br>
+)&nbsp;&nbsp;&nbsp;<br></span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Throws<sub>opt</sub><br>
+MethodBody<br></p>
+  <br>
+<p><span style="FONT-FAMILY:Verdana">&nbsp;&nbsp;&nbsp;&nbsp; 注入器忽略了注入方法的返回值，因为方法的非空返回可能会用于其他上下文（例如 builder-style 的方法链）。</span><br>
+<br style="FONT-FAMILY:Verdana"></p>
+<p><span style="FONT-FAMILY:Verdana">&nbsp;&nbsp;&nbsp;&nbsp; 例子：</span><br>
+<br>
+<br></p>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; public class Car {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Injectable constructor</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject public Car(Engine engine) { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Injectable field</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject private Provider&lt;Seat&gt; seatProvider;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Injectable package-private method</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject void install(Windshield windshield, Trunk trunk) { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; }<br></span></p>
+<p><span style="font-family: Verdana;"><br></span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 当一个方法标注了 @Inject 并覆写了其他标注了 @Inject 的方法时，对于每一个实例的每一次注入请求，该方法只会被注入一次。当一个方法没有标注 @Inject 并覆写了其他标注了 @Inject 的方法时，该方法不会被注入。<br></p>
+  
+
+&nbsp;&nbsp;&nbsp;&nbsp; 要进行成员注入就必须标注 @Inject。一个可注入的成员可以使用任何访问修饰符（包括 private）。不过受于平台或注入器限制（例如安全管理或缺乏反射支持），标注了 @Inject 的非公有成员可能将不被注入。<br>
+  <br>
+<h3>
+    <a name="_7534470724411853_742038611373_8582904548586772" target="_blank"></a>
+<strong>限定器</strong>
+  </h3>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Qualifier_9535574146353466_06">限定器</a>
+注解用于标注可注入的字段或参数，外加该字段或参数的类型，就可以标识出待注入的实现。限定符是可选的，当与 @Inject 一起使用在与注入器无关的类时，对于一个字段或参数，应该最多只有一个限定符被标注。在下面的例子中，限定符被标注了粗体：<br>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; public class Car {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject private <strong>@Leather</strong><br>
+Provider&lt;Seat&gt; seatProvider;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; &nbsp; &nbsp; @Inject void install(<strong>@Tinted</strong><br>
+Windshield windshield,</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>@Big</strong><br>
+Trunk trunk) { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; }</span><br>
+<br></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 如果一个可注入的方法覆写了其他方法，覆写方法的参数不会自动地从被覆写的方法上继承限定器。<br></p>
+<h3>
+    <a name="_1763349362688431_111739045016_0020549850838221806" target="_blank"></a>
+可注入的值
+  </h3>
+&nbsp;&nbsp;&nbsp;&nbsp; 对于一个给定的类型 T 与可选的限定器，注入器必须能够注入用户指定的类：<br>
+</div>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp; a. 与 T 是赋值兼容的，并且</p>
+<div>
+  &nbsp;&nbsp;&nbsp;&nbsp; b. 有一个可注入的构造器。<br>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp; 例如，用户可能使用外部配置来选择一个 T 的实现。此外，待注入的值取决于注入器实现与它的配置。<br>
+<h3>
+      <a name="_8464816905984055_785867212452" target="_blank"></a>
+循环依赖
+    </h3>
+&nbsp;&nbsp;&nbsp;&nbsp; 本规范并未详细要求探测循环依赖与解析循环依赖。两个构造器间的循环依赖是一个非常明显的问题，另外，对于可注入字段或方法的循环依赖也很常见，例如：<br>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;br /&gt;
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; class A {&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject B b;&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; }&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; class B {&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Inject A a;&lt;/span&gt;
+</code></pre>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;span style="FONT-FAMILY:Courier New"&gt;&amp;nbsp;&amp;nbsp; }&lt;/span&gt;
+</code></pre>
+<br>
+<pre><code class="highlight-chroma"><span class="highlight-ln">1</span>&lt;br /&gt;
+<span class="highlight-ln">2</span>
+<span class="highlight-ln">3</span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 当构造 A 的一个实例时，一个简单的注入器可能会无限循环构造：B 的一个实例注入给 A 的一个实例，第二个 A 的实例注入给 B 的一个实例，第二个 B 的实例注入给第二个 A 的实例，&amp;hellip;&amp;hellip;&lt;br style="FONT-FAMILY:Courier New" /&gt;
+<span class="highlight-ln">4</span>
+<span class="highlight-ln">5</span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 一个保守的注入器可能会在构建时探测出这个循环依赖，并生成一个错误，指出程序员可以使用&lt;a id="hifs" title="Provider&amp;lt;A&amp;gt;" href="#Provider_003165169731463413_78_6869560700092526" target="_self" title="Provider&amp;lt;A&amp;gt;"&gt;Provider&amp;lt;A&amp;gt;&lt;/a&gt;
+</code></pre>
+<p>或 Provider&lt;B&gt; 对应替换 A 或 B 来打破这个循环依赖。从注入的构造器或方法调用该 provider 的 <a href="#Provider_003165169731463413_78_6869560700092526">get()</a><br>
+将打破这个循环依赖。对于方法或字段注入的情况，将其依赖的一边放置到某作用域（例如<a href="#_Singleton_3104547156494192_71_7467978559797065">单例作用域</a><br>
+）也可以使得循环依赖能够被注入器解析。<br></p>
+  </div>
+</div>
+<p>
+<br>
+</p><p>&nbsp;&nbsp;&nbsp;&nbsp; 请查阅：<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <a title="@Qualifier" href="#_Qualifier_9535574146353466_06" target="_self">@Qualifier</a><br>
+<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <a title="@Provider" href="#Provider_003165169731463413_78_6869560700092526" target="_self">@Provider</a></p>
+<p></p>
+<h2 id="toc_h2_1">
+  <a name="_Qualifier_9535574146353466_06" target="_blank"></a>
+@Qualifier<br>
+</h2>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp; 注解 @Qualifier 用于标识限定器注解。任何人都可以定义新的限定器注解。一个限定器注解：</p>
+<div>
+<ul>
+<li>
+      是被 @Qualifier、@Retention(RUNTIME) 标注的，通常也被 @Documented 标注。
+    </li>
+<li>
+      可以拥有属性。
+    </li>
+<li>
+      可能是公共 API 的一部分，就像依赖类型一样，而不像类型实现那样不作为公共 API 的一部分。
+    </li>
+<li>
+      如果标注了 @Target 可能会有一些用法限制。本规范只是指定了限定器注解可以被使用在字段和参数上，但一些注入器配置可能使用限定器注解在其他一些地方（例如方法或类）上。
+    </li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; 例子：<br>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @java.lang.annotation.Documented</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @java.lang.annotation.Retention(RUNTIME)</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @javax.inject.Qualifier</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; public @interface Leather {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Color color() default Color.TAN;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public enum Color { RED, BLACK, TAN }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; }<br></span></p>
+<p><br style="FONT-FAMILY:Courier New"></p>
+  
+&nbsp;&nbsp;&nbsp;&nbsp; 请查阅：<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <a title="@Named" href="#_Named_1262163341270509_233694_37767472601897867" target="_self">@Named</a><br>
+<br></p>
+  <br>
+<h2>
+    <a name="Provider_003165169731463413_78_6869560700092526" target="_blank"></a>
+Provider&lt;T&gt;
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; 接口 Provider 用于提供类型 T 的实列。Provider 是一般情况是由注入器实现的。对于任何可注入的 T 而言，您也可以注入 Provider&lt;T&gt;。与直接注入 T 相比，注入 Provider&lt;T&gt; 使得：<br>
+<ul>
+<li>
+      可以返回多个实例。
+    </li>
+<li>
+      实例的返回可以延迟化或可选
+    </li>
+<li>
+      打破循环依赖。
+    </li>
+<li>
+      可以在一个已知作用域的实例内查询一个更小作用域内的实例。
+    </li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; 例子：<br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; </span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; class Car {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Inject Car(Provider&lt;Seat&gt; seatProvider) {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Seat driver = seatProvider.get();</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Seat passenger = seatProvider.get();</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; }</span><br>
+<br></p>
+  <br>
+<h3>
+    <a name="get_" target="_blank"></a>
+get()
+  </h3>
+&nbsp;&nbsp;&nbsp;&nbsp; 用于提供一个完全构造的类型 T 的实例。<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 异常抛出：RuntimeException —— 当注入器在提供实例时遇到错误将抛出此异常。例如，对于一个可注入的成员 T 抛出了一个异常，注入器将包装此异常并将它抛给 get() 的调用者。调用者不应该尝试处理此类异常，因为不同注入器实现的行为不一样，即使是同一个注入器，也会因为配置不同而表现的行为不同。<br></p>
+  <br>
+<h2>
+    <a name="_Named_1262163341270509_233694_37767472601897867" target="_blank"></a>
+@Named
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; 基于 String 的<a href="#_Qualifier_9535574146353466_06">限定器</a>
+。<br>
+<p>&nbsp;&nbsp; &nbsp; 例子：<br></p>
+<p><br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; public class Car {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @Inject @Named("driver") Seat driverSeat;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp; &nbsp;&nbsp; &nbsp; @Inject @Named("passenger") Seat passengerSeat;</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ...</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; }<br></span></p>
+  
+<br>
+<h2>
+    <a name="_Scope_6014748620887402_713421_7367540373832964" target="_blank"></a>
+@Scope
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; 注解 @Scope 用于标识作用域注解。一个作用域注解是被标识在包含一个可注入构造器的类上的，用于控制该类型的实例如何被注入器重用。缺省情况下，如果没有标识作用域注解，注入器将为每一次注入都创建（通过注入类型的构造器）新实例，并不重用已有实例。如果多个线程都能够访问一个作用域内的实例，该实例实现应该是线程安全的。作用域实现由注入器完成。<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 在下面的例子中，作用域注解 @Singleton 确保我们始终只有一个 Log 实例：<br></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <span style="FONT-FAMILY:Courier New">@Singleton</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; class Log {</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void log(String message) { ... }</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; }</span><br>
+<br></p>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 当多于一个作用域注解或不被注入器支持的作用域注解被使用在同一个类上时，注入器将生成一个错误。<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 一个作用域注解：<br></p>
+<ul>
+<li>
+      被标注了 @Scope、@Retention(RUNTIME) 标注的，通常也被 @Documented 标注。
+    </li>
+<li>
+      不应该含有属性。
+    </li>
+<li>
+      不应该被 @Inherited 标注，因此作用域与继承实现（正交）无关。
+    </li>
+<li>
+      如果标注了 @Target 可能会有一些用法限制。本规范只是指定了作用域注解可以被使用在类上，但一些注入器配置可能使用作用域注解在其他一些地方（例如工厂方法返回）上。
+    </li>
+</ul>
+<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 例子：<br></p>
+  <br>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @java.lang.annotation.Documented</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @java.lang.annotation.Retention(RUNTIME)</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; @javax.inject.Scope</span><br>
+<br style="FONT-FAMILY:Courier New"></p>
+<p><span style="FONT-FAMILY:Courier New">&nbsp;&nbsp; public @interface RequestScoped {}<br></span></p>
+  <br>
+<p><span style="FONT-FAMILY:Verdana">&nbsp;&nbsp;&nbsp;&nbsp; 使用 @Scope </span><br>
+来标识一个作用域注解有助于注入器探测程序员使用了作用域注解但却忘了去配置作用域的情况。一个保守的注入器应该生成一个错误而不是去适用该作用域。<br style="FONT-FAMILY:Courier New"></p>
+  
+<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 请查阅：<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <a title="@Singleton" href="#_Singleton_3104547156494192_71_7467978559797065" target="_self">@Singleton</a><br>
+<br></p>
+  <br>
+<h2>
+    <a name="_Singleton_3104547156494192_71_7467978559797065" target="_blank"></a>
+@Singleton
+  </h2>
+&nbsp;&nbsp;&nbsp;&nbsp; 注解 @Singleton 标识了注入器只实例化一次的类型。该注解不能被继承。<br>
+  <br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 请查阅：<br></p>
+<p>&nbsp;&nbsp; &nbsp; <a title="@Scope" href="#_Scope_6014748620887402_713421_7367540373832964" target="_self">@Scope</a><br>
+<br></p>
+  <br>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="http://docs.google.com/View?id=ddrm6c35_1172c4dxsbdq" target="_blank">well-formed</a>
+</p>
+                    <div>
+                        <br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- D博客文章签名档 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5357405790190342"
+     data-ad-slot="7757575754"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    </div>
+            </section>
+        </div>
+
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">Java 依赖注入标准（JSR-330）简介</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">@Qualifier</a>
+        </li>
+</ul>        </div>
+        <div id="b3logsolocomments"></div>
+        <div class="wrapper">
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="88250" data-postId="1258674480000"></div>
+        </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                    <div class="item" id="externalRelevantArticles"></div>
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/TweenMax.min.js?1593356700475"
+        charset="utf-8"></script>
+<footer class="footer">
+    <div class="wrapper">
+            <a href="https://hacpai.com/member/88250"
+       title="https://hacpai.com/member/88250"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/88250"
+           title="https://github.com/88250"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+ <br>
+        &copy; 2020
+        <a href="https://88250.github.io">D 的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+    </div>
+</footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://88250.github.io",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources",
+    luteAvailable: true,
+    hljsStyle: 'monokai',
+    langLabel: "zh_CN",
+    version: "4.2.0",
+    staticSite: true,
+    showCodeBlockLn: true,
+  }
+</script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/common.min.js?1593356700475"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/skins/Bubble/js/circleMagic.min.js?1593356700475"
+        charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.8/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+    <svg viewBox="0 0 32 32" width="100%" height="100%" class="side__top side__top--toc">
+        <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+    </svg>
+
+<script type="text/javascript">
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@625fb95/src/main/resources/js/page.min.js?1593356700475', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1258674480000",
+        "blogHost": "https://88250.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "7";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadExternalRelevantArticles("JSR-299,J2SE/JavaSE,Architecture Design,J2EE/JavaEE",
+        '<h3>站外相关阅读</h3>');
+        page.loadRelevantArticles('1258674480000', '<h3>相关阅读</h3>');
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 210ms, 2020/06/28 23:07:11 -->

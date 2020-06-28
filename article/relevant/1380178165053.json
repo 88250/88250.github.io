@@ -1,0 +1,1 @@
+{"relevantArticles":[{"articleTitle":"RabbitMQ 网络分区问题","articleAbstractText":"RabbitMQ 集群的网络分区容错性并不是非常高，在网络经常发生分区时会有些问题，最明显的就是脑裂问题。","articleStatus":0,"articlePermalink":"/rabbitmq-network-partition","articleImg1URL":"https://img.hacpai.com/bing/20180614.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100"}]}
